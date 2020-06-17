@@ -22,11 +22,6 @@ import {
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
-$.ajaxSetup({
-    headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-    }
-});
 
 /*
 We use this method when you click on close icon in some view of

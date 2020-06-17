@@ -2,6 +2,7 @@
 
 @section('content')
 <body>
+
     <div id="Admin-users-Front">
       <!--Div para cambio-->
       <h1>Admin users Front</h1>

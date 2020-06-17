@@ -36,6 +36,12 @@ import {
     sendEmailResetPassword
 } from "./services/user.js";
 
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+    }
+});
+
 $(document).ready(function() {
     //CONFIGURACIÓN DE DATEPICKER
     let dateScheduleLanding = document.querySelector("#date-schedule-landing");

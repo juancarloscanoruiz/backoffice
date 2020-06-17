@@ -3,7 +3,7 @@
 
 @section('content')
 <body class="scroll">
-
+    <h1>{{ session('name') }}</h1>
     <main>
       <!--header-->
         @include('partials.headers.header')
