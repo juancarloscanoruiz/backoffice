@@ -396,6 +396,7 @@ function showPageUsersBO() {
         success: function(result) {
             $("#cambio").html("");
             $("#cambio").html(result);
+            getAllUsersBO();
         }
     });
     /*

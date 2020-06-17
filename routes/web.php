@@ -21,6 +21,12 @@ Route::get('/admin', function () {
 })->name('admin');
 
 
+//RUTAS PARA ADMINSTRAR USUARIOS DE CLARO NETWORKS Y BACKOFFICE
+Route::group(['prefix' => 'user'], function () {
+    Route::post('backoffice', "AdminUserController@getUsersBackoffice");
+    Route::post('front', "AdminUserController@getUsersFront");
+});
+
 //RUTAS PARA AUTENTICACIÓN
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', "AuthController@signIn")->name("login");

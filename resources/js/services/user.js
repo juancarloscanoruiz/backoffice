@@ -317,15 +317,16 @@ function getAllUsersBO() {
     $.ajax({
         type: "POST",
         data: dataUser,
-        url: "./adapters/user.php",
+        url: "user/backoffice",
         beforeSend: function() {
             $("#Adm-users-BO").html(
                 `<img src="./images/loader.gif" class="loader"/>`
             );
         },
         success: function(result) {
-            let json = JSON.parse(result);
-            if (json.code == 200) {
+            console.log(result);
+            //let json = JSON.parse(result);
+            /*if (json.code == 200) {
                 let userBO = "";
                 localStorage.setItem("usersBO", JSON.stringify(json.data));
                 let users = JSON.parse(localStorage.getItem("usersBO"));
@@ -388,7 +389,7 @@ function getAllUsersBO() {
                 showUserBO();
                 showUserToUpdate();
                 showFormCreateUser();
-            }
+            }*/
         }
     });
 }
