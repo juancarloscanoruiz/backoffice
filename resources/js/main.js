@@ -9,7 +9,8 @@ import {
     deleteUserUI,
     showPageUsersFront,
     createNavbarProgramacionGeneral,
-    showLandingSchedule
+    showLandingSchedule,
+    showAdminSite
 } from "./UI/UI.js";
 
 //Validations
@@ -28,13 +29,13 @@ import {
 /* Service User
  */
 import {
-    signIn,
-    signOut,
     registerUser,
     getAllUsersBO,
     getAllUserFront,
     sendEmailResetPassword
 } from "./services/user.js";
+
+import CryptoJS from "crypto-js";
 
 $.ajaxSetup({
     headers: {
@@ -193,20 +194,23 @@ $(document).ready(function() {
             validateEmail(inputEmail, messageError) &&
             validatePassword(inputPassword, messagePasswordError)
         ) {
-            let email = inputEmail.val();
-            let password = inputPassword.val();
-            signIn(email, password);
+            /*let email = inputEmail.val();
+            let hash = CryptoJS.SHA1(inputPassword.val());
+            let result = CryptoJS.enc.Hex.stringify(hash);*/
+            const loader = `
+            <div class="loader-container">
+              <img src="./images/loader.gif" class="loader" alt="">
+            </div>
+            `;
+            let formContainer = $(".fondolog-reco");
+            formContainer.prepend(loader);
+            //signIn(email, result);
 
             return true;
         } else {
             console.log("errro");
             return false;
         }
-    });
-
-    /* SIGNOUT */
-    $("#signout-button").click(function() {
-        signOut();
     });
 
     /*REGISTER NEW USER*/
@@ -243,6 +247,11 @@ $(document).ready(function() {
     /* SHOW VIEW USERS FRONT */
     $(".admin-users-front-section").click(function() {
         showPageUsersFront();
+    });
+
+    /* SHOW VIEW ADMIN SITE */
+    $(".admin-site-button").click(function() {
+        showAdminSite();
     });
 
     /* Previsualizar contenido en diferentes tamaños */

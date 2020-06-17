@@ -17,6 +17,9 @@ class ViewsController extends Controller
                 case 'admin-users-front':
                     return view('admin-users.Admin-users-front');
                     break;
+                case 'admin-site-home':
+                    return view('admin-site.admin-home');
+                    break;
                 default:
                     # code...
                     break;

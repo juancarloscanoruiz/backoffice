@@ -18,12 +18,13 @@ Route::get('/', "AuthController@index");
 
 Route::get('/admin', function () {
     return view('admin-site.Admin-BO');
-});
+})->name('admin');
 
 
 //RUTAS PARA AUTENTICACIÓN
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', "AuthController@signIn");
+    Route::post('login', "AuthController@signIn")->name("login");
+    Route::post('logout', "AuthController@signOut")->name("logout");
 });
 
 //RUTA PARA CARGAR CONTENIDO HTML

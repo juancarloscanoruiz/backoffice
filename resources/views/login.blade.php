@@ -27,11 +27,12 @@
           </div>
           <br />
           <div class="col-10 col-sm-8 col-md-8 col-lg-9 col-xl-9 mx-auto">
-            <form method="POST">
+          <form method="POST" action="{{ route('login')}}">
+                {{ csrf_field() }}
               <div class="row ma-no centro no-gutters">
                 <div class="col-sm-12 no-gap">
                   <div class="tamaño2">
-                    <input class="insert-data input-email correo" type="text" placeholder="Correo electrónico" id="login-email" />
+                    <input class="insert-data input-email correo" type="email" placeholder="Correo electrónico" id="login-email" name="login-email"/>
 
                     <img src="./images/registro/group-12.svg" class="ubicacion3" />
                     <div class="d-flex align-items-center mt-2">
@@ -70,7 +71,7 @@
               <div class="centro">
 
                 <!-- <a href="Admin-BO.php"> -->
-                <button type="button" class="btn-ingresar-reco text-public mt-3" id="button-login">
+                <button type="submit" class="btn-ingresar-reco text-public mt-3" id="button-login">
                   INGRESAR
                 </button>
                 <!-- </a> -->

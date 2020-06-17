@@ -376,6 +376,18 @@ function changeContentProgramacionGeneral(nameSection) {
     $("#" + nameSection).show();
 }
 
+function showAdminSite() {
+    $.ajax({
+        type: "POST",
+        url: "/BackofficeClaroNetworks/public/view",
+        data: { view: "admin-site-home" },
+        success: function(result) {
+            $("#cambio").html("");
+            $("#cambio").html(result);
+        }
+    });
+}
+
 function showPageUsersBO() {
     $.ajax({
         type: "POST",
@@ -679,5 +691,6 @@ export {
     showDescriptions,
     createNavbarProgramacionGeneral,
     landing,
-    showLandingSchedule
+    showLandingSchedule,
+    showAdminSite
 };

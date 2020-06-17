@@ -13,11 +13,13 @@
 </div>
 <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
     <div class='ml-5'>
-        <span class='a-text-black-bold a-name-user'>JC</span><br>
-        <span class='text-light1 '>Administrador</span>
+    <span class='a-text-black-bold a-name-user'>{{ session('name') }}</span><br>
+    <span class='text-light1 '>{{ session('rol_name') }}</span>
     </div>
     <div class='mr-5'>
-
-   <button class=' btn-cerrar textcerrar' id='signout-button'>CERRAR SESIÓN</button>
+        <form method="POST" action="{{ route('logout') }}">
+            {{ csrf_field() }}
+            <button type="submit" class='btn-cerrar textcerrar' id='signout-button'>CERRAR SESIÓN</button>
+        </form>
     </div>
 </div>

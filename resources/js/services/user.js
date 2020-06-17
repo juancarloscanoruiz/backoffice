@@ -77,7 +77,7 @@ function sendNewPassword(inputPassword, secondInputPassword) {
     });
 }
 
-function signIn(email, password) {
+/*function signIn(email, password) {
     let dataUser = {
         email: email,
         password: password
@@ -87,7 +87,7 @@ function signIn(email, password) {
         type: "POST",
         data: dataUser,
         url: "/BackofficeClaroNetworks/public/auth/login",
-        /*beforeSend: function() {
+        beforeSend: function() {
             const loader = `
       <div class="loader-container">
         <img src="./images/loader.gif" class="loader" alt="">
@@ -95,42 +95,13 @@ function signIn(email, password) {
       `;
             let formContainer = $(".fondolog-reco");
             formContainer.prepend(loader);
-        },*/
-        success: function(result) {
-            window.location.href = "/admin";
-
-            /*let json = JSON.parse(result);
-            if (json.code == 200) {
-                location.href = "Admin-BO.php";
-            } else if (json.code == 404) {
-                $(".loader-container").remove();
-                $(".warning-login")
-                    .text(
-                        "Tu correo o contraseña no coinciden. Por favor, verifica de nuevo"
-                    )
-                    .addClass("invalid-email");
-            }*/
-        }
-    });
-}
-
-function signOut() {
-    let dataUser = {
-        function: "signOut"
-    };
-
-    $.ajax({
-        type: "POST",
-        data: dataUser,
-        url: "./adapters/user.php",
+        },
         success: function(result) {
             console.log(result);
-            if (result == 200) {
-                location.href = "login.php";
-            }
+            window.location.href = "admin";
         }
     });
-}
+}*/
 
 function registerUser(name, email, rol) {
     let user = {
@@ -1279,8 +1250,6 @@ function sendEmailResetPassword(input) {
 export {
     sendUserEmail,
     sendNewPassword,
-    signIn,
-    signOut,
     updateDataUser,
     registerUser,
     getAllUsersBO,
