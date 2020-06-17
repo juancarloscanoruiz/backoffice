@@ -1,0 +1,341 @@
+@import "../base/color";
+@import "../base/typography";
+
+ul {
+    list-style: none;
+}
+
+.description {
+    position: fixed;
+    top: 40%;
+    transform: translateY(100%);
+}
+
+#select-Pais .SeleccionPaisLista {
+    padding: 6px 10px;
+    width: 100%;
+    height: 40px;
+    top: 3%;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.select-Pais:hover {
+    overflow: visible;
+}
+
+#select-Pais .SeleccionPaisLista:after {
+    content: url(/BackofficeClaroNetworks/public/images/datos-adicionales/flechita.svg);
+    height: 1px;
+    background: $white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-90%, -50%);
+}
+
+#select-Pais {
+    width: 100%;
+    height: 38px;
+    border-radius: 25px;
+    border: solid 1px $morelightgray;
+    background-color: $white;
+    margin-bottom: -4px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: left;
+}
+
+.ListaDesplegablePaises {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow-y: scroll;
+    position: absolute;
+    height: 40px;
+    top: 85%;
+    left: 0;
+    list-style: none;
+    background-color: $white;
+    border-radius: 12px;
+    margin-top: 5%;
+    border: solid 1px $morelightgray;
+    z-index: 2;
+}
+
+.ListaDesplegablePaises .option {
+    padding: 5px 10px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.ListaDesplegablePaises .option:hover {
+    color: $gray;
+    background: #eaeaea;
+    border-radius: 12px;
+}
+
+#selectPais:checked ~ #select-Pais {
+    overflow: visible;
+}
+
+#selectPais:checked ~ #select-Pais .ListaDesplegablePaises {
+    height: 158px;
+}
+
+#select-Dia {
+    width: 94%;
+    height: 33px;
+    border: solid 1px $morelightgray;
+    background-color: $white;
+    margin-top: 21px;
+    margin-left: 3px;
+    padding-bottom: -135px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    //a-text-selec
+}
+
+#select-Dia .SeleccionDiaLista {
+    padding: 5px 16px 10px 7px;
+    position: absolute;
+    height: 40px;
+    top: 3%;
+}
+
+#select-Dia .SeleccionDiaLista:after {
+    content: url(/BackofficeClaroNetworks/public/images/datos-adicionales/flechita.svg/images/datos-adicionales/flechita.svg);
+    position: absolute;
+    width: 11.4px;
+    height: 8px;
+    background: $white;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 10%;
+    margin-top: 17%;
+}
+
+.ListaDesplegableDias {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    overflow-y: scroll;
+    top: 40px;
+    left: 0;
+    list-style: none;
+    background-color: $white;
+    border-radius: 12px;
+    margin-top: 5%;
+    border: solid 1px $morelightgray;
+    z-index: 2;
+}
+
+.ListaDesplegableDias .Dias {
+    padding: 5px 10px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.ListaDesplegableDias .Dias:hover {
+    color: $gray;
+    background: #eaeaea;
+    border-radius: 12px;
+}
+
+#selectDay:checked ~ #select-Dia {
+    overflow: visible;
+}
+
+#selectDay:checked ~ #select-Dia .ListaDesplegableDias {
+    height: 200px;
+}
+
+/*Lista desplegable de meses*/
+#select-Mes {
+    width: 94%;
+    height: 33px;
+    border: solid 1px $morelightgray;
+    background-color: $white;
+    margin-top: 21px;
+    margin-left: 4px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    //a-text-selec
+}
+
+#select-Mes .SeleccionMesLista {
+    padding: 2px 10px 10px 4px;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 10%;
+    left: 0;
+    margin: 0;
+}
+
+#select-Mes .SeleccionMesLista:after {
+    content: url(/BackofficeClaroNetworks/public/images/datos-adicionales/flechita.svg/images/datos-adicionales/flechita.svg);
+    position: absolute;
+    width: 11.4px;
+    height: 8px;
+    background: $white;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 4%;
+    margin-top: 12%;
+}
+
+.ListaDesplegableMeses {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    list-style: none;
+    background-color: $white;
+    border-radius: 12px;
+    margin-top: 5%;
+    border: solid 1px $morelightgray;
+    z-index: 2;
+}
+
+.ListaDesplegableMeses .Meses {
+    padding: 5px 10px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.ListaDesplegableMeses .Meses:hover {
+    color: $gray;
+    background: #eaeaea;
+    border-radius: 12px;
+}
+
+#selectMonth:checked ~ #select-Mes {
+    overflow: visible;
+}
+
+#selectMonth:checked ~ #select-Mes .ListaDesplegableMeses {
+    height: 200px;
+}
+
+#select-Año {
+    width: 94%;
+    height: 33px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 21px;
+    margin-left: 4px;
+    position: relative;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(151, 151, 151);
+    border-image: initial;
+    overflow: hidden;
+    //a-text-selec
+}
+
+#select-Año .SeleccionAñoLista {
+    padding: 2px 10px 10px 4px;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 10%;
+    left: 0;
+    margin: 0;
+}
+
+#select-Año .SeleccionAñoLista:after {
+    content: url(/BackofficeClaroNetworks/public/images/datos-adicionales/flechita.svg);
+    position: absolute;
+    width: 11.4px;
+    height: 8px;
+    background: $white;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: -1%;
+    margin-top: 12%;
+}
+
+.ListaDesplegableAños {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    list-style: none;
+    background-color: $white;
+    border-radius: 12px;
+    margin-top: 5%;
+    border: solid 1px $morelightgray;
+    z-index: 2;
+}
+
+.ListaDesplegableAños .Años {
+    padding: 5px 10px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.ListaDesplegableAños .Años:hover {
+    color: $gray;
+    background: #eaeaea;
+    border-radius: 12px;
+}
+
+#selectYear:checked ~ #select-Año {
+    overflow: visible;
+}
+
+#selectYear:checked ~ #select-Año .ListaDesplegableAños {
+    height: 200px;
+}

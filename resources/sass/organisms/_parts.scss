@@ -1,0 +1,123 @@
+@import "../base/color";
+@import "../base/typography";
+
+.sombras1 {
+  margin: auto;
+  width: 100%;
+  max-width: 492px;
+  box-shadow: 3px 5px 10px 6px rgba(0, 0, 0, 0.14);
+}
+.sombras2 {
+  margin: auto;
+  width: 100%;
+  max-width: 671px;
+  box-shadow: 3px 5px 10px 6px rgba(0, 0, 0, 0.14);
+}
+
+
+
+aside {
+  grid-area: my-aside;
+  background-color: $darkred;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  box-shadow: 1px 0px 2px 1px $beige;
+}
+.body {
+  font-size: 20px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.signo:before {
+  content: " + ";
+  color: $white;
+  font-size: 40px;
+  font-family: $MontserratSemiBold;
+  padding-right: 3%;
+}
+
+
+.sp:before {
+  content: " | ";
+  margin-left: 4px;
+  font-size: 24px;
+}
+
+
+
+
+
+
+.indication:hover .overlay-edition {
+  opacity: 3;
+}
+
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  width: 130px;
+  color: $white;
+}
+
+select:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.conte-rol::after {
+  content: "\025be";
+  padding-top: 7px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  background-color: $lemongreen;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  pointer-events: none;
+}
+
+
+.error {
+  display: none;
+}
+
+
+
+
+.contra:hover {
+  color: #11707d;
+}
+
+
+.listo {
+  display: none;
+}
+
+.btn-rol-all:hover {
+  opacity: 0.4;
+}
+.btn-rol-select:hover {
+  opacity: 0.4;
+}
+.border-rol {
+  border: 2px solid $morelightgray !important;
+}
+
+.bg-color {
+  background-color: #fcfcfc;
+}
+

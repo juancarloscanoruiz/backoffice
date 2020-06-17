@@ -1,0 +1,77 @@
+.login-BO {
+  height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.login-form-bo {
+  width: 400px;
+  height: 570px;
+  display: flex;
+  background-color: $white;
+  margin-right: 45%;
+  margin-left: 31%;
+  border-radius: 1em;
+}
+.modal-defi {
+  position: fixed;
+  top: 32%;
+  left: 23%;
+  z-index: 1050;
+}
+.modal-defi1 {
+  max-width: 701px;
+  margin-left: 7%;
+}
+
+.modal-defi2 {
+  max-width: 683px;
+  margin-left: 7%;
+}
+.modal-open .modal {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.modal-regis-listo {
+  max-width: 656px;
+  border-radius: 2px;
+  background-color: $white;
+  padding: 29px;
+  margin: auto;
+}
+.mod {
+  position: fixed;
+  padding: 10px;
+  text-align: center;
+  width: 100px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.tamaño2 {
+  height: 64px;
+  margin: auto;
+  position: relative;
+}
+.tamaño {
+  width: 673px;
+}
+.tamaño-alta {
+  width: 636px;
+}
+.tamaño-alta1 {
+  width: 636px;
+  height: 39px;
+}
+.tamaño-edi{
+  width: 676px;
+  height: 39px;
+} 

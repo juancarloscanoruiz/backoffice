@@ -1,0 +1,21 @@
+@import "../base/color";
+@import "../base/typography";
+
+header {
+    grid-area: my-header;
+    background-color: $darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 0px 2px 1px $beige;
+  }
+  header {
+    grid-area: my-header;
+    background-color: $darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    box-shadow: 1px 0px 2px 1px $beige;
+  }
+  

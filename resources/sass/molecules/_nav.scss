@@ -1,0 +1,25 @@
+@import "../base/color";
+
+.navbar-progra-item-border {
+  border-right: 2px solid $morelightgray;
+}
+
+.navbar-progra-item:nth-child(0) {
+  background: lightblue;
+}
+
+.navbar-progra-item-container {
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.navbar-progra-active {
+  .navbar-progra-item-container {
+    border-radius: 7px;
+    background: $selecred;
+  }
+
+  p {
+    color: $white !important;
+  }
+}

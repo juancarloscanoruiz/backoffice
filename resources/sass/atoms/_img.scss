@@ -1,0 +1,243 @@
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.image-blue {
+    display: flex;
+    position: absolute;
+    top: 200px;
+    left: 0px;
+}
+.image-email-login {
+    position: absolute;
+    right: 1%;
+    left: 350px;
+    -webkit-transform: translate(0, -90%); /*aqui es pr imagenes svg*/
+    transform: translate(0, -10%);
+    z-index: 1;
+}
+
+.image-pink {
+    position: absolute;
+    top: 400px;
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
+    left: 0;
+}
+.image-pink-fondo {
+    position: absolute;
+    top: 200px;
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, 500%);
+    left: 0;
+}
+.image-blue-login {
+    position: relative;
+    border-radius: 15px;
+    top: 0px;
+    -webkit-transform: translate(0, -100%); /*aqui es pr imagenes svg*/
+    transform: translate(0, -0%);
+    right: 15px;
+}
+.logo {
+    position: absolute;
+    left: 200px;
+    right: 33%;
+    top: 0px;
+    -webkit-transform: translate(0, -100%); /*aqui es pr imagenes svg*/
+    transform: translate(0, 50%);
+}
+.fondo-BO {
+    background: url("/BackofficeClaroNetworks/public/images/claro-networks-portada.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: hidden !important;
+}
+.image-email {
+    position: absolute;
+    right: 1%;
+    left: 270%;
+    transform: translate(0, 2000%);
+    z-index: 1;
+}
+.icon-eye {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    opacity: 0.3;
+    -webkit-transform: translate(0px, -50%);
+    transform: translate(0px, -50%);
+    width: 35px;
+}
+.icon-eye3 {
+    position: absolute;
+    opacity: 0.3;
+    right: 12px;
+    top: 150px;
+    width: 35px;
+}
+.image-ta {
+    width: 113px;
+    height: 63px;
+    background-color: $zambesi;
+    margin: auto;
+}
+
+.equis {
+    width: 39px;
+    position: absolute;
+    right: 0%;
+    top: 0;
+    -webkit-transform: translate(-30%, -30%);
+    transform: translate(30%, -30%);
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 21px;
+}
+.equis1 {
+    width: 39px;
+    position: absolute;
+    right: -32px;
+    top: 0;
+    -webkit-transform: translate(-30%, -30%);
+    transform: translate(-30%, -30%);
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 21px;
+}
+.equis2 {
+    width: 39px;
+    position: absolute;
+    top: 0;
+    transform: translate(1640%, -45%);
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 21px;
+}
+
+.images {
+    width: 23px;
+    height: 23px;
+}
+
+.img-tam {
+    width: 27px;
+}
+
+.visualize-icon,
+.edit-icon {
+    width: 27px;
+}
+
+.reject-icon,
+.aprove-orange-icon {
+    width: 24px;
+}
+
+.manage-user-icon {
+    width: 28px;
+}
+
+.commentary-icon {
+    width: 25px;
+}
+
+.tam {
+    width: 31px;
+    height: 33px;
+}
+
+.text-right {
+    margin-right: 9px;
+}
+
+.Icon_paises {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.eye-visual {
+    position: absolute;
+    right: 3%;
+    top: 46%;
+    opacity: 0.3;
+    -webkit-transform: translate(0px, -40%);
+    transform: translate(0px, -10%);
+}
+
+.modal-privilege-icon {
+    width: 40px;
+}
+.men {
+    width: 18px;
+    height: 19px;
+    margin-left: 4%;
+}
+.women {
+    width: 25px;
+    height: 20px;
+}
+
+.aprove-icon {
+    width: 87px;
+}
+
+.arrow-180 {
+    transform: rotate(181deg);
+    margin-top: -64%;
+}
+.arrow-top {
+    margin-top: -24%;
+}
+
+.arrow-r180 {
+    transform: rotate(181deg);
+}
+
+.arrow-progra {
+    width: 40px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.arrow-progra:hover {
+    opacity: 1;
+}
+
+.arrow-progra-right {
+    transform: rotate(180deg);
+}
+.pencil {
+    position: absolute;
+    transform: translateY(-39%);
+}
+.pencil1 {
+    position: absolute;
+    transform: translate(200%, -14%);
+}
+.pencil2 {
+    position: absolute;
+    transform: translate(120%, -60%);
+}
+.subimage {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid $morelightgray;
+    border-radius: 1em;
+    transform: translate(-10px, -14px);
+}
+.edi {
+    width: 32px;
+}
+
+.calendar {
+    cursor: pointer;
+    opacity: 0.7;
+}

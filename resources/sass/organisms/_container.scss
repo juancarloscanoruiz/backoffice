@@ -1,0 +1,111 @@
+@import "../base/color";
+.loader-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: white;
+  z-index: 1;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+.contenedor-tabla {
+  display: table;
+  overflow-x: scroll;
+  width: 500%;
+  height: 63px;
+  white-space: nowrap;
+  line-height: 4;
+  //a-text-public
+}
+
+.contenedor {
+  display: table;
+  overflow-x: scroll;
+  width: 500%;
+  height: 63px;
+  white-space: nowrap;
+  //a-textpublic
+}
+.contenedor-fila {
+  display: table-row;
+  height: 63px;
+  background-color: $white;
+}
+
+.contenedor-columna {
+  display: table-cell;
+  border: 1px solid $lightpink;
+  vertical-align: middle;
+  width: 146px;
+}
+
+.fondo {
+  background: transparent;
+}
+.fondolog-reco {
+  background: $white;
+}
+.contenido {
+  position: absolute;
+  left: 150px;
+  right: 33%;
+}
+
+.content-table {
+  display: table;
+}
+
+.login-container {
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.login-container {
+  height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.login-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: auto;
+}
+
+.newpassword-container {
+  height: 100vh;
+}
+
+.program {
+  width: 40%;
+}
+.channel {
+  width: 20%;
+}
+
+.cl {
+  width: 925px;
+}
+.modaltam {
+  width: 1485px;
+  height: 600px; 
+  background-color: $white;
+}
+
+iframe {
+  width: 1200px;
+}

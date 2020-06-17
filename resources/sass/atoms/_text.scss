@@ -1,0 +1,718 @@
+@import "../base/color";
+@import "../base/typography";
+
+/* TEXT BASE */
+
+.h3 {
+  font-size: 24px;
+}
+
+.text-normal {
+  font-size: 16px;
+}
+
+.text-small {
+  font-size: 14px;
+}
+
+.text-smaller {
+  font-size: 12px;
+}
+
+.a-text-bold-cool {
+  color: $coolBlue;
+  font-family: $MontserratBold;
+}
+
+.a-text-bold-white {
+  font-family: $MontserratBold;
+  color: $white;
+}
+
+.a-text-bold-brownish {
+  color: $repassgray;
+  font-family: $MontserratBold;
+}
+
+.a-text-regular-blacktwo {
+  color: $blackTwo;
+  font-family: $MontserratRegular;
+}
+
+.a-text-regular-brownishtwo {
+  color: $darkred1;
+  font-family: $MontserratRegular;
+}
+
+.a-text-regular-brownish {
+  color: $repassgray;
+  font-family: $MontserratRegular;
+}
+
+.a-text-medium-brownish {
+  font-family: $MontserratMedium;
+  color: $repassgray;
+}
+
+.a-text-medium-black {
+  font-family: $MontserratRegular;
+  color: $black;
+}
+
+.a-text-medium-orange {
+  color: $pastelOrange;
+  font-family: $MontserratMedium;
+}
+
+.a-text-medium-dark2 {
+  font-family: $MontserratMedium;
+  color: $dark2;
+}
+.a-text-semibold-lightbrown {
+  font-family: $MontserratSemiBold;
+  color: $lightbrown;
+}
+.a-text-semibold-warm-grey-three {
+  font-family: $MontserratSemiBold;
+  color: $warm-grey-three;
+}
+.a-text-semibold-white {
+  font-family: $MontserratSemiBold;
+  color: $white;
+}
+.a-text-regular-black {
+  font-family: $MontserratRegular;
+  color: black;
+}
+
+.a-text-bold-teal {
+  color: $teal;
+  font-family: $MontserratBold;
+}
+
+/* END TEXT BASE*/
+
+.card-text {
+  font-size: 21px;
+}
+
+.text-return {
+  font-family: $MontserratSemiBold;
+  font-size: 18px;
+  color: $white;
+  line-height: 2.5;
+}
+.text-semi-white {
+  font-family: $MontserratSemiBold;
+  font-size: 18px;
+  color: $white;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+.text-grilla {
+  color: $white;
+  font-family: $MontserratSemiBold;
+  font-size: 15px;
+  letter-spacing: normal;
+  text-align: center;
+}
+.text-landing {
+  color: $light;
+  font-family: $MontserratSemiBold;
+  font-size: 15px;
+  letter-spacing: normal;
+  text-align: center;
+}
+.text-public {
+  color: $white;
+  font-family: $MontserratSemiBold;
+  font-size: 14px;
+  letter-spacing: normal;
+  text-align: center;
+}
+.text-no {
+  font-family: $MontserratRegular;
+  font-size: 19px;
+  color: $black;
+}
+.text-si {
+  font-family: $MontserratRegular;
+  font-size: 19px;
+  color: $white;
+}
+.text-entendido {
+  font-family: $MontserratSemiBold;
+  font-size: 19px;
+  text-align: center;
+  color: $white;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+.contra {
+  font-family: $MontserratSemiBold;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $bluecontra;
+  margin-top: 5%;
+}
+.correo-valido {
+  font-family: $MontserratSemiBold;
+  font-size: 14px;
+  font-weight: 700;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $lightbrown;
+  text-align: left;
+  margin-top: 3%;
+  //caracteres-min
+}
+.caracteres-min {
+  font-family: $MontserratSemiBold;
+  font-size: 14px;
+  font-weight: 700;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $lightbrown;
+  text-align: left;
+  margin-top: 3%;
+  //caracteres-min
+}
+.text-title {
+  font-family: $MontserratRegular;
+  letter-spacing: -0.01px;
+  text-align: center;
+  color: $white;
+  font-size: 17px;
+  height: 34px;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.text-base {
+  //text-progra
+  font-family: $MontserratMedium;
+  text-align: center;
+  color: $black;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.01px;
+}
+.text-rol {
+  font-family: $MontserratRegular;
+  color: $orange;
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.text-rol-inac {
+  font-family: $MontserratRegular;
+  color: $grayinac;
+  font-size: 12px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+} //quitar las posiciones
+.text-histo {
+  position: absolute;
+  left: 27px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.text-edit {
+  position: absolute;
+  left: 34px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.text-noti {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.text-veri {
+  position: absolute;
+  left: 27px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.text-edita {
+  position: absolute;
+  left: 34px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.text-borra {
+  position: absolute;
+  left: 31px;
+  top: 6px;
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  color: $white;
+}
+.texto-general {
+  font-family: $MontserratRegular;
+  font-size: 14px;
+  color: black;
+  letter-spacing: -0.01px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  //text-all
+}
+.re-password-title {
+  height: 49px;
+  font-size: 22px;
+  font-family: $MontserratBold;
+  color: $repassgray;
+  letter-spacing: normal;
+  text-align: center;
+}
+.re-password-text {
+  font-size: 17px;
+  font-family: $MontserratRegular;
+  color: $repassgray;
+  width: 500px;
+  height: 29px;
+  letter-spacing: normal;
+  margin-top: -25px;
+  margin-left: 2px;
+}
+.enviamos {
+  font-family: $MontserratRegular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}
+.enviamos1 {
+  font-family: $MontserratSemiBold;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.zona {
+  font-family: $MontserratSemiBold;
+  color: $black;
+  text-align: center;
+  font-size: 18px;
+  //titulo-negrito
+}
+.menu {
+  font-family: $MontserratBold;
+  font-size: 18px;
+  color: $white;
+  text-align: center;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.text-menu-selec {
+  font-family: $MontserratLight;
+  font-size: 18px;
+  color: $dark2;
+  text-align: center;
+  //titulo-light
+}
+.txtmenu {
+  width: 178px;
+  height: 45px;
+}
+.text-sucess {
+  font-family: $MontserratMedium;
+  color: $white;
+  font-size: 15px;
+}
+.text-light {
+  font-family: $MontserratLight;
+  color: $white;
+  font-size: 12.9px;
+}
+.text-light1 {
+  font-family: $MontserratRegular;
+  color: $dark;
+  font-size: 15px;
+}
+.text-modal {
+  font-family: $MontserratRegular;
+  color: $colormodal;
+  font-size: 19px;
+}
+.insert-email {
+  width: 198px;
+  height: 23px;
+  font-size: 20px;
+  color: black;
+  font-family: $MontserratRegular;
+  letter-spacing: -0.44px;
+}
+.text-import {
+  font-size: 17px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  color: $teal;
+}
+.forgott-contra {
+  font-size: 17px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $blue;
+}
+.text-sexo {
+  font-size: 14px;
+  font-family: $MontserratRegular;
+  color: $gray;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.titulo-seleccion-pais {
+  font-family: $MontserratSemiBold;
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $lightbrown;
+  text-align: initial;
+  margin-bottom: 0px;
+  margin-top: 35px;
+}
+.text-titulo {
+  font-family: $MontserratSemiBold;
+  font-size: 23px;
+  color: $dark;
+  align-items: center;
+}
+.text-titulo-rojo {
+  font-family: $MontserratSemiBold;
+  font-size: 23px;
+  color: $darkred;
+  align-items: center;
+}
+.flex-caption {
+  font-family: $MontserratSemiBold;
+  font-size: 22px;
+  color: $darkyellow;
+}
+.text-crea {
+  font-size: 18px;
+  font-family: $MontserratSemiBold;
+  color: $white;
+}
+.program-original {
+  font-family: $MontserratRegular;
+  font-size: 14px;
+  color: $darkred1;
+  text-align: center;
+  //schedule-date
+}
+.date {
+  font-family: $MontserratSemiBold;
+  font-size: 16px;
+  text-align: center;
+  color: $white;
+  line-height: 2;
+  margin-left: 12px;
+}
+
+.text-lan {
+  font-family: $MontserratBold;
+  font-size: 16px;
+  color: $black;
+  text-align: center;
+}
+.text-selec {
+  font-family: $MontserratLight;
+  font-size: 18px;
+  color: $gray;
+}
+.visual {
+  font-size: 25px;
+}
+.title {
+  color: white;
+}
+.text-modal-text1 {
+  font-family: $MontserratRegular;
+  font-size: 18px;
+  color: $dark;
+  letter-spacing: -0.33px;
+  text-align: center;
+}
+.modal-text {
+  font-family: $MontserratMedium;
+  font-size: 24px;
+  letter-spacing: -0.01px;
+  color: $dark;
+  text-align: center;
+}
+.modal-contenido {
+  font-family: $MontserratRegular;
+  font-size: 24px;
+  width: 717px;
+  height: 380px;
+  color: $colormodal;
+  border-radius: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.modal-regis-text {
+  font-family: $MontserratBold;
+  font-size: 31px;
+  letter-spacing: -0.01px;
+  color: $colormodal;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+}
+.modal-regis-text1 {
+  font-family: $MontserratRegular;
+  font-size: 26px;
+  letter-spacing: -0.01px;
+  color: $colormodal;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+}
+
+.texto1 {
+  font-family: $MontserratMediumLight;
+  color: $gray;
+  font-size: 17px;
+}
+.textcerrar {
+  font-family: $MontserratMedium;
+  color: $white;
+  font-size: 14px;
+}
+.title-veruser {
+  font-size: 21px;
+}
+
+.modal-register-text {
+  font-size: 20px;
+}
+.a-text-black-bold {
+  color: $black;
+  font-family: $MontserratBold;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.01px;
+}
+.a-text-white-bold {
+  color: $white;
+  font-family: $MontserratBold;
+}
+.a-text-black-light {
+  color: $black;
+  font-family: $MontserratLight;
+}
+.a-text-lightgray-light {
+  color: #757474;
+  font-family: $MontserratLight;
+}
+.a-text-white-regular {
+  color: $white;
+  font-family: $MontserratRegular;
+}
+.a-text-black-regular {
+  color: $black;
+  font-family: $MontserratRegular;
+}
+.a-text-white {
+  color: $white;
+  font-family: $MontserratSemiBold;
+}
+.a-text-black-semibold {
+  color: $black;
+  font-family: $MontserratSemiBold;
+}
+
+.a-prev-title {
+  font-size: 16px;
+}
+.a-text-title {
+  font-size: 29px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.a-text-title-table {
+  width: 484px;
+  height: 29px;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.a-text-green-apro {
+  color: $kelley-green;
+  font-family: $MontserratBold;
+  font-size: 24px;
+}
+.a-text-orange-apro {
+  color: $orange;
+  font-family: $MontserratBold;
+  font-size: 24px;
+}
+.a-text-grey {
+  font-family: $MontserratMedium;
+  color: $greyish;
+  font-size: 14px;
+}
+.a-text-green {
+  font-family: $MontserratMedium;
+  color: $green;
+  font-size: 14px;
+}
+.a-text-red {
+  font-family: $MontserratMedium;
+  color: $selecred;
+  font-size: 14px;
+} 
+
+.registro {
+  font-family: $MontserratSemiBold;
+  font-size: 24px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: $colormodal;
+  margin-bottom: 0;
+}
+.a-text-prev {
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.01px;
+  text-align: center;
+}
+
+.title-alta {
+  font-family: $MontserratRegular;
+  background-color: $darkred;
+  color: $white;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.title-altauser {
+  font-family: $MontserratBold;
+  background-color: $darkred;
+  color: $white;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.titletable {
+  width: 925px;
+  height: 79px;
+  background-color: $darkred;
+}
+.title-table {
+  background-color: $dark2;
+}
+
+.invalid-email {
+  color: red !important;
+}
+
+.valid-email {
+  color: green !important;
+}
+
+.text-indication {
+  color: black;
+  font-size: 10px;
+  position: relative;
+  top: 25%;
+  left: 0%;
+  text-align: center;
+}
+
+.warning-email {
+  font-size: 14px;
+}
+
+#error_birthday {
+  position: absolute;
+  bottom: -15%;
+}

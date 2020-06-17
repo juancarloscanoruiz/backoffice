@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="28px" viewBox="0 0 29 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Group 15</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Admin-usuarios-BO-1" transform="translate(-955.000000, -383.000000)">
+            <g id="Group-15" transform="translate(955.000000, 383.000000)">
+                <ellipse id="Oval-Copy-23" fill="#0097A9" cx="14.5" cy="14" rx="14.5" ry="14"></ellipse>
+                <g id="Group-14" transform="translate(9.000000, 7.000000)">
+                    <path d="M1.00129014,4 L10,4 L10,12.7492828 C10,13.4400459 9.49633028,14 8.875,14 L2.125,14 C1.50366972,14 1,13.4400459 1,12.7492828 L1.00129014,4 Z" id="Path" fill="#FFFFFF"></path>
+                    <g id="Group-10">
+                        <path d="M11,1.50258472 L11,2.49856404 C11,2.77547387 10.8238756,3 10.6066601,3 L0.393339887,3 C0.176124355,3 0,2.77547387 0,2.49856404 L0,1.50258472 C0,1.2256749 0.176124355,1.00114877 0.393339887,1.00114877 L3.33730646,1.00114877 L3.56844434,0.415278576 C3.67549767,0.171108558 3.87365446,0.0143021252 4.09289752,0 L6.90304743,0 C7.12283116,0.0149913843 7.32152863,0.171453188 7.43020398,0.415278576 L7.66269354,1.00114877 L10.6093635,1.00114877 C10.8254977,1.00304423 11,1.22705342 11,1.50258472 L11,1.50258472 Z" id="Path" fill="#FFFFFF"></path>
+                        <rect id="Rectangle" fill="#0097A9" transform="translate(2.500000, 8.526352) rotate(-4.000000) translate(-2.500000, -8.526352) " x="2" y="5.02635241" width="1" height="7" rx="0.5"></rect>
+                        <rect id="Rectangle-Copy-7" fill="#0097A9" x="5" y="5.02635241" width="1" height="7" rx="0.5"></rect>
+                        <rect id="Rectangle-Copy-8" fill="#0097A9" transform="translate(8.500000, 8.526352) rotate(3.000000) translate(-8.500000, -8.526352) " x="8" y="5.02635241" width="1" height="7" rx="0.5"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
