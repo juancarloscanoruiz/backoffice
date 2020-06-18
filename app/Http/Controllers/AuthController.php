@@ -57,8 +57,9 @@ class AuthController extends Controller
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
         if ($responseArray["code"] == 200) {
-            session(['status' => 1, "name" => $responseArray["data"]["name"], "id_user" => $responseArray["data"]["id"], "id_rol" => $responseArray["data"]["rol"]["id"]]);
-            return redirect()->route('admin')->with(['name' => session('name'), 'rol_name' => $this->changeNameRol($responseArray["data"]["rol"]["id"])]);
+
+            session(['status' => 1, "name" => $responseArray["data"]["name"], "id_user" => $responseArray["data"]["id"], "id_rol" => $responseArray["data"]["rol"]["id"], "rol_name" => $this->changeNameRol($responseArray["data"]["rol"]["id"])]);
+            return redirect()->route('admin');
         }
     }
 

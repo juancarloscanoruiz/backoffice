@@ -324,9 +324,9 @@ function getAllUsersBO() {
             );
         },
         success: function(result) {
-            console.log(result);
-            //let json = JSON.parse(result);
-            /*if (json.code == 200) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
                 let userBO = "";
                 localStorage.setItem("usersBO", JSON.stringify(json.data));
                 let users = JSON.parse(localStorage.getItem("usersBO"));
@@ -384,12 +384,12 @@ function getAllUsersBO() {
           </div>
 
         `);
-                showDescriptions();
+                /*showDescriptions();
                 showModalDeleteUserBO();
                 showUserBO();
                 showUserToUpdate();
-                showFormCreateUser();
-            }*/
+                showFormCreateUser();*/
+            }
         }
     });
 }
@@ -470,21 +470,17 @@ function getUser(id) {
 
 /* GET ALL FRONT USERS */
 function getAllUserFront() {
-    let data = {
-        function: "getAllUsersFront"
-    };
-
     $.ajax({
         type: "POST",
-        data: data,
-        url: "./adapters/user.php",
-        /*beforeSend: function() {
+        url: "user/front",
+        beforeSend: function() {
             $("#Admin-users-Front").html(
                 `<img src="./images/loader.gif" class="loader"/>`
             );
-        },*/
+        },
         success: function(result) {
             let json = JSON.parse(result);
+            console.log(json);
             if (json.code == 200) {
                 localStorage.setItem("usersFront", JSON.stringify(json.data));
 
@@ -536,10 +532,10 @@ function getAllUserFront() {
 
         </div>
         `);
-                showUserFront();
+                /*showUserFront();
                 showModalDeleteUserFront();
                 showUserFrontToUpdate();
-                showDescriptions();
+                showDescriptions();*/
             }
         }
     });

@@ -501,13 +501,14 @@ function showPageUsersFront() {
         success: function(result) {
             $("#cambio").html("");
             $("#cambio").html(result);
+            getAllUserFront();
         }
     });
     /*
         showUserFront();
         showModalDeleteUserFront();
         showUserFrontToUpdate();
-        getAllUserFront();
+
         showDescriptions();
     */
 }
