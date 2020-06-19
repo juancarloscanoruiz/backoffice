@@ -12,5 +12,6 @@
     <title>@yield('title')</title>
 
 </head>
+
 @yield('content')
 </html>

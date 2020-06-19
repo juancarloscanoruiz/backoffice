@@ -28,7 +28,7 @@ We use this method when you click on close icon in some view of
 Admin User BO
 */
 function closeViewAdminBO() {
-    $(".closeViewBO").click(function() {
+    $("#cambio").on("click", ".closeViewBO", function(event) {
         showPageUsersBO();
     });
 }
@@ -102,20 +102,20 @@ function changeActiveRolGreenButton() {
 }
 
 function createClickButtonRegisterUser() {
-    $(".register-user-button").click(function() {
+    $("#cambio").on("click", ".register-user-button", function() {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
         //let password = $("#password-user-bo").val();
-
-        registerUser(username, email, rol);
         validateEmail($(".input-email"), $(".warning-email-text"));
+        registerUser(username, email, rol);
+
         //validatePassword($(".input-password"), $(".caracteres-min"));
     });
 }
 
 function showUserBO() {
-    $(".view-user-icon").click(function() {
+    $("#cambio").on("click", ".view-user-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -124,7 +124,7 @@ function showUserBO() {
 }
 
 function showUserToUpdate() {
-    $(".edit-user-icon").click(function() {
+    $("#cambio").on("click", ".edit-user-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -133,7 +133,8 @@ function showUserToUpdate() {
 }
 
 function showUserFrontToUpdate() {
-    $(".edit-user-front").click(function() {
+    $("#cambio").on("click", ".edit-user-front", function() {
+        //$(".edit-user-front").click(function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -397,11 +398,13 @@ function showPageUsersBO() {
             $("#cambio").html("");
             $("#cambio").html(result);
             getAllUsersBO();
+            showFormCreateUser();
+            showUserBO();
         }
     });
     /*
-    showUserBO();
-    showFormCreateUser();
+
+
     showUserToUpdate();
     showDescriptions();
     getAllUsersBO();
@@ -409,12 +412,26 @@ function showPageUsersBO() {
 }
 
 function showFormCreateUser() {
-    $("#btnAlta").click(function() {
-        $("#general").replaceWith();
+    $("#cambio").on("click", "#btnAlta", function(event) {
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "create-userbackoffice-form" },
+            success: function(result) {
+                $("#cambio").html("");
+                $("#cambio").html(result);
+                closeViewAdminBO();
+                createClickButtonRegisterUser();
+                changeImagesRolPermissions();
+            }
+        });
+    });
+
+    /* $("#general").replaceWith();
         $("#cambio").load("Alta.php", function() {
-            createClickButtonRegisterUser();
+
             changeActiveBlackButton();
-            changeImagesRolPermissions();
+
             closeViewAdminBO();
 
             //VALIDATION KEYUP
@@ -436,8 +453,7 @@ function showFormCreateUser() {
                     );
                 }
             });
-        });
-    });
+        });*/
 }
 
 function changeActiveBlackButton() {
@@ -485,7 +501,8 @@ function changeAdminContent(rel) {
 }
 
 function showUserFront() {
-    $(".show-user-front-icon").click(function() {
+    $("#cambio").on("click", ".show-user-front-icon", function(event) {
+        //$(".show-user-front-icon").click(function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -500,12 +517,15 @@ function showPageUsersFront() {
         data: { view: "admin-users-front" },
         success: function(result) {
             $("#cambio").html("");
-            $("#cambio").html(result);
+            $("#cambio")
+                .html(result)
+                .promise();
             getAllUserFront();
+            showUserFront();
         }
     });
     /*
-        showUserFront();
+        ;
         showModalDeleteUserFront();
         showUserFrontToUpdate();
 

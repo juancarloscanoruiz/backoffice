@@ -25,6 +25,8 @@ import {
     validatePassword
 } from "../form/form.js";
 
+import CryptoJS from "crypto-js";
+
 function sendUserEmail(inputEmail) {
     let email = inputEmail.val();
 
@@ -105,7 +107,6 @@ function sendNewPassword(inputPassword, secondInputPassword) {
 
 function registerUser(name, email, rol) {
     let user = {
-        function: "registerUser",
         name: name,
         email: email,
         rol: rol
@@ -114,7 +115,7 @@ function registerUser(name, email, rol) {
     $.ajax({
         type: "POST",
         data: user,
-        url: "./adapters/user.php",
+        url: "user/backoffice/create",
         beforeSend: function() {
             $(".register-user-content")
                 .prepend(`<img src="./images/loader.gif" class="loader"/>`)
@@ -126,6 +127,7 @@ function registerUser(name, email, rol) {
         },
         success: function(result) {
             let json = JSON.parse(result);
+            console.log(json);
             if (json.code == 200) {
                 $(".register-user-content").css({
                     backgorund: "white",
@@ -345,7 +347,9 @@ function getAllUsersBO() {
           </div>
           `;
                 });
-                $("#Adm-users-BO").html(`
+                $("#Adm-users-BO")
+                    .html(
+                        `
         <div class="col-xl-10 position-btn-alta">
           <button class="btn-alta text-public mb-4" id="btnAlta">Agregar nuevo usuario</button>
         </div>
@@ -383,11 +387,18 @@ function getAllUsersBO() {
 
           </div>
 
-        `);
-                /*showDescriptions();
-                showModalDeleteUserBO();
-                showUserBO();
+        `
+                    )
+                    .promise()
+                    .done(function() {
+                        showModalDeleteUserBO();
+                    });
                 showUserToUpdate();
+
+                /*showDescriptions();
+
+                showUserBO();
+
                 showFormCreateUser();*/
             }
         }
@@ -396,14 +407,13 @@ function getAllUsersBO() {
 
 function getUser(id) {
     let data = {
-        function: "getUser",
         id: id
     };
 
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/backoffice/get",
         beforeSend: function() {
             $("#Adm-users-BO")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -415,9 +425,22 @@ function getUser(id) {
         },
         success: function(result) {
             let json = JSON.parse(result);
-            console.log(json);
             if (json.code == 200) {
-                $("#cambio").load("VisualUser.php", function() {
+                $.ajax({
+                    type: "POST",
+                    url: "view",
+                    data: { view: "view-userbackoffice" },
+                    success: function(result) {
+                        $("#cambio").html("");
+                        $("#cambio").html(result);
+                        let rol = changeNameRol(json.data.rol.id);
+                        $(".show-username").html(json.data.name);
+                        $(".show-email").html(json.data.email);
+                        $(".show-rol").html(rol);
+                        closeViewAdminBO();
+                    }
+                });
+                /*$("#cambio").load("VisualUser.php", function() {
                     let rol = changeNameRol(json.data.rol.id);
                     $("#usuarios").html(`
           <div class="col-xl-7 trans10 mx-auto title-altauser tamaño-edi ">
@@ -457,12 +480,8 @@ function getUser(id) {
             </div>
           </div>
           `);
-                    /*$(".show-username").text(json.data.name);
-          $(".show-email").text(json.data.email);
-          let rol = changeNameRol(json.data.rol.id);
-          $(".show-rol").text(rol);*/
                     closeViewAdminBO();
-                });
+                });*/
             }
         }
     });
@@ -532,9 +551,10 @@ function getAllUserFront() {
 
         </div>
         `);
+                showUserFrontToUpdate();
                 /*showUserFront();
                 showModalDeleteUserFront();
-                showUserFrontToUpdate();
+
                 showDescriptions();*/
             }
         }
@@ -543,7 +563,6 @@ function getAllUserFront() {
 
 function updateDataUser(id, name, email, password, repassword, rolId) {
     let dataUser = {
-        function: "updateDataUser",
         id_admin_user: id,
         name: name,
         email: email,
@@ -554,7 +573,7 @@ function updateDataUser(id, name, email, password, repassword, rolId) {
     $.ajax({
         type: "POST",
         data: dataUser,
-        url: "./adapters/user.php",
+        url: "user/backoffice/update",
         beforeSend: function() {
             $(".edit-userbo-content")
                 .prepend(`<img src="./images/loader.gif" class="loader"/>`)
@@ -740,13 +759,12 @@ function updateDataUser(id, name, email, password, repassword, rolId) {
 
 function getUserToUpdate(id) {
     let data = {
-        function: "getUserToUpdate",
         id: id
     };
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/backoffice/get",
         beforeSend: function() {
             $("#Adm-users-BO")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -757,99 +775,109 @@ function getUserToUpdate(id) {
                 });
         },
         success: function(result) {
-            console.log(result);
             let json = JSON.parse(result);
-            if (json.code == 200) {
-                $("#editar").replaceWith();
-                $("#cambio").load("Editusers.php", function() {
-                    //VALIDATE EMAIL
+            $.ajax({
+                type: "POST",
+                url: "/BackofficeClaroNetworks/public/view",
+                data: { view: "edit-userbackoffice" },
+                success: function(result) {
+                    $("#cambio").html("");
+                    $("#cambio")
+                        .html(result)
+                        .promise()
+                        .done(function() {
+                            const inputCorreo = $(".input-email");
+                            inputCorreo.keyup(function() {
+                                const correoValido = $(".warning-email-text");
+                                const imagenError = $(".error");
+                                var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                                validateKeyUpEmail(
+                                    inputCorreo,
+                                    filter,
+                                    imagenError,
+                                    correoValido
+                                );
+                            });
 
-                    const inputCorreo = $(".input-email");
-                    inputCorreo.keyup(function() {
-                        const correoValido = $(".warning-email-text");
-                        const imagenError = $(".error");
-                        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                        validateKeyUpEmail(
-                            inputCorreo,
-                            filter,
-                            imagenError,
-                            correoValido
-                        );
-                    });
+                            //VALIDATE PASSWORD
 
-                    //VALIDATE PASSWORD
+                            $(".input-password").keyup(function() {
+                                validateKeyUpPassword(
+                                    $(this),
+                                    $(".warning-password-text")
+                                );
+                            });
 
-                    $(".input-password").keyup(function() {
-                        validateKeyUpPassword(
-                            $(this),
-                            $(".warning-password-text")
-                        );
-                    });
+                            $("#edit-input-username").val(json.data.name);
+                            $("#edit-input-email").val(json.data.email);
 
-                    $("#edit-input-username").val(json.data.name);
-                    $("#edit-input-email").val(json.data.email);
-                    switch (json.data.rol.id) {
-                        case 1:
-                            $("#button-root").addClass("btn-rol-select");
-                            cambiaracti("1");
-                            break;
-                        case 2:
-                            $("#button-aprobador").addClass("btn-rol-select");
-                            cambiaracti("3");
-                            break;
-                        case 3:
-                            $("#button-editor").addClass("btn-rol-select");
-                            cambiaracti("2");
-                            break;
-                        case 4:
-                            $("#button-visualizador").addClass(
-                                "btn-rol-select"
-                            );
-                            cambiaracti("4");
-                            break;
-                        default:
-                            break;
-                    }
+                            switch (json.data.rol.id) {
+                                case 1:
+                                    $("#button-root").addClass(
+                                        "btn-rol-select"
+                                    );
+                                    cambiaracti("1");
+                                    break;
+                                case 2:
+                                    $("#button-aprobador").addClass(
+                                        "btn-rol-select"
+                                    );
+                                    cambiaracti("3");
+                                    break;
+                                case 3:
+                                    $("#button-editor").addClass(
+                                        "btn-rol-select"
+                                    );
+                                    cambiaracti("2");
+                                    break;
+                                case 4:
+                                    $("#button-visualizador").addClass(
+                                        "btn-rol-select"
+                                    );
+                                    cambiaracti("4");
+                                    break;
+                                default:
+                                    break;
+                            }
 
-                    /* GET THE VALUES OF THE FORM TO UPDATE A BACKOFFICE USER */
-                    $(".save-button-edit").click(function() {
-                        let name = $("#edit-input-username").val();
-                        let email = $("#edit-input-email").val();
-                        if (email == json.data.email) {
-                            email = "";
-                        }
-                        let password = $("#edit-input-password").val();
-                        let repassword = $("#edit-input-repassword").val();
-                        let rolId = $(".btn-rol-select").attr("id_rol");
-                        updateDataUser(
-                            json.data.id,
-                            name,
-                            email,
-                            password,
-                            repassword,
-                            rolId
-                        );
-                    });
-
-                    changeActiveRolGreenButton();
-                    closeViewAdminBO();
-                    changeImagesRolPermissions();
-                });
-            }
+                            //GET THE VALUES OF THE FORM TO UPDATE A BACKOFFICE USER
+                            $(".save-button-edit").click(function() {
+                                let name = $("#edit-input-username").val();
+                                let email = $("#edit-input-email").val();
+                                if (email == json.data.email) {
+                                    email = "";
+                                }
+                                let password = $("#edit-input-password").val();
+                                let repassword = $(
+                                    "#edit-input-repassword"
+                                ).val();
+                                let rolId = $(".btn-rol-select").attr("id_rol");
+                                updateDataUser(
+                                    json.data.id,
+                                    name,
+                                    email,
+                                    password,
+                                    repassword,
+                                    rolId
+                                );
+                            });
+                            changeImagesRolPermissions();
+                        });
+                }
+            });
         }
     });
 }
 
 function getUserFrontToUpdate(id) {
     let data = {
-        function: "getUserFrontToUpdate",
         id: id
     };
 
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/front/get",
         beforeSend: function() {
             $("#Admin-users-Front")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -863,7 +891,173 @@ function getUserFrontToUpdate(id) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                $("#edit-front").replaceWith();
+                $.ajax({
+                    type: "POST",
+                    data: { view: "edit-userfront" },
+                    url: "view",
+                    success: function(result) {
+                        $("#cambio").html("");
+                        $("#cambio")
+                            .html(result)
+                            .promise()
+                            .done(function() {
+                                $(".Dias").click(function() {
+                                    var value = $(this).attr("value");
+                                    var select = $(this).attr("id-select");
+                                    $("#" + select + " > p").text(value);
+                                });
+
+                                //ELEGIR MES
+                                $(".Meses").click(function() {
+                                    var value = $(this).attr("value");
+                                    var select = $(this).attr("id-select");
+
+                                    //ELEGIR AÑO
+                                    $("#" + select + " > p").text(value);
+                                });
+
+                                $(".Años").click(function() {
+                                    var value = $(this).attr("value");
+                                    var select = $(this).attr("id-select");
+
+                                    $("#" + select + " > p").text(value);
+                                });
+
+                                //CHOSE COUNTRY
+                                $(".option").click(function() {
+                                    var value = $(this).attr("value");
+                                    var select = $(this).attr("id-select");
+
+                                    $("#" + select + " > p").text(value);
+                                });
+
+                                //VALIDATE PASSWORD
+                                $(".input-password").keyup(function() {
+                                    validateKeyUpPassword(
+                                        $(this),
+                                        $(".caracteres-min")
+                                    );
+                                });
+
+                                $("#edit-front-input-username").val(
+                                    json.data.name
+                                );
+                                $("#edit-front-input-email").val(
+                                    json.data.email
+                                );
+                                switch (json.data.gender) {
+                                    case "M":
+                                        $("#mujer").prop("checked", false);
+                                        $("#hombre").prop("checked", true);
+                                        break;
+                                    case "F":
+                                        $("#mujer").prop("checked", true);
+                                        $("#hombre").prop("checked", false);
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                                if (json.data.birthday) {
+                                    let userBirthday = json.data.birthday.split(
+                                        "-"
+                                    );
+                                    let year = userBirthday[0];
+                                    let month = userBirthday[1];
+                                    let day = userBirthday[2];
+                                    $(".SeleccionDiaLista").text(day);
+                                    $(".SeleccionMesLista").text(month);
+                                    $(".SeleccionAñoLista").text(year);
+                                }
+
+                                // SEND DATA'S FRONT USER
+                                $(".btn-save-data-front").click(function() {
+                                    let id = json.data.id;
+
+                                    let name = $(
+                                        "#edit-front-input-username"
+                                    ).val();
+                                    let email = $(
+                                        "#edit-front-input-email"
+                                    ).val();
+
+                                    // PASSWORD TO SEND
+                                    let passwordHash = CryptoJS.SHA1(
+                                        $("#edit-user-front-password").val()
+                                    );
+
+                                    let passwordResult = CryptoJS.enc.Hex.stringify(
+                                        passwordHash
+                                    );
+
+                                    let confirmPasswordHash = CryptoJS.SHA1(
+                                        $("#edit-user-front-password").val()
+                                    );
+
+                                    let confirmPasswordResult = CryptoJS.enc.Hex.stringify(
+                                        confirmPasswordHash
+                                    );
+
+                                    /*let password = $(
+                                        "#edit-user-front-password"
+                                    ).val();*/
+
+                                    if (passwordResult == "") {
+                                        passwordResult = 0;
+                                    }
+                                    /*let rePassword = $(
+                                        "#edit-user-front-repassword"
+                                    ).val();*/
+
+                                    if (confirmPasswordResult == "") {
+                                        confirmPasswordResult = 0;
+                                    }
+                                    let day = $(".SeleccionDiaLista").text();
+                                    let month = $(".SeleccionMesLista").text();
+                                    let year = $(".SeleccionAñoLista").text();
+                                    let date = year + "-" + month + "-" + day;
+                                    if (
+                                        (day == "Día") &
+                                        (month == "Mes") &
+                                        (year == "Año")
+                                    ) {
+                                        $(".error_birthday")
+                                            .text(
+                                                "La fecha debe estar completa"
+                                            )
+                                            .css("color", "red");
+                                        return false;
+                                    }
+
+                                    let genderMale = $("#hombre");
+                                    let genderFemale = $("#mujer");
+                                    var gender;
+                                    if (genderMale.is(":checked")) {
+                                        gender = "M";
+                                    } else if (genderFemale.is(":checked")) {
+                                        gender = "F";
+                                    }
+
+                                    let country = $(
+                                        ".SeleccionPaisLista"
+                                    ).text();
+
+                                    updateDataUserFront(
+                                        id,
+                                        name,
+                                        email,
+                                        gender,
+                                        date,
+                                        country,
+                                        passwordResult,
+                                        confirmPasswordResult
+                                    );
+                                });
+                                closeViewFront();
+                            });
+                    }
+                });
+                /*$("#edit-front").replaceWith();
                 $("#cambio").load("Edit-front.php", function() {
                     //ELEGIR DÍA
                     $(".Dias").click(function() {
@@ -915,7 +1109,7 @@ function getUserFrontToUpdate(id) {
                             break;
                     }
 
-                    /* BIRTHDAY USER FRONT*/
+                    // BIRTHDAY USER FRONT
                     if (json.data.birthday) {
                         let userBirthday = json.data.birthday.split("-");
                         let year = userBirthday[0];
@@ -926,18 +1120,18 @@ function getUserFrontToUpdate(id) {
                         $(".SeleccionAñoLista").text(year);
                     }
 
-                    /* COUNTRY */
+                    // COUNTRY
                     let country = getNameCountry(json.data.country_id);
                     let countryName = country.countryName;
                     $(".SeleccionPaisLista").text(countryName);
 
-                    /* SEND DATA'S FRONT USER */
+                    // SEND DATA'S FRONT USER
                     $(".btn-save-data-front").click(function() {
                         let id = json.data.id;
                         let name = $("#edit-front-input-username").val();
                         let email = $("#edit-front-input-email").val();
 
-                        /* PASSWORD TO SEND*/
+                        // PASSWORD TO SEND
                         let password = $("#edit-user-front-password").val();
                         if (password == "") {
                             password = 0;
@@ -979,7 +1173,7 @@ function getUserFrontToUpdate(id) {
                         );
                     });
                     closeViewFront();
-                });
+                });*/
             }
         }
     });
@@ -996,7 +1190,6 @@ function updateDataUserFront(
     passwordConfirm
 ) {
     let data = {
-        function: "updateDataUserFront",
         id_user: id,
         name: name,
         email: email,
@@ -1010,7 +1203,7 @@ function updateDataUserFront(
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/front/update",
         beforeSend: function() {
             $(".edit-userfront-content")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -1038,14 +1231,13 @@ function updateDataUserFront(
 
 function deleteUserBO(id) {
     let data = {
-        function: "deleteUserBO",
         id_admin_user: id
     };
 
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/backoffice/delete",
         beforeSend: function() {
             $("#Adm-users-BO")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -1057,6 +1249,7 @@ function deleteUserBO(id) {
         },
         success: function(result) {
             let json = JSON.parse(result);
+            console.log(json);
             $(".loader").remove();
             $("#Adm-users-BO").css({
                 backgorund: "white",
@@ -1157,7 +1350,7 @@ function deleteUserFront(id) {
                 $(".modal-delete-user-front").modal("hide");
                 showModalDeleteUserFront();
                 showUserFront();
-                showUserFrontToUpdate();
+                //showUserFrontToUpdate();
             }
         }
     });
@@ -1165,14 +1358,13 @@ function deleteUserFront(id) {
 
 function getUserFront(id) {
     let data = {
-        function: "getUserFront",
         id: id
     };
 
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/front/get",
         beforeSend: function() {
             $("#Admin-users-Front")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -1183,29 +1375,42 @@ function getUserFront(id) {
                 });
         },
         success: function(result) {
-            console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
-                $("#visual-front").replaceWith();
-                $("#cambio").load("Visual-front.php", function() {
-                    closeViewFront();
-                    $(".username-front").text(json.data.name);
-                    $(".email-front").text(json.data.email);
-                    let country = getNameCountry(json.data.country_id);
-                    let countryName = country.countryName;
-                    let countryImage = country.countryImage;
-                    $(".section-pais").append(`
-          <label class=" pl-5 pais"> <img src="${countryImage}" class="Icon_paises " /><span class="padding-pais user-front-country">${countryName}</span> </label>
-          `);
-                    $(".user-front-birthday").text(json.data.birthday);
+                $.ajax({
+                    type: "POST",
+                    url: "view",
+                    data: { view: "view-userfront" },
+                    success: function(result) {
+                        $("#cambio").html("");
+                        $("#cambio")
+                            .html(result)
+                            .promise()
+                            .done(function() {
+                                $(".username-front").text(json.data.name);
+                                $(".email-front").text(json.data.email);
+                                let country = getNameCountry(
+                                    json.data.country_id
+                                );
+                                let countryName = country.countryName;
+                                let countryImage = country.countryImage;
+                                $(".section-pais").append(`
+                      <label class=" pl-5 pais"> <img src="${countryImage}" class="Icon_paises " /><span class="padding-pais user-front-country">${countryName}</span> </label>
+                      `);
+                                $(".user-front-birthday").text(
+                                    json.data.birthday
+                                );
 
-                    let gender = getNameGender(json.data.gender);
-                    let genderName = gender.genderName;
-                    let genderImage = gender.genderImage;
-                    $(".section-sexo").append(`
-          <label for="mujer" id="mujerestado" class="mujer-estilo1 textp-general pl-4">
-          <img id="women" src="${genderImage}" /> ${genderName}</label>
-          `);
+                                let gender = getNameGender(json.data.gender);
+                                let genderName = gender.genderName;
+                                let genderImage = gender.genderImage;
+                                $(".section-sexo").append(`
+                      <label for="mujer" id="mujerestado" class="mujer-estilo1 textp-general pl-4">
+                      <img id="women" src="${genderImage}" /> ${genderName}</label>
+                      `);
+                                closeViewFront();
+                            });
+                    }
                 });
             }
         }

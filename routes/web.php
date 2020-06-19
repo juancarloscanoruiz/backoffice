@@ -24,7 +24,14 @@ Route::get('/admin', function () {
 //RUTAS PARA ADMINSTRAR USUARIOS DE CLARO NETWORKS Y BACKOFFICE
 Route::group(['prefix' => 'user'], function () {
     Route::post('backoffice', "AdminUserController@getUsersBackoffice");
+    Route::post('backoffice/create', "AdminUserController@createUserBackOffice");
+    Route::post('backoffice/get', "AdminUserController@getUserBackoffice");
+    Route::post('backoffice/update', "AdminUserController@updateDataUserBackoffice");
+    Route::post('backoffice/delete', "AdminUserController@deleteUserBackoffice");
     Route::post('front', "AdminUserController@getUsersFront");
+    Route::post('front/get', "AdminUserController@getUserFront");
+    Route::post('front/delete', "AdminUserController@deleteUserFront");
+    Route::post('front/update', "AdminUserController@updateDataUserFront");
 });
 
 //RUTAS PARA AUTENTICACIÓN

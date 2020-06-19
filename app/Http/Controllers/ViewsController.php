@@ -20,6 +20,21 @@ class ViewsController extends Controller
                 case 'admin-site-home':
                     return view('admin-site.admin-home');
                     break;
+                case 'view-userbackoffice':
+                    return view('admin-users.users-backoffice.user');
+                    break;
+                case 'create-userbackoffice-form':
+                    return view('admin-users.users-backoffice.formCreateUser');
+                    break;
+                case 'edit-userbackoffice':
+                    return view('admin-users.users-backoffice.formEditUser');
+                    break;
+                case 'view-userfront':
+                    return view('admin-users.users-claronetworks.user');
+                    break;
+                case 'edit-userfront':
+                    return view('admin-users.users-claronetworks.formEditUser');
+                    break;
                 default:
                     # code...
                     break;

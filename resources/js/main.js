@@ -35,8 +35,6 @@ import {
     sendEmailResetPassword
 } from "./services/user.js";
 
-import CryptoJS from "crypto-js";
-
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -238,7 +236,6 @@ $(document).ready(function() {
     });
 
     /* Show the form to create a new user */
-    showFormCreateUser();
 
     $(".admin-users-section").click(function() {
         showPageUsersBO();
