@@ -173,7 +173,7 @@ $(document).ready(function() {
     //END NAVBAR PROGRAMACIÓN GENERAL
 
     /* GET ALL USERS FRONT */
-    getAllUserFront();
+    //getAllUserFront();
 
     /* GET ALL USERS BACKOFFICE */
     //getAllUsersBO();
