@@ -62226,8 +62226,8 @@ $(document).ready(function () {
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
 
   /* GET ALL USERS FRONT */
+  //getAllUserFront();
 
-  Object(_services_user_js__WEBPACK_IMPORTED_MODULE_4__["getAllUserFront"])();
   /* GET ALL USERS BACKOFFICE */
   //getAllUsersBO();
   //GET USER BACKOFFICE

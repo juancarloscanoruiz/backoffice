@@ -1,5 +1,19 @@
 const mix = require("laravel-mix");
 
+if (mix.inProduction()) {
+    mix.options({
+        terser: {
+            terserOptions: {
+                compress: {
+                    drop_console: true
+                }
+            }
+        }
+    });
+
+    mix.version();
+}
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
