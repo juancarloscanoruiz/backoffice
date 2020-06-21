@@ -14,15 +14,15 @@ use Illuminate\Http\Request;
 */
 
 //LOGIN
-Route::get('/', "AuthController@index");
+Route::get('/', "AuthController@index")->name('index')->middleware('view_login');
 
 Route::get('/admin', function () {
     return view('admin-site.Admin-BO');
-})->name('admin');
+})->name('admin')->middleware('session_user');
 
 
 //RUTAS PARA ADMINSTRAR USUARIOS DE CLARO NETWORKS Y BACKOFFICE
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user', 'middleware' => 'session_user'], function () {
     Route::post('backoffice', "AdminUserController@getUsersBackoffice");
     Route::post('backoffice/create', "AdminUserController@createUserBackOffice");
     Route::post('backoffice/get', "AdminUserController@getUserBackoffice");
@@ -41,4 +41,4 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 //RUTA PARA CARGAR CONTENIDO HTML
-Route::post('/view', "ViewsController@index");
+Route::post('/view', "ViewsController@index")->middleware('session_user');
