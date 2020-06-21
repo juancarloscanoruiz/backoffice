@@ -61652,10 +61652,11 @@ function showFormCreateUser() {
       },
       success: function success(result) {
         $("#cambio").html("");
-        $("#cambio").html(result);
-        closeViewAdminBO();
-        createClickButtonRegisterUser();
-        changeImagesRolPermissions();
+        $("#cambio").html(result).promise().done(function () {
+          closeViewAdminBO();
+          createClickButtonRegisterUser();
+          changeImagesRolPermissions();
+        });
       }
     });
   });
@@ -62788,6 +62789,7 @@ function getAllUserFront() {
         });
         $("#Admin-users-Front").html("\n        <div class=\"sombras1 trans10 mb-5 \">\n          <div class=\"grid texto-general users-front-table\">\n            <header>\n              <div class=\"text-title\">Usuario</div>\n            </header>\n            <section>\n              <div class=\"text-title\">Acciones</div>\n            </section>\n            ".concat(userF, "\n          </div>\n\n        </div>\n        <div class=\"col-xl-1 user-front-table\">\n\n        <div>\n        <ul class=\"description\">\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n        </li>\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n        </li>\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n        </li>\n        </ul>\n\n        </div>\n\n        </div>\n        "));
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserFrontToUpdate"])();
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
           showDescriptions();*/
@@ -63030,7 +63032,12 @@ function getUserFrontToUpdate(id) {
 
                 default:
                   break;
-              }
+              } // COUNTRY
+
+
+              var country = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["getNameCountry"])(json.data.country_id);
+              var countryName = country.countryName;
+              $(".SeleccionPaisLista").text(countryName);
 
               if (json.data.birthday) {
                 var userBirthday = json.data.birthday.split("-");
@@ -63073,7 +63080,7 @@ function getUserFrontToUpdate(id) {
                 var year = $(".SeleccionAñoLista").text();
                 var date = year + "-" + month + "-" + day;
 
-                if (day == "Día" & month == "Mes" & year == "Año") {
+                if (day == "Día" && month == "Mes" && year == "Año") {
                   $(".error_birthday").text("La fecha debe estar completa").css("color", "red");
                   return false;
                 }
@@ -63089,6 +63096,7 @@ function getUserFrontToUpdate(id) {
                 }
 
                 var country = $(".SeleccionPaisLista").text();
+                console.log(country.trim());
                 updateDataUserFront(id, name, email, gender, date, country, passwordResult, confirmPasswordResult);
               });
               Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["closeViewFront"])();
@@ -63289,13 +63297,12 @@ function deleteUserBO(id) {
 
 function deleteUserFront(id) {
   var data = {
-    "function": "deleteUserFront",
     id_user: id
   };
   $.ajax({
     type: "POST",
     data: data,
-    url: "./adapters/user.php",
+    url: "user/front/delete",
     beforeSend: function beforeSend() {
       $("#Admin-users-Front").append("<img src=\"./images/loader.gif\" class=\"loader\"/>").css({
         backgorund: "white",
@@ -63321,9 +63328,9 @@ function deleteUserFront(id) {
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus show-user-front-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-user-front-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
         $(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
-        $(".modal-delete-user-front").modal("hide");
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserFront"])(); //showUserFrontToUpdate();
+        $(".modal-delete-user-front").modal("hide"); //showModalDeleteUserFront();
+        //showUserFront();
+        //showUserFrontToUpdate();
       }
     }
   });

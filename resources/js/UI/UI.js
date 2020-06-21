@@ -433,10 +433,14 @@ function showFormCreateUser() {
             data: { view: "create-userbackoffice-form" },
             success: function(result) {
                 $("#cambio").html("");
-                $("#cambio").html(result);
-                closeViewAdminBO();
-                createClickButtonRegisterUser();
-                changeImagesRolPermissions();
+                $("#cambio")
+                    .html(result)
+                    .promise()
+                    .done(function() {
+                        closeViewAdminBO();
+                        createClickButtonRegisterUser();
+                        changeImagesRolPermissions();
+                    });
             }
         });
     });

@@ -12,61 +12,59 @@ $fontlg: 20px;
 $fontpaises: 16px;
 
 .posi:hover > .describe {
-  display: block;
+    display: block;
 }
 .textcentro {
-  text-align: justify;
+    text-align: justify;
 }
 
 .slideshow {
-  position: relative;
+    position: relative;
 }
 .slider .caption {
-  position: absolute;
+    position: absolute;
 }
 
 .scroll {
-  overflow: scroll;
+    overflow: scroll;
 }
 .indication .badge {
-  position: absolute;
-  top: 64%;
-  left: 76%;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
+    position: absolute;
+    top: 64%;
+    left: 76%;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
 }
 .title-reco {
-  width: 453px;
-  height: 49px;
-  font-size: 34.8px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #666963;
+    width: 453px;
+    height: 49px;
+    font-size: 34.8px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #666963;
 }
 .title-second {
-  width: 500px;
-  height: 29px;
-  font-size: 23.8px;
-  color: $title;
+    width: 500px;
+    height: 29px;
+    font-size: 23.8px;
+    color: $title;
 }
 
 .shadow1 {
-  -webkit-box-shadow: 3px 3px 5px 6px $violet;
-  box-shadow: 3px 3px 5px 6px $violet;
-  border-radius: 15px;
-  //margin-top: 4%;
+    border-radius: 15px;
+    //margin-top: 4%;
 }
-.shadow{
-  box-shadow:rgba(0, 0, 0, 0.5) -1px -1px 17px 9px;
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.5) -1px -1px 17px 9px;
 }
-.border-green{
-  border: 3px solid $green;
+.border-green {
+    border: 3px solid $green;
 }
-.border-red{
-  border: 3px solid $selecred;
-} 
+.border-red {
+    border: 3px solid $selecred;
+}

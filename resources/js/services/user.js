@@ -552,6 +552,7 @@ function getAllUserFront() {
         </div>
         `);
                 showUserFrontToUpdate();
+                showModalDeleteUserFront();
                 /*showUserFront();
                 showModalDeleteUserFront();
 
@@ -957,6 +958,12 @@ function getUserFrontToUpdate(id) {
                                     default:
                                         break;
                                 }
+                                // COUNTRY
+                                let country = getNameCountry(
+                                    json.data.country_id
+                                );
+                                let countryName = country.countryName;
+                                $(".SeleccionPaisLista").text(countryName);
 
                                 if (json.data.birthday) {
                                     let userBirthday = json.data.birthday.split(
@@ -1012,14 +1019,15 @@ function getUserFrontToUpdate(id) {
                                     if (confirmPasswordResult == "") {
                                         confirmPasswordResult = 0;
                                     }
+
                                     let day = $(".SeleccionDiaLista").text();
                                     let month = $(".SeleccionMesLista").text();
                                     let year = $(".SeleccionAñoLista").text();
                                     let date = year + "-" + month + "-" + day;
                                     if (
-                                        (day == "Día") &
-                                        (month == "Mes") &
-                                        (year == "Año")
+                                        day == "Día" &&
+                                        month == "Mes" &&
+                                        year == "Año"
                                     ) {
                                         $(".error_birthday")
                                             .text(
@@ -1042,6 +1050,7 @@ function getUserFrontToUpdate(id) {
                                         ".SeleccionPaisLista"
                                     ).text();
 
+                                    console.log(country.trim());
                                     updateDataUserFront(
                                         id,
                                         name,
@@ -1297,14 +1306,13 @@ function deleteUserBO(id) {
 
 function deleteUserFront(id) {
     let data = {
-        function: "deleteUserFront",
         id_user: id
     };
 
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/user.php",
+        url: "user/front/delete",
         beforeSend: function() {
             $("#Admin-users-Front")
                 .append(`<img src="./images/loader.gif" class="loader"/>`)
@@ -1348,8 +1356,8 @@ function deleteUserFront(id) {
         ${userBO}
         `);
                 $(".modal-delete-user-front").modal("hide");
-                showModalDeleteUserFront();
-                showUserFront();
+                //showModalDeleteUserFront();
+                //showUserFront();
                 //showUserFrontToUpdate();
             }
         }
