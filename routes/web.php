@@ -38,7 +38,15 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', "AuthController@signIn")->name("login");
     Route::post('logout', "AuthController@signOut")->name("logout");
+    Route::post('exit', "AuthController@exit")->name('exit');
 });
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index");
+
+//RUTA PARA MENU
+Route::post('/Menu', function () {
+    return view('layaout.adm-CN.Menu');
+ })->name('Menu');
+
+ 

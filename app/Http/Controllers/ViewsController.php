@@ -35,6 +35,21 @@ class ViewsController extends Controller
                 case 'edit-userfront':
                     return view('admin-users.users-claronetworks.formEditUser');
                     break;
+                case 'grilla-canal-claro-button':
+                    return view('layaout.adm-CN.grillas.grilla-claro-canal');
+                break;
+                case 'grilla-concert-channel-button':
+                    return view('layaout.adm-CN.grillas.grilla-concert-channel');
+                break;
+                case 'grilla-claro-cinema-button':
+                    return view('layaout.adm-CN.grillas.grilla-claro-cinema');
+                break;
+                case 'grilla-home-button':
+                    return view('layaout.adm-CN.grillas.grilla-home');
+                break;
+                case 'landing':
+                    return view('layaout.adm-CN.submenus.submenu-claro-canal');
+                break;
                 default:
                     # code...
                     break;

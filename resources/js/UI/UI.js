@@ -32,7 +32,11 @@ function closeViewAdminBO() {
         showPageUsersBO();
     });
 }
-
+function landing() {
+    $("#bodymenu").on("click",  ".btn-landing", function(event) {
+        showlanding();
+    });
+}
 function closeViewFront() {
     $(".closeViewFront").click(function() {
         showPageUsersFront();
@@ -253,10 +257,7 @@ function showDescriptions() {
     ); //fin
 }
 
-function landing() {
-    $("#menu").replaceWith();
-    $("#bodymenu").load("submenu.php");
-}
+
 function grilla() {
     $("#grilla").replaceWith();
     $("#bodymenu").load("Progra_general.php");
@@ -402,6 +403,7 @@ function showPageUsersBO() {
             showUserBO();
         }
     });
+   
     /*
 
 
@@ -409,6 +411,18 @@ function showPageUsersBO() {
     showDescriptions();
     getAllUsersBO();
     */
+}
+function showlanding() {
+    $.ajax({
+        type: "POST",
+        url: "view",
+        data: { view: "landing" },
+        success: function(result) {
+            $("#bodymenu").html("");
+            $("#bodymenu").html(result);
+          
+        }
+    });
 }
 
 function showFormCreateUser() {
@@ -534,22 +548,72 @@ function showPageUsersFront() {
 }
 
 function showLandingSchedule(id) {
+    
     let generalSchedule = $("#general-programming");
     switch (id) {
+        
         case "grilla-canal-claro-button":
-            generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+          //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+          $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-canal-claro-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+
+            }
+        });
             break;
 
         case "grilla-concert-channel-button":
-            generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+         //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+         $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-concert-channel-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+
+            }
+        });
             break;
 
         case "grilla-claro-cinema-button":
-            generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+          //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+          $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-claro-cinema-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+
+            }
+        });
             break;
 
         case "grilla-home-button":
-            generalSchedule.load("./views/grillas/grilla-home.php");
+          //  generalSchedule.load("./views/grillas/grilla-home.php");
+          $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-home-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+
+            }
+        });
             break;
 
         default:
@@ -713,6 +777,7 @@ export {
     showDescriptions,
     createNavbarProgramacionGeneral,
     landing,
+    showlanding,
     showLandingSchedule,
     showAdminSite
 };

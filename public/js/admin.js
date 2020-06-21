@@ -168,11 +168,6 @@ function Verarchi() {
   $("#rempla").load("Cargar.php");
 }
 
-function landing() {
-  $("#menu").replaceWith();
-  $("#bodymenu").load("submenu.php");
-}
-
 function grilla() {
   $("#grilla").replaceWith();
   $("#bodymenu").load("Progra_general.php");
@@ -454,7 +449,7 @@ function sendFilePHP(file) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

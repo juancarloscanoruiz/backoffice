@@ -42347,10 +42347,10 @@ utils.intFromLE = intFromLE;
 /*!********************************************!*\
   !*** ./node_modules/elliptic/package.json ***!
   \********************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, dependencies, deprecated, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
+/*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"elliptic@^6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"elliptic@^6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"^6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"^6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_shasum\":\"05c5678d7173c049d8ca433552224a495d0e3762\",\"_spec\":\"elliptic@^6.5.2\",\"_where\":\"/var/www/html/BackofficeClaroNetworks/node_modules/browserify-sign\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"bundleDependencies\":false,\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"deprecated\":false,\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\xampp\\\\htdocs\\\\Back-laravel\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\Back-laravel\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -61238,7 +61238,7 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserBO, showUserFront, showFormCreateUser, closeViewAdminBO, changeNameRol, changeActiveRolGreenButton, changeImagesRolPermissions, cambiaracti, deleteUserUI, showUserToUpdate, showModalDeleteUserBO, showPageUsersFront, closeViewFront, getNameCountry, getNameGender, showModalDeleteUserFront, showUserFrontToUpdate, showDescriptions, createNavbarProgramacionGeneral, landing, showLandingSchedule, showAdminSite */
+/*! exports provided: showPageUsersBO, showUserBO, showUserFront, showFormCreateUser, closeViewAdminBO, changeNameRol, changeActiveRolGreenButton, changeImagesRolPermissions, cambiaracti, deleteUserUI, showUserToUpdate, showModalDeleteUserBO, showPageUsersFront, closeViewFront, getNameCountry, getNameGender, showModalDeleteUserFront, showUserFrontToUpdate, showDescriptions, createNavbarProgramacionGeneral, landing, showlanding, showLandingSchedule, showAdminSite */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61264,6 +61264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showDescriptions", function() { return showDescriptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNavbarProgramacionGeneral", function() { return createNavbarProgramacionGeneral; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "landing", function() { return landing; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanding", function() { return showlanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLandingSchedule", function() { return showLandingSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
@@ -61284,6 +61285,12 @@ Admin User BO
 function closeViewAdminBO() {
   $("#cambio").on("click", ".closeViewBO", function (event) {
     showPageUsersBO();
+  });
+}
+
+function landing() {
+  $("#bodymenu").on("click", ".btn-landing", function (event) {
+    showlanding();
   });
 }
 
@@ -61469,11 +61476,6 @@ function showDescriptions() {
   }); //fin
 }
 
-function landing() {
-  $("#menu").replaceWith();
-  $("#bodymenu").load("submenu.php");
-}
-
 function grilla() {
   $("#grilla").replaceWith();
   $("#bodymenu").load("Progra_general.php");
@@ -61620,10 +61622,24 @@ function showPageUsersBO() {
     }
   });
   /*
-    showUserToUpdate();
+      showUserToUpdate();
   showDescriptions();
   getAllUsersBO();
   */
+}
+
+function showlanding() {
+  $.ajax({
+    type: "POST",
+    url: "view",
+    data: {
+      view: "landing"
+    },
+    success: function success(result) {
+      $("#bodymenu").html("");
+      $("#bodymenu").html(result);
+    }
+  });
 }
 
 function showFormCreateUser() {
@@ -61645,9 +61661,9 @@ function showFormCreateUser() {
   });
   /* $("#general").replaceWith();
       $("#cambio").load("Alta.php", function() {
-           changeActiveBlackButton();
-           closeViewAdminBO();
-           //VALIDATION KEYUP
+            changeActiveBlackButton();
+            closeViewAdminBO();
+            //VALIDATION KEYUP
           let emailWarning = $("#error_email");
           let inputEmail = $(".input-email");
           let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -61744,7 +61760,7 @@ function showPageUsersFront() {
       ;
       showModalDeleteUserFront();
       showUserFrontToUpdate();
-       showDescriptions();
+        showDescriptions();
   */
 }
 
@@ -61753,19 +61769,63 @@ function showLandingSchedule(id) {
 
   switch (id) {
     case "grilla-canal-claro-button":
-      generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+      //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-canal-claro-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-concert-channel-button":
-      generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+      //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-concert-channel-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-claro-cinema-button":
-      generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+      //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-claro-cinema-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-home-button":
-      generalSchedule.load("./views/grillas/grilla-home.php");
+      //  generalSchedule.load("./views/grillas/grilla-home.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-home-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     default:
@@ -62125,9 +62185,6 @@ $(document).ready(function () {
   } //CHANGE TO LANDING
 
 
-  $("#btn-landing").click(function () {
-    landing();
-  });
   $(".option").click(function () {
     var value = $(this).attr("value");
     var select = $(this).attr("id-select");
@@ -62625,8 +62682,8 @@ function getAllUsersBO() {
         });
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserToUpdate"])();
         /*showDescriptions();
-         showUserBO();
-         showFormCreateUser();*/
+          showUserBO();
+          showFormCreateUser();*/
       }
     }
   });
@@ -62676,8 +62733,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-         <div class="w3-card-4 bg-white d-flex">
-             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+          <div class="w3-card-4 bg-white d-flex">
+              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -62690,15 +62747,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                     </input>
-                     <p class="mt-4 ml-2">Rol de usuario</p>
+                      </input>
+                      <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-         </div>
+          </div>
         </div>
         </div>
         `);
@@ -62733,7 +62790,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserFrontToUpdate"])();
         /*showUserFront();
         showModalDeleteUserFront();
-         showDescriptions();*/
+          showDescriptions();*/
       }
     }
   });
@@ -62992,7 +63049,6 @@ function getUserFrontToUpdate(id) {
                 var email = $("#edit-front-input-email").val(); // PASSWORD TO SEND
 
                 var passwordHash = crypto_js__WEBPACK_IMPORTED_MODULE_2___default.a.SHA1($("#edit-user-front-password").val());
-                console.log($("#edit-user-front-password").val());
                 var passwordResult = crypto_js__WEBPACK_IMPORTED_MODULE_2___default.a.enc.Hex.stringify(passwordHash);
                 var confirmPasswordHash = crypto_js__WEBPACK_IMPORTED_MODULE_2___default.a.SHA1($("#edit-user-front-password").val());
                 var confirmPasswordResult = crypto_js__WEBPACK_IMPORTED_MODULE_2___default.a.enc.Hex.stringify(confirmPasswordHash);
@@ -63047,29 +63103,29 @@ function getUserFrontToUpdate(id) {
                 var select = $(this).attr("id-select");
                 $("#" + select + " > p").text(value);
             });
-             //ELEGIR MES
+              //ELEGIR MES
             $(".Meses").click(function() {
                 var value = $(this).attr("value");
                 var select = $(this).attr("id-select");
-                 //ELEGIR AÑO
+                  //ELEGIR AÑO
                 $("#" + select + " > p").text(value);
             });
             $(".Años").click(function() {
                 var value = $(this).attr("value");
                 var select = $(this).attr("id-select");
-                 $("#" + select + " > p").text(value);
+                  $("#" + select + " > p").text(value);
             });
-             //CHOSE COUNTRY
+              //CHOSE COUNTRY
             $(".option").click(function() {
                 var value = $(this).attr("value");
                 var select = $(this).attr("id-select");
-                 $("#" + select + " > p").text(value);
+                  $("#" + select + " > p").text(value);
             });
-             //VALIDATE PASSWORD
+              //VALIDATE PASSWORD
             $(".input-password").keyup(function() {
                 validateKeyUpPassword($(this), $(".caracteres-min"));
             });
-             $("#edit-front-input-username").val(json.data.name);
+              $("#edit-front-input-username").val(json.data.name);
             $("#edit-front-input-email").val(json.data.email);
             switch (json.data.gender) {
                 case "M":
@@ -63083,7 +63139,7 @@ function getUserFrontToUpdate(id) {
                 default:
                     break;
             }
-             // BIRTHDAY USER FRONT
+              // BIRTHDAY USER FRONT
             if (json.data.birthday) {
                 let userBirthday = json.data.birthday.split("-");
                 let year = userBirthday[0];
@@ -63093,16 +63149,16 @@ function getUserFrontToUpdate(id) {
                 $(".SeleccionMesLista").text(month);
                 $(".SeleccionAñoLista").text(year);
             }
-             // COUNTRY
+              // COUNTRY
             let country = getNameCountry(json.data.country_id);
             let countryName = country.countryName;
             $(".SeleccionPaisLista").text(countryName);
-             // SEND DATA'S FRONT USER
+              // SEND DATA'S FRONT USER
             $(".btn-save-data-front").click(function() {
                 let id = json.data.id;
                 let name = $("#edit-front-input-username").val();
                 let email = $("#edit-front-input-email").val();
-                 // PASSWORD TO SEND
+                  // PASSWORD TO SEND
                 let password = $("#edit-user-front-password").val();
                 if (password == "") {
                     password = 0;
@@ -63121,7 +63177,7 @@ function getUserFrontToUpdate(id) {
                         .css("color", "red");
                     return false;
                 }
-                 let genderMale = $("#hombre");
+                  let genderMale = $("#hombre");
                 let genderFemale = $("#mujer");
                 var gender;
                 if (genderMale.is(":checked")) {
@@ -63129,7 +63185,7 @@ function getUserFrontToUpdate(id) {
                 } else if (genderFemale.is(":checked")) {
                     gender = "F";
                 }
-                 let country = $(".SeleccionPaisLista").text();
+                  let country = $(".SeleccionPaisLista").text();
                 updateDataUserFront(
                     id,
                     name,
@@ -63370,8 +63426,8 @@ function sendEmailResetPassword(input) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
