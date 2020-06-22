@@ -63,6 +63,8 @@ class AdminUserController extends Controller
                     'id_admin_user' => $request->input('id_admmin_user'),
                     'name' => $request->input('name'),
                     "email" => $request->input('email'),
+                    "password" => $request->input('password'),
+                    "password_confirm" => $request->input('repassword'),
                     "rol_id" => $request->input('rol_id')
                 ]
             )]

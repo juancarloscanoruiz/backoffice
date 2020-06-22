@@ -61263,7 +61263,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
+/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 //SERVICES
+
 
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
@@ -61587,6 +61589,13 @@ function showFormCreateUser() {
         $("#cambio").html("");
         $("#cambio").html(result).promise().done(function () {
           changeImagesRolPermissions();
+          var inputCorreo = $(".input-email");
+          inputCorreo.keyup(function () {
+            var correoValido = $(".warning-email-text");
+            var imagenError = $(".error");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpEmail"])(inputCorreo, filter, imagenError, correoValido);
+          });
         });
       }
     });
@@ -62748,9 +62757,10 @@ function updateDataUser(id, name, email, password, repassword, rolId) {
     name: name,
     email: email,
     password: password,
-    password_confirm: repassword,
+    repassword: repassword,
     rol_id: rolId
   };
+  console.log(dataUser);
   $.ajax({
     type: "POST",
     data: dataUser,
@@ -62888,11 +62898,11 @@ function getUserToUpdate(id) {
               var email = $("#edit-input-email").val();
 
               if (email == json.data.email) {
-                email = "";
+                email = "nada@nada.com";
               }
 
-              var password = $("#edit-input-password").val();
-              var repassword = $("#edit-input-repassword").val();
+              var password = "";
+              var repassword = "";
               var rolId = $(".btn-rol-select").attr("id_rol");
               updateDataUser(json.data.id, name, email, password, repassword, rolId);
             });
@@ -63040,7 +63050,6 @@ function getUserFrontToUpdate(id) {
                 }
 
                 var country = $(".SeleccionPaisLista").text();
-                console.log(country.trim());
                 updateDataUserFront(id, name, email, gender, date, country, passwordResult, confirmPasswordResult);
               });
             });

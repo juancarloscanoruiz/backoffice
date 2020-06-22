@@ -3699,7 +3699,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .tamaño {
-  width: 673px;
+  width: 673px !important;
 }
 
 .tamaño-alta {
@@ -3712,7 +3712,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .tamaño-edi {
-  width: 676px;
+  width: 676px !important;
   height: 39px;
 }
 

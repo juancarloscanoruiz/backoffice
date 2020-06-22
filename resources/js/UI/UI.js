@@ -7,6 +7,8 @@ import {
     getAllUserFront
 } from "../services/user.js";
 
+import { validateKeyUpEmail } from "../form/form.js";
+
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -358,6 +360,18 @@ function showFormCreateUser() {
                     .promise()
                     .done(function() {
                         changeImagesRolPermissions();
+                        const inputCorreo = $(".input-email");
+                        inputCorreo.keyup(function() {
+                            const correoValido = $(".warning-email-text");
+                            const imagenError = $(".error");
+                            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                            validateKeyUpEmail(
+                                inputCorreo,
+                                filter,
+                                imagenError,
+                                correoValido
+                            );
+                        });
                     });
             }
         });

@@ -13,7 +13,7 @@
               <input class="insert-data input-username a-text-medium-brownish pt-2 mb-2" id="name-user-bo" type="text" placeholder="Nombre del usuario"></input>
               <input class="insert-data input-email a-text-medium-brownish pt-2 " type="text" id="email-user-bo" placeholder="Correo"></input>
               <div class="d-flex align-items-center mt-2">
-                <p class="a-text-medium-orange mt-0 mb-0" id="error_email">
+                <p class="a-text-medium-orange mt-0 mb-0 warning-email-text" id="error_email">
                   Correo válido
                 </p>
                 <img src="http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg" class="error ml-2" />

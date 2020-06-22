@@ -10,12 +10,7 @@ import {
 } from "../UI/UI.js";
 
 //VALIDATIONS
-import {
-    validateKeyUpEmail,
-    validateKeyUpPassword,
-    validateEmail,
-    validatePassword
-} from "../form/form.js";
+import { validateKeyUpEmail, validateKeyUpPassword } from "../form/form.js";
 
 import CryptoJS from "crypto-js";
 
@@ -554,9 +549,10 @@ function updateDataUser(id, name, email, password, repassword, rolId) {
         name: name,
         email: email,
         password: password,
-        password_confirm: repassword,
+        repassword: repassword,
         rol_id: rolId
     };
+    console.log(dataUser);
     $.ajax({
         type: "POST",
         data: dataUser,
@@ -832,12 +828,10 @@ function getUserToUpdate(id) {
                                 let name = $("#edit-input-username").val();
                                 let email = $("#edit-input-email").val();
                                 if (email == json.data.email) {
-                                    email = "";
+                                    email = "nada@nada.com";
                                 }
-                                let password = $("#edit-input-password").val();
-                                let repassword = $(
-                                    "#edit-input-repassword"
-                                ).val();
+                                let password = "";
+                                let repassword = "";
                                 let rolId = $(".btn-rol-select").attr("id_rol");
                                 updateDataUser(
                                     json.data.id,
@@ -1036,7 +1030,6 @@ function getUserFrontToUpdate(id) {
                                         ".SeleccionPaisLista"
                                     ).text();
 
-                                    console.log(country.trim());
                                     updateDataUserFront(
                                         id,
                                         name,

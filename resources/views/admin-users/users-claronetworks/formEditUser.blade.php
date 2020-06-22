@@ -15,7 +15,7 @@
               <input id="edit-front-input-email" class="insert-data a-text-medium-brownish input-email mb-4  " type="text " value="" placeholder="" disabled></input>
               <input class="insert-data input-password a-text-medium-brownish" type="password" id="edit-user-front-password" name="login-password" placeholder="Contraseña" autocomplete="off" />
               <div class="d-flex align-items-center mb-2">
-                <p class="a-text-medium-orange mt-1 mb-0" id="caracteres-min">
+                <p class="a-text-medium-orange mt-1 mb-0 caracteres-min">
                   8 caractéres mínimo
                 </p>
 
