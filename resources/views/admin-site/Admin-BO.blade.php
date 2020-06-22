@@ -13,10 +13,10 @@
             <button class='admin-site-button buttonall btn-nav btn-nav-select ml-xl-4 pr-4 pl-4  ' type='button' id="btn-nav" rel='Admin-home-BO'>Administrar sitio</button>
           </li>
           <li class='nav-item'>
-              <button class='admin-users-section  buttonall btn-nav ml-xl-4 pr-2 pl-2 ' type='button' id='btn-nav' rel='Adm-users-BO'>Administrar usuario BO</button>
+              <button class='buttonall btn-nav ml-xl-4 pr-2 pl-2 ' type='button' id='admin-users-section' rel='Adm-users-BO'>Administrar usuario BO</button>
             </li>
             <li class='nav-item'>
-              <button class='admin-users-front-section  buttonall btn-nav ml-xl-4 pr-1 pl-1 ' type='button' id='btn-nav' rel='Admin-users-Front'>Administrar usuarios Front</button>
+              <button class='buttonall btn-nav ml-xl-4 pr-1 pl-1 ' type='button' id='admin-users-front-section' rel='Admin-users-Front'>Administrar usuarios Front</button>
             </li>
         </ul>
 

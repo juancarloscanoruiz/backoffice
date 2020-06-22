@@ -61238,34 +61238,29 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserBO, showUserFront, showFormCreateUser, closeViewAdminBO, changeNameRol, changeActiveRolGreenButton, changeImagesRolPermissions, cambiaracti, deleteUserUI, showUserToUpdate, showModalDeleteUserBO, showPageUsersFront, closeViewFront, getNameCountry, getNameGender, showModalDeleteUserFront, showUserFrontToUpdate, showDescriptions, createNavbarProgramacionGeneral, landing, showLandingSchedule, showAdminSite */
+/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, landing, showLandingSchedule, showAdminSite, changeActiveBlackButton */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPageUsersBO", function() { return showPageUsersBO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showUserBO", function() { return showUserBO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showUserFront", function() { return showUserFront; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showFormCreateUser", function() { return showFormCreateUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeViewAdminBO", function() { return closeViewAdminBO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeNameRol", function() { return changeNameRol; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveRolGreenButton", function() { return changeActiveRolGreenButton; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImagesRolPermissions", function() { return changeImagesRolPermissions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cambiaracti", function() { return cambiaracti; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteUserUI", function() { return deleteUserUI; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showUserToUpdate", function() { return showUserToUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModalDeleteUserBO", function() { return showModalDeleteUserBO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPageUsersFront", function() { return showPageUsersFront; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeViewFront", function() { return closeViewFront; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNameCountry", function() { return getNameCountry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNameGender", function() { return getNameGender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModalDeleteUserFront", function() { return showModalDeleteUserFront; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showUserFrontToUpdate", function() { return showUserFrontToUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showDescriptions", function() { return showDescriptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNavbarProgramacionGeneral", function() { return createNavbarProgramacionGeneral; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "landing", function() { return landing; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLandingSchedule", function() { return showLandingSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 //SERVICES
@@ -61280,18 +61275,6 @@ __webpack_require__.r(__webpack_exports__);
 We use this method when you click on close icon in some view of
 Admin User BO
 */
-
-function closeViewAdminBO() {
-  $("#cambio").on("click", ".closeViewBO", function (event) {
-    showPageUsersBO();
-  });
-}
-
-function closeViewFront() {
-  $(".closeViewFront").click(function () {
-    showPageUsersFront();
-  });
-}
 
 function cambiaracti(roles) {
   switch (roles) {
@@ -61345,49 +61328,6 @@ function changeImagesRolPermissions() {
   });
 }*/
 
-
-function changeActiveRolGreenButton() {
-  var buttonsRol = $(".btn-rol");
-  $(".btn-rol-all-edit").click(function () {
-    buttonsRol.removeClass("btn-rol-select");
-    $(this).addClass("btn-rol");
-    buttonsRol.removeClass("btn-rol");
-    $(this).addClass("btn-rol-select");
-  });
-}
-
-function createClickButtonRegisterUser() {
-  $("#cambio").on("click", ".register-user-button", function () {
-    var rol = $(".btn-rol-select").attr("id_rol");
-    var email = $("#email-user-bo").val();
-    var username = $("#name-user-bo").val(); //let password = $("#password-user-bo").val();
-
-    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateEmail"])($(".input-email"), $(".warning-email-text"));
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["registerUser"])(username, email, rol); //validatePassword($(".input-password"), $(".caracteres-min"));
-  });
-}
-
-function showUserBO() {
-  $("#cambio").on("click", ".view-user-icon", function () {
-    var id = $(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getUser"])(id);
-  });
-}
-
-function showUserToUpdate() {
-  $("#cambio").on("click", ".edit-user-icon", function () {
-    var id = $(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getUserToUpdate"])(id);
-  });
-}
-
-function showUserFrontToUpdate() {
-  $("#cambio").on("click", ".edit-user-front", function () {
-    //$(".edit-user-front").click(function() {
-    var id = $(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getUserFrontToUpdate"])(id);
-  });
-}
 
 function deleteUserUI(id) {
   $(".modal-delete-button-confirm").click(function () {
@@ -61615,14 +61555,10 @@ function showPageUsersBO() {
       $("#cambio").html("");
       $("#cambio").html(result);
       Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getAllUsersBO"])();
-      showFormCreateUser();
-      showUserBO();
     }
   });
   /*
-    showUserToUpdate();
   showDescriptions();
-  getAllUsersBO();
   */
 }
 
@@ -61637,37 +61573,11 @@ function showFormCreateUser() {
       success: function success(result) {
         $("#cambio").html("");
         $("#cambio").html(result).promise().done(function () {
-          closeViewAdminBO();
-          createClickButtonRegisterUser();
           changeImagesRolPermissions();
         });
       }
     });
   });
-  /* $("#general").replaceWith();
-      $("#cambio").load("Alta.php", function() {
-           changeActiveBlackButton();
-           closeViewAdminBO();
-           //VALIDATION KEYUP
-          let emailWarning = $("#error_email");
-          let inputEmail = $(".input-email");
-          let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-          $(".insert-data").keyup(function(e) {
-              if (e.target.classList.contains("input-email")) {
-                  validateKeyUpEmail(
-                      $(".input-email"),
-                      filter,
-                      null,
-                      emailWarning
-                  );
-              } else if (e.target.classList.contains("input-password")) {
-                  validateKeyUpPassword(
-                      $(".input-password"),
-                      $(".caracteres-min ")
-                  );
-              }
-          });
-      });*/
 }
 
 function changeActiveBlackButton() {
@@ -61720,8 +61630,7 @@ function changeAdminContent(rel) {
 }
 
 function showUserFront() {
-  $("#cambio").on("click", ".show-user-front-icon", function (event) {
-    //$(".show-user-front-icon").click(function() {
+  $("#cambio").on("click", ".show-user-front-icon", function () {
     var id = $(this).parent().attr("_id");
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getUserFront"])(id);
   });
@@ -61736,17 +61645,10 @@ function showPageUsersFront() {
     },
     success: function success(result) {
       $("#cambio").html("");
-      $("#cambio").html(result).promise();
+      $("#cambio").html(result);
       Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getAllUserFront"])();
-      showUserFront();
     }
   });
-  /*
-      ;
-      showModalDeleteUserFront();
-      showUserFrontToUpdate();
-       showDescriptions();
-  */
 }
 
 function showLandingSchedule(id) {
@@ -62084,13 +61986,9 @@ __webpack_require__.r(__webpack_exports__);
 
  //UI
 
- //Validations
+ //FORM VALIDATIONS
 
- // import { validateUser } from "./form/form.js";
-// import { validateToken } from "./form/form.js";
-
-/* Service User
- */
+ //SERVICES
 
 
 $.ajaxSetup({
@@ -62099,7 +61997,48 @@ $.ajaxSetup({
   }
 });
 $(document).ready(function () {
-  //CONFIGURACIÓN DE DATEPICKER
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showUserFront"])(); //GET USER
+
+  $("#cambio").on("click", ".view-user-icon", function () {
+    var id = $(this).parent().attr("_id");
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_4__["getUser"])(id);
+  });
+  $(".buttonall").click(function () {
+    $(".buttonall").removeClass("btn-nav-select");
+    $(this).addClass("btn-nav");
+    $(".buttonall").removeClass("btn-nav");
+    $(this).addClass("btn-nav-select");
+  }); //RENDER PAGE TO CREATE A BACKOFFICE'S USER
+
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showFormCreateUser"])(); //REGISTER A USER
+
+  $("#cambio").on("click", ".register-user-button", function () {
+    var rol = $(".btn-rol-select").attr("id_rol");
+    var email = $("#email-user-bo").val();
+    var username = $("#name-user-bo").val();
+    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_3__["validateEmail"])($(".input-email"), $(".warning-email-text"));
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_4__["registerUser"])(username, email, rol);
+  }); //BACK TO THE FRONTPAGE USERS' PAGE
+
+  $("#cambio").on("click", ".closeViewFront", function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showPageUsersFront"])();
+  }); //BACK TO BACKOFFICE USERS' PAGE
+
+  $("#cambio").on("click", ".closeViewBO", function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showPageUsersBO"])();
+  }); //UPDATE CLARO NETWORKS USER
+
+  $("#cambio").on("click", ".edit-user-front", function () {
+    var id = $(this).parent().attr("_id");
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_4__["getUserFrontToUpdate"])(id);
+  }); //UPDATE USERS BACKOFFICE
+
+  $("#cambio").on("click", ".edit-user-icon", function () {
+    console.log("update");
+    var id = $(this).parent().attr("_id");
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_4__["getUserToUpdate"])(id);
+  }); //CONFIGURACIÓN DE DATEPICKER
+
   var dateScheduleLanding = document.querySelector("#date-schedule-landing");
 
   if (dateScheduleLanding) {
@@ -62168,14 +62107,6 @@ $(document).ready(function () {
 
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
 
-  /* GET ALL USERS FRONT */
-  //getAllUserFront();
-
-  /* GET ALL USERS BACKOFFICE */
-  //getAllUsersBO();
-  //GET USER BACKOFFICE
-
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showUserBO"])();
   /* LOGIN */
 
   $("#button-login").click(function () {
@@ -62222,12 +62153,12 @@ $(document).ready(function () {
   });
   /* Show the form to create a new user */
 
-  $(".admin-users-section").click(function () {
+  $("#admin-users-section").click(function () {
     Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showPageUsersBO"])();
   });
   /* SHOW VIEW USERS FRONT */
 
-  $(".admin-users-front-section").click(function () {
+  $("#admin-users-front-section").click(function () {
     Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_2__["showPageUsersFront"])();
   });
   /* SHOW VIEW ADMIN SITE */
@@ -62624,10 +62555,8 @@ function getAllUsersBO() {
         $("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title \">Usuario</div>\n            </header>\n            <section>\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        ")).promise().done(function () {
           Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])();
         });
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserToUpdate"])();
         /*showDescriptions();
-         showUserBO();
-         showFormCreateUser();*/
+        showUserBO();*/
       }
     }
   });
@@ -62665,7 +62594,6 @@ function getUser(id) {
             $(".show-username").html(json.data.name);
             $(".show-email").html(json.data.email);
             $(".show-rol").html(rol);
-            Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["closeViewAdminBO"])();
           }
         });
         /*$("#cambio").load("VisualUser.php", function() {
@@ -62731,7 +62659,6 @@ function getAllUserFront() {
           userF += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <input type='image' src='./images/ojito-acti.svg' class='show-user-front-icon  btn-focus images'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus delete-user-front-icon images' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
         $("#Admin-users-Front").html("\n        <div class=\"sombras1 trans10 mb-5 \">\n          <div class=\"grid texto-general users-front-table\">\n            <header>\n              <div class=\"text-title\">Usuario</div>\n            </header>\n            <section>\n              <div class=\"text-title\">Acciones</div>\n            </section>\n            ".concat(userF, "\n          </div>\n\n        </div>\n        <div class=\"col-xl-1 user-front-table\">\n\n        <div>\n        <ul class=\"description\">\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n        </li>\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n        </li>\n        <li class=\"posi\">\n        <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n        <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n        </li>\n        </ul>\n\n        </div>\n\n        </div>\n        "));
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserFrontToUpdate"])();
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
@@ -63042,114 +62969,9 @@ function getUserFrontToUpdate(id) {
                 console.log(country.trim());
                 updateDataUserFront(id, name, email, gender, date, country, passwordResult, confirmPasswordResult);
               });
-              Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["closeViewFront"])();
             });
           }
         });
-        /*$("#edit-front").replaceWith();
-        $("#cambio").load("Edit-front.php", function() {
-            //ELEGIR DÍA
-            $(".Dias").click(function() {
-                var value = $(this).attr("value");
-                var select = $(this).attr("id-select");
-                $("#" + select + " > p").text(value);
-            });
-             //ELEGIR MES
-            $(".Meses").click(function() {
-                var value = $(this).attr("value");
-                var select = $(this).attr("id-select");
-                 //ELEGIR AÑO
-                $("#" + select + " > p").text(value);
-            });
-            $(".Años").click(function() {
-                var value = $(this).attr("value");
-                var select = $(this).attr("id-select");
-                 $("#" + select + " > p").text(value);
-            });
-             //CHOSE COUNTRY
-            $(".option").click(function() {
-                var value = $(this).attr("value");
-                var select = $(this).attr("id-select");
-                 $("#" + select + " > p").text(value);
-            });
-             //VALIDATE PASSWORD
-            $(".input-password").keyup(function() {
-                validateKeyUpPassword($(this), $(".caracteres-min"));
-            });
-             $("#edit-front-input-username").val(json.data.name);
-            $("#edit-front-input-email").val(json.data.email);
-            switch (json.data.gender) {
-                case "M":
-                    $("#mujer").prop("checked", false);
-                    $("#hombre").prop("checked", true);
-                    break;
-                case "F":
-                    $("#mujer").prop("checked", true);
-                    $("#hombre").prop("checked", false);
-                    break;
-                default:
-                    break;
-            }
-             // BIRTHDAY USER FRONT
-            if (json.data.birthday) {
-                let userBirthday = json.data.birthday.split("-");
-                let year = userBirthday[0];
-                let month = userBirthday[1];
-                let day = userBirthday[2];
-                $(".SeleccionDiaLista").text(day);
-                $(".SeleccionMesLista").text(month);
-                $(".SeleccionAñoLista").text(year);
-            }
-             // COUNTRY
-            let country = getNameCountry(json.data.country_id);
-            let countryName = country.countryName;
-            $(".SeleccionPaisLista").text(countryName);
-             // SEND DATA'S FRONT USER
-            $(".btn-save-data-front").click(function() {
-                let id = json.data.id;
-                let name = $("#edit-front-input-username").val();
-                let email = $("#edit-front-input-email").val();
-                 // PASSWORD TO SEND
-                let password = $("#edit-user-front-password").val();
-                if (password == "") {
-                    password = 0;
-                }
-                let rePassword = $("#edit-user-front-repassword").val();
-                if (rePassword == "") {
-                    rePassword = 0;
-                }
-                let day = $(".SeleccionDiaLista").text();
-                let month = $(".SeleccionMesLista").text();
-                let year = $(".SeleccionAñoLista").text();
-                let date = year + "-" + month + "-" + day;
-                if (day == "Día" || month == "Mes" || year == "Año") {
-                    $(".error_birthday")
-                        .text("La fecha debe estar completa")
-                        .css("color", "red");
-                    return false;
-                }
-                 let genderMale = $("#hombre");
-                let genderFemale = $("#mujer");
-                var gender;
-                if (genderMale.is(":checked")) {
-                    gender = "M";
-                } else if (genderFemale.is(":checked")) {
-                    gender = "F";
-                }
-                 let country = $(".SeleccionPaisLista").text();
-                updateDataUserFront(
-                    id,
-                    name,
-                    email,
-                    gender,
-                    date,
-                    country,
-                    password,
-                    rePassword
-                );
-            });
-            closeViewFront();
-        });*/
       }
     }
   });
@@ -63230,9 +63052,7 @@ function deleteUserBO(id) {
         });
         $(".users-backoffice-table").html("\n        <header>\n        <div class=\"text-title \">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title \">Rol</div>\n        </section>\n        <aside>\n          <div class=\"text-title \">Acciones</div>\n        </aside>\n        ".concat(userBO, "\n        "));
         $(".modal-delete-user").modal("hide");
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])();
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserBO"])();
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showUserToUpdate"])();
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])(); //showUserBO();
       }
     }
   });
@@ -63273,7 +63093,6 @@ function deleteUserFront(id) {
         $(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
         $(".modal-delete-user-front").modal("hide"); //showModalDeleteUserFront();
         //showUserFront();
-        //showUserFrontToUpdate();
       }
     }
   });
@@ -63318,7 +63137,6 @@ function getUserFront(id) {
               var genderName = gender.genderName;
               var genderImage = gender.genderImage;
               $(".section-sexo").append("\n                      <label for=\"mujer\" id=\"mujerestado\" class=\"mujer-estilo1 textp-general pl-4\">\n                      <img id=\"women\" src=\"".concat(genderImage, "\" /> ").concat(genderName, "</label>\n                      "));
-              Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["closeViewFront"])();
             });
           }
         });

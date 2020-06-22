@@ -241,12 +241,6 @@ $(document).ready(function () {
   var dianumero = diaLetras + " " + diaMes;
   $(".day").text(dianumero); //resaltar boton de localidad-actual
 
-  $(".buttonall").click(function () {
-    $("button[id=btn-nav]").removeClass("btn-nav-select");
-    $(this).addClass("btn-nav");
-    $("button[id=btn-nav]").removeClass("btn-nav");
-    $(this).addClass("btn-nav-select");
-  });
   $(".btn-rol-all").click(function () {
     console.log("pojpoj");
     $("button[id=btn-rol]").removeClass("btn-rol-select");

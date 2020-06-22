@@ -1,7 +1,4 @@
-@extends('layaout.app')
 
-@section('content')
-<body>
 
     <div id="Admin-users-Front">
       <!--Div para cambio-->
@@ -42,6 +39,3 @@
       </div>
     </div>
   </div>
-</body>
-
-@endsection

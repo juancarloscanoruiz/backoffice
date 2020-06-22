@@ -1,13 +1,9 @@
 //SERVICES
 import {
-    registerUser,
-    getUser,
-    getUserToUpdate,
     deleteUserBO,
     getAllUsersBO,
     getUserFront,
     deleteUserFront,
-    getUserFrontToUpdate,
     getAllUserFront
 } from "../services/user.js";
 
@@ -27,17 +23,6 @@ import {
 We use this method when you click on close icon in some view of
 Admin User BO
 */
-function closeViewAdminBO() {
-    $("#cambio").on("click", ".closeViewBO", function(event) {
-        showPageUsersBO();
-    });
-}
-
-function closeViewFront() {
-    $(".closeViewFront").click(function() {
-        showPageUsersFront();
-    });
-}
 
 function cambiaracti(roles) {
     switch (roles) {
@@ -90,57 +75,6 @@ function changeImagesRolPermissions() {
     });
   });
 }*/
-
-function changeActiveRolGreenButton() {
-    let buttonsRol = $(".btn-rol");
-    $(".btn-rol-all-edit").click(function() {
-        buttonsRol.removeClass("btn-rol-select");
-        $(this).addClass("btn-rol");
-        buttonsRol.removeClass("btn-rol");
-        $(this).addClass("btn-rol-select");
-    });
-}
-
-function createClickButtonRegisterUser() {
-    $("#cambio").on("click", ".register-user-button", function() {
-        let rol = $(".btn-rol-select").attr("id_rol");
-        let email = $("#email-user-bo").val();
-        let username = $("#name-user-bo").val();
-        //let password = $("#password-user-bo").val();
-        validateEmail($(".input-email"), $(".warning-email-text"));
-        registerUser(username, email, rol);
-
-        //validatePassword($(".input-password"), $(".caracteres-min"));
-    });
-}
-
-function showUserBO() {
-    $("#cambio").on("click", ".view-user-icon", function() {
-        let id = $(this)
-            .parent()
-            .attr("_id");
-        getUser(id);
-    });
-}
-
-function showUserToUpdate() {
-    $("#cambio").on("click", ".edit-user-icon", function() {
-        let id = $(this)
-            .parent()
-            .attr("_id");
-        getUserToUpdate(id);
-    });
-}
-
-function showUserFrontToUpdate() {
-    $("#cambio").on("click", ".edit-user-front", function() {
-        //$(".edit-user-front").click(function() {
-        let id = $(this)
-            .parent()
-            .attr("_id");
-        getUserFrontToUpdate(id);
-    });
-}
 
 function deleteUserUI(id) {
     $(".modal-delete-button-confirm").click(function() {
@@ -398,16 +332,10 @@ function showPageUsersBO() {
             $("#cambio").html("");
             $("#cambio").html(result);
             getAllUsersBO();
-            showFormCreateUser();
-            showUserBO();
         }
     });
     /*
-
-
-    showUserToUpdate();
     showDescriptions();
-    getAllUsersBO();
     */
 }
 
@@ -423,41 +351,11 @@ function showFormCreateUser() {
                     .html(result)
                     .promise()
                     .done(function() {
-                        closeViewAdminBO();
-                        createClickButtonRegisterUser();
                         changeImagesRolPermissions();
                     });
             }
         });
     });
-
-    /* $("#general").replaceWith();
-        $("#cambio").load("Alta.php", function() {
-
-            changeActiveBlackButton();
-
-            closeViewAdminBO();
-
-            //VALIDATION KEYUP
-            let emailWarning = $("#error_email");
-            let inputEmail = $(".input-email");
-            let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            $(".insert-data").keyup(function(e) {
-                if (e.target.classList.contains("input-email")) {
-                    validateKeyUpEmail(
-                        $(".input-email"),
-                        filter,
-                        null,
-                        emailWarning
-                    );
-                } else if (e.target.classList.contains("input-password")) {
-                    validateKeyUpPassword(
-                        $(".input-password"),
-                        $(".caracteres-min ")
-                    );
-                }
-            });
-        });*/
 }
 
 function changeActiveBlackButton() {
@@ -505,8 +403,7 @@ function changeAdminContent(rel) {
 }
 
 function showUserFront() {
-    $("#cambio").on("click", ".show-user-front-icon", function(event) {
-        //$(".show-user-front-icon").click(function() {
+    $("#cambio").on("click", ".show-user-front-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -521,20 +418,10 @@ function showPageUsersFront() {
         data: { view: "admin-users-front" },
         success: function(result) {
             $("#cambio").html("");
-            $("#cambio")
-                .html(result)
-                .promise();
+            $("#cambio").html(result);
             getAllUserFront();
-            showUserFront();
         }
     });
-    /*
-        ;
-        showModalDeleteUserFront();
-        showUserFrontToUpdate();
-
-        showDescriptions();
-    */
 }
 
 function showLandingSchedule(id) {
@@ -697,26 +584,21 @@ function getNameGender(g) {
 
 export {
     showPageUsersBO,
-    showUserBO,
     showUserFront,
     showFormCreateUser,
-    closeViewAdminBO,
     changeNameRol,
-    changeActiveRolGreenButton,
     changeImagesRolPermissions,
     cambiaracti,
     deleteUserUI,
-    showUserToUpdate,
     showModalDeleteUserBO,
     showPageUsersFront,
-    closeViewFront,
     getNameCountry,
     getNameGender,
     showModalDeleteUserFront,
-    showUserFrontToUpdate,
     showDescriptions,
     createNavbarProgramacionGeneral,
     landing,
     showLandingSchedule,
-    showAdminSite
+    showAdminSite,
+    changeActiveBlackButton
 };

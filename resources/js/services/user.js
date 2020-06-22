@@ -1,20 +1,12 @@
 import {
-    closeViewAdminBO,
-    closeViewFront,
     changeNameRol,
-    changeActiveRolGreenButton,
     changeImagesRolPermissions,
     cambiaracti,
     showUserBO,
-    showUserToUpdate,
     showModalDeleteUserBO,
     getNameCountry,
     getNameGender,
-    showModalDeleteUserFront,
-    showUserFront,
-    showUserFrontToUpdate,
-    showDescriptions,
-    showFormCreateUser
+    showModalDeleteUserFront
 } from "../UI/UI.js";
 
 //VALIDATIONS
@@ -393,13 +385,9 @@ function getAllUsersBO() {
                     .done(function() {
                         showModalDeleteUserBO();
                     });
-                showUserToUpdate();
 
                 /*showDescriptions();
-
-                showUserBO();
-
-                showFormCreateUser();*/
+                showUserBO();*/
             }
         }
     });
@@ -437,7 +425,6 @@ function getUser(id) {
                         $(".show-username").html(json.data.name);
                         $(".show-email").html(json.data.email);
                         $(".show-rol").html(rol);
-                        closeViewAdminBO();
                     }
                 });
                 /*$("#cambio").load("VisualUser.php", function() {
@@ -551,7 +538,6 @@ function getAllUserFront() {
 
         </div>
         `);
-                showUserFrontToUpdate();
                 showModalDeleteUserFront();
                 /*showUserFront();
                 showModalDeleteUserFront();
@@ -1062,127 +1048,9 @@ function getUserFrontToUpdate(id) {
                                         confirmPasswordResult
                                     );
                                 });
-                                closeViewFront();
                             });
                     }
                 });
-                /*$("#edit-front").replaceWith();
-                $("#cambio").load("Edit-front.php", function() {
-                    //ELEGIR DÍA
-                    $(".Dias").click(function() {
-                        var value = $(this).attr("value");
-                        var select = $(this).attr("id-select");
-                        $("#" + select + " > p").text(value);
-                    });
-
-                    //ELEGIR MES
-                    $(".Meses").click(function() {
-                        var value = $(this).attr("value");
-                        var select = $(this).attr("id-select");
-
-                        //ELEGIR AÑO
-                        $("#" + select + " > p").text(value);
-                    });
-                    $(".Años").click(function() {
-                        var value = $(this).attr("value");
-                        var select = $(this).attr("id-select");
-
-                        $("#" + select + " > p").text(value);
-                    });
-
-                    //CHOSE COUNTRY
-                    $(".option").click(function() {
-                        var value = $(this).attr("value");
-                        var select = $(this).attr("id-select");
-
-                        $("#" + select + " > p").text(value);
-                    });
-
-                    //VALIDATE PASSWORD
-                    $(".input-password").keyup(function() {
-                        validateKeyUpPassword($(this), $(".caracteres-min"));
-                    });
-
-                    $("#edit-front-input-username").val(json.data.name);
-                    $("#edit-front-input-email").val(json.data.email);
-                    switch (json.data.gender) {
-                        case "M":
-                            $("#mujer").prop("checked", false);
-                            $("#hombre").prop("checked", true);
-                            break;
-                        case "F":
-                            $("#mujer").prop("checked", true);
-                            $("#hombre").prop("checked", false);
-                            break;
-                        default:
-                            break;
-                    }
-
-                    // BIRTHDAY USER FRONT
-                    if (json.data.birthday) {
-                        let userBirthday = json.data.birthday.split("-");
-                        let year = userBirthday[0];
-                        let month = userBirthday[1];
-                        let day = userBirthday[2];
-                        $(".SeleccionDiaLista").text(day);
-                        $(".SeleccionMesLista").text(month);
-                        $(".SeleccionAñoLista").text(year);
-                    }
-
-                    // COUNTRY
-                    let country = getNameCountry(json.data.country_id);
-                    let countryName = country.countryName;
-                    $(".SeleccionPaisLista").text(countryName);
-
-                    // SEND DATA'S FRONT USER
-                    $(".btn-save-data-front").click(function() {
-                        let id = json.data.id;
-                        let name = $("#edit-front-input-username").val();
-                        let email = $("#edit-front-input-email").val();
-
-                        // PASSWORD TO SEND
-                        let password = $("#edit-user-front-password").val();
-                        if (password == "") {
-                            password = 0;
-                        }
-                        let rePassword = $("#edit-user-front-repassword").val();
-                        if (rePassword == "") {
-                            rePassword = 0;
-                        }
-                        let day = $(".SeleccionDiaLista").text();
-                        let month = $(".SeleccionMesLista").text();
-                        let year = $(".SeleccionAñoLista").text();
-                        let date = year + "-" + month + "-" + day;
-                        if (day == "Día" || month == "Mes" || year == "Año") {
-                            $(".error_birthday")
-                                .text("La fecha debe estar completa")
-                                .css("color", "red");
-                            return false;
-                        }
-
-                        let genderMale = $("#hombre");
-                        let genderFemale = $("#mujer");
-                        var gender;
-                        if (genderMale.is(":checked")) {
-                            gender = "M";
-                        } else if (genderFemale.is(":checked")) {
-                            gender = "F";
-                        }
-
-                        let country = $(".SeleccionPaisLista").text();
-                        updateDataUserFront(
-                            id,
-                            name,
-                            email,
-                            gender,
-                            date,
-                            country,
-                            password,
-                            rePassword
-                        );
-                    });
-                    closeViewFront();
-                });*/
             }
         }
     });
@@ -1297,8 +1165,7 @@ function deleteUserBO(id) {
         `);
                 $(".modal-delete-user").modal("hide");
                 showModalDeleteUserBO();
-                showUserBO();
-                showUserToUpdate();
+                //showUserBO();
             }
         }
     });
@@ -1358,7 +1225,6 @@ function deleteUserFront(id) {
                 $(".modal-delete-user-front").modal("hide");
                 //showModalDeleteUserFront();
                 //showUserFront();
-                //showUserFrontToUpdate();
             }
         }
     });
@@ -1416,7 +1282,6 @@ function getUserFront(id) {
                       <label for="mujer" id="mujerestado" class="mujer-estilo1 textp-general pl-4">
                       <img id="women" src="${genderImage}" /> ${genderName}</label>
                       `);
-                                closeViewFront();
                             });
                     }
                 });

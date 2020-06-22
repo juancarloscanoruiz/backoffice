@@ -4,16 +4,15 @@ import { showContentNav } from "./nav/nav.js";
 //UI
 import {
     showPageUsersBO,
-    showUserBO,
-    showFormCreateUser,
-    deleteUserUI,
     showPageUsersFront,
     createNavbarProgramacionGeneral,
     showLandingSchedule,
-    showAdminSite
+    showAdminSite,
+    showFormCreateUser,
+    showUserFront
 } from "./UI/UI.js";
 
-//Validations
+//FORM VALIDATIONS
 import {
     validateNewPassword,
     validateKeyUpEmail,
@@ -23,16 +22,13 @@ import {
     ShowHidePassword
 } from "./form/form.js";
 
-// import { validateUser } from "./form/form.js";
-// import { validateToken } from "./form/form.js";
-
-/* Service User
- */
+//SERVICES
 import {
     registerUser,
-    getAllUsersBO,
-    getAllUserFront,
-    sendEmailResetPassword
+    sendEmailResetPassword,
+    getUserToUpdate,
+    getUser,
+    getUserFrontToUpdate
 } from "./services/user.js";
 
 $.ajaxSetup({
@@ -42,6 +38,62 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    showUserFront();
+
+    //GET USER
+    $("#cambio").on("click", ".view-user-icon", function() {
+        let id = $(this)
+            .parent()
+            .attr("_id");
+        getUser(id);
+    });
+
+    $(".buttonall").click(function() {
+        $(".buttonall").removeClass("btn-nav-select");
+        $(this).addClass("btn-nav");
+        $(".buttonall").removeClass("btn-nav");
+        $(this).addClass("btn-nav-select");
+    });
+
+    //RENDER PAGE TO CREATE A BACKOFFICE'S USER
+    showFormCreateUser();
+
+    //REGISTER A USER
+    $("#cambio").on("click", ".register-user-button", function() {
+        let rol = $(".btn-rol-select").attr("id_rol");
+        let email = $("#email-user-bo").val();
+        let username = $("#name-user-bo").val();
+        validateEmail($(".input-email"), $(".warning-email-text"));
+        registerUser(username, email, rol);
+    });
+
+    //BACK TO THE FRONTPAGE USERS' PAGE
+    $("#cambio").on("click", ".closeViewFront", function() {
+        showPageUsersFront();
+    });
+
+    //BACK TO BACKOFFICE USERS' PAGE
+    $("#cambio").on("click", ".closeViewBO", function() {
+        showPageUsersBO();
+    });
+
+    //UPDATE CLARO NETWORKS USER
+    $("#cambio").on("click", ".edit-user-front", function() {
+        let id = $(this)
+            .parent()
+            .attr("_id");
+        getUserFrontToUpdate(id);
+    });
+
+    //UPDATE USERS BACKOFFICE
+    $("#cambio").on("click", ".edit-user-icon", function() {
+        console.log("update");
+        let id = $(this)
+            .parent()
+            .attr("_id");
+        getUserToUpdate(id);
+    });
+
     //CONFIGURACIÓN DE DATEPICKER
     let dateScheduleLanding = document.querySelector("#date-schedule-landing");
     if (dateScheduleLanding) {
@@ -172,15 +224,6 @@ $(document).ready(function() {
     createNavbarProgramacionGeneral();
     //END NAVBAR PROGRAMACIÓN GENERAL
 
-    /* GET ALL USERS FRONT */
-    //getAllUserFront();
-
-    /* GET ALL USERS BACKOFFICE */
-    //getAllUsersBO();
-
-    //GET USER BACKOFFICE
-    showUserBO();
-
     /* LOGIN */
     $("#button-login").click(function() {
         let inputEmail = $(".input-email");
@@ -237,12 +280,12 @@ $(document).ready(function() {
 
     /* Show the form to create a new user */
 
-    $(".admin-users-section").click(function() {
+    $("#admin-users-section").click(function() {
         showPageUsersBO();
     });
 
     /* SHOW VIEW USERS FRONT */
-    $(".admin-users-front-section").click(function() {
+    $("#admin-users-front-section").click(function() {
         showPageUsersFront();
     });
 
