@@ -62124,6 +62124,7 @@ $(document).ready(function () {
     }); //ELEGIR DÍA EN PROGRAMACIÓN GENERAL
 
     $(".calendar").click(function (e) {
+      console.log("calendar");
       e.stopPropagation();
       var isHidden = picker.calendarContainer.classList.contains("qs-hidden");
       picker[isHidden ? "show" : "hide"](); //console.log(picker.currentMonth);
