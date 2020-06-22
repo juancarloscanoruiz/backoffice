@@ -61238,7 +61238,7 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, landing, showLandingSchedule, showAdminSite, changeActiveBlackButton */
+/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, landing, showlanding, showLandingSchedule, showAdminSite, changeActiveBlackButton */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61258,14 +61258,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showDescriptions", function() { return showDescriptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNavbarProgramacionGeneral", function() { return createNavbarProgramacionGeneral; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "landing", function() { return landing; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanding", function() { return showlanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLandingSchedule", function() { return showLandingSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
-/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 //SERVICES
- //VALIDATIONS
-
 
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
@@ -61275,6 +61273,12 @@ __webpack_require__.r(__webpack_exports__);
 We use this method when you click on close icon in some view of
 Admin User BO
 */
+
+function landing() {
+  $("#bodymenu").on("click", ".btn-landing", function (event) {
+    showlanding();
+  });
+}
 
 function cambiaracti(roles) {
   switch (roles) {
@@ -61407,11 +61411,6 @@ function showDescriptions() {
   }, function () {
     $(".borra1").css("display", "none");
   }); //fin
-}
-
-function landing() {
-  $("#menu").replaceWith();
-  $("#bodymenu").load("submenu.php");
 }
 
 function grilla() {
@@ -61562,6 +61561,20 @@ function showPageUsersBO() {
   */
 }
 
+function showlanding() {
+  $.ajax({
+    type: "POST",
+    url: "view",
+    data: {
+      view: "landing"
+    },
+    success: function success(result) {
+      $("#bodymenu").html("");
+      $("#bodymenu").html(result);
+    }
+  });
+}
+
 function showFormCreateUser() {
   $("#cambio").on("click", "#btnAlta", function (event) {
     $.ajax({
@@ -61656,19 +61669,63 @@ function showLandingSchedule(id) {
 
   switch (id) {
     case "grilla-canal-claro-button":
-      generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+      //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-canal-claro-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-concert-channel-button":
-      generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+      //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-concert-channel-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-claro-cinema-button":
-      generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+      //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-claro-cinema-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     case "grilla-home-button":
-      generalSchedule.load("./views/grillas/grilla-home.php");
+      //  generalSchedule.load("./views/grillas/grilla-home.php");
+      $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-home-button"
+        },
+        success: function success(result) {
+          $("#general-programming").html("");
+          $("#general-programming").html(result).promise();
+        }
+      });
       break;
 
     default:
@@ -62065,9 +62122,26 @@ $(document).ready(function () {
   } //CHANGE TO LANDING
 
 
-  $("#btn-landing").click(function () {
-    landing();
-  });
+  function landing() {
+    $("#btn-landing").on("click", function (event) {
+      showlanding();
+    });
+  }
+
+  function showlanding() {
+    $.ajax({
+      type: "POST",
+      url: "view",
+      data: {
+        view: "landing"
+      },
+      success: function success(result) {
+        $("#bodymenu").html("");
+        $("#bodymenu").html(result);
+      }
+    });
+  }
+
   $(".option").click(function () {
     var value = $(this).attr("value");
     var select = $(this).attr("id-select");

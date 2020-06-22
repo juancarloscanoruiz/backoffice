@@ -160,10 +160,26 @@ $(document).ready(function() {
     }
 
     //CHANGE TO LANDING
-    $("#btn-landing").click(function() {
-        landing();
+    function landing() {
+        $("#btn-landing").on("click", function (event) {
+          showlanding();
+        });
+      }
+      
+function showlanding() {
+    $.ajax({
+      type: "POST",
+      url: "view",
+      data: {
+        view: "landing"
+      },
+      success: function success(result) {
+        $("#bodymenu").html("");
+        $("#bodymenu").html(result);
+      }
     });
-
+  }
+   
     $(".option").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");

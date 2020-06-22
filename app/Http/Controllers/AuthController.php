@@ -68,4 +68,9 @@ class AuthController extends Controller
         session()->flush();
         return redirect('/');
     }
+    public function exit(Request $request)
+    {
+        session()->flush();
+        return redirect('/admin');
+    }
 }

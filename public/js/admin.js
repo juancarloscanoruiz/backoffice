@@ -168,11 +168,6 @@ function Verarchi() {
   $("#rempla").load("Cargar.php");
 }
 
-function landing() {
-  $("#menu").replaceWith();
-  $("#bodymenu").load("submenu.php");
-}
-
 function grilla() {
   $("#grilla").replaceWith();
   $("#bodymenu").load("Progra_general.php");
@@ -242,7 +237,6 @@ $(document).ready(function () {
   $(".day").text(dianumero); //resaltar boton de localidad-actual
 
   $(".btn-rol-all").click(function () {
-    console.log("pojpoj");
     $("button[id=btn-rol]").removeClass("btn-rol-select");
     $(this).addClass("btn-rol");
     $("button[id=btn-rol]").removeClass("btn-rol");

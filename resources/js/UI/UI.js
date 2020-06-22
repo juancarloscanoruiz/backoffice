@@ -7,14 +7,6 @@ import {
     getAllUserFront
 } from "../services/user.js";
 
-//VALIDATIONS
-import {
-    validateKeyUpEmail,
-    validateKeyUpPassword,
-    validateEmail,
-    validatePassword
-} from "../form/form.js";
-
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -23,6 +15,12 @@ import {
 We use this method when you click on close icon in some view of
 Admin User BO
 */
+
+function landing() {
+    $("#bodymenu").on("click", ".btn-landing", function(event) {
+        showlanding();
+    });
+}
 
 function cambiaracti(roles) {
     switch (roles) {
@@ -187,10 +185,6 @@ function showDescriptions() {
     ); //fin
 }
 
-function landing() {
-    $("#menu").replaceWith();
-    $("#bodymenu").load("submenu.php");
-}
 function grilla() {
     $("#grilla").replaceWith();
     $("#bodymenu").load("Progra_general.php");
@@ -334,9 +328,21 @@ function showPageUsersBO() {
             getAllUsersBO();
         }
     });
+
     /*
     showDescriptions();
     */
+}
+function showlanding() {
+    $.ajax({
+        type: "POST",
+        url: "view",
+        data: { view: "landing" },
+        success: function(result) {
+            $("#bodymenu").html("");
+            $("#bodymenu").html(result);
+        }
+    });
 }
 
 function showFormCreateUser() {
@@ -428,19 +434,63 @@ function showLandingSchedule(id) {
     let generalSchedule = $("#general-programming");
     switch (id) {
         case "grilla-canal-claro-button":
-            generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+            //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
+            $.ajax({
+                type: "POST",
+                url: "view",
+                data: { view: "grilla-canal-claro-button" },
+                success: function(result) {
+                    $("#general-programming").html("");
+                    $("#general-programming")
+                        .html(result)
+                        .promise();
+                }
+            });
             break;
 
         case "grilla-concert-channel-button":
-            generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+            //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
+            $.ajax({
+                type: "POST",
+                url: "view",
+                data: { view: "grilla-concert-channel-button" },
+                success: function(result) {
+                    $("#general-programming").html("");
+                    $("#general-programming")
+                        .html(result)
+                        .promise();
+                }
+            });
             break;
 
         case "grilla-claro-cinema-button":
-            generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+            //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
+            $.ajax({
+                type: "POST",
+                url: "view",
+                data: { view: "grilla-claro-cinema-button" },
+                success: function(result) {
+                    $("#general-programming").html("");
+                    $("#general-programming")
+                        .html(result)
+                        .promise();
+                }
+            });
             break;
 
         case "grilla-home-button":
-            generalSchedule.load("./views/grillas/grilla-home.php");
+            //  generalSchedule.load("./views/grillas/grilla-home.php");
+            $.ajax({
+                type: "POST",
+                url: "view",
+                data: { view: "grilla-home-button" },
+                success: function(result) {
+                    $("#general-programming").html("");
+                    $("#general-programming")
+                        .html(result)
+                        .promise();
+                }
+            });
             break;
 
         default:
@@ -598,6 +648,7 @@ export {
     showDescriptions,
     createNavbarProgramacionGeneral,
     landing,
+    showlanding,
     showLandingSchedule,
     showAdminSite,
     changeActiveBlackButton
