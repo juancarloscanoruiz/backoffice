@@ -56,21 +56,32 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user/editAdmin",
+            "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/admin_user/editAdmin",
             ['body' => json_encode(
                 [
                     'id_root' => session('id_user'),
-                    'id_admin_user' => $request->input('id_admmin_user'),
+                    'id_admin_user' => $request->input('id_admin_user'),
                     'name' => $request->input('name'),
                     "email" => $request->input('email'),
-                    "password" => $request->input('password'),
-                    "password_confirm" => $request->input('repassword'),
+                    "password" => "",
+                    "password_confirm" => "",
                     "rol_id" => $request->input('rol_id')
                 ]
             )]
         );
 
         return $response->getBody()->getContents();
+        /*return json_encode(
+            [
+                'id_root' => session('id_user'),
+                'id_admin_user' => $request->input('id_admin_user'),
+                'name' => $request->input('name'),
+                "email" => $request->input('email'),
+                "password" => "",
+                "password_confirm" => "",
+                "rol_id" => $request->input('rol_id')
+            ]
+        );*/
     }
 
     public function deleteUserBackoffice(Request $request)
