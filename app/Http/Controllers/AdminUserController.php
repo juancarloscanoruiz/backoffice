@@ -7,12 +7,13 @@ use GuzzleHttp\Client;
 
 class AdminUserController extends Controller
 {
+    private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
     //MÉTODOS PARA USUARIOS DEL BACKOFFICE DE CLARO NETWORKS
     public function getUsersBackoffice(Request $request)
     {
         $client = new Client();
         $response = $client->get(
-            "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/admin_user/all/" . session('id_user')
+            $this->url . "admin_user/all/" . session('id_user')
         );
         return $response->getBody()->getContents();
     }
@@ -25,7 +26,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user",
+            $this->url . "admin_user",
             ['body' => json_encode(
                 [
                     'name' => $request->input('name'),
@@ -44,7 +45,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->get(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user/" . $request->input('id')
+            $this->url . "admin_user/" . $request->input('id')
         );
 
         return $response->getBody()->getContents();
@@ -56,7 +57,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/admin_user/editAdmin",
+            $this->url . "admin_user/AdminEdition",
             ['body' => json_encode(
                 [
                     'id_root' => session('id_user'),
@@ -90,7 +91,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user/down",
+            $this->url . "admin_user/down",
             ['body' => json_encode(
                 [
                     'id_root' => session('id_user'),
@@ -106,7 +107,7 @@ class AdminUserController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/user"
+            $this->url . "user"
         );
         return $response->getBody()->getContents();
     }
@@ -115,7 +116,7 @@ class AdminUserController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/user/" . $request->input('id')
+            $this->url . "user/" . $request->input('id')
         );
         return $response->getBody()->getContents();
     }
@@ -126,7 +127,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user/deleteUser",
+            $this->url . "admin_user/deleteUser",
             ['body' => json_encode(
                 [
                     'id_admin' => session('id_user'),
@@ -143,7 +144,7 @@ class AdminUserController extends Controller
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            "http://api.claronetworks.openofficedospuntocero.info/API_Claro_Networks/public/admin_user/editUser",
+            $this->url . "admin_user/editUser",
             ['body' => json_encode(
                 [
                     'id_admin' => session('id_user'),

@@ -150,6 +150,7 @@ $(document).ready(function() {
         });
         //ELEGIR DÍA EN PROGRAMACIÓN GENERAL
         $(".calendar").click(function(e) {
+            console.log("calendar");
             e.stopPropagation();
             const isHidden = picker.calendarContainer.classList.contains(
                 "qs-hidden"
@@ -161,25 +162,25 @@ $(document).ready(function() {
 
     //CHANGE TO LANDING
     function landing() {
-        $("#btn-landing").on("click", function (event) {
-          showlanding();
+        $("#btn-landing").on("click", function(event) {
+            showlanding();
         });
-      }
-      
-function showlanding() {
-    $.ajax({
-      type: "POST",
-      url: "view",
-      data: {
-        view: "landing"
-      },
-      success: function success(result) {
-        $("#bodymenu").html("");
-        $("#bodymenu").html(result);
-      }
-    });
-  }
-   
+    }
+
+    function showlanding() {
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: {
+                view: "landing"
+            },
+            success: function success(result) {
+                $("#bodymenu").html("");
+                $("#bodymenu").html(result);
+            }
+        });
+    }
+
     $(".option").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
