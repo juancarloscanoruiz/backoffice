@@ -95,10 +95,7 @@ function Verarchi() {
     $("#rempla").load("Cargar.php");
 }
 
-function grilla() {
-    $("#grilla").replaceWith();
-    $("#bodymenu").load("Progra_general.php");
-}
+
 
 function abrirprogram() {
     $(location).attr("href", "Menu.php");
@@ -203,20 +200,7 @@ $(document).ready(function() {
         }
     });
     $("button[id=btn-grilla]").click(function() {
-        if ($(this).hasClass("btn-grilla") & $(this).hasClass("text-grilla")) {
-            $(this)
-                .addClass("btn-landing")
-                .removeClass("btn-grilla");
-            $(this)
-                .addClass("text-landing")
-                .removeClass("text-grilla");
-            $("button[id=btn-landing]")
-                .addClass("btn-grilla")
-                .removeClass("btn-landing");
-            $("button[id=btn-landing]")
-                .addClass("text-grilla")
-                .removeClass("text-landing");
-        } else if (
+         if (
             $(this).hasClass("btn-landing") & $(this).hasClass("text-landing")
         ) {
             $(this)

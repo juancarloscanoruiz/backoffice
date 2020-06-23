@@ -1,4 +1,4 @@
-@unless (Auth::check())
+
 
 
 @extends('layaout.app')
@@ -54,4 +54,3 @@
 </body>
 
 @endsection
-@endunless

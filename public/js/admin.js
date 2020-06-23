@@ -168,11 +168,6 @@ function Verarchi() {
   $("#rempla").load("Cargar.php");
 }
 
-function grilla() {
-  $("#grilla").replaceWith();
-  $("#bodymenu").load("Progra_general.php");
-}
-
 function abrirprogram() {
   $(location).attr("href", "Menu.php");
 }
@@ -251,12 +246,7 @@ $(document).ready(function () {
     }
   });
   $("button[id=btn-grilla]").click(function () {
-    if ($(this).hasClass("btn-grilla") & $(this).hasClass("text-grilla")) {
-      $(this).addClass("btn-landing").removeClass("btn-grilla");
-      $(this).addClass("text-landing").removeClass("text-grilla");
-      $("button[id=btn-landing]").addClass("btn-grilla").removeClass("btn-landing");
-      $("button[id=btn-landing]").addClass("text-grilla").removeClass("text-landing");
-    } else if ($(this).hasClass("btn-landing") & $(this).hasClass("text-landing")) {
+    if ($(this).hasClass("btn-landing") & $(this).hasClass("text-landing")) {
       $(this).addClass("btn-grilla").removeClass("btn-landing");
       $(this).addClass("text-grilla").removeClass("text-landing");
       $("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
@@ -442,7 +432,7 @@ function sendFilePHP(file) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

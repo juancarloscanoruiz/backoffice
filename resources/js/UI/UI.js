@@ -18,11 +18,7 @@ We use this method when you click on close icon in some view of
 Admin User BO
 */
 
-function landing() {
-    $("#bodymenu").on("click", ".btn-landing", function(event) {
-        showlanding();
-    });
-}
+
 
 function cambiaracti(roles) {
     switch (roles) {
@@ -336,15 +332,18 @@ function showPageUsersBO() {
     */
 }
 function showlanding() {
+      
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "landing" },
+        data: { view: "lan-claro" },
         success: function(result) {
             $("#bodymenu").html("");
-            $("#bodymenu").html(result);
+            $("#bodymenu").html(result)
+            .promise();
         }
     });
+
 }
 
 function showFormCreateUser() {
@@ -661,7 +660,6 @@ export {
     showModalDeleteUserFront,
     showDescriptions,
     createNavbarProgramacionGeneral,
-    landing,
     showlanding,
     showLandingSchedule,
     showAdminSite,

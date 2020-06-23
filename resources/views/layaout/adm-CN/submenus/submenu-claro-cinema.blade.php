@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@extends('layaout.app')
+<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+<!--
 <head>
-    <?php
-    include '../../scripts.php';
-    include  '../../styles.php';
-    ?>
+   
     <script type="text/javascript" src="../js/lib/easyXDM.min.js"></script>
     <script src="./js/admin.js" defer></script>
     <script>
@@ -47,7 +46,7 @@
             }
         });
     </script>
-</head>
+</head>-->
 
 <body>
     <main>

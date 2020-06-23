@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <?php
-    include 'scripts.php';
-    include  'styles.php';
-    ?>
-    <script type="text/javascript" src="../js/lib/easyXDM.min.js"></script>
-    <script src="./js/admin.js" defer></script>
-    <script>
+@extends('layaout.app')
+<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+  <!-- <script>
         new easyXDM.Socket({
             remote: "./prev/claro-canal.php",
             container: "navbar-prev-canal-claro",
@@ -46,8 +40,7 @@
 
             }
         });
-    </script>
-</head>
+    </script>-->
 
 <body>
     <main>
