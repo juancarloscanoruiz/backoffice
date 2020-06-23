@@ -8,8 +8,10 @@ use GuzzleHttp\Client;
 class AdminUserController extends Controller
 {
     private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
+
     //MÉTODOS PARA USUARIOS DEL BACKOFFICE DE CLARO NETWORKS
-    public function getUsersBackoffice(Request $request)
+
+    public function getUsersBackoffice()
     {
         $client = new Client();
         $response = $client->get(
