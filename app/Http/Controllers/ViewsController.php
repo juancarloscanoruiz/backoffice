@@ -47,9 +47,23 @@ class ViewsController extends Controller
                 case 'grilla-home-button':
                     return view('layaout.adm-CN.grillas.grilla-home');
                 break;
-                case 'landing':
+                case 'lan-claro':
                     return view('layaout.adm-CN.submenus.submenu-claro-canal');
+                 
                 break;
+                case 'lan-cinema':
+                    return view('layaout.adm-CN.submenus.submenu-claro-cinema');
+                 
+                break;
+                case 'lan-concert':
+                    return view('layaout.adm-CN.submenus.submenu-concert-channel');
+                 
+                break;
+                case 'lan-home':
+                    return view('layaout.adm-CN.submenus.submenu-home');
+                 
+                break;
+               
                 default:
                     # code...
                     break;

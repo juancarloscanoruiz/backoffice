@@ -14,8 +14,8 @@
         <span class="zona">Por : </span><label class="text-menu-selec separacion"><span> Antonio López Pérez</span> </label> <label class="text-menu-selec">Usuario editor</label>
     </div>
     <div class="d-flex float-right mt-2 ml-btn mb-5  mr-5 ">
-        <button class="btn-grilla  text-grilla mr-3 " id="btn-grilla" onClick="grilla()"><span>Grilla</span></button>
-        <button class="btn-landing  text-landing" id="btn-landing" onClick="viewlandinghome()"><span>Landing</span></button>
+        <button class="btn-grilla  text-grilla mr-3 gril-home " id="btn-grilla" ><span>Grilla</span></button>
+        <button class="btn-landing  text-landing lan-home" id="btn-landing" ><span>Landing</span></button>
     </div>
     <div id="bodymenu">
         <div id="grilla">

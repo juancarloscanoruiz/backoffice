@@ -47,7 +47,7 @@ Route::group(['prefix' => 'auth'], function () {
 //RUTA PARA MENU
 Route::post('/Menu', function () {
     return view('layaout.adm-CN.Menu');
- })->name('Menu');
+ })->name('Menu')->middleware('session_user');
 
  
 Route::post('/view', "ViewsController@index")->middleware('session_user');
