@@ -7,6 +7,7 @@ import {
     showPageUsersFront,
     createNavbarProgramacionGeneral,
     showLandingSchedule,
+    showlanding,
     showAdminSite,
     showFormCreateUser,
     showUserFront
@@ -161,25 +162,116 @@ $(document).ready(function() {
     }
 
     //CHANGE TO LANDING
-    function landing() {
-        $("#btn-landing").on("click", function(event) {
-            showlanding();
-        });
-    }
+   
 
-    function showlanding() {
+  
+//CARGA DE LANDING Y GRILLA DE CLARO
+$(".lan-claro").click( function (event) {  
+    showlanding();
+  });
+  
+
+    //CHANGE TO grilla claro
+    $(".gril-claro").click( function (event) {  
         $.ajax({
             type: "POST",
             url: "view",
-            data: {
-                view: "landing"
-            },
-            success: function success(result) {
-                $("#bodymenu").html("");
-                $("#bodymenu").html(result);
+            data: { view: "grilla-canal-claro-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
             }
         });
-    }
+      
+    });   
+    //CHANGE TO grilla cinema
+    $(".gril-cinema").click( function (event) {  
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-claro-cinema-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+            }
+        });
+      
+    });   
+    // CHANGE TO LANDING CINEMA
+    $(".lan-cinema").click( function (event) {  
+    $.ajax({
+        type: "POST",
+        url: "view",
+        data: { view: "lan-cinema" },
+        success: function(result) {
+            $("#bodymenu").html("");
+            $("#bodymenu").html(result)
+            .promise();
+        }
+    });
+});
+
+    //CHANGE TO grilla concert
+    $(".gril-concert").click( function (event) {  
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-concert-channel-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+            }
+        });
+      
+    }); 
+    //CHANGE TO LANDING CONCERT
+    $(".lan-concert").click( function (event) {  
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "lan-concert" },
+            success: function(result) {
+                $("#bodymenu").html("");
+                $("#bodymenu").html(result)
+                .promise();
+            }
+        });
+    }); 
+    //CHANGE TO grilla home
+    $(".gril-home").click( function (event) {  
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "grilla-home-button" },
+            success: function(result) {
+                $("#general-programming").html("");
+                $("#general-programming")
+                    .html(result)
+                    .promise();
+            }
+        });
+      
+    });  
+     //CHANGE TO LANDING HOME
+     $(".lan-home").click( function (event) {  
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "lan-home" },
+            success: function(result) {
+                $("#bodymenu").html("");
+                $("#bodymenu").html(result)
+                .promise();
+            }
+        });
+    }); 
+    
 
     $(".option").click(function() {
         var value = $(this).attr("value");
