@@ -21,6 +21,13 @@ Route::get('/admin', function () {
 })->name('admin')->middleware('session_user');
 
 
+//VERIFY PASSWORD
+Route::get('/verify/{token}', "AuthController@verifyToken");
+
+//RECUPERAR CONTRASEÑA
+Route::get('/reset', "AuthController@indexResetPassword")->name('reset');
+Route::post('/reset', "AuthController@resetPassword");
+
 //RUTAS PARA ADMINSTRAR USUARIOS DE CLARO NETWORKS Y BACKOFFICE
 Route::group(['prefix' => 'user', 'middleware' => 'session_user'], function () {
     Route::post('backoffice', "AdminUserController@getUsersBackoffice");
@@ -47,7 +54,7 @@ Route::group(['prefix' => 'auth'], function () {
 //RUTA PARA MENU
 Route::post('/Menu', function () {
     return view('layaout.adm-CN.Menu');
- })->name('Menu')->middleware('session_user');
+})->name('Menu')->middleware('session_user');
 
- 
+
 Route::post('/view', "ViewsController@index")->middleware('session_user');

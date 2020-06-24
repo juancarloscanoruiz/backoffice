@@ -761,7 +761,7 @@ function getUserToUpdate(id) {
             let json = JSON.parse(result);
             $.ajax({
                 type: "POST",
-                url: "/BackofficeClaroNetworks/public/view",
+                url: "view",
                 data: { view: "edit-userbackoffice" },
                 success: function(result) {
                     $("#cambio").html("");
@@ -1287,13 +1287,12 @@ function sendEmailResetPassword(input) {
     let email = input.val();
 
     let data = {
-        function: "sendEmailResetPassword",
         email: email
     };
 
     $.ajax({
         data: data,
-        url: "./adapters/user.php",
+        url: "reset",
         type: "POST",
         beforeSend: function() {
             const loader = `

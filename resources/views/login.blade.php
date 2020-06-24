@@ -20,7 +20,7 @@
           <div class="row ma-no no-gutters">
             <div class="col-sm-12 col-md-12 col-lg-12 no-gutters ">
               <img src="./images/registro/group-3.svg" class="form-image-blue" />
-              <a href="home.php">
+            <a href="{{ route('index') }}">
                 <img src="./images/home/claro-logo.svg" class="ubicacion1" /></a>
 
             </div>
@@ -66,7 +66,10 @@
               <input type="checkbox" value="1" class=" mr-1 reco-chek" style="display:block">
   <p class="pb-1">  Recordar contraseña</p>
               </div>-->
-              <p class="warning-login a-text-semibold-lightbrown mt-3"></p>
+              @if (session('error'))
+                <p class="warning-login a-text-semibold-lightbrown mt-3 invalid-email">{{session('error')}}</p>
+              @endif
+
 
               <div class="centro">
 
@@ -81,7 +84,7 @@
 
             <div class="centro">
               <div class="mt-5 mb-5">
-                <a href="Recopassword.php" class="d-block mb-5">
+              <a href="{{ route('reset') }}" class="d-block mb-5">
                   <p class="contra">¿Olvidaste la contraseña?</p>
                 </a>
                 <hr class="line btn-margin" />

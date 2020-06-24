@@ -18,8 +18,6 @@ We use this method when you click on close icon in some view of
 Admin User BO
 */
 
-
-
 function cambiaracti(roles) {
     switch (roles) {
         case "1":
@@ -306,7 +304,7 @@ function changeContentProgramacionGeneral(nameSection) {
 function showAdminSite() {
     $.ajax({
         type: "POST",
-        url: "/BackofficeClaroNetworks/public/view",
+        url: "view",
         data: { view: "admin-site-home" },
         success: function(result) {
             $("#cambio").html("");
@@ -318,7 +316,7 @@ function showAdminSite() {
 function showPageUsersBO() {
     $.ajax({
         type: "POST",
-        url: "/BackofficeClaroNetworks/public/view",
+        url: "view",
         data: { view: "admin-users-bo" },
         success: function(result) {
             $("#cambio").html("");
@@ -332,18 +330,17 @@ function showPageUsersBO() {
     */
 }
 function showlanding() {
-      
     $.ajax({
         type: "POST",
         url: "view",
         data: { view: "lan-claro" },
         success: function(result) {
             $("#bodymenu").html("");
-            $("#bodymenu").html(result)
-            .promise();
+            $("#bodymenu")
+                .html(result)
+                .promise();
         }
     });
-
 }
 
 function showFormCreateUser() {
@@ -433,7 +430,7 @@ function showUserFront() {
 function showPageUsersFront() {
     $.ajax({
         type: "POST",
-        url: "/BackofficeClaroNetworks/public/view",
+        url: "view",
         data: { view: "admin-users-front" },
         success: function(result) {
             $("#cambio").html("");
