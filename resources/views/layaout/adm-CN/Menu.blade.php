@@ -3,6 +3,10 @@
 
 @extends('layaout.app')
 
+@section('scripts')
+    <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+@endsection
+
 @section('content')
 
     <style>
@@ -46,7 +50,7 @@
         </nav>
         <div id="general-programming">
         @include('layaout.adm-CN.grillas.grilla-claro-canal')
-          
+
         </div>
 
     </main>

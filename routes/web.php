@@ -21,7 +21,7 @@ Route::get('/admin', function () {
 })->name('admin')->middleware('session_user');
 
 
-//VERIFY PASSWORD
+//VERIFY TOKEN
 Route::get('/verify/{token}', "AuthController@verifyToken");
 
 //RECUPERAR CONTRASEÑA
@@ -48,13 +48,13 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('exit', "AuthController@exit")->name('exit');
 });
 
-//RUTA PARA CARGAR CONTENIDO HTML
 
 
-//RUTA PARA MENU
+
+//RUTA PARA PROGRAMACIÓN GENERAL
 Route::get('/Menu', function () {
     return view('layaout.adm-CN.Menu');
 })->name('Menu')->middleware('session_user');
 
-
+//RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
