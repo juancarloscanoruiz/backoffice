@@ -304,18 +304,6 @@ $(document).ready(function () {
       $("#women").attr("src", "../images/datos-adicionales/femenino-inactivo.svg");
       $("#men").attr("src", "../images/datos-adicionales/masculino-activo.svg");
     }
-  }); //previsualizar-editar
-
-  $("#edit").click(function () {
-    if ($('input[id="edit"]').is(":checked")) {
-      $("#navbar-prev-canal-claro").html(" <script>\n      new easyXDM.Socket({\n          remote: \"./prev/claro-canal.php\",\n          container: \"navbar-prev-canal-claro\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n              this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
-    }
-  });
-  $("#prev").click(function () {
-    if ($('input[id="prev"]').is(":checked")) {
-      alert("cambio2");
-      $("#navbar-prev-canal-claro").html(" <script>\n    new easyXDM.Socket({\n        remote: \"./prev/programacion.php\",\n        container: \"navbar-prev-canal-claro\",\n        onMessage: function(message, origin) {\n            console.log(message);\n            this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n            this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n            this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n        }\n    });\n</script>");
-    }
   });
   $("#sino-save").click(function () {
     if ($('input[id="sino-save"]').is(":checked")) {

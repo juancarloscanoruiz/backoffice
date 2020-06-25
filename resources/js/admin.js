@@ -299,42 +299,7 @@ $(document).ready(function() {
         }
     });
 
-    //previsualizar-editar
-
-    $("#edit").click(function() {
-        if ($('input[id="edit"]').is(":checked")) {
-            $("#navbar-prev-canal-claro").html(` <script>
-      new easyXDM.Socket({
-          remote: "./prev/claro-canal.php",
-          container: "navbar-prev-canal-claro",
-          onMessage: function(message, origin) {
-              console.log(message);
-              this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-              this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-              this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-          }
-      });
-  </script>`);
-        }
-    });
-    $("#prev").click(function() {
-        if ($('input[id="prev"]').is(":checked")) {
-            alert("cambio2");
-            $("#navbar-prev-canal-claro").html(` <script>
-    new easyXDM.Socket({
-        remote: "./prev/programacion.php",
-        container: "navbar-prev-canal-claro",
-        onMessage: function(message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-    });
-</script>`);
-        }
-    });
+   
     $("#sino-save").click(function() {
         if ($('input[id="sino-save"]').is(":checked")) {
             alert("cambio2");

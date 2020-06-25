@@ -62226,6 +62226,53 @@ $(document).ready(function () {
         $("#bodymenu").html(result).promise();
       }
     });
+  }); //previsualizar-editar
+
+  $("#edit").click(function () {
+    if ($('input[id="edit"]').is(":checked")) {
+      $("#navbar-prev-canal-claro").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php\",\n          container: \"navbar-prev-canal-claro\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n              this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
+    }
+  });
+  $("#prev").click(function () {
+    if ($('input[id="prev"]').is(":checked")) {
+      $("#navbar-prev-canal-claro").html(" <script>\n    new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php\",\n        container: \"navbar-prev-canal-claro\",\n        onMessage: function(message, origin) {\n            console.log(message);\n            this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n            this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n            this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n        }\n    });\n</script>");
+    }
+  }); //EDITAR CINEMA
+
+  $(".edi-cinema").click(function () {
+    if ($('input[id="edit"]').is(":checked")) {
+      $("#navbar-prev-claro-cinema").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php\",\n        container: \"navbar-prev-claro-cinema\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n              this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
+    }
+  }); //PREV CINEMA
+
+  $(".prev-cinema").click(function () {
+    if ($('input[id="prev"]').is(":checked")) {
+      $("#navbar-prev-claro-cinema").html(" <script>\n    new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php\",\n        container: \"navbar-prev-claro-cinema\",\n        onMessage: function(message, origin) {\n            console.log(message);\n            this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n            this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n            this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n        }\n    });\n</script>");
+    }
+  }); //EDITAR CONCERT
+
+  $(".edi-concert").click(function () {
+    if ($('input[id="edit"]').is(":checked")) {
+      $("#navbar-prev-concert-channel").html(" <script>\n    new easyXDM.Socket({\n      remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n      container: \"navbar-prev-concert-channel\",\n        onMessage: function(message, origin) {\n            console.log(message);\n            this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n            this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n            this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n        }\n    });\n</script>");
+    }
+  }); //PREV CONCERT
+
+  $(".prev-concert").click(function () {
+    if ($('input[id="prev"]').is(":checked")) {
+      $("#navbar-prev-concert-channel").html(" <script>\n  new easyXDM.Socket({\n      remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php\",\n      container: \"navbar-prev-concert-channel\",\n      onMessage: function(message, origin) {\n          console.log(message);\n          this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n          this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n          this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n      }\n  });\n</script>");
+    }
+  }); //EDITAR HOME
+
+  $(".edi-home").click(function () {
+    if ($('input[id="edit"]').is(":checked")) {
+      $("#navbar-prev-home").html(" <script>\n    new easyXDM.Socket({\n      remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n      container: \"navbar-prev-home\",\n      onMessage: function(message, origin) {\n            console.log(message);\n            this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n            this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n            this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n        }\n    });\n</script>");
+    }
+  }); //PREV HOME
+
+  $(".prev-home").click(function () {
+    if ($('input[id="prev"]').is(":checked")) {
+      $("#navbar-prev-home").html(" <script>\n  new easyXDM.Socket({\n    remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n    container: \"navbar-prev-home\",\n      onMessage: function(message, origin) {\n          console.log(message);\n          this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n          this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n          this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n      }\n  });\n</script>");
+    }
   });
   $(".option").click(function () {
     var value = $(this).attr("value");
