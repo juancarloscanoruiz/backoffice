@@ -36,31 +36,31 @@ class ViewsController extends Controller
                     return view('admin-users.users-claronetworks.formEditUser');
                     break;
                 case 'grilla-canal-claro-button':
-                    return view('layaout.adm-CN.grillas.grilla-claro-canal');
+                    return view('partials.adm-CN.grillas.grilla-claro-canal');
                 break;
                 case 'grilla-concert-channel-button':
-                    return view('layaout.adm-CN.grillas.grilla-concert-channel');
+                    return view('partials.adm-CN.grillas.grilla-concert-channel');
                 break;
                 case 'grilla-claro-cinema-button':
-                    return view('layaout.adm-CN.grillas.grilla-claro-cinema');
+                    return view('partials.adm-CN.grillas.grilla-claro-cinema');
                 break;
                 case 'grilla-home-button':
-                    return view('layaout.adm-CN.grillas.grilla-home');
+                    return view('partials.adm-CN.grillas.grilla-home');
                 break;
                 case 'lan-claro':
-                    return view('layaout.adm-CN.submenus.submenu-claro-canal');
+                    return view('partials.adm-CN.submenus.submenu-claro-canal');
                  
                 break;
                 case 'lan-cinema':
-                    return view('layaout.adm-CN.submenus.submenu-claro-cinema');
+                    return view('partials.adm-CN.submenus.submenu-claro-cinema');
                  
                 break;
                 case 'lan-concert':
-                    return view('layaout.adm-CN.submenus.submenu-concert-channel');
+                    return view('partials.adm-CN.submenus.submenu-concert-channel');
                  
                 break;
                 case 'lan-home':
-                    return view('layaout.adm-CN.submenus.submenu-home');
+                    return view('partials.adm-CN.submenus.submenu-home');
                  
                 break;
                

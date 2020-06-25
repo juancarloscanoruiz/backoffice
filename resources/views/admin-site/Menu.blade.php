@@ -45,7 +45,7 @@
             </ul>
         </nav>
         <div id="general-programming">
-        @include('layaout.adm-CN.grillas.grilla-claro-canal')
+        @include('partials.adm-CN.grillas.grilla-claro-canal')
           
         </div>
 

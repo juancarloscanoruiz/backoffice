@@ -52,9 +52,9 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 //RUTA PARA MENU
-Route::get('/Menu', function () {
-    return view('layaout.adm-CN.Menu');
-})->name('Menu')->middleware('session_user');
+Route::get('/general-program', function () {
+    return view('admin-site.Menu');
+})->name('general-program')->middleware('session_user');
 
 
 Route::post('/view', "ViewsController@index")->middleware('session_user');
