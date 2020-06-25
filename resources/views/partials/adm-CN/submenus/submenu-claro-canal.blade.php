@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 @extends('layaout.app')
-
-
-  <script>
+<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+   <script>
         new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
             container: "navbar-prev-canal-claro",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -29,9 +28,9 @@
             }
         });
     </script>
-   <!--  <script>
+    <script>
         new easyXDM.Socket({
-            remote: "./prev/home.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
             container: "navbar-prev-home",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -41,7 +40,7 @@
 
             }
         });
-    </script>-->
+    </script>
 
 <body>
     <main>

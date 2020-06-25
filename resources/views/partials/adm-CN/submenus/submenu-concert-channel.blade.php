@@ -3,14 +3,11 @@
 @extends('layaout.app')
 <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
 
-<!--
+
 <head>
-  
-    <script type="text/javascript" src="../js/lib/easyXDM.min.js"></script>
-    <script src="./js/admin.js" defer></script>
     <script>
         new easyXDM.Socket({
-            remote: "./prev/concert-channel.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
             container: "navbar-prev-concert-channel",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -36,7 +33,7 @@
     </script>
     <script>
         new easyXDM.Socket({
-            remote: "./prev/home.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
             container: "navbar-prev-home",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -47,7 +44,7 @@
             }
         });
     </script>
-</head>-->
+</head>
 
 <body>
     <main>
