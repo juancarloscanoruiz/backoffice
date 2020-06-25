@@ -53,10 +53,10 @@
 
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class="prev text-small a-text-medium-brownish location">
-                      <input type="radio" name="sexo" id="edit" checked />
-                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                      <input type="radio" name="sexo" id="edit" checked class="edi-cinema" />
+                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3 ">
                         <p class=" a-prev-title">EDITAR</p></label>
-                      <input type="radio" name="sexo" id="prev" />
+                      <input type="radio" name="sexo" id="prev"  class="prev-cinema"/>
                       <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
                       <p class=" a-prev-title ">PREVISUALIZAR</p></label>
                     </div>
