@@ -50,11 +50,10 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-
-//RUTA PARA PROGRAMACIÓN GENERAL
-Route::get('/Menu', function () {
-    return view('layaout.adm-CN.Menu');
-})->name('Menu')->middleware('session_user');
+//RUTA PARA MENU
+Route::get('/general-program', function () {
+    return view('admin-site.Menu');
+})->name('general-program')->middleware('session_user');
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
