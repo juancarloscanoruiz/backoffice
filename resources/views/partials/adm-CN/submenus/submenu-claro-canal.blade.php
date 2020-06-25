@@ -46,10 +46,10 @@
     <main>
 
         <div id="menu">
-            <div class="float-right  margin-top-por">
+            <div class="d-flex float-right mb-5 mr-5">
 
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
-                    <div class="prev text-small a-text-medium-brownish location">
+                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                       <input type="radio" name="sexo" id="edit" checked />
                       <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                         <p class=" a-prev-title">EDITAR</p></label>
