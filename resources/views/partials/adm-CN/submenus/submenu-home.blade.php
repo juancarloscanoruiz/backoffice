@@ -32,7 +32,7 @@
     </script>
     <script>
         new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
+         //   remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
             container: "navbar-prev-home",
             onMessage: function(message, origin) {
                 console.log(message);

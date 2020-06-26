@@ -4,7 +4,7 @@
       <!--div para el cambio-->
       <div id="Adm-users-BO">
         <div class="col-xl-10 position-btn-alta">
-          <button class="btn-alta text-public mb-4" id="btnAlta">Agregar nuevo usuario</button>
+          <button class=" d-flex align-items-center btn-alta text-public mb-4" id="btnAlta">Agregar nuevo usuario</button>
         </div>
         <div class="sombras2 trans10 mb-5">
           <!--titulos de la tabla-->
