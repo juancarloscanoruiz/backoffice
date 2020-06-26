@@ -15,7 +15,7 @@ class viewLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (session('status') == 1) {
+        if (session('status')) {
             return redirect()->back();
         } else {
             return $next($request);

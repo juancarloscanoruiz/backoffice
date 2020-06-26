@@ -74,7 +74,7 @@
               <div class="centro">
 
                 <!-- <a href="Admin-BO.php"> -->
-                <button type="submit" class="btn-ingresar-reco text-public mt-3" id="button-login">
+                <button type="submit" class="btn-ingresar-reco text-public mt-5" id="button-login">
                   INGRESAR
                 </button>
                 <!-- </a> -->

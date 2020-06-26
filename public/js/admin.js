@@ -307,7 +307,7 @@ $(document).ready(function () {
   });
   $("#sino-save").click(function () {
     if ($('input[id="sino-save"]').is(":checked")) {
-      alert("cambio2");
+      //alert("cambio2");
       $("#savesino").modal("show");
     }
   });
@@ -316,7 +316,7 @@ $(document).ready(function () {
     $("#navbar-prev-sinopsis").load("submenu.php");
   });
   $("#viewapro").click(function () {
-    alert("cambio3");
+    //alert("cambio3");
     $("#savechange").modal("show");
   }); //fin
   //slider, c/flecha

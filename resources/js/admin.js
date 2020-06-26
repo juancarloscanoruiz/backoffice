@@ -95,8 +95,6 @@ function Verarchi() {
     $("#rempla").load("Cargar.php");
 }
 
-
-
 function abrirprogram() {
     $(location).attr("href", "Menu.php");
 }
@@ -200,7 +198,7 @@ $(document).ready(function() {
         }
     });
     $("button[id=btn-grilla]").click(function() {
-         if (
+        if (
             $(this).hasClass("btn-landing") & $(this).hasClass("text-landing")
         ) {
             $(this)
@@ -299,10 +297,9 @@ $(document).ready(function() {
         }
     });
 
-   
     $("#sino-save").click(function() {
         if ($('input[id="sino-save"]').is(":checked")) {
-            alert("cambio2");
+            //alert("cambio2");
             $("#savesino").modal("show");
         }
     });
@@ -311,7 +308,7 @@ $(document).ready(function() {
         $("#navbar-prev-sinopsis").load("submenu.php");
     });
     $("#viewapro").click(function() {
-        alert("cambio3");
+        //alert("cambio3");
         $("#savechange").modal("show");
     });
 
