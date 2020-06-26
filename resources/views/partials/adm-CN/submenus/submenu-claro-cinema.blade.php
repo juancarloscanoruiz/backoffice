@@ -19,7 +19,7 @@
     </script>
     <script>
         new easyXDM.Socket({
-            remote: "./prev/programacion.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
             container: "navbar-prev-programacion",
             onMessage: function(message, origin) {
                 console.log(message);

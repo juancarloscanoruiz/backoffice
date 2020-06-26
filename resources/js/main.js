@@ -268,8 +268,7 @@ $(document).ready(function() {
         });
     });
 
-    //previsualizar-editar
-
+    //EDITAR CLARO CANAL
     $("#edit").click(function() {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(` <script>
@@ -281,25 +280,38 @@ $(document).ready(function() {
               this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
               this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
               this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+
           }
       });
   </script>`);
-        }
-        if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
-      new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
-        container: "navbar-prev-home",
-          onMessage: function(message, origin) {
-              console.log(message);
-              this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-              this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-              this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-          }
-      });
-    </script>`);
+  new easyXDM.Socket({
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
+    container: "navbar-prev-home",
+      onMessage: function(message, origin) {
+          console.log(message);
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+  });
+</script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
+</script>`);
         }
     });
+
+    //PREV CLARO CANAL
     $("#prev").click(function() {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(` <script>
@@ -313,6 +325,18 @@ $(document).ready(function() {
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     });
+</script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
 </script>`);
         }
         if ($('input[id="prev"]').is(":checked")) {
@@ -347,6 +371,18 @@ $(document).ready(function() {
           }
       });
   </script>`);
+            $("#navbar-prev-programacion").html(` <script>
+  new easyXDM.Socket({
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+    container: "navbar-prev-home",
+      onMessage: function(message, origin) {
+          console.log(message);
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+  });
+  </script>`);
         }
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
@@ -377,6 +413,18 @@ $(document).ready(function() {
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     });
+</script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
 </script>`);
         }
         if ($('input[id="prev"]').is(":checked")) {
@@ -410,6 +458,18 @@ $(document).ready(function() {
         }
     });
 </script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
+</script>`);
         }
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
@@ -440,6 +500,18 @@ $(document).ready(function() {
           this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
   });
+</script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
 </script>`);
         }
         if ($('input[id="prev"]').is(":checked")) {
@@ -473,6 +545,18 @@ $(document).ready(function() {
         }
     });
 </script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
+</script>`);
         }
     });
     //PREV HOME
@@ -480,7 +564,7 @@ $(document).ready(function() {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
   new easyXDM.Socket({
-    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
     container: "navbar-prev-home",
       onMessage: function(message, origin) {
           console.log(message);
@@ -489,6 +573,18 @@ $(document).ready(function() {
           this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
   });
+</script>`);
+            $("#navbar-prev-programacion").html(` <script>
+new easyXDM.Socket({
+  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+  container: "navbar-prev-home",
+    onMessage: function(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+});
 </script>`);
         }
     });
