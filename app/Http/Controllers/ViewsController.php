@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class ViewsController extends Controller
 {
+    private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
+
     public function index(Request $request)
     {
 
@@ -36,13 +39,16 @@ class ViewsController extends Controller
                     return view('admin-users.users-claronetworks.formEditUser');
                     break;
                 case 'grilla-canal-claro-button':
-                    return view('partials.adm-CN.grillas.grilla-claro-canal');
+                    $programacion = $this->getGrilla('Claro Canal');
+                    return view('partials.adm-CN.grillas.grilla-claro-canal')->with('respuesta', $programacion);
                 break;
                 case 'grilla-concert-channel-button':
-                    return view('partials.adm-CN.grillas.grilla-concert-channel');
+                    $programacion = $this->getGrilla('Concert Channel');
+                    return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
                 break;
                 case 'grilla-claro-cinema-button':
-                    return view('partials.adm-CN.grillas.grilla-claro-cinema');
+                    $programacion = $this->getGrilla('Claro Cinema');
+                    return view('partials.adm-CN.grillas.grilla-claro-cinema')->with('respuesta', $programacion);
                 break;
                 case 'grilla-home-button':
                     return view('partials.adm-CN.grillas.grilla-home');
