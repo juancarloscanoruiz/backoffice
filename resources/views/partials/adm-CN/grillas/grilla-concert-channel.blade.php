@@ -372,3 +372,16 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
         </div>
     </div>
 </div>
+<script>
+
+    function subirArchivos(){
+        let disabled = $('#inp_programing_concert_channel').prop('disabled');
+        if(disabled == true){
+            var pregunta = confirm('Este día ya tiene programacion,¿Quieres subir un archivo?');
+            if(pregunta == true){
+                $('#inp_programing_concert_channel').prop('disabled',false);
+            }
+        }
+
+    }
+</script>
