@@ -347,70 +347,6 @@ $(".arrow-left").click(function () {
   $("#option").carousel("next");
 });*/
 
-/**
- *
- * METODOS PARA SUBIR PROGRAMACION
- */
-
-/**
- * Obtener el archivo subido
- */
-
-$("#inp_programing").on("change", function () {
-  /**
-   * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
-   * esto para no caursar poroblemas mayores se manda a null e value del form
-   * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
-   */
-  try {
-    var file = this.files[0];
-    var filename = this.files[0].name;
-
-    if (filename != null) {
-      var splName = filename.split(".");
-      var fileFormat = splName[splName.length - 1];
-
-      if (fileFormat != "xlsx" && fileFormat != "xls") {
-        alert("formato invalido, por favor sube un excel");
-      } else {
-        sendFilePHP(file);
-      }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
-  this.value = null; //aqui para evitar que se hagan registros dobles
-});
-/**
- * Eviar archivo mediante ajax a un "controlador" php
- */
-
-function sendFilePHP(file) {
-  console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
-
-  var data = new FormData();
-  data.append("file", file); //Realizamos el ajax
-
-  $.ajax({
-    type: "POST",
-    data: data,
-    processData: false,
-    //esto es para poder pasar el archivo
-    contentType: false,
-    //esto es para poder pasar el archivo
-    url: "./adapters/C_programing.php",
-    success: function success(result) {
-      //var programas = JSON.parse(result);
-      console.log("php responde:" + result); //console.log(programas);
-
-      $("#programacion").replaceWith(result);
-    }
-  }).fail(function (e) {
-    console.log(e);
-  });
-}
-
 /***/ }),
 
 /***/ 16:
@@ -420,7 +356,7 @@ function sendFilePHP(file) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })

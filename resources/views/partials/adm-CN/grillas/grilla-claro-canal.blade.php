@@ -21,9 +21,16 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
         $rol_user_edit = "";
 }
 
+$data_for_new_entry = json_encode([
+    'usuario_id' => session('id_user'),
+    'landing_id' => 1,
+    'version_id' => $respuesta->data->version_id,
+    'version_number' => $respuesta->data->version_number
+]);
+
 ?>
 <div class="grilla-claro-canal">
-    <div class=" ml-5"> <span class="zona">Última edición : </span>
+    <div class=" ml-5"> <span cass="zona">Última edición : </span>
     <label class=" text-menu-selec separacion">{{$last_edition}}</label>
         <label class="text-menu-selec">{{$last_edition}}</label>
     </div>
@@ -75,7 +82,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
 
             <!--end-->
 
-            <div id="rempla">
+            <div id="rempla-claro-canal">
                 <div id="tb1" class="contenedor-tabla  ml-5 pr-5">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table">
@@ -364,7 +371,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                 </div>
                 <div class="contenedor mb-5 ml-5 pr-5">
                     <div class="contenedor-columna centro">
-                        <div id="agregar" class="d-flex align-items-center btn-crear signo justify-content-center  ml-2">
+                        <div id="agregar-canal-claro" onclick='nuevo_programa(<?php echo $data_for_new_entry ;?>)' class="d-flex align-items-center btn-crear signo justify-content-center  ml-2">
                             <span class="text-crea">Crear nueva entrada</span>
                         </div>
                     </div>
@@ -374,15 +381,34 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
     </div>
 </div>
 <script>
+         
+    function nuevo_programa(data){
+        console.log(data);
 
-    function subirArchivos(){
-        let disabled = $('#inp_programing_claro_canal').prop('disabled');
-        if(disabled == true){
-            var pregunta = confirm('Este día ya tiene programacion,¿Quieres subir un archivo?');
-            if(pregunta == true){
-                $('#inp_programing_claro_canal').prop('disabled',false);
+        $.ajax({
+            type: "POST",
+            url: "general-program/newRow",
+            data: data,
+            success: function(result) {
+                //var fila =
+                //' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
+                $("#tb1").append(result);
+                console.log('php responde');
+                console.log(result);
             }
-        }
+        });
+      
+     }
+ 
+     function subirArchivos(){
+         let disabled = $('#inp_programing_claro_canal').prop('disabled');
+         if(disabled == true){
+             var pregunta = confirm('Este día ya tiene programacion,¿Quieres subir un archivo?');
+             if(pregunta == true){
+                 $('#inp_programing_claro_canal').prop('disabled',false);
+             }
+         }
+ 
+     }
 
-    }
 </script>

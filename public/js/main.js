@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\xampp\\\\htdocs\\\\Back-laravel\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\Back-laravel\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/mampstack-7.3.13-0/apache2/htdocs/CN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/mampstack-7.3.13-0/apache2/htdocs/CN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -62482,6 +62482,81 @@ $(document).ready(function () {
       });
     }
   }
+  /**
+   *
+   * METODOS PARA SUBIR PROGRAMACION
+   */
+
+  /**
+   * Obtener el archivo subido
+   */
+
+
+  $("#inp_programing_claro_canal").on("change", function () {
+    /**
+     * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+     * esto para no caursar poroblemas mayores se manda a null e value del form
+     * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
+     */
+    try {
+      var file = this.files[0];
+      var filename = this.files[0].name;
+
+      if (filename != null) {
+        var splName = filename.split(".");
+        var fileFormat = splName[splName.length - 1];
+
+        if (fileFormat != "xlsx" && fileFormat != "xls") {
+          alert("formato invalido, por favor sube un excel");
+        } else {
+          sendFilePHP(file); //console.log(this.files[0].name)
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    this.value = null; //aqui para evitar que se hagan registros dobles
+    //
+  });
+  /**
+   * Eviar archivo mediante ajax a un "controlador" php
+   */
+
+  function sendFilePHP(file) {
+    console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
+
+    var data = new FormData();
+    data.append("file", file); //Realizamos el ajax
+
+    $.ajax({
+      type: "POST",
+      data: data,
+      processData: false,
+      //esto es para poder pasar el archivo
+      contentType: false,
+      //esto es para poder pasar el archivo
+      url: "general-program/captureExcel",
+      success: function success(result) {
+        var programas = JSON.parse(result); //console.log("php responde:" + result);
+
+        console.log(programas); //$("#rempla-claro-canal").replaceWith(result);
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  } //para agregar una nueva fila
+
+
+  $("#agregar").click(function () {
+    agregar();
+  });
+
+  function agregar(data) {
+    console.log(data);
+    var fila = ' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
+    $("#tb1").append(fila);
+  }
 });
 /**para la seleccion de paises */
 
@@ -62835,8 +62910,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-          <div class="w3-card-4 bg-white d-flex">
-              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+         <div class="w3-card-4 bg-white d-flex">
+             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -62849,15 +62924,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                      </input>
-                      <p class="mt-4 ml-2">Rol de usuario</p>
+                     </input>
+                     <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-          </div>
+         </div>
         </div>
         </div>
         `);
@@ -62892,7 +62967,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-          showDescriptions();*/
+         showDescriptions();*/
       }
     }
   });
@@ -63423,8 +63498,8 @@ function sendEmailResetPassword(input) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\js\main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Back-laravel\backoffice\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
