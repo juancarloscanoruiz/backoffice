@@ -51,9 +51,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 //RUTA PARA MENU
-Route::get('/general-program', function () {
-    return view('admin-site.Menu');
-})->name('general-program')->middleware('session_user');
+Route::get('/general-program', "ProgramacionGeneralController@index")->name('programacion_general');
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');

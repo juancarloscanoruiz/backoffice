@@ -10,7 +10,13 @@
 @section('content')
 
     <style>
-        #inp_programing {
+        #inp_programing_claro_canal {
+            display: none;
+        }
+        #inp_programing_claro_cinema {
+            display: none;
+        }
+        #inp_programing_concert_channel {
             display: none;
         }
     </style>
