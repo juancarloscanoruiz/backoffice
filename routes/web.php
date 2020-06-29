@@ -55,3 +55,7 @@ Route::get('/general-program', "ProgramacionGeneralController@index")->name('pro
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
+
+Route::get('/histo', function () {
+    return view('partials.adm-CN.historial');
+})->name('histo');
