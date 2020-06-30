@@ -50,8 +50,10 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-//RUTA PARA MENU
+//RUTA PARA Programacion
 Route::get('/general-program', "ProgramacionGeneralController@index")->name('programacion_general');
+Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
+Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');

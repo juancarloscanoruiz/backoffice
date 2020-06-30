@@ -804,6 +804,81 @@ $(document).ready(function() {
             });
         }
     }
+
+    /**
+     *
+     * METODOS PARA SUBIR PROGRAMACION
+     */
+
+    /**
+     * Obtener el archivo subido
+     */
+
+    $("#inp_programing_claro_canal").on("change", function() {
+        /**
+         * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+         * esto para no caursar poroblemas mayores se manda a null e value del form
+         * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
+         */
+        try {
+            var file = this.files[0];
+            var filename = this.files[0].name;
+
+            if (filename != null) {
+                var splName = filename.split(".");
+                var fileFormat = splName[splName.length - 1];
+                if (fileFormat != "xlsx" && fileFormat != "xls") {
+                    alert("formato invalido, por favor sube un excel");
+                } else {
+                    sendFilePHP(file);
+                    //console.log(this.files[0].name)
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        this.value = null; //aqui para evitar que se hagan registros dobles
+
+        //
+    });
+
+    /**
+     * Eviar archivo mediante ajax a un "controlador" php
+     */
+
+    function sendFilePHP(file) {
+        console.log("enviando a php");
+        //creamos un dato de formulario para pasarlo en el ajax
+        let data = new FormData();
+        data.append("file", file);
+        //Realizamos el ajax
+        $.ajax({
+            type: "POST",
+            data: data,
+            processData: false, //esto es para poder pasar el archivo
+            contentType: false, //esto es para poder pasar el archivo
+            url: "general-program/captureExcel",
+            success: function(result) {
+                var programas = JSON.parse(result);
+                //console.log("php responde:" + result);
+                console.log(programas);
+
+                //$("#rempla-claro-canal").replaceWith(result);
+            }
+        }).fail(function(e) {
+            console.log(e);
+        });
+    }
+    //para agregar una nueva fila
+    $("#agregar").click(function() {
+        agregar();
+    });
+    function agregar(data) {
+        console.log(data);
+        var fila =
+            ' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
+        $("#tb1").append(fila);
+    }
 });
 
 /**para la seleccion de paises */
