@@ -298,8 +298,8 @@ $(document).ready(function() {
             </script>`);
             $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
-            container: "navbar-prev-home",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+            container: "navbar-prev-programacion",
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -372,7 +372,7 @@ $(document).ready(function() {
   </script>`);
             $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
                 container: "navbar-prev-programacion",
                 onMessage: function(message, origin) {
                     console.log(message);
