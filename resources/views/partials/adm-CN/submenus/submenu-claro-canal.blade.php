@@ -44,10 +44,8 @@
 
 <body>
     <main>
-
         <div id="menu">
             <div class="d-flex float-right mb-5 mr-5">
-
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                       <input type="radio" name="sexo" id="edit" checked />
@@ -63,11 +61,6 @@
                     <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
-
-
-
-
-
             </div>
             <div class="clearfix"></div>
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">

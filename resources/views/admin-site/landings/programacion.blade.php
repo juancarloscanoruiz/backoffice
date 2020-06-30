@@ -1,22 +1,23 @@
 @extends('layaout.app')
 
 @section('scripts')
-<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
-<script>
-       new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-apro.php",
-            container: "navbar-prev-concert-channel",
+    <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+    <script>
+        new easyXDM.Socket({
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-backoffice.php",
+            container: "programacion-container",
             onMessage: function(message, origin) {
+                console.log(message);
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                 this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                 this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
         });
-</script>
+    </script>
 @endsection
-
 @section('content')
-<body>
+    <body>
+
     @include('partials.headers.headerPrograGeneral')
     <div id="title">
         <div>
@@ -43,15 +44,9 @@
             </div>
         </div>
         <div class="clearfix"></div>
-<div>
-
-    <div class="centro">
-        <div class=" navbar-prev-concert-channel mb-5" id="navbar-prev-concert-channel">
+        <div class="centro">
+            <div class="navbar-progra-content  mb-5" id="programacion-container">
+            </div>
         </div>
-    </div>
-</div>
-
-</body>
+    </body>
 @endsection
-
-</html>

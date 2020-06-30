@@ -55,6 +55,12 @@ Route::get('/general-program', "ProgramacionGeneralController@index")->name('pro
 Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
 Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
 
+//RUTAS PARA LANDING
+Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
+Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');
+Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
+Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
+
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 

@@ -356,11 +356,7 @@ $(".arrow-left").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/admin.js */"./resources/js/admin.js");
-=======
-module.exports = __webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/js/admin.js */"./resources/js/admin.js");
->>>>>>> 359e1af0bb0a6f8c169bc548f7331dea47f4d099
 
 
 /***/ })
