@@ -60,6 +60,7 @@ Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('can
 Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');
 Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
+Route::get("/home", "landingController@showHomeLanding")->name('home');
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');

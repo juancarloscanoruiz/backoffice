@@ -25,4 +25,9 @@ class landingController extends Controller
     {
         return view('admin-site.landings.programacion');
     }
+
+    public function showHomeLanding()
+    {
+        return view('admin-site.landings.home');
+    }
 }
