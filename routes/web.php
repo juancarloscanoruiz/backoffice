@@ -59,5 +59,5 @@ Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
 Route::get('/histo', function () {
-    return view('partials.adm-CN.historial');
-})->name('histo');
+    return view('admin-site.landings.apro-home');
+})->name('para pruebas'); 

@@ -5,8 +5,8 @@
 
 <script>
        new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-backoffice.php",
-            container: "navbar-prev-claro-cinema",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-apro.php",
+            container: "navbar-prev-home",
             onMessage: function(message, origin) {
                 console.log(message);
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -21,7 +21,7 @@
 <body>
 @include('partials.headers.header-apro')
 <div class="centro">
-<  <div class=" navbar-prev-claro-cinema mb-5" id="navbar-prev-claro-cinema">
+<  <div class=" navbar-prev-home mb-5" id="navbar-prev-home">
     </div>
 </div>
 </body>
