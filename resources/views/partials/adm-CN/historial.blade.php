@@ -34,7 +34,7 @@
          </div>
          <div class="contenedor-fila">
              <div class="contenedor-columna centro ">
-                 <img src="" alt="">
+                 <img src="images/checkers/check-good.svg" alt="">
             </div>
             <div class="contenedor-columna centro ">
                  <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>
@@ -62,7 +62,7 @@
          </div>
          <div class="contenedor-fila">
              <div class="contenedor-columna centro ">
-                 <img src="" alt="">
+                 <img src="images/checkers/check-error.svg" alt="">
             </div>
             <div class="contenedor-columna centro ">
                  <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>
@@ -90,7 +90,7 @@
          </div>
          <div class="contenedor-fila">
              <div class="contenedor-columna centro ">
-                 <img src="" alt="">
+                 <img src="images/checkers/check-warning.svg" alt="">
             </div>
             <div class="contenedor-columna centro ">
                  <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>

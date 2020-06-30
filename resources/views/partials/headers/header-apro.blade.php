@@ -11,7 +11,7 @@
         <div class="d-flex float-right mt-4 mr-5">
             <span class="text-normal a-text-medium-black mt-3"> PREVISUALIZAR</span>
             <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
-            <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
+            <img src="./imagesxw/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
             <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
         </div>
         <div class="clearfix"></div>

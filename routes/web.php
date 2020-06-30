@@ -65,5 +65,10 @@ Route::get("/programacion", "landingController@showProgramacionLanding")->name('
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
 Route::get('/histo', function () {
+<<<<<<< HEAD
     return view('partials.adm-CN.historial');
 })->name('histo');
+=======
+    return view('admin-site.landings.apro-home');
+})->name('para pruebas'); 
+>>>>>>> d632f5d20064ae09e4243403a00f8e72c4e74978
