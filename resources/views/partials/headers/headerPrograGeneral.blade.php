@@ -12,6 +12,6 @@
             </div>
             <div class='mr-5'>
 
-            <form method="POST" action="{{ route('exit') }}">  {{ csrf_field() }} <button class='mt-4 btn-return-sitio text-return'>Regresar a Administrar sitio</button></form>
+            <form method="POST" action="{{ route('exit') }}">  {{ csrf_field() }} <button class='mt-4 btn-return-sitio  a-btn-basic-large text-return'>Regresar a Administrar sitio</button></form>
             </div>
         </div>
