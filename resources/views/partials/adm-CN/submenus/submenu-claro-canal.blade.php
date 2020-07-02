@@ -17,7 +17,7 @@
     </script>
     <script>
         new easyXDM.Socket({
-            remote: "./prev/programacion.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: "navbar-prev-programacion",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -44,10 +44,8 @@
 
 <body>
     <main>
-
         <div id="menu">
             <div class="d-flex float-right mb-5 mr-5">
-
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                       <input type="radio" name="sexo" id="edit" checked />
@@ -63,11 +61,6 @@
                     <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
-            
-                
-                 
-                
-              
             </div>
             <div class="clearfix"></div>
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
@@ -288,7 +281,7 @@
         </div>
 
     </main>
-   
+
 
 </body>
 <div class="modal show modal-delete-user" id="savesino" role="dialog">
@@ -296,10 +289,10 @@
     <div class="modal-content align-item-center centro  modal-save">
       <div class="modal-body ">
       <img src="./images/bien.svg" alt="aprovado" class="m-3">
-      <h3 class="h3 a-text-medium-brownish mt-3 mb-3">Fueron guardados los cambios en la sinópsis de:</h3>    
-      <div class="d-flex justify-content-center mb-5">    
-             <label for=""class="h3 a-text-bold-brownish">Mad Men</label>             
-      </div>   
+      <h3 class="h3 a-text-medium-brownish mt-3 mb-3">Fueron guardados los cambios en la sinópsis de:</h3>
+      <div class="d-flex justify-content-center mb-5">
+             <label for=""class="h3 a-text-bold-brownish">Mad Men</label>
+      </div>
       <div class="d-flex justify-content-center mb-5">
       <button type="button" class="a-btn-border-teal  a-btn-general-modal text-no  mr-5 btn-focus" id="back-list"  data-dismiss="modal">VOLVER AL LISTADO</button>
 

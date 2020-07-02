@@ -22,31 +22,41 @@
           </div>
           <div class="pd-5">PROGRAMACIÓN</div>
           <div class="justify-content-center">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus"></input>
+          <a href="{{route('programacion')}}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus"></input>
+            </a>
             <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
             <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
           </div>
           <div class="pd-5">HOME</div>
           <div class="justify-content-center">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+           <a href="{{ route('home') }}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            </a>
             <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
             <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
           </div>
           <div class="pd-5">CANAL CLARO</div>
           <div class="justify-content-center">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            <a href="{{route('canal-claro')}}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            </a>
             <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
             <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
           </div>
           <div class="pd-5">CONCERT CHANNEL</div>
           <div class="justify-content-center">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            <a href="{{route('concert-channel')}}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+              </a>
             <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
             <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
           </div>
           <div class="pd-5">CLARO CINEMA</div>
           <div class="justify-content-center">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            <a href="{{ route('claro-cinema') }}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+            </a>
             <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
             <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
           </div>

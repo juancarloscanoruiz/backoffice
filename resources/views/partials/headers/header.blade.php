@@ -6,7 +6,7 @@
     </div>
 <div class='bg-color'>
     <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-        <span class='ml-5'><img src='./images/registro/group-24.svg'> </span>
+    <a href="{{ route('admin')}}"><span class='ml-5'><img src='./images/home/claro-logo.svg'> </span></a>
 
         <span class='text-light1 mr-5'>Administrador de contenido</span>
 </span>

@@ -21,7 +21,7 @@ Route::get('/admin', function () {
 })->name('admin')->middleware('session_user');
 
 
-//VERIFY PASSWORD
+//VERIFY TOKEN
 Route::get('/verify/{token}', "AuthController@verifyToken");
 
 //RECUPERAR CONTRASEÑA
@@ -48,7 +48,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('exit', "AuthController@exit")->name('exit');
 });
 
-//RUTA PARA CARGAR CONTENIDO HTML
 
 
 //RUTA PARA Programacion
@@ -56,9 +55,16 @@ Route::get('/general-program', "ProgramacionGeneralController@index")->name('pro
 Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
 Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
 
+//RUTAS PARA LANDING
+Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
+Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');
+Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
+Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
+Route::get("/home", "landingController@showHomeLanding")->name('home');
 
+//RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
 Route::get('/histo', function () {
-    return view('partials.adm-CN.historial');
-})->name('histo');
+    return view('admin-site.landings.apro-home');
+})->name('para pruebas');

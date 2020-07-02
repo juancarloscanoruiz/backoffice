@@ -4,7 +4,10 @@
 @extends('layaout.app')   
 </head>
 <body>
-    <div id="historial" class="contenedor-table" style="width:190%">
+
+    <div id="historial" >
+    <h3 class="h3 a-text-bold-black">HISTORIAL DE CAMBIOS - CANAL CLARO</h3>
+    <div class="contenedor-table mt-4 shadow" style="width:190%">
          <div class="contenedor-fila">
              <div class="contenedor-columna centro centro title-altauser">
                  <span class="text-public"> Estatus</span>
@@ -31,31 +34,88 @@
          </div>
          <div class="contenedor-fila">
              <div class="contenedor-columna centro ">
-                 <img src="" alt="">
+                 <img src="images/checkers/check-good.svg" alt="">
             </div>
             <div class="contenedor-columna centro ">
-                 <span>AAAAMMDDHH:MM_CANAL_CLARO</span>
+                 <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>
             </div>
             <div class="contenedor-columna centro ">
-                 <span>Fernando Montes de Oca</span>
+                 <span class="a-text-medium-black text-normal">Fernando Montes de Oca</span>
             </div>
             <div class="contenedor-columna centro ">
-                 <span>Vanesa Peréz</span>
+                 <span class="a-text-medium-black text-normal">Vanesa Peréz</span>
             </div>
-            <div style="width:150px;">
-                <div class="contenedor-columna centro ">
-                   <span> Inicial: AAAAMMDDHH:MM</span>
+            <div class="d-flex">
+                <div class="contenedor-columna centro " style="width:50%;">
+                   <span class="a-text-medium-black text-normal"> Inicial: AAAAMMDDHH:MM</span>
                  </div>
-                  <div class="contenedor-columna centro ">
-                    <span>Final: AAAAMMDDHH:MM</span>
+                  <div class="contenedor-columna centro " style="width:50%;">
+                    <span class="a-text-medium-black text-normal">Final: AAAAMMDDHH:MM</span>
                   </div>
             </div>
             <div class="contenedor-columna centro ">
-                 <span>lorem</span>
+                 <span class="a-text-medium-black text-normal">lorem</span>
             </div>
             <div class="contenedor-columna centro ">
-               <button class="btn-si"><span class="a-text-bold-white">Ver landing</span></button>  
+               <button class="btn-cerrar justify-content-center align-middle a-text-bold-white" style="line-height: normal;">Ver landing</button>  
             </div>
+         </div>
+         <div class="contenedor-fila">
+             <div class="contenedor-columna centro ">
+                 <img src="images/checkers/check-error.svg" alt="">
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">Fernando Montes de Oca</span>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">Vanesa Peréz</span>
+            </div>
+            <div class="d-flex">
+                <div class="contenedor-columna centro " style="width:50%;">
+                   <span class="a-text-medium-black text-normal"> Inicial: AAAAMMDDHH:MM</span>
+                 </div>
+                  <div class="contenedor-columna centro " style="width:50%;">
+                    <span class="a-text-medium-black text-normal">Final: AAAAMMDDHH:MM</span>
+                  </div>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">lorem</span>
+            </div>
+            <div class="contenedor-columna centro ">
+               <button class="btn-cerrar justify-content-center align-middle a-text-bold-white" style="line-height: normal;">Ver landing</button>  
+            </div>
+         </div>
+         <div class="contenedor-fila">
+             <div class="contenedor-columna centro ">
+                 <img src="images/checkers/check-warning.svg" alt="">
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">AAAAMMDDHH:MM_CANAL_CLARO</span>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">Fernando Montes de Oca</span>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">Vanesa Peréz</span>
+            </div>
+            <div class="d-flex">
+                <div class="contenedor-columna centro " style="width:50%;">
+                   <span class="a-text-medium-black text-normal"> Inicial: AAAAMMDDHH:MM</span>
+                 </div>
+                  <div class="contenedor-columna centro " style="width:50%;">
+                    <span class="a-text-medium-black text-normal">Final: AAAAMMDDHH:MM</span>
+                  </div>
+            </div>
+            <div class="contenedor-columna centro ">
+                 <span class="a-text-medium-black text-normal">lorem</span>
+            </div>
+            <div class="contenedor-columna centro ">
+               <button class="btn-cerrar justify-content-center align-middle a-text-bold-white" style="line-height: normal;">Ver landing</button>  
+            </div>
+         </div>
          </div>
     </div>
 </body>

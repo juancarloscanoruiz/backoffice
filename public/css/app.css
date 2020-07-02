@@ -867,7 +867,7 @@
 }
 
 .title-table {
-  background-color: #434242;
+  background-color: #4a4a4a;
 }
 
 .invalid-email {
@@ -943,6 +943,42 @@
 
 /* BOTONES REUTILIZABLES */
 
+.a-btn-basic-medium {
+  width: 224px;
+  height: 54px;
+  border-radius: 20px;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  transition: all 0.3s;
+}
+
+.a-btn-basic-large {
+  width: 294px;
+  height: 54px;
+  border-radius: 20px;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  transition: all 0.3s;
+}
+
+.a-btn-basic-small {
+  width: 181px;
+  height: 54px;
+  border-radius: 20px;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  transition: all 0.3s;
+}
+
 .a-button-pill-teal-outline {
   border: 2px solid #0097a9;
   border-radius: 30px;
@@ -1009,26 +1045,41 @@
 }
 
 .btn-return-sitio {
-  width: 294px;
-  height: 49px;
-  border-radius: 13px;
   border: solid 1px #979797;
   background-color: #2e2c2c;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
 }
 
 .btn-grilla {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #0097a9;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: auto;
+  padding-top: 1px;
+  border: 1px solid #069cb0;
+}
+
+.btn-landing {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: auto;
+  border: 1px solid #069cb0;
+}
+
+.btn-apro {
   width: 181px;
   height: 46px;
   border-radius: 7px;
   align-items: center;
   display: flex;
   justify-content: center;
-  background-color: #0097a9;
+  background-color: #15b643;
   outline: none !important;
   outline-width: 0 !important;
   box-shadow: none;
@@ -1038,17 +1089,17 @@
   transition: all 0.3s;
   margin: auto;
   padding-top: 1px;
-  border: 1px solid #069cb0;
+  border: 1px solid #15b643;
 }
 
-.btn-landing {
+.btn-recha {
   width: 181px;
   height: 46px;
   align-items: center;
   display: flex;
   justify-content: center;
   border-radius: 7px;
-  background-color: #ffffff;
+  background-color: #da291c;
   outline: none !important;
   outline-width: 0 !important;
   box-shadow: none;
@@ -1057,7 +1108,7 @@
   cursor: pointer;
   transition: all 0.3s;
   margin: auto;
-  border: 1px solid #069cb0;
+  border: 1px solid #da291c;
 }
 
 .btn-public-inac {
@@ -1077,27 +1128,11 @@
 }
 
 .btn-cargar {
-  width: 182px;
-  height: 46px;
-  border-radius: 7px;
   background-color: #ff8200;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
   cursor: pointer;
   transition: all 0.3s;
   margin: auto;
   border: 1px solid #ff8200;
-}
-
-.btn-crear {
-  width: 277px;
-  height: 47px;
-  border-radius: 14px;
-  background-color: #0097a9;
-  cursor: pointer;
 }
 
 .btn-ingresar-reco1 {
@@ -1372,43 +1407,18 @@
 }
 
 .btn-menu-select {
-  width: 178px;
-  height: 45px;
-  border-radius: 7px;
   background-color: #da291c;
   border: 1px solid #da291c;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
 }
 
 .btn-menu-all {
-  width: 178px;
-  height: 45px;
-  border-radius: 7px;
   border: solid 1px #da291c;
   background-color: #ffffff;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
 }
 
 .btn-menu-inac {
-  width: 178px;
-  height: 45px;
-  border-radius: 7px;
   background-color: #d5d7d7;
   border: 1px solid #d5d7d7;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
   pointer-events: none;
 }
 
@@ -3604,7 +3614,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .title-table {
-  background-color: #434242;
+  background-color: #4a4a4a;
 }
 
 .invalid-email {

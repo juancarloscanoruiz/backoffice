@@ -318,8 +318,8 @@ function getAllUsersBO() {
             if (json.code == 200) {
                 let userBO = "";
                 localStorage.setItem("usersBO", JSON.stringify(json.data));
-                let users = JSON.parse(localStorage.getItem("usersBO"));
-
+                //let users = JSON.parse(localStorage.getItem("usersBO"));
+                let users = json.data;
                 users.forEach(user => {
                     let rol = changeNameRol(user.rol_id);
 
@@ -338,12 +338,12 @@ function getAllUsersBO() {
                     .html(
                         `
         <div class="col-xl-10 position-btn-alta">
-          <button class="btn-alta text-public mb-4" id="btnAlta">Agregar nuevo usuario</button>
+          <button class="btn-alta text-public mb-4 d-flex align-items-center" id="btnAlta">Agregar nuevo usuario</button>
         </div>
         <div class="sombras2 trans10 mb-5">
           <div class="grid-users texto-general users-backoffice-table">
             <header>
-            <div class="text-title ">Usuario</div>
+            <div class="text-teitl ">Usuario</div>
             </header>
             <section>
               <div class="text-title ">Rol</div>
@@ -483,8 +483,7 @@ function getAllUserFront() {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                localStorage.setItem("usersFront", JSON.stringify(json.data));
-
+                //localStorage.setItem("usersFront", JSON.stringify(json.data));
                 let users = json.data;
                 let userF = "";
                 users.forEach(user => {
@@ -1128,7 +1127,8 @@ function deleteUserBO(id) {
             });
             if (json.code == 200) {
                 localStorage.setItem("usersBO", JSON.stringify(json.data));
-                let users = JSON.parse(localStorage.getItem("usersBO"));
+                //let users = JSON.parse(localStorage.getItem("usersBO"));
+                let users = json.data;
                 let userBO = "";
                 users.forEach(user => {
                     let rol = changeNameRol(user.rol_id);
@@ -1193,7 +1193,8 @@ function deleteUserFront(id) {
             });
             if (json.code == 200) {
                 localStorage.setItem("usersFront", JSON.stringify(json.data));
-                let users = JSON.parse(localStorage.getItem("usersFront"));
+                //let users = JSON.parse(localStorage.getItem("usersFront"));
+                let users = json.data;
                 let userBO = "";
                 users.forEach(user => {
                     userBO += `
