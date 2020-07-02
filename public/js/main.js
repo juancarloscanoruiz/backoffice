@@ -62509,7 +62509,9 @@ $(document).ready(function () {
         if (fileFormat != "xlsx" && fileFormat != "xls") {
           alert("formato invalido, por favor sube un excel");
         } else {
-          sendFilePHP(file); //console.log(this.files[0].name)
+          var data_for_api = $('#data_for_api').val();
+          console.log(data_for_api);
+          sendFilePHP(file, data_for_api); //console.log(this.files[0].name)
         }
       }
     } catch (error) {
@@ -62523,11 +62525,12 @@ $(document).ready(function () {
    * Eviar archivo mediante ajax a un "controlador" php
    */
 
-  function sendFilePHP(file) {
+  function sendFilePHP(file, data_for_api) {
     console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
 
     var data = new FormData();
-    data.append("file", file); //Realizamos el ajax
+    data.append("file", file);
+    data.append("datos", data_for_api); //Realizamos el ajax
 
     $.ajax({
       type: "POST",
@@ -62540,7 +62543,8 @@ $(document).ready(function () {
       success: function success(result) {
         var programas = JSON.parse(result); //console.log("php responde:" + result);
 
-        console.log(programas); //$("#rempla-claro-canal").replaceWith(result);
+        console.log(programas.data); //console.log(result.data);
+        //$("#rempla-claro-canal").replaceWith(result);
       }
     }).fail(function (e) {
       console.log(e);

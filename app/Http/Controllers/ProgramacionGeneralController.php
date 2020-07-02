@@ -23,7 +23,7 @@ class ProgramacionGeneralController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         $hoy = '2020-2-8';
-        //$hoy = date('Y-n-j');
+        //$hoy = date('Y-m-d');
        $client = new Client();
         $response = $client->get(
             $this->url . "program/VersionEditable/".$hoy."&Claro Canal&" . session('id_user')
@@ -43,8 +43,8 @@ class ProgramacionGeneralController extends Controller
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
-        $hoy = '2020-2-8';
-        //$hoy = date('Y-n-j');
+        //$hoy = '2020-2-8';
+        $hoy = date('Y-n-j');
        $client = new Client();
         $response = $client->get(
             $this->url . "program/VersionEditable/".$hoy."&Claro Canal&" . session('id_user')
@@ -62,8 +62,9 @@ class ProgramacionGeneralController extends Controller
 
     public function captureExcel(Request $request)
     {
+        //obtnemos el archvio
         $new_file = $_FILES['file'];
-
+        $data = $request->datos;
         $ruta = $new_file['tmp_name'];
         $documento = IOFactory::load($ruta);
         # obtener conteo e iterar
@@ -90,7 +91,7 @@ class ProgramacionGeneralController extends Controller
                     switch ($indiceColumna) {
                         case 1:
                             # Titulo del programa...
-                            $programa['Program_title'] = $value;
+                            $programa['Program_Title'] = $value;
                             break;
                         case 2:
                             # code...
@@ -276,7 +277,7 @@ class ProgramacionGeneralController extends Controller
 
         for ($indexProgramas = 0; $indexProgramas < count($programas); $indexProgramas++) {
             $htmlProgrmacion = $htmlProgrmacion . '
-            <div class="contenedor-fila" id="programa_' . $programas[$indexProgramas]['Program_title'] . '">
+            <div class="contenedor-fila" id="programa_' . $programas[$indexProgramas]['Program_Title'] . '">
                 <div class="contenedor-columna centro" id="">
                     <img src="./images/bin.svg"  class="mx-auto"alt="">
                 </div>
@@ -292,7 +293,7 @@ class ProgramacionGeneralController extends Controller
                     </label>
                 </div>
                 <div class="contenedor-columna centro">
-                    <label class="program-original">' . $programas[$indexProgramas]['Program_title'] . '</label>
+                    <label class="program-original">' . $programas[$indexProgramas]['Program_Title'] . '</label>
                     <img src="./images/pencil.svg" alt="" class=""class="pencil">
                 </div>
                 <div class="contenedor-columna centro">
@@ -441,8 +442,26 @@ class ProgramacionGeneralController extends Controller
             ';
         }
 
-
-        echo (json_encode($programas));
+        //hacemos la llamada a la API
+        $data=json_decode($data);
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "program/CapturePrograming",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => $data->usuario_id,
+                    'landing_id' => $data->landing_id,
+                    'version_id' => $data->version_id,
+                    'version_number' => $data->version_number,
+                    'programs'=>$programas
+                ]
+            )]
+        );
+        $respuesta =  $response->getBody()->getContents(); 
+        
+         echo($respuesta);
 
 
     }

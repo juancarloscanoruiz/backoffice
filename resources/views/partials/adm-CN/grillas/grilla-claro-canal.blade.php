@@ -16,9 +16,15 @@ if($rol_user_edit == "root"){
 if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
     // si ninguno esta definido significa que a este dia no se la a registrado nada, ni en la version del usario ni en la version maestra
 
-        $last_edition = "0";
+        $last_edition_day = "0";
+        $last_edition_hour = "0";
         $edited_for = "Nueva Entrada";
         $rol_user_edit = "";
+}else{
+   // $last_edition = explode('T',$last_edition) ;
+   // $last_edition_day = $last_edition[0] ;
+   // $hour = explode('.',$last_edition[1]);
+    //$last_edition_hour = $hour[0]." UTC";
 }
 
 $data_for_new_entry = json_encode([
@@ -29,6 +35,7 @@ $data_for_new_entry = json_encode([
 ]);
 
 ?>
+<input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class=" ml-5"> <span cass="zona">Última edición : </span>
     <label class=" text-menu-selec separacion">{{$last_edition}}</label>

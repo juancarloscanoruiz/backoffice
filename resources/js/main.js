@@ -749,7 +749,9 @@ $("#inp_programing_claro_canal").on("change", function() {
             if (fileFormat != "xlsx" && fileFormat != "xls") {
                 alert("formato invalido, por favor sube un excel");
             } else {
-                sendFilePHP(file);
+                var data_for_api = $('#data_for_api').val();
+                console.log(data_for_api);
+                sendFilePHP(file,data_for_api);
                 //console.log(this.files[0].name)
             }
         }
@@ -765,11 +767,13 @@ $("#inp_programing_claro_canal").on("change", function() {
  * Eviar archivo mediante ajax a un "controlador" php
  */
 
-function sendFilePHP(file) {
+function sendFilePHP(file,data_for_api) {
     console.log("enviando a php");
     //creamos un dato de formulario para pasarlo en el ajax
     let data = new FormData();
     data.append("file", file);
+    data.append("datos", data_for_api);
+
     //Realizamos el ajax
     $.ajax({
         type: "POST",
@@ -780,8 +784,8 @@ function sendFilePHP(file) {
         success: function(result) {
             var programas = JSON.parse(result);
             //console.log("php responde:" + result);
-            console.log(programas);
-
+            console.log(programas.data);
+            //console.log(result.data);
             //$("#rempla-claro-canal").replaceWith(result);
         }
     }).fail(function(e) {
