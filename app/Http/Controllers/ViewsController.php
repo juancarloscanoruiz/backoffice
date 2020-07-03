@@ -84,6 +84,7 @@ class ViewsController extends Controller
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
         $hoy = date('Y-m-d');
+
         $client = new Client();
         $response = $client->get(
             $this->url . "program/VersionEditable/" . $hoy . "&" . $grilla . "&" . session('id_user')
