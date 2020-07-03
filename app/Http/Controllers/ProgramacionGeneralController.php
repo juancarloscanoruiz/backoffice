@@ -22,8 +22,8 @@ class ProgramacionGeneralController extends Controller
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
-        $hoy = '2020-2-8';
-        //$hoy = date('Y-m-d');
+        $hoy = '2020-07-02';
+        //$hoy = date('Y-n-j');
        $client = new Client();
         $response = $client->get(
             $this->url . "program/VersionEditable/".$hoy."&Claro Canal&" . session('id_user')
