@@ -211,18 +211,14 @@ class ProgramacionGeneralController extends Controller
             <div class='contenedor-columna centro centro title-table'>
                 <span class='text-public'>Alerta</span>
             </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'> Seleccionar</span>
-            </div>
+           
             <div class='contenedor-columna centro centro title-table'>
                 <span class='text-public'>Program Title Original</span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
                 <span class='text-public'>Programar publicación</span>
             </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Periodicidad</span>
-            </div>
+          
             <div class='contenedor-columna centro  centro title-table'>
                 <span class='text-public'>Establecer en Home</span>
             </div>
@@ -279,22 +275,17 @@ class ProgramacionGeneralController extends Controller
             $htmlProgrmacion = $htmlProgrmacion . '
             <div class="contenedor-fila" id="programa_' . $programas[$indexProgramas]['Program_Title'] . '">
                 <div class="contenedor-columna centro" id="">
-                    <img src="./images/bin.svg"  class="mx-auto"alt="">
+                <img src="./images/basic-icons/trash.svg" class="mx-auto pr-2"alt="icono para borrar"> <img src="./images/basic-icons/pencil-edit-teal.svg" class="mx-auto"alt="lapiz para editar">
                 </div>
                 <div class="contenedor-columna centro">
-                <img src="./images/pendientes.svg" class="mx-auto" alt=""><br>
-                <span class="program-original"> Pendiente de revisión </span>
+                
+                <span class="a-text-bold-orange text-normal"> Pendiente de revisión </span>
                 </div>
                 <div class="contenedor-columna centro"></div>
-                <div class="contenedor-columna centro">
-                    <label class="mg6 checkradio">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    </label>
-                </div>
+                
                 <div class="contenedor-columna centro">
                     <label class="program-original">' . $programas[$indexProgramas]['Program_Title'] . '</label>
-                    <img src="./images/pencil.svg" alt="" class=""class="pencil">
+                   
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="yes-no">
@@ -305,137 +296,157 @@ class ProgramacionGeneralController extends Controller
                             <label for="no' . $indexProgramas . '" id="noestado" class="no-estilo">
                             No</label>
                         </div>
-                        <img src="./images/pencil.svg" alt=""class="pencil1">
-                        <div class=" d-flex fechas ">
-                            <label class="date" type=date>7/1/2019</label> <label class="date" type="time">11:00:00</label>
+                        
+                        <div>
+                            <label class="a-text-medium-brownish text-small d-flex justify-content-center" type=date>07-01-2019</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">11:00:00  HRS</label>
                         </div>
                         
                 </div>
                 <div class="contenedor-columna centro">
-                <div class="periodicidad">
+                <div class="yes-no">
                             <input type="radio" name="si-no" id="yes" checked />
-                            <label for="yes" id="siestado" class="si-estilo1">
+                            <label for="yes" id="siestado" class="si-estilo">
                             Sí</label>
                             <input type="radio" name="si-no" id="nop" />
-                            <label for="nop" id="noestado" class="no-estilo1">
+                            <label for="nop" id="noestado" class="no-estilo">
                             No</label>
                         </div> 
+                        <div >
+                        <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                     </div>
                 </div>
+               
                 <div class="contenedor-columna centro">
-                <label class="mg6 checkradio  mb-5">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    </label>
-                    <div class="vigencia mt-5">          
-                        <label class="text-public">Vigencia en home</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class=" d-flex mt-3 ml-4"><span class="text-lan ml-5 mtop-8"> No te pierdas</span>
+                <div class="yes-no mt-3">
+                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
+                <label for="yes-landings " id="siestado-landings" class="si-estilo">
+                  Sí</label>
+                <input type="radio" name="si-no-landings" id="no-landings" />
+                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                  No</label>
+            </div>
+                <div class=" d-flex mt-3 ml-4"><span class="text-lan ml-5 mtop-8 pt-2"> No te pierdas</span>
                 <label class="checkradio">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
                 </div>
-                    <div class="d-flex ml-4"><span class="text-lan ml-5 mtop-8 mb-4"> Solo por canal claro</span>
+                    <div class="d-flex ml-4"><span class="text-lan ml-5 mtop-8 pt-2"> Solo por canal claro</span>
                     <label class="checkradio">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
                     </div>
-                    <div class="vige-lan">
-                    <label class="text-public">Vigencia en landing</label>
-                    </div>
+                    
                 </div>
                 <div class="contenedor-columna centro">
                     <div class="image-ta">
-                    <img src="./images/pencil.svg" alt=""class="pencil2">
+                    <img src="" alt="añadir imagenes">
                     </div>
+                    <span class="a-text-regular-brownishtwo text-small">Añade imagenes</span>
+
                 </div>
                 <div class="contenedor-columna centro">
                     <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small">7/1/2019 11:00:00</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
+                    <label class="a-text-medium-brownish text-small d-flex justify-content-center" type=date>DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
+                     
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >1-Jul-19</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
+                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> 
+                      
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >11:00:00 AM</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
+                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>                       
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >12:07:19 AM</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
+                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>                        
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >1982</label>
-                        <img src="./images/pencil.svg" alt=""class="pencil">
+                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">YYYY</label> 
+                      
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small">Animación, Cultura, Series</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                       
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small">Cantinflas y sus amigos: James Watt</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                    
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small" >3</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                       
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small">28</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                      
                     </div>
                 </div>
                 <div class="contenedor-columna centro ">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.  </label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                    
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                         <label class="a-text-regular-brownishtwo text-small" >PG-13</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                       
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >0</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                <div class="yes-no">
+                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
+                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                  Sí</label>
+                <input type="radio" name="si-no-landings" id="no-landings" value="0" />
+                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                  No</label>
+            </div>          
+                       
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >0</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                <div class="yes-no">
+                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
+                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                  Sí</label>
+                <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
+                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                  No</label>
+            </div>          
+                  
                     </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >0</label>
-                        <img src="./images/pencil.svg" alt="" class="pencil">
+                <div class="yes-no">
+                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
+                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                  Sí</label>
+                <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
+                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                  No</label>
+            </div>                      
                     </div>
                 </div>
             </div>
@@ -492,23 +503,18 @@ class ProgramacionGeneralController extends Controller
             $chapter_id = 0;
             $html = "            
             <div class='contenedor-fila' id='programacion-claro-".$chapter_id."'>
-                    <div class='contenedor-columna centro ' id='entrada-".$chapter_id."'> <img src='./images/bin.svg' class='mx-auto'alt=''></div>
+                    <div class='contenedor-columna centro ' id='entrada-".$chapter_id."'> <img src='./images/basic-icons/trash.svg' class='mx-auto pr-2'alt='icono para borrar'> <img src='./images/basic-icons/pencil-edit-teal.svg' class='mx-auto'alt='lapiz para editar'></div>
                     <div class='contenedor-columna centro ' id='estado-".$chapter_id."'>
-                            <img src='./images/pendientes.svg' class='mx-auto' alt=''><br>
-                            <span class='program-original'> Pendiente de revisión </span>  
+                           
+                            <span class='a-text-bold-orange text-normal'> Pendiente de revisión </span>  
                     </div>
                     <div class='contenedor-columna centro ' id='alerta-".$chapter_id."'>
                         <span class='program-original'> Este Programa no tiene datos </span>
                     </div>
-                    <div class='contenedor-columna centro ' id='seleccionar-".$chapter_id."'>  
-                        <label class='mg6 checkradio'>
-                        <input type='checkbox' id='cb-seleccionar-".$chapter_id."'>
-                        <span class='checkmark'></span>
-                        </label>
-                    </div>
+                    
                     <div class='contenedor-columna centro centro' id='title-".$chapter_id."'>
                         <label class='program-original' id='lb-title-".$chapter_id."'> Titulo de programa}</label>
-                         <img src='./images/pencil.svg'  alt='' class=''class='pencil'>
+                        
        
                     </div>
                     <div class='contenedor-columna centro ' id='programar-".$chapter_id."'>
@@ -520,128 +526,149 @@ class ProgramacionGeneralController extends Controller
                             <label for='no-".$chapter_id."' id='noestado-".$chapter_id."' class='no-estilo'>
                               No</label>
                           </div>
-                          <img src='./images/pencil.svg' alt=''class='pencil1'>
+                         
         
-                          <div class=' d-flex fechas '>
-                             <label class='date' type=date>0-0-0</label> <label class='date' type='time'>00:00</label>
+                          <div >
+                             <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>01-01-2020</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>01:00:00 HRS</label>
                           </div>
                     </div>
                     <div class='contenedor-columna centro'>
-                        <div class='periodicidad'>
+                        <div class='yes-no'>
                             <input type='radio' name='si-no-periodicidad-".$chapter_id."' id='yes-periodicidad-".$chapter_id."' checked='true' />
-                            <label for='yes-periodicidad-".$chapter_id." ' id='siestado-periodicidad-".$chapter_id."' class='si-estilo1'>
+                            <label for='yes-periodicidad-".$chapter_id." ' id='siestado-periodicidad-".$chapter_id."' class='si-estilo'>
                               Sí</label>
                             <input type='radio' name='si-no-periodicidad-".$chapter_id."' id='no-periodicidad-".$chapter_id."' checked='false'/>
-                            <label for='no-periodicidad-".$chapter_id."' id='noestado-periodicidad-".$chapter_id."' class='no-estilo1'>
+                            <label for='no-periodicidad-".$chapter_id."' id='noestado-periodicidad-".$chapter_id."' class='no-estilo'>
                               No</label>
                         </div>
+                        <div>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>00:00:00 HRS</label>
+                     </div>
                     </div>
-                    <div class='contenedor-columna centro'><label class='mg6 checkradio  mb-5'>
-                        <input type='checkbox' id='in_home-".$chapter_id."'>
-                        <span class='checkmark'></span>
-                        </label>
-                        <div class='vigencia mt-5'>          
-                            <label class='text-public'>Vigencia en home</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
-                        </div>
-                    </div>   
+                     
                     <div class='contenedor-columna centro'>
-                        <div class=' d-flex mt-3 ml-4'><span class='text-lan ml-5 mtop-8'> No te pierdas</span>
+                    <div class='yes-no mt-3'>
+                    <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
+                    <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                      Sí</label>
+                    <input type='radio' name='si-no-landings' id='no-landings' />
+                    <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                      No</label>
+                </div>
+                        <div class=' d-flex mt-3 ml-4'><span class='text-lan ml-5 mtop-8 pt-2'> No te pierdas</span>
                             <label class='checkradio'>
                                 <input type='checkbox'>
                                 <span class='checkmark'></span>
                                 </label>
                             </div>
-                                <div class='d-flex ml-4'><span class='text-lan ml-5 mtop-8 mb-4'> Solo por canal claro</span>
+                                <div class='d-flex ml-4'><span class='text-lan ml-5 mtop-8 pt-2'> Solo por canal claro</span>
                                 <label class='checkradio'>
                                 <input type='checkbox'>
                                 <span class='checkmark'></span>
                                 </label>
                                 </div>
-                                <div class='vige-lan'>
-                                <label class='text-public'>Vigencia en landing</label>
-                                </div>
+                               
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='image-ta'>
-                            <img src='./images/pencil.svg' alt=''class='pencil2'>
+                        <img src='' alt='añadir imagenes'>
+
                             </div>
+                            <span class='a-text-regular-brownishtwo text-small'>Añade imagenes</span>
+
                     </div>
                     <div class='contenedor-columna centro '>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small'>0-0-0 00:00}</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>                            
                         </div>
                     </div>
                     <div class='contenedor-columna centro '>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >0-0-0</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label>                          
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >00:00</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>                           
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >00:00</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>                           
+                        
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >0000</label>
-                            <img src='./images/pencil.svg' alt=''class='pencil'>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>YYYY</label>                          
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
                             <label class='a-text-regular-brownishtwo text-small'>programa</label>
-                            <img src='./images/pencil.svg' alt='' class='pencil'>
+                          
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <label class='a-text-regular-brownishtwo text-small'>Nombre alternativo del prgrama</label>
-                        <img src='./images/pencil.svg' alt='' class='pencil'>
+                       
                    
                     </div>
                     <div class='contenedor-columna centro'>
                         <label class='a-text-regular-brownishtwo text-small' >0</label>
-                        <img src='./images/pencil.svg' alt='' class='pencil'>
+                        
                    </div>
                     <div class='contenedor-columna centro'>  
                         <label class='a-text-regular-brownishtwo text-small'>0</label>
-                        <img src='./images/pencil.svg' alt='' class='pencil'>
+                        
                    </div>
                     <div class='contenedor-columna centro' style='white-space: auto;'>  
                         <label class='a-text-regular-brownishtwo text-small'>sinopsis del programa</label>
-                    <img src='./images/pencil.svg' alt='' class='pencil'>
+      
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
                             <label class='a-text-regular-brownishtwo text-small' >Clasificacion</label>
-                            <img src='./images/pencil.svg' alt='' class='pencil'>
+                           
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >0</label>
-                            <img src='./images/pencil.svg' alt='' class='pencil'>
+                        <div class='yes-no '>
+                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
+                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                          Sí</label>
+                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
+                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                          No</label>
+                    </div>
+                           
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >0</label>
-                            <img src='./images/pencil.svg' alt='' class='pencil'>
+                        <div class='yes-no mt-3'>
+                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
+                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                          Sí</label>
+                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
+                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                          No</label>
+                    </div>
+                       
                         </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >0</label>
-                            <img src='./images/pencil.svg' alt='' class='pencil'>
+                        <div class='yes-no mt-3'>
+                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
+                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                          Sí</label>
+                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
+                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                          No</label>
+                    </div>
+                           
                         </div>
                     </div>
                    

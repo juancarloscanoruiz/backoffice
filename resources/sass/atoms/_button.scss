@@ -3,38 +3,38 @@
 @import "../base/color";
 
 /* BOTONES REUTILIZABLES */
-.a-btn-basic-medium{
-  width: 224px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-medium {
+    width: 190px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
-.a-btn-basic-large{
-  width: 294px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-large {
+    width: 294px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
-.a-btn-basic-small{
-  width: 181px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-small {
+    width: 181px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
 
 .a-button-pill-teal-outline {
@@ -477,7 +477,7 @@
     border: 1px solid $selecred;
     //.a-menu
 }
-.btn-menu-all {   
+.btn-menu-all {
     border: solid 1px $selecred;
     background-color: $white;
     //.a-text-menu-select
@@ -695,7 +695,7 @@
 .si-estilo {
     width: 52px;
     height: 43px;
-    border-right: $skyblue;
+    border-right: $teal;
     background-color: $white;
     font-family: $MontserratSemiBold;
     font-size: 16px;
@@ -711,7 +711,7 @@
     height: 43px;
     color: $dark1;
     line-height: 2.5;
-    border-left: $skyblue;
+    border-left: $teal;
     background-color: $white;
     font-family: $MontserratSemiBold;
     font-size: 16px;

@@ -7,7 +7,6 @@
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-backoffice.php",
             container: "claro-cinema-container",
             onMessage: function(message, origin) {
-                console.log(message);
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                 this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                 this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
@@ -21,8 +20,8 @@
         <div id="title">
             <div>
                 <div class="d-flex float-left mb-5 mt-4  ml-5 mr-5 ">
-                    <button class="btn-grilla  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                    <button class="btn-landing  text-landing lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
+                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
                 </div>
 
                 <div class="d-flex float-right mt-4 mr-5">
