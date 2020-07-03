@@ -256,9 +256,9 @@ $(document).ready(function () {
   var allSlides = $(".bn-nav");
   $(".bn-nav").click(function () {
     allSlides.addClass("btn-menu-all").removeClass("btn-menu-select");
-    allSlides.addClass("text-menu-selec").removeClass("menu");
+    allSlides.addClass("a-text-bold-brown-two").removeClass("menu");
     $(this).addClass("btn-menu-select").removeClass("btn-menu-all");
-    $(this).addClass("menu").removeClass("text-menu-selec");
+    $(this).addClass("menu").removeClass("a-text-bold-brown-two");
   });
   var allnav = $(".sub-nav");
   $(".sub-nav").click(function () {
@@ -356,7 +356,7 @@ $(".arrow-left").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\backoffice1\backoffice\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })
