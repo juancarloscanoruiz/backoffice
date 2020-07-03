@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/mampstack-7.3.13-0/apache2/htdocs/CN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/mampstack-7.3.13-0/apache2/htdocs/CN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -62131,6 +62131,7 @@ $(document).ready(function () {
   }); //CHANGE TO grilla claro
 
   $(".gril-claro").click(function (event) {
+    console.log("Grilla canal claro");
     $.ajax({
       type: "POST",
       url: "view",
@@ -62139,7 +62140,7 @@ $(document).ready(function () {
       },
       success: function success(result) {
         $("#general-programming").html("");
-        $("#general-programming").html(result).promise();
+        $("#general-programming").html(result);
       }
     });
   }); //CHANGE TO grilla cinema
@@ -62152,8 +62153,9 @@ $(document).ready(function () {
         view: "grilla-claro-cinema-button"
       },
       success: function success(result) {
+        console.log("Grilla claro cinema");
         $("#general-programming").html("");
-        $("#general-programming").html(result).promise();
+        $("#general-programming").html(result);
       }
     });
   }); // CHANGE TO LANDING CINEMA
@@ -62167,7 +62169,7 @@ $(document).ready(function () {
       },
       success: function success(result) {
         $("#bodymenu").html("");
-        $("#bodymenu").html(result).promise();
+        $("#bodymenu").html(result);
       }
     });
   }); //CHANGE TO grilla concert
@@ -62180,8 +62182,9 @@ $(document).ready(function () {
         view: "grilla-concert-channel-button"
       },
       success: function success(result) {
+        console.log("grilla Concert Channel");
         $("#general-programming").html("");
-        $("#general-programming").html(result).promise();
+        $("#general-programming").html(result);
       }
     });
   }); //CHANGE TO LANDING CONCERT
@@ -62195,7 +62198,7 @@ $(document).ready(function () {
       },
       success: function success(result) {
         $("#bodymenu").html("");
-        $("#bodymenu").html(result).promise();
+        $("#bodymenu").html(result);
       }
     });
   }); //CHANGE TO grilla home
@@ -62208,8 +62211,9 @@ $(document).ready(function () {
         view: "grilla-home-button"
       },
       success: function success(result) {
+        console.log("Grilla Home");
         $("#general-programming").html("");
-        $("#general-programming").html(result).promise();
+        $("#general-programming").html(result);
       }
     });
   }); //CHANGE TO LANDING HOME
@@ -62223,7 +62227,7 @@ $(document).ready(function () {
       },
       success: function success(result) {
         $("#bodymenu").html("");
-        $("#bodymenu").html(result).promise();
+        $("#bodymenu").html(result);
       }
     });
   }); //EDITAR CLARO CANAL
@@ -62500,7 +62504,7 @@ $(document).ready(function () {
         if (fileFormat != "xlsx" && fileFormat != "xls") {
           alert("formato invalido, por favor sube un excel");
         } else {
-          var data_for_api = $('#data_for_api').val();
+          var data_for_api = $("#data_for_api").val();
           console.log(data_for_api);
           sendFilePHP(file, data_for_api); //console.log(this.files[0].name)
         }
@@ -62852,7 +62856,7 @@ function getAllUsersBO() {
           var rol = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["changeNameRol"])(user.rol_id);
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class=\"pd-10\">").concat(rol, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class=' btn-focus view-user-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-icon'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-userbo-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
-        $("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-teitl \">Usuario</div>\n            </header>\n            <section>\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        ")).promise().done(function () {
+        $("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title\">Usuario</div>\n            </header>\n            <section>\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        ")).promise().done(function () {
           Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])();
         });
         /*showDescriptions();
@@ -63495,8 +63499,8 @@ function sendEmailResetPassword(input) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -343,7 +343,7 @@ function getAllUsersBO() {
         <div class="sombras2 trans10 mb-5">
           <div class="grid-users texto-general users-backoffice-table">
             <header>
-            <div class="text-teitl ">Usuario</div>
+            <div class="text-title">Usuario</div>
             </header>
             <section>
               <div class="text-title ">Rol</div>

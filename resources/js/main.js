@@ -170,15 +170,14 @@ $(document).ready(function() {
 
     //CHANGE TO grilla claro
     $(".gril-claro").click(function(event) {
+        console.log("Grilla canal claro");
         $.ajax({
             type: "POST",
             url: "view",
             data: { view: "grilla-canal-claro-button" },
             success: function(result) {
                 $("#general-programming").html("");
-                $("#general-programming")
-                    .html(result)
-                    .promise();
+                $("#general-programming").html(result);
             }
         });
     });
@@ -189,10 +188,9 @@ $(document).ready(function() {
             url: "view",
             data: { view: "grilla-claro-cinema-button" },
             success: function(result) {
+                console.log("Grilla claro cinema");
                 $("#general-programming").html("");
-                $("#general-programming")
-                    .html(result)
-                    .promise();
+                $("#general-programming").html(result);
             }
         });
     });
@@ -204,9 +202,7 @@ $(document).ready(function() {
             data: { view: "lan-cinema" },
             success: function(result) {
                 $("#bodymenu").html("");
-                $("#bodymenu")
-                    .html(result)
-                    .promise();
+                $("#bodymenu").html(result);
             }
         });
     });
@@ -218,10 +214,9 @@ $(document).ready(function() {
             url: "view",
             data: { view: "grilla-concert-channel-button" },
             success: function(result) {
+                console.log("grilla Concert Channel");
                 $("#general-programming").html("");
-                $("#general-programming")
-                    .html(result)
-                    .promise();
+                $("#general-programming").html(result);
             }
         });
     });
@@ -233,9 +228,7 @@ $(document).ready(function() {
             data: { view: "lan-concert" },
             success: function(result) {
                 $("#bodymenu").html("");
-                $("#bodymenu")
-                    .html(result)
-                    .promise();
+                $("#bodymenu").html(result);
             }
         });
     });
@@ -246,10 +239,9 @@ $(document).ready(function() {
             url: "view",
             data: { view: "grilla-home-button" },
             success: function(result) {
+                console.log("Grilla Home");
                 $("#general-programming").html("");
-                $("#general-programming")
-                    .html(result)
-                    .promise();
+                $("#general-programming").html(result);
             }
         });
     });
@@ -261,9 +253,7 @@ $(document).ready(function() {
             data: { view: "lan-home" },
             success: function(result) {
                 $("#bodymenu").html("");
-                $("#bodymenu")
-                    .html(result)
-                    .promise();
+                $("#bodymenu").html(result);
             }
         });
     });
@@ -814,7 +804,6 @@ $(document).ready(function() {
      * Obtener el archivo subido
      */
 
-
     $("#inp_programing_claro_canal").on("change", function() {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
@@ -824,52 +813,53 @@ $(document).ready(function() {
         try {
             var file = this.files[0];
             var filename = this.files[0].name;
-    
+
             if (filename != null) {
                 var splName = filename.split(".");
                 var fileFormat = splName[splName.length - 1];
                 if (fileFormat != "xlsx" && fileFormat != "xls") {
                     alert("formato invalido, por favor sube un excel");
                 } else {
-                    var data_for_api = $('#data_for_api').val();
+                    var data_for_api = $("#data_for_api").val();
                     console.log(data_for_api);
-                    sendFilePHP(file,data_for_api);
+                    sendFilePHP(file, data_for_api);
                     //console.log(this.files[0].name)
-            }}
+                }
+            }
         } catch (error) {
             console.log(error);
         }
         this.value = null; //aqui para evitar que se hagan registros dobles
-        });
-/**
- * Eviar archivo mediante ajax a un "controlador" php
- */
-
-function sendFilePHP(file,data_for_api) {
-    console.log("enviando a php");
-    //creamos un dato de formulario para pasarlo en el ajax
-    let data = new FormData();
-    data.append("file", file);
-    data.append("datos", data_for_api);
-
-    //Realizamos el ajax
-    $.ajax({
-        type: "POST",
-        data: data,
-        processData: false, //esto es para poder pasar el archivo
-        contentType: false, //esto es para poder pasar el archivo
-        url: "general-program/captureExcel",
-        success: function(result) {
-            var programas = JSON.parse(result);
-            //console.log("php responde:" + result);
-            console.log(programas.data);
-            //console.log(result.data);
-            //$("#rempla-claro-canal").replaceWith(result);
-        }
-    }).fail(function(e) {
-        console.log(e);
     });
-}
+    /**
+     * Eviar archivo mediante ajax a un "controlador" php
+     */
+
+    function sendFilePHP(file, data_for_api) {
+        console.log("enviando a php");
+        //creamos un dato de formulario para pasarlo en el ajax
+        let data = new FormData();
+        data.append("file", file);
+        data.append("datos", data_for_api);
+
+        //Realizamos el ajax
+        $.ajax({
+            type: "POST",
+            data: data,
+            processData: false, //esto es para poder pasar el archivo
+            contentType: false, //esto es para poder pasar el archivo
+            url: "general-program/captureExcel",
+            success: function(result) {
+                var programas = JSON.parse(result);
+                //console.log("php responde:" + result);
+                console.log(programas.data);
+                //console.log(result.data);
+                //$("#rempla-claro-canal").replaceWith(result);
+            }
+        }).fail(function(e) {
+            console.log(e);
+        });
+    }
     //para agregar una nueva fila
     $("#agregar").click(function() {
         agregar();

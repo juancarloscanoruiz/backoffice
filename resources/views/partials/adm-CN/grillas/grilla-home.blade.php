@@ -18,7 +18,7 @@
     </div>
     <div class=" mb-2 ml-5 ">
     <span class="zona">Por : </span><label class="text-menu-selec separacion"><span> {{$edited_for}}</span> </label> <label class="text-menu-selec">{{$rol_user_edit}}</label>
-   
+
 </div>
     <div id="bodymenu">
         <div id="grilla">
@@ -41,17 +41,17 @@
                     <img src="./images/arrow-dark.svg" alt="" class=" ml-4 arrow-right">
 
                 </div>
-               
+
                 <div class="  ml-5    ">
-                    
+
                     @if (count($respuesta->data->programs)!=0)
                         <input disabled id="inp_programing_claro_canal" type="file" >
                         <label onclick="subirArchivos()" for="inp_programing_claro_canal" class=" a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center position-absolute justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-4"><img src="./images/clip.svg" alt="" class=" mr-4 pr-2">Cargar archivos</span></label>
-    
+
                     @else
                         <input id="inp_programing_claro_canal" type="file" >
                         <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center position-absolute justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-4"><img src="./images/clip.svg" alt="" class=" mr-4 pr-2">Cargar archivos</span></label>
-    
+
                     @endif
                     <!--
                 <button class="btn-cargar " id="file" ><span class=" d-flex align-items-center text-crea"><img src="./images/clip.svg" alt="" class=" mr-2">Cargar archivos</span></button>

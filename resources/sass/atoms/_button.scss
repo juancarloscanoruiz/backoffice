@@ -3,38 +3,38 @@
 @import "../base/color";
 
 /* BOTONES REUTILIZABLES */
-.a-btn-basic-medium{
-  width: 224px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-medium {
+    width: 227px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
-.a-btn-basic-large{
-  width: 294px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-large {
+    width: 294px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
-.a-btn-basic-small{
-  width: 181px;
-  height: 54px;
-  border-radius: 20px;
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  transition: all 0.3s;
+.a-btn-basic-small {
+    width: 181px;
+    height: 54px;
+    border-radius: 20px;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    transition: all 0.3s;
 }
 
 .a-button-pill-teal-outline {
@@ -477,7 +477,7 @@
     border: 1px solid $selecred;
     //.a-menu
 }
-.btn-menu-all {   
+.btn-menu-all {
     border: solid 1px $selecred;
     background-color: $white;
     //.a-text-menu-select

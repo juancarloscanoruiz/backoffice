@@ -34,7 +34,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
     </div>
     <div class=" mb-2 ml-5 ">
     <span class="zona">Por : </span><label class="text-menu-selec separacion"><span> {{$edited_for}}</span> </label> <label class="text-menu-selec">{{$rol_user_edit}}</label>
-   
+
 </div>
     <div id="bodymenu">
         <div id="grilla">
@@ -57,17 +57,17 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                     <img src="./images/arrow-dark.svg" alt="" class=" ml-4 arrow-right">
 
                 </div>
-               
+
                 <div class="  ml-5    ">
-                    
+
                     @if (count($respuesta->data->programs)!=0)
                         <input disabled id="inp_programing_claro_canal" type="file" >
                         <label onclick="subirArchivos()" for="inp_programing_claro_canal" class=" a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center position-absolute justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-4"><img src="./images/clip.svg" alt="" class=" mr-4 pr-2">Cargar archivos</span></label>
-    
+
                     @else
                         <input id="inp_programing_claro_canal" type="file" >
                         <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center position-absolute justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-4"><img src="./images/clip.svg" alt="" class=" mr-4 pr-2">Cargar archivos</span></label>
-    
+
                     @endif
                     <!--
                 <button class="btn-cargar " id="file" ><span class=" d-flex align-items-center text-crea"><img src="./images/clip.svg" alt="" class=" mr-2">Cargar archivos</span></button>
@@ -155,7 +155,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                         </div>
                     </div>
                     @if (count($programs)==0)
-                   
+
                     <div class="contenedor-fila" id="programacion-claro-canal">
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
@@ -181,12 +181,12 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
-                       
+
                     </div>
                     @else
 
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
-                        
+
                 <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
                         <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"> <img src="./images/bin.svg" class="mx-auto"alt=""></div>
                         <div class="contenedor-columna centro " id="estado-{{$programs[$indexPrograms]->id }}">
@@ -195,11 +195,11 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                                 <span class="program-original"> Aprobado </span>
                            @else
                                 <img src="./images/pendientes.svg" class="mx-auto" alt=""><br>
-                                <span class="program-original"> Pendiente de revisión </span>  
+                                <span class="program-original"> Pendiente de revisión </span>
                            @endif
                         </div>
                         <div class="contenedor-columna centro " id="alerta-{{$programs[$indexPrograms]->id }}"></div>
-                        <div class="contenedor-columna centro " id="seleccionar-{{$programs[$indexPrograms]->id }}">  
+                        <div class="contenedor-columna centro " id="seleccionar-{{$programs[$indexPrograms]->id }}">
                             <label class="mg6 checkradio">
                             <input type="checkbox" id="cb-seleccionar-{{$programs[$indexPrograms]->id }}">
                             <span class="checkmark"></span>
@@ -208,7 +208,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                         <div class="contenedor-columna centro centro" id="title-{{$programs[$indexPrograms]->id }}">
                             <label class="program-original" id="lb-title-{{$programs[$indexPrograms]->id }}"> {{$programs[$indexPrograms]->title }}</label>
                              <img src="./images/pencil.svg"  alt="" class=""class="pencil">
-           
+
                         </div>
                         <div class="contenedor-columna centro " id="programar-{{$programs[$indexPrograms]->id }}">
                             <div class="yes-no">
@@ -220,7 +220,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                                   No</label>
                               </div>
                               <img src="./images/pencil.svg" alt=""class="pencil1">
-            
+
                               <div class=" d-flex fechas ">
                                  <label class="date" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="date" type="time">00:00</label>
                               </div>
@@ -240,25 +240,25 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                                 <input type="checkbox" id="in_home-{{$programs[$indexPrograms]->id}}" checked>
                                 <span class="checkmark"></span>
                                 </label>
-                                <div class="vigencia mt-5" style="text-align: center">  
+                                <div class="vigencia mt-5" style="text-align: center">
                                     @if ($programs[$indexPrograms]->in_home_expiration == null)
                                         <label class="text-public">Permanente</label>
                                     @else
                                         <label class="text-public">{{$programs[$indexPrograms]->in_home_expiration}}</label>
-                                    @endif        
-                                   
+                                    @endif
+
                                     <img src="./images/pencil.svg" alt=""class="pencil">
                                 </div>
                             @else
                                 <input type="checkbox" id="in_home-{{$programs[$indexPrograms]->id}}">
                                 <span class="checkmark"></span>
                                 </label>
-                                <div class="vigencia mt-5">          
+                                <div class="vigencia mt-5">
                                     <label class="text-public">Vigencia en home</label>
                                     <img src="./images/pencil.svg" alt=""class="pencil">
                                 </div>
                             @endif
-                        </div>   
+                        </div>
                         <div class="contenedor-columna centro">
                             <div class=" d-flex mt-3 ml-4"><span class="text-lan ml-5 mtop-8"> No te pierdas</span>
                                 <label class="checkradio">
@@ -320,17 +320,17 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                         <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->subtitle}}</label>
                             <img src="./images/pencil.svg" alt="" class="pencil">
-                       
+
                         </div>
                         <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->id}}</label>
                             <img src="./images/pencil.svg" alt="" class="pencil">
                        </div>
-                        <div class="contenedor-columna centro">  
+                        <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->program_episode_number}}</label>
                             <img src="./images/pencil.svg" alt="" class="pencil">
                        </div>
-                        <div class="contenedor-columna centro" style="white-space: auto;">  
+                        <div class="contenedor-columna centro" style="white-space: auto;">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->short_synopsis}}</label>
                         <img src="./images/pencil.svg" alt="" class="pencil">
                         </div>
@@ -358,12 +358,12 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
                                 <img src="./images/pencil.svg" alt="" class="pencil">
                             </div>
                         </div>
-                       
+
                     </div>
                     @endfor
 
                     @endif
-                        
+
 
                 </div>
                 <div class="contenedor mb-5 ml-5 pr-5">

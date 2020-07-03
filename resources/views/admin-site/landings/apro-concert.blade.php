@@ -21,8 +21,8 @@
     <div id="title">
         <div>
             <div class="d-flex float-left mb-5 mt-4  ml-5 mr-5 ">
-                <button class="btn-grilla  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                <button class="btn-landing  text-landing lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
+                <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
             </div>
 
             <div class="d-flex float-right mt-4 mr-5">
