@@ -92,12 +92,12 @@ input[type="radio"]:checked + .mujer-estilo1 {
 }
 
 input[type="radio"]:checked + .si-estilo {
-  background-color: $skyblue;
+  background-color: $teal;
   color: $white;
   border: none;
 }
 input[type="radio"]:checked + .no-estilo {
-  background-color: $skyblue;
+  background-color: $teal;
   color: $white;
   border: none;
 }

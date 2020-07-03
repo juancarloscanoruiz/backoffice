@@ -218,13 +218,13 @@ $(document).ready(function() {
     const allSlides = $(".bn-nav");
     $(".bn-nav").click(function() {
         allSlides.addClass("btn-menu-all").removeClass("btn-menu-select");
-        allSlides.addClass("text-menu-selec").removeClass("menu");
+        allSlides.addClass("a-text-bold-brown-two").removeClass("menu");
         $(this)
             .addClass("btn-menu-select")
             .removeClass("btn-menu-all");
         $(this)
             .addClass("menu")
-            .removeClass("text-menu-selec");
+            .removeClass("a-text-bold-brown-two");
     });
     const allnav = $(".sub-nav");
     $(".sub-nav").click(function() {
