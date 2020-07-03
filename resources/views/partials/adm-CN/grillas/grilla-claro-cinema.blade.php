@@ -29,7 +29,7 @@ if(is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)){
 
 $data_for_new_entry = json_encode([
     'usuario_id' => session('id_user'),
-    'landing_id' => 2,
+    'landing_id' => 3,
     'version_id' => $respuesta->data->version_id,
     'version_number' => $respuesta->data->version_number
 ]);
@@ -77,7 +77,7 @@ $data_for_new_entry = json_encode([
 
                 </div>
 
-                <div class="  ml-5    ">
+                <div class="ml-5">
 
                     @if (count($respuesta->data->programs)!=0)
                         <input disabled id="inp_programing_claro_canal" type="file" >
@@ -109,14 +109,14 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro centro title-table">
                             <span class="text-public">Alerta</span>
                         </div>
-                        
+
                         <div class="contenedor-columna centro centro title-table">
                             <span class="text-public">Program Title Original</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
                             <span class="text-public">Programar publicación</span>
                         </div>
-                        
+
                         <div class="contenedor-columna centro  centro title-table">
                             <span class="text-public">Establecer en Home</span>
                         </div>
@@ -193,7 +193,7 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
-                        
+
 
                     </div>
                     @else
@@ -201,7 +201,7 @@ $data_for_new_entry = json_encode([
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
 
                 <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
-                        <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"> <img src="./images/basic-icons/trash.svg" class="mx-auto"alt=""> <img src="./images/basic-icons/pencil-edit-teal.svg" class="mx-auto"alt=""></div>
+                        <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"> <img src="./images/basic-icons/pencil-edit-teal.svg" class="mx-auto"alt=""><img src="./images/basic-icons/trash.svg" class="mx-auto"alt=""></div>
                         <div class="contenedor-columna centro " id="estado-{{$programs[$indexPrograms]->id }}">
                            @if ($respuesta->data->version_origin === "master")
                                 <img src="./images/apro-naran.svg" class="mx-auto" alt=""><br>
@@ -212,10 +212,10 @@ $data_for_new_entry = json_encode([
                            @endif
                         </div>
                         <div class="contenedor-columna centro " id="alerta-{{$programs[$indexPrograms]->id }}"></div>
-                      
+
                         <div class="contenedor-columna centro centro" id="title-{{$programs[$indexPrograms]->id }}">
                             <label class="program-original" id="lb-title-{{$programs[$indexPrograms]->id }}"> {{$programs[$indexPrograms]->title }}</label>
-                         
+
 
                         </div>
                         <div class="contenedor-columna centro " id="programar-{{$programs[$indexPrograms]->id }}">
@@ -227,7 +227,7 @@ $data_for_new_entry = json_encode([
                                 <label for="no-{{$programs[$indexPrograms]->id }}" id="noestado-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                   No</label>
                               </div>
-                        
+
 
                               <div >
                                  <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
@@ -246,7 +246,7 @@ $data_for_new_entry = json_encode([
                         <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                      </div>
                         </div>
-                       
+
                         <div class="contenedor-columna centro">
                             <!--aqui hace falta cambiar las funciones para los landings-->
                             <div class='yes-no mt-3'>
@@ -269,7 +269,7 @@ $data_for_new_entry = json_encode([
                                     <span class="checkmark"></span>
                                     </label>
                                     </div>
-                                   
+
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="image-ta">
@@ -281,60 +281,60 @@ $data_for_new_entry = json_encode([
                             <div class="schedule-date">
                             <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
 
-                           
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro ">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->day}}</label>
-                               
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->programing}}</label>
-                              
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small" >12:07:19 AM</label>
-                            
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small" >1982</label>
-                         
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small">Animación, Cultura, Series</label>
-                            
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->subtitle}}</label>
-                            
+
 
                         </div>
                         <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->id}}</label>
-                            
+
                        </div>
                         <div class="contenedor-columna centro">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->program_episode_number}}</label>
-                          
+
                        </div>
                         <div class="contenedor-columna centro" style="white-space: auto;">
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->short_synopsis}}</label>
-                       
+
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->rating}}</label>
-                               
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
@@ -347,7 +347,7 @@ $data_for_new_entry = json_encode([
                     <label for="no-landings" id="noestado-landings"class="no-estilo">
                       No</label>
                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
@@ -360,8 +360,8 @@ $data_for_new_entry = json_encode([
                     <label for="no-landings" id="noestado-landings"class="no-estilo">
                       No</label>
                 </div>
-                               
-                               
+
+
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
@@ -374,8 +374,8 @@ $data_for_new_entry = json_encode([
                     <label for="no-landings" id="noestado-landings"class="no-estilo">
                       No</label>
                 </div>
-                               
-                            
+
+
                             </div>
                         </div>
 

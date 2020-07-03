@@ -28,12 +28,12 @@
             <span class="text-titulo">PROGRAMACIÓN GENERAL <br> DEL </span>
             <span class="text-titulo-rojo">1ERO DE OCTUBRE - 1ERO DE NOVIEMBRE</span>
         </div>
-       
-        <nav class="d-flex col-xl-12 navbar-expand-sm justify-content-center position-nav pt-4">
+
+        <nav class="d-flex col-xl-12 navbar-expand-sm justify-content-center position-nav pt-5">
             <ul class="d-flex justify-content-center navbar-nav">
                 <li class="nav-item br-r ">
                     <button class="btn-menu-select a-btn-basic-medium text-normal menu bn-nav" id="grilla-canal-claro-button">Canal Claro</button>
-                 
+
                 </li>
                 <li class="nav-item br-r">
                     <button id="grilla-concert-channel-button" class="btn-menu-all a-btn-basic-medium a-text-bold-brown-two text-normal bn-nav ">Concert Channel</button>
