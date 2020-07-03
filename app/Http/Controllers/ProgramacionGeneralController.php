@@ -17,47 +17,48 @@ class ProgramacionGeneralController extends Controller
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
 
-    public function index(){
+    public function index()
+    {
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         $hoy = '2020-07-02';
         //$hoy = date('Y-n-j');
-       $client = new Client();
+        $client = new Client();
         $response = $client->get(
-            $this->url . "program/VersionEditable/".$hoy."&Claro Canal&" . session('id_user')
+            $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
         );
-        $respuesta =  json_decode($response->getBody()); 
-      
-        if($respuesta->code == 200){
-            return view('admin-site.Menu')->with('respuesta', $respuesta);
+        $respuesta =  json_decode($response->getBody());
 
-        }else{
+        if ($respuesta->code == 200) {
+            return view('admin-site.Menu')->with('respuesta', $respuesta);
+        } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
         };
-    }   
-    
-    public function getGrilla(){
+    }
+
+    public function getGrilla()
+    {
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-2-8';
-        $hoy = date('Y-n-j');
-       $client = new Client();
+        $hoy = date('Y-m-d');
+        $client = new Client();
         $response = $client->get(
-            $this->url . "program/VersionEditable/".$hoy."&Claro Canal&" . session('id_user')
+            $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
         );
-        $respuesta =  json_decode($response->getBody()); 
-      
-        if($respuesta->code == 200){
-            return view('layaout.adm-CN.Menu')->with('respuesta', $respuesta);
+        var_dump($response);
+        $respuesta =  json_decode($response->getBody());
 
-        }else{
+        if ($respuesta->code == 200) {
+            return view('layaout.adm-CN.Menu')->with('respuesta', $respuesta);
+        } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
         };
-    }  
+    }
 
 
     public function captureExcel(Request $request)
@@ -69,11 +70,11 @@ class ProgramacionGeneralController extends Controller
         $documento = IOFactory::load($ruta);
         # obtener conteo e iterar
         $totalDeHojas = $documento->getSheetCount();
-       #iterar por hojas
+        #iterar por hojas
         $programas = [];
         for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
             $hojaActual = $documento->getSheet($indiceHoja);
-            # Calcular el máximo valor de la fila 
+            # Calcular el máximo valor de la fila
             $numeroMayorDeFila = $hojaActual->getHighestRow(); // Numérico
             $letraMayorDeColumna = $hojaActual->getHighestColumn(); // Letra
             # Convertir la letra al número de columna correspondiente
@@ -309,7 +310,7 @@ class ProgramacionGeneralController extends Controller
                         <div class=" d-flex fechas ">
                             <label class="date" type=date>7/1/2019</label> <label class="date" type="time">11:00:00</label>
                         </div>
-                        
+
                 </div>
                 <div class="contenedor-columna centro">
                 <div class="periodicidad">
@@ -319,14 +320,14 @@ class ProgramacionGeneralController extends Controller
                             <input type="radio" name="si-no" id="nop" />
                             <label for="nop" id="noestado" class="no-estilo1">
                             No</label>
-                        </div> 
+                        </div>
                 </div>
                 <div class="contenedor-columna centro">
                 <label class="mg6 checkradio  mb-5">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
-                    <div class="vigencia mt-5">          
+                    <div class="vigencia mt-5">
                         <label class="text-public">Vigencia en home</label>
                         <img src="./images/pencil.svg" alt=""class="pencil">
                     </div>
@@ -443,7 +444,7 @@ class ProgramacionGeneralController extends Controller
         }
 
         //hacemos la llamada a la API
-        $data=json_decode($data);
+        $data = json_decode($data);
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
@@ -455,17 +456,16 @@ class ProgramacionGeneralController extends Controller
                     'landing_id' => $data->landing_id,
                     'version_id' => $data->version_id,
                     'version_number' => $data->version_number,
-                    'programs'=>$programas
+                    'programs' => $programas
                 ]
             )]
         );
-        $respuesta =  $response->getBody()->getContents(); 
-        
-         echo($respuesta);
+        $respuesta =  $response->getBody()->getContents();
 
-
+        echo ($respuesta);
     }
-    public function newRow(Request $request){
+    public function newRow(Request $request)
+    {
         /*//Obtenemos los datos de la vista en especifico
         $data = $request->all();
         //solicitamos a la api para obtener el id temporal del nuevo programa
@@ -483,68 +483,68 @@ class ProgramacionGeneralController extends Controller
                 ]
             )]
         );
-        $respuesta =  json_decode($response->getBody()); 
+        $respuesta =  json_decode($response->getBody());
         if($respuesta->code == 200){
 
             $chapter_id = $respuesta->data->*/
-        if(1){
+        if (1) {
 
             $chapter_id = 0;
-            $html = "            
-            <div class='contenedor-fila' id='programacion-claro-".$chapter_id."'>
-                    <div class='contenedor-columna centro ' id='entrada-".$chapter_id."'> <img src='./images/bin.svg' class='mx-auto'alt=''></div>
-                    <div class='contenedor-columna centro ' id='estado-".$chapter_id."'>
+            $html = "
+            <div class='contenedor-fila' id='programacion-claro-" . $chapter_id . "'>
+                    <div class='contenedor-columna centro ' id='entrada-" . $chapter_id . "'> <img src='./images/bin.svg' class='mx-auto'alt=''></div>
+                    <div class='contenedor-columna centro ' id='estado-" . $chapter_id . "'>
                             <img src='./images/pendientes.svg' class='mx-auto' alt=''><br>
-                            <span class='program-original'> Pendiente de revisión </span>  
+                            <span class='program-original'> Pendiente de revisión </span>
                     </div>
-                    <div class='contenedor-columna centro ' id='alerta-".$chapter_id."'>
+                    <div class='contenedor-columna centro ' id='alerta-" . $chapter_id . "'>
                         <span class='program-original'> Este Programa no tiene datos </span>
                     </div>
-                    <div class='contenedor-columna centro ' id='seleccionar-".$chapter_id."'>  
+                    <div class='contenedor-columna centro ' id='seleccionar-" . $chapter_id . "'>
                         <label class='mg6 checkradio'>
-                        <input type='checkbox' id='cb-seleccionar-".$chapter_id."'>
+                        <input type='checkbox' id='cb-seleccionar-" . $chapter_id . "'>
                         <span class='checkmark'></span>
                         </label>
                     </div>
-                    <div class='contenedor-columna centro centro' id='title-".$chapter_id."'>
-                        <label class='program-original' id='lb-title-".$chapter_id."'> Titulo de programa}</label>
+                    <div class='contenedor-columna centro centro' id='title-" . $chapter_id . "'>
+                        <label class='program-original' id='lb-title-" . $chapter_id . "'> Titulo de programa}</label>
                          <img src='./images/pencil.svg'  alt='' class=''class='pencil'>
-       
+
                     </div>
-                    <div class='contenedor-columna centro ' id='programar-".$chapter_id."'>
+                    <div class='contenedor-columna centro ' id='programar-" . $chapter_id . "'>
                         <div class='yes-no'>
-                            <input type='radio' name='yes-no-".$chapter_id."' id='programar-si-".$chapter_id."' checked />
-                            <label for='si-".$chapter_id."' id='siestado-".$chapter_id."' class='si-estilo'>
+                            <input type='radio' name='yes-no-" . $chapter_id . "' id='programar-si-" . $chapter_id . "' checked />
+                            <label for='si-" . $chapter_id . "' id='siestado-" . $chapter_id . "' class='si-estilo'>
                               Sí</label>
-                            <input type='radio' name='yes-no-".$chapter_id."' id='programar-no-".$chapter_id."' />
-                            <label for='no-".$chapter_id."' id='noestado-".$chapter_id."' class='no-estilo'>
+                            <input type='radio' name='yes-no-" . $chapter_id . "' id='programar-no-" . $chapter_id . "' />
+                            <label for='no-" . $chapter_id . "' id='noestado-" . $chapter_id . "' class='no-estilo'>
                               No</label>
                           </div>
                           <img src='./images/pencil.svg' alt=''class='pencil1'>
-        
+
                           <div class=' d-flex fechas '>
                              <label class='date' type=date>0-0-0</label> <label class='date' type='time'>00:00</label>
                           </div>
                     </div>
                     <div class='contenedor-columna centro'>
                         <div class='periodicidad'>
-                            <input type='radio' name='si-no-periodicidad-".$chapter_id."' id='yes-periodicidad-".$chapter_id."' checked='true' />
-                            <label for='yes-periodicidad-".$chapter_id." ' id='siestado-periodicidad-".$chapter_id."' class='si-estilo1'>
+                            <input type='radio' name='si-no-periodicidad-" . $chapter_id . "' id='yes-periodicidad-" . $chapter_id . "' checked='true' />
+                            <label for='yes-periodicidad-" . $chapter_id . " ' id='siestado-periodicidad-" . $chapter_id . "' class='si-estilo1'>
                               Sí</label>
-                            <input type='radio' name='si-no-periodicidad-".$chapter_id."' id='no-periodicidad-".$chapter_id."' checked='false'/>
-                            <label for='no-periodicidad-".$chapter_id."' id='noestado-periodicidad-".$chapter_id."' class='no-estilo1'>
+                            <input type='radio' name='si-no-periodicidad-" . $chapter_id . "' id='no-periodicidad-" . $chapter_id . "' checked='false'/>
+                            <label for='no-periodicidad-" . $chapter_id . "' id='noestado-periodicidad-" . $chapter_id . "' class='no-estilo1'>
                               No</label>
                         </div>
                     </div>
                     <div class='contenedor-columna centro'><label class='mg6 checkradio  mb-5'>
-                        <input type='checkbox' id='in_home-".$chapter_id."'>
+                        <input type='checkbox' id='in_home-" . $chapter_id . "'>
                         <span class='checkmark'></span>
                         </label>
-                        <div class='vigencia mt-5'>          
+                        <div class='vigencia mt-5'>
                             <label class='text-public'>Vigencia en home</label>
                             <img src='./images/pencil.svg' alt=''class='pencil'>
                         </div>
-                    </div>   
+                    </div>
                     <div class='contenedor-columna centro'>
                         <div class=' d-flex mt-3 ml-4'><span class='text-lan ml-5 mtop-8'> No te pierdas</span>
                             <label class='checkradio'>
@@ -606,17 +606,17 @@ class ProgramacionGeneralController extends Controller
                     <div class='contenedor-columna centro'>
                         <label class='a-text-regular-brownishtwo text-small'>Nombre alternativo del prgrama</label>
                         <img src='./images/pencil.svg' alt='' class='pencil'>
-                   
+
                     </div>
                     <div class='contenedor-columna centro'>
                         <label class='a-text-regular-brownishtwo text-small' >0</label>
                         <img src='./images/pencil.svg' alt='' class='pencil'>
                    </div>
-                    <div class='contenedor-columna centro'>  
+                    <div class='contenedor-columna centro'>
                         <label class='a-text-regular-brownishtwo text-small'>0</label>
                         <img src='./images/pencil.svg' alt='' class='pencil'>
                    </div>
-                    <div class='contenedor-columna centro' style='white-space: auto;'>  
+                    <div class='contenedor-columna centro' style='white-space: auto;'>
                         <label class='a-text-regular-brownishtwo text-small'>sinopsis del programa</label>
                     <img src='./images/pencil.svg' alt='' class='pencil'>
                     </div>
@@ -644,14 +644,11 @@ class ProgramacionGeneralController extends Controller
                             <img src='./images/pencil.svg' alt='' class='pencil'>
                         </div>
                     </div>
-                   
+
                 </div>";
             return $html;
-
-        }else{
+        } else {
             return json_encode($request->all());
-
         }
     }
-    
 }

@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ })

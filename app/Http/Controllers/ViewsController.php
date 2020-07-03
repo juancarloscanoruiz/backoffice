@@ -41,60 +41,59 @@ class ViewsController extends Controller
                 case 'grilla-canal-claro-button':
                     $programacion = $this->getGrilla('Claro Canal');
                     return view('partials.adm-CN.grillas.grilla-claro-canal')->with('respuesta', $programacion);
-                break;
+                    break;
                 case 'grilla-concert-channel-button':
                     $programacion = $this->getGrilla('Concert Channel');
                     return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
-                break;
+                    break;
                 case 'grilla-claro-cinema-button':
                     $programacion = $this->getGrilla('Claro Cinema');
                     return view('partials.adm-CN.grillas.grilla-claro-cinema')->with('respuesta', $programacion);
-                break;
+                    break;
                 case 'grilla-home-button':
                     return view('partials.adm-CN.grillas.grilla-home');
-                break;
+                    break;
                 case 'lan-claro':
                     return view('partials.adm-CN.submenus.submenu-claro-canal');
-                 
-                break;
+
+                    break;
                 case 'lan-cinema':
                     return view('partials.adm-CN.submenus.submenu-claro-cinema');
-                 
-                break;
+
+                    break;
                 case 'lan-concert':
                     return view('partials.adm-CN.submenus.submenu-concert-channel');
-                 
-                break;
+
+                    break;
                 case 'lan-home':
                     return view('partials.adm-CN.submenus.submenu-home');
-                 
-                break;
-               
+
+                    break;
+
                 default:
                     # code...
                     break;
             }
         }
     }
-    public function getGrilla($grilla){
+    public function getGrilla($grilla)
+    {
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
-        $hoy = '2020-07-02';
-        //$hoy = date('Y-m-d');
-
-       $client = new Client();
+        //$hoy = '2020-07-02';
+        $hoy = date('Y-m-d');
+        $client = new Client();
         $response = $client->get(
-            $this->url . "program/VersionEditable/".$hoy."&".$grilla."&" . session('id_user')
+            $this->url . "program/VersionEditable/" . $hoy . "&" . $grilla . "&" . session('id_user')
         );
-        $respuesta =  json_decode($response->getBody()); 
-      
-        if($respuesta->code == 200){
-            return $respuesta;
+        $respuesta =  json_decode($response->getBody());
 
-        }else{
+        if ($respuesta->code == 200) {
+            return $respuesta;
+        } else {
             return null;
         };
-    } 
+    }
 }

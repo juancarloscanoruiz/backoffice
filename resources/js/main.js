@@ -821,9 +821,8 @@ $(document).ready(function() {
                     alert("formato invalido, por favor sube un excel");
                 } else {
                     var data_for_api = $("#data_for_api").val();
-                    console.log(data_for_api);
                     sendFilePHP(file, data_for_api);
-                    //console.log(this.files[0].name)
+                    console.log(this.files[0].name);
                 }
             }
         } catch (error) {
