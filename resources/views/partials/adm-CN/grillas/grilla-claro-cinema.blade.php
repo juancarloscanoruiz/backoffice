@@ -38,17 +38,17 @@ $data_for_new_entry = json_encode([
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class=" ml-5"> <span cass="a-text-black-light text-normal">Última edición : </span>
-    <label class=" zona text-normal separacion">{{$last_edition}}</label>
-        <label class="zona-text-normal">{{$last_edition}}</label>
+    <label class=" zona  separacion">{{$last_edition}} hey</label>
+        <label class="zona ">{{$last_edition}}bye</label>
         <div class="d-flex float-right  ml-btn   mr-5 ">
-        <button class="btn-grilla a-btn-basic-small text-grilla mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
-        <button class="btn-landing a-btn-basic-small text-landing lan-claro" id="btn-landing" ><span>Landing</span></button>
+        <button class="btn-grilla a-btn-basic-small a-text-MBlack  text-plus mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
+        <button class="btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-claro" id="btn-landing" ><span>Landing</span></button>
     </div>
     </div>
     <div class=" mb-2 ml-5 ">
     <span class="a-text-black-light">Por : </span>
-    <label class="zona text-normal separacion"> {{$edited_for}} </label>
-     <label class="zona text-normal">{{$rol_user_edit}}</label>
+    <label class="zona  separacion"> {{$edited_for}} </label>
+     <label class="zona ">{{$rol_user_edit}}</label>
 
 </div>
 

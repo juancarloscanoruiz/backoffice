@@ -2,7 +2,12 @@
 let cleaveConfig = {
     date: true,
     delimiter: "-",
-    datePattern: ["d", "m", "Y"]
+    datePattern: ["Y", "d", "m"]
 };
 
-export { cleaveConfig };
+let scheduleTimeConfig = {
+    time: true,
+    timePattern: ["h", "m"]
+};
+
+export { cleaveConfig, scheduleTimeConfig };

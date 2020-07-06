@@ -204,70 +204,72 @@ class ProgramacionGeneralController extends Controller
         $htmlProgrmacion = "<div id='tb1' class='contenedor-tabla  ml-5 pr-5'>
         <div class='contenedor-fila'>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'> Entrada</span>
+                <span class='a-text-semibold-white text-normal'> Entrada</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Estado</span>
+                <span class='a-text-semibold-white text-normal'>Estado</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Alerta</span>
+                <span class='a-text-semibold-white text-normal'>Alerta</span>
             </div>
 
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Program Title Original</span>
+                <span class='a-text-semibold-white text-normal'>Program Title Original</span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Programar publicación</span>
+                <span class='a-text-semibold-white text-normal'>Programar publicación</span>
             </div>
 
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Establecer en Home</span>
+                <span class='a-text-semibold-white text-normal'>Establecer en Home</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Establecer en landing</span>
+                <span class='a-text-semibold-white text-normal'>Establecer en landing</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'> Imagenes</span>
+                <span class='a-text-semibold-white text-normal'> Imagenes</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Schedule Item Date Time</span>
+                <span class='a-text-semibold-white text-normal'>Schedule Item Date Time</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Schedule Item Long Date</span>
+                <span class='a-text-semibold-white text-normal'>Schedule Item Long Date</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Schedule Item Long Time< (GMT)</span> </div> <div class='contenedor-columna centro centro title-table'>
-                        <span class='text-public'>Estimated Schedule Item Duration</span>
+                <span class='a-text-semibold-white text-normal'>Schedule Item Long Time< (GMT)</span>
+             </div>
+             <div class='contenedor-columna centro centro title-table'>
+             <span class='a-text-semibold-white text-normal'>Estimated Schedule Item Duration</span>
+ </div>
+            <div class='contenedor-columna centro  centro title-table'>
+                <span class='a-text-semibold-white text-normal'>Program Year Produced</span>
+            </div>
+            <div class='contenedor-columna centro centro title-table'>
+                <span class='a-text-semibold-white text-normal'>Program Genre List</span>
+            </div>
+            <div class='contenedor-columna centro centro title-table'>
+                <span class='a-text-semibold-white text-normal'>Program Title Alternate </span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Program Year Produced</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Program Genre List</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Program Title Alternate </span>
+                <span class='a-text-semibold-white text-normal'>Program Episode Season</span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Program Episode Season</span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Program Episode Number</span>
+                <span class='a-text-semibold-white text-normal'>Program Episode Number</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Synopsis</span>
+                <span class='a-text-semibold-white text-normal'>Synopsis</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Schedule Item Rating Code</span>
+                <span class='a-text-semibold-white text-normal'>Schedule Item Rating Code</span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Scheduled Version SUBBED (1=Yes/0=No)</span>
+                <span class='a-text-semibold-white text-normal'>Scheduled Version SUBBED (1=Yes/0=No)</span>
             </div>
             <div class='contenedor-columna centro centro title-table'>
-                <span class='text-public'>Scheduled Version DUBBED (1=Yes/0=No)</span>
+                <span class='a-text-semibold-white text-normal'>Scheduled Version DUBBED (1=Yes/0=No)</span>
             </div>
             <div class='contenedor-columna centro  centro title-table'>
-                <span class='text-public'>Audio 5.1 available
+                <span class='a-text-semibold-white text-normal'>Audio 5.1 available
                     (1=Yes/0=No)</span>
             </div>
         </div>";
@@ -299,7 +301,7 @@ class ProgramacionGeneralController extends Controller
                         </div>
 
                         <div>
-                            <label class="a-text-medium-brownish text-small d-flex justify-content-center" type=date>07-01-2019</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">11:00:00  HRS</label>
+                            <label class="a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2" type=date>07-01-2019</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">11:00:00  HRS</label>
                         </div>
 
                 </div>
@@ -313,12 +315,12 @@ class ProgramacionGeneralController extends Controller
                             No</label>
                         </div>
                         <div >
-                        <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                        <label class="a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                      </div>
                 </div>
 
                 <div class="contenedor-columna centro">
-                <div class="yes-no mt-3">
+                <div class="yes-no pt-2">
                 <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
                 <label for="yes-landings " id="siestado-landings" class="si-estilo">
                   Sí</label>
@@ -326,13 +328,13 @@ class ProgramacionGeneralController extends Controller
                 <label for="no-landings" id="noestado-landings"class="no-estilo">
                   No</label>
             </div>
-                <div class=" d-flex mt-3 ml-4"><span class="text-lan ml-5 mtop-8 pt-2"> No te pierdas</span>
+                <div class=" d-flex mt-2 ml-4 pt-2"><span class="text-lan ml-5 "> No te pierdas</span>
                 <label class="checkradio">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
                 </div>
-                    <div class="d-flex ml-4"><span class="text-lan ml-5 mtop-8 pt-2"> Solo por canal claro</span>
+                    <div class="d-flex ml-4 mt-2 mb-2"><span class="text-lan ml-5 "> Solo por canal claro</span>
                     <label class="checkradio">
                     <input type="checkbox">
                     <span class="checkmark"></span>
@@ -349,7 +351,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
                 <div class="contenedor-columna centro">
                     <div class="schedule-date">
-                    <label class="a-text-medium-brownish text-small d-flex justify-content-center" type=date>DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
+                    <label class="a-text-medium-brownish text-small d-flex justify-content-center pb-2" type=date>DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
 
                     </div>
                 </div>
@@ -401,7 +403,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
                 <div class="contenedor-columna centro ">
                 <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+                        <label class="a-text-regular-brownishtwo text-small p-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.  </label>
 
                     </div>
@@ -415,11 +417,11 @@ class ProgramacionGeneralController extends Controller
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                 <div class="yes-no">
-                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
-                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                <input type="radio" id="yes-date2"  value="1" checked="true" />
+                <label for="yes-date2" id="siestado-date2" class="si-estilo">
                   Sí</label>
-                <input type="radio" name="si-no-landings" id="no-landings" value="0" />
-                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                <input type="radio"  id="no-date2" value="0" />
+                <label for="no-date2" id="noestado-date2"class="no-estilo">
                   No</label>
             </div>
 
@@ -428,11 +430,11 @@ class ProgramacionGeneralController extends Controller
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                 <div class="yes-no">
-                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
-                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                <input type="radio" id="yes-date1"  value="1" checked="true" />
+                <label for="yes-date1" id="siestado-date1" class="si-estilo">
                   Sí</label>
-                <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
-                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                <input type="radio"  id="no-date1" value="0"/>
+                <label for="no-date1" id="noestado-date1"class="no-estilo">
                   No</label>
             </div>
 
@@ -441,11 +443,11 @@ class ProgramacionGeneralController extends Controller
                 <div class="contenedor-columna centro">
                 <div class="schedule-date">
                 <div class="yes-no">
-                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
-                <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                <input type="radio" id="yes-date"  value="1" checked="true" />
+                <label for="yes-date" id="siestado-date" class="si-estilo">
                   Sí</label>
-                <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
-                <label for="no-landings" id="noestado-landings"class="no-estilo">
+                <input type="radio"  id="no-date" value="0"/>
+                <label for="no-date" id="noestado-date"class="no-estilo">
                   No</label>
             </div>
                     </div>
@@ -529,7 +531,7 @@ class ProgramacionGeneralController extends Controller
 
 
                           <div >
-                             <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>01-01-2020</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>01:00:00 HRS</label>
+                             <label class='a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2' type=date>01-01-2020</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>01:00:00 HRS</label>
                           </div>
                     </div>
                     <div class='contenedor-columna centro'>
@@ -542,12 +544,12 @@ class ProgramacionGeneralController extends Controller
                               No</label>
                         </div>
                         <div>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>00:00:00 HRS</label>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>00:00:00 HRS</label>
                      </div>
                     </div>
 
                     <div class='contenedor-columna centro'>
-                    <div class='yes-no mt-3'>
+                    <div class='yes-no pt-2 '>
                     <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
                     <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
                       Sí</label>
@@ -555,13 +557,13 @@ class ProgramacionGeneralController extends Controller
                     <label for='no-landings' id='noestado-landings'class='no-estilo'>
                       No</label>
                 </div>
-                        <div class=' d-flex mt-3 ml-4'><span class='text-lan ml-5 mtop-8 pt-2'> No te pierdas</span>
+                        <div class=' d-flex mt-2 ml-4 pt-2'><span class='text-lan ml-5 '> No te pierdas</span>
                             <label class='checkradio'>
                                 <input type='checkbox'>
                                 <span class='checkmark'></span>
                                 </label>
                             </div>
-                                <div class='d-flex ml-4'><span class='text-lan ml-5 mtop-8 pt-2'> Solo por canal claro</span>
+                                <div class='d-flex ml-4 mt-2 mb-2'><span class='text-lan ml-5'> Solo por canal claro</span>
                                 <label class='checkradio'>
                                 <input type='checkbox'>
                                 <span class='checkmark'></span>
@@ -579,7 +581,7 @@ class ProgramacionGeneralController extends Controller
                     </div>
                     <div class='contenedor-columna centro '>
                         <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>
+                        <label class='a-text-medium-brownish text-small d-flex justify-content-center pb-2' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>
                         </div>
                     </div>
                     <div class='contenedor-columna centro '>
@@ -623,7 +625,7 @@ class ProgramacionGeneralController extends Controller
 
                    </div>
                     <div class='contenedor-columna centro' style='white-space: auto;'>
-                        <label class='a-text-regular-brownishtwo text-small'>sinopsis del programa</label>
+                        <label class='a-text-regular-brownishtwo text-small p-2'>sinopsis del programa</label>
 
                     </div>
                     <div class='contenedor-columna centro'>
@@ -635,11 +637,11 @@ class ProgramacionGeneralController extends Controller
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
                         <div class='yes-no '>
-                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
-                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                        <input type='radio' id='yes-date2'  value='1' checked='true' />
+                        <label for='yes-date2 ' id='siestado-date2' class='si-estilo'>
                           Sí</label>
-                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
-                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                        <input type='radio'  id='no-date2' value='0'/>
+                        <label for='no-date2' id='noestado-date2'class='no-estilo'>
                           No</label>
                     </div>
 
@@ -648,11 +650,11 @@ class ProgramacionGeneralController extends Controller
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
                         <div class='yes-no mt-3'>
-                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
-                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                        <input type='radio' id='yes-date1'  value='1' checked='true' />
+                        <label for='yes-date1 ' id='siestado-date1' class='si-estilo'>
                           Sí</label>
-                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
-                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                        <input type='radio'  id='no-date1' value='0'/>
+                        <label for='no-date1' id='noestado-date1'class='no-estilo'>
                           No</label>
                     </div>
 
@@ -661,11 +663,11 @@ class ProgramacionGeneralController extends Controller
                     <div class='contenedor-columna centro'>
                         <div class='schedule-date'>
                         <div class='yes-no mt-3'>
-                        <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
-                        <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
+                        <input type='radio' id='yes-date'  value='1' checked='true' />
+                        <label for='yes-date ' id='siestado-date' class='si-estilo'>
                           Sí</label>
-                        <input type='radio' name='si-no-landings' id='no-landings' value='0'/>
-                        <label for='no-landings' id='noestado-landings'class='no-estilo'>
+                        <input type='radio'  id='no-date' value='0'/>
+                        <label for='no-date' id='noestado-date'class='no-estilo'>
                           No</label>
                     </div>
 

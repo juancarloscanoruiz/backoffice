@@ -181,38 +181,38 @@ $(document).ready(function() {
     });
     $("button[id=btn-landing]").click(function() {
         if (
-            $(this).hasClass("btn-landing") & $(this).hasClass("text-landing")
+            $(this).hasClass("btn-landing") & $(this).hasClass("a-text-semi-brown-two")
         ) {
             $(this)
                 .removeClass("btn-landing")
                 .addClass("btn-grilla");
             $(this)
-                .removeClass("text-landing")
-                .addClass("text-grilla");
+                .removeClass("a-text-semi-brown-two")
+                .addClass("a-text-MBlack");
             $("button[id=btn-grilla]")
                 .addClass("btn-landing")
                 .removeClass("btn-grilla");
             $("button[id=btn-grilla]")
-                .addClass("text-landing")
-                .removeClass("text-grilla");
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
         }
     });
     $("button[id=btn-grilla]").click(function() {
         if (
-            $(this).hasClass("btn-landing") & $(this).hasClass("text-landing")
+            $(this).hasClass("btn-landing") & $(this).hasClass("a-text-semi-brown-two")
         ) {
             $(this)
                 .addClass("btn-grilla")
                 .removeClass("btn-landing");
             $(this)
-                .addClass("text-grilla")
-                .removeClass("text-landing");
+                .addClass("a-text-MBlack") //text-grilla
+                .removeClass("a-text-semi-brown-two");//text-landing
             $("button[id=btn-landing]")
                 .addClass("btn-landing")
                 .removeClass("btn-grilla");
             $("button[id=btn-landing]")
-                .addClass("text-landing")
-                .removeClass("text-grilla");
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
         }
     });
     const allSlides = $(".bn-nav");

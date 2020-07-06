@@ -63446,17 +63446,22 @@ function getNameGender(g) {
 /*!***************************************!*\
   !*** ./resources/js/config/config.js ***!
   \***************************************/
-/*! exports provided: cleaveConfig */
+/*! exports provided: cleaveConfig, scheduleTimeConfig */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleaveConfig", function() { return cleaveConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scheduleTimeConfig", function() { return scheduleTimeConfig; });
 //Cleave.js configuration
 var cleaveConfig = {
   date: true,
   delimiter: "-",
-  datePattern: ["d", "m", "Y"]
+  datePattern: ["Y", "d", "m"]
+};
+var scheduleTimeConfig = {
+  time: true,
+  timePattern: ["h", "m"]
 };
 
 
@@ -63654,13 +63659,8 @@ $.ajaxSetup({
   }
 });
 $(document).ready(function () {
-  var cleaveElement = $(".date-input");
-
-  if (cleaveElement) {
-    console.log("cleave js");
-    new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".date-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
-  }
-
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-time", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-date", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["showUserFront"])(); //GET USER
 
   $("#cambio").on("click", ".view-user-icon", function () {

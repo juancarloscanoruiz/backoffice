@@ -4,7 +4,7 @@
 
 /* BOTONES REUTILIZABLES */
 .a-btn-basic-medium {
-    width: 190px;
+    width: 210px;
     height: 54px;
     border-radius: 20px;
     outline: none !important;
@@ -686,7 +686,6 @@
     width: 105px;
     height: 43px;
     border-radius: 21.5px;
-    border: solid 1px $morelightgray;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -704,7 +703,7 @@
     text-align: center;
     outline: none !important;
     border-radius: 21px 0 0 21px;
-    border: 1px solid $dark1;
+    border: 1px solid $morelightgray;
 }
 .no-estilo {
     width: 52px;
@@ -718,7 +717,7 @@
     text-align: center;
     outline: none !important;
     border-radius: 0 21px 21px 0;
-    border: 1px solid $dark1;
+    border: 1px solid $morelightgray;
 }
 .fechas {
     width: 167px;
