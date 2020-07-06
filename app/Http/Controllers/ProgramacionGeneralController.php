@@ -201,7 +201,8 @@ class ProgramacionGeneralController extends Controller
         }
         //$programas=json_encode($programas);
 
-        $htmlProgrmacion = "<div id='tb1' class='contenedor-tabla  ml-5 pr-5'>
+        $htmlProgrmacion = "<div id='tb1' class='d-flex  ml-5 pr-5'style='width:112%;'>
+        <div class'conten-tab'>
         <div class='contenedor-fila'>
             <div class='contenedor-columna centro centro title-table'>
                 <span class='a-text-semibold-white text-normal'> Entrada</span>
@@ -328,17 +329,22 @@ class ProgramacionGeneralController extends Controller
                 <label for="no-landings" id="noestado-landings"class="no-estilo">
                   No</label>
             </div>
-                <div class=" d-flex mt-2 ml-4 pt-2"><span class="text-lan ml-5 "> No te pierdas</span>
-                <label class="checkradio">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    </label>
+                <div class=" d-flex mt-2 ml-2 pt-2">
+                <label class="checkradio d-flex  ml-2">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                </label>
+                
+                <span class="text-lan ml-2 "> No te pierdas</span>
+            
                 </div>
-                    <div class="d-flex ml-4 mt-2 mb-2"><span class="text-lan ml-5 "> Solo por canal claro</span>
-                    <label class="checkradio">
+                    <div class="d-flex ml-2 mt-2 mb-2">
+                    <label class="checkradio d-flex  ml-2">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     </label>
+                    <span class="text-lan ml-2 "> Solo por canal claro</span>
+                    
                     </div>
 
                 </div>
@@ -453,6 +459,7 @@ class ProgramacionGeneralController extends Controller
                     </div>
                 </div>
             </div>
+            </div>
             ';
         }
 
@@ -557,17 +564,21 @@ class ProgramacionGeneralController extends Controller
                     <label for='no-landings' id='noestado-landings'class='no-estilo'>
                       No</label>
                 </div>
-                        <div class=' d-flex mt-2 ml-4 pt-2'><span class='text-lan ml-5 '> No te pierdas</span>
-                            <label class='checkradio'>
-                                <input type='checkbox'>
-                                <span class='checkmark'></span>
-                                </label>
+                        <div class=' d-flex mt-2 ml-2 pt-2'>
+                        <label class='checkradio d-flex  ml-2'>
+                        <input type='checkbox'>
+                        <span class='checkmark'></span>
+                        </label>
+                        <span class='text-lan ml-2 '> No te pierdas</span>
+                          
                             </div>
-                                <div class='d-flex ml-4 mt-2 mb-2'><span class='text-lan ml-5'> Solo por canal claro</span>
-                                <label class='checkradio'>
+                                <div class='d-flex ml-2 mt-2 mb-2'>
+                                <label class='checkradio d-flex  ml-2'>
                                 <input type='checkbox'>
                                 <span class='checkmark'></span>
                                 </label>
+                                <span class='text-lan ml-2'> Solo por canal claro</span>
+                              
                                 </div>
 
                     </div>

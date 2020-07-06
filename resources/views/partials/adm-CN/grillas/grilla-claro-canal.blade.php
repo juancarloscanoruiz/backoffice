@@ -94,7 +94,8 @@ $data_for_new_entry = json_encode([
             <!--end-->
 
             <div id="rempla-claro-canal">
-                <div id="tb1" class="contenedor-tabla  ml-5 pr-5">
+                <div id="tb1" class="d-flex  ml-5 pr-5" style="width:112%;">
+<div class="conten-tab">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table">
                             <span class="a-text-semibold-white text-normal"> Acciones</span>
@@ -284,17 +285,21 @@ $data_for_new_entry = json_encode([
                                 <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                   No</label>
                             </div>
-                            <div class=" d-flex mt-2 ml-4 pt-2"><span class="a-text-medium-brownish ml-5 "> No te pierdas</span>
-                                <label class="checkradio">
+                            <div class=" d-flex mt-2 ml-2 pt-2">
+                            <label class="checkradio d-flex  ml-2">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                     </label>
+                                <span class="a-text-medium-brownish ml-2"> No te pierdas</span>
+                               
                                 </div>
-                                    <div class="d-flex ml-4 mb-2 mt-2"><span class="a-text-medium-brownish ml-5  "> Solo por canal claro</span>
-                                    <label class="checkradio">
+                                    <div class="d-flex ml-2 mb-2 mt-2">
+                                    <label class="checkradio d-flex  ml-2">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                     </label>
+                                        <span class="a-text-medium-brownish  ml-2 "> Solo por canal claro</span>
+                                   
                                     </div>
 
                         </div>
@@ -413,6 +418,7 @@ $data_for_new_entry = json_encode([
 
 
                 </div>
+</div> <!--cierre del div conten-tab-->
                 <div class="contenedor mb-5 ml-5 pr-5">
                     <div class="contenedor-columna centro">
                         <div id="agregar-canal-claro" onclick='nuevo_programa(<?php echo $data_for_new_entry ;?>)' class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">
