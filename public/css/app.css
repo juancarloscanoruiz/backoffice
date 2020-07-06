@@ -2424,6 +2424,13 @@ input[type=radio]:checked + .no-estilo1 {
   width: 0;
 }
 
+.edit-cell {
+  resize: none;
+  border: none;
+  padding: 8px;
+  width: 100%;
+}
+
 .line {
   width: 100%;
   height: 1px;

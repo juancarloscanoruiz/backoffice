@@ -2,266 +2,273 @@
 @import "../base/color";
 
 .insert-data {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-clip: padding-box;
-  width: 100%;
-  height: 44px;
-  background-color: $white;
-  padding: 1px;
-  border: none;
-  border-radius: 0px;
-  border-bottom: solid 1px $morelight;
-  font-weight: bold;
-  outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    width: 100%;
+    height: 44px;
+    background-color: $white;
+    padding: 1px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: solid 1px $morelight;
+    font-weight: bold;
+    outline: none !important;
 }
 
 .insert-data:focus {
-  color: $blueInput;
-  border-bottom: solid 2px $blueInput;
-  font-family: $MontserratBold;
+    color: $blueInput;
+    border-bottom: solid 2px $blueInput;
+    font-family: $MontserratBold;
 }
 
 .correo {
-  font-family: $MontserratSemiBold;
-  font-size: 14px;
-  color: $lightbrown;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
+    font-family: $MontserratSemiBold;
+    font-size: 14px;
+    color: $lightbrown;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
 }
 input[type="radio"]:checked + .a-btn-check:before {
-  content: "\02713";
-  font-size: 30px;
-  color: $kelley-green;
+    content: "\02713";
+    font-size: 30px;
+    color: $kelley-green;
 }
 
 input[type="radio"]:checked + .hombre-estilo {
-  background: $lemongreen;
-  color: $white;
-  border: none;
+    background: $lemongreen;
+    color: $white;
+    border: none;
 }
 input[type="checkbox"] {
-  display: none;
+    display: none;
 }
 input[type="radio"] {
-  display: none;
+    display: none;
 }
 .input-border-red {
-  border-bottom: 2px solid #ff0007;
+    border-bottom: 2px solid #ff0007;
 }
 .check {
-  width: 17px;
-  height: 16px;
-  border: solid 2px $teal;
+    width: 17px;
+    height: 16px;
+    border: solid 2px $teal;
 }
 .radio-claro {
-  display: block;
-  margin-left: 8%;
-  margin-bottom: -16%;
+    display: block;
+    margin-left: 8%;
+    margin-bottom: -16%;
 }
 .radio-lan {
-  display: block;
-  margin-left: 18%;
-  margin-bottom: -16%;
+    display: block;
+    margin-left: 18%;
+    margin-bottom: -16%;
 }
 .selec-radio {
-  display: block;
-  margin: auto;
+    display: block;
+    margin: auto;
 }
 option:checked + .roles {
-  background: $lemongreen;
-  color: $white;
-  border: none;
+    background: $lemongreen;
+    color: $white;
+    border: none;
 }
 
 input[type="radio"]:checked + .mujer-estilo {
-  background: $lemongreen;
-  color: $white;
-  border: none;
+    background: $lemongreen;
+    color: $white;
+    border: none;
 }
 input[type="radio"]:checked + .mujer-estilo1 {
-  background: $lemongreen;
-  color: $white;
-  border: none;
+    background: $lemongreen;
+    color: $white;
+    border: none;
 }
 
 input[type="radio"]:checked + .si-estilo {
-  background-color: $teal;
-  color: $white;
-  border: none;
+    background-color: $teal;
+    color: $white;
+    border: none;
 }
 input[type="radio"]:checked + .no-estilo {
-  background-color: $teal;
-  color: $white;
-  border: none;
+    background-color: $teal;
+    color: $white;
+    border: none;
 }
 
 input[type="radio"]:checked + .si-estilo1 {
-  background-color: $darkinput;
-  color: $white;
-  border: none;
+    background-color: $darkinput;
+    color: $white;
+    border: none;
 }
 input[type="radio"]:checked + .no-estilo1 {
-  background-color: $darkinput;
-  color: $white;
-  border: none;
+    background-color: $darkinput;
+    color: $white;
+    border: none;
 }
 .checkradio {
-  display: block;
-  position: absolute;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .checkradio input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  border-radius: 1em;
-  border: 3px solid grey;
-  background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 1em;
+    border: 3px solid grey;
+    background-color: white;
 }
 
 .checkradio input:checked ~ .checkmark {
-  background-color: white;
+    background-color: white;
 }
 
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
 .checkradio input:checked ~ .checkmark:after {
-  display: block;
+    display: block;
 }
 
 .checkradio .checkmark:after {
-  left: 16%;
-  top: 16%;
-  width: 13px;
-  height: 13px;
-  background-color: #6a6666;
-  border-radius: 1em;
+    left: 16%;
+    top: 16%;
+    width: 13px;
+    height: 13px;
+    background-color: #6a6666;
+    border-radius: 1em;
 }
 
 .checksquare {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .checksquare input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .checkmark1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 38px;
-  width: 38px;
-  border: 3px solid $silver-two;
-  background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 38px;
+    width: 38px;
+    border: 3px solid $silver-two;
+    background-color: white;
 }
 
 .checkmark2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 38px;
-  width: 38px;
-  border: 3px solid $silver-two;
-  background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 38px;
+    width: 38px;
+    border: 3px solid $silver-two;
+    background-color: white;
 }
 .checksquare input:checked ~ .checkmark1 {
-  background-color: white;
+    background-color: white;
 }
 .checksquare input:checked ~ .checkmark2 {
-  background-color: white;
+    background-color: white;
 }
 .checkmark1:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 .checkmark2:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
 .checksquare input:checked ~ .checkmark1:after {
-  display: block;
+    display: block;
 }
 
 .checksquare input:checked ~ .checkmark2:after {
-  display: block;
+    display: block;
 }
 .checksquare .checkmark1:after {
-  left: 12px;
-  top: 0px;
-  width: 12px;
-  height: 26px;
-  border: solid $kelley-green;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+    left: 12px;
+    top: 0px;
+    width: 12px;
+    height: 26px;
+    border: solid $kelley-green;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 .checksquare .checkmark2:after {
-  left: 12px;
-  top: 0px;
-  width: 12px;
-  height: 26px;
-  border: solid $selecred;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+    left: 12px;
+    top: 0px;
+    width: 12px;
+    height: 26px;
+    border: solid $selecred;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 .prueba-check {
-  width: 60px;
-  height: 39px;
-  border: 3px solid $lightgray;
+    width: 60px;
+    height: 39px;
+    border: 3px solid $lightgray;
 }
 .prueba-check input {
-  width: 60px;
-  height: 39px;
+    width: 60px;
+    height: 39px;
 }
 
 #date-schedule-landing {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.edit-cell {
+    resize: none;
+    border: none;
+    padding: 8px;
+    width: 100%;
 }

@@ -47,6 +47,7 @@ $.ajaxSetup({
 $(document).ready(function() {
     let cleaveElement = $(".date-input");
     if (cleaveElement) {
+        console.log("cleave js");
         new Cleave(".date-input", cleaveConfig);
     }
 

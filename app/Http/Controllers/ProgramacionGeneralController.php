@@ -32,6 +32,7 @@ class ProgramacionGeneralController extends Controller
         $respuesta =  json_decode($response->getBody());
 
         if ($respuesta->code == 200) {
+            var_dump($respuesta);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
@@ -84,7 +85,6 @@ class ProgramacionGeneralController extends Controller
                 # declaramos un arreglo que contendra los datos
                 $programa = [];
                 for ($indiceColumna = 1; $indiceColumna <= $numeroMayorDeColumna; $indiceColumna++) {
-
                     # Obtener celda por columna y fila
                     $celda = $hojaActual->getCellByColumnAndRow($indiceColumna, $indiceFila);
                     # Y ahora que tenemos una celda trabajamos con ella

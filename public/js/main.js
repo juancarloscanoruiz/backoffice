@@ -63657,6 +63657,7 @@ $(document).ready(function () {
   var cleaveElement = $(".date-input");
 
   if (cleaveElement) {
+    console.log("cleave js");
     new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".date-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
   }
 

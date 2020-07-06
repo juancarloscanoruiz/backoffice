@@ -226,25 +226,64 @@ $data_for_new_entry = json_encode([
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
 
                 <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
+                        <!--IMÁGENES-->
                         <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
+                        <!--ESTADO-->
                         <div class="contenedor-columna centro" id="estado-{{$programs[$indexPrograms]->id }}">
                            @if ($respuesta->data->version_origin === "master")
-
-                                <span class="program-original"> Aprobado </span>
+                                <span class="program-original">Aprobado</span>
                            @else
-
-                                <span class="program-original"> Pendiente de revisión </span>
+                                <span class="program-original">Pendiente de revisión</span>
                            @endif
                         </div>
+                        <!--ALERTA-->
                         <div class="contenedor-columna centro " id="alerta-{{$programs[$indexPrograms]->id }}"></div>
-
+                        <!--PROGRAM TITLE ORIGINAL-->
                         <div class="contenedor-columna centro centro" id="title-{{$programs[$indexPrograms]->id }}">
-                            <label class="program-original" id="lb-title-{{$programs[$indexPrograms]->id }}"> {{$programs[$indexPrograms]->title }}</label>
-
+                            <textarea name="" class="program-original edit-cell" id="lb-title-{{$programs[$indexPrograms]->id }}">{{$programs[$indexPrograms]->title}}</textarea>
+                        </div>
+                        <!--ESTABLECER EN LANDING-->
+                        <div class="contenedor-columna centro">
+                            <!--aqui hace falta cambiar las funciones para los landings-->
+                            <div class='yes-no mt-3'>
+                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="yes-landing-{{$programs[$indexPrograms]->id }}" value="1" />
+                                <label for="yes-landing-{{$programs[$indexPrograms]->id }}" id="siestado-landing-{{$programs[$indexPrograms]->id }}" class="si-estilo">
+                                    Sí</label>
+                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="no-landing-{{$programs[$indexPrograms]->id }}" value="0" checked/>
+                                <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
+                                    No</label>
+                            </div>
+                            <div class=" d-flex mt-3 ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 pt-2"> No te pierdas</span>
+                                <label class="checkradio">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                    <div class="d-flex ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 "> Solo por canal claro</span>
+                                    <label class="checkradio">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                        </div>
+                        <!--Programar publicacición landing-->
+                        <div class="contenedor-columna centro">
+                            <!--<label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>-->
+                            <div class="d-flex">
+                                <div>
+                                    <div>
+                                        <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                        <input type="text" id="programar-landing" placeholder="00-00-0000">
+                                    </div>
+                                    <div>
+                                        <input type="text" id="programar-landing" placeholder="00-00-0000">
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                         <!--PROGRAMAR PUBLICACIÓN-->
-                        <div class="contenedor-columna centro " id="programar-{{$programs[$indexPrograms]->id }}">
+                        <div class="contenedor-columna centro" id="programar-{{$programs[$indexPrograms]->id }}">
                             <div class="yes-no">
                                 <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-si-{{$programs[$indexPrograms]->id }}" value="1" />
                                 <label for="programar-si-{{$programs[$indexPrograms]->id }}" id="siestado-{{$programs[$indexPrograms]->id }}" class="si-estilo">
@@ -257,7 +296,7 @@ $data_for_new_entry = json_encode([
                                  <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                               </div>
                         </div>
-                        <!--ESTABLECER EL HOME-->
+                        <!--HOME PROGRAMAR PUBLICACIÓN-->
                         <div class="contenedor-columna centro">
                             <div class="yes-no">
                                 <input type="radio" name="sino-home-{{$programs[$indexPrograms]->id }}" id="yes-home-{{$programs[$indexPrograms]->id }}" value="1" />
@@ -271,31 +310,7 @@ $data_for_new_entry = json_encode([
                             <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                             </div>
                         </div>
-                        <!--ESTABLECER EN LANDING-->
-                        <div class="contenedor-columna centro">
-                            <!--aqui hace falta cambiar las funciones para los landings-->
-                            <div class='yes-no mt-3'>
-                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="yes-landing-{{$programs[$indexPrograms]->id }}" value="1" />
-                                <label for="yes-landing-{{$programs[$indexPrograms]->id }}" id="siestado-landing-{{$programs[$indexPrograms]->id }}" class="si-estilo">
-                                  Sí</label>
-                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="no-landing-{{$programs[$indexPrograms]->id }}" value="0" checked/>
-                                <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
-                                  No</label>
-                            </div>
-                            <div class=" d-flex mt-3 ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 pt-2"> No te pierdas</span>
-                                <label class="checkradio">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                    <div class="d-flex ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 "> Solo por canal claro</span>
-                                    <label class="checkradio">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    </label>
-                                    </div>
 
-                        </div>
                         <div class="contenedor-columna centro">
                             <div class="image-ta position-relative">
                             <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
