@@ -18,7 +18,17 @@
 .text-smaller {
   font-size: 12px;
 }
-
+.text-plus{
+  font-size: 18px;
+}
+.a-text-MBlack{
+  font-family: $MontserratBlack;
+  color: white;
+}
+.a-text-bold-light{
+  font-family: $MontserratBold;
+  color: $light;
+}
 .a-text-bold-cool {
   color: $coolBlue;
   font-family: $MontserratBold;
@@ -77,6 +87,10 @@
 .a-text-medium-dark2 {
   font-family: $MontserratMedium;
   color: $dark2;
+}
+.a-text-semi-brown-two{
+  font-family: $MontserratSemiBold;
+  color: $greyish-brown-two;
 }
 .a-text-semibold-lightbrown {
   font-family: $MontserratSemiBold;
@@ -466,7 +480,7 @@
 }
 .program-original {
   font-family: $MontserratRegular;
-  font-size: 14px;
+  font-size: 16px;
   color: $darkred1;
   text-align: center;
   //schedule-date

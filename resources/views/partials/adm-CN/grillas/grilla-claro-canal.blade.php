@@ -38,14 +38,14 @@ $data_for_new_entry = json_encode([
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
     <div class="grilla-claro-canal">
         <div class="ml-5 float-left">
-            <div><span class="a-text-black-light text-normal">Última edición : {{$last_edition}}</span></div>
-            <span class="a-text-black-light">Por : </span>
-            <label class="zona text-normal separacion"> {{$edited_for}} </label>
-            <label class="zona text-normal">{{$rol_user_edit}}</label>
+            <div><span class="a-text-black-light text-plus">Última edición : <span class="zona"> hey lo {{$last_edition}}</span> </span></div>
+            <span class="a-text-black-light text-plus">Por : </span>
+            <label class="zona  separacion"> {{$edited_for}} </label>
+            <label class="zona ">{{$rol_user_edit}}</label>
         </div>
         <div class="d-flex float-right mr-5 ">
-            <button class="btn-grilla a-btn-basic-small text-uppercase text-grilla mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
-            <button class="text-uppercase btn-landing a-btn-basic-small text-landing lan-claro" id="btn-landing" ><span>Landing</span></button>
+            <button class="btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
+            <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-claro" id="btn-landing" ><span>Landing</span></button>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -97,73 +97,75 @@ $data_for_new_entry = json_encode([
                 <div id="tb1" class="contenedor-tabla  ml-5 pr-5">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public"> Acciones</span>
+                            <span class="a-text-semibold-white text-normal"> Acciones</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Estado</span>
+                            <span class="a-text-semibold-white text-normal">Estado</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Alerta</span>
+                            <span class="a-text-semibold-white text-normal">Alerta</span>
                         </div>
 
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Program Title Original</span>
+                            <span class="a-text-semibold-white text-normal">Program Title Original</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Establecer en landing</span>
+                            <span class="a-text-semibold-white text-normal">Establecer en landing</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Landing de Canal ClaroProgramar publicación</span>
+                            <span class="a-text-semibold-white text-normal">Landing de Canal ClaroProgramar publicación</span>
                         </div>
 
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Establecer en Home</span>
+                            <span class="a-text-semibold-white text-normal">Establecer en Home</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Home Progamar publicación</span>
+                            <span class="a-text-semibold-white text-normal">Home Progamar publicación</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public"> Imagenes</span>
+                            <span class="a-text-semibold-white text-normal"> Imagenes</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Schedule Item Date Time</span>
+                            <span class="a-text-semibold-white text-normal">Schedule Item Date Time</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Schedule Item Long Date</span>
+                            <span class="a-text-semibold-white text-normal">Schedule Item Long Date</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Schedule Item Long Time< (GMT)</span> </div> <div class="contenedor-columna centro centro title-table">
-                                    <span class="text-public">Estimated Schedule Item Duration</span>
+                            <span class="a-text-semibold-white text-normal">Schedule Item Long Time< (GMT)</span>
+                         </div>
+                         <div class="contenedor-columna centro centro title-table">
+                                    <span class="a-text-semibold-white text-normal">Estimated Schedule Item Duration</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Program Year Produced</span>
+                            <span class="a-text-semibold-white text-normal">Program Year Produced</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Program Genre List</span>
+                            <span class="a-text-semibold-white text-normal">Program Genre List</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Program Title Alternate </span>
+                            <span class="a-text-semibold-white text-normal">Program Title Alternate </span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Program Episode Season</span>
+                            <span class="a-text-semibold-white text-normal">Program Episode Season</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Program Episode Number</span>
+                            <span class="a-text-semibold-white text-normal">Program Episode Number</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Synopsis</span>
+                            <span class="a-text-semibold-white text-normal">Synopsis</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Schedule Item Rating Code</span>
+                            <span class="a-text-semibold-white text-normal">Schedule Item Rating Code</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Scheduled Version SUBBED (1=Yes/0=No)</span>
+                            <span class="a-text-semibold-white text-normal">Scheduled Version SUBBED (1=Yes/0=No)</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Scheduled Version DUBBED (1=Yes/0=No)</span>
+                            <span class="a-text-semibold-white text-normal">Scheduled Version DUBBED (1=Yes/0=No)</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Audio 5.1 available
+                            <span class="a-text-semibold-white text-normal">Audio 5.1 available
                                 (1=Yes/0=No)</span>
                         </div>
                     </div>
@@ -254,7 +256,7 @@ $data_for_new_entry = json_encode([
                                   No</label>
                             </div>
                               <div >
-                                 <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                                 <label class="a-text-medium-brownish text-normal d-flex justify-content-center pb-2 pt-2" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                               </div>
                         </div>
                         <!--ESTABLECER EL HOME-->
@@ -268,13 +270,13 @@ $data_for_new_entry = json_encode([
                                   No</label>
                             </div>
                             <div >
-                            <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                            <label class="a-text-medium-brownish text-small d-flex justify-content-center pb-2 pt-2" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                             </div>
                         </div>
                         <!--ESTABLECER EN LANDING-->
                         <div class="contenedor-columna centro">
                             <!--aqui hace falta cambiar las funciones para los landings-->
-                            <div class='yes-no mt-3'>
+                            <div class='yes-no pt-2'>
                                 <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="yes-landing-{{$programs[$indexPrograms]->id }}" value="1" />
                                 <label for="yes-landing-{{$programs[$indexPrograms]->id }}" id="siestado-landing-{{$programs[$indexPrograms]->id }}" class="si-estilo">
                                   Sí</label>
@@ -282,13 +284,13 @@ $data_for_new_entry = json_encode([
                                 <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                   No</label>
                             </div>
-                            <div class=" d-flex mt-3 ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 pt-2"> No te pierdas</span>
+                            <div class=" d-flex mt-2 ml-4 pt-2"><span class="a-text-medium-brownish ml-5 "> No te pierdas</span>
                                 <label class="checkradio">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                    <div class="d-flex ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 "> Solo por canal claro</span>
+                                    <div class="d-flex ml-4 mb-2 mt-2"><span class="a-text-medium-brownish ml-5  "> Solo por canal claro</span>
                                     <label class="checkradio">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
@@ -304,7 +306,7 @@ $data_for_new_entry = json_encode([
                         </div>
                         <div class="contenedor-columna centro ">
                             <div class="schedule-date">
-                            <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
+                            <label class='a-text-medium-brownish text-small d-flex justify-content-center  pb-2' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
 
 
                             </div>
@@ -353,7 +355,7 @@ $data_for_new_entry = json_encode([
 
                        </div>
                         <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->synopsis}}</label>
+                            <label class="a-text-regular-brownishtwo text-small p-2">{{$programs[$indexPrograms]->synopsis}}</label>
 
                         </div>
                         <div class="contenedor-columna centro">
@@ -365,11 +367,11 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                             <div class="yes-no">
-                    <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked />
-                    <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                    <input type="radio" id="yes-date2"  value="1" checked />
+                    <label for="yes-date2" id="siestado-date2" class="si-estilo">
                       Sí</label>
-                    <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
-                    <label for="no-landings" id="noestado-landings"class="no-estilo">
+                    <input type="radio"  id="no-date2" value="0"/>
+                    <label for="no-date2" id="noestado-date2"class="no-estilo">
                       No</label>
                 </div>
 
@@ -378,11 +380,11 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                             <div class="yes-no">
-                    <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked />
-                    <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                    <input type="radio" id="yes-date1"  value="1" checked />
+                    <label for="yes-date1" id="siestado-date1" class="si-estilo">
                       Sí</label>
-                    <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
-                    <label for="no-landings" id="noestado-landings"class="no-estilo">
+                    <input type="radio"  id="no-date1" value="0"/>
+                    <label for="no-date1" id="noestado-date1"class="no-estilo">
                       No</label>
                 </div>
 
@@ -392,11 +394,11 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                             <div class="yes-no">
-                    <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked />
-                    <label for="yes-landings" id="siestado-landings" class="si-estilo">
+                    <input type="radio" id="yes-date"  value="1" checked />
+                    <label for="yes-date" id="siestado-date" class="si-estilo">
                       Sí</label>
-                    <input type="radio" name="si-no-landings" id="no-landings" value="0"/>
-                    <label for="no-landings" id="noestado-landings"class="no-estilo">
+                    <input type="radio"  id="no-date" value="0"/>
+                    <label for="no-date" id="noestado-date"class="no-estilo">
                       No</label>
                 </div>
 

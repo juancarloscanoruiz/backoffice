@@ -36,19 +36,19 @@
 
                 </li>
                 <li class="nav-item br-r">
-                    <button id="grilla-concert-channel-button" class="btn-menu-all a-btn-basic-medium a-text-bold-brown-two text-normal bn-nav text-uppercase">Concert Channel</button>
+                    <button id="grilla-concert-channel-button" class="btn-menu-all a-btn-basic-medium a-text-bold-brown-two text-plus bn-nav text-uppercase">Concert Channel</button>
                 </li>
                 <li class="nav-item br-r">
-                    <button id="grilla-claro-cinema-button" class="btn-menu-all  a-btn-basic-medium a-text-bold-brown-two text-normal bn-nav text-uppercase">Claro Cinema</button>
+                    <button id="grilla-claro-cinema-button" class="btn-menu-all  a-btn-basic-medium a-text-bold-brown-two text-plus bn-nav text-uppercase">Claro Cinema</button>
                 </li>
                 <li class="nav-item br-r">
-                    <button class="btn-menu-inac a-btn-basic-medium text-normal a-text-bold-brown-two text-uppercase">Nuestra Visión*</button>
+                    <button class="btn-menu-inac a-btn-basic-medium text-plus a-text-bold-light text-uppercase">Nuestra Visión*</button>
                 </li>
                 <li class="nav-item br-r ">
-                    <button class="btn-menu-inac  a-btn-basic-medium  text-normal a-text-bold-brown-two text-uppercase">Claro Sport*</button>
+                    <button class="btn-menu-inac  a-btn-basic-medium  text-plus a-text-bold-light text-uppercase">Claro Sport*</button>
                 </li>
                 <li class="nav-item ">
-                    <button id="grilla-home-button" class="btn-menu-all a-btn-basic-medium  a-text-bold-brown-two text-normal bn-nav text-uppercase"> Home</button>
+                    <button id="grilla-home-button" class="btn-menu-all a-btn-basic-medium  a-text-bold-brown-two text-plus bn-nav text-uppercase"> Home</button>
                 </li>
             </ul>
         </nav>
