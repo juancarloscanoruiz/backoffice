@@ -1832,6 +1832,13 @@
   border-radius: 3em;
 }
 
+.add-images-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .loader {
   position: absolute;
   top: 50%;
@@ -4160,7 +4167,6 @@ ul {
   overflow-x: scroll;
   width: 500%;
   height: 63px;
-  white-space: nowrap;
   line-height: 4;
 }
 

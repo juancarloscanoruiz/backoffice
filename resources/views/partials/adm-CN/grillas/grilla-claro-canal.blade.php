@@ -44,8 +44,8 @@ $data_for_new_entry = json_encode([
             <label class="zona text-normal">{{$rol_user_edit}}</label>
         </div>
         <div class="d-flex float-right mr-5 ">
-            <button class="btn-grilla a-btn-basic-small text-grilla mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
-            <button class="btn-landing a-btn-basic-small text-landing lan-claro" id="btn-landing" ><span>Landing</span></button>
+            <button class="btn-grilla a-btn-basic-small text-uppercase text-grilla mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
+            <button class="text-uppercase btn-landing a-btn-basic-small text-landing lan-claro" id="btn-landing" ><span>Landing</span></button>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -110,14 +110,17 @@ $data_for_new_entry = json_encode([
                             <span class="text-public">Program Title Original</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
-                            <span class="text-public">Programar publicación</span>
+                            <span class="text-public">Establecer en landing</span>
+                        </div>
+                        <div class="contenedor-columna centro  centro title-table">
+                            <span class="text-public">Landing de Canal ClaroProgramar publicación</span>
                         </div>
 
                         <div class="contenedor-columna centro  centro title-table">
                             <span class="text-public">Establecer en Home</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="text-public">Establecer en landing</span>
+                        <div class="contenedor-columna centro  centro title-table">
+                            <span class="text-public">Home Progamar publicación</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table">
                             <span class="text-public"> Imagenes</span>
@@ -167,30 +170,56 @@ $data_for_new_entry = json_encode([
                     @if (count($programs)==0)
 
                     <div class="contenedor-fila" id="programacion-claro-canal">
+                        <!--Acciones-->
                         <div class="contenedor-columna centro"></div>
+                        <!--Estado-->
                         <div class="contenedor-columna centro"></div>
+                        <!--Alerta-->
                         <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
-                        <div class="contenedor-columna centro"></div>
+                        <!--Program Titlte Original-->
+                        <div class="contenedor-columna centro">
+                            <!--<textarea name="" id="" cols="30" rows="2"></textarea>-->
+                        </div>
+                        <!--Establecer en landing-->
+                        <div class="contenedor-columna centro">
 
-
+                        </div>
+                        <!--Landing Programar Publicación-->
+                        <div class="contenedor-columna centro">
+                            <input type="text" class="date-input" placeholder="">
+                        </div>
+                        <!--Establecer en home-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Programar publicación home-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Imágenes-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Schedule Item Date time-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Schedule item log date-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Schedule item log time-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Estimated Schedule item duration-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Program Year produced-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Program genre list-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Program episode season-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Program episode number-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Synopsis-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Schedule item rating code-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Scheduled version dubbed-->
+                        <div class="contenedor-columna centro"></div>
+                        <!--Audio 5.1-->
+                        <div class="contenedor-columna centro"></div>
+                        <div class="contenedor-columna centro"></div>
+                        <div class="contenedor-columna centro"></div>
                     </div>
                     @else
 
@@ -200,10 +229,10 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
                         <div class="contenedor-columna centro" id="estado-{{$programs[$indexPrograms]->id }}">
                            @if ($respuesta->data->version_origin === "master")
-                                <img src="./images/apro-naran.svg" class="mx-auto" alt=""><br>
+
                                 <span class="program-original"> Aprobado </span>
                            @else
-                                <img src="./images/pendientes.svg" class="mx-auto" alt=""><br>
+
                                 <span class="program-original"> Pendiente de revisión </span>
                            @endif
                         </div>
@@ -214,52 +243,52 @@ $data_for_new_entry = json_encode([
 
 
                         </div>
+                        <!--PROGRAMAR PUBLICACIÓN-->
                         <div class="contenedor-columna centro " id="programar-{{$programs[$indexPrograms]->id }}">
                             <div class="yes-no">
-                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-si-{{$programs[$indexPrograms]->id }}" value="1" checked />
-                                <label for="si-{{$programs[$indexPrograms]->id }}" id="siestado-{{$programs[$indexPrograms]->id }}" class="si-estilo">
+                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-si-{{$programs[$indexPrograms]->id }}" value="1" />
+                                <label for="programar-si-{{$programs[$indexPrograms]->id }}" id="siestado-{{$programs[$indexPrograms]->id }}" class="si-estilo">
                                   Sí</label>
-                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-no-{{$programs[$indexPrograms]->id }}" value="0" />
-                                <label for="no-{{$programs[$indexPrograms]->id }}" id="noestado-{{$programs[$indexPrograms]->id }}" class="no-estilo">
+                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-no-{{$programs[$indexPrograms]->id }}" value="0" checked/>
+                                <label for="programar-no-{{$programs[$indexPrograms]->id }}" id="noestado-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                   No</label>
-                              </div>
-
-
+                            </div>
                               <div >
                                  <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type=date>{{$programs[$indexPrograms]->day }}</label> <label class="a-text-medium-brownish text-normal d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
                               </div>
                         </div>
+                        <!--ESTABLECER EL HOME-->
                         <div class="contenedor-columna centro">
                             <div class="yes-no">
-                                <input type="radio" name="si-no-periodicidad-{{$programs[$indexPrograms]->id }}" id="yes-periodicidad-{{$programs[$indexPrograms]->id }}" value="1" checked="true" />
-                                <label for="yes-periodicidad-{{$programs[$indexPrograms]->id }} " id="siestado-periodicidad-{{$programs[$indexPrograms]->id }}" class="si-estilo">
+                                <input type="radio" name="sino-home-{{$programs[$indexPrograms]->id }}" id="yes-home-{{$programs[$indexPrograms]->id }}" value="1" />
+                                <label for="yes-home-{{$programs[$indexPrograms]->id }}" id="siestado-home-{{$programs[$indexPrograms]->id }}" class="si-estilo">
                                   Sí</label>
-                                <input type="radio" name="si-no-periodicidad-{{$programs[$indexPrograms]->id }}" id="no-periodicidad-{{$programs[$indexPrograms]->id }}" checked="false"/>
-                                <label for="no-periodicidad-{{$programs[$indexPrograms]->id }}" id="noestado-periodicidad-{{$programs[$indexPrograms]->id }}" class="no-estilo">
+                                <input type="radio" name="sino-home-{{$programs[$indexPrograms]->id }}" id="no-home-{{$programs[$indexPrograms]->id }}" value="0" checked/>
+                                <label for="no-home-{{$programs[$indexPrograms]->id }}" id="noestado-home-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                   No</label>
                             </div>
                             <div >
-                        <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
-                     </div>
+                            <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                            </div>
                         </div>
-
+                        <!--ESTABLECER EN LANDING-->
                         <div class="contenedor-columna centro">
                             <!--aqui hace falta cambiar las funciones para los landings-->
                             <div class='yes-no mt-3'>
-                    <input type='radio' name='yes-landings'id=''  value='1' checked='true' />
-                    <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
-                      Sí</label>
-                    <input type='radio' name='si-no-landings' id='no-landings' checked=/>
-                    <label for='no-landings' id='noestado-landings'class='no-estilo'>
-                      No</label>
-                </div>
-                            <div class=" d-flex mt-3 ml-4"><span class="text-lan ml-5 mtop-8 pt-2"> No te pierdas</span>
+                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="yes-landing-{{$programs[$indexPrograms]->id }}" value="1" />
+                                <label for="yes-landing-{{$programs[$indexPrograms]->id }}" id="siestado-landing-{{$programs[$indexPrograms]->id }}" class="si-estilo">
+                                  Sí</label>
+                                <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="no-landing-{{$programs[$indexPrograms]->id }}" value="0" checked/>
+                                <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
+                                  No</label>
+                            </div>
+                            <div class=" d-flex mt-3 ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 pt-2"> No te pierdas</span>
                                 <label class="checkradio">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                    <div class="d-flex ml-4"><span class="text-lan ml-5 mtop-8 "> Solo por canal claro</span>
+                                    <div class="d-flex ml-4"><span class="a-text-medium-brownish ml-5 mtop-8 "> Solo por canal claro</span>
                                     <label class="checkradio">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
@@ -268,8 +297,8 @@ $data_for_new_entry = json_encode([
 
                         </div>
                         <div class="contenedor-columna centro">
-                            <div class="image-ta">
-                           <img src="" alt="añadir imagenes">
+                            <div class="image-ta position-relative">
+                            <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
                                 </div>
                                 <span class="a-text-regular-brownishtwo text-small">Añade imagenes</span>
                         </div>
@@ -323,8 +352,8 @@ $data_for_new_entry = json_encode([
                             <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->program_episode_number}}</label>
 
                        </div>
-                        <div class="contenedor-columna centro" style="white-space: auto;">
-                            <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->short_synopsis}}</label>
+                        <div class="contenedor-columna centro">
+                            <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->synopsis}}</label>
 
                         </div>
                         <div class="contenedor-columna centro">

@@ -1,6 +1,12 @@
 import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
 
+//CONFIG
+import { cleaveConfig } from "./config/config.js";
+
+//VENDOR
+import Cleave from "cleave.js";
+
 //UI
 import {
     showPageUsersBO,
@@ -39,6 +45,11 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    let cleaveElement = $(".date-input");
+    if (cleaveElement) {
+        new Cleave(".date-input", cleaveConfig);
+    }
+
     showUserFront();
 
     //GET USER
