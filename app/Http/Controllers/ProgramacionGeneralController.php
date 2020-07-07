@@ -331,7 +331,7 @@ class ProgramacionGeneralController extends Controller
             </div>
                 <div class=" d-flex mt-2 ml-2 pt-2">
                 <label class="checkradio d-flex  ml-2">
-                <input type="checkbox">
+                <input type="radio" name="dontlose">
                 <span class="checkmark"></span>
                 </label>
 
@@ -340,7 +340,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
                     <div class="d-flex ml-2 mt-2 mb-2">
                     <label class="checkradio d-flex  ml-2">
-                    <input type="checkbox">
+                    <input type="radio" name="dontlose">
                     <span class="checkmark"></span>
                     </label>
                     <span class="text-lan ml-2 "> Solo por canal claro</span>
@@ -566,7 +566,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
                         <div class=' d-flex mt-2 ml-2 pt-2'>
                         <label class='checkradio d-flex  ml-2'>
-                        <input type='checkbox'>
+                        <input type='radio'name='dontlose'>
                         <span class='checkmark'></span>
                         </label>
                         <span class='text-lan ml-2 '> No te pierdas</span>
@@ -574,7 +574,7 @@ class ProgramacionGeneralController extends Controller
                             </div>
                                 <div class='d-flex ml-2 mt-2 mb-2'>
                                 <label class='checkradio d-flex  ml-2'>
-                                <input type='checkbox'>
+                                <input type='radio' name='dontlose'>
                                 <span class='checkmark'></span>
                                 </label>
                                 <span class='text-lan ml-2'> Solo por canal claro</span>
