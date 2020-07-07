@@ -10,4 +10,14 @@ let scheduleTimeConfig = {
     timePattern: ["h", "m"]
 };
 
-export { cleaveConfig, scheduleTimeConfig };
+let timeWithSeconds = {
+    time: true,
+    timePattern: ["h", "m", "s"]
+};
+
+let year = {
+    date: true,
+    datePattern: ["Y"]
+};
+
+export { cleaveConfig, scheduleTimeConfig, timeWithSeconds, year };

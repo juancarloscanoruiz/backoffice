@@ -2285,7 +2285,6 @@ input[type=radio]:checked + .no-estilo1 {
 
 .checkradio {
   display: block;
-  position: absolute;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -2303,7 +2302,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .checkmark {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   height: 25px;
@@ -2452,6 +2451,7 @@ input[type=radio]:checked + .no-estilo1 {
 
 .table-input {
   border: none;
+  width: 120px;
 }
 
 .line {
@@ -4218,6 +4218,10 @@ ul {
   height: 63px;
 }
 
+.conten-tab {
+  width: 500%;
+}
+
 .contenedor-table {
   display: table;
   overflow-x: scroll;
@@ -4229,7 +4233,7 @@ ul {
 .contenedor {
   display: table;
   overflow-x: scroll;
-  width: 500%;
+  width: 112%;
   height: 63px;
   white-space: nowrap;
 }

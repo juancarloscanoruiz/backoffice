@@ -94,29 +94,30 @@ $data_for_new_entry = json_encode([
             <!--end-->
 
             <div id="rempla-claro-canal">
-                <div id="tb1" class="contenedor-tabla  ml-5 pr-5">
+                <div id="tb1" class="d-flex  ml-5 pr-5 conten-tab">
+                    <div>
                     <div class="contenedor-fila">
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal"> Acciones</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 118px">
+                            <span class="a-text-semibold-white text-normal">Acciones</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 137px">
                             <span class="a-text-semibold-white text-normal">Estado</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 142px">
                             <span class="a-text-semibold-white text-normal">Alerta</span>
                         </div>
 
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 291px">
                             <span class="a-text-semibold-white text-normal">Program Title Original</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
+                        <div class="contenedor-columna centro  centro title-table" style="width: 241px">
                             <span class="a-text-semibold-white text-normal">Establecer en landing</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
+                        <div class="contenedor-columna centro  centro title-table" style="width: 312px">
                             <span class="a-text-semibold-white text-normal">Landing de Canal ClaroProgramar publicación</span>
                         </div>
 
-                        <div class="contenedor-columna centro  centro title-table">
+                        <div class="contenedor-columna centro  centro title-table" style="width: 300px">
                             <span class="a-text-semibold-white text-normal">Establecer en Home</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
@@ -228,8 +229,8 @@ $data_for_new_entry = json_encode([
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
 
                 <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
-                        <!--IMÁGENES-->
-                        <div class="contenedor-columna centro " id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
+                        <!--ACCIONES-->
+                        <div class="contenedor-columna centro" id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
                         <!--ESTADO-->
                         <div class="contenedor-columna centro" id="estado-{{$programs[$indexPrograms]->id }}">
                            @if ($respuesta->data->version_origin === "master")
@@ -255,11 +256,13 @@ $data_for_new_entry = json_encode([
                                 <label for="no-landing-{{$programs[$indexPrograms]->id }}" id="noestado-landing-{{$programs[$indexPrograms]->id }}" class="no-estilo">
                                     No</label>
                             </div>
-                            <div class=" d-flex mt-3 ml-4"><span class="a-text-medium-brownish ml-5"> No te pierdas</span>
-                                <label class="checkradio">
+                            <div class=" d-flex mt-2 ml-2 pt-2">
+                            <label class="checkradio d-flex  ml-2">
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                     </label>
+                                <span class="a-text-medium-brownish ml-2"> No te pierdas</span>
+
                                 </div>
                                     <div class="d-flex ml-4 pt-3 pb-3"><span class="a-text-medium-brownish ml-5"> Solo por canal claro</span>
                                     <label class="checkradio">
@@ -271,13 +274,16 @@ $data_for_new_entry = json_encode([
                         <!--Programar publicacición landing-->
                         <div class="contenedor-columna centro">
                             <!--<label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>-->
-                            <div class="">
-                                <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                <input type="text" id="programar-landing" placeholder="00-00-0000">
+                            <div class="d-flex justify-content-center">
+                                <div class="">
+                                    <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-landing" class="a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div class="">
+                                    <input type="text" id="programar-landing" class="a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
                             </div>
-                            <div class="">
-                                <input type="text" id="programar-landing" placeholder="00-00-0000">
-                            </div>
+
 
                         </div>
                         <!--ESTABLECER EN HOME-->
@@ -314,27 +320,25 @@ $data_for_new_entry = json_encode([
                         <!--Schedule item long date-->
                         <div class="contenedor-columna centro ">
                             <div class="schedule-date">
-                            <input type="text" name="" class="table-input schedule-date text-center a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->day}}">
+                            <input type="text" name="" class="table-input schedule-date-input text-center a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->day}}">
                             </div>
                         </div>
                         <!--Schedule Item Long Time (GMT)-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center schedule-time a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->programing}}">
+                                <input type="text" class="table-input text-center schedule-time-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->programing}}">
                             </div>
                         </div>
+                        <!--Estimated Schedule Item Duration-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo text-small" >
-                                    {{$programs[$indexPrograms]->duration}}
-                                </label>
-
+                                <input type="text" class="table-input text-center time-seconds-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->duration}}">
                             </div>
                         </div>
+                        <!--Program Year Produced-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo text-small" >1982</label>
-
+                            <input type="text" class="year-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
@@ -415,6 +419,7 @@ $data_for_new_entry = json_encode([
 
 
                 </div>
+</div> <!--cierre del div conten-tab-->
                 <div class="contenedor mb-5 ml-5 pr-5">
                     <div class="contenedor-columna centro">
                         <div id="agregar-canal-claro" onclick='nuevo_programa(<?php echo $data_for_new_entry ;?>)' class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">

@@ -2,7 +2,12 @@ import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
 
 //CONFIG
-import { cleaveConfig, scheduleTimeConfig } from "./config/config.js";
+import {
+    cleaveConfig,
+    scheduleTimeConfig,
+    timeWithSeconds,
+    year
+} from "./config/config.js";
 
 //VENDOR
 import Cleave from "cleave.js";
@@ -45,9 +50,10 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    new Cleave(".schedule-time", scheduleTimeConfig);
-    new Cleave(".schedule-date", cleaveConfig);
-
+    new Cleave(".schedule-time-input", scheduleTimeConfig);
+    new Cleave(".schedule-date-input", cleaveConfig);
+    new Cleave(".time-seconds-input", timeWithSeconds);
+    new Cleave(".year-input", year);
     showUserFront();
 
     //GET USER

@@ -63446,13 +63446,15 @@ function getNameGender(g) {
 /*!***************************************!*\
   !*** ./resources/js/config/config.js ***!
   \***************************************/
-/*! exports provided: cleaveConfig, scheduleTimeConfig */
+/*! exports provided: cleaveConfig, scheduleTimeConfig, timeWithSeconds, year */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleaveConfig", function() { return cleaveConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scheduleTimeConfig", function() { return scheduleTimeConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeWithSeconds", function() { return timeWithSeconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "year", function() { return year; });
 //Cleave.js configuration
 var cleaveConfig = {
   date: true,
@@ -63462,6 +63464,14 @@ var cleaveConfig = {
 var scheduleTimeConfig = {
   time: true,
   timePattern: ["h", "m"]
+};
+var timeWithSeconds = {
+  time: true,
+  timePattern: ["h", "m", "s"]
+};
+var year = {
+  date: true,
+  datePattern: ["Y"]
 };
 
 
@@ -63659,8 +63669,10 @@ $.ajaxSetup({
   }
 });
 $(document).ready(function () {
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-time", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-date", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-time-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-date-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".time-seconds-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["timeWithSeconds"]);
+  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".year-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["year"]);
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["showUserFront"])(); //GET USER
 
   $("#cambio").on("click", ".view-user-icon", function () {
