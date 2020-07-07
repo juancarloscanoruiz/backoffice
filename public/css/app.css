@@ -1880,6 +1880,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .loader {
@@ -1977,6 +1978,15 @@
   height: 63px;
   background-color: #626060;
   margin: auto;
+  overflow: hidden;
+}
+
+.image-program {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  width: 100%;
+  left: 0;
 }
 
 .equis {
@@ -4315,11 +4325,28 @@ ul {
   background-color: #ffffff;
 }
 
+.row-selected {
+  border: 3px solid #0097a9;
+}
+
+.row-no-selected {
+  border: 1px solid #d3d3d3;
+}
+
 .contenedor-columna {
   display: table-cell;
   border: 1px solid #d3d3d3;
   vertical-align: middle;
   width: 146px;
+  padding: 4px;
+}
+
+.column-select {
+  box-shadow: 0 0 7px 2px #0097a9;
+}
+
+.editable-column {
+  pointer-events: none;
 }
 
 .fondo {

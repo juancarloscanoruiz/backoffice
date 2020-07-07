@@ -47,11 +47,28 @@
     background-color: $white;
 }
 
+.row-selected {
+    border: 3px solid $teal;
+}
+
+.row-no-selected {
+    border: 1px solid $lightpink;
+}
+
 .contenedor-columna {
     display: table-cell;
     border: 1px solid $lightpink;
     vertical-align: middle;
     width: 146px;
+    padding: 4px;
+}
+
+.column-select {
+    box-shadow: 0 0 7px 2px $teal;
+}
+
+.editable-column {
+    pointer-events: none;
 }
 
 .fondo {

@@ -3,6 +3,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .loader {
@@ -93,6 +94,14 @@
     height: 63px;
     background-color: $zambesi;
     margin: auto;
+    overflow: hidden;
+}
+
+.image-program {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    left: 0;
 }
 
 .equis {
@@ -248,15 +257,15 @@
     cursor: pointer;
     opacity: 0.7;
 }
-.imagethumb{
+.imagethumb {
     width: 513px;
     height: 296px;
 }
-.imagevertical{
+.imagevertical {
     width: 623px;
     height: 716px;
 }
-.imagesinop{
+.imagesinop {
     width: 431px;
     height: 249px;
 }

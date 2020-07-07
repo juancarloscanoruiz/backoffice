@@ -21,7 +21,9 @@ import {
     showlanding,
     showAdminSite,
     showFormCreateUser,
-    showUserFront
+    showUserFront,
+    selectRow,
+    selectColumn
 } from "./UI/UI.js";
 
 //FORM VALIDATIONS
@@ -50,6 +52,13 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    $(".program-title-original").keydown(function(e) {
+        if (e.which === 13 && !e.shiftKey) {
+            e.preventDefault();
+            console.log($(this).val());
+            return false;
+        }
+    });
     /*
     Permite a todos los campos de Schedule item log time tener el formato
     tiempo en hh:mm
@@ -718,6 +727,8 @@ $(document).ready(function() {
     /* DELETE USER */
 
     /* 2.- UI  */
+    $(".edit-row-pencil").click(selectRow);
+    $(".contenedor-columna").click(selectColumn);
 
     //Mostrar grilla de concert channel
     $(".bn-nav").click(function() {

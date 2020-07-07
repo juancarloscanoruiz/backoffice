@@ -62810,7 +62810,7 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showLandingSchedule, showAdminSite, changeActiveBlackButton */
+/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showLandingSchedule, showAdminSite, changeActiveBlackButton, selectRow, selectColumn */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62833,6 +62833,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLandingSchedule", function() { return showLandingSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRow", function() { return selectRow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectColumn", function() { return selectColumn; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 //SERVICES
@@ -63438,6 +63440,25 @@ function getNameGender(g) {
   return gender;
 }
 
+function selectRow() {
+  //Estilos para las demás filas
+  var allRows = $(".contenedor-fila");
+  allRows.removeClass("row-selected");
+  $(".editable-column").css("pointer-events", "none"); //Estilos para la fila seleccionada para editar
+
+  var allColumnsSelected = $(this).closest(".contenedor-fila").children(".editable-column");
+  allColumnsSelected.css("pointer-events", "all");
+  var row = $(this).closest(".contenedor-fila");
+  row.addClass("row-selected");
+}
+
+function selectColumn() {
+  var allColumns = $(".contenedor-columna");
+  allColumns.removeClass("column-select");
+  var column = $(this);
+  column.addClass("column-select");
+}
+
 
 
 /***/ }),
@@ -63669,10 +63690,26 @@ $.ajaxSetup({
   }
 });
 $(document).ready(function () {
+  /*$(".program-title-original").keyup(function(e) {
+      e.preventDefault();
+      if (e.keyCode == 13) {
+          console.log($(this).val());
+          e.preventDefault();
+          $(this).blur();
+      }
+  });*/
+  $(".program-title-original").keydown(function (e) {
+    if (e.which === 13 && !e.shiftKey) {
+      e.preventDefault();
+      console.log($(this).val());
+      return false;
+    }
+  });
   /*
   Permite a todos los campos de Schedule item log time tener el formato
   tiempo en hh:mm
   */
+
   $(".schedule-time-input").toArray().forEach(function (scheduleTime) {
     new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
   });
@@ -64043,7 +64080,9 @@ $(document).ready(function () {
   /* DELETE USER */
 
   /* 2.- UI  */
-  //Mostrar grilla de concert channel
+
+  $(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["selectRow"]);
+  $(".contenedor-columna").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["selectColumn"]); //Mostrar grilla de concert channel
 
   $(".bn-nav").click(function () {
     var id = $(this).attr("id");

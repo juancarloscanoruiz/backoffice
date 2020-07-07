@@ -221,9 +221,9 @@ $data_for_new_entry = json_encode([
 
                     <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
                         <!--ACCIONES-->
-                        <div class="contenedor-columna centro" id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
+                        <div class="contenedor-columna centro" id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
                         <!--ESTADO-->
-                        <div class="contenedor-columna centro" id="estado-{{$programs[$indexPrograms]->id }}">
+                        <div class="contenedor-columna centro editable-column" id="estado-{{$programs[$indexPrograms]->id }}">
                            @if ($respuesta->data->version_origin === "master")
                                 <span class="program-original">Aprobado</span>
                            @else
@@ -231,13 +231,13 @@ $data_for_new_entry = json_encode([
                            @endif
                         </div>
                         <!--ALERTA-->
-                        <div class="contenedor-columna centro " id="alerta-{{$programs[$indexPrograms]->id }}"></div>
+                        <div class="contenedor-columna centro editable-column" id="alerta-{{$programs[$indexPrograms]->id }}"></div>
                         <!--PROGRAM TITLE ORIGINAL-->
-                        <div class="contenedor-columna centro centro" id="title-{{$programs[$indexPrograms]->id }}">
-                            <textarea name="" class="program-original edit-cell" id="lb-title-{{$programs[$indexPrograms]->id }}">{{$programs[$indexPrograms]->title}}</textarea>
+                        <div class="contenedor-columna centro centro editable-column" id="title-{{$programs[$indexPrograms]->id }}">
+                            <textarea name="" class="program-title-original program-original edit-cell" id="lb-title-{{$programs[$indexPrograms]->id }}">{{$programs[$indexPrograms]->title}}</textarea>
                         </div>
                         <!--ESTABLECER EN LANDING-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <!--aqui hace falta cambiar las funciones para los landings-->
                             <div class='yes-no mt-3'>
                                 <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->id }}" id="yes-landing-{{$programs[$indexPrograms]->id }}" value="1" />
@@ -261,11 +261,11 @@ $data_for_new_entry = json_encode([
                                     <span class="checkmark"></span>
                                     </label>
                                         <span class="a-text-medium-brownish ml-2"> Solo por canal claro</span>
-                                   
+
                                 </div>
                         </div>
                         <!--Programar publicacición landing-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="d-flex justify-content-end">
                                 <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
@@ -286,7 +286,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--ESTABLECER EN HOME-->
-                        <div class="contenedor-columna centro" id="programar-{{$programs[$indexPrograms]->id }}">
+                        <div class="contenedor-columna centro editable-column" id="programar-{{$programs[$indexPrograms]->id }}">
                             <div class="yes-no">
                                 <input type="radio" name="yes-no-{{$programs[$indexPrograms]->id }}" id="programar-si-{{$programs[$indexPrograms]->id }}" value="1" />
                                 <label for="programar-si-{{$programs[$indexPrograms]->id }}" id="siestado-{{$programs[$indexPrograms]->id }}" class="si-estilo">
@@ -297,7 +297,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="d-flex justify-content-end">
                                 <div>
                                     <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
@@ -317,119 +317,119 @@ $data_for_new_entry = json_encode([
                                 </div>
                             </div>
                         </div>
-
-                        <div class="contenedor-columna centro">
+                        <!--Imágenes-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="image-ta position-relative">
                                 <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
+                            <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                             </div>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
                             <div>
                                 <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_program}}</span><span class="a-text-regular-brownishtwo">/9</span>
                             </div>
                         </div>
-                        <div class="contenedor-columna centro ">
+
+                        <!--Schedule item long date time-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
                             <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
-
-
                             </div>
                         </div>
                         <!--Schedule item long date-->
-                        <div class="contenedor-columna centro ">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
                             <input type="text" name="" class="table-input schedule-date-input text-center a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->day}}">
                             </div>
                         </div>
                         <!--Schedule Item Long Time (GMT)-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
                                 <input type="text" class="table-input text-center schedule-time-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->programing}}">
                             </div>
                         </div>
                         <!--Estimated Schedule Item Duration-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
                                 <input type="text" class="table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}">
                             </div>
                         </div>
                         <!--Program Year Produced-->
-                        <div class="contenedor-columna centro">
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
-                            <input type="text" class="text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
+                            <input type="text" class="table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
                             </div>
                         </div>
-                        <!---->
-                        <div class="contenedor-columna centro">
+                        <!--Program genre list-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo">Animación, Cultura, Series</label>
 
                             </div>
                         </div>
-                        <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->subtitle}}</label>
-
-
+                        <!--Program title alternate (subtítulo de la película o nombre del capítulo
+                        de la serie-->
+                        <div class="contenedor-columna centro editable-column">
+                            <textarea class="program-original edit-cell" id="lb-subtitle-{{$programs[$indexPrograms]->id }}">{{$programs[$indexPrograms]->subtitle}}</textarea>
                         </div>
-                        <div class="contenedor-columna centro">
+                        <!--Program episode season-->
+                        <div class="contenedor-columna centro editable-column">
                             <label class="a-text-regular-brownishtwo" >{{$programs[$indexPrograms]->id}}</label>
-
                        </div>
-                        <div class="contenedor-columna centro">
+                       <!--Program episode number-->
+                        <div class="contenedor-columna centro editable-column">
                             <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->program_episode_number}}</label>
 
                        </div>
-                        <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo p-2">{{$programs[$indexPrograms]->synopsis}}</label>
-
+                       <!--Synopsis-->
+                        <div class="contenedor-columna centro editable-column">
+                            <textarea name="" id_program={{$programs[$indexPrograms]->title}} class="program-original edit-cell" id="lb-synopsis-{{$programs[$indexPrograms]->id }}">{{$programs[$indexPrograms]->synopsis}}</textarea>
                         </div>
+                        <!--Rating-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo" >{{$programs[$indexPrograms]->rating}}</label>
 
                             </div>
                         </div>
-                        <div class="contenedor-columna centro">
+                        <!--SUBBED-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
-                            <div class="yes-no">
-                    <input type="radio" id="yes-date2"  value="1" checked />
-                    <label for="yes-date2" id="siestado-date2" class="si-estilo">
-                      Sí</label>
-                    <input type="radio"  id="no-date2" value="0"/>
-                    <label for="no-date2" id="noestado-date2"class="no-estilo">
-                      No</label>
-                </div>
-
+                                <div class="yes-no">
+                                <input type="radio" id="yes-date2"  value="1" checked />
+                                <label for="yes-date2" id="siestado-date2" class="si-estilo">
+                                Sí</label>
+                                <input type="radio"  id="no-date2" value="0"/>
+                                <label for="no-date2" id="noestado-date2"class="no-estilo">
+                                No</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="contenedor-columna centro">
+                        <!--DUBBED-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
-                            <div class="yes-no">
-                    <input type="radio" id="yes-date1"  value="1" checked />
-                    <label for="yes-date1" id="siestado-date1" class="si-estilo">
-                      Sí</label>
-                    <input type="radio"  id="no-date1" value="0"/>
-                    <label for="no-date1" id="noestado-date1"class="no-estilo">
-                      No</label>
-                </div>
-
-
+                                <div class="yes-no">
+                                    <input type="radio" id="yes-date1"  value="1" checked />
+                                    <label for="yes-date1" id="siestado-date1" class="si-estilo">
+                                    Sí</label>
+                                    <input type="radio"  id="no-date1" value="0"/>
+                                    <label for="no-date1" id="noestado-date1"class="no-estilo">
+                                    No</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="contenedor-columna centro">
+                        <!--AUDIO 5.1-->
+                        <div class="contenedor-columna centro editable-column">
                             <div class="schedule-date">
-                            <div class="yes-no">
-                    <input type="radio" id="yes-date"  value="1" checked />
-                    <label for="yes-date" id="siestado-date" class="si-estilo">
-                      Sí</label>
-                    <input type="radio"  id="no-date" value="0"/>
-                    <label for="no-date" id="noestado-date"class="no-estilo">
-                      No</label>
-                </div>
-
-
+                                <div class="yes-no">
+                                <input type="radio" id="yes-date"  value="1" checked />
+                                <label for="yes-date" id="siestado-date" class="si-estilo">
+                                Sí</label>
+                                <input type="radio"  id="no-date" value="0"/>
+                                <label for="no-date" id="noestado-date"class="no-estilo">
+                                No</label>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                     @endfor
 

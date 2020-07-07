@@ -642,6 +642,27 @@ function getNameGender(g) {
     return gender;
 }
 
+function selectRow() {
+    //Estilos para las demás filas
+    let allRows = $(".contenedor-fila");
+    allRows.removeClass("row-selected");
+    $(".editable-column").css("pointer-events", "none");
+    //Estilos para la fila seleccionada para editar
+    let allColumnsSelected = $(this)
+        .closest(".contenedor-fila")
+        .children(".editable-column");
+    allColumnsSelected.css("pointer-events", "all");
+    let row = $(this).closest(".contenedor-fila");
+    row.addClass("row-selected");
+}
+
+function selectColumn() {
+    let allColumns = $(".contenedor-columna");
+    allColumns.removeClass("column-select");
+    let column = $(this);
+    column.addClass("column-select");
+}
+
 export {
     showPageUsersBO,
     showUserFront,
@@ -660,5 +681,7 @@ export {
     showlanding,
     showLandingSchedule,
     showAdminSite,
-    changeActiveBlackButton
+    changeActiveBlackButton,
+    selectRow,
+    selectColumn
 };
