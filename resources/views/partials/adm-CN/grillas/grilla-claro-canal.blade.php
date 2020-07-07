@@ -250,17 +250,19 @@ $data_for_new_entry = json_encode([
                             </div>
                             <div class=" d-flex mt-2 ml-2 pt-2">
                             <label class="checkradio d-flex  ml-2">
-                                    <input type="checkbox">
+                                    <input type="radio" name="dontlose">
                                     <span class="checkmark"></span>
                                     </label>
                                 <span class="a-text-medium-brownish ml-2"> No te pierdas</span>
 
                                 </div>
-                                    <div class="d-flex ml-4 pt-3 pb-3"><span class="a-text-medium-brownish ml-5"> Solo por canal claro</span>
-                                    <label class="checkradio">
-                                    <input type="checkbox">
+                                    <div class="d-flex ml-2 pt-2 pb-2">
+                                    <label class="checkradio d-flex ml-2">
+                                    <input type="radio" name="dontlose">
                                     <span class="checkmark"></span>
                                     </label>
+                                        <span class="a-text-medium-brownish ml-2"> Solo por canal claro</span>
+                                   
                                 </div>
                         </div>
                         <!--Programar publicacición landing-->
