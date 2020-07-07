@@ -66,5 +66,5 @@ Route::get("/home", "landingController@showHomeLanding")->name('home');
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
 Route::get('/histo', function () {
-    return view('admin-site.landings.apro-home');
+    return view('partials.adm-CN.image');
 })->name('para pruebas');

@@ -111,7 +111,7 @@ $(document).ready(function() {
     });
 
     //CONFIGURACIÓN DE DATEPICKER
-    let dateScheduleLanding = document.querySelector("#date-schedule-landing");
+    /* let dateScheduleLanding = document.querySelector("#date-schedule-landing");
     if (dateScheduleLanding) {
         const picker = datepicker(dateScheduleLanding, {
             customMonths: [
@@ -174,7 +174,7 @@ $(document).ready(function() {
             picker[isHidden ? "show" : "hide"]();
             //console.log(picker.currentMonth);
         });
-    }
+    }*/
 
     //CHANGE TO LANDING
 

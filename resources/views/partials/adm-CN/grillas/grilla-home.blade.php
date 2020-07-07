@@ -1,9 +1,3 @@
-
-<script src="{{ asset('/js/main.js')}}"></script>
-<script src="{{ asset('/js/admin.js')}}"></script>
-<script src="{{ asset('/js/lib/datepicker.min.js')}}"></script>
-<link href="{{ asset('css/datepicker.min.css')}}"rel="stylesheet">
-
 <div class="grilla-home">
 <div class=" ml-5"> <span cass="a-text-black-light text-normal">Última edición : </span>
     <label class=" zona text-normal separacion">{{$last_edition}}</label>
@@ -73,14 +67,14 @@
                         <div class="contenedor-columna centro centro title-table">
                             <span class="text-public">Alerta</span>
                         </div>
-                        
+
                         <div class="contenedor-columna centro centro title-table">
                             <span class="text-public">Program Title Original</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table">
                             <span class="text-public">Programar publicación</span>
                         </div>
-                        
+
                         <div class="contenedor-columna centro  centro title-table">
                             <span class="text-public">Establecer en Home</span>
                         </div>
@@ -155,7 +149,7 @@
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
                         <div class="contenedor-columna centro"></div>
-                        
+
                     </div>
                 </div>
                 <div class="contenedor mb-5 ml-5 pr-5">

@@ -1,8 +1,3 @@
-
-<script src="{{ asset('/js/main.js')}}"></script>
-<script src="{{ asset('/js/admin.js')}}"></script>
-<script src="{{ asset('/js/lib/datepicker.min.js')}}"></script>
-<link href="{{ asset('css/datepicker.min.css')}}"rel="stylesheet">
 <?php
 //recuperamos datos obtenidos por la API
 $last_edition = $respuesta->data->last_edition;
@@ -51,8 +46,6 @@ $data_for_new_entry = json_encode([
     </div>
     <div id="bodymenu">
         <div id="grilla">
-
-
             <div class=" d-flex ml-4 pl-3 pt-5 pb-4">
             <div class="position-relative">
                     <label for="date-schedule-landing">
@@ -73,8 +66,7 @@ $data_for_new_entry = json_encode([
 
                 </div>
 
-                <div class="  ml-5    ">
-
+                <div class="ml-5">
                     @if (count($respuesta->data->programs)!=0)
                         <input disabled id="inp_programing_claro_canal" type="file" >
                         <label onclick="subirArchivos()" for="inp_programing_claro_canal" class=" a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center position-absolute justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="  pr-2">Cargar archivos</span></label>
@@ -274,17 +266,24 @@ $data_for_new_entry = json_encode([
                         <!--Programar publicacición landing-->
                         <div class="contenedor-columna centro">
                             <!--<label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>-->
-                            <div class="d-flex justify-content-center">
-                                <div class="">
+                            <div class="d-flex justify-content-end">
+                                <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-landing" class="a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
                                 </div>
-                                <div class="">
-                                    <input type="text" id="programar-landing" class="a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                <div>
+                                    <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
-
-
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <!--<label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">-->
+                                </div>
+                                <div>
+                                    <!--<input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">-->
+                                </div>
+                            </div>
                         </div>
                         <!--ESTABLECER EN HOME-->
                         <div class="contenedor-columna centro" id="programar-{{$programs[$indexPrograms]->id }}">
@@ -338,9 +337,10 @@ $data_for_new_entry = json_encode([
                         <!--Program Year Produced-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                            <input type="text" class="year-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
+                            <input type="text" class="text-center year-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
                             </div>
                         </div>
+                        <!---->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
                                 <label class="a-text-regular-brownishtwo text-small">Animación, Cultura, Series</label>

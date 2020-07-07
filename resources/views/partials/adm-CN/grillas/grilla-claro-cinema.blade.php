@@ -1,8 +1,3 @@
-
-<script src="{{ asset('/js/main.js')}}"></script>
-<script src="{{ asset('/js/admin.js')}}"></script>
-<script src="{{ asset('/js/lib/datepicker.min.js')}}"></script>
-<link href="{{ asset('css/datepicker.min.css')}}"rel="stylesheet">
 <?php
 //recuperamos datos obtenidos por la API
 $last_edition = $respuesta->data->last_edition;
