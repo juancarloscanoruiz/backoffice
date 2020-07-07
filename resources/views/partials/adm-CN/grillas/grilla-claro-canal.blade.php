@@ -86,7 +86,7 @@ $data_for_new_entry = json_encode([
             <!--end-->
 
             <div id="rempla-claro-canal">
-                <div id="tb1" class="d-flex  ml-5 pr-5 conten-tab">
+                <div id="tb1" class="ml-5 pr-5 conten-tab">
                     <div>
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table" style="width: 118px">
@@ -112,54 +112,53 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro  centro title-table" style="width: 300px">
                             <span class="a-text-semibold-white text-normal">Establecer en Home</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
+                        <div class="contenedor-columna centro  centro title-table" style="width: 312px">
                             <span class="a-text-semibold-white text-normal">Home Progamar publicación</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal"> Imagenes</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 166px">
+                            <span class="a-text-semibold-white text-normal">Imágenes</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal">Schedule Item Date Time</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 166px">
+                            <span class="a-text-semibold-white text-normal">Schedule Item<br> Date Time</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal">Schedule Item Long Date</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 170px">
+                            <span class="a-text-semibold-white text-normal">Schedule Item<br> Long Date</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal">Schedule Item Long Time< (GMT)</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 170px">
+                            <span class="a-text-semibold-white text-normal">Schedule Item<br> Long Time (GMT)</span>
                          </div>
-                         <div class="contenedor-columna centro centro title-table">
+                         <div class="contenedor-columna centro centro title-table" style="width: 182px">
                                     <span class="a-text-semibold-white text-normal">Estimated Schedule Item Duration</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
-                            <span class="a-text-semibold-white text-normal">Program Year Produced</span>
+                        <div class="contenedor-columna centro  centro title-table" style="width: 177px">
+                            <span class="a-text-semibold-white text-normal">Program Year<br> Produced</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 169px">
                             <span class="a-text-semibold-white text-normal">Program Genre List</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 247px">
                             <span class="a-text-semibold-white text-normal">Program Title Alternate </span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
-                            <span class="a-text-semibold-white text-normal">Program Episode Season</span>
+                        <div class="contenedor-columna centro  centro title-table" style="width: 197px">
+                            <span class="a-text-semibold-white text-normal">Program Episode<br> Season</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
-                            <span class="a-text-semibold-white text-normal">Program Episode Number</span>
+                        <div class="contenedor-columna centro  centro title-table" style="width: 197px">
+                            <span class="a-text-semibold-white text-normal">Program Episode<br> Number</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
+                        <div class="contenedor-columna centro centro title-table" style="width: 569px">
                             <span class="a-text-semibold-white text-normal">Synopsis</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal">Schedule Item Rating Code</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 169px">
+                            <span class="a-text-semibold-white text-normal">Schedule Item<br> Rating Code</span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
-                            <span class="a-text-semibold-white text-normal">Scheduled Version SUBBED (1=Yes/0=No)</span>
+                        <div class="contenedor-columna centro  centro title-table" style="width: 166px">
+                            <span class="a-text-semibold-white text-normal">Scheduled<br> Version SUBBED</span>
                         </div>
-                        <div class="contenedor-columna centro centro title-table">
-                            <span class="a-text-semibold-white text-normal">Scheduled Version DUBBED (1=Yes/0=No)</span>
+                        <div class="contenedor-columna centro centro title-table" style="width: 166px">
+                            <span class="a-text-semibold-white text-normal">Scheduled Version DUBBED </span>
                         </div>
-                        <div class="contenedor-columna centro  centro title-table">
-                            <span class="a-text-semibold-white text-normal">Audio 5.1 available
-                                (1=Yes/0=No)</span>
+                        <div class="contenedor-columna centro  centro title-table" style="width: 126px">
+                            <span class="a-text-semibold-white text-normal">Audio 5.1<br> available</span>
                         </div>
                     </div>
                     @if (count($programs)==0)
@@ -218,9 +217,9 @@ $data_for_new_entry = json_encode([
                     </div>
                     @else
 
-                    @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
+                @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
 
-                <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
+                    <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
                         <!--ACCIONES-->
                         <div class="contenedor-columna centro" id="entrada-{{$programs[$indexPrograms]->id }}"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3" alt="pencil"><img src="./images/basic-icons/trash.svg" alt="trash"></div>
                         <!--ESTADO-->
@@ -265,7 +264,6 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--Programar publicacición landing-->
                         <div class="contenedor-columna centro">
-                            <!--<label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>-->
                             <div class="d-flex justify-content-end">
                                 <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
@@ -277,11 +275,11 @@ $data_for_new_entry = json_encode([
                             </div>
                             <div class="d-flex justify-content-end">
                                 <div>
-                                    <!--<label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">-->
+                                    <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
                                 </div>
                                 <div>
-                                    <!--<input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">-->
+                                    <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
                         </div>
@@ -298,20 +296,38 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
                         <div class="contenedor-columna centro">
-                            <div >
-                                <label class="a-text-medium-brownish text-small d-flex justify-content-center pb-2 pt-2" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
                             </div>
                         </div>
 
                         <div class="contenedor-columna centro">
                             <div class="image-ta position-relative">
-                            <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
-                                </div>
-                                <span class="a-text-regular-brownishtwo text-small">Añade imagenes</span>
+                                <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
+                            </div>
+                            <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
+                            <div>
+                                <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_program}}</span><span class="a-text-regular-brownishtwo">/9</span>
+                            </div>
                         </div>
                         <div class="contenedor-columna centro ">
                             <div class="schedule-date">
-                            <label class='a-text-medium-brownish text-small d-flex justify-content-center  pb-2' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
+                            <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
 
 
                             </div>
@@ -319,54 +335,54 @@ $data_for_new_entry = json_encode([
                         <!--Schedule item long date-->
                         <div class="contenedor-columna centro ">
                             <div class="schedule-date">
-                            <input type="text" name="" class="table-input schedule-date-input text-center a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->day}}">
+                            <input type="text" name="" class="table-input schedule-date-input text-center a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->day}}">
                             </div>
                         </div>
                         <!--Schedule Item Long Time (GMT)-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center schedule-time-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->programing}}">
+                                <input type="text" class="table-input text-center schedule-time-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->programing}}">
                             </div>
                         </div>
                         <!--Estimated Schedule Item Duration-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center time-seconds-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->duration}}">
+                                <input type="text" class="table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}">
                             </div>
                         </div>
                         <!--Program Year Produced-->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                            <input type="text" class="text-center year-input a-text-regular-brownishtwo text-small" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
+                            <input type="text" class="text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
                             </div>
                         </div>
                         <!---->
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo text-small">Animación, Cultura, Series</label>
+                                <label class="a-text-regular-brownishtwo">Animación, Cultura, Series</label>
 
                             </div>
                         </div>
                         <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->subtitle}}</label>
+                            <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->subtitle}}</label>
 
 
                         </div>
                         <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->id}}</label>
+                            <label class="a-text-regular-brownishtwo" >{{$programs[$indexPrograms]->id}}</label>
 
                        </div>
                         <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo text-small">{{$programs[$indexPrograms]->program_episode_number}}</label>
+                            <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->program_episode_number}}</label>
 
                        </div>
                         <div class="contenedor-columna centro">
-                            <label class="a-text-regular-brownishtwo text-small p-2">{{$programs[$indexPrograms]->synopsis}}</label>
+                            <label class="a-text-regular-brownishtwo p-2">{{$programs[$indexPrograms]->synopsis}}</label>
 
                         </div>
                         <div class="contenedor-columna centro">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo text-small" >{{$programs[$indexPrograms]->rating}}</label>
+                                <label class="a-text-regular-brownishtwo" >{{$programs[$indexPrograms]->rating}}</label>
 
                             </div>
                         </div>

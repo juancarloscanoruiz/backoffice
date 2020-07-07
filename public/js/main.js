@@ -63669,10 +63669,34 @@ $.ajaxSetup({
   }
 });
 $(document).ready(function () {
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-time-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".schedule-date-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".time-seconds-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["timeWithSeconds"]);
-  new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](".year-input", _config_config_js__WEBPACK_IMPORTED_MODULE_2__["year"]);
+  /*
+  Permite a todos los campos de Schedule item log time tener el formato
+  tiempo en hh:mm
+  */
+  $(".schedule-time-input").toArray().forEach(function (scheduleTime) {
+    new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
+  });
+  /*
+  Permite a todos los campos de Schedule item log datetener el formato YYYY-MM-DD
+  */
+
+  $(".schedule-date-input").toArray().forEach(function (scheduleDate) {
+    new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
+  });
+  /*
+  Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+  */
+
+  $(".time-seconds-input").toArray().forEach(function (timeInput) {
+    new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["timeWithSeconds"]);
+  });
+  /*
+  Permite a todos los input con la clase year-input tener el formato YYYY
+  */
+
+  $(".year-input").toArray().forEach(function (yearInput) {
+    new cleave_js__WEBPACK_IMPORTED_MODULE_3__["default"](yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["year"]);
+  });
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["showUserFront"])(); //GET USER
 
   $("#cambio").on("click", ".view-user-icon", function () {
@@ -63715,33 +63739,69 @@ $(document).ready(function () {
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_6__["getUserToUpdate"])(id);
   }); //CONFIGURACIÓN DE DATEPICKER
 
-  var dateScheduleLanding = document.querySelector("#date-schedule-landing");
-
+  /* let dateScheduleLanding = document.querySelector("#date-schedule-landing");
   if (dateScheduleLanding) {
-    var picker = datepicker(dateScheduleLanding, {
-      customMonths: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-      customDays: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-      onSelect: function onSelect(instance, date) {
-        var nameDays = ["DOMINGO", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO"];
-        var nameMonths = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
-        var currentNamesDay = nameDays[date.getDay()];
-        var currentNamesMonth = nameMonths[picker.currentMonth];
-        var completeDay = "".concat(currentNamesDay, "  ").concat(date.getDate());
-        $("#schedule-day").text(completeDay);
-        $(".progra-month").text(currentNamesMonth);
-      },
-      minDate: new Date()
-    }); //ELEGIR DÍA EN PROGRAMACIÓN GENERAL
-
-    $(".calendar").click(function (e) {
-      console.log("calendar");
-      e.stopPropagation();
-      var isHidden = picker.calendarContainer.classList.contains("qs-hidden");
-      picker[isHidden ? "show" : "hide"](); //console.log(picker.currentMonth);
-    });
-  } //CHANGE TO LANDING
+      const picker = datepicker(dateScheduleLanding, {
+          customMonths: [
+              "Enero",
+              "Febrero",
+              "Marzo",
+              "Abril",
+              "Mayo",
+              "Junio",
+              "Julio",
+              "Agosto",
+              "Septiembre",
+              "Octubre",
+              "Noviembre",
+              "Diciembre"
+          ],
+          customDays: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+          onSelect: (instance, date) => {
+              let nameDays = [
+                  "DOMINGO",
+                  "LUNES",
+                  "MARTES",
+                  "MIÉRCOLES",
+                  "JUEVES",
+                  "VIERNES",
+                  "SÁBADO"
+              ];
+               let nameMonths = [
+                  "ENERO",
+                  "FEBRERO",
+                  "MARZO",
+                  "ABRIL",
+                  "MAYO",
+                  "JUNIO",
+                  "JULIO",
+                  "AGOSTO",
+                  "SEPTIEMBRE",
+                  "OCTUBRE",
+                  "NOVIEMBRE",
+                  "DICIEMBRE"
+              ];
+               let currentNamesDay = nameDays[date.getDay()];
+              let currentNamesMonth = nameMonths[picker.currentMonth];
+               let completeDay = `${currentNamesDay}  ${date.getDate()}`;
+              $("#schedule-day").text(completeDay);
+              $(".progra-month").text(currentNamesMonth);
+          },
+          minDate: new Date()
+      });
+      //ELEGIR DÍA EN PROGRAMACIÓN GENERAL
+      $(".calendar").click(function(e) {
+          console.log("calendar");
+          e.stopPropagation();
+          const isHidden = picker.calendarContainer.classList.contains(
+              "qs-hidden"
+          );
+          picker[isHidden ? "show" : "hide"]();
+          //console.log(picker.currentMonth);
+      });
+  }*/
+  //CHANGE TO LANDING
   //CARGA DE LANDING Y GRILLA DE CLARO
-
 
   $(".lan-claro").click(function (event) {
     Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["showlanding"])();
