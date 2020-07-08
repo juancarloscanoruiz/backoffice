@@ -266,7 +266,7 @@
 }
 
 .text-return {
-  font-family: "Montserrat-SemiBold";
+  font-family: "Montserrat-Black";
   font-size: 18px;
   color: #ffffff;
   line-height: 2.5;
@@ -535,7 +535,7 @@
 }
 
 .menu {
-  font-family: "Montserrat-Bold";
+  font-family: "Montserrat-Black";
   font-size: 18px;
   color: #ffffff;
   text-align: center;
@@ -922,6 +922,15 @@
 
 .title-table {
   background-color: #4a4a4a;
+}
+
+.active-title-table {
+  background-color: #0097a9;
+  font-family: "Montserrat-Black";
+}
+
+.active-title-table > span {
+  font-family: "Montserrat-Black";
 }
 
 .invalid-email {
@@ -3124,7 +3133,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .text-return {
-  font-family: "Montserrat-SemiBold";
+  font-family: "Montserrat-Black";
   font-size: 18px;
   color: #ffffff;
   line-height: 2.5;
@@ -3393,7 +3402,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .menu {
-  font-family: "Montserrat-Bold";
+  font-family: "Montserrat-Black";
   font-size: 18px;
   color: #ffffff;
   text-align: center;
@@ -3780,6 +3789,15 @@ input[type=radio]:checked + .no-estilo1 {
 
 .title-table {
   background-color: #4a4a4a;
+}
+
+.active-title-table {
+  background-color: #0097a9;
+  font-family: "Montserrat-Black";
+}
+
+.active-title-table > span {
+  font-family: "Montserrat-Black";
 }
 
 .invalid-email {
@@ -4298,7 +4316,6 @@ ul {
 }
 
 .conten-tab {
-  width: 500%;
   display: table;
   border-collapse: collapse;
 }
@@ -4409,6 +4426,84 @@ ul {
 
 iframe {
   width: 1200px;
+}
+
+.conten-tab #acciones {
+  min-width: 118px;
+}
+
+.conten-tab #estado {
+  min-width: 137px;
+}
+
+.conten-tab #alerta {
+  min-width: 142px;
+}
+
+.conten-tab #program-title-original {
+  min-width: 291px;
+}
+
+.conten-tab #establecer-landing {
+  min-width: 241px;
+}
+
+.conten-tab #landing-programar {
+  min-width: 312px;
+}
+
+.conten-tab #establecer-home {
+  min-width: 300px;
+}
+
+.conten-tab #programar-home-publicacion {
+  min-width: 312px;
+}
+
+.conten-tab #imagenes,
+.conten-tab #schedule-item-date-time,
+.conten-tab #subbed,
+.conten-tab #dubbed {
+  min-width: 166px;
+}
+
+.conten-tab #schedule-item-date,
+.conten-tab #schedule-item-time {
+  width: 170px;
+}
+
+.conten-tab #estimated-duration {
+  min-width: 182px;
+}
+
+.conten-tab #program-year {
+  min-width: 177px;
+}
+
+.conten-tab #program-genre,
+.conten-tab #rating-code {
+  min-width: 169px;
+}
+
+.conten-tab #program-title-alternate {
+  min-width: 247px;
+}
+
+.conten-tab #program-episode-season,
+.conten-tab #program-episode-number {
+  min-width: 197px;
+}
+
+.conten-tab #synopsis {
+  min-width: 569px;
+}
+
+.conten-tab #audio {
+  min-width: 126px;
+}
+
+.landing-table {
+  overflow-x: scroll;
 }
 
 @font-face {

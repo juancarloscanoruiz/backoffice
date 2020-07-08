@@ -63453,10 +63453,16 @@ function selectRow() {
 }
 
 function selectColumn() {
+  //Seleccionamos todas las columnas y quitamos la clase column-select
   var allColumns = $(".contenedor-columna");
-  allColumns.removeClass("column-select");
+  allColumns.removeClass("column-select"); //Añadimos a la columna actual la clase column-select
+
   var column = $(this);
-  column.addClass("column-select");
+  column.addClass("column-select"); //Agregamos estilos al encabezado de la columna
+
+  var tableHeader = $(".title-table").removeClass("active-title-table");
+  var rel = $(this).attr("rel");
+  $("#" + rel).addClass("active-title-table");
 }
 
 
@@ -63672,6 +63678,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./form/form.js */ "./resources/js/form/form.js");
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/user.js */ "./resources/js/services/user.js");
+/* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
 
  //CONFIG
 
@@ -63684,24 +63691,21 @@ __webpack_require__.r(__webpack_exports__);
  //SERVICES
 
 
+
 $.ajaxSetup({
   headers: {
     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
   }
 });
 $(document).ready(function () {
-  /*$(".program-title-original").keyup(function(e) {
-      e.preventDefault();
-      if (e.keyCode == 13) {
-          console.log($(this).val());
-          e.preventDefault();
-          $(this).blur();
-      }
-  });*/
-  $(".program-title-original").keydown(function (e) {
+  $(".editable-attribute").keydown(function (e) {
     if (e.which === 13 && !e.shiftKey) {
+      var key = $(this).parent().attr("key");
+      var keyValue = $(this).val();
+      var chapterId = $(this).parent().attr("chapter_id");
       e.preventDefault();
-      console.log($(this).val());
+      $(this).blur();
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_7__["editAttributeProgram"])(chapterId, key, keyValue);
       return false;
     }
   });
@@ -64082,7 +64086,7 @@ $(document).ready(function () {
   /* 2.- UI  */
 
   $(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["selectRow"]);
-  $(".contenedor-columna").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["selectColumn"]); //Mostrar grilla de concert channel
+  $(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_4__["selectColumn"]); //Mostrar grilla de concert channel
 
   $(".bn-nav").click(function () {
     var id = $(this).attr("id");
@@ -64361,6 +64365,83 @@ function previewPage(icon) {
         iframeProgramacion.css("height", "12000px");
         iframeCanalClaro.css("height", "4600px");
       }
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/services/generalSchedule.js":
+/*!**************************************************!*\
+  !*** ./resources/js/services/generalSchedule.js ***!
+  \**************************************************/
+/*! exports provided: editAttributeProgram */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAttributeProgram", function() { return editAttributeProgram; });
+function getGeneralSchedule() {
+  var data = {
+    "function": "getGeneralSchedule"
+  };
+  $.ajax({
+    type: "POST",
+    data: data,
+    url: "./adapters/generalSchedule.php",
+    success: function success(result) {
+      console.log(result);
+    }
+  });
+}
+
+function editAttributeProgram(chapter_id, key, keyValue) {
+  var data = {
+    chapter_id: chapter_id,
+    key: key,
+    keyValue: keyValue
+  };
+  $.ajax({
+    type: "POST",
+    data: data,
+    url: "program/editAttribute",
+    success: function success(result) {
+      console.log(result);
+    }
+  });
+}
+
+function addImageToProgram(id_version, id_program, image) {
+  var data = {
+    id_version: id_version,
+    id_program: id_program,
+    image: image,
+    "function": "addIMageToProgram"
+  };
+  $.ajax({
+    type: "POST",
+    data: data,
+    url: "./adapters/generalSchedule.php",
+    success: function success(result) {
+      console.log(result);
+    }
+  });
+}
+
+function deleteProgram(id_program, id_version) {
+  var data = {
+    id_program: id_program,
+    id_version: id_version,
+    "function": "deleteProgram"
+  };
+  $.ajax({
+    type: "POST",
+    data: data,
+    url: "./adapters/generalSchedule.php",
+    success: function success(result) {
+      console.log(result);
+    }
+  });
 }
 
 

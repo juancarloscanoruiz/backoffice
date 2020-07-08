@@ -13,17 +13,16 @@ function getGeneralSchedule() {
     });
 }
 
-function editAttributeProgram(id_version, id_program, metakey, valueMetakey) {
+function editAttributeProgram(chapter_id, key, keyValue) {
     let data = {
-        id_version: id_version,
-        id_program: id_program,
-        metakey: metakey,
-        valueMetakey: valueMetakey
+        chapter_id,
+        key,
+        keyValue
     };
     $.ajax({
         type: "POST",
         data: data,
-        url: "./adapters/generalSchedule.php",
+        url: "program/editAttribute",
         success: function(result) {
             console.log(result);
         }
@@ -64,3 +63,5 @@ function deleteProgram(id_program, id_version) {
         }
     });
 }
+
+export { editAttributeProgram };

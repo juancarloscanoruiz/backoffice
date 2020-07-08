@@ -68,3 +68,11 @@ Route::post('/view', "ViewsController@index")->middleware('session_user');
 Route::get('/histo', function () {
     return view('partials.adm-CN.image');
 })->name('para pruebas');
+
+
+//RUTA PARA EDITAR ATRIBUTOS DE PROGRAMAS EN GRILLA
+Route::group(['prefix' => 'program'], function () {
+    Route::post('editAttribute', "ProgramacionGeneralController@editAttribute")->name("editAttribute");
+    Route::post('logout', "AuthController@signOut")->name("logout");
+    Route::post('exit', "AuthController@exit")->name('exit');
+});

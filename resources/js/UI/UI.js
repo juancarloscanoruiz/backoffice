@@ -657,10 +657,16 @@ function selectRow() {
 }
 
 function selectColumn() {
+    //Seleccionamos todas las columnas y quitamos la clase column-select
     let allColumns = $(".contenedor-columna");
     allColumns.removeClass("column-select");
+    //Añadimos a la columna actual la clase column-select
     let column = $(this);
     column.addClass("column-select");
+    //Agregamos estilos al encabezado de la columna
+    let tableHeader = $(".title-table").removeClass("active-title-table");
+    let rel = $(this).attr("rel");
+    $("#" + rel).addClass("active-title-table");
 }
 
 export {

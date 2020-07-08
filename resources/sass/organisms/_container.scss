@@ -20,7 +20,7 @@
     //a-text-public
 }
 .conten-tab {
-    width: 500%;
+    //width: 500%;
     display: table;
     border-collapse: collapse;
 }
@@ -137,4 +137,81 @@
 
 iframe {
     width: 1200px;
+}
+
+.conten-tab {
+    #acciones {
+        min-width: 118px;
+    }
+
+    #estado {
+        min-width: 137px;
+    }
+
+    #alerta {
+        min-width: 142px;
+    }
+
+    #program-title-original {
+        min-width: 291px;
+    }
+
+    #establecer-landing {
+        min-width: 241px;
+    }
+
+    #landing-programar {
+        min-width: 312px;
+    }
+
+    #establecer-home {
+        min-width: 300px;
+    }
+
+    #programar-home-publicacion {
+        min-width: 312px;
+    }
+    #imagenes,
+    #schedule-item-date-time,
+    #subbed,
+    #dubbed {
+        min-width: 166px;
+    }
+    #schedule-item-date,
+    #schedule-item-time {
+        width: 170px;
+    }
+    #estimated-duration {
+        min-width: 182px;
+    }
+
+    #program-year {
+        min-width: 177px;
+    }
+
+    #program-genre,
+    #rating-code {
+        min-width: 169px;
+    }
+
+    #program-title-alternate {
+        min-width: 247px;
+    }
+
+    #program-episode-season,
+    #program-episode-number {
+        min-width: 197px;
+    }
+
+    #synopsis {
+        min-width: 569px;
+    }
+
+    #audio {
+        min-width: 126px;
+    }
+}
+
+.landing-table {
+    overflow-x: scroll;
 }

@@ -45,6 +45,8 @@ import {
     getUserFrontToUpdate
 } from "./services/user.js";
 
+import { editAttributeProgram } from "./services/generalSchedule.js";
+
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -52,10 +54,18 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    $(".program-title-original").keydown(function(e) {
+    $(".editable-attribute").keydown(function(e) {
         if (e.which === 13 && !e.shiftKey) {
+            let key = $(this)
+                .parent()
+                .attr("key");
+            let keyValue = $(this).val();
+            let chapterId = $(this)
+                .parent()
+                .attr("chapter_id");
             e.preventDefault();
-            console.log($(this).val());
+            $(this).blur();
+            editAttributeProgram(chapterId, key, keyValue);
             return false;
         }
     });
@@ -728,7 +738,7 @@ $(document).ready(function() {
 
     /* 2.- UI  */
     $(".edit-row-pencil").click(selectRow);
-    $(".contenedor-columna").click(selectColumn);
+    $(".selectable-column").click(selectColumn);
 
     //Mostrar grilla de concert channel
     $(".bn-nav").click(function() {

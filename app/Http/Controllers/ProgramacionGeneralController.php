@@ -30,9 +30,9 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
         );
         $respuesta =  json_decode($response->getBody());
-
+        var_dump($respuesta);
         if ($respuesta->code == 200) {
-            var_dump($respuesta->data);
+            //var_dump($respuesta->data);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
@@ -51,7 +51,6 @@ class ProgramacionGeneralController extends Controller
         $response = $client->get(
             $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
         );
-        var_dump($response);
         $respuesta =  json_decode($response->getBody());
 
         if ($respuesta->code == 200) {
@@ -690,5 +689,25 @@ class ProgramacionGeneralController extends Controller
         } else {
             return json_encode($request->all());
         }
+    }
+
+    public function editAttribute(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/returnPost",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    'key' => $request->input('key'),
+                    'keyValue' => $request->input('keyValue'),
+                ]
+            )]
+        );
+        var_dump($response->getBody()->getContents());
     }
 }
