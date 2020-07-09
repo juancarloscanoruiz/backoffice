@@ -1,8 +1,27 @@
 @import "text";
 @import "../base/typography";
 @import "../base/color";
+@import "../base/config";
 
 /* BOTONES REUTILIZABLES */
+
+.button-basic {
+    outline: none;
+    border-radius: $radioButton;
+}
+
+.a-button-primary-teal {
+    background-color: $teal;
+    cursor: pointer;
+    border: 2px solid $waterblue;
+}
+
+.a-button-outline-teal {
+    background-color: $white;
+    cursor: pointer;
+    border: 1px solid $waterblue;
+}
+
 .a-btn-basic-medium {
     width: 210px;
     height: 54px;
@@ -36,9 +55,9 @@
     -webkit-box-shadow: none;
     transition: all 0.3s;
 }
-.a-btn-white{
- background: $beige;
- border: 1px solid $beige;
+.a-btn-white {
+    background: $beige;
+    border: 1px solid $beige;
 }
 
 .a-button-pill-teal-outline {
@@ -872,4 +891,12 @@
     width: 233px;
     height: 56px;
     border-radius: 3em;
+}
+
+.date-button {
+    width: 240px;
+    border-radius: $radioButton;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    height: 54px;
 }

@@ -1,9 +1,15 @@
 .modal-edit-usersfront-content {
-  width: 567px;
-  margin: auto;
+    width: 567px;
+    margin: auto;
 }
-.modal-save{
-  width: 749px;
+.modal-save {
+    width: 749px;
     height: 430px;
     background-color: #ffffff;
+}
+
+.modal-synopsis {
+    .modal-dialog {
+        max-width: 750px !important;
+    }
 }

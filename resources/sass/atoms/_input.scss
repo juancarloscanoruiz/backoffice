@@ -272,9 +272,27 @@ input[type="radio"]:checked + .no-estilo1 {
     padding: 8px;
     width: 100%;
     height: 100%;
+    outline: none !important;
 }
 
 .table-input {
     border: none;
     width: 120px;
+    outline: none !important;
+}
+
+#date-start-input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    padding: 0;
+    border: 0;
+}
+
+.modal-textarea {
+    width: 100%;
+    height: 358px;
+    resize: none;
+    outline: none !important;
 }

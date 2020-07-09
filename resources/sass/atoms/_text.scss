@@ -29,6 +29,12 @@
     font-family: $MontserratBold;
     color: $light;
 }
+
+.a-text-bold-charcoal {
+    font-family: $MontserratBold;
+    color: $charcoal;
+}
+
 .a-text-bold-two {
     font-family: $MontserratBold;
     color: $black-two;
@@ -53,6 +59,12 @@
     font-family: $MontserratBold;
     color: $white;
 }
+
+.a-text-bold-teal {
+    color: $teal;
+    font-family: $MontserratBold;
+}
+
 .a-text-bold-black {
     font-family: $MontserratBold;
     color: $black;
@@ -90,6 +102,12 @@
     font-family: $MontserratRegular;
     color: $black;
 }
+
+.a-text-medium-warmgrey {
+    font-family: $MontserratMedium;
+    color: $warmGrey;
+}
+
 .a-text-black-brown-two {
     font-family: $MontserratBlack;
     color: $greyish-brown-two;
@@ -98,6 +116,10 @@
 .a-text-medium-orange {
     color: $pastelOrange;
     font-family: $MontserratMedium;
+}
+.a-text-medium-warm-grey-three {
+    font-family: $MontserratMedium;
+    color: $warm-grey-three;
 }
 
 .a-text-medium-dark2 {
@@ -112,6 +134,11 @@
     font-family: $MontserratSemiBold;
     color: $lightbrown;
 }
+
+.a-text-semibold-warmgrey {
+    font-family: $MontserratSemiBold;
+    color: $warmGrey;
+}
 .a-text-semibold-warm-grey-three {
     font-family: $MontserratSemiBold;
     color: $warm-grey-three;
@@ -123,11 +150,6 @@
 .a-text-regular-black {
     font-family: $MontserratRegular;
     color: black;
-}
-
-.a-text-bold-teal {
-    color: $teal;
-    font-family: $MontserratBold;
 }
 
 /* END TEXT BASE*/
@@ -487,7 +509,7 @@
 .flex-caption {
     font-family: $MontserratSemiBold;
     font-size: 22px;
-    color: $darkyellow;
+    color: $charcoal;
 }
 .text-crea {
     font-size: 18px;

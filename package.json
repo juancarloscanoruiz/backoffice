@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "cleave.js": "^1.6.0",
-        "crypto-js": "^4.0.0"
+        "crypto-js": "^4.0.0",
+        "litepicker": "^1.5.7"
     }
 }

@@ -652,7 +652,15 @@ function selectRow() {
         .closest(".contenedor-fila")
         .children(".editable-column");
     allColumnsSelected.css("pointer-events", "all");
+    //Cambiamos todos los lápices a azules y permitimos pointer events
+    $(".delete-row-pencil")
+        .attr("src", "./images/eliminar-acti.svg")
+        .css("pointer-events", "all");
     let row = $(this).closest(".contenedor-fila");
+    $(this)
+        .next()
+        .attr("src", "./images/basic-icons/trash.svg")
+        .css("pointer-events", "none");
     row.addClass("row-selected");
 }
 

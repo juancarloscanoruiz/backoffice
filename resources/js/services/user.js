@@ -334,9 +334,8 @@ function getAllUsersBO() {
           </div>
           `;
                 });
-                $("#Adm-users-BO")
-                    .html(
-                        `
+                $("#Adm-users-BO").html(
+                    `
         <div class="col-xl-10 position-btn-alta">
           <button class="btn-alta text-public mb-4 d-flex align-items-center" id="btnAlta">Agregar nuevo usuario</button>
         </div>
@@ -375,11 +374,9 @@ function getAllUsersBO() {
           </div>
 
         `
-                    )
-                    .promise()
-                    .done(function() {
-                        showModalDeleteUserBO();
-                    });
+                );
+
+                showModalDeleteUserBO();
 
                 /*showDescriptions();
                 showUserBO();*/

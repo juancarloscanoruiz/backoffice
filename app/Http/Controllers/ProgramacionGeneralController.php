@@ -481,7 +481,7 @@ class ProgramacionGeneralController extends Controller
         );
         $respuesta =  $response->getBody()->getContents();
 
-        echo ($respuesta);
+        //echo ($respuesta);
     }
     public function newRow(Request $request)
     {

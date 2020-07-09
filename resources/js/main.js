@@ -11,6 +11,7 @@ import {
 
 //VENDOR
 import Cleave from "cleave.js";
+import Litepicker from "litepicker";
 
 //UI
 import {
@@ -23,7 +24,9 @@ import {
     showFormCreateUser,
     showUserFront,
     selectRow,
-    selectColumn
+    selectColumn,
+    showModalDeleteUserBO,
+    deleteUserUI
 } from "./UI/UI.js";
 
 //FORM VALIDATIONS
@@ -54,6 +57,91 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    $(".switch-landing").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let landingOptionsChecks = currentColumn.children(".landing-options");
+        if ($(this).val() == 1) {
+            landingOptionsChecks.css("pointer-events", "all");
+            currentColumn
+                .next()
+                .children(".landing-programar-content")
+                .css("pointer-events", "all");
+        } else {
+            landingOptionsChecks.css("pointer-events", "none");
+            currentColumn
+                .next()
+                .children(".landing-programar-content")
+                .css("pointer-events", "none");
+        }
+    });
+    //Mostrar la sinópsis completa en modal
+    $(".see-more").click(function() {
+        $(".modal-textarea").val(
+            $(this)
+                .prev()
+                .text()
+        );
+
+        $(".modal-program-title").text($(this).attr("program_title"));
+        $(".modal-synopsis").modal("show");
+    });
+
+    //Truncar texto de sinópsis con "..."
+    $(".lb-synopsis").each(function(index, element) {
+        if ($(this).text().length > 200) {
+            let text =
+                $(this)
+                    .text()
+                    .substr(0, 200) + "...";
+            $(this).text(text);
+        }
+    });
+
+    let dateStartInput = document.getElementById("date-start-input");
+    if (dateStartInput) {
+        //ELEGIR FECHA DE INICIO Y FIN EN LA GRILLA
+        let picker = new Litepicker({
+            element: document.getElementById("date-start-input"),
+            format: "YYYY-MM-DD",
+            delimiter: ",",
+            minDate: new Date(),
+            onShow: function() {
+                picker.picker.style.left = "50%";
+                picker.picker.style.top = "50%";
+                picker.picker.style.transform = "translate(-50%, -50%)";
+                $(".litepicker").wrap(
+                    "<div class='date-modal' id='modal-container'></div>"
+                );
+                $("#modal-container").css("display", "block");
+            },
+            onHide: function() {
+                $("#modal-container").css("display", "none");
+            },
+            onSelect: function() {
+                let fullDate = document
+                    .getElementById("date-start-input")
+                    .value.split(",");
+                /* Fecha inicial del datepicker*/
+                let startDate = fullDate[0];
+                let startDateSplit = startDate.split("-");
+                let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+                $("#start-date-text").text(startDateFull);
+                /* Fecha final del datepicker */
+                let endDate = fullDate[1];
+                let endDateSplit = endDate.split("-");
+                let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+                $("#end-date-text").text(endDateFull);
+            },
+            numberOfMonths: 1,
+            numberOfColumns: 1,
+            singleMode: false
+        });
+    }
+
+    /* Al dar "enter" cancelamos el salto de línea,
+        conseguimos el valor del campo de la grilla
+        y hacemos la petición
+    */
     $(".editable-attribute").keydown(function(e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -132,6 +220,17 @@ $(document).ready(function() {
         registerUser(username, email, rol);
     });
 
+    $("#cambio").on("click", ".delete-userbo-icon", function() {
+        let id = $(this)
+            .parent()
+            .attr("_id");
+        let username = $(this).attr("_username");
+        console.log(username);
+        $(".modal-delete-username-bo").text(username);
+        $(".modal-delete-user").modal("show");
+        deleteUserUI(id);
+    });
+
     //BACK TO THE FRONTPAGE USERS' PAGE
     $("#cambio").on("click", ".closeViewFront", function() {
         showPageUsersFront();
@@ -158,73 +257,6 @@ $(document).ready(function() {
             .attr("_id");
         getUserToUpdate(id);
     });
-
-    //CONFIGURACIÓN DE DATEPICKER
-    /* let dateScheduleLanding = document.querySelector("#date-schedule-landing");
-    if (dateScheduleLanding) {
-        const picker = datepicker(dateScheduleLanding, {
-            customMonths: [
-                "Enero",
-                "Febrero",
-                "Marzo",
-                "Abril",
-                "Mayo",
-                "Junio",
-                "Julio",
-                "Agosto",
-                "Septiembre",
-                "Octubre",
-                "Noviembre",
-                "Diciembre"
-            ],
-            customDays: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-            onSelect: (instance, date) => {
-                let nameDays = [
-                    "DOMINGO",
-                    "LUNES",
-                    "MARTES",
-                    "MIÉRCOLES",
-                    "JUEVES",
-                    "VIERNES",
-                    "SÁBADO"
-                ];
-
-                let nameMonths = [
-                    "ENERO",
-                    "FEBRERO",
-                    "MARZO",
-                    "ABRIL",
-                    "MAYO",
-                    "JUNIO",
-                    "JULIO",
-                    "AGOSTO",
-                    "SEPTIEMBRE",
-                    "OCTUBRE",
-                    "NOVIEMBRE",
-                    "DICIEMBRE"
-                ];
-
-                let currentNamesDay = nameDays[date.getDay()];
-                let currentNamesMonth = nameMonths[picker.currentMonth];
-
-                let completeDay = `${currentNamesDay}  ${date.getDate()}`;
-                $("#schedule-day").text(completeDay);
-                $(".progra-month").text(currentNamesMonth);
-            },
-            minDate: new Date()
-        });
-        //ELEGIR DÍA EN PROGRAMACIÓN GENERAL
-        $(".calendar").click(function(e) {
-            console.log("calendar");
-            e.stopPropagation();
-            const isHidden = picker.calendarContainer.classList.contains(
-                "qs-hidden"
-            );
-            picker[isHidden ? "show" : "hide"]();
-            //console.log(picker.currentMonth);
-        });
-    }*/
-
     //CHANGE TO LANDING
 
     //CARGA DE LANDING Y GRILLA DE CLARO
