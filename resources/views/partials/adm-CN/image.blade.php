@@ -1,15 +1,15 @@
+
 @extends('layaout.app')
-@section('scripts')
-   
-@endsection
 
 @section('content')
 @include('partials.headers.headerPrograGeneral')
+
+
         <div class="ml-5 float-left">
             <div><span class="a-text-black-light text-plus">Última edición : <span class="zona"> hey lo </span> </span></div>
             <span class="a-text-black-light text-plus">Por : </span>
-            <label class="zona  separacion"> annet </label>
-            <label class="zona ">Super usuario</label>
+            <label class="zona  separacion">  </label>
+            <label class="zona "></label>
         </div>
         <div class="clearfix"></div>
        <h3 class="a-text-bold-black h3 ml-5 mt-4"> CANAL CLARO </h3>
@@ -17,104 +17,198 @@
        <button class="a-btn-basic-large a-text-bold-brown-two a-btn-white text-normal ml-5 "> LOS CABALLEROS DEL ZODIACO</button>
        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mb-4"> HOME </h3>
        <div class='col-sm-12 no-gutters col-md-6  no-gutters col-lg-12  col-xl-12'>
-    <img src='./images/registro/group-10.svg'class='image-pink-fondo' /></div>
+             <img src='../images/registro/group-10.svg'class='image-pink-fondo' />
+        </div>
     <div class='col-sm-4 col-md-4 col-lg-4 no-gutters'>
-        <img src='./images/blue.svg'class='image-blue'/>
+        <img src='../images/blue.svg'class='image-blue'/>
     </div>
        <hr class="d-flex align-content-center separationhr col-11">
        <div class="float-right mr-5 mt-2">
-           <img src="" alt="signo de admiracion">
-           <label for="" class="a-text-bold-tomato h3"> 0/6</label>
+           <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+           <label for="" class="a-text-bold-tomato h3"> {{($response['cantity_img_program'])}}/6</label>
        </div>
        <h3 class="a-text-bold-brown-two ml-5 h3 mt-4"> Recuerda subir la imagen en jpg</h3>
        <div class="clearfix"></div>
-       <div class="d-flex justify-content-around mt-5">   
-           <div class="col-4"> 
+         
+       <div class="d-flex justify-content-around col-12 mt-5">   
+           <div class="col-6"> 
            <button class="d-flex justify-content-center mb-4 a-btn-basic-medium a-text-bold-two a-btn-white text-plus mx-auto">THUMBNAIL</button>
-           <label for=""class="bor imagethumb d-flex justify-content-center">
-               <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
-               <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                   <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                   <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
-
+           @if(empty($response['thumbnail_list_horizontal']))
+         <div class="d-flex justify-content-center">
+          <div class="centro">
+             <label class="bor p-2">            
+                 <input type="file" name="imageThumb" id="imageThumb" class="d-none" >         
+                     <label for="imageThumb" class="">   
+                         <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+                 <!-- <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>-->
                </label>
             </label>
+           
+            </div>
+        @else
+         <div class="centro">
+             <label class="bor p-2">     
+        <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="{{$response['thumbnail_list_horizontal']}}" alt="" class="">                         
+               </label>
+            </label>  
+            </div>      
+            <div class="d-flex justify-content-center">
             <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
+            </div>
            </div>
-           <div class="">
+           @endif
+           <div class="col-6">
            <button class="d-flex justify-content-center mb-4 a-btn-basic-medium a-text-bold-two a-btn-white text-plus mx-auto">VERTICAL</button>
-           <label for=""class="bor imagevertical d-flex justify-content-center">
-               <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+           @if(empty($response['thumbnail_list_vertical']))
+          <div class="d-flex justify-content-center"> 
+          <div class="centro">
+           <label for=""class="bor p-2">
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
                <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                   <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                   <span class="a-text-bold-warm text-plus position-absolute mt-5"> 472px  X  295px </span>
-
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
                </label>
             </label>
+        </div>
+           @else
+           <div class="centro">
+           <label for=""class="bor p-2">
+               <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="d-flex align-items-center justify-content-center">
+               <img src="{{$response['thumbnail_list_vertical']}}" alt="" class="">
+               </label>
+            </label>
+            </div>
+            
+            <div class="d-flex justify-content-center">
             <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Vartical_CanalClaro_20200702.jpg</span>
-
+            
            </div>
-
        </div>
+       </div>
+       
+       @endif
        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-4 mb-5"> SINÓPSIS </h3>
        <hr class="d-flex align-content-center separationhr col-11 mb-5">
-       <div class="ml-5 mb-5"> 
-         
-           <label for=""class="bor imagethumb d-flex justify-content-center">
-               <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
-               <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                   <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                   <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+       @if(empty($response['image_synopsis']))
+       <div class="ml-5 mb-5">      
+       <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+               </label>
+            </label>
+            <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
+           </div>
+           @else
+           <div class="ml-5 mb-5">  
+           <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                   <img src="{{$response['image_synopsis']}}" alt="add-photo"  style="cursor:pointer;" class="">
+                <!--   <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>-->
 
                </label>
             </label>
             <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
            </div>
-           <div class="d-flex justify-content-around col-12 mb-5">
+        
+           @endif
+           <div class="d-flex justify-content-around col-12  ml-4 mb-5">
+
+         
+           @if(empty($response['image_synopsis_frame_1']))
            <div class="col-4"> 
-         
-         <label for=""class="bor imagesinop d-flex justify-content-center">
-             <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
-             <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                 <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                 <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+           <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+             </label>
+          </label>
+          </div>
+          @else
+          <div class="col-4">
+          <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+
+                 <img src="{{$response['image_synopsis_frame_1']}}" alt="add-photo"  style="cursor:pointer;" class="">
+               <!--  <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>-->
 
              </label>
           </label>
+       
           <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_</br>CanalClaro_20200702.jpg</span>
-         </div>
+          </div>
+          @endif
+          @if(empty($response['image_synopsis_frame_3']))
          <div class="col-4"> 
-         
-         <label for=""class="bor imagesinop d-flex justify-content-center">
-             <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
-             <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                 <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                 <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+         <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+             </label>
+          </label>
+          </div>
+          @else
+          <div class="col-4"> 
+          <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+
+                 <img src="{{$response['image_synopsis_frame_2']}}" alt="add-photo"  style="cursor:pointer;" class="">
+              <!--   <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>-->
 
              </label>
           </label>
+       
           <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_</br>CanalClaro_20200702.jpg</span>
          </div>
+         @endif
+        
+         @if(empty($response['image_synopsis_frame_3']))
          <div class="col-4"> 
-         
-         <label for=""class="bor imagesinop d-flex justify-content-center">
-             <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
-             <label for="imageThumb" class="d-flex align-items-center justify-content-center">
-                 <img src="images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="mb-5">
-                 <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+         <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+                      <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>
+             </label>
+          </label>
+          </div>
+          @else
+          <div class="col-4"> 
+          <label class="bor p-2">     
+           <input type="file" name="imageThumb" id="imageThumb" class="d-none" >
+               <label for="imageThumb" class="">   
+               <img src="../images/basic-icons/plus.svg" alt="add-photo"  style="cursor:pointer;" class="">
+
+                 <img src="{{$response['image_synopsis_frame_3']}}" alt="add-photo"  style="cursor:pointer;" class="">
+               <!--  <span class="a-text-bold-warm text-plus position-absolute mt-5">  472px  X  295px  </span>-->
 
              </label>
           </label>
+         
           <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_</br>CanalClaro_20200702.jpg</span>
          </div>
-
+         @endif
            </div>
            <div class="d-flex justify-content-center mb-5">
            <button class="d-flex justify-content-center a-btn-basic-medium a-btn-teal a-text-bold-white text-normal">
                Guardar
            </button>
            </div>
-
 
 
 @endsection

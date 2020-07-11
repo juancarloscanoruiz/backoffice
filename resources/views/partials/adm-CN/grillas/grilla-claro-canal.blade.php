@@ -4,6 +4,7 @@ $last_edition = $respuesta->data->last_edition;
 $edited_for = $respuesta->data->edited_for;
 $rol_user_edit = $respuesta->data->user_rol;
 $programs = $respuesta->data->programs;
+
 if ($rol_user_edit == "root") {
     $rol_user_edit = "Súper Usuario";
 }
@@ -48,11 +49,11 @@ $data_for_new_entry = json_encode([
             <div>
                 @if (count($respuesta->data->programs)!=0)
                 <input disabled id="inp_programing_claro_canal" type="file">
-                <label onclick="subirArchivos()" for="inp_programing_claro_canal" class=" a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="  pr-2">Cargar archivos</span></label>
+                <label onclick="subirArchivos()" for="inp_programing_claro_canal" class=" a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem; cursor:pointer;"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="  pr-2">Cargar archivos</span></label>
 
                 @else
                 <input id="inp_programing_claro_canal" type="file">
-                <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="  pr-2">Cargar archivos</span></label>
+                <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem; cursor:pointer;"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="  pr-2">Cargar archivos</span></label>
 
                 @endif
             </div>
@@ -231,7 +232,7 @@ $data_for_new_entry = json_encode([
 
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++) <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->id }}">
                         <!--ACCIONES-->
-                        <div class="contenedor-columna selectable-column centro" id="entrada-{{$programs[$indexPrograms]->id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil" alt="trash"></div>
+                        <div class="contenedor-columna selectable-column centro" id="entrada-{{$programs[$indexPrograms]->id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil" style="cursor:pointer;"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash" style="cursor:pointer;"></div>
                         <!--ESTADO-->
                         <div class="contenedor-columna centro editable-column" id="estado-{{$programs[$indexPrograms]->id }}">
                             @if ($respuesta->data->version_origin === "master")
@@ -383,9 +384,11 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Imágenes-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
+                        <div class="contenedor-columna selectable-column centro editable-column " rel="imagenes">
                             <div class="image-ta position-relative">
-                                <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
+
+                            <a href="{{ route ('upimage', $programs[$indexPrograms]->id)}}">  <input type="image" src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon " ></input>      </a>
+                        
                                 <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                             </div>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
@@ -514,7 +517,20 @@ $data_for_new_entry = json_encode([
         </div>
     </div>
 </div>
-
+    <!-- Modal eliminar fila-->
+    <div class="modal modal-delete-row " tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="centro justify-content-center">
+          <img src="images/checkers/ready.svg" alt="hecho" class=" pt-5">
+        <p class="a-text-medium-warm-grey-three h3 mt-5 mb-5">Se ha eliminado la fila</p>
+        <button type="button" class="a-btn-basic-small  a-btn-teal a-text-bold-white text-plus mb-5" data-dismiss="modal">Aceptar</button>    
+        </div>
+    </div>      
+    </div>
+  </div>
+</div>
 <!-- Modal -->
 <div class="modal fade modal-synopsis
 " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -532,6 +548,7 @@ $data_for_new_entry = json_encode([
             </div>
         </div>
     </div>
+
 <script>
     function nuevo_programa(data) {
         console.log(data);

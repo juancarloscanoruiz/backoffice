@@ -86,6 +86,12 @@ $(document).ready(function() {
         $(".modal-synopsis").modal("show");
     });
 
+//modal delete row
+$(".trash-row").click(function() {
+
+    $(".modal-delete-row").modal("show");
+});
+
     //Truncar texto de sinópsis con "..."
     $(".lb-synopsis").each(function(index, element) {
         if ($(this).text().length > 200) {

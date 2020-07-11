@@ -60,7 +60,19 @@ class ProgramacionGeneralController extends Controller
         };
     }
 
-
+    public function getImages($idimages){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getImagesChapter/" . $idimages 
+        );
+        $responseArray = json_decode($response->getBody()->getContents(), true);
+        var_dump($responseArray);
+        if ($responseArray["code"] == 200) {
+            return view('partials.adm-CN.image')->with('response', $responseArray["data"]);
+        } else {
+            return $responseArray;
+        }
+    }
     public function captureExcel(Request $request)
     {
         //obtnemos el archvio
