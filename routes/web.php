@@ -22,7 +22,7 @@ Route::get('/admin', function () {
 
 
 //VERIFY TOKEN
-Route::get('/verify/{token}', "AuthController@verifyToken");
+Route::get('/verify/{token}', "AuthController@verifyToken")->name('token');
 
 //RECUPERAR CONTRASEÑA
 Route::get('/reset', "AuthController@indexResetPassword")->name('reset');

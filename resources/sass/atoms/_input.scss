@@ -91,7 +91,7 @@ input[type="radio"]:checked + .mujer-estilo1 {
     border: none;
 }
 
-input[type="radio"]:checked + .si-estilo {
+/*input[type="radio"]:checked + .si-estilo {
     background-color: $teal;
     color: $white;
     border: none;
@@ -100,6 +100,17 @@ input[type="radio"]:checked + .no-estilo {
     background-color: $teal;
     color: $white;
     border: none;
+}*/
+
+input[type="radio"]:checked + .switch-label {
+    background-color: $teal;
+    color: $white;
+    border: none;
+    font-family: $MontserratBlack;
+}
+
+.switch-label {
+    font-family: $MontserratSemiBold;
 }
 
 input[type="radio"]:checked + .si-estilo1 {

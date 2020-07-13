@@ -2,7 +2,7 @@
 let cleaveConfig = {
     date: true,
     delimiter: "-",
-    datePattern: ["Y", "d", "m"]
+    datePattern: ["d", "m", "Y"]
 };
 
 let scheduleTimeConfig = {

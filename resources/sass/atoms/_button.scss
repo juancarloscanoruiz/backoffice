@@ -719,7 +719,6 @@
     height: 43px;
     border-right: $teal;
     background-color: $white;
-    font-family: $MontserratSemiBold;
     font-size: 16px;
     line-height: 2.5;
     color: $dark1;
@@ -735,13 +734,13 @@
     line-height: 2.5;
     border-left: $teal;
     background-color: $white;
-    font-family: $MontserratSemiBold;
     font-size: 16px;
     text-align: center;
     outline: none !important;
     border-radius: 0 21px 21px 0;
     border: 1px solid $morelightgray;
 }
+
 .fechas {
     width: 167px;
     height: 34px;

@@ -57,23 +57,65 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
     $(".switch-landing").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
-        let landingOptionsChecks = currentColumn.children(".landing-options");
+        let landingOptionsChecks = currentColumn.children(
+            ".establecer-options"
+        );
         if ($(this).val() == 1) {
             landingOptionsChecks.css("pointer-events", "all");
             currentColumn
                 .next()
-                .children(".landing-programar-content")
+                .children(".programar-content")
                 .css("pointer-events", "all");
         } else {
             landingOptionsChecks.css("pointer-events", "none");
+            //Hacemos que no se pueda escribir en los campos siguientes
             currentColumn
                 .next()
-                .children(".landing-programar-content")
+                .children(".programar-content")
                 .css("pointer-events", "none");
+
+            //"Vaciar" inputs al momento de que el usuario da click en "No"
+            currentColumn
+                .next()
+                .find("input")
+                .val("");
+            currentColumn
+                .children(".establecer-options")
+                .find("input")
+                .prop("checked", false);
         }
     });
+    /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
+    $(".switch-home").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+
+        if ($(this).val() == 1) {
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "all");
+        } else {
+            //Hacemos que no se pueda escribir en los campos siguientes
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "none");
+
+            //"Vaciar" inputs al momento de que el usuario da click en "No"
+            currentColumn
+                .next()
+                .find("input")
+                .val("");
+            currentColumn
+                .children(".establecer-options")
+                .find("input")
+                .prop("checked", false);
+        }
+    });
+
     //Mostrar la sinópsis completa en modal
     $(".see-more").click(function() {
         $(".modal-textarea").val(
@@ -142,6 +184,7 @@ $(document).ready(function() {
         conseguimos el valor del campo de la grilla
         y hacemos la petición
     */
+
     $(".editable-attribute").keydown(function(e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -157,6 +200,20 @@ $(document).ready(function() {
             return false;
         }
     });
+    $(".editable-attribute").blur(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let keyValue = $(this).text();
+        let chapterId = currentColumn.attr("chapter_id");
+        let key = currentColumn.attr("key");
+    });
+    //Sacar los valores de los switches en la grilla
+    $(".switch table").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let keyValue = $(this).val();
+        let chapterId = currentColumn.attr("chapter_id");
+        let key = currentColumn.attr("key");
+    });
+
     /*
     Permite a todos los campos de Schedule item log time tener el formato
     tiempo en hh:mm

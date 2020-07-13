@@ -19,7 +19,6 @@
             <div class="pb-4 align-item-center centro">
               <button type="button" class=" btn-no text-no" id="modal-button" data-dismiss="modal">No</button>
               <button type="button" class="btn-si text-si modal-delete-button-confirm" id="modal-button">Sí</button>
-
             </div>
           </div>
         </div>
