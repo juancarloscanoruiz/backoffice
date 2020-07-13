@@ -65,9 +65,7 @@ Route::get("/home", "landingController@showHomeLanding")->name('home');
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
-Route::get('/histo', function () {
-    return view('partials.adm-CN.image');
-})->name('para pruebas');
+Route::get('/upimage/{idimages}',"ProgramacionGeneralController@getImages")->name('upimage');
 
 
 //RUTA PARA EDITAR ATRIBUTOS DE PROGRAMAS EN GRILLA
