@@ -199,6 +199,11 @@
   font-family: "Montserrat-Bold";
 }
 
+.a-text-bold-warm-grey-three {
+  font-family: "Montserrat-Bold";
+  color: #808080;
+}
+
 .a-text-regular-blacktwo {
   color: #2c2b2b;
   font-family: "Montserrat-Regular";
@@ -1149,6 +1154,16 @@
 .a-btn-white {
   background: #d8d8d8;
   border: 1px solid #d8d8d8;
+}
+
+.a-btn-border-tomato {
+  border: 2px solid #da291c;
+  background: #ffffff;
+}
+
+.a-btn-tomato {
+  border: 2px solid #da291c;
+  background: #da291c;
 }
 
 .a-button-pill-teal-outline {
@@ -3260,6 +3275,11 @@ input[type=radio]:checked + .no-estilo1 {
 .a-text-bold-brownish {
   color: #696363;
   font-family: "Montserrat-Bold";
+}
+
+.a-text-bold-warm-grey-three {
+  font-family: "Montserrat-Bold";
+  color: #808080;
 }
 
 .a-text-regular-blacktwo {

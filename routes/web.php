@@ -75,3 +75,8 @@ Route::group(['prefix' => 'program'], function () {
     Route::post('logout', "AuthController@signOut")->name("logout");
     Route::post('exit', "AuthController@exit")->name('exit');
 });
+
+//RUTA PRUEBA DE MODALES
+Route::get('/modales', function () {
+    return view('partials.adm-CN.grillas.modales-grilla.add-info');
+})->name('delete-row');
