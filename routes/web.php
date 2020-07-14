@@ -54,6 +54,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::get('/general-program', "ProgramacionGeneralController@index")->name('programacion_general');
 Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
 Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
+Route::post('/general-program/updateImages', "ProgramacionGeneralController@updateImages")->name('updateImages');
 
 //RUTAS PARA LANDING
 Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
@@ -65,7 +66,7 @@ Route::get("/home", "landingController@showHomeLanding")->name('home');
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
-Route::get('/upimage/{idimages}',"ProgramacionGeneralController@getImages")->name('upimage');
+Route::get('/upimage/{idimages}', "ProgramacionGeneralController@getImages")->name('upimage');
 
 
 //RUTA PARA EDITAR ATRIBUTOS DE PROGRAMAS EN GRILLA

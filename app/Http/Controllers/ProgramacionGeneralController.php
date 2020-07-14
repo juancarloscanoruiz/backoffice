@@ -8,7 +8,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-
+use Illuminate\Support\Facades\Crypt;
 
 
 class ProgramacionGeneralController extends Controller
@@ -60,10 +60,11 @@ class ProgramacionGeneralController extends Controller
         };
     }
 
-    public function getImages($idimages){
+    public function getImages($idimages)
+    {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getImagesChapter/" . $idimages 
+            $this->url . "program/getImagesChapter/" . $idimages
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
         var_dump($responseArray);
@@ -721,5 +722,65 @@ class ProgramacionGeneralController extends Controller
             )]
         );
         var_dump($response->getBody()->getContents());
+    }
+
+
+    public function storeImages($id, $landing, $title, $file, $type)
+    {
+        $decrypted = Crypt::decrypt($id);
+        $extension = $file->extension();
+        $path = substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $decrypted . "_" . $type . "" . "." . $extension), 7);
+        return $path;
+    }
+
+    public function updateImages(Request $request)
+    {
+        $pathSynopsis3 = "";
+        $pathSynopsis2 = "";
+        $pathSynopsis1 = "";
+        $pathSynopsis = "";
+        $pathImageVertical = "";
+        $pathImageHorizontal = "";
+        $landingId = Crypt::decrypt($request->input('landing_id'));
+        switch ($landingId) {
+            case 1:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-vertical"), "vertical");
+                    echo ($pathImageVertical);
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                    echo ($pathImageHorizontal);
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                    echo ($pathSynopsis);
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                    echo ($pathSynopsis1);
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                    echo ($pathSynopsis2);
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                    echo ($pathSynopsis3);
+                }
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+
+
+        /*$decrypted = Crypt::decrypt($request->input('id'));
+        $extension = $request->file('image-synopsis-3')->extension();
+        $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/
     }
 }

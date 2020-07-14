@@ -104,6 +104,15 @@
     left: 0;
 }
 
+.image-cover {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    bottom: 0;
+}
+
 .equis {
     width: 39px;
     position: absolute;
@@ -272,4 +281,55 @@
 
 .delete-row-pencil {
     width: 36px;
+}
+
+/*THUMBNAILS DE IMÁGENES EN PROGRAMACIÓN GENERAL*/
+
+.thumbnail-image-program {
+    border-radius: 7px;
+}
+
+#thumbnail-home-horizontal {
+    width: 295px;
+    height: 180px;
+}
+
+#thumbnail-home-horizontal {
+    .add-photo {
+        width: 96px;
+    }
+}
+
+#thumbnail-home-vertical {
+    width: 295px;
+    height: 472px;
+}
+
+#thumbnail-home-vertical {
+    .add-photo {
+        width: 126px;
+    }
+}
+
+/*IMÁGENES DE LA SINOPSIS DE PROGRAMACIÓN GENERAL*/
+#image_synopsis {
+    width: 553px;
+    height: 366px;
+}
+
+#image_synopsis {
+    .add-photo {
+        width: 126px;
+    }
+}
+
+.image-synopsis-frame {
+    width: 375px;
+    height: 215px;
+}
+
+.image-synopsis-frame {
+    .add-photo {
+        width: 81px;
+    }
 }

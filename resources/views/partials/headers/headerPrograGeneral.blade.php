@@ -1,6 +1,6 @@
 <div class='bg-color'>
             <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-                <a href="{{ route('admin')}}"><span class='ml-5'><img src='./images/home/claro-logo.svg'> </span></a>
+            <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
 
                 <span class='text-light1 mr-5'>Administrador de contenido</span>
         </span>

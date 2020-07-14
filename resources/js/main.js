@@ -57,6 +57,23 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    /* Previsualizar una imagen a la hora de
+        subir un archivo
+    */
+    $(".input-image-program").change(function() {
+        let currentInput = $(this);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                currentInput
+                    .next()
+                    .children(".prev-image-program")
+                    .attr("src", e.target.result);
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
     $(".switch-landing").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
@@ -128,11 +145,10 @@ $(document).ready(function() {
         $(".modal-synopsis").modal("show");
     });
 
-//modal delete row
-$(".trash-row").click(function() {
-
-    $(".modal-delete-row").modal("show");
-});
+    //modal delete row
+    $(".trash-row").click(function() {
+        $(".modal-delete-row").modal("show");
+    });
 
     //Truncar texto de sinópsis con "..."
     $(".lb-synopsis").each(function(index, element) {
