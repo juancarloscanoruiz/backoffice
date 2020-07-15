@@ -444,9 +444,18 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Program genre list-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo">Animación, Cultura, Series</label>
+                                <div>
+                            <details class="sel_users" name="genero"  style="width: 300px;" >
+                                <option></option>
+                                <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
+                                <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
+                                <option class="a-text-bold-warm text-normal" value='series'>Series</option> 
+                                <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option> 
+                                <option class="a-text-bold-warm text-normal" value='romance'>Romance</option> 
+</details>
+                            </div>
                             </div>
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
