@@ -78,5 +78,5 @@ Route::group(['prefix' => 'program'], function () {
 
 //RUTA PRUEBA DE MODALES
 Route::get('/modales', function () {
-    return view('partials.adm-CN.grillas.modales-grilla.add-info');
+    return view('partials.adm-CN.grillas.modales-grilla.delete-row');
 })->name('delete-row');

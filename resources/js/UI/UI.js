@@ -8,7 +8,7 @@ import {
 } from "../services/user.js";
 
 import { validateKeyUpEmail } from "../form/form.js";
-
+import $ from "jquery";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */

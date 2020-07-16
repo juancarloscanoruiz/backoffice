@@ -11,6 +11,8 @@
                 <span class='text-light1 '>{{ session('rol_name') }}</span>
             </div>
             <div class='mr-5'>
-            <form method="POST" action="{{ route('exit') }}">  {{ csrf_field() }} <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'>REGRESAR</button></form>
+                <a href="{{route('admin')}}">
+                    <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'>REGRESAR</button>
+                </a>
             </div>
         </div>

@@ -107,9 +107,9 @@
 .image-cover {
     object-fit: cover;
     position: absolute;
-    width: 100%;
+
     left: 0;
-    height: 100%;
+
     bottom: 0;
 }
 
@@ -283,6 +283,10 @@
     width: 36px;
 }
 
+.add-photo {
+    z-index: 1;
+}
+
 /*THUMBNAILS DE IMÁGENES EN PROGRAMACIÓN GENERAL*/
 
 .thumbnail-image-program {
@@ -330,6 +334,20 @@
 
 .image-synopsis-frame {
     .add-photo {
-        width: 81px;
+        width: 126px;
     }
+}
+
+.arrow-left-synopsis {
+    position: absolute;
+    left: 0;
+    transform: translate(-150%, -150%) rotate(180deg);
+    top: 50%;
+}
+
+.arrow-right-synopsis {
+    position: absolute;
+    right: 0;
+    transform: translate(150%, -150%);
+    top: 50%;
 }

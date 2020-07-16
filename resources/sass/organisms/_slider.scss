@@ -1,0 +1,46 @@
+@import "../base/color";
+
+.synopsis-image-slider {
+    width: 1000px !important;
+}
+
+.synopsis-image-slider {
+    .slick-dots {
+        position: static;
+        margin-top: 24px;
+        text-align: right;
+    }
+    .slick-slide {
+        height: 342px !important;
+    }
+
+    .slick-slide {
+        div {
+            height: 100% !important;
+        }
+    }
+
+    .slick-dots li {
+        height: 37px;
+        width: 37px;
+    }
+
+    .slick-dots {
+        .slick-active {
+            background-color: $teal;
+        }
+
+        .slick-active p {
+            color: $white !important;
+        }
+    }
+}
+
+.slider-pagination-item {
+    border: solid 3px $teal;
+    width: 37px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

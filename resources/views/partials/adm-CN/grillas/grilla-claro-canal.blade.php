@@ -30,6 +30,9 @@ $data_for_new_entry = json_encode([
     'version_number' => $respuesta->data->version_number
 ]);
 
+//Schedule-item-date
+
+
 ?>
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
@@ -49,7 +52,7 @@ $data_for_new_entry = json_encode([
             <div>
                 @if (count($respuesta->data->programs)!=0)
                 <input disabled id="inp_programing_claro_canal" type="file">
-                <label onclick="subirArchivos()" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
+                <label id="subir-archivos" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
 
                 @else
                 <input id="inp_programing_claro_canal" type="file">
@@ -98,7 +101,7 @@ $data_for_new_entry = json_encode([
 
         <div id="rempla-claro-canal" class="landing-table">
             <div id="tb1" class="ml-5 pr-5 conten-tab">
-                <div>
+                <div class="mr-5 grilla-body">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table" id="acciones">
                             <span class="a-text-semibold-white text-normal">Acciones</span>
@@ -118,14 +121,14 @@ $data_for_new_entry = json_encode([
                             <span class="a-text-semibold-white text-normal">Establecer en landing</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table" id="landing-programar">
-                            <span class="a-text-semibold-white text-normal">Landing de Canal ClaroProgramar publicación</span>
+                            <span class="a-text-semibold-white text-normal">Landing de Canal Claro <br />Programar publicación</span>
                         </div>
 
                         <div class="contenedor-columna centro  centro title-table" id="establecer-home">
                             <span class="a-text-semibold-white text-normal">Establecer en Home</span>
                         </div>
                         <div class="contenedor-columna centro  centro title-table" id="programar-home-publicacion">
-                            <span class="a-text-semibold-white text-normal">Home Progamar publicación</span>
+                            <span class="a-text-semibold-white text-normal">Home<br /> Progamar publicación</span>
                         </div>
                         <div class="contenedor-columna centro centro title-table" id="imagenes">
                             <span class="a-text-semibold-white text-normal">Imágenes</span>
@@ -230,7 +233,8 @@ $data_for_new_entry = json_encode([
                     </div>
                     @else
 
-                    @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++) <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->program_id }}">
+                    @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
+                    <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->program_id }}">
                         <!--ACCIONES-->
                         <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-{{$programs[$indexPrograms]->chapter_id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
                         <!--ESTADO-->
@@ -248,7 +252,7 @@ $data_for_new_entry = json_encode([
                             <textarea id="program-title" name="" class="editable-attribute program-original edit-cell" id="lb-title-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->title}}</textarea>
                         </div>
                         <!--ESTABLECER EN LANDING-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="establecer-landing" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="establecer-landing" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_landing">
                             <!--Si no han elegido una sección del landing, entonces las opción
                                por defecto es "No"
                             -->
@@ -264,14 +268,14 @@ $data_for_new_entry = json_encode([
                                     <div class="establecer-options pointer-none">
                                         <div class=" d-flex mt-2 ml-2 pt-2">
                                             <label class="checkradio d-flex  ml-2">
-                                                <input type="radio" name="dontlose">
+                                                <input type="radio" name="dontlose" value="1" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
                                         </div>
                                         <div class="d-flex ml-2 pt-2 pb-2">
                                             <label class="checkradio d-flex ml-2">
-                                                <input type="radio" name="dontlose">
+                                                <input type="radio" name="dontlose" value="2" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
@@ -281,23 +285,23 @@ $data_for_new_entry = json_encode([
                                 @else
                                     <div class='yes-no mt-3'>
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked/>
-                                        <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-landing">
+                                        <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
-                                        <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-landing">
+                                        <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-label">
                                             No</label>
                                     </div>
                                     <div class="establecer-options pointer-none">
                                         <div class=" d-flex mt-2 ml-2 pt-2">
                                             <label class="checkradio d-flex  ml-2">
-                                                <input type="radio" name="dontlose">
+                                                <input type="radio" name="dontlose" class="switch-table" value="1" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
                                         </div>
                                         <div class="d-flex ml-2 pt-2 pb-2">
                                             <label class="checkradio d-flex ml-2">
-                                                <input type="radio" name="dontlose">
+                                                <input type="radio" name="dontlose" class="switch-table" value="2" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
@@ -367,7 +371,7 @@ $data_for_new_entry = json_encode([
                             <div class="d-flex justify-content-end programar-content">
                                 <div>
                                     <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
                                     <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -376,7 +380,7 @@ $data_for_new_entry = json_encode([
                             <div class="d-flex justify-content-end">
                                 <div>
                                     <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
                                     <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -420,27 +424,36 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Schedule item long date-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-date" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <?php
+                        if($programs[$indexPrograms]->day){
+                            $scheduleDate = explode("-", $programs[$indexPrograms]->day);
+                            $day = $scheduleDate[2];
+                            $month = $scheduleDate[1];
+                            $year = $scheduleDate[0];
+                        }
+
+                        ?>
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-date" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="day">
                             <div class="schedule-date">
-                                <input type="text" name="" class="table-input schedule-date-input text-center a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->day}}">
+                                <input type="text" name="" class="editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo" value="{{$day . "-" . $month . "-" .$year}}">
                             </div>
                         </div>
                         <!--Schedule Item Long Time (GMT)-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-time" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-time" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="programing">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center schedule-time-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->programing}}">
+                                <input type="text" class="editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->programing}}">
                             </div>
                         </div>
                         <!--Estimated Schedule Item Duration-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="estimated-duration" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="estimated-duration" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="duration">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}">
+                                <input type="text" class="editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}">
                             </div>
                         </div>
                         <!--Program Year Produced-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="program_year_produced">
                             <div class="schedule-date">
-                                <input type="text" class="table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
+                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
                             </div>
                         </div>
                         <!--Program genre list-->
@@ -451,32 +464,32 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
                         de la serie-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-title-alternate" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
-                            <textarea class="program-original edit-cell" id="lb-subtitle-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->subtitle}}</textarea>
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-title-alternate" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="subtitle">
+                            <textarea class="editable-attribute program-original edit-cell" id="lb-subtitle-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->subtitle}}</textarea>
                         </div>
                         <!--Program episode season-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-season" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->chapter_id}}</label>
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-season" key="season" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                            <input class="a-text-regular-brownishtwo text-center editable-attribute table-input" value="{{$programs[$indexPrograms]->program_episode_season}}" />
                         </div>
                         <!--Program episode number-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-number" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
-                            <label class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->program_episode_number}}</label>
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-number" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="program_episode_number">
+                            <input class="a-text-regular-brownishtwo table-input text-center editable-attribute" value="{{$programs[$indexPrograms]->program_episode_number}}" />
                         </div>
                         <!--Synopsis-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="synopsis">
                             <div class="program-original text-left edit-cell" id="lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">
                                 <span class="mb-0 lb-synopsis">{{$programs[$indexPrograms]->synopsis}}</span>
                                 <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="{{$programs[$indexPrograms]->title}}">Ver más...</span>
                             </div>
                         </div>
                         <!--Rating-->
-                        <div class="contenedor-columna selectable-column centro" rel="rating-code" key="" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro" rel="rating-code" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="rating">
                             <div class="schedule-date">
-                                <input class="text-center table-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->rating}}" />
+                                <input class="editable-attribute text-center table-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->rating}}" />
                             </div>
                         </div>
                         <!--SUBBED-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
                             <div class="schedule-date">
                                 <div class="yes-no">
                                     <input type="radio" id="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table" />
@@ -489,7 +502,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--DUBBED-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                             <div class="schedule-date">
                                 <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                                     <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
@@ -502,7 +515,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--AUDIO 5.1-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                             <div class="schedule-date">
                                 <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                                     <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
@@ -519,13 +532,12 @@ $data_for_new_entry = json_encode([
 
                 @endif
 
-
             </div>
         </div>
         <!--cierre del div conten-tab-->
         <div class="contenedor mb-5 ml-5 pr-5">
             <div class="contenedor-columna centro">
-                <div id="agregar-canal-claro" onclick='nuevo_programa(<?php echo $data_for_new_entry; ?>)' class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">
+                <div id="agregar-canal-claro" class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">
                     <span class="text-crea" style="cursor:pointer">Crear nueva entrada</span>
                 </div>
             </div>
@@ -533,7 +545,7 @@ $data_for_new_entry = json_encode([
     </div>
 </div>
     <!-- Modal eliminar fila-->
-    <div class="modal modal-delete-row " tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -546,7 +558,8 @@ $data_for_new_entry = json_encode([
     </div>
   </div>
 </div>
-<!-- Modal -->
+@include('partials.adm-CN.grillas.modales-grilla.delete-row')
+<!-- Modal Sinopsis-->
 <div class="modal fade modal-synopsis
 " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -554,43 +567,12 @@ $data_for_new_entry = json_encode([
             <div class="modal-body">
                 <h3 class="text-center a-text-bold-brown-two h3 modal-program-title pt-5 pb-4"></h3>
                 <div class="pl-5 pr-5">
-                    <textarea name="" id="" class="modal-textarea a-text a-text-medium-warm-grey-three"></textarea>
+                    <textarea name="" id="synopsis-content" class="modal-textarea a-text a-text-medium-warm-grey-three"></textarea>
                     <div class="text-center pt-4 pb-4">
-                        <button class="a-btn-basic-small mr-3 a-button-outline-teal a-text-bold-teal text-plus">ACEPTAR</button>
+                        <button data-dismiss="modal" class="a-btn-basic-small mr-3 a-button-outline-teal a-text-bold-teal text-plus edit-synopsis-button">ACEPTAR</button>
                         <button data-dismiss="modal" class="a-btn-basic-small a-button-primary-teal a-text-MBlack text-plus">CANCELAR</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-<script>
-    function nuevo_programa(data) {
-        console.log(data);
-
-        $.ajax({
-            type: "POST",
-            url: "general-program/newRow",
-            data: data,
-            success: function(result) {
-                //var fila =
-                //' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
-                $("#tb1").append(result);
-                console.log('php responde');
-                console.log(result);
-            }
-        });
-
-    }
-
-    function subirArchivos() {
-        let disabled = $('#inp_programing_claro_canal').prop('disabled');
-        if (disabled == true) {
-            var pregunta = confirm('Este día ya tiene programacion,¿Quieres subir un archivo?');
-            if (pregunta == true) {
-                $('#inp_programing_claro_canal').prop('disabled', false);
-            }
-        }
-
-    }
-</script>

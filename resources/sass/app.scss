@@ -1,3 +1,7 @@
+$slick-font-path: "~slick-carousel/slick/fonts/"; // To add
+$slick-loader-path: "~slick-carousel/slick/"; // To add
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
 @import "./base/color";
 @import "./base/config";
 @import "./atoms/button";
@@ -17,3 +21,4 @@
 @import "./organisms/parts";
 @import "./organisms/section";
 @import "./helpers/cursor";
+@import "./organisms/slider";

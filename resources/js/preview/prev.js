@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 let h;
 function previewPage(icon) {
     let pageContainer = $("iframe");

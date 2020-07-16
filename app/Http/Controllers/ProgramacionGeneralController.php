@@ -32,7 +32,7 @@ class ProgramacionGeneralController extends Controller
         $respuesta =  json_decode($response->getBody());
         var_dump($respuesta);
         if ($respuesta->code == 200) {
-            //var_dump($respuesta->data);
+            //var_dump($respuesta);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
@@ -523,181 +523,221 @@ class ProgramacionGeneralController extends Controller
 
             $chapter_id = 0;
             $html = "
-            <div class='contenedor-fila' id='programacion-claro-" . $chapter_id . "'>
-                    <div class='contenedor-columna centro ' id='entrada-" . $chapter_id . "'> <img src='./images/basic-icons/trash.svg' class='mx-auto pr-2'alt='icono para borrar'> <img src='./images/basic-icons/pencil-edit-teal.svg' class='mx-auto'alt='lapiz para editar'></div>
-                    <div class='contenedor-columna centro ' id='estado-" . $chapter_id . "'>
-
-                            <span class='a-text-bold-orange text-normal'> Pendiente de revisión </span>
-                    </div>
-                    <div class='contenedor-columna centro ' id='alerta-" . $chapter_id . "'>
-                        <span class='program-original'> Este Programa no tiene datos </span>
-                    </div>
-
-                    <div class='contenedor-columna centro centro' id='title-" . $chapter_id . "'>
-                        <label class='program-original' id='lb-title-" . $chapter_id . "'> Titulo de programa}</label>
-
-
-                    </div>
-                    <div class='contenedor-columna centro ' id='programar-" . $chapter_id . "'>
-                        <div class='yes-no'>
-                            <input type='radio' name='yes-no-" . $chapter_id . "' id='programar-si-" . $chapter_id . "' checked />
-                            <label for='si-" . $chapter_id . "' id='siestado-" . $chapter_id . "' class='si-estilo'>
-                              Sí</label>
-                            <input type='radio' name='yes-no-" . $chapter_id . "' id='programar-no-" . $chapter_id . "' />
-                            <label for='no-" . $chapter_id . "' id='noestado-" . $chapter_id . "' class='no-estilo'>
-                              No</label>
-                          </div>
-
-
-                          <div >
-                             <label class='a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2' type=date>01-01-2020</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>01:00:00 HRS</label>
-                          </div>
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='yes-no'>
-                            <input type='radio' name='si-no-periodicidad-" . $chapter_id . "' id='yes-periodicidad-" . $chapter_id . "' checked='true' />
-                            <label for='yes-periodicidad-" . $chapter_id . " ' id='siestado-periodicidad-" . $chapter_id . "' class='si-estilo'>
-                              Sí</label>
-                            <input type='radio' name='si-no-periodicidad-" . $chapter_id . "' id='no-periodicidad-" . $chapter_id . "' checked='false'/>
-                            <label for='no-periodicidad-" . $chapter_id . "' id='noestado-periodicidad-" . $chapter_id . "' class='no-estilo'>
-                              No</label>
+            <div class='contenedor-fila' id='programacion-claro-$chapter_id'>
+            <!--ACCIONES-->
+            <div class='contenedor-columna selectable-column centro cursor-pointer' id='entrada-$chapter_id' rel='acciones'><img src='./images/basic-icons/pencil-edit-teal.svg' class='mr-3 edit-row-pencil' alt='pencil'><img src='./images/eliminar-acti.svg' class='delete-row-pencil trash-row' alt='trash'></div>
+            <!--ESTADO-->
+            <div class='contenedor-columna centro editable-column cursor-pointer' id='estado-$chapter_id'>
+                <span class='program-original'></span>
+            </div>
+            <!--ALERTA-->
+            <div class='contenedor-columna centro editable-column' id='alerta-$chapter_id'></div>
+            <!--PROGRAM TITLE ORIGINAL-->
+            <div class='contenedor-columna selectable-column centro centro editable-column' chapter_id='" . $chapter_id . "' key='title' rel='program-title-original' id='title-$chapter_id'>
+                <textarea id='program-title' name='' class='editable-attribute program-original edit-cell'></textarea>
+            </div>
+            <!--ESTABLECER EN LANDING-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='establecer-landing' chapter_id='" . $chapter_id . "' key=''>
+                <!--Si no han elegido una sección del landing, entonces las opción
+                por defecto es 'No'
+                -->
+                        <div class='yes-no mt-3'>
+                            <input type='radio' name='sino-landing-$chapter_id' id='yes-landing-$chapter_id' value='1' class='switch-landing'>
+                            <label for='yes-landing-$chapter_id' id='siestado-landing-$chapter_id' class='si-estilo cursor-pointer switch-label'>
+                                Sí</label>
+                            <input type='radio' name='sino-landing-$chapter_id' id='no-landing-$chapter_id' value='0' checked='' class='switch-landing'>
+                            <label for='no-landing-$chapter_id' id='noestado-landing-$chapter_id' class='no-estilo cursor-pointer switch-label'>
+                                No</label>
                         </div>
-                        <div>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' style='line-height:0px;'>00:00:00 HRS</label>
-                     </div>
-                    </div>
-
-                    <div class='contenedor-columna centro'>
-                    <div class='yes-no pt-2 '>
-                    <input type='radio' name='yes-landings'id='yes-landings'  value='1' checked='true' />
-                    <label for='yes-landings ' id='siestado-landings' class='si-estilo'>
-                      Sí</label>
-                    <input type='radio' name='si-no-landings' id='no-landings' />
-                    <label for='no-landings' id='noestado-landings'class='no-estilo'>
-                      No</label>
-                </div>
-                        <div class=' d-flex mt-2 ml-2 pt-2'>
-                        <label class='checkradio d-flex  ml-2'>
-                        <input type='radio'name='dontlose'>
-                        <span class='checkmark'></span>
-                        </label>
-                        <span class='text-lan ml-2 '> No te pierdas</span>
-
-                            </div>
-                                <div class='d-flex ml-2 mt-2 mb-2'>
+                        <div class='establecer-options pointer-none'>
+                            <div class=' d-flex mt-2 ml-2 pt-2'>
                                 <label class='checkradio d-flex  ml-2'>
-                                <input type='radio' name='dontlose'>
-                                <span class='checkmark'></span>
+                                    <input type='radio' name='dontlose'>
+                                    <span class='checkmark'></span>
                                 </label>
-                                <span class='text-lan ml-2'> Solo por canal claro</span>
-
-                                </div>
-
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='image-ta'>
-                        <img src='' alt='añadir imagenes'>
-
+                                <span class='cursor-pointer a-text-medium-warmgrey ml-2'>Tienes que verlo</span>
                             </div>
-                            <span class='a-text-regular-brownishtwo text-small'>Añade imagenes</span>
+                            <div class='d-flex ml-2 pt-2 pb-2'>
+                                <label class='checkradio d-flex ml-2'>
+                                    <input type='radio' name='dontlose'>
+                                    <span class='checkmark'></span>
+                                </label>
+                                <span class='cursor-pointer a-text-medium-warmgrey ml-2'>Contenido exclusivo</span>
+                            </div>
+                        </div>
 
-                    </div>
-                    <div class='contenedor-columna centro '>
-                        <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center pb-2' type=date>DD-MM-YYYY</label> <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>
+                                            </div>
+            <!--Programar publicacición landing-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='landing-programar' chapter_id='" . $chapter_id . "' key=''>
+                                                <div class='programar-content pointer-none'>
+                        <div class='d-flex justify-content-end'>
+                            <div>
+                                <label for='programar-landing' class='a-text-bold-brownish text-normal'>Inicio: </label>
+                                <input type='text' id='programar-landing' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                            </div>
+                            <div>
+                                <input type='text' id='programar-landing' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                            </div>
+                        </div>
+                        <div class='d-flex justify-content-end'>
+                            <div>
+                                <label for='programar-landing-end-date' class='a-text-bold-brownish text-normal'>Fin: </label>
+                                <input type='text' id='programar-landing-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                            </div>
+                            <div>
+                                <input type='text' id='programar-landing-end-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                            </div>
                         </div>
                     </div>
-                    <div class='contenedor-columna centro '>
-                        <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>DD-MM-YYYY</label>
-                        </div>
+                                        </div>
+            <!--ESTABLECER EN HOME-->
+            <div class='contenedor-columna selectable-column centro editable-column' id='programar-$chapter_id' rel='establecer-home' chapter_id='" . $chapter_id . "'>
+                <div class='yes-no'>
+                    <input type='radio' name='yes-no-$chapter_id' id='programar-si-$chapter_id' value='1' class='switch-home'>
+                    <label for='programar-si-$chapter_id' id='siestado-$chapter_id' class=' switch-label si-estilo cursor-pointer'>
+                        Sí</label>
+                    <input type='radio' name='yes-no-$chapter_id' id='programar-no-$chapter_id' value='0' class='switch-home' checked=''>
+                    <label for='programar-no-$chapter_id' id='noestado-$chapter_id' class='switch-label no-estilo cursor-pointer'>
+                        No</label>
+                </div>
+            </div>
+            <!--HOME PROGRAMAR PUBLICACIÓN-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='programar-home-publicacion' chapter_id='" . $chapter_id . "'>
+                <div class='d-flex justify-content-end programar-content'>
+                    <div>
+                        <label for='programar-home-date' class='a-text-bold-brownish text-normal'>Inicio: </label>
+                        <input type='text' id='programar-home-start-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='0000-00-00'>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>
-                        </div>
+                    <div>
+                        <input type='text' id='programar-home-start-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type='time' >00:00:00 HRS</label>
+                </div>
+                <div class='d-flex justify-content-end'>
+                    <div>
+                        <label for='programar-home-end-date' class='a-text-bold-brownish text-normal'>Fin: </label>
+                        <input type='text' id='programar-home-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='0000-00-00'>
+                    </div>
+                    <div>
+                        <input type='text' id='programar-home-end-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                    </div>
+                </div>
+            </div>
+            <!--Imágenes-->
+                <div class='contenedor-columna selectable-column centro editable-column' rel='imagenes'>
+                    <a href='http://localhost:8888/backoffice/public/upimage/$chapter_id'>
+                        <div class='image-ta position-relative'>
+                            <img src='http://localhost:8888/backoffice/public/images/basic-icons/pencil-edit-teal.svg' alt='añadir imagenes' class='add-images-icon'>
 
                         </div>
+                    </a>
+                <span class='d-block a-text-regular-brownishtwo pt-2'>Añade imágenes</span>
+                    <div>
+                        <span class='a-text-regular-brownishtwo'>0</span><span class='a-text-regular-brownishtwo'>/9</span>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <label class='a-text-medium-brownish text-small d-flex justify-content-center' type=date>YYYY</label>
-                        </div>
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small'>programa</label>
-
-                        </div>
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <label class='a-text-regular-brownishtwo text-small'>Nombre alternativo del prgrama</label>
+                </div>
 
 
+            <!--Schedule item long date time-->
+            <div class='contenedor-columna centro editable-column' rel='schedule-item-date-time'>
+                <div class='schedule-date'>
+                    <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type='date'></label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'></label>
+                </div>
+            </div>
+            <!--Schedule item long date-->
+                                    <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-date' chapter_id='$chapter_id' key=''>
+                <div class='schedule-date'>
+                    <input type='text' name='' class='table-input schedule-date-input text-center a-text-regular-brownishtwo' value='15-07-2020'>
+                </div>
+            </div>
+            <!--Schedule Item Long Time (GMT)-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-time' chapter_id='" . $chapter_id . "' key=''>
+                <div class='schedule-date'>
+                    <input type='text' class='table-input text-center schedule-time-input a-text-regular-brownishtwo' value=''>
+                </div>
+            </div>
+            <!--Estimated Schedule Item Duration-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='estimated-duration' chapter_id='$chapter_id' key=''>
+                <div class='schedule-date'>
+                    <input type='text' class='table-input text-center time-seconds-input a-text-regular-brownishtwo' value=''>
+                </div>
+            </div>
+            <!--Program Year Produced-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-year' chapter_id='$chapter_id' key=''>
+                <div class='schedule-date'>
+                    <input type='text' class='table-input text-center year-input a-text-regular-brownishtwo' value='' placeholder='YYYY'>
+                </div>
+            </div>
+            <!--Program genre list-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-genre' chapter_id='$chapter_id' key=''>
+                <div class='schedule-date'>
+                    <label class='a-text-regular-brownishtwo'></label>
+                </div>
+            </div>
+            <!--Program title alternate (subtítulo de la película o nombre del capítulo
+            de la serie-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-title-alternate' chapter_id='" . $chapter_id . "' key=''>
+                <textarea class='program-original edit-cell' id='lb-subtitle-$chapter_id'></textarea>
+            </div>
+            <!--Program episode season-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "'>
+                <label class='a-text-regular-brownishtwo'></label>
+            </div>
+            <!--Program episode number-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key=''>
+                <label class='a-text-regular-brownishtwo'></label>
+            </div>
+            <!--Synopsis-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key=''>
+                <div class='program-original text-left edit-cell' id='lb-synopsis-$chapter_id'>
+                </div>
+            </div>
+            <!--Rating-->
+            <div class='contenedor-columna selectable-column centro' rel='rating-code' key='' chapter_id='" . $chapter_id . "'>
+                <div class='schedule-date'>
+                    <input class='text-center table-input a-text-regular-brownishtwo' value=''>
+                </div>
+            </div>
+            <!--SUBBED-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='subbed' key='' chapter_id='" . $chapter_id . "'>
+                <div class='schedule-date'>
+                    <div class='yes-no'>
+                        <input type='radio' id='yes-subbed-$chapter_id' name='subbed-$chapter_id' value='1' class='switch-table'>
+                        <label for='yes-subbed-$chapter_id' id='siestado-date2' class='switch-label cursor-pointer si-estilo'>
+                            Sí</label>
+                        <input type='radio' id='no-subbed-$chapter_id' name='subbed-$chapter_id' value='0' checked='' class='switch-table'>
+                        <label for='no-subbed-$chapter_id' id='noestado-date2' class='switch-label cursor-pointer no-estilo'>
+                            No</label>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <label class='a-text-regular-brownishtwo text-small' >0</label>
-
-                   </div>
-                    <div class='contenedor-columna centro'>
-                        <label class='a-text-regular-brownishtwo text-small'>0</label>
-
-                   </div>
-                    <div class='contenedor-columna centro' style='white-space: auto;'>
-                        <label class='a-text-regular-brownishtwo text-small p-2'>sinopsis del programa</label>
-
+                </div>
+            </div>
+            <!--DUBBED-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='dubbed' key=''>
+                <div class='schedule-date'>
+                    <div class='yes-no' chapter_id='" . $chapter_id . "'>
+                        <input type='radio' id='yes-dubbed-$chapter_id' name='dubbed-$chapter_id' value='1' class='switch-table'>
+                        <label for='yes-dubbed-$chapter_id' id='siestado-date1' class='switch-label cursor-pointer si-estilo'>
+                            Sí</label>
+                        <input type='radio' id='no-dubbed-$chapter_id' name='dubbed-$chapter_id' value='0' checked='' class='switch-table'>
+                        <label for='no-dubbed-$chapter_id' id='noestado-date1' class='switch-label cursor-pointer no-estilo'>
+                            No</label>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                            <label class='a-text-regular-brownishtwo text-small' >Clasificacion</label>
-
-                        </div>
+                </div>
+            </div>
+            <!--AUDIO 5.1-->
+            <div class='contenedor-columna selectable-column centro editable-column' rel='audio' key=''>
+                <div class='schedule-date'>
+                    <div class='yes-no' chapter_id='" . $chapter_id . "'>
+                        <input type='radio' id='yes-audio-$chapter_id' name='audio-$chapter_id' value='1' class='switch-table'>
+                        <label for='yes-audio-$chapter_id' id='siestado-date' class='switch-label cursor-pointer si-estilo'>
+                            Sí</label>
+                        <input type='radio' id='no-audio-$chapter_id' name='audio-$chapter_id' value='0' class='switch-table' checked=''>
+                        <label for='no-audio-$chapter_id' id='noestado-date' class='switch-label cursor-pointer no-estilo'>
+                            No</label>
                     </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <div class='yes-no '>
-                        <input type='radio' id='yes-date2'  value='1' checked='true' />
-                        <label for='yes-date2 ' id='siestado-date2' class='si-estilo'>
-                          Sí</label>
-                        <input type='radio'  id='no-date2' value='0'/>
-                        <label for='no-date2' id='noestado-date2'class='no-estilo'>
-                          No</label>
-                    </div>
-
-                        </div>
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <div class='yes-no mt-3'>
-                        <input type='radio' id='yes-date1'  value='1' checked='true' />
-                        <label for='yes-date1 ' id='siestado-date1' class='si-estilo'>
-                          Sí</label>
-                        <input type='radio'  id='no-date1' value='0'/>
-                        <label for='no-date1' id='noestado-date1'class='no-estilo'>
-                          No</label>
-                    </div>
-
-                        </div>
-                    </div>
-                    <div class='contenedor-columna centro'>
-                        <div class='schedule-date'>
-                        <div class='yes-no mt-3'>
-                        <input type='radio' id='yes-date'  value='1' checked='true' />
-                        <label for='yes-date ' id='siestado-date' class='si-estilo'>
-                          Sí</label>
-                        <input type='radio'  id='no-date' value='0'/>
-                        <label for='no-date' id='noestado-date'class='no-estilo'>
-                          No</label>
-                    </div>
-
-                        </div>
-                    </div>
-
-                </div>";
+                </div>
+            </div>
+    </div>
+            ";
             return $html;
         } else {
             return json_encode($request->all());
@@ -711,13 +751,13 @@ class ProgramacionGeneralController extends Controller
         ]);
 
         $response = $client->post(
-            $this->url . "program/returnPost",
+            $this->url . "program/editChapter",
             ['body' => json_encode(
                 [
                     'usuario_id' => session('id_user'),
                     'chapter_id' => $request->input('chapter_id'),
                     'key' => $request->input('key'),
-                    'keyValue' => $request->input('keyValue'),
+                    'value' => $request->input('keyValue'),
                 ]
             )]
         );

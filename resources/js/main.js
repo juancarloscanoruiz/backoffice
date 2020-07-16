@@ -1,3 +1,5 @@
+import $ from "jquery";
+import "bootstrap";
 import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
 
@@ -10,8 +12,10 @@ import {
 } from "./config/config.js";
 
 //VENDOR
+
 import Cleave from "cleave.js";
 import Litepicker from "litepicker";
+import "slick-carousel/slick/slick";
 
 //UI
 import {
@@ -57,6 +61,59 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    $("#agregar-canal-claro").click(function() {
+        let data = $("#data_for_api").val();
+        $.ajax({
+            type: "POST",
+            url: "general-program/newRow",
+            data: data,
+            success: function(result) {
+                //var fila =
+                //' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
+                $(".grilla-body").append(result);
+                console.log("php responde");
+                console.log(result);
+            }
+        });
+    });
+
+    $("#subir-archivos").click(function() {
+        let disabled = $("#inp_programing_claro_canal").prop("disabled");
+        if (disabled == true) {
+            var pregunta = confirm(
+                "Este día ya tiene programacion,¿Quieres subir un archivo?"
+            );
+            if (pregunta == true) {
+                $("#inp_programing_claro_canal").prop("disabled", false);
+            }
+        }
+    });
+
+    //SLIDER DE SINOPSIS
+    $(".synopsis-image-slider").slick({
+        slidesToShow: 1,
+        dots: true,
+        arrows: true,
+        prevArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
+        nextArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
+        customPaging: function(slider, i) {
+            var thumb = $(slider.$slides[i]).data();
+            return (
+                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                (i + 1) +
+                "</p>"
+            );
+        }
+    });
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".synopsis-image-slider").on("afterChange", function(
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
     /* Previsualizar una imagen a la hora de
         subir un archivo
     */
@@ -68,7 +125,9 @@ $(document).ready(function() {
                 currentInput
                     .next()
                     .children(".prev-image-program")
-                    .attr("src", e.target.result);
+                    .attr("src", e.target.result)
+                    .addClass("h-100 w-100")
+                    .css("z-index", "2");
             };
             reader.readAsDataURL(this.files[0]);
         }
@@ -135,14 +194,21 @@ $(document).ready(function() {
 
     //Mostrar la sinópsis completa en modal
     $(".see-more").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let chapterId = currentColumn.attr("chapter_id");
+        let key = currentColumn.attr("key");
         $(".modal-textarea").val(
             $(this)
                 .prev()
                 .text()
         );
-
         $(".modal-program-title").text($(this).attr("program_title"));
         $(".modal-synopsis").modal("show");
+        $(".edit-synopsis-button").click(function() {
+            let keyValue = $("#synopsis-content").val();
+            console.log(keyValue);
+            editAttributeProgram(chapterId, key, keyValue);
+        });
     });
 
     //modal delete row
@@ -210,30 +276,48 @@ $(document).ready(function() {
     $(".editable-attribute").keydown(function(e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
-                .parent()
+                .closest(".contenedor-columna")
                 .attr("key");
-            let keyValue = $(this).val();
+            let keyValue = "";
+            switch (key) {
+                case "day":
+                    let date = $(this)
+                        .val()
+                        .split("-");
+                    keyValue = `${date[2]}-${date[1]}-${date[0]}`;
+                    break;
+                case "program_year_produced":
+                    keyValue = parseInt($(this).val());
+                    break;
+                default:
+                    keyValue = $(this).val();
+                    break;
+            }
+
             let chapterId = $(this)
-                .parent()
+                .closest(".contenedor-columna")
                 .attr("chapter_id");
             e.preventDefault();
             $(this).blur();
+            console.log(typeof keyValue);
             editAttributeProgram(chapterId, key, keyValue);
             return false;
         }
     });
     $(".editable-attribute").blur(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
-        let keyValue = $(this).text();
+        let keyValue = $(this).val();
         let chapterId = currentColumn.attr("chapter_id");
         let key = currentColumn.attr("key");
+        editAttributeProgram(chapterId, key, keyValue);
     });
     //Sacar los valores de los switches en la grilla
-    $(".switch table").click(function() {
+    $(".switch-table").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let keyValue = $(this).val();
         let chapterId = currentColumn.attr("chapter_id");
         let key = currentColumn.attr("key");
+        editAttributeProgram(chapterId, key, keyValue);
     });
 
     /*
@@ -848,7 +932,7 @@ $(document).ready(function() {
     /* DELETE USER */
 
     /* 2.- UI  */
-    $(".edit-row-pencil").click(selectRow);
+    $(".edit-row-pencil").on("click", selectRow);
     $(".selectable-column").click(selectColumn);
 
     //Mostrar grilla de concert channel

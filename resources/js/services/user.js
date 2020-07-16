@@ -14,6 +14,8 @@ import { validateKeyUpEmail, validateKeyUpPassword } from "../form/form.js";
 
 import CryptoJS from "crypto-js";
 
+import $ from "jquery";
+
 function sendUserEmail(inputEmail) {
     let email = inputEmail.val();
 

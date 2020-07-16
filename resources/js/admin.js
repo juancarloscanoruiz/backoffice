@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 //mostrar las acciones de los roles
 $(".histo").hover(
     function() {
@@ -181,7 +183,8 @@ $(document).ready(function() {
     });
     $("button[id=btn-landing]").click(function() {
         if (
-            $(this).hasClass("btn-landing") & $(this).hasClass("a-text-semi-brown-two")
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
         ) {
             $(this)
                 .removeClass("btn-landing")
@@ -199,14 +202,15 @@ $(document).ready(function() {
     });
     $("button[id=btn-grilla]").click(function() {
         if (
-            $(this).hasClass("btn-landing") & $(this).hasClass("a-text-semi-brown-two")
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
         ) {
             $(this)
                 .addClass("btn-grilla")
                 .removeClass("btn-landing");
             $(this)
                 .addClass("a-text-MBlack") //text-grilla
-                .removeClass("a-text-semi-brown-two");//text-landing
+                .removeClass("a-text-semi-brown-two"); //text-landing
             $("button[id=btn-landing]")
                 .addClass("btn-landing")
                 .removeClass("btn-grilla");
@@ -340,4 +344,3 @@ $(".arrow-right").click(function () {
 $(".arrow-left").click(function () {
   $("#option").carousel("next");
 });*/
-
