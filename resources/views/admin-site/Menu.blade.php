@@ -1,7 +1,7 @@
 
 
 <?php
-    $date = explode("-", $respuesta->data->programs[0]->day);
+    $date = explode("-", $respuesta->data->grilla[0]->programs[0]->day);
     $day = $date[2];
     $month = "";
     $year = "";

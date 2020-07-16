@@ -53,22 +53,44 @@
 </div>
 <div class="clearfix"></div>
 <h3 class="a-text-bold-black h3 ml-5 mt-4">{{$landing}}</h3>
-<h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES</h4>
+<h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
 <!--Título del programa-->
-<div class="d-flex justify-content-center align-items-center a-btn-basic-large a-text-bold-brown-two a-btn-white text-normal ml-5 ">{{$response["title"]}}</div>
+<div class="mb-5 ml-5">
+<span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block text-uppercase px-4 py-3">{{$response["title"]}}</span>
+</div>
+
+<!--TOTAL DE IMÁGNEES-->
+<div class="text-right mr-5">
+    <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+    <span class="a-text-bold-tomato h3"> {{($response['cantity_img_program'])}}/9</span>
+</div>
+<!--TOTAL DE IMÁGENES EN EL HOME-->
+<?php
+    $countHome = 0;
+    if(!empty($response['thumbnail_list_horizontal'])){
+        $countHome += 1;
+    }
+    if(!empty($response['thumbnail_list_vertical'])){
+        $countHome += 1;
+    }
+?>
 <hr class="d-flex align-content-center separationhr col-11 mt-5">
-<h3 class="a-text-black-brown-two h3 d-flex justify-content-center mb-5 mt-5">HOME</h3>
+<div class="position-relative">
+    <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mb-5 mt-5">HOME</h3>
+    <div class="counter-images-program">
+        <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+        <label for="" class="a-text-bold-tomato h3"> {{$countHome}}/2/9</label>
+    </div>
+</div>
 <div class='col-sm-12 no-gutters col-md-6  no-gutters col-lg-12  col-xl-12'>
     <img src='../images/registro/group-10.svg' class='image-pink-fondo' />
 </div>
 <div class='col-sm-4 col-md-4 col-lg-4 no-gutters'>
     <img src='../images/blue.svg' class='image-blue' />
 </div>
-<div class="float-right mr-5 mt-2">
-    <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
-    <label for="" class="a-text-bold-tomato h3"> {{($response['cantity_img_program'])}}/6</label>
-</div>
-<h3 class="a-text-bold-brown-two ml-5 h3 mt-4">Recuerda subir la imagen en jpg</h3>
+
+
+<!--<h3 class="a-text-bold-brown-two ml-5 h3 mt-4">Recuerda subir la imagen en jpg</h3>-->
 <div class="clearfix"></div>
 
 <!--FORMULARIO PARA SUBIR IMÁGENES-->
@@ -82,7 +104,9 @@
     <input type="hidden" name="landing_id" value="{{Crypt::encrypt($response['landing_id'])}}" >
     <div class="d-flex justify-content-around col-12 mt-5">
         <div class="col-6">
-            <div class="d-flex align-items-center justify-content-center mb-4 a-btn-basic-medium a-text-bold-two a-btn-white text-plus mx-auto"><p class="mb-0">THUMBNAIL</p></div>
+            <div class="mb-4 text-center">
+                <span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block px-4 py-3">THUMBNAIL</span>
+            </div>
             <!--IMAGEN HORIZONTAL DEL PROGRAMA -->
             @if(empty($response['thumbnail_list_horizontal']))
             <div class="d-flex justify-content-center">
@@ -113,7 +137,9 @@
 
             <!--IMAGEN VERTICAL DEL PROGRAMA-->
             <div class="col-6">
-                <div class="align-items-center d-flex justify-content-center mb-4 a-btn-basic-medium a-text-bold-two a-btn-white text-plus mx-auto">VERTICAL</div>
+                <div class="mb-4 text-center">
+                    <span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block px-4 py-3">VERTICAL</span>
+                </div>
                 @if(empty($response['thumbnail_list_vertical']))
                 <div class="d-flex justify-content-center">
                     <div class="centro">
@@ -145,7 +171,27 @@
             @endif
             <!--IMÁGENES DE SINOPSIS DEL PROGRAMA-->
             <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
-            <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS - CARRUSEL</h3>
+            <!--IMÁGENES DEL SLIDER EN SINOPSIS-->
+            <?php
+                $countSynopsisSlider = 0;
+                if(!empty($response["image_background_1"])){
+                    $countSynopsisSlider += 1;
+                }
+                if(!empty($response["image_background_2"])){
+                    $countSynopsisSlider += 1;
+                }
+                if(!empty($response["image_background_2"])){
+                    $countSynopsisSlider += 1;
+                }
+            ?>
+            <div class="position-relative">
+                <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS - CARRUSEL</h3>
+                <div class="counter-images-program">
+                    <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+                    <span class="a-text-bold-tomato h3"> {{$countSynopsisSlider}}/3/9</span>
+                </div>
+            </div>
+
             <div class="current-slide-container a-text-bold-teal mb-4">
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
             </div>
@@ -176,7 +222,29 @@
                 </div>
             </div>
             <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
-            <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS </h3>
+            <?php
+            $countSynopsis = 0;
+                if(!empty($response["image_synopsis"])){
+                    $countSynopsis += 1;
+                }
+                if(!empty($response["image_synopsis_frame_1"])){
+                    $countSynopsis += 1;
+                }
+                if(!empty($response["image_synopsis_frame_2"])){
+                    $countSynopsis += 1;
+                }
+                if(!empty($response["image_synopsis_frame_3"])){
+                    $countSynopsis += 1;
+                }
+             ?>
+             <div class="position-relative">
+                <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS </h3>
+                <div class="counter-images-program">
+                    <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+                    <span class="a-text-bold-tomato h3"> {{$countSynopsisSlider}}/4/9</span>
+                </div>
+             </div>
+
             <!--IMÁGEN PRINCIPAL DE LA SINOPSIS-->
             @if(empty($response['image_synopsis']))
             <div class="ml-5 mb-5">
@@ -284,8 +352,7 @@
             </div>
 
             <div class="d-flex justify-content-center mb-5">
-                <input type="submit" class="d-flex justify-content-center a-btn-basic-medium a-btn-teal a-text-bold-white text-normal" value="Guardar">
-
+                <input type="submit" class="text-uppercase d-flex justify-content-center a-btn-basic-medium a-btn-teal a-text-bold-white text-normal" value="Guardar">
             </div>
 </form>
 

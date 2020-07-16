@@ -17,20 +17,25 @@ class ProgramacionGeneralController extends Controller
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
 
-    public function index()
+    public function index(Request $request)
     {
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
-        $hoy = date('Y-m-d');
+        http: //www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/program/getProgramingGrill/2020-07-14&2020-07-16&Claro Canal&1
+        $firstDay = date('Y-m-d');
+        $lastDay = date('Y-m-d');
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
+            $this->url . "program/getProgramingGrill/" . $firstDay . "&" . $lastDay . "&Claro Canal&" . session('id_user')
+            //$this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
         );
+
         $respuesta =  json_decode($response->getBody());
-        var_dump($respuesta);
+        var_dump($respuesta->data->grilla[0]);
+        //var_dump($respuesta);
         if ($respuesta->code == 200) {
             //var_dump($respuesta);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
@@ -39,8 +44,17 @@ class ProgramacionGeneralController extends Controller
         };
     }
 
-    public function getGrilla()
+    public function getGrilla(Request $request)
     {
+        $firstDay = "";
+        $lastDay = "";
+        if ($request->input('last-day') && $request->input('first-day')) {
+            $firstDay = $request->input('last-day');
+            $lastDay = $request->input('first-day');
+        } else {
+            $firstDay = date('Y-m-d');
+            $lastDay = date('Y-m-d');
+        }
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco

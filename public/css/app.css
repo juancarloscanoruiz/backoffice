@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+  overscroll-behavior-x: none;
+}
+
 /* Slider */
 
 .slick-slider {
@@ -1269,6 +1273,13 @@
   align-items: center;
   justify-content: center;
   border: 3px solid;
+}
+
+.counter-images-program {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 48px;
 }
 
 @font-face {
@@ -4374,6 +4385,13 @@ input[type=radio]:checked + .no-estilo1 {
   align-items: center;
   justify-content: center;
   border: 3px solid;
+}
+
+.counter-images-program {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 48px;
 }
 
 .login-BO {

@@ -1,5 +1,13 @@
+//JQUERY
 import $ from "jquery";
+//BOOTSTRAP
 import "bootstrap";
+//VENDOR
+import Cleave from "cleave.js";
+import Litepicker from "litepicker";
+import "slick-carousel/slick/slick";
+import select2 from "select2";
+
 import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
 
@@ -10,12 +18,6 @@ import {
     timeWithSeconds,
     year
 } from "./config/config.js";
-
-//VENDOR
-
-import Cleave from "cleave.js";
-import Litepicker from "litepicker";
-import "slick-carousel/slick/slick";
 
 //UI
 import {
@@ -114,6 +116,26 @@ $(document).ready(function() {
     ) {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
     });
+    // Initialize Select2
+    $(".sel_users").one("select2:open", function(e) {
+        $("input.select2-search__field").prop("placeholder", "Buscar");
+    });
+    $(".sel_users").select2({
+        placeholder: "Select options"
+    });
+
+    // Set option selected onchange
+    $("#user_selected").change(function() {
+        var value = $(this).val();
+
+        // Set selected
+        $(".sel_users").val(value);
+
+        $(".sel_users")
+            .select2()
+            .trigger("change");
+    });
+
     /* Previsualizar una imagen a la hora de
         subir un archivo
     */
@@ -195,13 +217,10 @@ $(document).ready(function() {
     //Mostrar la sinópsis completa en modal
     $(".see-more").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
+        let synopsis = currentColumn.attr("synopsis");
         let chapterId = currentColumn.attr("chapter_id");
         let key = currentColumn.attr("key");
-        $(".modal-textarea").val(
-            $(this)
-                .prev()
-                .text()
-        );
+        $(".modal-textarea").val(synopsis);
         $(".modal-program-title").text($(this).attr("program_title"));
         $(".modal-synopsis").modal("show");
         $(".edit-synopsis-button").click(function() {
@@ -213,6 +232,14 @@ $(document).ready(function() {
 
     //modal delete row
     $(".trash-row").click(function() {
+        let allRows = $(".contenedor-fila");
+        allRows.removeClass("row-selected");
+        $(this).attr("src", "./images/eliminar-acti.svg");
+        let row = $(this).closest(".contenedor-fila");
+        $(this)
+            .prev()
+            .attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+        row.addClass("row-selected");
         $(".modal-delete-row").modal("show");
     });
 
@@ -251,12 +278,12 @@ $(document).ready(function() {
                 let fullDate = document
                     .getElementById("date-start-input")
                     .value.split(",");
-                /* Fecha inicial del datepicker*/
+                //  Fecha inicial del datepicker
                 let startDate = fullDate[0];
                 let startDateSplit = startDate.split("-");
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
-                /* Fecha final del datepicker */
+                //   Fecha final del datepicker
                 let endDate = fullDate[1];
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;

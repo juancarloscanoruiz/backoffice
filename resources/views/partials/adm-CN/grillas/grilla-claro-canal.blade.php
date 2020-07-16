@@ -1,9 +1,9 @@
 <?php
 //recuperamos datos obtenidos por la API
-$last_edition = $respuesta->data->last_edition;
-$edited_for = $respuesta->data->edited_for;
-$rol_user_edit = $respuesta->data->user_rol;
-$programs = $respuesta->data->programs;
+$last_edition = $respuesta->data->grilla[0]->last_edition;
+$edited_for = $respuesta->data->grilla[0]->edited_for;
+$rol_user_edit = $respuesta->data->grilla[0]->user_rol;
+$programs = $respuesta->data->grilla[0]->programs;
 
 if ($rol_user_edit == "root") {
     $rol_user_edit = "Súper Usuario";
@@ -26,8 +26,8 @@ if (is_null($last_edition) && is_null($edited_for) && is_null($rol_user_edit)) {
 $data_for_new_entry = json_encode([
     'usuario_id' => session('id_user'),
     'landing_id' => 1,
-    'version_id' => $respuesta->data->version_id,
-    'version_number' => $respuesta->data->version_number
+    'version_id' => $respuesta->data->grilla[0]->version_id,
+    'version_number' => $respuesta->data->grilla[0]->version_number
 ]);
 
 //Schedule-item-date
@@ -50,7 +50,7 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                @if (count($respuesta->data->programs)!=0)
+                @if (count($respuesta->data->grilla[0]->programs)!=0)
                 <input disabled id="inp_programing_claro_canal" type="file">
                 <label id="subir-archivos" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
 
@@ -239,7 +239,7 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-{{$programs[$indexPrograms]->chapter_id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
                         <!--ESTADO-->
                         <div class="contenedor-columna centro editable-column cursor-pointer" id="estado-{{$programs[$indexPrograms]->chapter_id }}">
-                            @if ($respuesta->data->version_origin === "master")
+                            @if ($respuesta->data->grilla[0]->version_origin === "master")
                             <span class="program-original">Aprobado</span>
                             @else
                             <span class="program-original">Pendiente de revisión</span>
@@ -409,21 +409,13 @@ $data_for_new_entry = json_encode([
                                         <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                                     </div>
                                 </a>
-                            <span class="d-block a-text-regular-brownishtwo pt-2">Modica imágenes</span>
+                            <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
                                 <div>
-                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_program}}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_chapter}}</span><span class="a-text-regular-brownishtwo">/9</span>
                                 </div>
                             </div>
                         @endif
 
-
-                        <!--Schedule item long date time-->
-                        <div class="contenedor-columna centro editable-column" rel="schedule-item-date-time">
-                            <div class="schedule-date">
-                                <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type=date>{{$programs[$indexPrograms]->day}}</label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
-                            </div>
-                        </div>
-                        <!--Schedule item long date-->
                         <?php
                         if($programs[$indexPrograms]->day){
                             $scheduleDate = explode("-", $programs[$indexPrograms]->day);
@@ -433,6 +425,13 @@ $data_for_new_entry = json_encode([
                         }
 
                         ?>
+                        <!--Schedule item long date time-->
+                        <div class="contenedor-columna centro editable-column" rel="schedule-item-date-time">
+                            <div class="schedule-date">
+                                <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type=date>{{$day . "-" . $month . "-" .$year}}</label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'>{{$programs[$indexPrograms]->programing}} HRS</label>
+                            </div>
+                        </div>
+                        <!--Schedule item long date-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-date" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="day">
                             <div class="schedule-date">
                                 <input type="text" name="" class="editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo" value="{{$day . "-" . $month . "-" .$year}}">
@@ -457,9 +456,18 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Program genre list-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
                             <div class="schedule-date">
-                                <label class="a-text-regular-brownishtwo">Animación, Cultura, Series</label>
+                                <div>
+                            <details class="sel_users" name="genero"  style="width: 300px;" >
+                                <option></option>
+                                <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
+                                <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
+                                <option class="a-text-bold-warm text-normal" value='series'>Series</option>
+                                <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
+                                <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
+</details>
+                            </div>
                             </div>
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
@@ -469,14 +477,14 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--Program episode season-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-season" key="season" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <input class="a-text-regular-brownishtwo text-center editable-attribute table-input" value="{{$programs[$indexPrograms]->program_episode_season}}" />
+                            <input class="a-text-regular-brownishtwo text-center editable-attribute table-input" value="{{$programs[$indexPrograms]->seasons}}" />
                         </div>
                         <!--Program episode number-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-number" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="program_episode_number">
                             <input class="a-text-regular-brownishtwo table-input text-center editable-attribute" value="{{$programs[$indexPrograms]->program_episode_number}}" />
                         </div>
                         <!--Synopsis-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="synopsis">
+                    <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="synopsis" synopsis="{{$programs[$indexPrograms]->synopsis}}">
                             <div class="program-original text-left edit-cell" id="lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">
                                 <span class="mb-0 lb-synopsis">{{$programs[$indexPrograms]->synopsis}}</span>
                                 <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="{{$programs[$indexPrograms]->title}}">Ver más...</span>
@@ -489,18 +497,34 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--SUBBED-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
-                            <div class="schedule-date">
-                                <div class="yes-no">
-                                    <input type="radio" id="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table" />
-                                    <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
-                                        Sí</label>
-                                    <input type="radio" id="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="0" checked class="switch-table" />
-                                    <label for="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
-                                        No</label>
+                        @if ($programs[$indexPrograms]->subbed)
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
+                                <div class="schedule-date">
+                                    <div class="yes-no">
+                                        <input type="radio" id="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" checked class="switch-table" />
+                                        <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" />
+                                        <label for="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
+                                <div class="schedule-date">
+                                    <div class="yes-no">
+                                        <input type="radio" id="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table" />
+                                        <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" name="subbed-{{$programs[$indexPrograms]->chapter_id}}" value="0" checked class="switch-table" />
+                                        <label for="no-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <!--DUBBED-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                             <div class="schedule-date">

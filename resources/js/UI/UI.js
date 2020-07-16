@@ -659,8 +659,7 @@ function selectRow() {
     let row = $(this).closest(".contenedor-fila");
     $(this)
         .next()
-        .attr("src", "./images/basic-icons/trash.svg")
-        .css("pointer-events", "none");
+        .attr("src", "./images/basic-icons/trash.svg");
     row.addClass("row-selected");
 }
 
