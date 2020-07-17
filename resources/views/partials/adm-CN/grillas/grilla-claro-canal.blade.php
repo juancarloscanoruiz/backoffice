@@ -32,12 +32,11 @@ $data_for_new_entry = json_encode([
 
 //Schedule-item-date
 
-
 ?>
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class="ml-5 float-left">
-        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">Julio 10, 2020 09:50:30{{$last_edition}}</span> </span></div>
+        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{$last_edition}}</span> </span></div>
         <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{$edited_for}} (<label class="zona ">{{$rol_user_edit}}</label>)</label></span>
     </div>
     <div class="d-flex float-right mr-5 ">
@@ -59,22 +58,23 @@ $data_for_new_entry = json_encode([
                 <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
                 @endif
             </div>
+            <!--Fecha de inicio de calendario-->
             <div class="position-relative">
                 <input type="text" id="date-start-input">
                 <label for="date-start-input" class="mb-0 ml-5 date-button date-start-table d-flex align-items-center pl-3 pr-3" id="date-start-table">
                     <img src="./images/calendario.svg" alt="">
                     <div class="ml-3">
                         <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
-                        <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
+                    <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">{{$firstDate}}</p>
                     </div>
                 </label>
             </div>
-
+            <!--Fecha de fin de calendario-->
             <label for="date-start-input" class="mb-0 ml-5 date-button date-end-table d-flex align-items-center pl-3 pr-3">
                 <img src="./images/calendario.svg" alt="">
                 <div class="ml-3">
                     <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
-                    <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
+                <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">{{$lastDate}}</p>
                 </div>
             </label>
             <!--<div class="position-relative">

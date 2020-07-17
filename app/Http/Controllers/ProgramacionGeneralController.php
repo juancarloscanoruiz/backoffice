@@ -17,6 +17,55 @@ class ProgramacionGeneralController extends Controller
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
 
+    public function getDateCalendar($date)
+    {
+        $dateArray = explode("-", $date);
+
+        switch ($dateArray[1]) {
+            case '01':
+                $nameMonth = "Ene";
+                break;
+            case '02':
+                $nameMonth = "Feb";
+                break;
+            case '03':
+                $nameMonth = "Mar";
+                break;
+            case '04':
+                $nameMonth = "Abr";
+                break;
+            case '05':
+                $nameMonth = "May";
+                break;
+            case '06':
+                $nameMonth = "Jun";
+                break;
+            case '07':
+                $nameMonth = "Jul";
+                break;
+            case '08':
+                $nameMonth = "Ago";
+                break;
+            case '09':
+                $nameMonth = "Sep";
+                break;
+            case '10':
+                $nameMonth = "Oct";
+                break;
+            case '11':
+                $nameMonth = "Nov";
+                break;
+            case '12':
+                $nameMonth = "Dic";
+                break;
+            default:
+                # code...
+                break;
+        }
+        $finalDate = $dateArray[2] . " " . $nameMonth . " " . $dateArray[0];
+        return $finalDate;
+    }
+
     public function index(Request $request)
     {
         //se obtine la version que se peuda editar
@@ -35,10 +84,12 @@ class ProgramacionGeneralController extends Controller
 
         $respuesta =  json_decode($response->getBody());
         //var_dump($respuesta->data->grilla[0]);
-        var_dump($respuesta->data->first_day);
+        $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
+        $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
+        //var_dump($firstDate);
         if ($respuesta->code == 200) {
             //var_dump($respuesta);
-            return view('admin-site.Menu')->with('respuesta', $respuesta);
+            return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
         };
@@ -539,7 +590,7 @@ class ProgramacionGeneralController extends Controller
             $html = "
             <div class='contenedor-fila' id='programacion-claro-$chapter_id'>
             <!--ACCIONES-->
-            <div class='contenedor-columna selectable-column centro cursor-pointer' id='entrada-$chapter_id' rel='acciones'><img src='./images/basic-icons/pencil-edit-teal.svg' class='mr-3 edit-row-pencil' alt='pencil'><img src='./images/eliminar-acti.svg' class='delete-row-pencil trash-row' alt='trash'></div>
+            <div class='contenedor-columna selectable-column centro cursor-pointer' id='entrada-$chapter_id' rel='acciones'><img src='./images/basic-icons/pencil-edit-teal.svg' class='mr-3 edit-row-pencil' alt='pencil'><img src='./images/basic-icons/trash.svg' class='trash-row' alt='trash'></div>
             <!--ESTADO-->
             <div class='contenedor-columna centro editable-column cursor-pointer' id='estado-$chapter_id'>
                 <span class='program-original'></span>
@@ -660,7 +711,7 @@ class ProgramacionGeneralController extends Controller
             <!--Schedule item long date-->
                                     <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-date' chapter_id='$chapter_id' key=''>
                 <div class='schedule-date'>
-                    <input type='text' name='' class='table-input schedule-date-input text-center a-text-regular-brownishtwo' value='15-07-2020'>
+                    <input type='text' name='' class='table-input schedule-date-input text-center a-text-regular-brownishtwo' value=''>
                 </div>
             </div>
             <!--Schedule Item Long Time (GMT)-->
