@@ -23,7 +23,7 @@
     @include('partials.headers.headerPrograGeneral')
         <div class="justify-content-center centro mx-auto position-title">
             <span class="text-titulo">PROGRAMACIÓN GENERAL <br> DEL </span>
-        <span class="text-titulo-rojo text-uppercase">{{$respuesta->data->first_day}} AL {{$respuesta->data->last_day}}</span>
+        <span class="text-titulo-rojo text-uppercase">{{$respuesta->data->first_day}} <span class="text-titulo">AL</span>  {{$respuesta->data->last_day}}</span>
         </div>
 
         <nav class="d-flex col-xl-12 navbar-expand-sm justify-content-center position-nav pt-5">
