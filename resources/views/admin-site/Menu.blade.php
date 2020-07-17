@@ -1,11 +1,11 @@
 
-
+ 
 <?php
     $date = explode("-", $respuesta->data->grilla[0]->programs[0]->day);
     $day = $date[2];
     $month = "";
     $year = "";
-    //Sacamos el nombre del mes actual
+ //   Sacamos el nombre del mes actual
     switch ($date[1]) {
         case '01':
             $month = "Enero";
