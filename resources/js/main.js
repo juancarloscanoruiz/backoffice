@@ -3,8 +3,8 @@ import $ from "jquery";
 //BOOTSTRAP
 import "bootstrap";
 //VENDOR
-import Cleave from "cleave.js";
-import Litepicker from "litepicker";
+//import Cleave from "cleave.js";
+//import Litepicker from "litepicker";
 import "slick-carousel/slick/slick";
 import select2 from "select2";
 
@@ -119,6 +119,10 @@ $(document).ready(function() {
     // Initialize Select2
     $(".sel_users").one("select2:open", function(e) {
         $("input.select2-search__field").prop("placeholder", "Buscar");
+        $('span.select2-dropdown').css("border-right:1px solid #9b9b9b;border-left:1px solid #9b9b9b;border-bottom:1px solid #9b9b9b;");
+        $('span.select2-container').append(`<div class="border-r border-l border-t centro title-program"><label class=" title-program text-normal a-text-MBlack-warm">Program Genre List</label>`);
+    }).on('select2:close', function() {
+        $('label.title-program').hide(`<div class="border-r border-l border-t centro title-program"><label class="title-program text-normal a-text-MBlack-warm">Program Genre List</label>`);
     });
     $(".sel_users").select2({
         placeholder: "Select options"

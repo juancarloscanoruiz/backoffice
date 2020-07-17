@@ -100,7 +100,7 @@ $data_for_new_entry = json_encode([
         <!--end-->
 
         <div id="rempla-claro-canal" class="landing-table">
-            <div id="tb1" class="ml-5 pr-5 conten-tab">
+            <div id="tb1" class="ml-5 pr-5 conten-tab table-porcent">
                 <div class="mr-5 grilla-body">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table" id="acciones">

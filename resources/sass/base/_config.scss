@@ -70,3 +70,9 @@ $fontpaises: 16px;
 }
 
 $radioButton: 20px;
+body{
+    overflow-x: hidden;
+}
+.select2-container--default .select2-selection--single {
+    border: transparent !important;
+  }
