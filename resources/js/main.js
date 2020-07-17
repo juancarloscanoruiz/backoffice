@@ -3,8 +3,8 @@ import $ from "jquery";
 //BOOTSTRAP
 import "bootstrap";
 //VENDOR
-//import Cleave from "cleave.js";
-//import Litepicker from "litepicker";
+import Cleave from "cleave.js";
+import Litepicker from "litepicker";
 import "slick-carousel/slick/slick";
 import select2 from "select2";
 
@@ -117,13 +117,21 @@ $(document).ready(function() {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
     });
     // Initialize Select2
-    $(".sel_users").one("select2:open", function(e) {
-        $("input.select2-search__field").prop("placeholder", "Buscar");
-        $('span.select2-dropdown').css("border-right:1px solid #9b9b9b;border-left:1px solid #9b9b9b;border-bottom:1px solid #9b9b9b;");
-        $('span.select2-container').append(`<div class="border-r border-l border-t centro title-program"><label class=" title-program text-normal a-text-MBlack-warm">Program Genre List</label>`);
-    }).on('select2:close', function() {
-        $('label.title-program').hide(`<div class="border-r border-l border-t centro title-program"><label class="title-program text-normal a-text-MBlack-warm">Program Genre List</label>`);
-    });
+    $(".sel_users")
+        .one("select2:open", function(e) {
+            $("input.select2-search__field").prop("placeholder", "Buscar");
+            $("span.select2-dropdown").css(
+                "border-right:1px solid #9b9b9b;border-left:1px solid #9b9b9b;border-bottom:1px solid #9b9b9b;"
+            );
+            $("span.select2-container").append(
+                `<div class="border-r border-l border-t centro title-program"><label class=" title-program text-normal a-text-MBlack-warm">Program Genre List</label>`
+            );
+        })
+        .on("select2:close", function() {
+            $("label.title-program").hide(
+                `<div class="border-r border-l border-t centro title-program"><label class="title-program text-normal a-text-MBlack-warm">Program Genre List</label>`
+            );
+        });
     $(".sel_users").select2({
         placeholder: "Select options"
     });
@@ -160,7 +168,7 @@ $(document).ready(function() {
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function() {
+    $(".grilla-body").on("click", ".switch-landing", function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -191,7 +199,7 @@ $(document).ready(function() {
         }
     });
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function() {
+    $(".grilla-body").on("click", ".switch-home", function() {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -242,9 +250,17 @@ $(document).ready(function() {
         let row = $(this).closest(".contenedor-fila");
         $(this)
             .prev()
-            .attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+            .attr("src", "./images/basic-icons/pencil-edit-des.svg");
         row.addClass("row-selected");
         $(".modal-delete-row").modal("show");
+    });
+
+    $("#modal-button-delete").click(function() {
+        let aa = $(this).attr("chapter_id");
+        console.log(aa);
+        $(".trash-row")
+            .prev()
+            .attr("src", "./images/basic-icons/pencil-edit-teal.svg");
     });
 
     //Truncar texto de sinópsis con "..."
@@ -963,8 +979,10 @@ $(document).ready(function() {
     /* DELETE USER */
 
     /* 2.- UI  */
-    $(".edit-row-pencil").on("click", selectRow);
-    $(".selectable-column").click(selectColumn);
+    $(".grilla-body").on("click", ".edit-row-pencil", selectRow);
+    $(".grilla-body").on("click", ".selectable-column", selectColumn);
+    //$(".edit-row-pencil").on("click", selectRow);
+    //$(".selectable-column").click(selectColumn);
 
     //Mostrar grilla de concert channel
     $(".bn-nav").click(function() {
