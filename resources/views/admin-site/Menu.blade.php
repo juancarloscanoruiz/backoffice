@@ -1,54 +1,3 @@
-
- 
-<?php
-    $date = explode("-", $respuesta->data->grilla[0]->programs[0]->day);
-    $day = $date[2];
-    $month = "";
-    $year = "";
- //   Sacamos el nombre del mes actual
-    switch ($date[1]) {
-        case '01':
-            $month = "Enero";
-            break;
-        case '02':
-        $month = "Febrero";
-            break;
-        case '03':
-        $month = "Marzo";
-            break;
-        case '04':
-        $month = "Abril";
-            break;
-        case '05':
-            $month = "Mayo";
-            break;
-        case '06':
-        $month = "Junio";
-            break;
-        case '07':
-        $month = "Julio";
-            break;
-        case '08':
-        $month = "Agosto";
-            break;
-        case '09':
-        $month = "Septiembre";
-            break;
-        case '10':
-        $month = "Octubre";
-            break;
-        case '11':
-        $month = "Noviembre";
-            break;
-        case '12':
-        $month = "Diciembre";
-            break;
-        default:
-            # code...
-            break;
-    }
-
-?>
 @extends('layaout.app')
 
 @section('scripts')
@@ -74,7 +23,7 @@
     @include('partials.headers.headerPrograGeneral')
         <div class="justify-content-center centro mx-auto position-title">
             <span class="text-titulo">PROGRAMACIÓN GENERAL <br> DEL </span>
-        <span class="text-titulo-rojo text-uppercase">{{$day}} DE {{$month}}</span>
+        <span class="text-titulo-rojo text-uppercase">{{$respuesta->data->first_day}} AL {{$respuesta->data->last_day}}</span>
         </div>
 
         <nav class="d-flex col-xl-12 navbar-expand-sm justify-content-center position-nav pt-5">

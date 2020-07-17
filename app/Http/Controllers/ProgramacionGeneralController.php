@@ -24,18 +24,18 @@ class ProgramacionGeneralController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
-        http: //www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/program/getProgramingGrill/2020-07-14&2020-07-16&Claro Canal&1
+
         $firstDay = date('Y-m-d');
-        $lastDay = date('Y-m-d');
+
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getProgramingGrill/" . $firstDay . "&" . $lastDay . "&Claro Canal&" . session('id_user')
-            //$this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
+            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
+
         );
 
         $respuesta =  json_decode($response->getBody());
         //var_dump($respuesta->data->grilla[0]);
-        var_dump($respuesta);
+        var_dump($respuesta->data->first_day);
         if ($respuesta->code == 200) {
             //var_dump($respuesta);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
