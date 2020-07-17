@@ -34,8 +34,8 @@ class ProgramacionGeneralController extends Controller
         );
 
         $respuesta =  json_decode($response->getBody());
-        var_dump($respuesta->data->grilla[0]);
-        //var_dump($respuesta);
+        //var_dump($respuesta->data->grilla[0]);
+        var_dump($respuesta);
         if ($respuesta->code == 200) {
             //var_dump($respuesta);
             return view('admin-site.Menu')->with('respuesta', $respuesta);
@@ -81,7 +81,7 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/getImagesChapter/" . $idimages
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
-        var_dump($responseArray);
+        //var_dump($responseArray);
         if ($responseArray["code"] == 200) {
             return view('partials.adm-CN.image')->with('response', $responseArray["data"]);
         } else {
@@ -831,8 +831,7 @@ class ProgramacionGeneralController extends Controller
                 break;
         }
 
-
-
+        return redirect()->route('programacion_general');
         /*$decrypted = Crypt::decrypt($request->input('id'));
         $extension = $request->file('image-synopsis-3')->extension();
         $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/

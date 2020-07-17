@@ -283,6 +283,7 @@ $data_for_new_entry = json_encode([
                                     </div>
 
                                 @else
+
                                     <div class='yes-no mt-3'>
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked/>
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
@@ -291,22 +292,42 @@ $data_for_new_entry = json_encode([
                                         <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-label">
                                             No</label>
                                     </div>
-                                    <div class="establecer-options pointer-none">
-                                        <div class=" d-flex mt-2 ml-2 pt-2">
-                                            <label class="checkradio d-flex  ml-2">
-                                                <input type="radio" name="dontlose" class="switch-table" value="1" />
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
+                                    @if ($programs[$indexPrograms]->in_landing == 1)
+                                        <div class="establecer-options pointer-none">
+                                            <div class=" d-flex mt-2 ml-2 pt-2">
+                                                <label class="checkradio d-flex  ml-2">
+                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
+                                            </div>
+                                            <div class="d-flex ml-2 pt-2 pb-2">
+                                                <label class="checkradio d-flex ml-2">
+                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
+                                            </div>
                                         </div>
-                                        <div class="d-flex ml-2 pt-2 pb-2">
-                                            <label class="checkradio d-flex ml-2">
-                                                <input type="radio" name="dontlose" class="switch-table" value="2" />
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
+                                    @else
+                                        <div class="establecer-options pointer-none">
+                                            <div class=" d-flex mt-2 ml-2 pt-2">
+                                                <label class="checkradio d-flex  ml-2">
+                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
+                                            </div>
+                                            <div class="d-flex ml-2 pt-2 pb-2">
+                                                <label class="checkradio d-flex ml-2">
+                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
+
                                 @endif
                         </div>
                         <!--Programar publicacición landing-->
@@ -337,7 +358,7 @@ $data_for_new_entry = json_encode([
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                            <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                             <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -346,7 +367,7 @@ $data_for_new_entry = json_encode([
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                            <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="0000-00-00">
+                                            <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                             <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -526,31 +547,63 @@ $data_for_new_entry = json_encode([
                         @endif
 
                         <!--DUBBED-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <div class="schedule-date">
-                                <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                                    <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
-                                    <label for="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
-                                        Sí</label>
-                                    <input type="radio" id="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="0" checked class="switch-table" />
-                                    <label for="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date1" class="switch-label cursor-pointer no-estilo">
-                                        No</label>
+                        @if ($programs[$indexPrograms]->dubbed)
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                <div class="schedule-date">
+                                    <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                        <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}"checked value="1" class="switch-table"/>
+                                        <label for="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="0"  class="switch-table" />
+                                        <label for="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date1" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                <div class="schedule-date">
+                                    <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                        <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
+                                        <label for="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="0" checked class="switch-table" />
+                                        <label for="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date1" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <!--AUDIO 5.1-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <div class="schedule-date">
-                                <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                                    <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
-                                    <label for="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
-                                        Sí</label>
-                                    <input type="radio" id="no-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" checked />
-                                    <label for="no-audio-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
-                                        No</label>
+                        @if ($programs[$indexPrograms]->audio5)
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                <div class="schedule-date">
+                                    <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                        <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
+                                        <label for="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" checked />
+                                        <label for="no-audio-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                <div class="schedule-date">
+                                    <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                                        <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
+                                        <label for="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
+                                            Sí</label>
+                                        <input type="radio" id="no-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" checked />
+                                        <label for="no-audio-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
+                                            No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                 </div>
                 @endfor
 
