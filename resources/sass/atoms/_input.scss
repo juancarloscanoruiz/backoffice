@@ -307,3 +307,47 @@ input[type="radio"]:checked + .no-estilo1 {
     resize: none;
     outline: none !important;
 }
+//class to selectpicker
+.dropdown-item{      
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+    top: 0;
+    margin-top: 12px;
+    left: 25px;
+    height: 20px;
+    width: 0px;
+    border-radius: 1em;
+    border: 2px solid $morelightgray;
+    background-color: white;
+  
+    padding: 0.45em;
+    }
+    .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
+    position: absolute;
+    display: inline-block;
+    left: 4px;
+    top: 0px;
+}
+
+.bootstrap-select.show-tick .dropdown-menu li a span.text {
+    margin-left: 15px;
+}
+
+
+    .bootstrap-select .bs-ok-default:after {
+    content: '';
+    display: block;
+    width: 0.5em; 
+    left: 5px;
+    top: 2px;
+    height: 0.8em;
+    border-style: solid;
+    border-color:$teal;
+    border-width: 0 0.26em 0.26em 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    }
+///end class to selectpicker
