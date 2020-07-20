@@ -105131,7 +105131,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
     // showTick: true,
     filter: true,
-    multipleSeparator: "<br>* "
+    multipleSeparator: ", "
   }); //endselect
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#agregar-canal-claro").click(function () {
