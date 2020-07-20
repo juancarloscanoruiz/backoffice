@@ -40,7 +40,7 @@ $data_for_new_entry = json_encode([
     text-decoration: none;
     background-color: #fff;}
 
-    .dropdown-item{      
+    .dropdown-item{
     display: inline-block;
     position: relative;
     line-height: 0;
@@ -52,7 +52,7 @@ $data_for_new_entry = json_encode([
     border-radius: 1em;
     border: 2px solid #979797;
     background-color: white;
-  
+
     padding: 0.45em;
     }
     .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
@@ -74,7 +74,7 @@ $data_for_new_entry = json_encode([
     .bootstrap-select .bs-ok-default:after {
     content: '';
     display: block;
-    width: 0.5em; 
+    width: 0.5em;
     left: 5px;
     top: 2px;
     height: 0.8em;
@@ -571,7 +571,7 @@ $data_for_new_entry = json_encode([
                         <!--Synopsis-->
                     <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="synopsis" synopsis="{{$programs[$indexPrograms]->synopsis}}">
                             <div class="program-original text-left edit-cell">
-                                <span class="mb-0" id="lb-synopsis-lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->synopsis}}</span>
+                                <span class="mb-0 lb-synopsis" id="lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->synopsis}}</span>
                                 <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="{{$programs[$indexPrograms]->title}}">Ver más...</span>
                             </div>
                         </div>
@@ -701,8 +701,7 @@ $data_for_new_entry = json_encode([
 </div>
 @include('partials.adm-CN.grillas.modales-grilla.delete-row')
 <!-- Modal Sinopsis-->
-<div class="modal fade modal-synopsis
-" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade modal-synopsis" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -710,7 +709,7 @@ $data_for_new_entry = json_encode([
                 <div class="pl-5 pr-5">
                     <textarea name="" id="synopsis-content" class="modal-textarea a-text a-text-medium-warm-grey-three"></textarea>
                     <div class="text-center pt-4 pb-4">
-                        <button data-dismiss="modal" class="a-btn-basic-small mr-3 a-button-outline-teal a-text-bold-teal text-plus edit-synopsis-button">ACEPTAR</button>
+                        <button class="a-btn-basic-small mr-3 a-button-outline-teal a-text-bold-teal text-plus edit-synopsis-button">ACEPTAR</button>
                         <button data-dismiss="modal" class="a-btn-basic-small a-button-primary-teal a-text-MBlack text-plus">CANCELAR</button>
                     </div>
                 </div>

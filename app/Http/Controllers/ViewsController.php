@@ -40,7 +40,10 @@ class ViewsController extends Controller
                     break;
                 case 'grilla-canal-claro-button':
                     $programacion = $this->getGrilla('Claro Canal');
-                    return view('partials.adm-CN.grillas.grilla-claro-canal')->with('respuesta', $programacion);
+                    $respuesta = $programacion[0];
+                    $firstDate = $programacion[1];
+                    $lastDate = $programacion[2];
+                    return view('partials.adm-CN.grillas.grilla-claro-canal', compact("respuesta", "firstDate", "lastDate"));
                     break;
                 case 'grilla-concert-channel-button':
                     $programacion = $this->getGrilla('Concert Channel');
@@ -76,6 +79,55 @@ class ViewsController extends Controller
             }
         }
     }
+    public function getDateCalendar($date)
+    {
+        $dateArray = explode("-", $date);
+
+        switch ($dateArray[1]) {
+            case '01':
+                $nameMonth = "Ene";
+                break;
+            case '02':
+                $nameMonth = "Feb";
+                break;
+            case '03':
+                $nameMonth = "Mar";
+                break;
+            case '04':
+                $nameMonth = "Abr";
+                break;
+            case '05':
+                $nameMonth = "May";
+                break;
+            case '06':
+                $nameMonth = "Jun";
+                break;
+            case '07':
+                $nameMonth = "Jul";
+                break;
+            case '08':
+                $nameMonth = "Ago";
+                break;
+            case '09':
+                $nameMonth = "Sep";
+                break;
+            case '10':
+                $nameMonth = "Oct";
+                break;
+            case '11':
+                $nameMonth = "Nov";
+                break;
+            case '12':
+                $nameMonth = "Dic";
+                break;
+            default:
+                # code...
+                break;
+        }
+        $finalDate = $dateArray[2] . " " . $nameMonth . " " . $dateArray[0];
+        return $finalDate;
+    }
+
     public function getGrilla($grilla)
     {
         //se obtine la version que se peuda editar
@@ -87,13 +139,15 @@ class ViewsController extends Controller
         $firstDay = date('Y-m-d');
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
+            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&" . $grilla . "&" . session('id_user')
         );
 
         $respuesta =  json_decode($response->getBody());
-        //var_dump($respuesta);
+
+        $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
+        $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
         if ($respuesta->code == 200) {
-            return $respuesta;
+            return array($respuesta, $firstDate, $lastDate);
         } else {
             return null;
         };

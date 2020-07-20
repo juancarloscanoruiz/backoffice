@@ -104,9 +104,12 @@ function eventsGrilla() {
         if (keyValue.length > 200) {
             let text = keyValue.substr(0, 200) + "...";
             $("#" + program).text(text);
+        } else {
+            $("#" + program).text(keyValue);
         }
-
+        console.log(keyValue);
         editAttributeProgram(chapterId, key, keyValue);
+        $(".modal-synopsis").modal("hide");
     });
 
     let dateStartInput = document.getElementById("date-start-input");
@@ -243,19 +246,15 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    function truncateTextSynopsis() {
-        $(".lb-synopsis").each(function(index, element) {
-            if ($(this).text().length > 200) {
-                let text =
-                    $(this)
-                        .text()
-                        .substr(0, 200) + "...";
-                $(this).text(text);
-            }
-        });
-    }
-
-    truncateTextSynopsis();
+    $(".lb-synopsis").each(function(index, element) {
+        if ($(this).text().length > 200) {
+            let text =
+                $(this)
+                    .text()
+                    .substr(0, 200) + "...";
+            $(this).text(text);
+        }
+    });
 
     $(".edit-row-pencil").click(selectRow);
     $(".selectable-column").click(selectColumn);
