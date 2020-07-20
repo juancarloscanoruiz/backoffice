@@ -3079,7 +3079,7 @@ input[type=radio]:checked + .no-estilo1 {
   top: 0;
   margin-top: 12px;
   left: 25px;
-  height: 20px;
+  height: 0px;
   width: 0px;
   border-radius: 1em;
   border: 2px solid #979797;
@@ -3090,7 +3090,7 @@ input[type=radio]:checked + .no-estilo1 {
 .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
   position: absolute;
   display: inline-block;
-  left: 4px;
+  left: 3px;
   top: 0px;
 }
 

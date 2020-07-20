@@ -34,6 +34,65 @@ $data_for_new_entry = json_encode([
 
 ?>
 
+<style>
+      .dropdown-item.active, .dropdown-item:active {
+    color: black;
+    text-decoration: none;
+    background-color: #fff;}
+
+    .dropdown-item{      
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+    top: 0;
+    margin-top: 12px;
+    left: 25px;
+    height: 0px;
+    width: 0px;
+    border-radius: 1em;
+    border: 2px solid #979797;
+    background-color: white;
+  
+    padding: 0.45em;
+    }
+    .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
+    position: absolute;
+    display: inline-block;
+    left: 3px;
+    top: 0px;
+}
+
+.bootstrap-select.show-tick .dropdown-menu li a span.text {
+    margin-left: 15px;
+}
+.btn-light {
+    color: #4a4a4a;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+    .bootstrap-select .bs-ok-default:after {
+    content: '';
+    display: block;
+    width: 0.5em; 
+    left: 5px;
+    top: 2px;
+    height: 0.8em;
+    border-style: solid;
+    border-color:#0097a9;
+    border-width: 0 0.26em 0.26em 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    }
+</style>
+@yield('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    @yield('scripts')
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class="ml-5 float-left">
