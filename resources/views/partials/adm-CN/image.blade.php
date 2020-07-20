@@ -110,10 +110,10 @@
             <!--IMAGEN HORIZONTAL DEL PROGRAMA -->
             @if(empty($response['thumbnail_list_horizontal']))
             <div class="d-flex justify-content-center">
-                <div class="centro">
-                    <div class="bor thumbnail-image-program" id="thumbnail-home-horizontal">
-                        <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="d-none">
-                        <label for="imageThumb-horizontal" class="">
+            <div class="centro position-relative mb-3">
+                <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
+                        <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
+                        <label for="imageThumb-horizontal" class="mb-0">
                             <img src="../images/basic-icons/plus.svg" alt="add-photo" class="cursor-pointer add-photo">
                             <span class="a-text-bold-warm text-plus position-absolute mt-5"> 472px X 295px </span>
                             <img src="" alt="" class="image-cover prev-image-program thumbnail-image-program cursor-pointer">
@@ -142,10 +142,10 @@
                 </div>
                 @if(empty($response['thumbnail_list_vertical']))
                 <div class="d-flex justify-content-center">
-                    <div class="centro">
-                        <div class="bor mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
-                            <input type="file" name="image-vertical" id="imageThumb-vertical" class="d-none">
-                            <label for="imageThumb-vertical" class="d-flex justify-content-center align-items-center h-100 flex-column">
+                    <div class="centro mb-3">
+                    <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
+                    <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
+                    <label for="imageThumb-vertical" class="mb-0 d-flex align-items-center justify-content-center">
                                 <img src="../images/basic-icons/plus.svg" alt="add-photo"  class="add-photo"/>
                                 <span class="a-text-bold-warm text-plus mt-3">295px X 472px</span>
                                 <img class="cursor-pointer image-cover prev-image-program thumbnail-image-program" />
@@ -259,9 +259,9 @@
             </div>
             @else
             <div class="ml-5 mb-5">
-                <div class="bor mb-3 thumbnail-image-program position-relative" id="image_synopsis">
+                <div class="bor mb-2 thumbnail-image-program position-relative" id="image_synopsis">
                     <input type="file" name="image-synopsis" id="imageThumb-synopsis" class="input-image-program d-none" />
-                    <label for="imageThumb-synopsis" class="">
+                    <label for="imageThumb-synopsis" class="mb-0 d-flex justify-content-center align-items-center h-100 flex-column">
                         <img src="../images/basic-icons/plus.svg" alt="add-photo" class="add-photo">
                         <img src="{{$response['image_synopsis']}}" alt="" class="h-100 w-100 image-cover cursor-pointer prev-image-program thumbmail-image-program">
                     </label>
