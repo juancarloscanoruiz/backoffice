@@ -83,15 +83,15 @@ class ViewsController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
-        var_dump($grilla);
-        $hoy = date('Y-m-d');
 
+        $firstDay = date('Y-m-d');
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/VersionEditable/" . $hoy . "&" . $grilla . "&" . session('id_user')
+            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
         );
-        $respuesta =  json_decode($response->getBody());
 
+        $respuesta =  json_decode($response->getBody());
+        //var_dump($respuesta);
         if ($respuesta->code == 200) {
             return $respuesta;
         } else {

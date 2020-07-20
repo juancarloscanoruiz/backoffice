@@ -75,7 +75,6 @@ class ProgramacionGeneralController extends Controller
         //$hoy = '2020-07-02';
 
         $firstDay = date('Y-m-d');
-
         $client = new Client();
         $response = $client->get(
             $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
@@ -561,30 +560,25 @@ class ProgramacionGeneralController extends Controller
     }
     public function newRow(Request $request)
     {
-        /*//Obtenemos los datos de la vista en especifico
+        //Obtenemos los datos de la vista en especifico
         $data = $request->all();
         //solicitamos a la api para obtener el id temporal del nuevo programa
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $response = $client->post(
-            $this->url . "program/newChapter",
+            $this->url . "program/newEntryGrill",
             ['body' => json_encode(
                 [
-                    'usuario_id' => $data['usuario_id'],
-                    'landing_id' => $data['landing_id'],
-                    'version_id' => $data['version_id'],
-                    'version_number' => $data['version_number'],
+                    'usuario_id' =>  session('id_user'),
+                    'landing' => $request->landing,
+                    'day' => date('Y-m-d'),
                 ]
             )]
         );
         $respuesta =  json_decode($response->getBody());
-        if($respuesta->code == 200){
-
-            $chapter_id = $respuesta->data->*/
-        if (1) {
-
-            $chapter_id = 0;
+        if ($respuesta->code == 200) {
+            $chapter_id = $respuesta->data;
             $html = "
             <div class='contenedor-fila' id='programacion-claro-$chapter_id'>
             <!--ACCIONES-->
@@ -801,7 +795,7 @@ class ProgramacionGeneralController extends Controller
             </div>
     </div>
             ";
-            return $html;
+            echo ($html);
         } else {
             return json_encode($request->all());
         }

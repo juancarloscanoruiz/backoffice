@@ -78,15 +78,35 @@ function eventsGrilla() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let synopsis = currentColumn.attr("synopsis");
         let chapterId = currentColumn.attr("chapter_id");
+        let program = $(this)
+            .prev()
+            .attr("id");
         let key = currentColumn.attr("key");
+        $(".edit-synopsis-button").attr({
+            chapter_id: chapterId,
+            key: key,
+            synopsis: synopsis,
+            program: program
+        });
         $(".modal-textarea").val(synopsis);
         $(".modal-program-title").text($(this).attr("program_title"));
         $(".modal-synopsis").modal("show");
-        $(".edit-synopsis-button").click(function() {
-            let keyValue = $("#synopsis-content").val();
-            console.log(keyValue);
-            editAttributeProgram(chapterId, key, keyValue);
-        });
+    });
+
+    $(".edit-synopsis-button").click(function() {
+        let chapterId = $(this).attr("chapter_id");
+        let key = $(this).attr("key");
+        let keyValue = $("#synopsis-content").val();
+        let program = $(this).attr("program");
+        $("#" + program)
+            .closest(".contenedor-columna")
+            .attr("synopsis", keyValue);
+        if (keyValue.length > 200) {
+            let text = keyValue.substr(0, 200) + "...";
+            $("#" + program).text(text);
+        }
+
+        editAttributeProgram(chapterId, key, keyValue);
     });
 
     let dateStartInput = document.getElementById("date-start-input");
@@ -181,6 +201,7 @@ function eventsGrilla() {
     $(".switch-table").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let keyValue = $(this).val();
+        console.log(keyValue);
         let chapterId = currentColumn.attr("chapter_id");
         let key = currentColumn.attr("key");
         editAttributeProgram(chapterId, key, keyValue);
@@ -222,15 +243,19 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function(index, element) {
-        if ($(this).text().length > 200) {
-            let text =
-                $(this)
-                    .text()
-                    .substr(0, 200) + "...";
-            $(this).text(text);
-        }
-    });
+    function truncateTextSynopsis() {
+        $(".lb-synopsis").each(function(index, element) {
+            if ($(this).text().length > 200) {
+                let text =
+                    $(this)
+                        .text()
+                        .substr(0, 200) + "...";
+                $(this).text(text);
+            }
+        });
+    }
+
+    truncateTextSynopsis();
 
     $(".edit-row-pencil").click(selectRow);
     $(".selectable-column").click(selectColumn);

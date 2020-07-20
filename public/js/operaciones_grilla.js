@@ -89905,6 +89905,7 @@ function selectRow() {
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-row-pencil").attr("src", "./images/eliminar-acti.svg").css("pointer-events", "all");
   var row = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).closest(".contenedor-fila");
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).next().attr("src", "./images/basic-icons/trash.svg");
+  jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   row.addClass("row-selected");
 }
 
@@ -90187,15 +90188,31 @@ function eventsGrilla() {
     var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
     var synopsis = currentColumn.attr("synopsis");
     var chapterId = currentColumn.attr("chapter_id");
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().attr("id");
     var key = currentColumn.attr("key");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").attr({
+      chapter_id: chapterId,
+      key: key,
+      synopsis: synopsis,
+      program: program
+    });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-textarea").val(synopsis);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-title").text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program_title"));
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("show");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").click(function () {
-      var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-content").val();
-      console.log(keyValue);
-      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
-    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").click(function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-content").val();
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).closest(".contenedor-columna").attr("synopsis", keyValue);
+
+    if (keyValue.length > 200) {
+      var text = keyValue.substr(0, 200) + "...";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(text);
+    }
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
   });
   var dateStartInput = document.getElementById("date-start-input");
 
@@ -90280,6 +90297,7 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
     var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
     var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    console.log(keyValue);
     var chapterId = currentColumn.attr("chapter_id");
     var key = currentColumn.attr("key");
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
@@ -90314,12 +90332,16 @@ function eventsGrilla() {
     new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_4__["year"]);
   }); //Truncar texto de sinópsis con "..."
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().length > 200) {
-      var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
-    }
-  });
+  function truncateTextSynopsis() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().length > 200) {
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
+      }
+    });
+  }
+
+  truncateTextSynopsis();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
 }

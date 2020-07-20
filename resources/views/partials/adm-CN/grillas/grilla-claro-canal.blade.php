@@ -264,7 +264,7 @@ $data_for_new_entry = json_encode([
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1"  class="switch-landing" />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0" checked class="switch-landing" />
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0" checked class="switch-landing switch-table" />
                                         <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-label">
                                             No</label>
                                     </div>
@@ -290,7 +290,7 @@ $data_for_new_entry = json_encode([
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked/>
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
+                                        <input type="radio" class="switch-table" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
                                         <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-label">
                                             No</label>
                                     </div>
@@ -339,19 +339,19 @@ $data_for_new_entry = json_encode([
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                            <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing-end-hrs" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                 </div>
@@ -360,19 +360,19 @@ $data_for_new_entry = json_encode([
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                            <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing-end-hrs" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                 </div>
@@ -511,8 +511,8 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--Synopsis-->
                     <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="synopsis" synopsis="{{$programs[$indexPrograms]->synopsis}}">
-                            <div class="program-original text-left edit-cell" id="lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">
-                                <span class="mb-0 lb-synopsis">{{$programs[$indexPrograms]->synopsis}}</span>
+                            <div class="program-original text-left edit-cell">
+                                <span class="mb-0" id="lb-synopsis-lb-synopsis-{{$programs[$indexPrograms]->chapter_id }}">{{$programs[$indexPrograms]->synopsis}}</span>
                                 <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="{{$programs[$indexPrograms]->title}}">Ver más...</span>
                             </div>
                         </div>
@@ -626,15 +626,15 @@ $data_for_new_entry = json_encode([
         </div>
     </div>
 </div>
-    <!-- Modal eliminar fila-->
+    <!-- Modal de confirmación al eliminar un programa-->
     <div class="modal" id="confirmation-delete" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-body">
           <div class="centro justify-content-center">
           <img src="images/checkers/ready.svg" alt="hecho" class=" pt-5">
         <p class="a-text-medium-warm-grey-three h3 mt-5 mb-5">Se ha eliminado la fila</p>
-        <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal" data-dismiss="modal" chapter_id="">ACEPTAR</button>
+        <button type="button" class="a-btn-basic-small btn-grilla mb-5 a-text-bold-white text-normal" data-dismiss="modal" chapter_id="">ACEPTAR</button>
         </div>
     </div>
     </div>

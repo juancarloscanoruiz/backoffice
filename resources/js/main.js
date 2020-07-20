@@ -128,16 +128,14 @@ $(document).ready(function() {
     });
     //endselect
     $("#agregar-canal-claro").click(function() {
-        let data = $("#data_for_api").val();
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
-            data: data,
+            data: {
+                landing: "Claro Canal"
+            },
             success: function(result) {
-                //var fila =
-                //' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
                 $(".grilla-body").append(result);
-                console.log("php responde");
                 console.log(result);
                 eventsGrilla();
             }

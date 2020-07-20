@@ -660,6 +660,7 @@ function selectRow() {
     $(this)
         .next()
         .attr("src", "./images/basic-icons/trash.svg");
+    $(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
     row.addClass("row-selected");
 }
 
