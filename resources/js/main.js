@@ -124,7 +124,7 @@ $(document).ready(function() {
     $(".selectpicker").selectpicker({
         // showTick: true,
         filter: true,
-        multipleSeparator: "<br>* "
+        multipleSeparator: ", "
     });
     //endselect
     $("#agregar-canal-claro").click(function() {
