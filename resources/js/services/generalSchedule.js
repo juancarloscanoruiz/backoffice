@@ -1,24 +1,11 @@
 import $ from "jquery";
+import { forEach } from "lodash";
 
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
     }
 });
-function getGeneralSchedule() {
-    let data = {
-        function: "getGeneralSchedule"
-    };
-
-    $.ajax({
-        type: "POST",
-        data: data,
-        url: "./adapters/generalSchedule.php",
-        success: function(result) {
-            console.log(result);
-        }
-    });
-}
 
 function editAttributeProgram(chapter_id, key, keyValue) {
     let data = {
@@ -32,6 +19,576 @@ function editAttributeProgram(chapter_id, key, keyValue) {
         url: "program/editAttribute",
         success: function(result) {
             console.log(result);
+        }
+    });
+}
+
+function filterDates(startDate, lastDate) {
+    let data = {
+        startDate,
+        lastDate
+    };
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: "general-program/filterDates",
+        beforeSend: function() {
+            $(".grilla-body").prepend(
+                `<div class="loader-container pointer-none">
+                    <img src="./images/loader.gif" class="loader-table"/>
+                </div>`
+            );
+        },
+        success: function(result) {
+            let json = JSON.parse(result);
+            //console.log(json);
+            let grills = json.data.grilla;
+            //Borramos el contenido actual de la grilla
+            let header = `
+            <div class="contenedor-fila" id="grilla-header">
+                <div class="contenedor-columna centro centro title-table" id="acciones">
+                    <span class="a-text-semibold-white text-normal">Acciones</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="estado">
+                    <span class="a-text-semibold-white text-normal">Estado</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="alerta">
+                    <span class="a-text-semibold-white text-normal">Alerta</span>
+                </div>
+
+                <div class="contenedor-columna centro centro title-table" id="program-title-original">
+                    <span class="a-text-semibold-white text-normal">Program Title Original</span>
+                </div>
+
+                <div class="contenedor-columna centro  centro title-table" id="establecer-landing" style="width: 241px">
+                    <span class="a-text-semibold-white text-normal">Establecer en landing</span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="landing-programar">
+                    <span class="a-text-semibold-white text-normal">Landing de Canal Claro <br />Programar publicación</span>
+                </div>
+
+                <div class="contenedor-columna centro  centro title-table" id="establecer-home">
+                    <span class="a-text-semibold-white text-normal">Establecer en Home</span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="programar-home-publicacion">
+                    <span class="a-text-semibold-white text-normal">Home<br /> Progamar publicación</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="imagenes">
+                    <span class="a-text-semibold-white text-normal">Imágenes</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="schedule-item-date-time">
+                    <span class="a-text-semibold-white text-normal">Schedule Item<br> Date Time</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="schedule-item-date">
+                    <span class="a-text-semibold-white text-normal">Schedule Item<br> Long Date</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="schedule-item-time">
+                    <span class="a-text-semibold-white text-normal">Schedule Item<br> Long Time (GMT)</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="estimated-duration">
+                    <span class="a-text-semibold-white text-normal">Estimated Schedule Item Duration</span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="program-year">
+                    <span class="a-text-semibold-white text-normal">Program Year<br> Produced</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="program-genre">
+                    <span class="a-text-semibold-white text-normal">Program Genre List</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="program-title-alternate">
+                    <span class="a-text-semibold-white text-normal">Program Title Alternate </span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="program-episode-season">
+                    <span class="a-text-semibold-white text-normal">Program Episode<br> Season</span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="program-episode-number">
+                    <span class="a-text-semibold-white text-normal">Program Episode<br> Number</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="synopsis">
+                    <span class="a-text-semibold-white text-normal">Synopsis</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="rating-code">
+                    <span class="a-text-semibold-white text-normal">Schedule Item<br> Rating Code</span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="subbed">
+                    <span class="a-text-semibold-white text-normal">Scheduled<br> Version SUBBED</span>
+                </div>
+                <div class="contenedor-columna centro centro title-table" id="dubbed">
+                    <span class="a-text-semibold-white text-normal">Scheduled Version DUBBED </span>
+                </div>
+                <div class="contenedor-columna centro  centro title-table" id="audio" style="width: 126px">
+                    <span class="a-text-semibold-white text-normal">Audio 5.1<br> available</span>
+                </div>
+            </div>
+            `;
+            let rows = "";
+            grills.forEach(grill => {
+                let programs = grill.programs;
+                programs.forEach(program => {
+                    /* Validamos si el programa está en algunas de las secciones del landing */
+                    let inLanding = "";
+                    switch (program.in_landing) {
+                        case 0:
+                            inLanding = `
+                            <div class='yes-no mt-3'>
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1"  class="switch-landing" />
+                                <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
+                                    Sí</label>
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" checked class="switch-landing" />
+                                <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
+                                    No</label>
+                            </div>
+                            <div class="establecer-options pointer-none">
+                                <div class=" d-flex mt-2 ml-2 pt-2">
+                                    <label class="checkradio d-flex  ml-2">
+                                        <input type="radio" name="dontlose" value="1" class="switch-table">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                </div>
+                                <div class="d-flex ml-2 pt-2 pb-2">
+                                    <label class="checkradio d-flex ml-2">
+                                        <input type="radio" name="dontlose" value="2" class="switch-table">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                </div>
+                            </div>
+                            `;
+                            break;
+                        case 1:
+                            inLanding = `
+                            <div class='yes-no mt-3'>
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1" checked class="switch-landing" />
+                                <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
+                                    Sí</label>
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing" />
+                                <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
+                                    No</label>
+                            </div>
+                            <div class="establecer-options pointer-none">
+                                <div class=" d-flex mt-2 ml-2 pt-2">
+                                    <label class="checkradio d-flex  ml-2">
+                                        <input type="radio" checked name="dontlose" value="1" class="switch-table">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                </div>
+                                <div class="d-flex ml-2 pt-2 pb-2">
+                                    <label class="checkradio d-flex ml-2">
+                                        <input type="radio" name="dontlose" value="2" class="switch-table">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                </div>
+                            </div>
+                            `;
+                            break;
+                        case 1:
+                            inLanding = `
+                                <div class='yes-no mt-3'>
+                                    <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1" checked class="switch-landing" />
+                                    <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
+                                        Sí</label>
+                                    <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing" />
+                                    <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
+                                        No</label>
+                                </div>
+                                <div class="establecer-options pointer-none">
+                                    <div class=" d-flex mt-2 ml-2 pt-2">
+                                        <label class="checkradio d-flex  ml-2">
+                                            <input type="radio" name="dontlose" value="1" class="switch-table">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                    </div>
+                                    <div class="d-flex ml-2 pt-2 pb-2">
+                                        <label class="checkradio d-flex ml-2">
+                                            <input type="radio" checked name="dontlose" value="2" class="switch-table">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                    </div>
+                                </div>
+                                `;
+                            break;
+                        default:
+                            break;
+                    }
+                    /* Si hay algún programa en la sección de algún landing */
+                    let inLandingExpiration = "";
+                    if (program.in_landing == 0) {
+                        inLandingExpiration = `
+                        <div class="programar-content pointer-none">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        inLandingExpiration = `
+                        <div class="landing-programar-content">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                    //Verificamos si algún programa se encuentra en el home
+                    let inHome = "";
+                    let inHomeExpiration = "";
+                    if (program.in_home == 0) {
+                        inHome = `
+                        <div class="yes-no">
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home"/>
+                            <label for="programar-si-${program.chapter_id}" id="siestado-${program.chapter_id}" class=" switch-label si-estilo cursor-pointer">
+                                Sí</label>
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home" checked />
+                            <label for="programar-no-${program.chapter_id}" id="noestado-${program.chapter_id}" class="switch-label no-estilo cursor-pointer">
+                                No</label>
+                        </div>
+                        `;
+                        inHomeExpiration = `
+                        <div class="programar-content pointer none">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        inHome = `
+                        <div class="yes-no">
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home" checked/>
+                            <label for="programar-si-${program.chapter_id}" id="siestado-${program.chapter_id}" class=" switch-label si-estilo cursor-pointer">
+                                Sí</label>
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home" />
+                            <label for="programar-no-${program.chapter_id}" id="noestado-${program.chapter_id}" class="switch-label no-estilo cursor-pointer">
+                                No</label>
+                        </div>
+                        `;
+                        inHomeExpiration = `
+                        <div class="programar-content pointer none">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                </div>
+                                <div>
+                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                    //Verificamos el número de imágenes que tiene cada programa
+                    let images = "";
+                    if (program.cantity_images_uploaded_program < 9) {
+                        images = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
+                            <a href="upimage/${program.chapter_id}">
+                                <div class="image-ta position-relative">
+                                    <img src="./images/add-icon.svg" alt="añadir imagenes" class="add-images-icon">
+                                    <img src="${program.images.thumbnail_list_horizontal} alt="" class="image-program">
+                                </div>
+                            </a>
+                            <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
+                            <div>
+                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded_program}</span><span class="a-text-regular-brownishtwo">/9</span>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        images = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
+                            <a href="upimage/${program.chapter_id}">
+                                <div class="image-ta position-relative">
+                                    <img src="./images/basic-icons/pencil-edit-teal.svg" alt="añadir imagenes" class="add-images-icon">
+                                    <img src="${program.images.thumbnail_list_horizontal}" alt="" class="image-program">
+                                </div>
+                            </a>
+                            <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
+                            <div>
+                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded_program}</span><span class="a-text-regular-brownishtwo">/9</span>
+                            </div>
+                        </div>
+                        `;
+                    }
+
+                    //Cambiamos el formato de la fecha del campo schedule item long date time
+                    let scheduleItemLongDateTime = program.day.split("-");
+
+                    //Evaluamos si el programa está subtitulado
+                    let subbed = "";
+                    if (program.subbed == 0) {
+                        subbed = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="${program.chapter_id}" >
+                            <div class="schedule-date">
+                                <div class="yes-no">
+                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="1" checked class="switch-table" />
+                                    <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table" />
+                                    <label for="no-subbed-${program.chapter_id}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        subbed = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="${program.chapter_id}" >
+                            <div class="schedule-date">
+                                <div class="yes-no">
+                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="1" class="switch-table" />
+                                    <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table"  checked />
+                                    <label for="no-subbed-${program.chapter_id}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                    //Verificamos si el programa está doblado
+                    let dubbed = "";
+                    if (program.dubbed == 0) {
+                        dubbed = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="${program.chapter_id}">
+                            <div class="schedule-date">
+                                <div class="yes-no" chapter_id="${program.chapter_id}">
+                                    <input type="radio" id="yes-dubbed-${program.chapter_id}" name="dubbed-${program.chapter_id}" value="1" class="switch-table"/>
+                                    <label for="yes-dubbed-${program.chapter_id}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-dubbed-${program.chapter_id}" name="dubbed-${program.chapter_id}" value="0"  class="switch-table" checked/>
+                                    <label for="no-dubbed-${program.chapter_id}" id="noestado-date1" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        dubbed = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="${program.chapter_id}">
+                            <div class="schedule-date">
+                                <div class="yes-no" chapter_id="${program.chapter_id}">
+                                    <input type="radio" id="yes-dubbed-${program.chapter_id}" name="dubbed-${program.chapter_id}" value="1" class="switch-table" checked />
+                                    <label for="yes-dubbed-${program.chapter_id}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-dubbed-${program.chapter_id}" name="dubbed-${program.chapter_id}" value="0"  class="switch-table" >
+                                    <label for="no-dubbed-${program.chapter_id}" id="noestado-date1" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                    //Verificamos si el programa tiene la característica de audio 5.1
+                    let audio5 = "";
+                    if (program.audio5 == 0) {
+                        audio5 = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="${program.chapter_id}">
+                            <div class="schedule-date">
+                                <div class="yes-no" chapter_id="${program.chapter_id}">
+                                    <input type="radio" id="yes-audio-${program.chapter_id}" name="audio-${program.chapter_id}" value="1" class="switch-table"/>
+                                    <label for="yes-audio-${program.chapter_id}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-audio-${program.chapter_id}" name="audio-${program.chapter_id}" value="0" class="switch-table" checked />
+                                    <label for="no-audio-${program.chapter_id}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        audio5 = `
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="${program.chapter_id}">
+                            <div class="schedule-date">
+                                <div class="yes-no" chapter_id="${program.chapter_id}">
+                                    <input type="radio" id="yes-audio-${program.chapter_id}" name="audio-${program.chapter_id}" value="1" class="switch-table" checked />
+                                    <label for="yes-audio-${program.chapter_id}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
+                                        Sí</label>
+                                    <input type="radio" id="no-audio-${program.chapter_id}" name="audio-${program.chapter_id}" value="0" class="switch-table"  />
+                                    <label for="no-audio-${program.chapter_id}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
+                                        No</label>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+
+                    rows += `
+                    <div class="contenedor-fila" id="programacion-claro-${program.chapter_id}">
+                        <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-${program.chapter_id}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
+                        <!--ESTADO-->
+                        <div class="contenedor-columna centro editable-column cursor-pointer" id="estado-${program.chapter_id}">
+                            <span class="program-original">Aprobado</span>
+                        </div>
+                        <!--ALERTA-->
+                        <div class="contenedor-columna centro editable-column" id="alerta-${program.chapter_id}"></div>
+                        <!--PROGRAM TITLE ORIGINAL-->
+                        <div class="contenedor-columna selectable-column centro centro editable-column" chapter_id="${program.chapter_id}" key="title" rel="program-title-original" id="title-${program.chapter_id}">
+                            <textarea id="program-title" name="" class="editable-attribute program-original edit-cell" id="lb-title-${program.chapter_id}">${program.title}</textarea>
+                        </div>
+                        <!--ESTABLECER EN LANDING-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="establecer-landing" chapter_id="${program.chapter_id}" key="in_landing">
+                            ${inLanding}
+                        </div>
+                        <!--Programar publicacición landing-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="${program.chapter_id}" key="">
+                            ${inLandingExpiration}
+                        </div>
+                        <!--ESTABLECER EN HOME-->
+                        <div class="contenedor-columna selectable-column centro editable-column" id="programar-${program.chapter_id}" rel="establecer-home" chapter_id="${program.chapter_id}">
+                            ${inHome}
+                        </div>
+                        <!--HOME PROGRAMAR PUBLICACIÓN-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="${program.chapter_id}">
+                            ${inHomeExpiration}
+                        </div>
+                        <!--IMÁGENES-->
+                        ${images}
+                        <!--SCHEDULE ITEM LONG DATE TIME-->
+                        <div class="contenedor-columna centro editable-column" rel="schedule-item-date-time">
+                            <div class="schedule-date">
+                                <label class='a-text-medium-brownish d-flex justify-content-center  pb-2' type=date>${scheduleItemLongDateTime[2]}-${scheduleItemLongDateTime[1]}-${scheduleItemLongDateTime[0]}</label> <label class='a-text-medium-brownish d-flex justify-content-center' type='time' style='line-height:0px;'>${program.duration} HRS</label>
+                            </div>
+                        </div>
+                        <!--SCHEDULE ITEM LONG DATE-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-date" chapter_id="${program.chapter_id}" key="day">
+                            <div class="schedule-date">
+                                <input type="text" name="" class="editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo" value="${scheduleItemLongDateTime[2]}-${scheduleItemLongDateTime[1]}-${scheduleItemLongDateTime[0]}">
+                            </div>
+                        </div>
+                        <!--Schedule Item Long Time (GMT)-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-time" chapter_id="${program.chapter_id}" key="programing">
+                            <div class="schedule-date">
+                                <input type="text" class="editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo" value="${program.programing}">
+                            </div>
+                        </div>
+                        <!--Estimated Schedule Item Duration-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="estimated-duration" chapter_id="${program.chapter_id}" key="duration">
+                            <div class="schedule-date">
+                                <input type="text" class="editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo" value="${program.duration}">
+                            </div>
+                        </div>
+                        <!--Program Year Produced-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="${program.chapter_id}" key="program_year_produced">
+                            <div class="schedule-date">
+                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="${program.program_year_produced}" placeholder="YYYY">
+                            </div>
+                        </div>
+                        <!--Program genre list-->
+                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="${program.chapter_id}" key="">
+                            <div class="schedule-date">
+                                <div>
+                                    <details class="sel_users" name="genero"  style="width: 300px;" >
+                                        <option></option>
+                                        <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
+                                        <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
+                                        <option class="a-text-bold-warm text-normal" value='series'>Series</option>
+                                        <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
+                                        <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
+                                    </details>
+                                </div>
+                            </div>
+                        </div>
+                        <!--PROGRAM TITLE ALTERNATE (subtítulo de la película o nombre del capítulo
+                            de la serie-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-title-alternate" chapter_id="${program.chapter_id}" key="subtitle">
+                            <textarea class="editable-attribute program-original edit-cell" id="lb-subtitle-${program.chapter_id}">${program.subtitle}</textarea>
+                        </div>
+                        <!--PROGRAM EPISODE SEASON-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-season" key="season" chapter_id="${program.chapter_id}">
+                            <input class="a-text-regular-brownishtwo text-center editable-attribute table-input" value="${program.seasons}" />
+                        </div>
+                        <!--PROGRAM EPISODE NUMBER-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="program-episode-number" chapter_id="${program.chapter_id}" key="program_episode_number">
+                            <input class="a-text-regular-brownishtwo table-input text-center editable-attribute" value="${program.program_episode_number}" />
+                        </div>
+                        <!--SYNOPSIS-->
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="${program.chapter_id}" key="synopsis" synopsis="${program.synopsus}">
+                            <div class="program-original text-left edit-cell" id="lb-synopsis-${program.chapter_id}">
+                                <span class="mb-0 lb-synopsis">${program.synopsis}</span>
+                                <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="${program.title}">Ver más...</span>
+                            </div>
+                        </div>
+                        <!--RATING-->
+                        <div class="contenedor-columna selectable-column centro" rel="rating-code" chapter_id="${program.chapter_id}" key="rating">
+                            <div class="schedule-date">
+                                <input class="editable-attribute text-center table-input a-text-regular-brownishtwo" value="${program.rating}" />
+                            </div>
+                        </div>
+                        <!--SUBBED-->
+                        ${subbed}
+                        <!--DUBBED-->
+                        ${dubbed}
+                        <!--AUDIO 5.1-->
+                        ${audio5}
+                    </div>
+                    `;
+                });
+            });
+
+            let newGrill = `
+                ${header}
+                ${rows}
+            `;
+            $(".grilla-body").html("");
+            $(".grilla-body").html(newGrill);
         }
     });
 }
@@ -71,4 +628,4 @@ function deleteProgram(id_program, id_version) {
     });
 }
 
-export { editAttributeProgram };
+export { editAttributeProgram, filterDates };

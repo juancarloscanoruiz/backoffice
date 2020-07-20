@@ -4,7 +4,7 @@ $last_edition = $respuesta->data->grilla[0]->last_edition;
 $edited_for = $respuesta->data->grilla[0]->edited_for;
 $rol_user_edit = $respuesta->data->grilla[0]->user_rol;
 $programs = $respuesta->data->grilla[0]->programs;
-
+$grill = $respuesta->data->grilla;
 if ($rol_user_edit == "root") {
     $rol_user_edit = "Súper Usuario";
 }
@@ -101,8 +101,8 @@ $data_for_new_entry = json_encode([
 
         <div id="rempla-claro-canal" class="landing-table">
             <div id="tb1" class="ml-5 pr-5 conten-tab table-porcent">
-                <div class="mr-5 grilla-body">
-                    <div class="contenedor-fila">
+                <div class="mr-5 grilla-body position-relative">
+                    <div class="contenedor-fila" id="grilla-header">
                         <div class="contenedor-columna centro centro title-table" id="acciones">
                             <span class="a-text-semibold-white text-normal">Acciones</span>
                         </div>
@@ -232,11 +232,13 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna centro"></div>
                     </div>
                     @else
-
+                    @for ($indexGrill = 0; $indexGrill < count($grill); $indexGrill++)
+                    <?php $programs=$grill[$indexGrill]->programs?>
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
+
                     <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->program_id }}">
                         <!--ACCIONES-->
-                        <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-{{$programs[$indexPrograms]->chapter_id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
+                    <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-{{$programs[$indexPrograms]->chapter_id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash" chapter_id="{{$programs[$indexPrograms]->chapter_id}}"></div>
                         <!--ESTADO-->
                         <div class="contenedor-columna centro editable-column cursor-pointer" id="estado-{{$programs[$indexPrograms]->chapter_id }}">
                             @if ($respuesta->data->grilla[0]->version_origin === "master")
@@ -281,7 +283,6 @@ $data_for_new_entry = json_encode([
                                             <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
                                         </div>
                                     </div>
-
                                 @else
 
                                     <div class='yes-no mt-3'>
@@ -389,22 +390,24 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <div class="d-flex justify-content-end programar-content">
-                                <div>
-                                    <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                            <div class="programar-content">
+                                <div class="d-flex justify-content-end">
+                                    <div>
+                                        <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                        <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    </div>
+                                    <div>
+                                        <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <div>
-                                    <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
-                                </div>
-                                <div>
-                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                <div class="d-flex justify-content-end">
+                                    <div>
+                                        <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                        <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    </div>
+                                    <div>
+                                        <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -480,15 +483,15 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
                             <div class="schedule-date">
                                 <div>
-                            <details class="sel_users" name="genero"  style="width: 300px;" >
-                                <option></option>
-                                <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
-                                <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
-                                <option class="a-text-bold-warm text-normal" value='series'>Series</option>
-                                <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
-                                <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
-</details>
-                            </div>
+                                    <details class="sel_users" name="genero"  style="width: 300px;" >
+                                        <option></option>
+                                        <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
+                                        <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
+                                        <option class="a-text-bold-warm text-normal" value='series'>Series</option>
+                                        <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
+                                        <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
+                                    </details>
+                                </div>
                             </div>
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
@@ -518,7 +521,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--SUBBED-->
-                        @if ($programs[$indexPrograms]->subbed)
+                        @if ($programs[$indexPrograms]->subbed == 1)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" >
                                 <div class="schedule-date">
                                     <div class="yes-no">
@@ -547,11 +550,11 @@ $data_for_new_entry = json_encode([
                         @endif
 
                         <!--DUBBED-->
-                        @if ($programs[$indexPrograms]->dubbed)
+                        @if ($programs[$indexPrograms]->dubbed == 1)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="dubbed" key="dubbed" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                                 <div class="schedule-date">
                                     <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                                        <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}"checked value="1" class="switch-table"/>
+                                        <input type="radio" id="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" checked value="1" class="switch-table"/>
                                         <label for="yes-dubbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date1" class="switch-label cursor-pointer si-estilo">
                                             Sí</label>
                                         <input type="radio" id="no-dubbed-{{$programs[$indexPrograms]->chapter_id}}" name="dubbed-{{$programs[$indexPrograms]->chapter_id}}" value="0"  class="switch-table" />
@@ -606,7 +609,7 @@ $data_for_new_entry = json_encode([
 
                 </div>
                 @endfor
-
+                @endfor
                 @endif
 
             </div>
@@ -629,7 +632,7 @@ $data_for_new_entry = json_encode([
           <div class="centro justify-content-center">
           <img src="images/checkers/ready.svg" alt="hecho" class=" pt-5">
         <p class="a-text-medium-warm-grey-three h3 mt-5 mb-5">Se ha eliminado la fila</p>
-        <button type="button" class="a-btn-basic-small  a-btn-teal a-text-bold-white text-plus mb-5" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"  chapter_id="">ACEPTAR</button>
         </div>
     </div>
     </div>

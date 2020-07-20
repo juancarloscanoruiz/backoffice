@@ -55,7 +55,8 @@ Route::get('/general-program', "ProgramacionGeneralController@index")->name('pro
 Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
 Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
 Route::post('/general-program/updateImages', "ProgramacionGeneralController@updateImages")->name('updateImages');
-
+Route::post('/general-program/filterDates', "ProgramacionGeneralController@filterDates")->name('filterDates');
+Route::post('/general-program/deleteChapter', "ProgramacionGeneralController@deleteChapter")->name('deleteChapter');
 //RUTAS PARA LANDING
 Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
 Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');

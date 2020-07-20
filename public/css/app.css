@@ -2687,6 +2687,13 @@ body {
   top: 50%;
 }
 
+.loader-table {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 150%);
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -5122,6 +5129,15 @@ iframe {
 .current-slide-container {
   width: 1000px;
   margin: auto;
+}
+
+.loader-container {
+  z-index: 1;
+  background: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
 }
 
 @font-face {

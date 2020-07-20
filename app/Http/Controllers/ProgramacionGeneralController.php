@@ -79,16 +79,14 @@ class ProgramacionGeneralController extends Controller
         $client = new Client();
         $response = $client->get(
             $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
-
         );
 
         $respuesta =  json_decode($response->getBody());
-        //var_dump($respuesta->data->grilla[0]);
+        //var_dump($respuesta->data->grilla);
         $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
         $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
-        //var_dump($firstDate);
+
         if ($respuesta->code == 200) {
-            //var_dump($respuesta);
             return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
@@ -110,7 +108,7 @@ class ProgramacionGeneralController extends Controller
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
-        //$hoy = '2020-2-8';
+
         $hoy = date('Y-m-d');
         $client = new Client();
         $response = $client->get(
@@ -132,7 +130,7 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/getImagesChapter/" . $idimages
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
-        //var_dump($responseArray);
+
         if ($responseArray["code"] == 200) {
             return view('partials.adm-CN.image')->with('response', $responseArray["data"]);
         } else {
@@ -886,5 +884,36 @@ class ProgramacionGeneralController extends Controller
         /*$decrypted = Crypt::decrypt($request->input('id'));
         $extension = $request->file('image-synopsis-3')->extension();
         $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/
+    }
+
+    public function filterDates(Request $request)
+    {
+
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getProgramingGrill/" . $request->input('startDate') . "&" . $request->input('lastDate') . "&Claro Canal&" . session('id_user')
+        );
+        echo ($response->getBody()->getContents());
+    }
+
+    public function deleteChapter(Request $request)
+    {
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/deleteChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => (int)$request->chapter_id,
+
+                ]
+            )]
+        );
+        $respuesta =  $response->getBody();
+        echo $respuesta;
     }
 }

@@ -83,6 +83,7 @@ class ViewsController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
+        var_dump($grilla);
         $hoy = date('Y-m-d');
 
         $client = new Client();
