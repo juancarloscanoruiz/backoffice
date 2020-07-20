@@ -7,4 +7,4 @@
 
 <link href="{{ asset('css/app.css') }}?t=<?php echo time(); ?>" rel="stylesheet">
 <link href="{{ asset('css/bootstrap-4.4.1/bootstrap.min.css') }}" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />

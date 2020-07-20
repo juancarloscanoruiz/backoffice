@@ -6,7 +6,7 @@ import "bootstrap";
 import Cleave from "cleave.js";
 import Litepicker from "litepicker";
 import "slick-carousel/slick/slick";
-import select2 from "select2";
+import "bootstrap-select";
 
 import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
@@ -63,6 +63,13 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    //selectpicker
+    $('.selectpicker').selectpicker({
+        // showTick: true,    
+        filter:true,
+        multipleSeparator:"<br>* ",
+             });
+    //endselect
     $("#agregar-canal-claro").click(function() {
         let data = $("#data_for_api").val();
         $.ajax({
@@ -116,38 +123,8 @@ $(document).ready(function() {
     ) {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
     });
-    // Initialize Select2
-    $(".sel_users")
-        .one("select2:open", function(e) {
-            $("input.select2-search__field").prop("placeholder", "Buscar");
-            $("span.select2-dropdown").css(
-                "border-right:1px solid #9b9b9b;border-left:1px solid #9b9b9b;border-bottom:1px solid #9b9b9b;"
-            );
-            $("span.select2-container").append(
-                `<div class="border-r border-l border-t centro title-program"><label class=" title-program text-normal a-text-MBlack-warm">Program Genre List</label>`
-            );
-        })
-        .on("select2:close", function() {
-            $("label.title-program").hide(
-                `<div class="border-r border-l border-t centro title-program"><label class="title-program text-normal a-text-MBlack-warm">Program Genre List</label>`
-            );
-        });
-    $(".sel_users").select2({
-        placeholder: "Select options"
-    });
-
-    // Set option selected onchange
-    $("#user_selected").change(function() {
-        var value = $(this).val();
-
-        // Set selected
-        $(".sel_users").val(value);
-
-        $(".sel_users")
-            .select2()
-            .trigger("change");
-    });
-
+    
+  
     /* Previsualizar una imagen a la hora de
         subir un archivo
     */

@@ -33,6 +33,7 @@ $data_for_new_entry = json_encode([
 //Schedule-item-date
 
 ?>
+
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class="ml-5 float-left">
@@ -99,8 +100,8 @@ $data_for_new_entry = json_encode([
 
         <!--end-->
 
-        <div id="rempla-claro-canal" class="landing-table">
-            <div id="tb1" class="ml-5 pr-5 conten-tab table-porcent">
+        <div id="rempla-claro-canal" class="landing-table table-porcent">
+            <div id="tb1" class="ml-5 pr-5 conten-tab ">
                 <div class="mr-5 grilla-body">
                     <div class="contenedor-fila">
                         <div class="contenedor-columna centro centro title-table" id="acciones">
@@ -479,16 +480,17 @@ $data_for_new_entry = json_encode([
                         <!--Program genre list-->
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
                             <div class="schedule-date">
-                                <div>
-                            <details class="sel_users" name="genero"  style="width: 300px;" >
-                                <option></option>
-                                <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
-                                <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
-                                <option class="a-text-bold-warm text-normal" value='series'>Series</option>
-                                <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
-                                <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
-</details>
-                            </div>
+                            <div class="d-flex justify-content-center ">
+
+                                <select class="selectpicker dropup a-text-black-warmrey text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">                              
+                                    <option class="a-text-bold-brown-two text-small"  >Animación</option>
+                                    <option class="a-text-bold-brown-two text-small" >Cultura</option>
+                                    <option class="a-text-bold-brown-two text-small"  >Series</option>
+                                    <option  class="a-text-bold-brown-two text-small">Comedia</option>
+                                    <option  class="a-text-bold-brown-two text-small"  >Romance</option>
+                                    
+                                </select>
+                    </div>
                             </div>
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
