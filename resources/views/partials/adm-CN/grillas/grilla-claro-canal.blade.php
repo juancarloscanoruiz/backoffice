@@ -547,12 +547,12 @@ $data_for_new_entry = json_encode([
                             <div class="schedule-date">
                             <div class="d-flex justify-content-center ">
 
-                                <select class="selectpicker dropup a-text-black-warmrey text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-                                    <option class="a-text-bold-brown-two text-small"  >Animación</option>
-                                    <option class="a-text-bold-brown-two text-small" >Cultura</option>
-                                    <option class="a-text-bold-brown-two text-small"  >Series</option>
-                                    <option  class="a-text-bold-brown-two text-small">Comedia</option>
-                                    <option  class="a-text-bold-brown-two text-small"  >Romance</option>
+                                <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                    <option class="a-text-regular-brownishtwo text-normal"  >Animación</option>
+                                    <option class="a-text-regular-brownishtwo text-normal" >Cultura</option>
+                                    <option class="a-text-regular-brownishtwo text-normal"  >Series</option>
+                                    <option  class="a-text-regular-brownishtwo text-normal">Comedia</option>
+                                    <option  class="a-text-regular-brownishtwo text-normal"  >Romance</option>
 
                                 </select>
                     </div>
