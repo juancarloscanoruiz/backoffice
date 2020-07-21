@@ -50,10 +50,8 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    eventsGrilla();
-
-    //endselect
-    $("#agregar-canal-claro").click(function() {
+    //Agregar una nueva entrada en claro canal
+    $("#general-programming").on("click", "#agregar-canal-claro", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
@@ -67,6 +65,9 @@ $(document).ready(function() {
             }
         });
     });
+    eventsGrilla();
+
+    //endselect
 
     $("#subir-archivos").click(function() {
         let disabled = $("#inp_programing_claro_canal").prop("disabled");
@@ -219,21 +220,31 @@ $(document).ready(function() {
             type: "POST",
             url: "view",
             data: { view: "grilla-canal-claro-button" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
             success: function(result) {
+                console.log("grilla de canal claro");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
+                $(".loader-view-container").remove();
             }
         });
     });
     //CHANGE TO grilla cinema
     $(".gril-cinema").click(function(event) {
+        console.log("Grilla claro cinema");
         $.ajax({
             type: "POST",
             url: "view",
             data: { view: "grilla-claro-cinema-button" },
             success: function(result) {
-                console.log("Grilla claro cinema");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -255,12 +266,13 @@ $(document).ready(function() {
 
     //CHANGE TO grilla concert
     $(".gril-concert").click(function(event) {
+        console.log("grilla Concert Channel");
         $.ajax({
             type: "POST",
             url: "view",
             data: { view: "grilla-concert-channel-button" },
+
             success: function(result) {
-                console.log("grilla Concert Channel");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();

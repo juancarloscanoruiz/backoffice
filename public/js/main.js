@@ -104194,7 +104194,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 //SERVICES
+
 
 
 
@@ -104495,9 +104497,14 @@ function showlanding() {
     data: {
       view: "lan-claro"
     },
+    beforeSend: function beforeSend() {
+      var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            ";
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+    },
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result).promise();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
     }
   });
 }
@@ -104603,16 +104610,24 @@ function showLandingSchedule(id) {
 
   switch (id) {
     case "grilla-canal-claro-button":
-      //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         type: "POST",
         url: "view",
         data: {
           view: "grilla-canal-claro-button"
         },
+        beforeSend: function beforeSend() {
+          var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+        },
         success: function success(result) {
+          console.log("grilla");
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result).promise();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
         }
       });
       break;
@@ -104626,6 +104641,7 @@ function showLandingSchedule(id) {
           view: "grilla-concert-channel-button"
         },
         success: function success(result) {
+          console.log("grilla");
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result).promise();
         }
@@ -105078,9 +105094,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])(); //endselect
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#agregar-canal-claro").click(function () {
+  //Agregar una nueva entrada en claro canal
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").on("click", "#agregar-canal-claro", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "general-program/newRow",
@@ -105094,6 +105109,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       }
     });
   });
+  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])(); //endselect
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#subir-archivos").click(function () {
     var disabled = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing_claro_canal").prop("disabled");
 
@@ -105214,15 +105231,22 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       data: {
         view: "grilla-canal-claro-button"
       },
+      beforeSend: function beforeSend() {
+        var loader = "\n                <div class=\"loader-view-container\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+      },
       success: function success(result) {
+        console.log("grilla de canal claro");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     });
   }); //CHANGE TO grilla cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-cinema").click(function (event) {
+    console.log("Grilla claro cinema");
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "view",
@@ -105230,7 +105254,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         view: "grilla-claro-cinema-button"
       },
       success: function success(result) {
-        console.log("Grilla claro cinema");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
@@ -105253,6 +105276,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   }); //CHANGE TO grilla concert
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-concert").click(function (event) {
+    console.log("grilla Concert Channel");
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "view",
@@ -105260,7 +105284,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         view: "grilla-concert-channel-button"
       },
       success: function success(result) {
-        console.log("grilla Concert Channel");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
@@ -105903,6 +105926,10 @@ function eventsGrilla() {
 
         case "program_year_produced":
           keyValue = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
+          break;
+
+        case "in_landing_programar":
+          key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
           break;
 
         default:

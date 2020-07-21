@@ -407,7 +407,7 @@ $data_for_new_entry = json_encode([
                                             <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end programar-schedule" key="in_landing_inicio">
+                                    <div class="d-flex justify-content-end programar-schedule" key="in_landing_fin">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
                                             <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">

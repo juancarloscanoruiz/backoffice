@@ -5195,6 +5195,16 @@ iframe {
   opacity: 0.5;
 }
 
+.loader-view-container {
+  z-index: 1;
+  background: white;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  top: 0;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);

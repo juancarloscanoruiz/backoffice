@@ -9,6 +9,7 @@ import {
 
 import { validateKeyUpEmail } from "../form/form.js";
 import $ from "jquery";
+import { eventsGrilla } from "../operaciones_grilla";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -334,11 +335,18 @@ function showlanding() {
         type: "POST",
         url: "view",
         data: { view: "lan-claro" },
+        beforeSend: function() {
+            const loader = `
+            <div class="loader-view-container">
+              <img src="./images/loader.gif" class="loader" alt="">
+            </div>
+            `;
+            $("body").append(loader);
+        },
         success: function(result) {
             $("#bodymenu").html("");
-            $("#bodymenu")
-                .html(result)
-                .promise();
+            $("#bodymenu").html(result);
+            $(".loader-view-container").remove();
         }
     });
 }
@@ -444,16 +452,26 @@ function showLandingSchedule(id) {
     let generalSchedule = $("#general-programming");
     switch (id) {
         case "grilla-canal-claro-button":
-            //  generalSchedule.load("./views/grillas/grilla-claro-canal.php");
             $.ajax({
                 type: "POST",
                 url: "view",
                 data: { view: "grilla-canal-claro-button" },
+                beforeSend: function() {
+                    const loader = `
+                    <div class="loader-view-container">
+                      <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                    `;
+                    $("body").append(loader);
+                },
                 success: function(result) {
+                    console.log("grilla");
                     $("#general-programming").html("");
-                    $("#general-programming")
-                        .html(result)
-                        .promise();
+                    $("#general-programming").html(result);
+                    $(".loader-view-container").remove();
+                    $(".litepicker").remove();
+                    $(".date-modal").remove();
+                    eventsGrilla();
                 }
             });
             break;
@@ -465,6 +483,7 @@ function showLandingSchedule(id) {
                 url: "view",
                 data: { view: "grilla-concert-channel-button" },
                 success: function(result) {
+                    console.log("grilla");
                     $("#general-programming").html("");
                     $("#general-programming")
                         .html(result)

@@ -284,6 +284,11 @@ function eventsGrilla() {
                 case "program_year_produced":
                     keyValue = parseInt($(this).val());
                     break;
+                case "in_landing_programar":
+                    key = $(this)
+                        .closest(".programar-schedule")
+                        .attr("key");
+                    break;
                 default:
                     keyValue = $(this).val();
                     break;

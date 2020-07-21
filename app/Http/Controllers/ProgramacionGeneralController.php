@@ -681,9 +681,9 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Imágenes-->
                 <div class='contenedor-columna selectable-column centro editable-column' rel='imagenes'>
-                    <a href='http://localhost:8888/backoffice/public/upimage/$chapter_id'>
+                    <a href='upimage/$chapter_id'>
                         <div class='image-ta position-relative'>
-                            <img src='http://localhost:8888/backoffice/public/images/basic-icons/pencil-edit-teal.svg' alt='añadir imagenes' class='add-images-icon'>
+                            <img src='images/basic-icons/pencil-edit-teal.svg' alt='añadir imagenes' class='add-images-icon'>
 
                         </div>
                     </a>
