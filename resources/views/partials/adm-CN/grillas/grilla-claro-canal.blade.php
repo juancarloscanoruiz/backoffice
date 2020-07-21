@@ -55,7 +55,7 @@ $data_for_new_entry = json_encode([
     left: 25px;
     height: 0px;
     width: 0px;
-    border-radius: 1em;
+    border-radius: 0em;
     border: 2px solid #979797;
     background-color: white;
   

@@ -30,6 +30,8 @@ $data_for_new_entry = json_encode([
 ]);
 
 ?>
+@extends('layaout.app')
+
 <input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class=" ml-5"> <span cass="a-text-black-light text-normal">Última edición : </span>
