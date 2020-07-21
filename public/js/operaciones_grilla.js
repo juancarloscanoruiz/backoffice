@@ -90155,6 +90155,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  //selectpicker
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+    // showTick: true,
+    filter: true,
+    multipleSeparator: ", "
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");

@@ -52,12 +52,6 @@ $.ajaxSetup({
 $(document).ready(function() {
     eventsGrilla();
 
-    //selectpicker
-    $(".selectpicker").selectpicker({
-        // showTick: true,
-        filter: true,
-        multipleSeparator: ", "
-    });
     //endselect
     $("#agregar-canal-claro").click(function() {
         $.ajax({
@@ -77,12 +71,24 @@ $(document).ready(function() {
     $("#subir-archivos").click(function() {
         let disabled = $("#inp_programing_claro_canal").prop("disabled");
         if (disabled == true) {
-            var pregunta = confirm(
+            $(".modal-information").modal("show");
+            /*var pregunta = confirm(
                 "Este día ya tiene programacion,¿Quieres subir un archivo?"
             );
             if (pregunta == true) {
                 $("#inp_programing_claro_canal").prop("disabled", false);
-            }
+            }*/
+        }
+    });
+
+    $(".button-modal-information").click(function() {
+        const confirm = $(this).attr("confirm");
+        if (confirm == 1) {
+            $("#inp_programing_claro_canal").prop("disabled", false);
+            $(".modal-information").modal("hide");
+        } else {
+            $("#inp_programing_claro_canal").prop("disabled", false);
+            $(".modal-information").modal("hide");
         }
     });
 
@@ -862,7 +868,7 @@ $(document).ready(function() {
                 var splName = filename.split(".");
                 var fileFormat = splName[splName.length - 1];
                 if (fileFormat != "xlsx" && fileFormat != "xls") {
-                    alert("formato invalido, por favor sube un excel");
+                    $(".load-file").modal("show");
                 } else {
                     var data_for_api = $("#data_for_api").val();
                     sendFilePHP(file, data_for_api);

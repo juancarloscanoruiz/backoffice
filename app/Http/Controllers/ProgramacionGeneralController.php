@@ -727,7 +727,17 @@ class ProgramacionGeneralController extends Controller
             <!--Program genre list-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-genre' chapter_id='$chapter_id' key=''>
                 <div class='schedule-date'>
-                    <label class='a-text-regular-brownishtwo'></label>
+                    <div class='d-flex justify-content-center'>
+
+                        <select class='selectpicker dropup a-text-black-warmrey text-normal show-tick' title='Select Option' multiple data-live-search='true' data-live-search-placeholder='Buscar' data-header='Program List'  data-dropup-auto='false'>
+                            <option class='a-text-bold-brown-two text-small'>Animación</option>
+                            <option class='a-text-bold-brown-two text-small'>Cultura</option>
+                            <option class='a-text-bold-brown-two text-small'>Series</option>
+                            <option class='a-text-bold-brown-two text-small'>Comedia</option>
+                            <option class='a-text-bold-brown-two text-small'>Romance</option>
+
+                        </select>
+                    </div>
                 </div>
             </div>
             <!--Program title alternate (subtítulo de la película o nombre del capítulo
@@ -745,8 +755,8 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Synopsis-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key=''>
-                <div class='program-original text-left edit-cell' id='lb-synopsis-$chapter_id'>
-                </div>
+                <span class='mb-0 lb-synopsis' id='lb-synopsis-" . $chapter_id . " }}'></span>
+                <span class='text-normal cursor-pointer a-text-bold-teal see-more' program_title=''>Ver más...</span>
             </div>
             <!--Rating-->
             <div class='contenedor-columna selectable-column centro' rel='rating-code' key='' chapter_id='" . $chapter_id . "'>

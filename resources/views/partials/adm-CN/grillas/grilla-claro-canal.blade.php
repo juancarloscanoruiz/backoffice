@@ -55,7 +55,7 @@ $data_for_new_entry = json_encode([
     left: 25px;
     height: 0px;
     width: 0px;
-    border-radius: 1em;
+    border-radius: 0em;
     border: 2px solid #979797;
     background-color: white;
 
@@ -545,17 +545,17 @@ $data_for_new_entry = json_encode([
                         <!--Program genre list-->
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
                             <div class="schedule-date">
-                            <div class="d-flex justify-content-center ">
+                                <div class="d-flex justify-content-center ">
 
-                                <select class="selectpicker dropup a-text-black-warmrey text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-                                    <option class="a-text-bold-brown-two text-small"  >Animación</option>
-                                    <option class="a-text-bold-brown-two text-small" >Cultura</option>
-                                    <option class="a-text-bold-brown-two text-small"  >Series</option>
-                                    <option  class="a-text-bold-brown-two text-small">Comedia</option>
-                                    <option  class="a-text-bold-brown-two text-small"  >Romance</option>
+                                    <select class="selectpicker dropup a-text-black-warmrey text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                        <option class="a-text-bold-brown-two text-small"  >Animación</option>
+                                        <option class="a-text-bold-brown-two text-small" >Cultura</option>
+                                        <option class="a-text-bold-brown-two text-small"  >Series</option>
+                                        <option  class="a-text-bold-brown-two text-small">Comedia</option>
+                                        <option  class="a-text-bold-brown-two text-small"  >Romance</option>
 
-                                </select>
-                    </div>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <!--Program title alternate (subtítulo de la película o nombre del capítulo
@@ -703,19 +703,7 @@ $data_for_new_entry = json_encode([
   </div>
 </div>
 @include('partials.adm-CN.grillas.modales-grilla.delete-row')
-<!-- Modal Sinopsis-->
-<div class="modal fade modal-synopsis" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="text-center a-text-bold-brown-two h3 modal-program-title pt-5 pb-4"></h3>
-                <div class="pl-5 pr-5">
-                    <textarea name="" id="synopsis-content" class="modal-textarea a-text a-text-medium-warm-grey-three"></textarea>
-                    <div class="text-center pt-4 pb-4">
-                        <button class="a-btn-basic-small mr-3 a-button-outline-teal a-text-bold-teal text-plus edit-synopsis-button">ACEPTAR</button>
-                        <button data-dismiss="modal" class="a-btn-basic-small a-button-primary-teal a-text-MBlack text-plus">CANCELAR</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@include('partials.adm-CN.grillas.modales-grilla.synopsis')
+@include('partials.adm-CN.grillas.modales-grilla.load-file')
+@include('partials.adm-CN.grillas.modales-grilla.add-info')
+

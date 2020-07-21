@@ -18,6 +18,13 @@ import {
 import { showlanding } from "./UI/UI.js";
 
 function eventsGrilla() {
+    //selectpicker
+    $(".selectpicker").selectpicker({
+        // showTick: true,
+        filter: true,
+        multipleSeparator: ", "
+    });
+
     $("button[id=btn-landing]").click(function() {
         if (
             $(this).hasClass("btn-landing") &
