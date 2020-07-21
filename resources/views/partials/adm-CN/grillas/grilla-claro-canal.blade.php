@@ -40,7 +40,23 @@ $data_for_new_entry = json_encode([
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+   
 <style>
+.bootstrap-select > .dropdown-toggle {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto;
+    height: 70px;
+  
+}
+.bootstrap-select .btn:not(.bs-placeholder) {
+  word-spacing: 100px;
+  white-space: normal!important;
+  word-wrap: break-word!important;
+}
       .dropdown-item.active, .dropdown-item:active {
     color: black;
     text-decoration: none;
@@ -553,6 +569,8 @@ $data_for_new_entry = json_encode([
                                     <option class="a-text-regular-brownishtwo text-normal"  >Series</option>
                                     <option  class="a-text-regular-brownishtwo text-normal">Comedia</option>
                                     <option  class="a-text-regular-brownishtwo text-normal"  >Romance</option>
+                                    <option  class="a-text-regular-brownishtwo text-normal"  >Kids</option>
+
 
                                     </select>
                                 </div>

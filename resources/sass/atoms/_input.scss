@@ -308,6 +308,21 @@ input[type="radio"]:checked + .no-estilo1 {
     outline: none !important;
 }
 //class to selectpicker
+.bootstrap-select .btn:not(.bs-placeholder) {
+    word-spacing: 100px;
+    white-space: normal!important;
+    word-wrap: break-word!important;
+  }
+  .bootstrap-select > .dropdown-toggle {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto;
+    height: 70px;
+  
+}
 .dropdown-item{      
     display: inline-block;
     position: relative;

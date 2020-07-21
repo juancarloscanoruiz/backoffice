@@ -50,6 +50,17 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    $('.selectpicker').selectpicker({
+        multipleSeparator: ' ',
+        filter:true,
+
+      }).on('changed.bs.select', function() {
+        $(this).selectpicker('refresh');
+      })
+  
+      
+
+           
     eventsGrilla();
 
     //endselect
