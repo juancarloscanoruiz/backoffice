@@ -395,10 +395,10 @@ $data_for_new_entry = json_encode([
                                 @endif
                         </div>
                         <!--Programar publicacición landing-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_landing_publicacion">
                             @if ($programs[$indexPrograms]->in_landing == 0)
                                 <div class="programar-content pointer-none">
-                                    <div class="d-flex justify-content-end">
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_landing_inicio">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
                                             <input type="text" id="programar-landing" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
@@ -407,7 +407,7 @@ $data_for_new_entry = json_encode([
                                             <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
+                                    <div class="d-flex justify-content-end programar-schedule" key="in_landing_inicio">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
                                             <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
@@ -547,12 +547,12 @@ $data_for_new_entry = json_encode([
                             <div class="schedule-date">
                                 <div class="d-flex justify-content-center ">
 
-                                    <select class="selectpicker dropup a-text-black-warmrey text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-                                        <option class="a-text-bold-brown-two text-small"  >Animación</option>
-                                        <option class="a-text-bold-brown-two text-small" >Cultura</option>
-                                        <option class="a-text-bold-brown-two text-small"  >Series</option>
-                                        <option  class="a-text-bold-brown-two text-small">Comedia</option>
-                                        <option  class="a-text-bold-brown-two text-small"  >Romance</option>
+                                <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                    <option class="a-text-regular-brownishtwo text-normal"  >Animación</option>
+                                    <option class="a-text-regular-brownishtwo text-normal" >Cultura</option>
+                                    <option class="a-text-regular-brownishtwo text-normal"  >Series</option>
+                                    <option  class="a-text-regular-brownishtwo text-normal">Comedia</option>
+                                    <option  class="a-text-regular-brownishtwo text-normal"  >Romance</option>
 
                                     </select>
                                 </div>
