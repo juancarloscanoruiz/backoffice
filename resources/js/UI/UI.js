@@ -657,9 +657,9 @@ function selectRow() {
         .attr("src", "./images/eliminar-acti.svg")
         .css("pointer-events", "all");
     let row = $(this).closest(".contenedor-fila");
-    $(this)
+    /*$(this)
         .next()
-        .attr("src", "./images/basic-icons/trash.svg");
+        .attr("src", "./images/basic-icons/trash.svg");*/
     $(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
     row.addClass("row-selected");
 }

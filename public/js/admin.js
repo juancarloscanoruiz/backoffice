@@ -11126,24 +11126,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-rol]").removeClass("btn-rol");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-rol-select");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
-      .removeClass("a-text-semi-brown-two"); //text-landing
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
-    }
-  });
   var allSlides = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".bn-nav");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".bn-nav").click(function () {
     allSlides.addClass("btn-menu-all").removeClass("btn-menu-select");

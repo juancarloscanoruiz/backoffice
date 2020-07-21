@@ -89904,7 +89904,10 @@ function selectRow() {
 
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-row-pencil").attr("src", "./images/eliminar-acti.svg").css("pointer-events", "all");
   var row = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).closest(".contenedor-fila");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).next().attr("src", "./images/basic-icons/trash.svg");
+  /*$(this)
+      .next()
+      .attr("src", "./images/basic-icons/trash.svg");*/
+
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   row.addClass("row-selected");
 }
@@ -90150,8 +90153,78 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
+
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
+      .removeClass("a-text-semi-brown-two"); //text-landing
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  }); //modal delete row
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").click(function () {
+    var allRows = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contenedor-fila");
+    allRows.removeClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("src", "./images/eliminar-acti.svg");
+    var row = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila");
+    /*$(this)
+        .prev()
+        .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
+
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila").attr("id");
+    var modalButtonDelete = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete");
+    modalButtonDelete.attr("chapter_id", chapterId);
+    modalButtonDelete.attr("program", program);
+    row.addClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("show");
+  }); //Borrar un programa de la grilla
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete").click(function () {
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "general-program/deleteChapter",
+      data: {
+        chapter_id: chapter_id
+      },
+      success: function success(result) {
+        console.log(result);
+        result = JSON.parse(result);
+
+        if (result.code == 200) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programacion-claro-" + chapter_id).html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#confirmation-delete").modal("show");
+        } else {
+          console.log(result);
+          alert("No se puede borrar");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+        }
+      }
+    });
+  }); //CARGA DE LANDING Y GRILLA DE CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanding"])();
+  });
   /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
     var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
     var landingOptionsChecks = currentColumn.children(".establecer-options");

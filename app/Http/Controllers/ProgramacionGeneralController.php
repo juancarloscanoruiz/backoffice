@@ -737,11 +737,11 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Program episode season-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "'>
-                <label class='a-text-regular-brownishtwo'></label>
+                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
             </div>
             <!--Program episode number-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key=''>
-                <label class='a-text-regular-brownishtwo'></label>
+                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
             </div>
             <!--Synopsis-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key=''>

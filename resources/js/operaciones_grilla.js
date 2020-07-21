@@ -6,6 +6,7 @@ import {
     editAttributeProgram,
     filterDates
 } from "./services/generalSchedule.js";
+
 //CONFIG
 import {
     cleaveConfig,
@@ -13,7 +14,106 @@ import {
     timeWithSeconds,
     year
 } from "./config/config.js";
+
+import { showlanding } from "./UI/UI.js";
+
 function eventsGrilla() {
+    $("button[id=btn-landing]").click(function() {
+        if (
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
+        ) {
+            $(this)
+                .removeClass("btn-landing")
+                .addClass("btn-grilla");
+            $(this)
+                .removeClass("a-text-semi-brown-two")
+                .addClass("a-text-MBlack");
+            $("button[id=btn-grilla]")
+                .addClass("btn-landing")
+                .removeClass("btn-grilla");
+            $("button[id=btn-grilla]")
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
+        }
+    });
+    $("button[id=btn-grilla]").click(function() {
+        if (
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
+        ) {
+            $(this)
+                .addClass("btn-grilla")
+                .removeClass("btn-landing");
+            $(this)
+                .addClass("a-text-MBlack") //text-grilla
+                .removeClass("a-text-semi-brown-two"); //text-landing
+            $("button[id=btn-landing]")
+                .addClass("btn-landing")
+                .removeClass("btn-grilla");
+            $("button[id=btn-landing]")
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
+        }
+    });
+
+    //modal delete row
+    $(".trash-row").click(function() {
+        let allRows = $(".contenedor-fila");
+        allRows.removeClass("row-selected");
+        $(this).attr("src", "./images/eliminar-acti.svg");
+        let row = $(this).closest(".contenedor-fila");
+        /*$(this)
+            .prev()
+            .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
+        let chapterId = $(this).attr("chapter_id");
+        let program = $(this)
+            .closest(".contenedor-fila")
+            .attr("id");
+        let modalButtonDelete = $("#modal-button-delete");
+        modalButtonDelete.attr("chapter_id", chapterId);
+        modalButtonDelete.attr("program", program);
+        row.addClass("row-selected");
+        $(".modal-delete-row").modal("show");
+    });
+
+    //Borrar un programa de la grilla
+    $("#modal-button-delete").click(function() {
+        let program = $(this).attr("program");
+        let chapter_id = $(this).attr("chapter_id");
+        $.ajax({
+            type: "POST",
+            url: "general-program/deleteChapter",
+            data: { chapter_id: chapter_id },
+            success: function(result) {
+                console.log(result);
+                result = JSON.parse(result);
+                if (result.code == 200) {
+                    $("#" + program).remove();
+                    $("#programacion-claro-" + chapter_id).html("");
+                    $(".modal-delete-row").modal("hide");
+                    $("#confirmation-delete").modal("show");
+                } else {
+                    console.log(result);
+
+                    alert("No se puede borrar");
+                    $(".modal-delete-row").modal("hide");
+                    $(".trash-row")
+                        .prev()
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
+                }
+            }
+        });
+    });
+
+    //CARGA DE LANDING Y GRILLA DE CLARO
+    $(".lan-claro").click(function() {
+        showlanding();
+    });
+
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
     $(".switch-landing").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");

@@ -12,25 +12,15 @@ import { eventsGrilla } from "./operaciones_grilla";
 import { previewPage } from "./preview/prev.js";
 import { showContentNav } from "./nav/nav.js";
 
-//CONFIG
-import {
-    cleaveConfig,
-    scheduleTimeConfig,
-    timeWithSeconds,
-    year
-} from "./config/config.js";
-
 //UI
 import {
     showPageUsersBO,
     showPageUsersFront,
     createNavbarProgramacionGeneral,
     showLandingSchedule,
-    showlanding,
     showAdminSite,
     showFormCreateUser,
     showUserFront,
-    showModalDeleteUserBO,
     deleteUserUI
 } from "./UI/UI.js";
 
@@ -61,64 +51,6 @@ $.ajaxSetup({
 
 $(document).ready(function() {
     eventsGrilla();
-
-    //modal delete row
-    $(".trash-row").click(function() {
-        let allRows = $(".contenedor-fila");
-        allRows.removeClass("row-selected");
-        $(this).attr("src", "./images/eliminar-acti.svg");
-        let row = $(this).closest(".contenedor-fila");
-        $(this)
-            .prev()
-            .attr("src", "./images/basic-icons/pencil-edit-des.svg");
-        let chapterId = $(this).attr("chapter_id");
-        let program = $(this)
-            .closest(".contenedor-fila")
-            .attr("id");
-        let modalButtonDelete = $("#modal-button-delete");
-        modalButtonDelete.attr("chapter_id", chapterId);
-        modalButtonDelete.attr("program", program);
-        row.addClass("row-selected");
-        $(".modal-delete-row").modal("show");
-    });
-
-    //Borrar un programa de la grilla
-    $("#modal-button-delete").click(function() {
-        let program = $(this).attr("program");
-        let chapter_id = $(this).attr("chapter_id");
-        $.ajax({
-            type: "POST",
-            url: "general-program/deleteChapter",
-            data: { chapter_id: chapter_id },
-            success: function(result) {
-                console.log(result);
-                result = JSON.parse(result);
-                if (result.code == 200) {
-                    $("#" + program).remove();
-                    $("#programacion-claro-" + chapter_id).html("");
-                    $(".modal-delete-row").modal("hide");
-                    $("#confirmation-delete").modal("show");
-                    /*$(".trash-row")
-                        .prev()
-                        .attr(
-                            "src",
-                            "./images/basic-icons/pencil-edit-teal.svg"
-                        );*/
-                } else {
-                    console.log(result);
-
-                    alert("No se puede borrar");
-                    $(".modal-delete-row").modal("hide");
-                    $(".trash-row")
-                        .prev()
-                        .attr(
-                            "src",
-                            "./images/basic-icons/pencil-edit-teal.svg"
-                        );
-                }
-            }
-        });
-    });
 
     //selectpicker
     $(".selectpicker").selectpicker({
@@ -275,11 +207,6 @@ $(document).ready(function() {
     });
     //CHANGE TO LANDING
 
-    //CARGA DE LANDING Y GRILLA DE CLARO
-    $(".lan-claro").click(function(event) {
-        showlanding();
-    });
-
     //CHANGE TO grilla claro
     $(".gril-claro").click(function(event) {
         $.ajax({
@@ -289,6 +216,7 @@ $(document).ready(function() {
             success: function(result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
+                eventsGrilla();
             }
         });
     });
@@ -302,6 +230,7 @@ $(document).ready(function() {
                 console.log("Grilla claro cinema");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
+                eventsGrilla();
             }
         });
     });
@@ -328,6 +257,7 @@ $(document).ready(function() {
                 console.log("grilla Concert Channel");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
+                eventsGrilla();
             }
         });
     });

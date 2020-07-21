@@ -104809,7 +104809,10 @@ function selectRow() {
 
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-row-pencil").attr("src", "./images/eliminar-acti.svg").css("pointer-events", "all");
   var row = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).closest(".contenedor-fila");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).next().attr("src", "./images/basic-icons/trash.svg");
+  /*$(this)
+      .next()
+      .attr("src", "./images/basic-icons/trash.svg");*/
+
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   row.addClass("row-selected");
 }
@@ -105049,10 +105052,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
 /* harmony import */ var _nav_nav_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./nav/nav.js */ "./resources/js/nav/nav.js");
-/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
-/* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
-/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./form/form.js */ "./resources/js/form/form.js");
-/* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/user.js */ "./resources/js/services/user.js");
+/* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
+/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./form/form.js */ "./resources/js/form/form.js");
+/* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/user.js */ "./resources/js/services/user.js");
 //JQUERY
  //BOOTSTRAP
 
@@ -105062,8 +105064,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
- //CONFIG
 
  //UI
 
@@ -105078,56 +105078,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])(); //modal delete row
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").click(function () {
-    var allRows = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contenedor-fila");
-    allRows.removeClass("row-selected");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("src", "./images/eliminar-acti.svg");
-    var row = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().attr("src", "./images/basic-icons/pencil-edit-des.svg");
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila").attr("id");
-    var modalButtonDelete = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete");
-    modalButtonDelete.attr("chapter_id", chapterId);
-    modalButtonDelete.attr("program", program);
-    row.addClass("row-selected");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("show");
-  }); //Borrar un programa de la grilla
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete").click(function () {
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "general-program/deleteChapter",
-      data: {
-        chapter_id: chapter_id
-      },
-      success: function success(result) {
-        console.log(result);
-        result = JSON.parse(result);
-
-        if (result.code == 200) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).remove();
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programacion-claro-" + chapter_id).html("");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#confirmation-delete").modal("show");
-          /*$(".trash-row")
-              .prev()
-              .attr(
-                  "src",
-                  "./images/basic-icons/pencil-edit-teal.svg"
-              );*/
-        } else {
-          console.log(result);
-          alert("No se puede borrar");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
-        }
-      }
-    });
-  }); //selectpicker
+  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])(); //selectpicker
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
     // showTick: true,
@@ -105198,11 +105149,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     console.log(aa);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   });
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showUserFront"])(); //GET USER
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showUserFront"])(); //GET USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".view-user-icon", function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["getUser"])(id);
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["getUser"])(id);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".buttonall").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".buttonall").removeClass("btn-nav-select");
@@ -105211,14 +105162,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav-select");
   }); //RENDER PAGE TO CREATE A BACKOFFICE'S USER
 
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showFormCreateUser"])(); //REGISTER A USER
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showFormCreateUser"])(); //REGISTER A USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".register-user-button", function () {
     var rol = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-rol-select").attr("id_rol");
     var email = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#email-user-bo").val();
     var username = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#name-user-bo").val();
-    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateEmail"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-email"), jquery__WEBPACK_IMPORTED_MODULE_0___default()(".warning-email-text"));
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["registerUser"])(username, email, rol);
+    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateEmail"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-email"), jquery__WEBPACK_IMPORTED_MODULE_0___default()(".warning-email-text"));
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["registerUser"])(username, email, rol);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".delete-userbo-icon", function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
@@ -105226,32 +105177,28 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     console.log(username);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-username-bo").text(username);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-user").modal("show");
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["deleteUserUI"])(id);
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["deleteUserUI"])(id);
   }); //BACK TO THE FRONTPAGE USERS' PAGE
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".closeViewFront", function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showPageUsersFront"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersFront"])();
   }); //BACK TO BACKOFFICE USERS' PAGE
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".closeViewBO", function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showPageUsersBO"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersBO"])();
   }); //UPDATE CLARO NETWORKS USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".edit-user-front", function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["getUserFrontToUpdate"])(id);
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["getUserFrontToUpdate"])(id);
   }); //UPDATE USERS BACKOFFICE
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".edit-user-icon", function () {
     console.log("update");
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["getUserToUpdate"])(id);
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["getUserToUpdate"])(id);
   }); //CHANGE TO LANDING
-  //CARGA DE LANDING Y GRILLA DE CLARO
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function (event) {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showlanding"])();
-  }); //CHANGE TO grilla claro
+  //CHANGE TO grilla claro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-claro").click(function (event) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -105263,6 +105210,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
       }
     });
   }); //CHANGE TO grilla cinema
@@ -105278,6 +105226,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         console.log("Grilla claro cinema");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
       }
     });
   }); // CHANGE TO LANDING CINEMA
@@ -105307,6 +105256,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         console.log("grilla Concert Channel");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
       }
     });
   }); //CHANGE TO LANDING CONCERT
@@ -105452,7 +105402,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     }
   }); //NAVBAR PROGRAMACIÓN GENERAL
 
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
 
   /* LOGIN */
 
@@ -105462,7 +105412,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     var messageError = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".warning-email-text");
     var messagePasswordError = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".caracteres-min");
 
-    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateEmail"])(inputEmail, messageError) && Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validatePassword"])(inputPassword, messagePasswordError)) {
+    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateEmail"])(inputEmail, messageError) && Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validatePassword"])(inputPassword, messagePasswordError)) {
       /*let email = inputEmail.val();
       let hash = CryptoJS.SHA1(inputPassword.val());
       let result = CryptoJS.enc.Hex.stringify(hash);*/
@@ -105483,7 +105433,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     var email = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#email-user-bo").val();
     var username = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#name-user-bo").val();
     var password = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#password-user-bo").val();
-    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["registerUser"])(username, email, password, rol);
+    Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["registerUser"])(username, email, password, rol);
   });
   /* DELETE USER */
 
@@ -105494,7 +105444,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".bn-nav").click(function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("id");
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showLandingSchedule"])(id);
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showLandingSchedule"])(id);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-nav").click(function () {
     var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
@@ -105503,17 +105453,17 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   /* Show the form to create a new user */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-users-section").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showPageUsersBO"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersBO"])();
   });
   /* SHOW VIEW USERS FRONT */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-users-front-section").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showPageUsersFront"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersFront"])();
   });
   /* SHOW VIEW ADMIN SITE */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".admin-site-button").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_9__["showAdminSite"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showAdminSite"])();
   });
   /* Previsualizar contenido en diferentes tamaños */
 
@@ -105560,20 +105510,20 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     var correoValido = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".correo-valido");
     var imagenError = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".error");
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateKeyUpEmail"])(inputCorreo, filter, imagenError, correoValido);
+    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateKeyUpEmail"])(inputCorreo, filter, imagenError, correoValido);
   });
   /* VALIDATE LOGIN PASSWORD */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-password").keyup(function () {
-    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), jquery__WEBPACK_IMPORTED_MODULE_0___default()(".caracteres-min"));
+    Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), jquery__WEBPACK_IMPORTED_MODULE_0___default()(".caracteres-min"));
   });
   /* Validar email para reestablecer contraseña*/
 
   var inputReEmail = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-email");
   var messageError = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".correo-valido");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#reset-email").click(function () {
-    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateEmail"])(inputReEmail, messageError)) {
-      Object(_services_user_js__WEBPACK_IMPORTED_MODULE_11__["sendEmailResetPassword"])(inputReEmail);
+    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateEmail"])(inputReEmail, messageError)) {
+      Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["sendEmailResetPassword"])(inputReEmail);
     } else {
       return false;
     }
@@ -105584,7 +105534,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   var inputConfirmPassword = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#new-confirm-password");
   var newPasswordButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#send-password-button");
   newPasswordButton.click(function () {
-    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["validateNewPassword"])(inputNewPassword, inputConfirmPassword)) {
+    if (Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["validateNewPassword"])(inputNewPassword, inputConfirmPassword)) {
       sendNewPassword(inputNewPassword, inputConfirmPassword);
       return true;
     } else {
@@ -105597,7 +105547,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   if (iconPassword !== null) {
     for (var i = 0; i < iconLength; i++) {
       iconPassword[i].addEventListener("click", function () {
-        Object(_form_form_js__WEBPACK_IMPORTED_MODULE_10__["ShowHidePassword"])(this);
+        Object(_form_form_js__WEBPACK_IMPORTED_MODULE_9__["ShowHidePassword"])(this);
       });
     }
   }
@@ -105745,8 +105695,78 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
+
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
+      .removeClass("a-text-semi-brown-two"); //text-landing
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  }); //modal delete row
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").click(function () {
+    var allRows = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contenedor-fila");
+    allRows.removeClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("src", "./images/eliminar-acti.svg");
+    var row = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila");
+    /*$(this)
+        .prev()
+        .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
+
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila").attr("id");
+    var modalButtonDelete = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete");
+    modalButtonDelete.attr("chapter_id", chapterId);
+    modalButtonDelete.attr("program", program);
+    row.addClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("show");
+  }); //Borrar un programa de la grilla
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete").click(function () {
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "general-program/deleteChapter",
+      data: {
+        chapter_id: chapter_id
+      },
+      success: function success(result) {
+        console.log(result);
+        result = JSON.parse(result);
+
+        if (result.code == 200) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programacion-claro-" + chapter_id).html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#confirmation-delete").modal("show");
+        } else {
+          console.log(result);
+          alert("No se puede borrar");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+        }
+      }
+    });
+  }); //CARGA DE LANDING Y GRILLA DE CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanding"])();
+  });
   /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
     var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
     var landingOptionsChecks = currentColumn.children(".establecer-options");
