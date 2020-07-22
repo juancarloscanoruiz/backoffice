@@ -104165,7 +104165,7 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showLandingSchedule, showAdminSite, changeActiveBlackButton, selectRow, selectColumn */
+/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showlanconcert, showLandingSchedule, showAdminSite, changeActiveBlackButton, selectRow, selectColumn */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -104185,6 +104185,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showDescriptions", function() { return showDescriptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNavbarProgramacionGeneral", function() { return createNavbarProgramacionGeneral; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanding", function() { return showlanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanconcert", function() { return showlanconcert; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLandingSchedule", function() { return showLandingSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAdminSite", function() { return showAdminSite; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
@@ -104507,6 +104508,26 @@ function showlanding() {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
     }
   });
+} //CHANGE TO LANDING CONCERT
+
+
+function showlanconcert() {
+  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+    type: "POST",
+    url: "view",
+    data: {
+      view: "lan-concert"
+    },
+    beforeSend: function beforeSend() {
+      var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            ";
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+    },
+    success: function success(result) {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+    }
+  });
 }
 
 function showFormCreateUser() {
@@ -104646,7 +104667,6 @@ function showLandingSchedule(id) {
         },
         success: function success(result) {
           console.log("grilla concert");
-          console.log(result);
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
           jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
@@ -105270,29 +105290,13 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       data: {
         view: "grilla-claro-cinema-button"
       },
-      success: function success(result) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
-      }
-    });
-  }); // CHANGE TO LANDING CINEMA
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-cinema").click(function (event) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "view",
-      data: {
-        view: "lan-cinema"
-      },
       beforeSend: function beforeSend() {
         var loader = "\n                <div class=\"loader-view-container\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
       },
       success: function success(result) {
-        console.log("grilla de claro cinema");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html(result);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
@@ -105312,25 +105316,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
       },
       success: function success(result) {
-        console.log(result);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      }
-    });
-  }); //CHANGE TO LANDING CONCERT
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-concert").click(function (event) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "view",
-      data: {
-        view: "lan-concert"
-      },
-      success: function success(result) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html(result);
       }
     });
   }); //CHANGE TO grilla home
@@ -105830,6 +105819,31 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function () {
     Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanding"])();
+  }); //cargar landin de concert
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-concert").click(function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanconcert"])();
+  }); // CHANGE TO LANDING CINEMA
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-cinema").click(function (event) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "view",
+      data: {
+        view: "lan-cinema"
+      },
+      beforeSend: function beforeSend() {
+        var loader = "\n                <div class=\"loader-view-container\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+      },
+      success: function success(result) {
+        console.log("grilla de claro cinema");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html(result);
+        eventsGrilla();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }
+    });
   });
   /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
 

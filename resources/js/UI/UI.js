@@ -350,6 +350,27 @@ function showlanding() {
         }
     });
 }
+   //CHANGE TO LANDING CONCERT
+   function showlanconcert() {
+    $.ajax({
+        type: "POST",
+        url: "view",
+        data: { view: "lan-concert" },
+        beforeSend: function() {
+            const loader = `
+            <div class="loader-view-container">
+              <img src="./images/loader.gif" class="loader" alt="">
+            </div>
+            `;
+            $("body").append(loader);
+        },
+        success: function(result) {
+            $("#bodymenu").html("");
+            $("#bodymenu").html(result);
+            $(".loader-view-container").remove();
+        }
+    });
+}
 
 function showFormCreateUser() {
     $("#cambio").on("click", "#btnAlta", function(event) {
@@ -494,7 +515,7 @@ function showLandingSchedule(id) {
                 success: function(result) {
                    
                     console.log("grilla concert");
-                    console.log(result);
+                 
                     $("#general-programming").html("");
                     $("#general-programming").html(result)
                     $(".loader-view-container").remove();
@@ -737,6 +758,7 @@ export {
     showDescriptions,
     createNavbarProgramacionGeneral,
     showlanding,
+    showlanconcert,
     showLandingSchedule,
     showAdminSite,
     changeActiveBlackButton,

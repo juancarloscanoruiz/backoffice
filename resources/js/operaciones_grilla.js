@@ -15,7 +15,7 @@ import {
     year
 } from "./config/config.js";
 
-import { showlanding } from "./UI/UI.js";
+import { showlanding, showlanconcert } from "./UI/UI.js";
 
 function eventsGrilla() {
     //selectpicker
@@ -120,6 +120,34 @@ function eventsGrilla() {
     //CARGA DE LANDING Y GRILLA DE CLARO
     $(".lan-claro").click(function() {
         showlanding();
+    });
+    //cargar landin de concert
+    $(".lan-concert").click(function() {
+        showlanconcert();
+    });
+     // CHANGE TO LANDING CINEMA
+     $(".lan-cinema").click(function(event) {
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: { view: "lan-cinema" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
+            success: function(result) {
+                console.log("grilla de claro cinema");
+
+                $("#bodymenu").html("");
+                $("#bodymenu").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
+            }
+        });
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
