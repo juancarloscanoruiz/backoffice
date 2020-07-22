@@ -47,11 +47,19 @@ class ViewsController extends Controller
                     break;
                 case 'grilla-concert-channel-button':
                     $programacion = $this->getGrilla('Concert Channel');
-                    return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
+                 //  print_r($programacion);
+                    $respuesta = $programacion[0];
+                    $firstDate = $programacion[1];
+                    $lastDate = $programacion[2];
+                   return view('partials.adm-CN.grillas.grilla-concert-channel', compact("respuesta", "firstDate", "lastDate"));
+                  // return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
                     break;
                 case 'grilla-claro-cinema-button':
                     $programacion = $this->getGrilla('Claro Cinema');
-                    return view('partials.adm-CN.grillas.grilla-claro-cinema')->with('respuesta', $programacion);
+                    $respuesta = $programacion[0];
+                    $firstDate = $programacion[1];
+                    $lastDate = $programacion[2];
+                    return view('partials.adm-CN.grillas.grilla-claro-cinema', compact("respuesta", "firstDate", "lastDate"));
                     break;
                 case 'grilla-home-button':
                     return view('partials.adm-CN.grillas.grilla-home');

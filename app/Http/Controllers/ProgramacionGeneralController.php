@@ -73,7 +73,7 @@ class ProgramacionGeneralController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
-
+try{
         $firstDay = date('Y-m-d');
         $usuario_id = session('id_user');
         if (!isset($usuario_id)) {
@@ -89,11 +89,19 @@ class ProgramacionGeneralController extends Controller
         $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
         $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
 
-        if ($respuesta->code == 200) {
+        if ($respuesta->code == 200) { 
             return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
         } else {
             return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
         };
+    }catch(\GuzzleHttp\Exception\ClientException $e){
+     
+        $response = $e->getResponse();
+        if ($response && $response->getStatusCode() == 406 || $response && $response->getStatusCode() == 404 ) {
+          // Do something with a 406 response here (as an example).
+          return redirect('/');
+        }
+    }
     }
 
     public function getGrilla(Request $request)

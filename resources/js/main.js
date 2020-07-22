@@ -229,6 +229,7 @@ $(document).ready(function() {
             },
             success: function(result) {
                 console.log("grilla de canal claro");
+                console.log(result);
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -256,9 +257,21 @@ $(document).ready(function() {
             type: "POST",
             url: "view",
             data: { view: "lan-cinema" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
             success: function(result) {
+                console.log("grilla de claro cinema");
+
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
             }
         });
     });
@@ -270,11 +283,22 @@ $(document).ready(function() {
             type: "POST",
             url: "view",
             data: { view: "grilla-concert-channel-button" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
 
             success: function(result) {
+                console.log(result);
+
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
+                $(".loader-view-container").remove();
             }
         });
     });

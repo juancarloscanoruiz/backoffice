@@ -482,12 +482,26 @@ function showLandingSchedule(id) {
                 type: "POST",
                 url: "view",
                 data: { view: "grilla-concert-channel-button" },
+                beforeSend: function() {
+                    const loader = `
+                    <div class="loader-view-container">
+                      <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                    `;
+                    $("body").append(loader);
+                },
+               
                 success: function(result) {
-                    console.log("grilla");
+                   
+                    console.log("grilla concert");
+                    console.log(result);
                     $("#general-programming").html("");
-                    $("#general-programming")
-                        .html(result)
-                        .promise();
+                    $("#general-programming").html(result)
+                    $(".loader-view-container").remove();
+                    $(".litepicker").remove();
+                    $(".date-modal").remove();
+                    eventsGrilla();
+                     
                 }
             });
             break;
@@ -498,11 +512,22 @@ function showLandingSchedule(id) {
                 type: "POST",
                 url: "view",
                 data: { view: "grilla-claro-cinema-button" },
+                beforeSend: function() {
+                    const loader = `
+                    <div class="loader-view-container">
+                      <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                    `;
+                    $("body").append(loader);
+                },
                 success: function(result) {
                     $("#general-programming").html("");
                     $("#general-programming")
                         .html(result)
-                        .promise();
+                        $(".loader-view-container").remove();
+                    $(".litepicker").remove();
+                    $(".date-modal").remove();
+                    eventsGrilla();
                 }
             });
             break;
