@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-@extends('layaout.app')
+
 <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
 
-
-<head>
     <script>
         new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
@@ -44,7 +40,7 @@
             }
         });
     </script>
-</head>
+
 
 <body>
     <main>
@@ -313,4 +309,4 @@
     </div>
   </div>
 </div>
-</html>
+

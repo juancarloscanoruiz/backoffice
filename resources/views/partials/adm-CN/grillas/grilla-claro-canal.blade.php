@@ -129,12 +129,11 @@ $data_for_new_entry = json_encode([
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
                 @if (count($respuesta->data->grilla[0]->programs)!=0)
-                <input disabled id="inp_programing_claro_canal" type="file">
-                <label id="subir-archivos" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
-
+                    <input id="inp_programing_claro_canal" type="file">
+                    <label id="subir-archivos" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
                 @else
-                <input id="inp_programing_claro_canal" type="file">
-                <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
+                    <input id="inp_programing_claro_canal" type="file">
+                    <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
                 @endif
             </div>
             <!--Fecha de inicio de calendario-->
@@ -273,7 +272,6 @@ $data_for_new_entry = json_encode([
                         </div>
                         <!--Landing Programar Publicación-->
                         <div class="contenedor-columna centro">
-                            <input type="text" class="date-input editable-attribute" placeholder="attribute" />
                         </div>
                         <!--Establecer en home-->
                         <div class="contenedor-columna centro"></div>

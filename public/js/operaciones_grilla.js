@@ -89735,10 +89735,19 @@ function showLandingSchedule(id) {
         data: {
           view: "grilla-concert-channel-button"
         },
+        beforeSend: function beforeSend() {
+          var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+        },
         success: function success(result) {
-          console.log("grilla");
+          console.log("grilla concert");
+          console.log(result);
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result).promise();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
         }
       });
       break;
@@ -89751,9 +89760,17 @@ function showLandingSchedule(id) {
         data: {
           view: "grilla-claro-cinema-button"
         },
+        beforeSend: function beforeSend() {
+          var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+        },
         success: function success(result) {
           jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result).promise();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
         }
       });
       break;

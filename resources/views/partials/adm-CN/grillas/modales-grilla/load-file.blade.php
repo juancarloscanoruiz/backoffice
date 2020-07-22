@@ -10,8 +10,7 @@
                 </div>
             </div>
             <div class="text-center mb-5 mt-4 pt-3 pb-4 mx-auto">
-                <button type="button" class="a-btn-basic-small a-btn-border-teal mr-3 a-text-bold-teal text-normal" id="modal-button" data-dismiss="modal">ACEPTAR</button>
-                <button type="button" class="a-btn-basic-small a-btn-teal  a-text-MBlack  text-normal" id="modal-button" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-teal  a-text-MBlack  text-normal" id="modal-button" data-dismiss="modal">ACEPTAR</button>
             </div>
         </div>
     </div>

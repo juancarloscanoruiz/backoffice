@@ -73,27 +73,35 @@ class ProgramacionGeneralController extends Controller
         //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
         //el dia en que inicia la version maestra es:
         //$hoy = '2020-07-02';
+        try {
+            $firstDay = date('Y-m-d');
+            $usuario_id = session('id_user');
+            if (!isset($usuario_id)) {
+                $usuario_id = -1;
+            }
+            $client = new Client();
+            $response = $client->get(
+                $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . $usuario_id
+            );
 
-        $firstDay = date('Y-m-d');
-        $usuario_id = session('id_user');
-        if (!isset($usuario_id)) {
-            $usuario_id = -1;
+            $respuesta =  json_decode($response->getBody());
+            //var_dump($respuesta->data->grilla);
+            $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
+            $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
+
+            if ($respuesta->code == 200) {
+                return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
+            } else {
+                return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
+            };
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+
+            $response = $e->getResponse();
+            if ($response && $response->getStatusCode() == 406 || $response && $response->getStatusCode() == 404) {
+                // Do something with a 406 response here (as an example).
+                return redirect('/');
+            }
         }
-        $client = new Client();
-        $response = $client->get(
-            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . $usuario_id
-        );
-
-        $respuesta =  json_decode($response->getBody());
-        //var_dump($respuesta->data->grilla);
-        $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
-        $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
-
-        if ($respuesta->code == 200) {
-            return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
-        } else {
-            return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
-        };
     }
 
     public function getGrilla(Request $request)
@@ -597,7 +605,7 @@ class ProgramacionGeneralController extends Controller
                 <textarea id='program-title' name='' class='editable-attribute program-original edit-cell'></textarea>
             </div>
             <!--ESTABLECER EN LANDING-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='establecer-landing' chapter_id='" . $chapter_id . "' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='establecer-landing' chapter_id='" . $chapter_id . "' key='in_landing'>
                 <!--Si no han elegido una sección del landing, entonces las opción
                 por defecto es 'No'
                 -->
@@ -605,21 +613,21 @@ class ProgramacionGeneralController extends Controller
                             <input type='radio' name='sino-landing-$chapter_id' id='yes-landing-$chapter_id' value='1' class='switch-landing'>
                             <label for='yes-landing-$chapter_id' id='siestado-landing-$chapter_id' class='si-estilo cursor-pointer switch-label'>
                                 Sí</label>
-                            <input type='radio' name='sino-landing-$chapter_id' id='no-landing-$chapter_id' value='0' checked='' class='switch-landing'>
+                            <input type='radio' name='sino-landing-$chapter_id' id='no-landing-$chapter_id' value='0' checked='' class='switch-landing switch-table'>
                             <label for='no-landing-$chapter_id' id='noestado-landing-$chapter_id' class='no-estilo cursor-pointer switch-label'>
                                 No</label>
                         </div>
                         <div class='establecer-options pointer-none'>
                             <div class=' d-flex mt-2 ml-2 pt-2'>
                                 <label class='checkradio d-flex  ml-2'>
-                                    <input type='radio' name='dontlose'>
+                                    <input type='radio' name='dontlose' class='switch-table' value='1'>
                                     <span class='checkmark'></span>
                                 </label>
                                 <span class='cursor-pointer a-text-medium-warmgrey ml-2'>Tienes que verlo</span>
                             </div>
                             <div class='d-flex ml-2 pt-2 pb-2'>
                                 <label class='checkradio d-flex ml-2'>
-                                    <input type='radio' name='dontlose'>
+                                    <input type='radio' name='dontlose' class='switch-table' value='2'>
                                     <span class='checkmark'></span>
                                 </label>
                                 <span class='cursor-pointer a-text-medium-warmgrey ml-2'>Contenido exclusivo</span>
@@ -704,27 +712,27 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--Schedule item long date-->
-                                    <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-date' chapter_id='$chapter_id' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-date' chapter_id='$chapter_id' key='day'>
                 <div class='schedule-date'>
-                    <input type='text' name='' class='table-input schedule-date-input text-center a-text-regular-brownishtwo' value=''>
+                    <input type='text' name='' class='editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo' value=''>
                 </div>
             </div>
             <!--Schedule Item Long Time (GMT)-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-time' chapter_id='" . $chapter_id . "' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-time' chapter_id='" . $chapter_id . "' key='programing'>
                 <div class='schedule-date'>
-                    <input type='text' class='table-input text-center schedule-time-input a-text-regular-brownishtwo' value=''>
+                    <input type='text' class='editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo' value=''>
                 </div>
             </div>
             <!--Estimated Schedule Item Duration-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='estimated-duration' chapter_id='$chapter_id' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='estimated-duration' chapter_id='$chapter_id' key='duration'>
                 <div class='schedule-date'>
-                    <input type='text' class='table-input text-center time-seconds-input a-text-regular-brownishtwo' value=''>
+                    <input type='text' class='editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo' value=''>
                 </div>
             </div>
             <!--Program Year Produced-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='program-year' chapter_id='$chapter_id' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-year' chapter_id='$chapter_id' key='program_year_produced'>
                 <div class='schedule-date'>
-                    <input type='text' class='table-input text-center year-input a-text-regular-brownishtwo' value='' placeholder='YYYY'>
+                    <input type='text' class='editable-attribute table-input text-center year-input a-text-regular-brownishtwo' value='' placeholder='YYYY'>
                 </div>
             </div>
             <!--Program genre list-->
@@ -745,30 +753,32 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Program title alternate (subtítulo de la película o nombre del capítulo
             de la serie-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='program-title-alternate' chapter_id='" . $chapter_id . "' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-title-alternate' chapter_id='" . $chapter_id . "' key='subtitle'>
                 <textarea class='program-original edit-cell' id='lb-subtitle-$chapter_id'></textarea>
             </div>
             <!--Program episode season-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "' key='season'>
                 <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
             </div>
             <!--Program episode number-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key='program_episode_number'>
                 <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
             </div>
             <!--Synopsis-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key=''>
-                <span class='mb-0 lb-synopsis' id='lb-synopsis-" . $chapter_id . "'></span>
-                <span class='text-normal cursor-pointer a-text-bold-teal see-more' program_title=''>Ver más...</span>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key='synopsis'>
+                <div class='program-original text-left edit-cell'>
+                    <span class='mb-0 lb-synopsis' id='lb-synopsis-" . $chapter_id . "'></span>
+                    <span class='text-normal cursor-pointer a-text-bold-teal see-more' program_title=''>Ver más...</span>
+                </div>
             </div>
             <!--Rating-->
-            <div class='contenedor-columna selectable-column centro' rel='rating-code' key='' chapter_id='" . $chapter_id . "'>
+            <div class='contenedor-columna selectable-column centro' rel='rating-code' key='rating' chapter_id='" . $chapter_id . "'>
                 <div class='schedule-date'>
-                    <input class='text-center table-input a-text-regular-brownishtwo' value=''>
+                    <input class='editable-attribute text-center table-input a-text-regular-brownishtwo' value=''>
                 </div>
             </div>
             <!--SUBBED-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='subbed' key='' chapter_id='" . $chapter_id . "'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='subbed' key='subbed' chapter_id='" . $chapter_id . "'>
                 <div class='schedule-date'>
                     <div class='yes-no'>
                         <input type='radio' id='yes-subbed-$chapter_id' name='subbed-$chapter_id' value='1' class='switch-table'>
@@ -781,7 +791,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--DUBBED-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='dubbed' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='dubbed' key='dubbed'>
                 <div class='schedule-date'>
                     <div class='yes-no' chapter_id='" . $chapter_id . "'>
                         <input type='radio' id='yes-dubbed-$chapter_id' name='dubbed-$chapter_id' value='1' class='switch-table'>
@@ -794,7 +804,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--AUDIO 5.1-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='audio' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='audio' key='audio5'>
                 <div class='schedule-date'>
                     <div class='yes-no' chapter_id='" . $chapter_id . "'>
                         <input type='radio' id='yes-audio-$chapter_id' name='audio-$chapter_id' value='1' class='switch-table'>
@@ -868,25 +878,20 @@ class ProgramacionGeneralController extends Controller
             case 1:
                 if ($request->file('image-vertical')) {
                     $pathImageVertical = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-vertical"), "vertical");
-                    echo ($pathImageVertical);
                 }
                 if ($request->file('image-horizontal')) {
                     $pathImageHorizontal = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-horizontal"), "horizontal");
-                    echo ($pathImageHorizontal);
                 }
 
                 if ($request->file('image-synopsis')) {
                     $pathSynopsis = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
-                    echo ($pathSynopsis);
                 }
 
                 if ($request->file('image-synopsis-1')) {
                     $pathSynopsis1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
-                    echo ($pathSynopsis1);
                 }
                 if ($request->file('image-synopsis-2')) {
                     $pathSynopsis2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
-                    echo ($pathSynopsis2);
                 }
                 if ($request->file('image-synopsis-3')) {
                     $pathSynopsis3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
@@ -895,15 +900,12 @@ class ProgramacionGeneralController extends Controller
 
                 if ($request->file('image_background_1')) {
                     $pathImageSlider1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_1"), "slider1");
-                    echo ($pathImageSlider1);
                 }
                 if ($request->file('image_background_2')) {
                     $pathImageSlider2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_2"), "slider2");
-                    echo ($pathImageSlider2);
                 }
                 if ($request->file('image_background_3')) {
                     $pathImageSlider3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_3"), "slider3");
-                    var_dump($pathImageSlider3);
                 }
                 break;
 
@@ -940,10 +942,6 @@ class ProgramacionGeneralController extends Controller
         if ($respuesta->code == 200) {
             return redirect()->route('programacion_general');
         }
-
-        /*$decrypted = Crypt::decrypt($request->input('id'));
-        $extension = $request->file('image-synopsis-3')->extension();
-        $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/
     }
 
     public function filterDates(Request $request)

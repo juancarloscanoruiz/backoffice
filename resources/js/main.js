@@ -120,20 +120,14 @@ $(document).ready(function() {
 
     eventsGrilla();
 
-    divGrilla.on("click", "#subir-archivos", function() {
+    /*divGrilla.on("click", "#subir-archivos", function() {
         let disabled = $("#inp_programing_claro_canal").prop("disabled");
         if (disabled == true) {
             $(".modal-information").modal("show");
-            /*var pregunta = confirm(
-                "Este día ya tiene programacion,¿Quieres subir un archivo?"
-            );
-            if (pregunta == true) {
-                $("#inp_programing_claro_canal").prop("disabled", false);
-            }*/
         }
-    });
+    });*/
 
-    $(".button-modal-information").click(function() {
+    /*$(".button-modal-information").click(function() {
         const confirm = $(this).attr("confirm");
         if (confirm == 1) {
             $("#inp_programing_claro_canal").prop("disabled", false);
@@ -142,7 +136,7 @@ $(document).ready(function() {
             $("#inp_programing_claro_canal").prop("disabled", false);
             $(".modal-information").modal("hide");
         }
-    });
+    });*/
 
     //SLIDER DE SINOPSIS
     $(".synopsis-image-slider").slick({
@@ -286,7 +280,8 @@ $(document).ready(function() {
                 $("body").append(loader);
             },
             success: function(result) {
-                console.log("grilla-canal-claro");
+                console.log("grilla de canal claro");
+                console.log(result);
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -314,9 +309,21 @@ $(document).ready(function() {
             type: "POST",
             url: "view",
             data: { view: "lan-cinema" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
             success: function(result) {
+                console.log("grilla de claro cinema");
+
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
             }
         });
     });
@@ -328,11 +335,22 @@ $(document).ready(function() {
             type: "POST",
             url: "view",
             data: { view: "grilla-concert-channel-button" },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
 
             success: function(result) {
+                console.log(result);
+
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
+                $(".loader-view-container").remove();
             }
         });
     });
