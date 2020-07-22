@@ -3,11 +3,11 @@
 @section('content')
 <div class='bg-color'>
     <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-    <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
-
+        <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
         <span class='text-light1 mr-5'>Administrador de contenido</span>
-</span>
+    </span>
 </div>
+
 <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
     <div class='ml-5'>
         <span class='a-text-black-bold a-name-user'>{{ session('name') }}</span><br>
@@ -30,41 +30,42 @@
             # code...
             break;
     }
-
     $landing = "";
-
     switch ($response["landing_id"]) {
         case 1:
            $landing = "CANAL CLARO";
             break;
-
         default:
             # code...
             break;
     }
-
-
 ?>
 
 <div class="ml-5 float-left">
-    <div><span class="a-text-black-light text-plus">Última edición : <span class="zona"> {{$response["last_edition"]}} </span> </span></div>
-<span class="a-text-black-light text-plus">Editado por: {{$response["edited_for"]}} ({{$rol}})</span>
-
+    <div>
+        <span class="a-text-black-light text-plus">Última edición : <span class="zona"> {{$response["last_edition"]}} </span> </span>
+    </div>
+    <span class="a-text-black-light text-plus">Editado por: {{$response["edited_for"]}} ({{$rol}})</span>
 </div>
+
 <div class="clearfix"></div>
+
 <h3 class="a-text-bold-black h3 ml-5 mt-4">{{$landing}}</h3>
+
 <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
+
 <!--Título del programa-->
 <div class="mb-5 ml-5">
-<span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block text-uppercase px-4 py-3">{{$response["title"]}}</span>
+    <span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block text-uppercase px-4 py-3">{{$response["title"]}}</span>
 </div>
 
-<!--TOTAL DE IMÁGNEES-->
+<!-- Total de imágenes -->
 <div class="text-right mr-5">
     <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
     <span class="a-text-bold-tomato h3"> {{($response['cantity_img_program'])}}/9</span>
 </div>
-<!--TOTAL DE IMÁGENES EN EL HOME-->
+
+<!-- Total de imágenes en HOME -->
 <?php
     $countHome = 0;
     if(!empty($response['thumbnail_list_horizontal'])){
@@ -74,7 +75,9 @@
         $countHome += 1;
     }
 ?>
+
 <hr class="d-flex align-content-center separationhr col-11 mt-5">
+
 <div class="position-relative">
     <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mb-5 mt-5">HOME</h3>
     <div class="counter-images-program">
@@ -82,15 +85,15 @@
         <label for="" class="a-text-bold-tomato h3"> {{$countHome}}/2/9</label>
     </div>
 </div>
+
 <div class='col-sm-12 no-gutters col-md-6  no-gutters col-lg-12  col-xl-12'>
     <img src='../images/registro/group-10.svg' class='image-pink-fondo' />
 </div>
+
 <div class='col-sm-4 col-md-4 col-lg-4 no-gutters'>
     <img src='../images/blue.svg' class='image-blue' />
 </div>
 
-
-<!--<h3 class="a-text-bold-brown-two ml-5 h3 mt-4">Recuerda subir la imagen en jpg</h3>-->
 <div class="clearfix"></div>
 
 <!--FORMULARIO PARA SUBIR IMÁGENES-->
@@ -102,38 +105,44 @@
     <input type="hidden" name="id" value="{{Crypt::encrypt($response['chapter_id'])}}" >
     <!--LANDING-->
     <input type="hidden" name="landing_id" value="{{Crypt::encrypt($response['landing_id'])}}" >
+
+
+    <!-- Sección Home -->
     <div class="d-flex justify-content-around col-12 mt-5">
         <div class="col-6">
             <div class="mb-4 text-center">
                 <span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block px-4 py-3">THUMBNAIL</span>
             </div>
-            <!--IMAGEN HORIZONTAL DEL PROGRAMA -->
-            @if(empty($response['thumbnail_list_horizontal']))
-            <div class="d-flex justify-content-center">
-            <div class="centro position-relative mb-3">
-                <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
-                        <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
-                        <label for="imageThumb-horizontal" class="mb-0">
-                            <img src="../images/basic-icons/plus.svg" alt="add-photo" class="cursor-pointer add-photo">
-                            <span class="a-text-bold-warm text-plus position-absolute mt-5"> 472px X 295px </span>
-                            <img src="" alt="" class="image-cover prev-image-program thumbnail-image-program cursor-pointer">
-                        </label>
+            <!--IMAGEN HORIZONTAL DEL PROGRAMA-->
+                @if(empty($response['thumbnail_list_horizontal']))
+                    <div class="d-flex justify-content-center">
+                        <div class="centro position-relative mb-3">
+                            <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
+                                <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
+                                <label for="imageThumb-horizontal" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo"/>
+                                <span class="a-text-bold-warm text-plus mt-3">472px X 295px</span>
+                                <img src="{{asset('/images/synopsis/image-synopsis-horizontal.png')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                @else
-                <div class="centro position-relative mb-3">
-                    <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
-                        <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
-                        <label for="imageThumb-horizontal" class="mb-0">
-                            <img src="{{$response['thumbnail_list_horizontal']}}" alt="" class="image-cover thumbnail-image-program prev-image-program w-100 h-100">
-                        </label>
+                    @else
+                        <div class="centro position-relative mb-3">
+                            <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
+                                <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
+                                <label for="imageThumb-horizontal" class="mb-0">
+                                    <img src="{{$response['thumbnail_list_horizontal']}}" alt="" class="image-cover thumbnail-image-program prev-image-program w-100 h-100">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
-                </div>
-            </div>
-            @endif
+                @endif
 
             <!--IMAGEN VERTICAL DEL PROGRAMA-->
             <div class="col-6">
@@ -141,56 +150,64 @@
                     <span class="text-plus a-text-bold-two mx-auto a-btn-white d-inline-block px-4 py-3">VERTICAL</span>
                 </div>
                 @if(empty($response['thumbnail_list_vertical']))
-                <div class="d-flex justify-content-center">
-                    <div class="centro mb-3">
-                    <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
-                    <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
-                    <label for="imageThumb-vertical" class="mb-0 d-flex align-items-center justify-content-center">
-                                <img src="../images/basic-icons/plus.svg" alt="add-photo"  class="add-photo"/>
-                                <span class="a-text-bold-warm text-plus mt-3">295px X 472px</span>
-                                <img class="cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-
-                            </label>
-                        </div>
-                    </div>
-                    @else
-                    <div class="centro mb-3">
-                        <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
-                            <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
-                            <label for="imageThumb-vertical" class="mb-0 d-flex align-items-center justify-content-center">
-                                <img src="{{$response['thumbnail_list_vertical']}}" alt="" class="w-100 h-100 thumbnail-image-program prev-image-program cursor-pointer image-cover">
-                            </label>
-                        </div>
-                    </div>
                     <div class="d-flex justify-content-center">
-                        <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Vertical_CanalClaro_20200702.jpg</span>
+                        <div class="centro mb-3">
+                            <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
+                                <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
+                                <label for="imageThumb-vertical" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo"/>
+                                <span class="a-text-bold-warm text-plus mt-3">295px X 472px</span>
+                                <img src="{{asset('/images/synopsis/image-synopsis-horizontal.png')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                </label>
+                            </div>
+                        </div>
+                    @else
+                        <div class="centro mb-3">
+                            <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
+                                <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
+                                <label for="imageThumb-vertical" class="mb-0 d-flex align-items-center justify-content-center">
+                                    <img src="{{$response['thumbnail_list_vertical']}}" alt="" class="w-100 h-100 thumbnail-image-program prev-image-program cursor-pointer image-cover">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Vertical_CanalClaro_20200702.jpg</span>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
+        </div>
+    </div>
 
-            @endif
+    <!-- Sección SINOPSIS - CARRUSEL -->
+    <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
+    <?php
+        $countSynopsisSlider = 0;
+        if(!empty($response["image_background_1"])){
+            $countSynopsisSlider += 1;
+        }
+        if(!empty($response["image_background_2"])){
+            $countSynopsisSlider += 1;
+        }
+        if(!empty($response["image_background_2"])){
+            $countSynopsisSlider += 1;
+        }
+    ?>
+
+    <div class="position-relative">
+        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS - CARRUSEL</h3>
+        <div class="counter-images-program">
+            <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
+            <span class="a-text-bold-tomato h3">{{$countSynopsisSlider}}/3/9</span>
+        </div>
+    </div>
+
+
             <!--IMÁGENES DE SINOPSIS DEL PROGRAMA-->
-            <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
+
             <!--IMÁGENES DEL SLIDER EN SINOPSIS-->
-            <?php
-                $countSynopsisSlider = 0;
-                if(!empty($response["image_background_1"])){
-                    $countSynopsisSlider += 1;
-                }
-                if(!empty($response["image_background_2"])){
-                    $countSynopsisSlider += 1;
-                }
-                if(!empty($response["image_background_2"])){
-                    $countSynopsisSlider += 1;
-                }
-            ?>
-            <div class="position-relative">
-                <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS - CARRUSEL</h3>
-                <div class="counter-images-program">
-                    <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
-                    <span class="a-text-bold-tomato h3"> {{$countSynopsisSlider}}/3/9</span>
-                </div>
-            </div>
+
+
 
             <div class="current-slide-container a-text-bold-teal mb-4">
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
@@ -355,5 +372,4 @@
                 <input type="submit" class="text-uppercase d-flex justify-content-center a-btn-basic-medium a-btn-teal a-text-bold-white text-normal" value="Guardar">
             </div>
 </form>
-
 @endsection

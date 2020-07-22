@@ -75,9 +75,13 @@ class ProgramacionGeneralController extends Controller
         //$hoy = '2020-07-02';
 
         $firstDay = date('Y-m-d');
+        $usuario_id = session('id_user');
+        if (!isset($usuario_id)) {
+            $usuario_id = -1;
+        }
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . session('id_user')
+            $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . $usuario_id
         );
 
         $respuesta =  json_decode($response->getBody());
@@ -663,7 +667,7 @@ class ProgramacionGeneralController extends Controller
                 <div class='d-flex justify-content-end programar-content'>
                     <div>
                         <label for='programar-home-date' class='a-text-bold-brownish text-normal'>Inicio: </label>
-                        <input type='text' id='programar-home-start-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='0000-00-00'>
+                        <input type='text' id='programar-home-start-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                     </div>
                     <div>
                         <input type='text' id='programar-home-start-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
@@ -672,7 +676,7 @@ class ProgramacionGeneralController extends Controller
                 <div class='d-flex justify-content-end'>
                     <div>
                         <label for='programar-home-end-date' class='a-text-bold-brownish text-normal'>Fin: </label>
-                        <input type='text' id='programar-home-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='0000-00-00'>
+                        <input type='text' id='programar-home-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                     </div>
                     <div>
                         <input type='text' id='programar-home-end-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
@@ -729,14 +733,14 @@ class ProgramacionGeneralController extends Controller
                 <div class='schedule-date'>
                     <div class='d-flex justify-content-center'>
 
-                        <select class='selectpicker dropup a-text-black-warmrey text-normal show-tick' title='Select Option' multiple data-live-search='true' data-live-search-placeholder='Buscar' data-header='Program List'  data-dropup-auto='false'>
-                            <option class='a-text-bold-brown-two text-small'>Animación</option>
-                            <option class='a-text-bold-brown-two text-small'>Cultura</option>
-                            <option class='a-text-bold-brown-two text-small'>Series</option>
-                            <option class='a-text-bold-brown-two text-small'>Comedia</option>
-                            <option class='a-text-bold-brown-two text-small'>Romance</option>
-
-                        </select>
+                    <select class='selectpicker dropup a-text-regular-brownishtwo text-normal show-tick' title='Select Option' multiple data-live-search='true' data-live-search-placeholder='Buscar' data-header='Program List'  data-dropup-auto='false'>
+                    <option class='a-text-regular-brownishtwo text-normal'  >Animación</option>
+                    <option class='a-text-regular-brownishtwo text-normal' >Cultura</option>
+                    <option class='a-text-regular-brownishtwo text-normal'  >Series</option>
+                    <option  class='a-text-regular-brownishtwo text-normal'>Comedia</option>
+                    <option  class='a-text-regular-brownishtwo text-normal'  >Romance</option>
+                    <option  class='a-text-regular-brownishtwo text-normal'  >Kids</option>
+                    </select>
                     </div>
                 </div>
             </div>
@@ -755,7 +759,7 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Synopsis-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key=''>
-                <span class='mb-0 lb-synopsis' id='lb-synopsis-" . $chapter_id . " }}'></span>
+                <span class='mb-0 lb-synopsis' id='lb-synopsis-" . $chapter_id . "'></span>
                 <span class='text-normal cursor-pointer a-text-bold-teal see-more' program_title=''>Ver más...</span>
             </div>
             <!--Rating-->
@@ -842,12 +846,16 @@ class ProgramacionGeneralController extends Controller
 
     public function updateImages(Request $request)
     {
+
         $pathSynopsis3 = "";
         $pathSynopsis2 = "";
         $pathSynopsis1 = "";
         $pathSynopsis = "";
         $pathImageVertical = "";
         $pathImageHorizontal = "";
+        $pathImageSlider1 = "";
+        $pathImageSlider2 = "";
+        $pathImageSlider3 = "";
         $landingId = Crypt::decrypt($request->input('landing_id'));
         switch ($landingId) {
             case 1:
@@ -877,14 +885,27 @@ class ProgramacionGeneralController extends Controller
                     $pathSynopsis3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
                     echo ($pathSynopsis3);
                 }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider1");
+                    echo ($pathSynopsis3);
+                }
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider2");
+                    echo ($pathSynopsis3);
+                }
+                if ($request->file('image_background_1')) {
+                    $$pathImageSlider3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider3");
+                    echo ($pathSynopsis3);
+                }
                 break;
 
             default:
-                # code...
+                echo ("Otra");
                 break;
         }
 
-        return redirect()->route('programacion_general');
+        //return redirect()->route('programacion_general');
         /*$decrypted = Crypt::decrypt($request->input('id'));
         $extension = $request->file('image-synopsis-3')->extension();
         $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/

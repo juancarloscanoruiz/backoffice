@@ -90309,10 +90309,11 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(keyValue);
     }
 
-    console.log(keyValue);
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("hide");
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove();
   var dateStartInput = document.getElementById("date-start-input");
 
   if (dateStartInput) {
@@ -90443,6 +90444,12 @@ function eventsGrilla() {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+    multipleSeparator: " ",
+    filter: true
+  }).on("changed.bs.select", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
+  }); //Agregar una nueva entrada en claro canal
 }
 
 

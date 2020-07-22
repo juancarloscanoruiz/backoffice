@@ -50,7 +50,6 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    //Agregar una nueva entrada en claro canal
     $("#general-programming").on("click", "#agregar-canal-claro", function() {
         $.ajax({
             type: "POST",
@@ -60,14 +59,12 @@ $(document).ready(function() {
             },
             success: function(result) {
                 $(".grilla-body").append(result);
-                console.log(result);
                 eventsGrilla();
             }
         });
     });
-    eventsGrilla();
 
-    //endselect
+    eventsGrilla();
 
     $("#subir-archivos").click(function() {
         let disabled = $("#inp_programing_claro_canal").prop("disabled");
@@ -97,6 +94,8 @@ $(document).ready(function() {
     $(".synopsis-image-slider").slick({
         slidesToShow: 1,
         dots: true,
+        initialSlide: 1,
+        infinite: false,
         arrows: true,
         prevArrow:
             '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',

@@ -85,6 +85,7 @@ function eventsGrilla() {
     });
 
     //Borrar un programa de la grilla
+
     $("#modal-button-delete").click(function() {
         let program = $(this).attr("program");
         let chapter_id = $(this).attr("chapter_id");
@@ -214,11 +215,12 @@ function eventsGrilla() {
         } else {
             $("#" + program).text(keyValue);
         }
-        console.log(keyValue);
+
         editAttributeProgram(chapterId, key, keyValue);
         $(".modal-synopsis").modal("hide");
     });
-
+    $(".litepicker").remove();
+    $(".date-modal").remove();
     let dateStartInput = document.getElementById("date-start-input");
     if (dateStartInput) {
         //ELEGIR FECHA DE INICIO Y FIN EN LA GRILLA
@@ -370,6 +372,17 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     $(".edit-row-pencil").click(selectRow);
     $(".selectable-column").click(selectColumn);
+
+    $(".selectpicker")
+        .selectpicker({
+            multipleSeparator: " ",
+            filter: true
+        })
+        .on("changed.bs.select", function() {
+            $(this).selectpicker("refresh");
+        });
+
+    //Agregar una nueva entrada en claro canal
 }
 
 export { eventsGrilla };

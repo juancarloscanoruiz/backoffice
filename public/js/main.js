@@ -105094,7 +105094,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  //Agregar una nueva entrada en claro canal
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").on("click", "#agregar-canal-claro", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
@@ -105104,13 +105103,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       },
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").append(result);
-        console.log(result);
         Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
       }
     });
   });
-  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])(); //endselect
-
+  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#subir-archivos").click(function () {
     var disabled = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing_claro_canal").prop("disabled");
 
@@ -105139,6 +105136,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-image-slider").slick({
     slidesToShow: 1,
     dots: true,
+    initialSlide: 1,
+    infinite: false,
     arrows: true,
     prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
     nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
@@ -105865,10 +105864,11 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(keyValue);
     }
 
-    console.log(keyValue);
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("hide");
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove();
   var dateStartInput = document.getElementById("date-start-input");
 
   if (dateStartInput) {
@@ -105999,6 +105999,12 @@ function eventsGrilla() {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+    multipleSeparator: " ",
+    filter: true
+  }).on("changed.bs.select", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
+  }); //Agregar una nueva entrada en claro canal
 }
 
 
