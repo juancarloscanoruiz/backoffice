@@ -4,7 +4,7 @@
             <div class="modal-body p-4">
                 <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5">
                 <div class="col-10 mx-auto">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5  ">La tabla de programación sólo acepta la carga de archivos<span class="h3 a-text-bold-warm-grey-three">  *xlsx.  </span>
+                    <p class="a-text-medium-warm-grey-three h3 mt-5  ">La tabla de programación sólo acepta la carga de archivos<span class="h3 a-text-bold-warm-grey-three">  *.xlsx  </span>
                     </p>
                     <p class="a-text-medium-warm-grey-three h3 mt-5  mt-3"> Por favor, verifica el archivo y reintenta la carga.</p>
                 </div>

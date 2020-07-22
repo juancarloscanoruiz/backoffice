@@ -15,8 +15,6 @@ import {
     year
 } from "./config/config.js";
 
-import { showlanding } from "./UI/UI.js";
-
 function eventsGrilla() {
     //selectpicker
     $(".selectpicker").selectpicker({
@@ -65,62 +63,10 @@ function eventsGrilla() {
     });
 
     //modal delete row
-    $(".trash-row").click(function() {
-        let allRows = $(".contenedor-fila");
-        allRows.removeClass("row-selected");
-        $(this).attr("src", "./images/eliminar-acti.svg");
-        let row = $(this).closest(".contenedor-fila");
-        /*$(this)
-            .prev()
-            .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
-        let chapterId = $(this).attr("chapter_id");
-        let program = $(this)
-            .closest(".contenedor-fila")
-            .attr("id");
-        let modalButtonDelete = $("#modal-button-delete");
-        modalButtonDelete.attr("chapter_id", chapterId);
-        modalButtonDelete.attr("program", program);
-        row.addClass("row-selected");
-        $(".modal-delete-row").modal("show");
-    });
 
     //Borrar un programa de la grilla
 
-    $("#modal-button-delete").click(function() {
-        let program = $(this).attr("program");
-        let chapter_id = $(this).attr("chapter_id");
-        $.ajax({
-            type: "POST",
-            url: "general-program/deleteChapter",
-            data: { chapter_id: chapter_id },
-            success: function(result) {
-                console.log(result);
-                result = JSON.parse(result);
-                if (result.code == 200) {
-                    $("#" + program).remove();
-                    $("#programacion-claro-" + chapter_id).html("");
-                    $(".modal-delete-row").modal("hide");
-                    $("#confirmation-delete").modal("show");
-                } else {
-                    console.log(result);
-
-                    alert("No se puede borrar");
-                    $(".modal-delete-row").modal("hide");
-                    $(".trash-row")
-                        .prev()
-                        .attr(
-                            "src",
-                            "./images/basic-icons/pencil-edit-teal.svg"
-                        );
-                }
-            }
-        });
-    });
-
     //CARGA DE LANDING Y GRILLA DE CLARO
-    $(".lan-claro").click(function() {
-        showlanding();
-    });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
     $(".switch-landing").click(function() {

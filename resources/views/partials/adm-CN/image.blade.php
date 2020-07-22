@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
+                            <span class="text-plus a-text-bold-brown-two"></span>
                         </div>
                     </div>
                 @endif
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Vertical_CanalClaro_20200702.jpg</span>
+                            <span class="text-plus a-text-bold-brown-two"></span>
                         </div>
                     </div>
                 @endif
@@ -189,7 +189,7 @@
         if(!empty($response["image_background_2"])){
             $countSynopsisSlider += 1;
         }
-        if(!empty($response["image_background_2"])){
+        if(!empty($response["image_background_3"])){
             $countSynopsisSlider += 1;
         }
     ?>
@@ -207,36 +207,67 @@
 
             <!--IMÁGENES DEL SLIDER EN SINOPSIS-->
 
-
-
             <div class="current-slide-container a-text-bold-teal mb-4">
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
             </div>
             <div class="synopsis-image-slider mx-auto">
-                <div class="bor thumbnail-image-program position-relative h-100" >
-                    <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
-                    <label for="image_background_1" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
-                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                    <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                    </label>
-                </div>
-                <div class="bor thumbnail-image-program position-relative h-100" >
-                    <input type="file" name="image_background_2" id="image_background_2" class="input-image-program d-none">
-                    <label for="image_background_2" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
-                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                    <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                    </label>
-                </div>
-                <div class="bor thumbnail-image-program position-relative h-100" >
-                    <input type="file" name="image_background_3" id="image_background_3" class="input-image-program d-none">
-                    <label for="image_background_3" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
-                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                    <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                    </label>
-                </div>
+                @if (empty($response['image_background_1']))
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
+                        <label for="image_background_1" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                        <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                        <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @else
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
+                        <label for="image_background_1" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/storage/'. $response['image_background_1'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @endif
+
+                @if (empty($response['image_background_2']))
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_2" id="image_background_2" class="input-image-program d-none">
+                        <label for="image_background_2" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @else
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_2" id="image_background_2" class="input-image-program d-none">
+                        <label for="image_background_2" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/storage/'. $response['image_background_2'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @endif
+                @if (empty($response['image_background_3']))
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_3" id="image_background_3" class="input-image-program d-none">
+                        <label for="image_background_3" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                                <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @else
+                    <div class="bor thumbnail-image-program position-relative h-100" >
+                        <input type="file" name="image_background_3" id="image_background_3" class="input-image-program d-none">
+                        <label for="image_background_3" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/storage/'. $response['image_background_3'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+                @endif
+
+
             </div>
             <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
             <?php
@@ -258,7 +289,7 @@
                 <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS </h3>
                 <div class="counter-images-program">
                     <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
-                    <span class="a-text-bold-tomato h3"> {{$countSynopsisSlider}}/4/9</span>
+                    <span class="a-text-bold-tomato h3"> {{$countSynopsis}}/4/9</span>
                 </div>
              </div>
 
@@ -283,7 +314,7 @@
                         <img src="{{$response['image_synopsis']}}" alt="" class="h-100 w-100 image-cover cursor-pointer prev-image-program thumbmail-image-program">
                     </label>
                 </div>
-                <span class="text-plus a-text-bold-brown-two">CaballerosDelZodiaco_Thumbnail_CanalClaro_20200702.jpg</span>
+                <span class="text-plus a-text-bold-brown-two"></span>
             </div>
             @endif
             <!--IMÁGENES COMPLEMENTARIAS DE LA SINOPSIS-->
@@ -312,7 +343,7 @@
                                 <img src="{{$response['image_synopsis_frame_1']}}" alt="add-photo" class="w-100 h-100 image-cover prev-image-program cursor-pointer thumbnail-image-program">
                             </label>
                         </div>
-                        <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_<br />CanalClaro_20200702.jpg</span>
+                        <span class="text-plus a-text-bold-brown-two "></span>
                     </div>
                     @endif
                     <!--IMAGEN SINOPSIS 2-->
@@ -338,7 +369,7 @@
                             </label>
                         </div>
 
-                        <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_<br />CanalClaro_20200702.jpg</span>
+                        <span class="text-plus a-text-bold-brown-two "></span>
                     </div>
                     @endif
                     <!--IMAGEN SINOPSIS 3-->
@@ -362,7 +393,7 @@
                                 <img src="{{$response['image_synopsis_frame_2']}}" alt="add-photo" class="w-100 h-100 cursor-pointer image-cover thumbnail-image-program prev-image-program">
                             </label>
                         </div>
-                        <span class="text-plus a-text-bold-brown-two ">CaballerosDelZodiaco_Thumbnail_<br />CanalClaro_20200702.jpg</span>
+                        <span class="text-plus a-text-bold-brown-two "></span>
                     </div>
                     @endif
                 </div>

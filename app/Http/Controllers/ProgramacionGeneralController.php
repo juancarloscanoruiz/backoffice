@@ -133,7 +133,6 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/getImagesChapter/" . $idimages
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
-
         if ($responseArray["code"] == 200) {
             return view('partials.adm-CN.image')->with('response', $responseArray["data"]);
         } else {
@@ -836,6 +835,9 @@ class ProgramacionGeneralController extends Controller
     }
 
 
+    /*
+        Guardamos las imágenes en laravel
+    */
     public function storeImages($id, $landing, $title, $file, $type)
     {
         $decrypted = Crypt::decrypt($id);
@@ -844,9 +846,14 @@ class ProgramacionGeneralController extends Controller
         return $path;
     }
 
+
+    /*
+    Actualizamos las rutas de las imágenes y mandamos llamar a la API
+    */
     public function updateImages(Request $request)
     {
 
+        $chapterId = Crypt::decrypt($request->input('id'));
         $pathSynopsis3 = "";
         $pathSynopsis2 = "";
         $pathSynopsis1 = "";
@@ -887,25 +894,53 @@ class ProgramacionGeneralController extends Controller
                 }
 
                 if ($request->file('image_background_1')) {
-                    $pathImageSlider1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider1");
-                    echo ($pathSynopsis3);
+                    $pathImageSlider1 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_1"), "slider1");
+                    echo ($pathImageSlider1);
                 }
-                if ($request->file('image_background_1')) {
-                    $pathImageSlider2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider2");
-                    echo ($pathSynopsis3);
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_2"), "slider2");
+                    echo ($pathImageSlider2);
                 }
-                if ($request->file('image_background_1')) {
-                    $$pathImageSlider3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "slider3");
-                    echo ($pathSynopsis3);
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_3"), "slider3");
+                    var_dump($pathImageSlider3);
                 }
                 break;
 
             default:
-                echo ("Otra");
+
                 break;
         }
 
-        //return redirect()->route('programacion_general');
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/CaptureImagesForChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $chapterId,
+                    "thumbnail_list_horizontal" => $pathImageHorizontal,
+                    "thumbnail_list_vertical" => $pathImageVertical,
+                    "image_synopsis" => $pathSynopsis,
+                    "image_synopsis_frame_1" => $pathSynopsis1,
+                    "image_synopsis_frame_2" => $pathSynopsis2,
+                    "image_synopsis_frame_3" => $pathSynopsis3,
+                    "image_background_1" => $pathImageSlider1,
+                    "image_background_2" => $pathImageSlider2,
+                    "image_background_3" => $pathImageSlider3
+                ]
+            )]
+        );
+
+
+        $respuesta =  json_decode($response->getBody());
+        if ($respuesta->code == 200) {
+            return redirect()->route('programacion_general');
+        }
+
         /*$decrypted = Crypt::decrypt($request->input('id'));
         $extension = $request->file('image-synopsis-3')->extension();
         $request->file('image-synopsis-3')->storeAs('public/canal-claro/synopsis-3', str_replace(" ", "", $request->input('title')) . $decrypted . "_Sinopsis3" . "." . $extension);*/

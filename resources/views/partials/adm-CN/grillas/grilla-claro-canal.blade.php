@@ -40,7 +40,7 @@ $data_for_new_entry = json_encode([
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-   
+
 <style>
 .bootstrap-select > .dropdown-toggle {
     position: relative;
@@ -50,7 +50,7 @@ $data_for_new_entry = json_encode([
     white-space: nowrap;
     overflow: auto;
     height: 70px;
-  
+
 }
 .bootstrap-select .btn:not(.bs-placeholder) {
   word-spacing: 100px;
@@ -315,7 +315,7 @@ $data_for_new_entry = json_encode([
                     <?php $programs=$grill[$indexGrill]->programs?>
                     @for ($indexPrograms = 0; $indexPrograms < count($programs); $indexPrograms++)
 
-                    <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->program_id }}">
+                    <div class="contenedor-fila" id="programacion-claro-{{$programs[$indexPrograms]->chapter_id }}">
                         <!--ACCIONES-->
                     <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-{{$programs[$indexPrograms]->chapter_id }}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash" chapter_id="{{$programs[$indexPrograms]->chapter_id}}"></div>
                         <!--ESTADO-->

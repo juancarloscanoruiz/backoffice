@@ -5,6 +5,8 @@ import "bootstrap";
 //VENDOR
 import Cleave from "cleave.js";
 
+import { showlanding } from "./UI/UI.js";
+
 import "slick-carousel/slick/slick";
 import "bootstrap-select";
 
@@ -50,7 +52,59 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    $("#general-programming").on("click", "#agregar-canal-claro", function() {
+    //Div en donde hacemos el intercambio de grillas de lso diferentes canales
+    let divGrilla = $("#general-programming");
+
+    //Borrar un programa de la grilla
+    divGrilla.on("click", "#modal-button-delete", function() {
+        let program = $(this).attr("program");
+        let chapter_id = $(this).attr("chapter_id");
+        $.ajax({
+            type: "POST",
+            url: "general-program/deleteChapter",
+            data: { chapter_id: chapter_id },
+            success: function(result) {
+                console.log(result);
+                result = JSON.parse(result);
+                if (result.code == 200) {
+                    $("#" + program).remove();
+                    $("#programacion-claro-" + chapter_id).html("");
+                    $(".modal-delete-row").modal("hide");
+                    $("#confirmation-delete").modal("show");
+                } else {
+                    alert("No se puede borrar");
+                    $(".modal-delete-row").modal("hide");
+                    $(".trash-row")
+                        .prev()
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
+                }
+            }
+        });
+    });
+
+    divGrilla.on("click", ".trash-row", function() {
+        let allRows = $(".contenedor-fila");
+        allRows.removeClass("row-selected");
+        $(this).attr("src", "./images/eliminar-acti.svg");
+        let row = $(this).closest(".contenedor-fila");
+        /*$(this)
+            .prev()
+            .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
+        let chapterId = $(this).attr("chapter_id");
+        let program = $(this)
+            .closest(".contenedor-fila")
+            .attr("id");
+        let modalButtonDelete = $("#modal-button-delete");
+        modalButtonDelete.attr("chapter_id", chapterId);
+        modalButtonDelete.attr("program", program);
+        row.addClass("row-selected");
+        $(".modal-delete-row").modal("show");
+    });
+
+    divGrilla.on("click", "#agregar-canal-claro", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
@@ -66,7 +120,7 @@ $(document).ready(function() {
 
     eventsGrilla();
 
-    $("#subir-archivos").click(function() {
+    divGrilla.on("click", "#subir-archivos", function() {
         let disabled = $("#inp_programing_claro_canal").prop("disabled");
         if (disabled == true) {
             $(".modal-information").modal("show");
@@ -94,7 +148,7 @@ $(document).ready(function() {
     $(".synopsis-image-slider").slick({
         slidesToShow: 1,
         dots: true,
-        initialSlide: 1,
+        initialSlide: 0,
         infinite: false,
         arrows: true,
         prevArrow:
@@ -213,8 +267,12 @@ $(document).ready(function() {
     });
     //CHANGE TO LANDING
 
+    divGrilla.on("click", ".lan-claro", function() {
+        showlanding();
+    });
+
     //CHANGE TO grilla claro
-    $(".gril-claro").click(function(event) {
+    divGrilla.on("click", ".gril-claro", function(event) {
         $.ajax({
             type: "POST",
             url: "view",
@@ -228,7 +286,7 @@ $(document).ready(function() {
                 $("body").append(loader);
             },
             success: function(result) {
-                console.log("grilla de canal claro");
+                console.log("grilla-canal-claro");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();

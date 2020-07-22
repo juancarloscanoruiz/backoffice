@@ -105061,20 +105061,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var cleave_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cleave.js */ "./node_modules/cleave.js/dist/cleave-esm.js");
-/* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! slick-carousel/slick/slick */ "./node_modules/slick-carousel/slick/slick.js");
-/* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var bootstrap_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap-select */ "./node_modules/bootstrap-select/dist/js/bootstrap-select.js");
-/* harmony import */ var bootstrap_select__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_select__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./operaciones_grilla */ "./resources/js/operaciones_grilla.js");
-/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
-/* harmony import */ var _nav_nav_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./nav/nav.js */ "./resources/js/nav/nav.js");
-/* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
+/* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
+/* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! slick-carousel/slick/slick */ "./node_modules/slick-carousel/slick/slick.js");
+/* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var bootstrap_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap-select */ "./node_modules/bootstrap-select/dist/js/bootstrap-select.js");
+/* harmony import */ var bootstrap_select__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap_select__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
+/* harmony import */ var _nav_nav_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./nav/nav.js */ "./resources/js/nav/nav.js");
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./form/form.js */ "./resources/js/form/form.js");
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/user.js */ "./resources/js/services/user.js");
 //JQUERY
  //BOOTSTRAP
 
  //VENDOR
+
 
 
 
@@ -105094,7 +105095,53 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").on("click", "#agregar-canal-claro", function () {
+  //Div en donde hacemos el intercambio de grillas de lso diferentes canales
+  var divGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming"); //Borrar un programa de la grilla
+
+  divGrilla.on("click", "#modal-button-delete", function () {
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "general-program/deleteChapter",
+      data: {
+        chapter_id: chapter_id
+      },
+      success: function success(result) {
+        console.log(result);
+        result = JSON.parse(result);
+
+        if (result.code == 200) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programacion-claro-" + chapter_id).html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#confirmation-delete").modal("show");
+        } else {
+          alert("No se puede borrar");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+        }
+      }
+    });
+  });
+  divGrilla.on("click", ".trash-row", function () {
+    var allRows = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contenedor-fila");
+    allRows.removeClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("src", "./images/eliminar-acti.svg");
+    var row = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila");
+    /*$(this)
+        .prev()
+        .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
+
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila").attr("id");
+    var modalButtonDelete = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete");
+    modalButtonDelete.attr("chapter_id", chapterId);
+    modalButtonDelete.attr("program", program);
+    row.addClass("row-selected");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("show");
+  });
+  divGrilla.on("click", "#agregar-canal-claro", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "general-program/newRow",
@@ -105103,12 +105150,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       },
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").append(result);
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
       }
     });
   });
-  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#subir-archivos").click(function () {
+  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
+  divGrilla.on("click", "#subir-archivos", function () {
     var disabled = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing_claro_canal").prop("disabled");
 
     if (disabled == true) {
@@ -105136,7 +105183,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-image-slider").slick({
     slidesToShow: 1,
     dots: true,
-    initialSlide: 1,
+    initialSlide: 0,
     infinite: false,
     arrows: true,
     prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
@@ -105172,7 +105219,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     console.log(aa);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   });
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showUserFront"])(); //GET USER
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showUserFront"])(); //GET USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".view-user-icon", function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
@@ -105185,7 +105232,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav-select");
   }); //RENDER PAGE TO CREATE A BACKOFFICE'S USER
 
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showFormCreateUser"])(); //REGISTER A USER
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showFormCreateUser"])(); //REGISTER A USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".register-user-button", function () {
     var rol = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-rol-select").attr("id_rol");
@@ -105200,15 +105247,15 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     console.log(username);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-username-bo").text(username);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-user").modal("show");
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["deleteUserUI"])(id);
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["deleteUserUI"])(id);
   }); //BACK TO THE FRONTPAGE USERS' PAGE
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".closeViewFront", function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersFront"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showPageUsersFront"])();
   }); //BACK TO BACKOFFICE USERS' PAGE
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".closeViewBO", function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersBO"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showPageUsersBO"])();
   }); //UPDATE CLARO NETWORKS USER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cambio").on("click", ".edit-user-front", function () {
@@ -105221,9 +105268,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().attr("_id");
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_10__["getUserToUpdate"])(id);
   }); //CHANGE TO LANDING
-  //CHANGE TO grilla claro
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-claro").click(function (event) {
+  divGrilla.on("click", ".lan-claro", function () {
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showlanding"])();
+  }); //CHANGE TO grilla claro
+
+  divGrilla.on("click", ".gril-claro", function (event) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "view",
@@ -105235,10 +105285,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
       },
       success: function success(result) {
-        console.log("grilla de canal claro");
+        console.log("grilla-canal-claro");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     });
@@ -105255,7 +105305,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
       }
     });
   }); // CHANGE TO LANDING CINEMA
@@ -105285,7 +105335,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_5__["eventsGrilla"])();
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
       }
     });
   }); //CHANGE TO LANDING CONCERT
@@ -105431,7 +105481,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     }
   }); //NAVBAR PROGRAMACIÓN GENERAL
 
-  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
+  Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["createNavbarProgramacionGeneral"])(); //END NAVBAR PROGRAMACIÓN GENERAL
 
   /* LOGIN */
 
@@ -105473,7 +105523,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".bn-nav").click(function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("id");
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showLandingSchedule"])(id);
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showLandingSchedule"])(id);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-nav").click(function () {
     var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
@@ -105482,24 +105532,24 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   /* Show the form to create a new user */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-users-section").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersBO"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showPageUsersBO"])();
   });
   /* SHOW VIEW USERS FRONT */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-users-front-section").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showPageUsersFront"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showPageUsersFront"])();
   });
   /* SHOW VIEW ADMIN SITE */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".admin-site-button").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_8__["showAdminSite"])();
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showAdminSite"])();
   });
   /* Previsualizar contenido en diferentes tamaños */
 
   var prevImage = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image");
   prevImage.click(function () {
     var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("iframe");
-    Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_6__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+    Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_7__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
   });
   /* Nav de administrador */
 
@@ -105509,7 +105559,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   adminContent.hide();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".admin-content:first").show();
   adminNavItem.click(function () {
-    Object(_nav_nav_js__WEBPACK_IMPORTED_MODULE_7__["showContentNav"])(adminContent, jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), adminNavItem, activeClass);
+    Object(_nav_nav_js__WEBPACK_IMPORTED_MODULE_8__["showContentNav"])(adminContent, jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), adminNavItem, activeClass);
   });
   /* End Navigation*/
 
@@ -105724,7 +105774,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
-
 function eventsGrilla() {
   //selectpicker
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
@@ -105750,56 +105799,9 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
     }
   }); //modal delete row
+  //Borrar un programa de la grilla
+  //CARGA DE LANDING Y GRILLA DE CLARO
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").click(function () {
-    var allRows = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contenedor-fila");
-    allRows.removeClass("row-selected");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("src", "./images/eliminar-acti.svg");
-    var row = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila");
-    /*$(this)
-        .prev()
-        .attr("src", "./images/basic-icons/pencil-edit-des.svg");*/
-
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-fila").attr("id");
-    var modalButtonDelete = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete");
-    modalButtonDelete.attr("chapter_id", chapterId);
-    modalButtonDelete.attr("program", program);
-    row.addClass("row-selected");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("show");
-  }); //Borrar un programa de la grilla
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-button-delete").click(function () {
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "general-program/deleteChapter",
-      data: {
-        chapter_id: chapter_id
-      },
-      success: function success(result) {
-        console.log(result);
-        result = JSON.parse(result);
-
-        if (result.code == 200) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).remove();
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programacion-claro-" + chapter_id).html("");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#confirmation-delete").modal("show");
-        } else {
-          console.log(result);
-          alert("No se puede borrar");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-row").modal("hide");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".trash-row").prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
-        }
-      }
-    });
-  }); //CARGA DE LANDING Y GRILLA DE CLARO
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanding"])();
-  });
   /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
