@@ -123,7 +123,6 @@
                                     <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo"/>
                                 <span class="a-text-bold-warm text-plus mt-3">472px X 295px</span>
                                 <img src="{{asset('/images/synopsis/image-synopsis-horizontal.png')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-
                                 </label>
                             </div>
                         </div>
@@ -133,8 +132,9 @@
                         <div class="centro position-relative mb-3">
                             <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
                                 <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
-                                <label for="imageThumb-horizontal" class="mb-0">
-                                    <img src="{{$response['thumbnail_list_horizontal']}}" alt="" class="image-cover thumbnail-image-program prev-image-program w-100 h-100">
+                                <label for="imageThumb-horizontal" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                                    <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
+                                    <img src="{{asset('/storage/'. $response['thumbnail_list_horizontal'])}}" alt="" class="image-cover thumbnail-image-program prev-image-program w-100 h-100">
                                 </label>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
                                 <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
                                 <label for="imageThumb-vertical" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
-                                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo"/>
+                                    <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo cursor-pointer"/>
                                 <span class="a-text-bold-warm text-plus mt-3">295px X 472px</span>
                                 <img src="{{asset('/images/synopsis/image-synopsis-horizontal.png')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                 </label>
@@ -165,8 +165,9 @@
                         <div class="centro mb-3">
                             <div class="bor position-relative mx-auto thumbnail-image-program" id="thumbnail-home-vertical">
                                 <input type="file" name="image-vertical" id="imageThumb-vertical" class="input-image-program d-none">
-                                <label for="imageThumb-vertical" class="mb-0 d-flex align-items-center justify-content-center">
-                                    <img src="{{$response['thumbnail_list_vertical']}}" alt="" class="w-100 h-100 thumbnail-image-program prev-image-program cursor-pointer image-cover">
+                                <label for="imageThumb-vertical" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                                    <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo"  class="add-photo"/>
+                                    <img src="{{asset('/storage/'. $response['thumbnail_list_vertical'])}}" alt="" class="w-100 h-100 thumbnail-image-program prev-image-program cursor-pointer image-cover">
                                 </label>
                             </div>
                         </div>
@@ -224,7 +225,7 @@
                     <div class="bor thumbnail-image-program position-relative h-100" >
                         <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
                         <label for="image_background_1" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
                             <img src="{{asset('/storage/'. $response['image_background_1'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
@@ -243,7 +244,7 @@
                     <div class="bor thumbnail-image-program position-relative h-100" >
                         <input type="file" name="image_background_2" id="image_background_2" class="input-image-program d-none">
                         <label for="image_background_2" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
                             <img src="{{asset('/storage/'. $response['image_background_2'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
@@ -261,7 +262,7 @@
                     <div class="bor thumbnail-image-program position-relative h-100" >
                         <input type="file" name="image_background_3" id="image_background_3" class="input-image-program d-none">
                         <label for="image_background_3" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                            <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
+                            <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
                             <img src="{{asset('/storage/'. $response['image_background_3'])}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
@@ -310,8 +311,8 @@
                 <div class="bor mb-2 thumbnail-image-program position-relative" id="image_synopsis">
                     <input type="file" name="image-synopsis" id="imageThumb-synopsis" class="input-image-program d-none" />
                     <label for="imageThumb-synopsis" class="mb-0 d-flex justify-content-center align-items-center h-100 flex-column">
-                        <img src="../images/basic-icons/plus.svg" alt="add-photo" class="add-photo">
-                        <img src="{{$response['image_synopsis']}}" alt="" class="h-100 w-100 image-cover cursor-pointer prev-image-program thumbmail-image-program">
+                        <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
+                        <img src="{{asset('/storage/'. $response['image_synopsis'])}}" alt="" class="h-100 w-100 image-cover cursor-pointer prev-image-program thumbmail-image-program">
                     </label>
                 </div>
                 <span class="text-plus a-text-bold-brown-two"></span>
@@ -339,8 +340,8 @@
                         <div class="bor thumbnail-image-program image-synopsis-frame position-relative mb-3">
                             <input type="file" name="image-synopsis-1" id="imageThumb-synopsis-1" class="d-none input-image-program">
                             <label for="imageThumb-synopsis-1" class="">
-                                <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo" class="cursor-pointer add-photo">
-                                <img src="{{$response['image_synopsis_frame_1']}}" alt="add-photo" class="w-100 h-100 image-cover prev-image-program cursor-pointer thumbnail-image-program">
+                                <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
+                                <img src="{{asset('/storage/'. $response['image_synopsis_frame_1'])}}" alt="add-photo" class="w-100 h-100 image-cover prev-image-program cursor-pointer thumbnail-image-program">
                             </label>
                         </div>
                         <span class="text-plus a-text-bold-brown-two "></span>
@@ -352,7 +353,7 @@
                         <div class="bor image-synopsis-frame thumbnail-image-program position-relative">
                             <input type="file" name="image-synopsis-2" id="imageThumb-synopsis-2" class="input-image-program d-none">
                             <label for="imageThumb-synopsis-2" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
-                                <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class="add-photo"/>
+                                <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
                                 <span class="a-text-bold-warm text-plus mt-3">375px X 215px</span>
                                 <img src="{{asset('/images/synopsis/image-synopsis-horizontal.png')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
 
@@ -364,8 +365,8 @@
                         <div class="mb-3 bor thumbnail-image-program image-synopsis-frame position-relative">
                             <input type="file" name="image-synopsis-2" id="imageThumb-synopsis-2" class="input-image-program d-none">
                             <label for="imageThumb-synopsis-2" class="">
-                                <img src="../images/basic-icons/plus.svg" alt="add-photo" class="cursor-pointer add-photo">
-                                <img src="{{$response['image_synopsis_frame_2']}}" alt="add-photo" class="w-100 h-100 prev-image-program cursor-pointer image-cover thumbnail-image-program">
+                                <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
+                                <img src="{{asset('/storage/'. $response['image_synopsis_frame_2'])}}" alt="add-photo" class="w-100 h-100 prev-image-program cursor-pointer image-cover thumbnail-image-program">
                             </label>
                         </div>
 
@@ -389,8 +390,8 @@
                         <div class="mb-3 bor thumbnail-image-program image-synopsis-frame position-relative">
                             <input type="file" name="image-synopsis-3" id="imageThumb-synopsis-3" class="input-image-program d-none">
                             <label for="imageThumb-synopsis-3" class="">
-                                <img src="../images/basic-icons/plus.svg" alt="add-photo" class="cursor-pointer add-photo">
-                                <img src="{{$response['image_synopsis_frame_2']}}" alt="add-photo" class="w-100 h-100 cursor-pointer image-cover thumbnail-image-program prev-image-program">
+                                <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="add-photo" class="add-photo cursor-pointer"/>
+                                <img src="{{asset('/storage/'. $response['image_synopsis_frame_3'])}}" alt="add-photo" class="w-100 h-100 cursor-pointer image-cover thumbnail-image-program prev-image-program">
                             </label>
                         </div>
                         <span class="text-plus a-text-bold-brown-two "></span>

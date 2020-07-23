@@ -291,24 +291,10 @@ $(document).ready(function() {
     });
     //CHANGE TO grilla cinema
     $(".gril-cinema").click(function(event) {
-        console.log("Grilla claro cinema");
         $.ajax({
             type: "POST",
             url: "view",
             data: { view: "grilla-claro-cinema-button" },
-            success: function(result) {
-                $("#general-programming").html("");
-                $("#general-programming").html(result);
-                eventsGrilla();
-            }
-        });
-    });
-    // CHANGE TO LANDING CINEMA
-    $(".lan-cinema").click(function(event) {
-        $.ajax({
-            type: "POST",
-            url: "view",
-            data: { view: "lan-cinema" },
             beforeSend: function() {
                 const loader = `
                 <div class="loader-view-container">
@@ -318,10 +304,8 @@ $(document).ready(function() {
                 $("body").append(loader);
             },
             success: function(result) {
-                console.log("grilla de claro cinema");
-
-                $("#bodymenu").html("");
-                $("#bodymenu").html(result);
+                $("#general-programming").html("");
+                $("#general-programming").html(result);
                 eventsGrilla();
                 $(".loader-view-container").remove();
             }
@@ -345,8 +329,6 @@ $(document).ready(function() {
             },
 
             success: function(result) {
-                console.log(result);
-
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -354,18 +336,7 @@ $(document).ready(function() {
             }
         });
     });
-    //CHANGE TO LANDING CONCERT
-    $(".lan-concert").click(function(event) {
-        $.ajax({
-            type: "POST",
-            url: "view",
-            data: { view: "lan-concert" },
-            success: function(result) {
-                $("#bodymenu").html("");
-                $("#bodymenu").html(result);
-            }
-        });
-    });
+
     //CHANGE TO grilla home
     $(".gril-home").click(function(event) {
         $.ajax({

@@ -141,6 +141,7 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/getImagesChapter/" . $idimages
         );
         $responseArray = json_decode($response->getBody()->getContents(), true);
+        //var_dump($responseArray);
         if ($responseArray["code"] == 200) {
             return view('partials.adm-CN.image')->with('response', $responseArray["data"]);
         } else {
@@ -602,7 +603,7 @@ class ProgramacionGeneralController extends Controller
             <div class='contenedor-columna centro editable-column' id='alerta-$chapter_id'></div>
             <!--PROGRAM TITLE ORIGINAL-->
             <div class='contenedor-columna selectable-column centro centro editable-column' chapter_id='" . $chapter_id . "' key='title' rel='program-title-original' id='title-$chapter_id'>
-                <textarea id='program-title' name='' class='editable-attribute program-original edit-cell'></textarea>
+                <textarea id='program-title' name='' class='editable-attribute program-original edit-cell' placeholder='Título original...'></textarea>
             </div>
             <!--ESTABLECER EN LANDING-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='establecer-landing' chapter_id='" . $chapter_id . "' key='in_landing'>
@@ -714,19 +715,19 @@ class ProgramacionGeneralController extends Controller
             <!--Schedule item long date-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-date' chapter_id='$chapter_id' key='day'>
                 <div class='schedule-date'>
-                    <input type='text' name='' class='editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo' value=''>
+                    <input type='text' name='' class='editable-attribute table-input schedule-date-input text-center a-text-regular-brownishtwo' value='' placeholder='DD-MM-YYYY'>
                 </div>
             </div>
             <!--Schedule Item Long Time (GMT)-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='schedule-item-time' chapter_id='" . $chapter_id . "' key='programing'>
                 <div class='schedule-date'>
-                    <input type='text' class='editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo' value=''>
+                    <input type='text' class='editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo' value='' placeholder='HH:MM'>
                 </div>
             </div>
             <!--Estimated Schedule Item Duration-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='estimated-duration' chapter_id='$chapter_id' key='duration'>
                 <div class='schedule-date'>
-                    <input type='text' class='editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo' value=''>
+                    <input type='text' class='editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo' value='' placeholder='HH:MM:SS'>
                 </div>
             </div>
             <!--Program Year Produced-->
@@ -754,15 +755,15 @@ class ProgramacionGeneralController extends Controller
             <!--Program title alternate (subtítulo de la película o nombre del capítulo
             de la serie-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-title-alternate' chapter_id='" . $chapter_id . "' key='subtitle'>
-                <textarea class='program-original edit-cell' id='lb-subtitle-$chapter_id'></textarea>
+                <textarea class='program-original edit-cell' id='lb-subtitle-$chapter_id' placeholder='Título alternativo...'></textarea>
             </div>
             <!--Program episode season-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "' key='season'>
-                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
+                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Temporada...'/>
             </div>
             <!--Program episode number-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key='program_episode_number'>
-                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' />
+                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Episodio...'/>
             </div>
             <!--Synopsis-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key='synopsis'>
@@ -774,7 +775,7 @@ class ProgramacionGeneralController extends Controller
             <!--Rating-->
             <div class='contenedor-columna selectable-column centro' rel='rating-code' key='rating' chapter_id='" . $chapter_id . "'>
                 <div class='schedule-date'>
-                    <input class='editable-attribute text-center table-input a-text-regular-brownishtwo' value=''>
+                    <input class='editable-attribute text-center table-input a-text-regular-brownishtwo' value='' placeholder='Clasificación...'>
                 </div>
             </div>
             <!--SUBBED-->
@@ -895,7 +896,6 @@ class ProgramacionGeneralController extends Controller
                 }
                 if ($request->file('image-synopsis-3')) {
                     $pathSynopsis3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
-                    echo ($pathSynopsis3);
                 }
 
                 if ($request->file('image_background_1')) {

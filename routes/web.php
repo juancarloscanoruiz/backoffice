@@ -50,13 +50,17 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-//RUTA PARA Programacion
-Route::get('/general-program', "ProgramacionGeneralController@index")->name('programacion_general');
-Route::post('/general-program/captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
-Route::post('/general-program/newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
-Route::post('/general-program/updateImages', "ProgramacionGeneralController@updateImages")->name('updateImages');
-Route::post('/general-program/filterDates', "ProgramacionGeneralController@filterDates")->name('filterDates');
-Route::post('/general-program/deleteChapter', "ProgramacionGeneralController@deleteChapter")->name('deleteChapter');
+//Ruta para programación general
+
+Route::group(['prefix' => 'general-program', "middleware" => "session_user"], function () {
+    Route::get('/', "ProgramacionGeneralController@index")->name('programacion_general');
+    Route::post('captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
+    Route::post('newRow', "ProgramacionGeneralController@newRow")->name('programacion_general.newRow');
+    Route::post('updateImages', "ProgramacionGeneralController@updateImages")->name('updateImages');
+    Route::post('filterDates', "ProgramacionGeneralController@filterDates")->name('filterDates');
+    Route::post('deleteChapter', "ProgramacionGeneralController@deleteChapter")->name('deleteChapter');
+});
+
 //RUTAS PARA LANDING
 Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
 Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');

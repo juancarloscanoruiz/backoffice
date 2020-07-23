@@ -119,8 +119,8 @@ $data_for_new_entry = json_encode([
         <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{$edited_for}} (<label class="zona ">{{$rol_user_edit}}</label>)</label></span>
     </div>
     <div class="d-flex float-right mr-5 ">
-        <button class="btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
-        <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-claro" id="btn-landing"><span>Landing</span></button>
+        <button class="btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus mr-3 gril-cinema" id="btn-grilla"><span>Grilla</span></button>
+        <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-cinema" id="btn-landing"><span>Landing</span></button>
     </div>
     <div class="clearfix"></div>
 </div>
