@@ -72321,11 +72321,10 @@ function showDescriptions() {
     jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borra1").css("display", "none");
   }); //fin
 }
+/*
+    Función que nos permite crear la navbar para previsualizar los diferentes landings
+*/
 
-function grilla() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#grilla").replaceWith();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").load("Progra_general.php");
-}
 
 function createNavbarProgramacionGeneral() {
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-content").hide();
@@ -72384,15 +72383,6 @@ function createNavbarProgramacionGeneral() {
     if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("arrow-progra-left")) {
       currentNavbarItem.prev().addClass("navbar-progra-active");
       changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      /*if (currentNavbarItem.prev().hasClass("navbar-canal-claro")) {
-      changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-sinopsis")) {
-      changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-programacion")) {
-      changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-home")) {
-      changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      }*/
 
       if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") == 1) {
         arrowLeft.css({
@@ -72408,15 +72398,6 @@ function createNavbarProgramacionGeneral() {
     } else {
       currentNavbarItem.next().addClass("navbar-progra-active");
       changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      /*if (currentNavbarItem.next().hasClass("navbar-canal-claro")) {
-      changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-sinopsis")) {
-      changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-programacion")) {
-      changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-home")) {
-      changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      }*/
 
       if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") == 4) {
         arrowRight.css({
@@ -72436,7 +72417,8 @@ function createNavbarProgramacionGeneral() {
 function changeContentProgramacionGeneral(nameSection) {
   jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-content").hide();
   jquery__WEBPACK_IMPORTED_MODULE_2___default()("#" + nameSection).show();
-}
+} //Función para mostrar la vista principal de edición de landings y programación general
+
 
 function showAdminSite() {
   jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
@@ -72450,7 +72432,8 @@ function showAdminSite() {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result);
     }
   });
-}
+} //Función para mostrar los usuarios que se encuentran registrados en el backoffice
+
 
 function showPageUsersBO() {
   jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
@@ -72484,10 +72467,12 @@ function showlanding() {
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
+
+      createNavbarProgramacionGeneral();
     }
   });
-} //CHANGE TO LANDING CONCERT
+} //Mandamos traer con ajax la vista de previsualizacion de concert channel
 
 
 function showlanconcert() {
@@ -72498,16 +72483,22 @@ function showlanconcert() {
       view: "lan-concert"
     },
     beforeSend: function beforeSend() {
-      var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            ";
+      //Insertamos el loader
+      var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            "; //Insertamos el loader en el body
+
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
     },
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result); //Quitamos el loeader
+
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
+
+      createNavbarProgramacionGeneral();
     }
   });
-}
+} //Función para mostrar la vista de crear un usuario del backoffice
+
 
 function showFormCreateUser() {
   jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").on("click", "#btnAlta", function (event) {
@@ -72521,7 +72512,8 @@ function showFormCreateUser() {
         jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html("");
         jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result).promise().done(function () {
           changeImagesRolPermissions();
-          var inputCorreo = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".input-email");
+          var inputCorreo = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".input-email"); //Validamos el formato del email
+
           inputCorreo.keyup(function () {
             var correoValido = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".warning-email-text");
             var imagenError = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".error");
@@ -72633,7 +72625,6 @@ function showLandingSchedule(id) {
       break;
 
     case "grilla-concert-channel-button":
-      //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         type: "POST",
         url: "view",
@@ -72657,7 +72648,6 @@ function showLandingSchedule(id) {
       break;
 
     case "grilla-claro-cinema-button":
-      //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         type: "POST",
         url: "view",
@@ -72680,7 +72670,6 @@ function showLandingSchedule(id) {
       break;
 
     case "grilla-home-button":
-      //  generalSchedule.load("./views/grillas/grilla-home.php");
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         type: "POST",
         url: "view",
@@ -73186,7 +73175,9 @@ function eventsGrilla() {
 
         eventsGrilla(); //Quitamos el loader
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
+
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["createNavbarProgramacionGeneral"])();
       }
     });
   });

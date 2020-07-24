@@ -182,11 +182,9 @@ function showDescriptions() {
     ); //fin
 }
 
-function grilla() {
-    $("#grilla").replaceWith();
-    $("#bodymenu").load("Progra_general.php");
-}
-
+/*
+    Función que nos permite crear la navbar para previsualizar los diferentes landings
+*/
 function createNavbarProgramacionGeneral() {
     $(".navbar-progra-content").hide();
     $(".navbar-progra-content:first").show();
@@ -249,15 +247,6 @@ function createNavbarProgramacionGeneral() {
             changeContentProgramacionGeneral(
                 currentNavbarItem.prev().attr("rel")
             );
-            /*if (currentNavbarItem.prev().hasClass("navbar-canal-claro")) {
-        changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-sinopsis")) {
-        changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-programacion")) {
-        changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      } else if (currentNavbarItem.prev().hasClass("navbar-home")) {
-        changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
-      }*/
             if ($(".navbar-progra-active").attr("navbar-index") == 1) {
                 arrowLeft.css({
                     pointerEvents: "none",
@@ -274,15 +263,6 @@ function createNavbarProgramacionGeneral() {
             changeContentProgramacionGeneral(
                 currentNavbarItem.next().attr("rel")
             );
-            /*if (currentNavbarItem.next().hasClass("navbar-canal-claro")) {
-        changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-sinopsis")) {
-        changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-programacion")) {
-        changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      } else if (currentNavbarItem.next().hasClass("navbar-home")) {
-        changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
-      }*/
             if ($(".navbar-progra-active").attr("navbar-index") == 4) {
                 arrowRight.css({
                     pointerEvents: "none",
@@ -302,6 +282,7 @@ function changeContentProgramacionGeneral(nameSection) {
     $("#" + nameSection).show();
 }
 
+//Función para mostrar la vista principal de edición de landings y programación general
 function showAdminSite() {
     $.ajax({
         type: "POST",
@@ -314,6 +295,7 @@ function showAdminSite() {
     });
 }
 
+//Función para mostrar los usuarios que se encuentran registrados en el backoffice
 function showPageUsersBO() {
     $.ajax({
         type: "POST",
@@ -347,31 +329,39 @@ function showlanding() {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
             $(".loader-view-container").remove();
+            //Volvemos a llamar la función para hacer que funcione la navbar de landing
+            createNavbarProgramacionGeneral();
         }
     });
 }
-   //CHANGE TO LANDING CONCERT
-   function showlanconcert() {
+//Mandamos traer con ajax la vista de previsualizacion de concert channel
+function showlanconcert() {
     $.ajax({
         type: "POST",
         url: "view",
         data: { view: "lan-concert" },
         beforeSend: function() {
+            //Insertamos el loader
             const loader = `
             <div class="loader-view-container">
               <img src="./images/loader.gif" class="loader" alt="">
             </div>
             `;
+            //Insertamos el loader en el body
             $("body").append(loader);
         },
         success: function(result) {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
+            //Quitamos el loeader
             $(".loader-view-container").remove();
+            //Volvemos a llamar la función para hacer que funcione la navbar de landing
+            createNavbarProgramacionGeneral();
         }
     });
 }
 
+//Función para mostrar la vista de crear un usuario del backoffice
 function showFormCreateUser() {
     $("#cambio").on("click", "#btnAlta", function(event) {
         $.ajax({
@@ -386,6 +376,7 @@ function showFormCreateUser() {
                     .done(function() {
                         changeImagesRolPermissions();
                         const inputCorreo = $(".input-email");
+                        //Validamos el formato del email
                         inputCorreo.keyup(function() {
                             const correoValido = $(".warning-email-text");
                             const imagenError = $(".error");
@@ -498,7 +489,6 @@ function showLandingSchedule(id) {
             break;
 
         case "grilla-concert-channel-button":
-            //   generalSchedule.load("./views/grillas/grilla-concert-channel.php");
             $.ajax({
                 type: "POST",
                 url: "view",
@@ -511,24 +501,21 @@ function showLandingSchedule(id) {
                     `;
                     $("body").append(loader);
                 },
-               
+
                 success: function(result) {
-                   
                     console.log("grilla concert");
-                 
+
                     $("#general-programming").html("");
-                    $("#general-programming").html(result)
+                    $("#general-programming").html(result);
                     $(".loader-view-container").remove();
                     $(".litepicker").remove();
                     $(".date-modal").remove();
                     eventsGrilla();
-                     
                 }
             });
             break;
 
         case "grilla-claro-cinema-button":
-            //  generalSchedule.load("./views/grillas/grilla-claro-cinema.php");
             $.ajax({
                 type: "POST",
                 url: "view",
@@ -543,9 +530,8 @@ function showLandingSchedule(id) {
                 },
                 success: function(result) {
                     $("#general-programming").html("");
-                    $("#general-programming")
-                        .html(result)
-                        $(".loader-view-container").remove();
+                    $("#general-programming").html(result);
+                    $(".loader-view-container").remove();
                     $(".litepicker").remove();
                     $(".date-modal").remove();
                     eventsGrilla();
@@ -554,7 +540,6 @@ function showLandingSchedule(id) {
             break;
 
         case "grilla-home-button":
-            //  generalSchedule.load("./views/grillas/grilla-home.php");
             $.ajax({
                 type: "POST",
                 url: "view",

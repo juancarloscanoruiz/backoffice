@@ -20,7 +20,11 @@ import {
 } from "./config/config.js";
 
 //Métodos para mostrar las vistas de "Landing" o "Grilla"
-import { showlanding, showlanconcert } from "./UI/UI.js";
+import {
+    showlanding,
+    showlanconcert,
+    createNavbarProgramacionGeneral
+} from "./UI/UI.js";
 
 function eventsGrilla() {
     //selectpicker para el campo de género en un programa
@@ -139,6 +143,8 @@ function eventsGrilla() {
                 eventsGrilla();
                 //Quitamos el loader
                 $(".loader-view-container").remove();
+                //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
+                createNavbarProgramacionGeneral();
             }
         });
     });
@@ -149,6 +155,8 @@ function eventsGrilla() {
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
         );
+
+        //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
         if ($(this).val() == 1) {
             landingOptionsChecks.css("pointer-events", "all");
             currentColumn
@@ -273,6 +281,7 @@ function eventsGrilla() {
                 );
                 $("#modal-container").css("display", "block");
             },
+            //Evento que utilizamos cada vez que el calendario se oculta
             onHide: function() {
                 $("#modal-container").css("display", "none");
             },
