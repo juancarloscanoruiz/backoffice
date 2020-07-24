@@ -263,6 +263,15 @@ function eventsGrilla() {
     //Removemos las instancias de litepicker que sobran
     $(".litepicker").remove();
     $(".date-modal").remove();
+    //Sacamos la fecha actual para ponerla en el calendario
+    let currentDate = new Date();
+    //Obtenemos el año
+    let calendarYear = currentDate.getFullYear();
+    //obtenemos el mes
+    let calendarMonth = currentDate.getMonth() + 1;
+    //Obtenemos el día
+    let calendarDay = currentDate.getDate();
+    console.log(`${calendarYear}-${calendarMonth}-${calendarDay}`);
     let dateStartInput = document.getElementById("date-start-input");
     if (dateStartInput) {
         //Iniciamos el calendario Litepicker
@@ -270,7 +279,7 @@ function eventsGrilla() {
             element: document.getElementById("date-start-input"),
             format: "YYYY-MM-DD",
             delimiter: ",",
-            minDate: new Date(),
+            minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
             onShow: function() {
                 picker.picker.style.left = "50%";

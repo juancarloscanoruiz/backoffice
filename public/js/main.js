@@ -88768,7 +88768,7 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
     var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
-    var landingOptionsChecks = currentColumn.children(".establecer-options");
+    var landingOptionsChecks = currentColumn.children(".establecer-options"); //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
       landingOptionsChecks.css("pointer-events", "all");
@@ -88845,7 +88845,16 @@ function eventsGrilla() {
   }); //Removemos las instancias de litepicker que sobran
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove(); //Sacamos la fecha actual para ponerla en el calendario
+
+  var currentDate = new Date(); //Obtenemos el año
+
+  var calendarYear = currentDate.getFullYear(); //obtenemos el mes
+
+  var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
+
+  var calendarDay = currentDate.getDate();
+  console.log("".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay));
   var dateStartInput = document.getElementById("date-start-input");
 
   if (dateStartInput) {
@@ -88854,7 +88863,7 @@ function eventsGrilla() {
       element: document.getElementById("date-start-input"),
       format: "YYYY-MM-DD",
       delimiter: ",",
-      minDate: new Date(),
+      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
       //Al aparecer, aplicamos estilos parecidos a los de un modal
       onShow: function onShow() {
         picker.picker.style.left = "50%";
@@ -88863,6 +88872,7 @@ function eventsGrilla() {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
       },
+      //Evento que utilizamos cada vez que el calendario se oculta
       onHide: function onHide() {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
       },
