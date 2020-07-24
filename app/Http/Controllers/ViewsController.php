@@ -43,23 +43,26 @@ class ViewsController extends Controller
                     $respuesta = $programacion[0];
                     $firstDate = $programacion[1];
                     $lastDate = $programacion[2];
-                    return view('partials.adm-CN.grillas.grilla-claro-canal', compact("respuesta", "firstDate", "lastDate"));
+                    $genres = $programacion[3];
+                    return view('partials.adm-CN.grillas.grilla-claro-canal', compact("respuesta", "firstDate", "lastDate", "genres"));
                     break;
                 case 'grilla-concert-channel-button':
                     $programacion = $this->getGrilla('Concert Channel');
-                 //  print_r($programacion);
+                    //  print_r($programacion);
                     $respuesta = $programacion[0];
                     $firstDate = $programacion[1];
                     $lastDate = $programacion[2];
-                   return view('partials.adm-CN.grillas.grilla-concert-channel', compact("respuesta", "firstDate", "lastDate"));
-                  // return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
+                    $genres = $programacion[3];
+                    return view('partials.adm-CN.grillas.grilla-concert-channel', compact("respuesta", "firstDate", "lastDate", "genres"));
+                    // return view('partials.adm-CN.grillas.grilla-concert-channel')->with('respuesta', $programacion);
                     break;
                 case 'grilla-claro-cinema-button':
                     $programacion = $this->getGrilla('Claro Cinema');
                     $respuesta = $programacion[0];
                     $firstDate = $programacion[1];
                     $lastDate = $programacion[2];
-                    return view('partials.adm-CN.grillas.grilla-claro-cinema', compact("respuesta", "firstDate", "lastDate"));
+                    $genres = $programacion[3];
+                    return view('partials.adm-CN.grillas.grilla-claro-cinema', compact("respuesta", "firstDate", "lastDate", "genres"));
                     break;
                 case 'grilla-home-button':
                     return view('partials.adm-CN.grillas.grilla-home');
@@ -154,8 +157,9 @@ class ViewsController extends Controller
 
         $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
         $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
+        $genres = $respuesta->data->genres;
         if ($respuesta->code == 200) {
-            return array($respuesta, $firstDate, $lastDate);
+            return array($respuesta, $firstDate, $lastDate, $genres);
         } else {
             return null;
         };

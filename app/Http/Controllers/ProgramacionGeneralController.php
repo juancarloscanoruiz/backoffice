@@ -85,12 +85,13 @@ class ProgramacionGeneralController extends Controller
             );
 
             $respuesta =  json_decode($response->getBody());
-            //var_dump($respuesta->data->grilla);
+
             $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
             $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
-
+            $genres = $respuesta->data->genres;
+            var_dump($respuesta->data->grilla);
             if ($respuesta->code == 200) {
-                return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate"));
+                return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate", "genres"));
             } else {
                 return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
             };

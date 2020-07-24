@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { forEach } from "lodash";
+import { eventsGrilla } from "../operaciones_grilla";
 
 $.ajaxSetup({
     headers: {
@@ -589,6 +589,7 @@ function filterDates(startDate, lastDate) {
             `;
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
+            eventsGrilla();
         }
     });
 }

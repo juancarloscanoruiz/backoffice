@@ -371,7 +371,7 @@ $data_for_new_entry = json_encode([
                                             No</label>
                                     </div>
                                     @if ($programs[$indexPrograms]->in_landing == 1)
-                                        <div class="establecer-options pointer-none">
+                                        <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
                                                 <label class="checkradio d-flex  ml-2">
                                                     <input type="radio" checked name="dontlose" class="switch-table" value="1" />
@@ -412,43 +412,51 @@ $data_for_new_entry = json_encode([
                         <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_landing_publicacion">
                             @if ($programs[$indexPrograms]->in_landing == 0)
                                 <div class="programar-content pointer-none">
-                                    <div class="programar-schedule d-flex justify-content-end" key="in_landing_inicio">
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" id="programar-landing" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end programar-schedule" key="in_landing_fin">
+                                    <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                            <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" id="programar-landing-end-date" class="landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing-end-hrs" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                 </div>
                             @else
+                                <?php
+                                    $scheduleBegin = explode(" ", $programs[$indexPrograms]->in_landing_begin);
+                                    $scheduleExpiration = explode(" ", $programs[$indexPrograms]->in_landing_expiration);
+                                    $timeBegin = isset($scheduleBegin[1]) ? $scheduleBegin[1] : null;
+                                    $dateBegin = $scheduleBegin[0];
+                                    $timeExpiration = isset($scheduleExpiration[1]) ? $scheduleExpiration[1] : null;
+                                    $dateExpiration = $scheduleExpiration[0]
+                                ?>
                                 <div class="landing-programar-content">
-                                    <div class="d-flex justify-content-end">
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" id="programar-landing" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-day  schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_landing_expiration">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                            <input type="text" id="programar-landing-end-date" class="editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateExpiration}}" type="text" id="programar-landing-end-date" class=" landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
-                                            <input type="text" id="programar-landing-end-hrs" class="editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        <input value="{{$timeExpiration}}" type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                 </div>
@@ -466,24 +474,24 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home_publicacion">
                             <div class="programar-content">
-                                <div class="d-flex justify-content-end">
+                                <div class="d-flex justify-content-end programar-schedule" key="in_home_begin">
                                     <div>
                                         <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                        <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input type="text" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                     </div>
                                     <div>
-                                        <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-end">
+                                <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
                                     <div>
                                         <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                        <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input type="text" id="programar-home-end-date" class=" home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                     </div>
                                     <div>
-                                        <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        <input type="text" id="programar-home-end-hrs" class="home-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                     </div>
                                 </div>
                             </div>
@@ -557,19 +565,14 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Program genre list-->
-                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="genre">
                             <div class="schedule-date">
                                 <div class="d-flex justify-content-center ">
 
                                 <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-                                    <option class="a-text-regular-brownishtwo text-normal"  >Animación</option>
-                                    <option class="a-text-regular-brownishtwo text-normal" >Cultura</option>
-                                    <option class="a-text-regular-brownishtwo text-normal"  >Series</option>
-                                    <option  class="a-text-regular-brownishtwo text-normal">Comedia</option>
-                                    <option  class="a-text-regular-brownishtwo text-normal"  >Romance</option>
-                                    <option  class="a-text-regular-brownishtwo text-normal"  >Kids</option>
-
-
+                                    @for ($i = 0; $i < count($genres); $i++)
+                                        <option class="a-text-regular-brownishtwo text-normal" value="{{$genres[$i]->title}}">{{$genres[$i]->title}}</option>
+                                    @endfor
                                     </select>
                                 </div>
                             </div>

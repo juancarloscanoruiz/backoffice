@@ -1,13 +1,17 @@
 //JQUERY
 import $ from "jquery";
+//Métodos para aplicar ciertos estilos a las filas y columnas
 import { selectRow, selectColumn } from "./UI/UI.js";
+
+//Librería para mostrar calendario
 import Litepicker from "litepicker";
+//Servicios para editar campos en la grilla
 import {
     editAttributeProgram,
     filterDates
 } from "./services/generalSchedule.js";
 
-//CONFIG
+//Configraciones para la librería de Cleave JS
 import {
     cleaveConfig,
     scheduleTimeConfig,
@@ -15,14 +19,51 @@ import {
     year
 } from "./config/config.js";
 
+//Métodos para mostrar las vistas de "Landing" o "Grilla"
 import { showlanding, showlanconcert } from "./UI/UI.js";
 
 function eventsGrilla() {
-    //selectpicker
+    //selectpicker para el campo de género en un programa
     $(".selectpicker").selectpicker({
-        // showTick: true,
         filter: true,
         multipleSeparator: ", "
+    });
+
+    /*
+        Obtener el valor de las cateogrías seleccionadas y colocarlas
+        en un string
+    */
+    let genres = "";
+    let selectpicker = $(".selectpicker");
+    //Verificamos si el usuario ha seleccionado un género o categoría
+    selectpicker.on("change", function() {
+        //Obtenemos los valores del selectpicker
+        let selected = $(this).val();
+        //Obtenemos el número de valores que hemos obtenido del arreglo
+        let selectedLength = selected.length;
+        genres = "";
+        for (let index = 0; index < selectedLength; index++) {
+            //Si es la primera palabra o la última, no agregamos una coma
+            if (selectedLength - 1 == index) {
+                genres += `${selected[index]}`;
+            } else {
+                genres += `${selected[index]},`;
+            }
+        }
+    });
+    //Evento para cuando cerramos el selectpicker
+    selectpicker.on("hide.bs.select", function() {
+        //Seleccionamos la columna en la que estamos
+        let currentColumn = $(this).closest(".contenedor-columna");
+        //Obtenemos el cahpter_id de la columna
+        let chapterId = currentColumn.attr("chapter_id");
+        //Obtenemos la key
+        let key = currentColumn.attr("key");
+        //Obtenemos los géneros que pudo haber seleccionado el usuario
+        let keyValue = genres;
+        //Hacemos la petición
+        console.log(keyValue);
+        editAttributeProgram(chapterId, key, keyValue);
     });
 
     $("button[id=btn-landing]").click(function() {
@@ -44,6 +85,7 @@ function eventsGrilla() {
                 .removeClass("a-text-MBlack");
         }
     });
+    //Al momento de dar click en el boton de grilla
     $("button[id=btn-grilla]").click(function() {
         if (
             $(this).hasClass("btn-landing") &
@@ -64,24 +106,22 @@ function eventsGrilla() {
         }
     });
 
-    //modal delete row
-
-    //Borrar un programa de la grilla
-
-    //CARGA DE LANDING Y GRILLA DE CLARO
+    //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
     $(".lan-claro").click(function() {
         showlanding();
     });
-    //cargar landin de concert
+    //Cargamos la pantalla en donde previsualizamos el landing de concert channel
     $(".lan-concert").click(function() {
         showlanconcert();
     });
-    // CHANGE TO LANDING CINEMA
+    // Damos click en el botón de "landing" en grilla de claro cinema
     $(".lan-cinema").click(function(event) {
+        //Hacemos una petición ajax para recibir una vista
         $.ajax({
             type: "POST",
             url: "view",
             data: { view: "lan-cinema" },
+            //Insertamos un loader
             beforeSend: function() {
                 const loader = `
                 <div class="loader-view-container">
@@ -92,10 +132,12 @@ function eventsGrilla() {
             },
             success: function(result) {
                 console.log("grilla de claro cinema");
-
+                //Insertamos la vista que recibimos en la vista actual
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
+                //Habilitamos las acciones que se pueden hacer en la grilla
                 eventsGrilla();
+                //Quitamos el loader
                 $(".loader-view-container").remove();
             }
         });
@@ -163,51 +205,65 @@ function eventsGrilla() {
     //Mostrar la sinópsis completa en modal
     $(".see-more").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
+        //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
         let chapterId = currentColumn.attr("chapter_id");
+        //Id del programa actual
         let program = $(this)
             .prev()
             .attr("id");
         let key = currentColumn.attr("key");
+        //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
         $(".edit-synopsis-button").attr({
             chapter_id: chapterId,
             key: key,
             synopsis: synopsis,
             program: program
         });
+        //Pasamos al textarea del modal la sinopsis actual del programa
         $(".modal-textarea").val(synopsis);
+        //Ponemos el título del programa en el header del modal
         $(".modal-program-title").text($(this).attr("program_title"));
+        //Hacemos aparecer el modal
         $(".modal-synopsis").modal("show");
     });
 
+    //botón de modal de edición de de sinopsis
     $(".edit-synopsis-button").click(function() {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
+        //Obtenemos la sinopsis nueva del textarea del modal
         let keyValue = $("#synopsis-content").val();
+        //Programa del cual se está actualizando al sinopsis
         let program = $(this).attr("program");
+        //Cambiamos el atributo "sinopsis" en el programa de la grilla
         $("#" + program)
             .closest(".contenedor-columna")
             .attr("synopsis", keyValue);
+        //Truncamos el texto en grilla con tres puntos...
         if (keyValue.length > 200) {
             let text = keyValue.substr(0, 200) + "...";
             $("#" + program).text(text);
         } else {
             $("#" + program).text(keyValue);
         }
-
+        //Hacemos la petición para cambiar la sinopsis
         editAttributeProgram(chapterId, key, keyValue);
+        //Ocultamos el modal
         $(".modal-synopsis").modal("hide");
     });
+    //Removemos las instancias de litepicker que sobran
     $(".litepicker").remove();
     $(".date-modal").remove();
     let dateStartInput = document.getElementById("date-start-input");
     if (dateStartInput) {
-        //ELEGIR FECHA DE INICIO Y FIN EN LA GRILLA
+        //Iniciamos el calendario Litepicker
         let picker = new Litepicker({
             element: document.getElementById("date-start-input"),
             format: "YYYY-MM-DD",
             delimiter: ",",
             minDate: new Date(),
+            //Al aparecer, aplicamos estilos parecidos a los de un modal
             onShow: function() {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
@@ -221,13 +277,15 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "none");
             },
             onSelect: function() {
+                //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
                     .value.split(",");
                 //  Fecha inicial del datepicker
                 let startDate = fullDate[0];
-
+                //Separamos la primer fecha
                 let startDateSplit = startDate.split("-");
+                //Creamos una nueva fecha empezando por año
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
@@ -248,58 +306,275 @@ function eventsGrilla() {
         conseguimos el valor del campo de la grilla
         y hacemos la petición
     */
-
-    $(".editable-attribute").keydown(function(e) {
+    let editableAttribute = $(".editable-attribute");
+    editableAttribute.keydown(function(e) {
+        //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
                 .closest(".contenedor-columna")
                 .attr("key");
             let keyValue = "";
-            switch (key) {
-                case "day":
-                    let date = $(this)
-                        .val()
-                        .split("-");
-                    keyValue = `${date[2]}-${date[1]}-${date[0]}`;
-                    break;
-                case "program_year_produced":
-                    keyValue = parseInt($(this).val());
-                    break;
-                case "in_landing_programar":
-                    key = $(this)
-                        .closest(".programar-schedule")
-                        .attr("key");
-                    break;
-                default:
-                    keyValue = $(this).val();
-                    break;
-            }
-
             let chapterId = $(this)
                 .closest(".contenedor-columna")
                 .attr("chapter_id");
+            switch (key) {
+                //Verificamos si lo que estamos editando es Schedule Item Long Date
+                case "day":
+                    //Seperamos la fecha
+                    let date = $(this)
+                        .val()
+                        .split("-");
+                    //Volvemos a unir la fecha empezando por el año y mandamos la petición
+                    keyValue = `${date[2]}-${date[1]}-${date[0]}`;
+                    editAttributeProgram(chapterId, key, keyValue);
+                    break;
+                //Verificamos si el campo que estamos editando es el año de producción
+                case "program_year_produced":
+                    //Convertimos el año a entero
+                    keyValue = parseInt($(this).val());
+                    //Hacemos la petición
+                    editAttributeProgram(chapterId, key, keyValue);
+                    break;
+                //Verificamos si el campo editable, es el de programar publicación para Landing
+                case "in_landing_publicacion":
+                    let schedule = $(this)
+                        .closest(".programar-schedule")
+                        .attr("key");
+                    //Verificamos si es la fecha de inicio
+                    if (schedule == "in_landing_begin") {
+                        let date = $(".landing-start-day")
+                            .val()
+                            .split("-"); //Obtenemos fecha
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        let hours = $(".landing-start-hours").val(); //Obtenemos hora
+                        //En caso de tener ambos valores, hacemos al petición
+                        if (date != "" && hours != "") {
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(chapterId, schedule, keyValue);
+                        }
+                        //En caso de solo tener el día, mandamos la hora en 0
+                        else if (date != "" && hours == "") {
+                            hours = "00:00:00";
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(chapterId, schedule, keyValue);
+                        }
+                    }
+                    //Verificamos si es la fecha fin
+                    else if (schedule == "in_landing_expiration") {
+                        let date = $(".landing-expiration-day")
+                            .val()
+                            .split("-"); //Obtenemos fecha
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        let hours = $(".landing-expiration-hours").val(); //Obtenemos hora
+                        //En caso de tener ambos valores, hacemos la petición
+                        if (date != "" && hours != "") {
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(chapterId, schedule, keyValue);
+                        }
+                        //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+                        else if (date != "" && hours == "") {
+                            hours = "00:00:00";
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(chapterId, schedule, keyValue);
+                        }
+                    }
+
+                    break;
+                case "in_home_publicacion":
+                    let scheduleHome = $(this)
+                        .closest(".programar-schedule")
+                        .attr("key");
+
+                    //Verificamos si es la fecha de inicio del home
+                    if (scheduleHome == "in_home_begin") {
+                        //Obtenemos la fecha
+                        let date = $(".home-start-day")
+                            .val()
+                            .split("-");
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        //Obtenemos la hora
+                        let hours = $(".home-start-hours").val();
+                        //Si ambos no están vacíos, hacemos la petición
+                        if (date != "" && hours != "") {
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(
+                                chapterId,
+                                scheduleHome,
+                                keyValue
+                            );
+                        }
+                        //En caso de que la hora venga vacía, la igualamos a 0
+                        else if (date != "" && hours == "") {
+                            hours = "00:00:00";
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(
+                                chapterId,
+                                scheduleHome,
+                                keyValue
+                            );
+                        }
+                    } else if (scheduleHome == "in_home_expiration") {
+                        //Obtenemos la fecha
+                        let date = $(".home-expiration-day")
+                            .val()
+                            .split("-");
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        //Obtenemos la hora
+                        let hours = $(".home-expiration-hours").val();
+
+                        //Si ambos no están vacíos, hacemos la petición
+                        if (date != "" && hours != "") {
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(
+                                chapterId,
+                                scheduleHome,
+                                keyValue
+                            );
+                        }
+                        //En caso de que la hora venga vacía, la igualamos a 0
+                        else if (date != "" && hours == "") {
+                            hours = "00:00:00";
+                            keyValue = `${day} ${hours}`;
+                            editAttributeProgram(
+                                chapterId,
+                                scheduleHome,
+                                keyValue
+                            );
+                        }
+                    }
+                    break;
+                default:
+                    //Si no es ninguno de los casos, sacamos el valor del campo directamente
+                    keyValue = $(this).val();
+                    //Hacemos la petición
+                    editAttributeProgram(chapterId, key, keyValue);
+                    break;
+            }
+            //Quitamos el comportamiento por defecto
             e.preventDefault();
+            //Después de dar click, "sacamos" al usuario del input
             $(this).blur();
-            console.log(typeof keyValue);
-            editAttributeProgram(chapterId, key, keyValue);
             return false;
         }
     });
-    $(".editable-attribute").blur(function() {
+
+    //Se ejecuta cuando editamos un campo y damos click "fuera" del input
+    editableAttribute.blur(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
+        let key = currentColumn.attr("key");
         let keyValue = $(this).val();
         let chapterId = currentColumn.attr("chapter_id");
-        let key = currentColumn.attr("key");
-        editAttributeProgram(chapterId, key, keyValue);
+        //Verificamos el campo que estamos editando
+        switch (key) {
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            case "in_landing_publicacion":
+                let schedule = $(this)
+                    .closest(".programar-schedule")
+                    .attr("key");
+
+                //Verificamos si es la fecha de inicio
+                if (schedule == "in_landing_begin") {
+                    let day = $(".landing-start-day").val(); //Obtenemos fecha
+                    let hours = $(".landing-start-hours").val(); //Obtenemos hora
+                    //En caso de tener ambos valores, hacemos al petición
+                    if (day != "" && hours != "") {
+                        console.log("Fecha inicio con horas");
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                    //En caso de solo tener el día, mandamos la hora en 0
+                    else if (day != "" && hours == "") {
+                        console.log("Fecha inicio sin horas");
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                }
+                //Verificamos si es la fecha fin
+                else if (schedule == "in_landing_expiration") {
+                    let date = $(".landing-expiration-day")
+                        .val()
+                        .split("-"); //Obtenemos fecha
+                    let hours = $(".landing-expiration-hours").val(); //Obtenemos hora
+                    console.log(day, hours);
+                    //En caso de tener ambos valores, hacemos la petición
+                    if (date != "" && hours != "") {
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                    //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                }
+
+                break;
+            case "in_home_publicacion":
+                let scheduleHome = $(this)
+                    .closest(".programar-schedule")
+                    .attr("key");
+                //Verificamos si es la fecha de inicio del home
+                if (scheduleHome == "in_home_begin") {
+                    //Obtenemos la fecha
+                    let date = $(".home-start-day")
+                        .val()
+                        .split("-");
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    //Obtenemos la hora
+                    let hours = $(".home-start-hours").val();
+                    //Si ambos no están vacíos, hacemos la petición
+                    if (date != "" && hours != "") {
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                    //En caso de que la hora venga vacía, la igualamos a 0
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                } else if (scheduleHome == "in_home_expiration") {
+                    //Obtenemos la fecha
+                    let date = $(".home-expiration-day")
+                        .val()
+                        .split("-");
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    //Obtenemos la hora
+                    let hours = $(".home-expiration-hours").val();
+                    //Si ambos no están vacíos, hacemos la petición
+                    if (date != "" && hours != "") {
+                        day = `${date[2]}-${date[1]}-${date[0]}`;
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                    //En caso de que la hora venga vacía, la igualamos a 0
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                }
+
+                break;
+            default:
+                editAttributeProgram(chapterId, key, keyValue);
+                break;
+        }
     });
 
     //Sacar los valores de los switches en la grilla
     $(".switch-table").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
+        //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
-        console.log(keyValue);
+        //De la columna, sacamos el chapter_id
         let chapterId = currentColumn.attr("chapter_id");
+        //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
         let key = currentColumn.attr("key");
+        //Hacemos la petición
         editAttributeProgram(chapterId, key, keyValue);
     });
 
@@ -313,7 +588,7 @@ function eventsGrilla() {
             new Cleave(scheduleTime, scheduleTimeConfig);
         });
     /*
-Permite a todos los campos de Schedule item log datetener el formato YYYY-MM-DD
+Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
 */
     $(".schedule-date-input")
         .toArray()
@@ -349,7 +624,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
 
+    //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
     $(".edit-row-pencil").click(selectRow);
+    //Al dar click en una columna, aplicamos estilos
     $(".selectable-column").click(selectColumn);
 
     $(".selectpicker")
@@ -360,8 +637,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         .on("changed.bs.select", function() {
             $(this).selectpicker("refresh");
         });
-
-    //Agregar una nueva entrada en claro canal
 }
 
 export { eventsGrilla };

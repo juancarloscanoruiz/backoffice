@@ -210,15 +210,17 @@ $(document).ready(function() {
         $(this).addClass("btn-nav-select");
     });
 
-    //RENDER PAGE TO CREATE A BACKOFFICE'S USER
+    //Mostramos la vista para crear un usuario
     showFormCreateUser();
 
-    //REGISTER A USER
+    //Al dar click en el botón, hacemos el registro del usuario
     $("#cambio").on("click", ".register-user-button", function() {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
+        //Verificamos si el email tiene el formato correcto
         validateEmail($(".input-email"), $(".warning-email-text"));
+        //Hacemos la petición
         registerUser(username, email, rol);
     });
 
