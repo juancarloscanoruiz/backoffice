@@ -150,6 +150,14 @@ function eventsGrilla() {
                 $(".loader-view-container").remove();
                 //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
                 createNavbarProgramacionGeneral();
+                 //para activar el prev de los iconos
+             /* Previsualizar contenido en diferentes tamaños */
+    const prevImage = $(".a-prev-image");
+
+    prevImage.click(function() {
+        let prevContainer = $("iframe");
+        previewPage($(this));
+    });
             }
         });
     });

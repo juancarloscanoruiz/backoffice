@@ -15,11 +15,12 @@
 
 .navbar-progra-active {
   .navbar-progra-item-container {
-    border-radius: 7px;
-    background: $selecred;
+    border-radius: 20px;
+    background: $white;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
   }
 
   p {
-    color: $white !important;
+    color: $selecred !important;
   }
 }

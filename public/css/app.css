@@ -3577,6 +3577,10 @@ input[type=radio]:checked + .no-estilo1 {
   width: 97%;
 }
 
+.po-zona {
+  transform: translateY(-30px);
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -4987,12 +4991,13 @@ ul {
 }
 
 .navbar-progra-active .navbar-progra-item-container {
-  border-radius: 7px;
-  background: #da291c;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 .navbar-progra-active p {
-  color: #ffffff !important;
+  color: #da291c !important;
 }
 
 .modal-edit-usersfront-content {

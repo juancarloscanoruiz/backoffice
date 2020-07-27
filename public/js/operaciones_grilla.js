@@ -72171,11 +72171,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRow", function() { return selectRow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectColumn", function() { return selectColumn; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
-/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../preview/prev.js */ "./resources/js/preview/prev.js");
+/* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 //SERVICES
+
 
 
 
@@ -72192,40 +72194,40 @@ Admin User BO
 function cambiaracti(roles) {
   switch (roles) {
     case "1":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Raiz").attr("hidden", false);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Edit").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Apro").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Visua").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Raiz").attr("hidden", false);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Edit").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Apro").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Visua").attr("hidden", true);
       break;
 
     case "2":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Raiz").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Edit").attr("hidden", false);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Apro").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Visua").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Raiz").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Edit").attr("hidden", false);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Apro").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Visua").attr("hidden", true);
       break;
 
     case "3":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Raiz").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Edit").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Apro").attr("hidden", false);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Visua").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Raiz").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Edit").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Apro").attr("hidden", false);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Visua").attr("hidden", true);
       break;
 
     case "4":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Raiz").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Edit").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Apro").attr("hidden", true);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#User-Visua").attr("hidden", false);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Raiz").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Edit").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Apro").attr("hidden", true);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#User-Visua").attr("hidden", false);
       break;
   }
 }
 
 function changeImagesRolPermissions() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".button-rol").click(function () {
-    var idButton = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("id_button");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".button-rol").removeClass("btn-rol-select");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass("btn-rol-select");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".button-rol").click(function () {
+    var idButton = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("id_button");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".button-rol").removeClass("btn-rol-select");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).addClass("btn-rol-select");
     cambiaracti(idButton);
   });
 }
@@ -72243,82 +72245,82 @@ function changeImagesRolPermissions() {
 
 
 function deleteUserUI(id) {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-button-confirm").click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-button-confirm").click(function () {
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["deleteUserBO"])(id);
   });
 }
 
 function deleteUserFrontUI(id) {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-front-confirm").click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-front-confirm").click(function () {
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["deleteUserFront"])(id);
   });
 }
 
 function showModalDeleteUserBO() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-userbo-icon").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).parent().attr("_id");
-    var username = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("_username");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-username-bo").text(username);
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-user").modal("show");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".delete-userbo-icon").click(function () {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).parent().attr("_id");
+    var username = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("_username");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-username-bo").text(username);
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user").modal("show");
     deleteUserUI(id);
   });
 }
 
 function showModalDeleteUserFront() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-user-front-icon").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).parent().attr("_id");
-    var username = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("_username");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-username-front").text(username);
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".modal-delete-user-front").modal("show");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".delete-user-front-icon").click(function () {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).parent().attr("_id");
+    var username = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("_username");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-username-front").text(username);
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user-front").modal("show");
     deleteUserFrontUI(id);
   });
 }
 
 function showDescriptions() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".histo").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".histori").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".histo").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".histori").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".histori").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".histori").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".editar").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edit").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".editar").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edit").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edit").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edit").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".notify").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".noti").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".notify").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".noti").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".noti").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".noti").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".ver").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".veri").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".ver").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".veri").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".veri").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".veri").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edi").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edita").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edi").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edita").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edita").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edita").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borrar").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borra").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borrar").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borra").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borra").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borra").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".ver").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".veri1").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".ver").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".veri1").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".veri1").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".veri1").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edi").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edita1").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edi").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edita1").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".edita1").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".edita1").css("display", "none");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borrar").hover(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borra1").css("display", "block");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borrar").hover(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borra1").css("display", "block");
   }, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".borra1").css("display", "none");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(".borra1").css("display", "none");
   }); //fin
 }
 /*
@@ -72327,27 +72329,27 @@ function showDescriptions() {
 
 
 function createNavbarProgramacionGeneral() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-content").hide();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-content:first").show();
-  var navbarPrograItems = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-item");
-  var arrowLeft = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".arrow-progra-left");
-  var arrowRight = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".arrow-progra-right");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content:first").show();
+  var navbarPrograItems = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-item");
+  var arrowLeft = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".arrow-progra-left");
+  var arrowRight = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".arrow-progra-right");
   navbarPrograItems.click(function () {
     navbarPrograItems.removeClass("navbar-progra-active");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass("navbar-progra-active");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).addClass("navbar-progra-active");
 
-    if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("navbar-canal-claro")) {
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("navbar-sinopsis")) {
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("navbar-programacion")) {
+    if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-canal-claro")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
       console.log("canal claro");
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("navbar-home")) {
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("rel"));
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     }
 
-    if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("navbar-index") == 1) {
+    if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("navbar-index") == 1) {
       arrowLeft.css({
         pointerEvents: "none",
         opacity: "0.5"
@@ -72356,7 +72358,7 @@ function createNavbarProgramacionGeneral() {
         pointerEvents: "all",
         opacity: "1"
       });
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("navbar-index") > 1 && jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("navbar-index") < 4) {
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("navbar-index") > 1 && jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("navbar-index") < 4) {
       arrowLeft.css({
         pointerEvents: "all",
         opacity: "1"
@@ -72376,20 +72378,20 @@ function createNavbarProgramacionGeneral() {
       });
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".arrow-progra").click(function () {
-    var currentNavbarItem = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".arrow-progra").click(function () {
+    var currentNavbarItem = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-active");
     navbarPrograItems.removeClass("navbar-progra-active");
 
-    if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass("arrow-progra-left")) {
+    if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("arrow-progra-left")) {
       currentNavbarItem.prev().addClass("navbar-progra-active");
       changeContentProgramacionGeneral(currentNavbarItem.prev().attr("rel"));
 
-      if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") == 1) {
+      if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-active").attr("navbar-index") == 1) {
         arrowLeft.css({
           pointerEvents: "none",
           opacity: "0.5"
         });
-      } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") < 4) {
+      } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-active").attr("navbar-index") < 4) {
         arrowRight.css({
           pointerEvents: "all",
           opacity: "1"
@@ -72399,12 +72401,12 @@ function createNavbarProgramacionGeneral() {
       currentNavbarItem.next().addClass("navbar-progra-active");
       changeContentProgramacionGeneral(currentNavbarItem.next().attr("rel"));
 
-      if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") == 4) {
+      if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-active").attr("navbar-index") == 4) {
         arrowRight.css({
           pointerEvents: "none",
           opacity: "0.5"
         });
-      } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-active").attr("navbar-index") > 1) {
+      } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-active").attr("navbar-index") > 1) {
         arrowLeft.css({
           pointerEvents: "all",
           opacity: "1"
@@ -72415,36 +72417,36 @@ function createNavbarProgramacionGeneral() {
 }
 
 function changeContentProgramacionGeneral(nameSection) {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".navbar-progra-content").hide();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#" + nameSection).show();
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()("#" + nameSection).show();
 } //Función para mostrar la vista principal de edición de landings y programación general
 
 
 function showAdminSite() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
     type: "POST",
     url: "view",
     data: {
       view: "admin-site-home"
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html(result);
     }
   });
 } //Función para mostrar los usuarios que se encuentran registrados en el backoffice
 
 
 function showPageUsersBO() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
     type: "POST",
     url: "view",
     data: {
       view: "admin-users-bo"
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html(result);
       Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getAllUsersBO"])();
     }
   });
@@ -72454,7 +72456,7 @@ function showPageUsersBO() {
 }
 
 function showlanding() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
     type: "POST",
     url: "view",
     data: {
@@ -72462,20 +72464,21 @@ function showlanding() {
     },
     beforeSend: function beforeSend() {
       var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            ";
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result);
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
 
-      createNavbarProgramacionGeneral();
-      window.focus(); //force focus on the currenct window;
+      createNavbarProgramacionGeneral(); //para activar el prev de los iconos
 
-      window.addEventListener("blur", function (e) {
-        if (document.activeElement == document.querySelector("iframe")) {
-          console.log("iframe");
-        }
+      /* Previsualizar contenido en diferentes tamaños */
+
+      var prevImage = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".a-prev-image");
+      prevImage.click(function () {
+        var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
       });
     }
   });
@@ -72483,7 +72486,7 @@ function showlanding() {
 
 
 function showlanconcert() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
     type: "POST",
     url: "view",
     data: {
@@ -72493,39 +72496,47 @@ function showlanconcert() {
       //Insertamos el loader
       var loader = "\n            <div class=\"loader-view-container\">\n              <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>\n            "; //Insertamos el loader en el body
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#bodymenu").html(result); //Quitamos el loeader
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html(result); //Quitamos el loeader
 
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
 
-      createNavbarProgramacionGeneral();
+      createNavbarProgramacionGeneral(); //para activar el prev de los iconos
+
+      /* Previsualizar contenido en diferentes tamaños */
+
+      var prevImage = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".a-prev-image");
+      prevImage.click(function () {
+        var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
+      });
     }
   });
 } //Función para mostrar la vista de crear un usuario del backoffice
 
 
 function showFormCreateUser() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").on("click", "#btnAlta", function (event) {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").on("click", "#btnAlta", function (event) {
+    jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
       type: "POST",
       url: "view",
       data: {
         view: "create-userbackoffice-form"
       },
       success: function success(result) {
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result).promise().done(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html(result).promise().done(function () {
           changeImagesRolPermissions();
-          var inputCorreo = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".input-email"); //Validamos el formato del email
+          var inputCorreo = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".input-email"); //Validamos el formato del email
 
           inputCorreo.keyup(function () {
-            var correoValido = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".warning-email-text");
-            var imagenError = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".error");
+            var correoValido = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".warning-email-text");
+            var imagenError = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".error");
             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpEmail"])(inputCorreo, filter, imagenError, correoValido);
+            Object(_form_form_js__WEBPACK_IMPORTED_MODULE_2__["validateKeyUpEmail"])(inputCorreo, filter, imagenError, correoValido);
           });
         });
       }
@@ -72534,12 +72545,12 @@ function showFormCreateUser() {
 }
 
 function changeActiveBlackButton() {
-  var buttonsRolRegister = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".bt-rol-register");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".btn-rol-all").click(function () {
+  var buttonsRolRegister = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".bt-rol-register");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".btn-rol-all").click(function () {
     buttonsRolRegister.removeClass("btn-rol-select");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass("btn-rol");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).addClass("btn-rol");
     buttonsRolRegister.removeClass("btn-rol");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass("btn-rol-select");
+    jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).addClass("btn-rol-select");
   });
 }
 
@@ -72573,8 +72584,8 @@ function changeNameRol(id) {
 function changeAdminContent(rel) {
   switch (rel) {
     case "Admin-home-BO":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#Admin-home-BO").replaceWith();
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").load("admin-home.php");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#Admin-home-BO").replaceWith();
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").load("admin-home.php");
       break;
 
     default:
@@ -72583,33 +72594,33 @@ function changeAdminContent(rel) {
 }
 
 function showUserFront() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").on("click", ".show-user-front-icon", function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).parent().attr("_id");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").on("click", ".show-user-front-icon", function () {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).parent().attr("_id");
     Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getUserFront"])(id);
   });
 }
 
 function showPageUsersFront() {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
     type: "POST",
     url: "view",
     data: {
       view: "admin-users-front"
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()("#cambio").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#cambio").html(result);
       Object(_services_user_js__WEBPACK_IMPORTED_MODULE_0__["getAllUserFront"])();
     }
   });
 }
 
 function showLandingSchedule(id) {
-  var generalSchedule = jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming");
+  var generalSchedule = jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming");
 
   switch (id) {
     case "grilla-canal-claro-button":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
         type: "POST",
         url: "view",
         data: {
@@ -72617,22 +72628,22 @@ function showLandingSchedule(id) {
         },
         beforeSend: function beforeSend() {
           var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
         },
         success: function success(result) {
           console.log("grilla");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
-          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
         }
       });
       break;
 
     case "grilla-concert-channel-button":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
         type: "POST",
         url: "view",
         data: {
@@ -72640,22 +72651,22 @@ function showLandingSchedule(id) {
         },
         beforeSend: function beforeSend() {
           var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
         },
         success: function success(result) {
           console.log("grilla concert");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
-          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
         }
       });
       break;
 
     case "grilla-claro-cinema-button":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
         type: "POST",
         url: "view",
         data: {
@@ -72663,29 +72674,29 @@ function showLandingSchedule(id) {
         },
         beforeSend: function beforeSend() {
           var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("body").append(loader);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
         },
         success: function success(result) {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result);
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".loader-view-container").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".litepicker").remove();
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()(".date-modal").remove();
-          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_3__["eventsGrilla"])();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result);
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".litepicker").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()(".date-modal").remove();
+          Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
         }
       });
       break;
 
     case "grilla-home-button":
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
         type: "POST",
         url: "view",
         data: {
           view: "grilla-home-button"
         },
         success: function success(result) {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#general-programming").html(result).promise();
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result).promise();
         }
       });
       break;
@@ -72828,34 +72839,34 @@ function getNameGender(g) {
 
 function selectRow() {
   //Estilos para las demás filas
-  var allRows = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".contenedor-fila");
+  var allRows = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".contenedor-fila");
   allRows.removeClass("row-selected");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".editable-column").css("pointer-events", "none"); //Estilos para la fila seleccionada para editar
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".editable-column").css("pointer-events", "none"); //Estilos para la fila seleccionada para editar
 
-  var allColumnsSelected = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).closest(".contenedor-fila").children(".editable-column");
+  var allColumnsSelected = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).closest(".contenedor-fila").children(".editable-column");
   allColumnsSelected.css("pointer-events", "all"); //Cambiamos todos los lápices a azules y permitimos pointer events
 
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(".delete-row-pencil").attr("src", "./images/eliminar-acti.svg").css("pointer-events", "all");
-  var row = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).closest(".contenedor-fila");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".delete-row-pencil").attr("src", "./images/eliminar-acti.svg").css("pointer-events", "all");
+  var row = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).closest(".contenedor-fila");
   /*$(this)
       .next()
       .attr("src", "./images/basic-icons/trash.svg");*/
 
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("src", "./images/basic-icons/pencil-edit-teal.svg");
   row.addClass("row-selected");
 }
 
 function selectColumn() {
   //Seleccionamos todas las columnas y quitamos la clase column-select
-  var allColumns = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".contenedor-columna");
+  var allColumns = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".contenedor-columna");
   allColumns.removeClass("column-select"); //Añadimos a la columna actual la clase column-select
 
-  var column = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this);
+  var column = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this);
   column.addClass("column-select"); //Agregamos estilos al encabezado de la columna
 
-  var tableHeader = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".title-table").removeClass("active-title-table");
-  var rel = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr("rel");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#" + rel).addClass("active-title-table");
+  var tableHeader = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".title-table").removeClass("active-title-table");
+  var rel = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel");
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()("#" + rel).addClass("active-title-table");
 }
 
 
@@ -73184,7 +73195,15 @@ function eventsGrilla() {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
 
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["createNavbarProgramacionGeneral"])();
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["createNavbarProgramacionGeneral"])(); //para activar el prev de los iconos
+
+        /* Previsualizar contenido en diferentes tamaños */
+
+        var prevImage = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image");
+        prevImage.click(function () {
+          var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("iframe");
+          previewPage(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
       }
     });
   });
@@ -73634,6 +73653,66 @@ function eventsGrilla() {
   }).on("changed.bs.select", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
   });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/preview/prev.js":
+/*!**************************************!*\
+  !*** ./resources/js/preview/prev.js ***!
+  \**************************************/
+/*! exports provided: previewPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewPage", function() { return previewPage; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+var h;
+
+function previewPage(icon) {
+  var pageContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("iframe");
+  var iframeCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe");
+  var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
+  var iframeHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe");
+  var prevMobileIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile");
+  var prevTabletIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet");
+  var prevDesktopIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop"); //MOBILE
+
+  if (icon.is("#prev-mobile")) {
+    prevMobileIcon.css("opacity", "1");
+    prevTabletIcon.css("opacity", "0.4");
+    prevDesktopIcon.css("opacity", "0.4");
+    pageContainer.css("width", "375px");
+    pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
+    iframeHome.css("height", "4400px");
+    iframeProgramacion.css("height", "8000px");
+    iframeCanalClaro.css("height", "3600px");
+  } //TABLET
+  else if (icon.is("#prev-tablet")) {
+      prevMobileIcon.css("opacity", "0.4");
+      prevTabletIcon.css("opacity", "1");
+      prevDesktopIcon.css("opacity", "0.4");
+      pageContainer.css("width", "1024px");
+      pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
+      iframeHome.css("height", "5100px");
+      iframeProgramacion.css("height", "12000px");
+      iframeCanalClaro.css("height", "4300px");
+    } //PC
+    else {
+        pageContainer.css("width", "1200px");
+        prevMobileIcon.css("opacity", "0.4");
+        prevTabletIcon.css("opacity", "0.4");
+        prevDesktopIcon.css("opacity", "1");
+        pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
+        iframeHome.css("height", "4900px");
+        iframeProgramacion.css("height", "12000px");
+        iframeCanalClaro.css("height", "4600px");
+      }
 }
 
 

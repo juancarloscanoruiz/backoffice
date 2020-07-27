@@ -6,10 +6,16 @@ import {
     deleteUserFront,
     getAllUserFront
 } from "../services/user.js";
-
-import { validateKeyUpEmail } from "../form/form.js";
+import {
+    previewPage
+} from "../preview/prev.js";
+import {
+    validateKeyUpEmail
+} from "../form/form.js";
 import $ from "jquery";
-import { eventsGrilla } from "../operaciones_grilla";
+import {
+    eventsGrilla
+} from "../operaciones_grilla";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -51,7 +57,7 @@ function cambiaracti(roles) {
 }
 
 function changeImagesRolPermissions() {
-    $(".button-rol").click(function() {
+    $(".button-rol").click(function () {
         let idButton = $(this).attr("id_button");
         $(".button-rol").removeClass("btn-rol-select");
         $(this).addClass("btn-rol-select");
@@ -72,19 +78,19 @@ function changeImagesRolPermissions() {
 }*/
 
 function deleteUserUI(id) {
-    $(".modal-delete-button-confirm").click(function() {
+    $(".modal-delete-button-confirm").click(function () {
         deleteUserBO(id);
     });
 }
 
 function deleteUserFrontUI(id) {
-    $(".modal-delete-front-confirm").click(function() {
+    $(".modal-delete-front-confirm").click(function () {
         deleteUserFront(id);
     });
 }
 
 function showModalDeleteUserBO() {
-    $(".delete-userbo-icon").click(function() {
+    $(".delete-userbo-icon").click(function () {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -96,7 +102,7 @@ function showModalDeleteUserBO() {
 }
 
 function showModalDeleteUserFront() {
-    $(".delete-user-front-icon").click(function() {
+    $(".delete-user-front-icon").click(function () {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -109,74 +115,74 @@ function showModalDeleteUserFront() {
 
 function showDescriptions() {
     $(".histo").hover(
-        function() {
+        function () {
             $(".histori").css("display", "block");
         },
-        function() {
+        function () {
             $(".histori").css("display", "none");
         }
     );
     $(".editar").hover(
-        function() {
+        function () {
             $(".edit").css("display", "block");
         },
-        function() {
+        function () {
             $(".edit").css("display", "none");
         }
     );
     $(".notify").hover(
-        function() {
+        function () {
             $(".noti").css("display", "block");
         },
-        function() {
+        function () {
             $(".noti").css("display", "none");
         }
     );
     $(".ver").hover(
-        function() {
+        function () {
             $(".veri").css("display", "block");
         },
-        function() {
+        function () {
             $(".veri").css("display", "none");
         }
     );
     $(".edi").hover(
-        function() {
+        function () {
             $(".edita").css("display", "block");
         },
-        function() {
+        function () {
             $(".edita").css("display", "none");
         }
     );
     $(".borrar").hover(
-        function() {
+        function () {
             $(".borra").css("display", "block");
         },
-        function() {
+        function () {
             $(".borra").css("display", "none");
         }
     );
     $(".ver").hover(
-        function() {
+        function () {
             $(".veri1").css("display", "block");
         },
-        function() {
+        function () {
             $(".veri1").css("display", "none");
         }
     );
     $(".edi").hover(
-        function() {
+        function () {
             $(".edita1").css("display", "block");
         },
-        function() {
+        function () {
             $(".edita1").css("display", "none");
         }
     );
     $(".borrar").hover(
-        function() {
+        function () {
             $(".borra1").css("display", "block");
         },
-        function() {
+        function () {
             $(".borra1").css("display", "none");
         }
     ); //fin
@@ -191,7 +197,7 @@ function createNavbarProgramacionGeneral() {
     let navbarPrograItems = $(".navbar-progra-item");
     let arrowLeft = $(".arrow-progra-left");
     let arrowRight = $(".arrow-progra-right");
-    navbarPrograItems.click(function() {
+    navbarPrograItems.click(function () {
         navbarPrograItems.removeClass("navbar-progra-active");
         $(this).addClass("navbar-progra-active");
         if ($(this).hasClass("navbar-canal-claro")) {
@@ -238,7 +244,7 @@ function createNavbarProgramacionGeneral() {
         }
     });
 
-    $(".arrow-progra").click(function() {
+    $(".arrow-progra").click(function () {
         let currentNavbarItem = $(".navbar-progra-active");
         navbarPrograItems.removeClass("navbar-progra-active");
 
@@ -277,6 +283,7 @@ function createNavbarProgramacionGeneral() {
         }
     });
 }
+
 function changeContentProgramacionGeneral(nameSection) {
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
@@ -287,8 +294,10 @@ function showAdminSite() {
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "admin-site-home" },
-        success: function(result) {
+        data: {
+            view: "admin-site-home"
+        },
+        success: function (result) {
             $("#cambio").html("");
             $("#cambio").html(result);
         }
@@ -300,8 +309,10 @@ function showPageUsersBO() {
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "admin-users-bo" },
-        success: function(result) {
+        data: {
+            view: "admin-users-bo"
+        },
+        success: function (result) {
             $("#cambio").html("");
             $("#cambio").html(result);
             getAllUsersBO();
@@ -312,12 +323,15 @@ function showPageUsersBO() {
     showDescriptions();
     */
 }
+
 function showlanding() {
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "lan-claro" },
-        beforeSend: function() {
+        data: {
+            view: "lan-claro"
+        },
+        beforeSend: function () {
             const loader = `
             <div class="loader-view-container">
               <img src="./images/loader.gif" class="loader" alt="">
@@ -325,21 +339,21 @@ function showlanding() {
             `;
             $("body").append(loader);
         },
-        success: function(result) {
+        success: function (result) {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
-            window.focus(); //force focus on the currenct window;
+            //para activar el prev de los iconos
+            /* Previsualizar contenido en diferentes tamaños */
+            const prevImage = $(".a-prev-image");
 
-            window.addEventListener("blur", function(e) {
-                if (
-                    document.activeElement == document.querySelector("iframe")
-                ) {
-                    console.log("iframe");
-                }
+            prevImage.click(function () {
+                let prevContainer = $("iframe");
+                previewPage($(this));
             });
+
         }
     });
 }
@@ -348,8 +362,10 @@ function showlanconcert() {
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "lan-concert" },
-        beforeSend: function() {
+        data: {
+            view: "lan-concert"
+        },
+        beforeSend: function () {
             //Insertamos el loader
             const loader = `
             <div class="loader-view-container">
@@ -359,34 +375,44 @@ function showlanconcert() {
             //Insertamos el loader en el body
             $("body").append(loader);
         },
-        success: function(result) {
+        success: function (result) {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
             //Quitamos el loeader
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
+            //para activar el prev de los iconos
+            /* Previsualizar contenido en diferentes tamaños */
+            const prevImage = $(".a-prev-image");
+
+            prevImage.click(function () {
+                let prevContainer = $("iframe");
+                previewPage($(this));
+            });
         }
     });
 }
 
 //Función para mostrar la vista de crear un usuario del backoffice
 function showFormCreateUser() {
-    $("#cambio").on("click", "#btnAlta", function(event) {
+    $("#cambio").on("click", "#btnAlta", function (event) {
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "create-userbackoffice-form" },
-            success: function(result) {
+            data: {
+                view: "create-userbackoffice-form"
+            },
+            success: function (result) {
                 $("#cambio").html("");
                 $("#cambio")
                     .html(result)
                     .promise()
-                    .done(function() {
+                    .done(function () {
                         changeImagesRolPermissions();
                         const inputCorreo = $(".input-email");
                         //Validamos el formato del email
-                        inputCorreo.keyup(function() {
+                        inputCorreo.keyup(function () {
                             const correoValido = $(".warning-email-text");
                             const imagenError = $(".error");
                             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -405,7 +431,7 @@ function showFormCreateUser() {
 
 function changeActiveBlackButton() {
     let buttonsRolRegister = $(".bt-rol-register");
-    $(".btn-rol-all").click(function() {
+    $(".btn-rol-all").click(function () {
         buttonsRolRegister.removeClass("btn-rol-select");
         $(this).addClass("btn-rol");
         buttonsRolRegister.removeClass("btn-rol");
@@ -448,7 +474,7 @@ function changeAdminContent(rel) {
 }
 
 function showUserFront() {
-    $("#cambio").on("click", ".show-user-front-icon", function() {
+    $("#cambio").on("click", ".show-user-front-icon", function () {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -460,8 +486,10 @@ function showPageUsersFront() {
     $.ajax({
         type: "POST",
         url: "view",
-        data: { view: "admin-users-front" },
-        success: function(result) {
+        data: {
+            view: "admin-users-front"
+        },
+        success: function (result) {
             $("#cambio").html("");
             $("#cambio").html(result);
             getAllUserFront();
@@ -476,8 +504,10 @@ function showLandingSchedule(id) {
             $.ajax({
                 type: "POST",
                 url: "view",
-                data: { view: "grilla-canal-claro-button" },
-                beforeSend: function() {
+                data: {
+                    view: "grilla-canal-claro-button"
+                },
+                beforeSend: function () {
                     const loader = `
                     <div class="loader-view-container">
                       <img src="./images/loader.gif" class="loader" alt="">
@@ -485,7 +515,7 @@ function showLandingSchedule(id) {
                     `;
                     $("body").append(loader);
                 },
-                success: function(result) {
+                success: function (result) {
                     console.log("grilla");
                     $("#general-programming").html("");
                     $("#general-programming").html(result);
@@ -501,8 +531,10 @@ function showLandingSchedule(id) {
             $.ajax({
                 type: "POST",
                 url: "view",
-                data: { view: "grilla-concert-channel-button" },
-                beforeSend: function() {
+                data: {
+                    view: "grilla-concert-channel-button"
+                },
+                beforeSend: function () {
                     const loader = `
                     <div class="loader-view-container">
                       <img src="./images/loader.gif" class="loader" alt="">
@@ -511,7 +543,7 @@ function showLandingSchedule(id) {
                     $("body").append(loader);
                 },
 
-                success: function(result) {
+                success: function (result) {
                     console.log("grilla concert");
 
                     $("#general-programming").html("");
@@ -528,8 +560,10 @@ function showLandingSchedule(id) {
             $.ajax({
                 type: "POST",
                 url: "view",
-                data: { view: "grilla-claro-cinema-button" },
-                beforeSend: function() {
+                data: {
+                    view: "grilla-claro-cinema-button"
+                },
+                beforeSend: function () {
                     const loader = `
                     <div class="loader-view-container">
                       <img src="./images/loader.gif" class="loader" alt="">
@@ -537,7 +571,7 @@ function showLandingSchedule(id) {
                     `;
                     $("body").append(loader);
                 },
-                success: function(result) {
+                success: function (result) {
                     $("#general-programming").html("");
                     $("#general-programming").html(result);
                     $(".loader-view-container").remove();
@@ -552,8 +586,10 @@ function showLandingSchedule(id) {
             $.ajax({
                 type: "POST",
                 url: "view",
-                data: { view: "grilla-home-button" },
-                success: function(result) {
+                data: {
+                    view: "grilla-home-button"
+                },
+                success: function (result) {
                     $("#general-programming").html("");
                     $("#general-programming")
                         .html(result)
