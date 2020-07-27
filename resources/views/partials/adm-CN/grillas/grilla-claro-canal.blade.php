@@ -5,6 +5,7 @@ $edited_for = $respuesta->data->grilla[0]->edited_for;
 $rol_user_edit = $respuesta->data->grilla[0]->user_rol;
 $programs = $respuesta->data->grilla[0]->programs;
 $grill = $respuesta->data->grilla;
+
 if ($rol_user_edit == "root") {
     $rol_user_edit = "Súper Usuario";
 }
@@ -128,13 +129,8 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                @if (count($respuesta->data->grilla[0]->programs)!=0)
-                    <input id="inp_programing_claro_canal" type="file">
-                    <label id="subir-archivos" for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 mb-0 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
-                @else
-                    <input id="inp_programing_claro_canal" type="file">
-                    <label for="inp_programing_claro_canal" class="a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
-                @endif
+                <input id="inp_programing_claro_canal" type="file">
+                <label for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
             </div>
             <!--Fecha de inicio de calendario-->
             <div class="position-relative">
@@ -155,24 +151,6 @@ $data_for_new_entry = json_encode([
                 <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">{{$lastDate}}</p>
                 </div>
             </label>
-            <!--<div class="position-relative">
-                    <label for="date-schedule-landing">
-                        <img src="./images/calendario.svg" class="ml-2 mb-3 calendar" alt="">
-                    </label>
-                    <input type="text" name="" id="date-schedule-landing">
-                </div>-->
-            <!--<div id="meses" class="d-flex align-items-center mb-3  ml-5 ">
-                    <img src="./images/arrow-light.svg" alt="" class=" mr-4 arrow-r180 arrow-left">
-                    <p class=" flex-caption mb-0 progra-month"></p>
-                    <img src="./images/arrow-dark.svg" alt="" class=" ml-4 arrow-right">
-
-                </div>
-                <div id="dias" class="d-flex align-items-center mb-3 ml-5 ">
-                    <img src="./images/arrow-light.svg" alt="" class=" mr-4 arrow-r180 arrow-left">
-                    <p class=" flex-caption mb-0 day" id="schedule-day"></p>
-                    <img src="./images/arrow-dark.svg" alt="" class=" ml-4 arrow-right">
-
-                </div>-->
         </div>
 
         <!--end-->
@@ -361,12 +339,11 @@ $data_for_new_entry = json_encode([
                                         </div>
                                     </div>
                                 @else
-
                                     <div class='yes-no mt-3'>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked/>
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
-                                        <input type="radio" class="switch-table" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
+                                        <input type="radio" class="switch-table switch-landing" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
                                         <label for="no-landing-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="no-estilo cursor-pointer switch-label">
                                             No</label>
                                     </div>
@@ -384,7 +361,7 @@ $data_for_new_entry = json_encode([
                                                     <input type="radio" name="dontlose" class="switch-table" value="2" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
+                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenido exclusivo</span>
                                             </div>
                                         </div>
                                     @else
@@ -433,18 +410,37 @@ $data_for_new_entry = json_encode([
                                 </div>
                             @else
                                 <?php
+                                if (!empty($programs[$indexPrograms]->in_landing_begin)) {
+                                    //Dividimos la hora y la fecha de inicio en landing
                                     $scheduleBegin = explode(" ", $programs[$indexPrograms]->in_landing_begin);
+                                    //Dividimos la hora y la fecha de inicio en landing
                                     $scheduleExpiration = explode(" ", $programs[$indexPrograms]->in_landing_expiration);
+                                    //Obtenemos la hora de inicio
                                     $timeBegin = isset($scheduleBegin[1]) ? $scheduleBegin[1] : null;
-                                    $dateBegin = $scheduleBegin[0];
+                                    //Obtenemos la fecha de inicio
+                                    $dateBegin = explode("-", $scheduleBegin[0]);
+                                    //Obtenemos el año de la fecha de inicio
+                                    $dateBeginYear = isset($dateBegin[0]) ? $dateBegin[0] : null;
+                                    //Obtenemos el mes de la fecha de inicio
+                                    $dateBeginMoth = isset($dateBegin[1]) ? $dateBegin[1] : null;
+                                    //Obtenemos el día de la fecha de inicio
+                                    $dateBeginDay = isset($dateBegin[2]) ? $dateBegin[2] : null;
+                                    //Obtenemos la hora fin
                                     $timeExpiration = isset($scheduleExpiration[1]) ? $scheduleExpiration[1] : null;
-                                    $dateExpiration = $scheduleExpiration[0]
+                                    //Obtemnemos la fecha de fin
+                                    $dateExpiration = explode("-", $scheduleExpiration[0]);
+                                    $dateExpirationYear = isset($dateExpiration[2]) ? $dateExpiration[2] : null;
+                                    //Obtenemos el mes de la fecha de inicio
+                                    $dateExpirationMonth = isset($dateExpiration[1]) ? $dateExpiration[1] : null;
+                                    //Obtenemos el día de la fecha de inicio
+                                    $dateExpirationDay = isset($dateExpiration[0]) ? $dateExpiration[0] : null;
+                                }
                                 ?>
                                 <div class="landing-programar-content">
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                        <input value="{{$dateBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-day  schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateBeginYear ?? ''}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day  schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                         <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -453,7 +449,7 @@ $data_for_new_entry = json_encode([
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_expiration">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                        <input value="{{$dateExpiration}}" type="text" id="programar-landing-end-date" class=" landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateExpirationYear}}-{{$dateExpirationMonth}}-{{$dateExpirationDay}}" type="text" id="programar-landing-end-date" class=" landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                         <input value="{{$timeExpiration}}" type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -463,51 +459,121 @@ $data_for_new_entry = json_encode([
                             @endif
                         </div>
                         <!--ESTABLECER EN HOME-->
-                        <div class="contenedor-columna selectable-column centro editable-column" id="programar-{{$programs[$indexPrograms]->chapter_id }}" rel="establecer-home" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                            <div class="yes-no">
-                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-si-{{$programs[$indexPrograms]->chapter_id }}" value="1" class="switch-home"/>
-                                <label for="programar-si-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-{{$programs[$indexPrograms]->chapter_id }}" class=" switch-label si-estilo cursor-pointer">
-                                    Sí</label>
-                                <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-no-{{$programs[$indexPrograms]->chapter_id }}" value="0" class="switch-home" checked />
-                                <label for="programar-no-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-{{$programs[$indexPrograms]->chapter_id }}" class="switch-label no-estilo cursor-pointer">
-                                    No</label>
+                        @if ($programs[$indexPrograms]->in_home == 0)
+                            <div class="contenedor-columna selectable-column centro editable-column" id="programar-{{$programs[$indexPrograms]->chapter_id }}" rel="establecer-home" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home">
+                                <div class="yes-no">
+                                    <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-si-{{$programs[$indexPrograms]->chapter_id }}" value="1" class="switch-home switch-table"/>
+                                    <label for="programar-si-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-{{$programs[$indexPrograms]->chapter_id }}" class=" switch-label si-estilo cursor-pointer">
+                                        Sí</label>
+                                    <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-no-{{$programs[$indexPrograms]->chapter_id }}" value="0" class="switch-home switch-table" checked />
+                                    <label for="programar-no-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-{{$programs[$indexPrograms]->chapter_id }}" class="switch-label no-estilo cursor-pointer">
+                                        No</label>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="contenedor-columna selectable-column centro editable-column" id="programar-{{$programs[$indexPrograms]->chapter_id }}" rel="establecer-home" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home">
+                                <div class="yes-no">
+                                    <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-si-{{$programs[$indexPrograms]->chapter_id }}" value="1" class="switch-home switch-table"  checked/>
+                                    <label for="programar-si-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-{{$programs[$indexPrograms]->chapter_id }}" class=" switch-label si-estilo cursor-pointer">
+                                        Sí</label>
+                                    <input type="radio" name="yes-no-{{$programs[$indexPrograms]->chapter_id }}" id="programar-no-{{$programs[$indexPrograms]->chapter_id }}" value="0" class="switch-home switch-table" />
+                                    <label for="programar-no-{{$programs[$indexPrograms]->chapter_id }}" id="noestado-{{$programs[$indexPrograms]->chapter_id }}" class="switch-label no-estilo cursor-pointer">
+                                        No</label>
+                                </div>
+                            </div>
+                        @endif
+
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home_publicacion">
-                            <div class="programar-content">
-                                <div class="d-flex justify-content-end programar-schedule" key="in_home_begin">
-                                    <div>
-                                        <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                        <input type="text" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                        @if ($programs[$indexPrograms]->in_home == 0)
+
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home_publicacion">
+                                <div class="programar-content pointer-none">
+                                    <div class="d-flex justify-content-end programar-schedule" key="in_home_begin">
+                                        <div>
+                                            <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                            <input type="text" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        </div>
+                                        <div>
+                                            <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        </div>
                                     </div>
-                                    <div>
-                                        <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
-                                    </div>
-                                </div>
-                                <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
-                                    <div>
-                                        <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                        <input type="text" id="programar-home-end-date" class=" home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
-                                    </div>
-                                    <div>
-                                        <input type="text" id="programar-home-end-hrs" class="home-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
+                                        <div>
+                                            <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                            <input type="text" id="programar-home-end-date" class=" home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        </div>
+                                        <div>
+                                            <input type="text" id="programar-home-end-hrs" class="home-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        @else
+                            <?php
+                                //Extraemos la fecha y la hora de inicio
+                                $inHomeBegin = explode(" ", $programs[$indexPrograms]->in_home_begin);
+                                //Guardamos la fecha
+                                $inHomeBeginDate = explode("-", $inHomeBegin[0]);
+                                //Guardamos la hora
+                                $inHomeBeginTime = isset($inHomeBegin[1]) ? $inHomeBegin[1] : null;
+                                //Obtenemos el año
+                                $inHomeBeginYear = isset($inHomeBeginDate[0]) ? $inHomeBeginDate[0] : null;
+                                $inHomeBeginMonth = isset($inHomeBeginDate[1]) ? $inHomeBeginDate[1] : null;
+                                $inHomeBeginDay = isset($inHomeBeginDate[2]) ? $inHomeBeginDate[2] : null;
+                                //Obtenemos el mes
+
+                                //Obtenemos el día
+
+                                //Extreamos la fecha y hora final
+                                $inHomeExpiration = explode(" ", $programs[$indexPrograms]->in_home_expiration);
+                                //Guardamos la fecha
+                                $inHomeExpirationDate = explode("-" ,$inHomeExpiration[0]);
+                                //Obtenemos el año
+                                $inHomeExpirationYear = isset($inHomeExpirationDate[0]) ? $inHomeExpirationDate[0] : null;
+                                //Obtenemos el mes
+                                $inHomeExpirationMonth = isset($inHomeExpirationDate[1]) ? $inHomeExpirationDate[1] : null;
+                                //Obtenemos el día
+                                $inHomeExpirationDay = isset($inHomeExpirationDate[2]) ? $inHomeExpirationDate[2] : null;
+                                //Guardamos la hora
+                                $inHomeExpirationTime = isset($inHomeExpiration[1]) ? $inHomeExpiration[1] : null;
+                            ?>
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="in_home_publicacion">
+                                <div class="programar-content">
+                                    <div class="d-flex justify-content-end programar-schedule" key="in_home_begin">
+                                        <div>
+                                            <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                            <input type="text" value="{{$inHomeBeginYear}}-{{$inHomeBeginMonth}}-{{$inHomeBeginDay}}" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        </div>
+                                        <div>
+                                            <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" value="{{$inHomeBeginTime}}" placeholder="00:00:00">
+                                        </div>
+                                    </div>
+                                    <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
+                                        <div>
+                                            <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                        <input value="{{$inHomeExpirationDay}}-{{$inHomeExpirationMonth}}-{{$inHomeExpirationYear}}" type="text" id="programar-home-end-date" class=" home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        </div>
+                                        <div>
+                                            <input value="{{$inHomeExpirationTime}}" type="text" id="programar-home-end-hrs" class="home-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
+                        @endif
+
                         <!--Imágenes-->
-                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded_program < 9)
+                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded < 9)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
                                     <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
-                                    <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
+
+                                    <img src="{{asset('/storage/'. $programs[$indexPrograms]->images->thumbnail_list_horizontal)}}" alt="" class="image-program">
                                     </div>
                                 </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
                                 <div>
-                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_program}}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded}}</span><span class="a-text-regular-brownishtwo">/9</span>
                                 </div>
                             </div>
                         @else
@@ -515,12 +581,12 @@ $data_for_new_entry = json_encode([
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
                                         <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="añadir imagenes" class="add-images-icon">
-                                        <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
+                                        <img src="{{asset('/storage/'. $programs[$indexPrograms]->images->thumbnail_list_horizontal)}}" alt="" class="image-program">
                                     </div>
                                 </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
                                 <div>
-                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_chapter}}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded}}</span><span class="a-text-regular-brownishtwo">/9</span>
                                 </div>
                             </div>
                         @endif
@@ -567,12 +633,23 @@ $data_for_new_entry = json_encode([
                         <!--Program genre list-->
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="genre">
                             <div class="schedule-date">
-                                <div class="d-flex justify-content-center ">
+                                <div class="d-flex justify-content-center">
+                                    <?php
+                                    $genre = "";
+                                    $genreProgram = $programs[$indexPrograms]->genre;
+                                        for ($i=0; $i < count($genreProgram); $i++) {
+                                            if($genreProgram[$i] == ""){
+                                                $genre = "Select Option";
+                                                break;
+                                            }
+                                            $genre = $genre . $genreProgram[$i] . " ";
+                                        }
+                                    ?>
 
-                                <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-                                    @for ($i = 0; $i < count($genres); $i++)
-                                        <option class="a-text-regular-brownishtwo text-normal" value="{{$genres[$i]->title}}">{{$genres[$i]->title}}</option>
-                                    @endfor
+                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="{{$genre}}" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                        @for ($i = 0; $i < count($genres); $i++)
+                                            <option class="a-text-regular-brownishtwo text-normal" value="{{$genres[$i]->title}}">{{$genres[$i]->title}}</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
@@ -662,14 +739,14 @@ $data_for_new_entry = json_encode([
                         @endif
 
                         <!--AUDIO 5.1-->
-                        @if ($programs[$indexPrograms]->audio5)
+                        @if ($programs[$indexPrograms]->audio5 == 1)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="audio" key="audio5" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
                                 <div class="schedule-date">
                                     <div class="yes-no" chapter_id="{{$programs[$indexPrograms]->chapter_id}}">
-                                        <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table"/>
+                                        <input type="radio" id="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table" checked />
                                         <label for="yes-audio-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date" class="switch-label cursor-pointer si-estilo">
                                             Sí</label>
-                                        <input type="radio" id="no-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" checked />
+                                        <input type="radio" id="no-audio-{{$programs[$indexPrograms]->chapter_id}}" name="audio-{{$programs[$indexPrograms]->chapter_id}}" value="0" class="switch-table" />
                                         <label for="no-audio-{{$programs[$indexPrograms]->chapter_id}}" id="noestado-date" class="switch-label cursor-pointer no-estilo">
                                             No</label>
                                     </div>

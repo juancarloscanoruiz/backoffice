@@ -5,14 +5,22 @@ import "bootstrap";
 //VENDOR
 import Cleave from "cleave.js";
 
-import { showlanding } from "./UI/UI.js";
+import {
+    showlanding
+} from "./UI/UI.js";
 
 import "slick-carousel/slick/slick";
 import "bootstrap-select";
 
-import { eventsGrilla } from "./operaciones_grilla";
-import { previewPage } from "./preview/prev.js";
-import { showContentNav } from "./nav/nav.js";
+import {
+    eventsGrilla
+} from "./operaciones_grilla";
+import {
+    previewPage
+} from "./preview/prev.js";
+import {
+    showContentNav
+} from "./nav/nav.js";
 
 //UI
 import {
@@ -51,19 +59,46 @@ $.ajaxSetup({
     }
 });
 
-$(document).ready(function() {
-    //Div en donde hacemos el intercambio de grillas de lso diferentes canales
+$(document).ready(function () {
+
+    //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+    let slideIndex = 3;
+    //Añadimos un slide al slider de imágenes de programación
+    $(".add-programming-image").click(function () {
+        //Cada vez que se haga click, el contador incrementa
+        slideIndex++;
+        //Agregamos un slide al slider de programación
+        $('.programming-slider').slick('slickAdd', `
+        <div class="slick-slide">
+            <div>
+                <div class="bor thumbnail-image-program position-relative h-100">
+                <input type="file" name="image_programming_${slideIndex}" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                    <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                        <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                        <img src="http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                    </label>
+                </div>
+            </div>
+        </div>
+        `);
+    })
+
+
+    //Div en donde hacemos el intercambio de grillas de los diferentes canales
     let divGrilla = $("#general-programming");
 
     //Borrar un programa de la grilla
-    divGrilla.on("click", "#modal-button-delete", function() {
+    divGrilla.on("click", "#modal-button-delete", function () {
         let program = $(this).attr("program");
         let chapter_id = $(this).attr("chapter_id");
         $.ajax({
             type: "POST",
             url: "general-program/deleteChapter",
-            data: { chapter_id: chapter_id },
-            success: function(result) {
+            data: {
+                chapter_id: chapter_id
+            },
+            success: function (result) {
                 console.log(result);
                 result = JSON.parse(result);
                 if (result.code == 200) {
@@ -85,7 +120,7 @@ $(document).ready(function() {
         });
     });
 
-    divGrilla.on("click", ".trash-row", function() {
+    divGrilla.on("click", ".trash-row", function () {
         let allRows = $(".contenedor-fila");
         allRows.removeClass("row-selected");
         $(this).attr("src", "./images/eliminar-acti.svg");
@@ -104,14 +139,14 @@ $(document).ready(function() {
         $(".modal-delete-row").modal("show");
     });
 
-    divGrilla.on("click", "#agregar-canal-claro", function() {
+    divGrilla.on("click", "#agregar-canal-claro", function () {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Claro Canal"
             },
-            success: function(result) {
+            success: function (result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
@@ -120,24 +155,6 @@ $(document).ready(function() {
 
     eventsGrilla();
 
-    /*divGrilla.on("click", "#subir-archivos", function() {
-        let disabled = $("#inp_programing_claro_canal").prop("disabled");
-        if (disabled == true) {
-            $(".modal-information").modal("show");
-        }
-    });*/
-
-    /*$(".button-modal-information").click(function() {
-        const confirm = $(this).attr("confirm");
-        if (confirm == 1) {
-            $("#inp_programing_claro_canal").prop("disabled", false);
-            $(".modal-information").modal("hide");
-        } else {
-            $("#inp_programing_claro_canal").prop("disabled", false);
-            $(".modal-information").modal("hide");
-        }
-    });*/
-
     //SLIDER DE SINOPSIS
     $(".synopsis-image-slider").slick({
         slidesToShow: 1,
@@ -145,11 +162,9 @@ $(document).ready(function() {
         initialSlide: 0,
         infinite: false,
         arrows: true,
-        prevArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
-        nextArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
-        customPaging: function(slider, i) {
+        prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
+        nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
+        customPaging: function (slider, i) {
             var thumb = $(slider.$slides[i]).data();
             return (
                 "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -158,8 +173,26 @@ $(document).ready(function() {
             );
         }
     });
+    $(".programming-slider").slick({
+        slidesToShow: 1,
+        dots: true,
+        appendDots: $(".programming-slider-dots"),
+        initialSlide: 0,
+        infinite: false,
+        arrows: true,
+        prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+        nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+        customPaging: function (slider, i) {
+            var thumb = $(slider.$slides[i]).data();
+            return (
+                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                (i + 1) +
+                "</p>"
+            );
+        }
+    });
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".synopsis-image-slider").on("afterChange", function(
+    $(".synopsis-image-slider").on("afterChange", function (
         slick,
         currentSlide
     ) {
@@ -169,11 +202,11 @@ $(document).ready(function() {
     /* Previsualizar una imagen a la hora de
         subir un archivo
     */
-    $(".input-image-program").change(function() {
+    $(".input-image-program").change(function () {
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -185,7 +218,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#modal-button-delete").click(function() {
+    $("#modal-button-delete").click(function () {
         let aa = $(this).attr("chapter_id");
         console.log(aa);
         $(".trash-row")
@@ -196,14 +229,14 @@ $(document).ready(function() {
     showUserFront();
 
     //GET USER
-    $("#cambio").on("click", ".view-user-icon", function() {
+    $("#cambio").on("click", ".view-user-icon", function () {
         let id = $(this)
             .parent()
             .attr("_id");
         getUser(id);
     });
 
-    $(".buttonall").click(function() {
+    $(".buttonall").click(function () {
         $(".buttonall").removeClass("btn-nav-select");
         $(this).addClass("btn-nav");
         $(".buttonall").removeClass("btn-nav");
@@ -214,7 +247,7 @@ $(document).ready(function() {
     showFormCreateUser();
 
     //Al dar click en el botón, hacemos el registro del usuario
-    $("#cambio").on("click", ".register-user-button", function() {
+    $("#cambio").on("click", ".register-user-button", function () {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
@@ -224,7 +257,7 @@ $(document).ready(function() {
         registerUser(username, email, rol);
     });
 
-    $("#cambio").on("click", ".delete-userbo-icon", function() {
+    $("#cambio").on("click", ".delete-userbo-icon", function () {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -236,17 +269,17 @@ $(document).ready(function() {
     });
 
     //BACK TO THE FRONTPAGE USERS' PAGE
-    $("#cambio").on("click", ".closeViewFront", function() {
+    $("#cambio").on("click", ".closeViewFront", function () {
         showPageUsersFront();
     });
 
     //BACK TO BACKOFFICE USERS' PAGE
-    $("#cambio").on("click", ".closeViewBO", function() {
+    $("#cambio").on("click", ".closeViewBO", function () {
         showPageUsersBO();
     });
 
     //UPDATE CLARO NETWORKS USER
-    $("#cambio").on("click", ".edit-user-front", function() {
+    $("#cambio").on("click", ".edit-user-front", function () {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -254,7 +287,7 @@ $(document).ready(function() {
     });
 
     //UPDATE USERS BACKOFFICE
-    $("#cambio").on("click", ".edit-user-icon", function() {
+    $("#cambio").on("click", ".edit-user-icon", function () {
         console.log("update");
         let id = $(this)
             .parent()
@@ -263,17 +296,19 @@ $(document).ready(function() {
     });
     //CHANGE TO LANDING
 
-    divGrilla.on("click", ".lan-claro", function() {
+    divGrilla.on("click", ".lan-claro", function () {
         showlanding();
     });
 
     //CHANGE TO grilla claro
-    divGrilla.on("click", ".gril-claro", function(event) {
+    divGrilla.on("click", ".gril-claro", function (event) {
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "grilla-canal-claro-button" },
-            beforeSend: function() {
+            data: {
+                view: "grilla-canal-claro-button"
+            },
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -281,7 +316,7 @@ $(document).ready(function() {
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 console.log("grilla de canal claro");
                 console.log(result);
                 $("#general-programming").html("");
@@ -292,12 +327,14 @@ $(document).ready(function() {
         });
     });
     //CHANGE TO grilla cinema
-    $(".gril-cinema").click(function(event) {
+    $(".gril-cinema").click(function (event) {
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "grilla-claro-cinema-button" },
-            beforeSend: function() {
+            data: {
+                view: "grilla-claro-cinema-button"
+            },
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -305,7 +342,7 @@ $(document).ready(function() {
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -315,13 +352,15 @@ $(document).ready(function() {
     });
 
     //CHANGE TO grilla concert
-    $(".gril-concert").click(function(event) {
+    $(".gril-concert").click(function (event) {
         console.log("grilla Concert Channel");
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "grilla-concert-channel-button" },
-            beforeSend: function() {
+            data: {
+                view: "grilla-concert-channel-button"
+            },
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -330,7 +369,7 @@ $(document).ready(function() {
                 $("body").append(loader);
             },
 
-            success: function(result) {
+            success: function (result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -340,12 +379,14 @@ $(document).ready(function() {
     });
 
     //CHANGE TO grilla home
-    $(".gril-home").click(function(event) {
+    $(".gril-home").click(function (event) {
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "grilla-home-button" },
-            success: function(result) {
+            data: {
+                view: "grilla-home-button"
+            },
+            success: function (result) {
                 console.log("Grilla Home");
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
@@ -353,12 +394,14 @@ $(document).ready(function() {
         });
     });
     //CHANGE TO LANDING HOME
-    $(".lan-home").click(function(event) {
+    $(".lan-home").click(function (event) {
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "lan-home" },
-            success: function(result) {
+            data: {
+                view: "lan-home"
+            },
+            success: function (result) {
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
             }
@@ -366,7 +409,7 @@ $(document).ready(function() {
     });
 
     //EDITAR CLARO CANAL
-    $("#edit").click(function() {
+    $("#edit").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(` <script>
             new easyXDM.Socket({
@@ -409,7 +452,7 @@ $(document).ready(function() {
     });
 
     //PREV CLARO CANAL
-    $("#prev").click(function() {
+    $("#prev").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(` <script>
             new easyXDM.Socket({
@@ -452,7 +495,7 @@ $(document).ready(function() {
     });
 
     //EDITAR CINEMA
-    $(".edi-cinema").click(function() {
+    $(".edi-cinema").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
       new easyXDM.Socket({
@@ -494,7 +537,7 @@ $(document).ready(function() {
         }
     });
     //PREV CINEMA
-    $(".prev-cinema").click(function() {
+    $(".prev-cinema").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
             new easyXDM.Socket({
@@ -536,7 +579,7 @@ $(document).ready(function() {
         }
     });
     //EDITAR CONCERT
-    $(".edi-concert").click(function() {
+    $(".edi-concert").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -578,7 +621,7 @@ $(document).ready(function() {
         }
     });
     //PREV CONCERT
-    $(".prev-concert").click(function() {
+    $(".prev-concert").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -619,7 +662,7 @@ $(document).ready(function() {
         }
     });
     //EDITAR HOME
-    $(".edi-home").click(function() {
+    $(".edi-home").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -649,7 +692,7 @@ $(document).ready(function() {
         }
     });
     //PREV HOME
-    $(".prev-home").click(function() {
+    $(".prev-home").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -678,7 +721,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".option").click(function() {
+    $(".option").click(function () {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
@@ -686,14 +729,14 @@ $(document).ready(function() {
     });
 
     //CHOOSE DAY
-    $(".Dias").click(function() {
+    $(".Dias").click(function () {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
         console.log($(this));
         $("#" + select + " > p").text(value);
     });
     //CHOOSE MONTH
-    $(".Meses").click(function() {
+    $(".Meses").click(function () {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
@@ -701,14 +744,14 @@ $(document).ready(function() {
     });
 
     //CHOOSE YEAR
-    $(".Años").click(function() {
+    $(".Años").click(function () {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
         $("#" + select + " > p").text(value);
     });
 
-    $("#mujer").click(function() {
+    $("#mujer").click(function () {
         if ($('input[id="mujer"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -721,7 +764,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#hombre").click(function() {
+    $("#hombre").click(function () {
         if ($('input[id="hombre"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -739,7 +782,7 @@ $(document).ready(function() {
     //END NAVBAR PROGRAMACIÓN GENERAL
 
     /* LOGIN */
-    $("#button-login").click(function() {
+    $("#button-login").click(function () {
         let inputEmail = $(".input-email");
         let inputPassword = $(".input-password");
         let messageError = $(".warning-email-text");
@@ -769,7 +812,7 @@ $(document).ready(function() {
     });
 
     /*REGISTER NEW USER*/
-    $(".register-user-button").click(function() {
+    $(".register-user-button").click(function () {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
@@ -785,36 +828,36 @@ $(document).ready(function() {
     //$(".selectable-column").click(selectColumn);
 
     //Mostrar grilla de concert channel
-    $(".bn-nav").click(function() {
+    $(".bn-nav").click(function () {
         let id = $(this).attr("id");
         showLandingSchedule(id);
     });
 
-    $(".btn-nav").click(function() {
+    $(".btn-nav").click(function () {
         let rel = $(this).attr("rel");
         console.log(rel);
     });
 
     /* Show the form to create a new user */
 
-    $("#admin-users-section").click(function() {
+    $("#admin-users-section").click(function () {
         showPageUsersBO();
     });
 
     /* SHOW VIEW USERS FRONT */
-    $("#admin-users-front-section").click(function() {
+    $("#admin-users-front-section").click(function () {
         showPageUsersFront();
     });
 
     /* SHOW VIEW ADMIN SITE */
-    $(".admin-site-button").click(function() {
+    $(".admin-site-button").click(function () {
         showAdminSite();
     });
 
     /* Previsualizar contenido en diferentes tamaños */
     const prevImage = $(".a-prev-image");
 
-    prevImage.click(function() {
+    prevImage.click(function () {
         let prevContainer = $("iframe");
         previewPage($(this));
     });
@@ -827,7 +870,7 @@ $(document).ready(function() {
     adminContent.hide();
     $(".admin-content:first").show();
 
-    adminNavItem.click(function() {
+    adminNavItem.click(function () {
         showContentNav(adminContent, $(this), adminNavItem, activeClass);
     });
     /* End Navigation*/
@@ -837,7 +880,7 @@ $(document).ready(function() {
     const inputPassword1 = $("#signup-password");
     const caracteresMin1 = $(".caracteres-min");
     const listo1 = $(".listo");
-    inputPassword1.keyup(function() {
+    inputPassword1.keyup(function () {
         if (
             inputPassword1.val().length < 8 &&
             inputPassword1.val().length >= 1
@@ -857,7 +900,7 @@ $(document).ready(function() {
 
     const inputCorreo = $(".input-email");
 
-    inputCorreo.keyup(function() {
+    inputCorreo.keyup(function () {
         const correoValido = $(".correo-valido");
         const imagenError = $(".error");
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -865,7 +908,7 @@ $(document).ready(function() {
     });
 
     /* VALIDATE LOGIN PASSWORD */
-    $(".input-password").keyup(function() {
+    $(".input-password").keyup(function () {
         validateKeyUpPassword($(this), $(".caracteres-min"));
     });
 
@@ -873,7 +916,7 @@ $(document).ready(function() {
 
     const inputReEmail = $(".input-email");
     const messageError = $(".correo-valido");
-    $("#reset-email").click(function() {
+    $("#reset-email").click(function () {
         if (validateEmail(inputReEmail, messageError)) {
             sendEmailResetPassword(inputReEmail);
         } else {
@@ -886,7 +929,7 @@ $(document).ready(function() {
     const inputConfirmPassword = $("#new-confirm-password");
     const newPasswordButton = $("#send-password-button");
 
-    newPasswordButton.click(function() {
+    newPasswordButton.click(function () {
         if (validateNewPassword(inputNewPassword, inputConfirmPassword)) {
             sendNewPassword(inputNewPassword, inputConfirmPassword);
             return true;
@@ -899,7 +942,7 @@ $(document).ready(function() {
 
     if (iconPassword !== null) {
         for (let i = 0; i < iconLength; i++) {
-            iconPassword[i].addEventListener("click", function() {
+            iconPassword[i].addEventListener("click", function () {
                 ShowHidePassword(this);
             });
         }
@@ -914,7 +957,7 @@ $(document).ready(function() {
      * Obtener el archivo subido
      */
 
-    $("#inp_programing_claro_canal").on("change", function() {
+    $("#inp_programing_claro_canal").on("change", function () {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -958,21 +1001,82 @@ $(document).ready(function() {
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            success: function(result) {
-                var programas = JSON.parse(result);
-                //console.log("php responde:" + result);
-                console.log(programas.data);
-                //console.log(result.data);
-                //$("#rempla-claro-canal").replaceWith(result);
+            success: function (result) {
+                var existe_programacion = JSON.parse(result);
+                if (existe_programacion.data == 1) {
+                    console.log("Preguntamos al usuario");
+                    $("#programas_procesados_por_el_excel").val(result);
+                    $(".modal-information").modal("show");
+                } else {
+                    console.log("se agregó la programación");
+                }
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             console.log(e);
         });
     }
-    //para agregar una nueva fila
-    $("#agregar").click(function() {
+    $("#acccion-programacion-remplaza").click(function () {
+        console.log("Se remplaza la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/changePrograming",
+            beforeSend: function () {
+                $(".modal-information .modal-content").prepend(
+                    `<div class="loader-container pointer-none">
+                        <img src="./images/loader.gif" class="loader-table"/>
+                    </div>`
+                );
+            },
+            success: function (result) {
+                $('.loader-container').remove();
+                $(".modal-information").modal("hide");
+                console.log(JSON.parse(result));
+            }
+        }).fail(function (e) {
+            console.log(e);
+        });
+    });
+
+    $("#acccion-programacion-agrega").click(function () {
+        console.log("Se agrega la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/addPrograming",
+            beforeSend: function () {
+                $(".modal-information .modal-content").prepend(
+                    `<div class="loader-container pointer-none">
+                        <img src="./images/loader.gif" class="loader-table"/>
+                    </div>`
+                );
+            },
+            success: function (result) {
+                $('.loader-container').remove();
+                $(".modal-information").modal("hide");
+                console.log(JSON.parse(result));
+            }
+        }).fail(function (e) {
+            console.log(e);
+        });
+    });
+    $("#acccion-programacion-cancela").click(function () {
+        console.log("Se cancela la programacion");
+        $("#programas_procesados_por_el_excel").val(" ");
+        let programas = $("#programas_procesados_por_el_excel").val();
+        console.log(programas);
+        $(".modal-information").modal("hide");
+    });
+
+    $("#agregar").click(function () {
         agregar();
     });
+
     function agregar(data) {
         console.log(data);
         var fila =
@@ -982,7 +1086,7 @@ $(document).ready(function() {
 });
 
 /**para la seleccion de paises */
-$(document).on("click", function(e) {
+$(document).on("click", function (e) {
     let container = $("#drop-paises, .cuadro-fecha");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         $("#selectPais").prop("checked", false);

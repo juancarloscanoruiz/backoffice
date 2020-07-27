@@ -331,6 +331,15 @@ function showlanding() {
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
+            window.focus(); //force focus on the currenct window;
+
+            window.addEventListener("blur", function(e) {
+                if (
+                    document.activeElement == document.querySelector("iframe")
+                ) {
+                    console.log("iframe");
+                }
+            });
         }
     });
 }

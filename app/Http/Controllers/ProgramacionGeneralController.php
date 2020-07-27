@@ -89,7 +89,7 @@ class ProgramacionGeneralController extends Controller
             $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
             $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
             $genres = $respuesta->data->genres;
-            var_dump($respuesta->data->grilla);
+            //var_dump($respuesta->data->grilla);
             if ($respuesta->code == 200) {
                 return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate", "genres"));
             } else {
@@ -156,9 +156,20 @@ class ProgramacionGeneralController extends Controller
         $data = $request->datos;
         $ruta = $new_file['tmp_name'];
         $documento = IOFactory::load($ruta);
+        #iterar por hojas
+        $hojaActual = $documento->getSheet(0);
+
+        $fecha_del_documento = $hojaActual->getCellByColumnAndRow(9, 3);
+        $fecha_del_documento = $fecha_del_documento->getValue();
+
+        $objFecha = Date::excelToDateTimeObject($fecha_del_documento);
+        $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+
+        $fecha_del_documento = $cadena_nuevo_formato;
+
         # obtener conteo e iterar
         $totalDeHojas = $documento->getSheetCount();
-        #iterar por hojas
+
         $programas = [];
         for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
             $hojaActual = $documento->getSheet($indiceHoja);
@@ -224,6 +235,7 @@ class ProgramacionGeneralController extends Controller
                             $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
 
                             $programa['Schedule_Item_Long_Date'] = $cadena_nuevo_formato;
+
                             break;
                         case 10:
                             # code...
@@ -286,272 +298,81 @@ class ProgramacionGeneralController extends Controller
                 $programas[$indiceFila - 3] = $programa;
             }
         }
-        //$programas=json_encode($programas);
 
-        $htmlProgrmacion = "<div id='tb1' class='d-flex  ml-5 pr-5'style='width:112%;'>
-        <div class'conten-tab'>
-        <div class='contenedor-fila'>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'> Entrada</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Estado</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Alerta</span>
-            </div>
-
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Title Original</span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Programar publicación</span>
-            </div>
-
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Establecer en Home</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Establecer en landing</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'> Imagenes</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Schedule Item Date Time</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Schedule Item Long Date</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Schedule Item Long Time< (GMT)</span>
-             </div>
-             <div class='contenedor-columna centro centro title-table'>
-             <span class='a-text-semibold-white text-normal'>Estimated Schedule Item Duration</span>
- </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Year Produced</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Genre List</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Title Alternate </span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Episode Season</span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Program Episode Number</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Synopsis</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Schedule Item Rating Code</span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Scheduled Version SUBBED (1=Yes/0=No)</span>
-            </div>
-            <div class='contenedor-columna centro centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Scheduled Version DUBBED (1=Yes/0=No)</span>
-            </div>
-            <div class='contenedor-columna centro  centro title-table'>
-                <span class='a-text-semibold-white text-normal'>Audio 5.1 available
-                    (1=Yes/0=No)</span>
-            </div>
-        </div>";
-
-        for ($indexProgramas = 0; $indexProgramas < count($programas); $indexProgramas++) {
-            $htmlProgrmacion = $htmlProgrmacion . '
-            <div class="contenedor-fila" id="programa_' . $programas[$indexProgramas]['Program_Title'] . '">
-                <div class="contenedor-columna centro" id="">
-                <img src="./images/basic-icons/trash.svg" class="mx-auto pr-2"alt="icono para borrar"> <img src="./images/basic-icons/pencil-edit-teal.svg" class="mx-auto"alt="lapiz para editar">
-                </div>
-                <div class="contenedor-columna centro">
-
-                <span class="a-text-bold-orange text-normal"> Pendiente de revisión </span>
-                </div>
-                <div class="contenedor-columna centro"></div>
-
-                <div class="contenedor-columna centro">
-                    <label class="program-original">' . $programas[$indexProgramas]['Program_Title'] . '</label>
-
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="yes-no">
-                            <input type="radio" name="yes-no" id="si' . $indexProgramas . '" checked />
-                            <label for="si' . $indexProgramas . '" id="siestado" class="si-estilo">
-                            Sí</label>
-                            <input type="radio" name="yes-no" id="no' . $indexProgramas . '" />
-                            <label for="no' . $indexProgramas . '" id="noestado" class="no-estilo">
-                            No</label>
-                        </div>
-
-                        <div>
-                            <label class="a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2" type=date>07-01-2019</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">11:00:00  HRS</label>
-                        </div>
-
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="yes-no">
-                            <input type="radio" name="si-no" id="yes" checked />
-                            <label for="yes" id="siestado" class="si-estilo">
-                            Sí</label>
-                            <input type="radio" name="si-no" id="nop" />
-                            <label for="nop" id="noestado" class="no-estilo">
-                            No</label>
-                        </div>
-                        <div >
-                        <label class="a-text-medium-brownish text-small d-flex justify-content-center pt-2 pb-2" type="date">DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" style="line-height:0px;">00:00:00 HRS</label>
-                     </div>
-                </div>
-
-                <div class="contenedor-columna centro">
-                <div class="yes-no pt-2">
-                <input type="radio" name="yes-landings"id="yes-landings"  value="1" checked="true" />
-                <label for="yes-landings " id="siestado-landings" class="si-estilo">
-                  Sí</label>
-                <input type="radio" name="si-no-landings" id="no-landings" />
-                <label for="no-landings" id="noestado-landings"class="no-estilo">
-                  No</label>
-            </div>
-                <div class=" d-flex mt-2 ml-2 pt-2">
-                <label class="checkradio d-flex  ml-2">
-                <input type="radio" name="dontlose">
-                <span class="checkmark"></span>
-                </label>
-
-                <span class="text-lan ml-2 "> No te pierdas</span>
-
-                </div>
-                    <div class="d-flex ml-2 mt-2 mb-2">
-                    <label class="checkradio d-flex  ml-2">
-                    <input type="radio" name="dontlose">
-                    <span class="checkmark"></span>
-                    </label>
-                    <span class="text-lan ml-2 "> Solo por canal claro</span>
-
-                    </div>
-
-                </div>
-                <div class="contenedor-columna centro">
-                    <div class="image-ta">
-                    <img src="" alt="añadir imagenes">
-                    </div>
-                    <span class="a-text-regular-brownishtwo text-small">Añade imagenes</span>
-
-                </div>
-                <div class="contenedor-columna centro">
-                    <div class="schedule-date">
-                    <label class="a-text-medium-brownish text-small d-flex justify-content-center pb-2" type=date>DD-MM-YYYY</label> <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">DD-MM-YYYY</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="time" >00:00:00 HRS</label>
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <label class="a-text-medium-brownish text-small d-flex justify-content-center" type="date">YYYY</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small">Animación, Cultura, Series</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small">Cantinflas y sus amigos: James Watt</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >3</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small">28</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro ">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small p-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br>eiusmod tempor incididunt ut labore et dolore magna aliqua.  </label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                        <label class="a-text-regular-brownishtwo text-small" >PG-13</label>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <div class="yes-no">
-                <input type="radio" id="yes-date2"  value="1" checked="true" />
-                <label for="yes-date2" id="siestado-date2" class="si-estilo">
-                  Sí</label>
-                <input type="radio"  id="no-date2" value="0" />
-                <label for="no-date2" id="noestado-date2"class="no-estilo">
-                  No</label>
-            </div>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <div class="yes-no">
-                <input type="radio" id="yes-date1"  value="1" checked="true" />
-                <label for="yes-date1" id="siestado-date1" class="si-estilo">
-                  Sí</label>
-                <input type="radio"  id="no-date1" value="0"/>
-                <label for="no-date1" id="noestado-date1"class="no-estilo">
-                  No</label>
-            </div>
-
-                    </div>
-                </div>
-                <div class="contenedor-columna centro">
-                <div class="schedule-date">
-                <div class="yes-no">
-                <input type="radio" id="yes-date"  value="1" checked="true" />
-                <label for="yes-date" id="siestado-date" class="si-estilo">
-                  Sí</label>
-                <input type="radio"  id="no-date" value="0"/>
-                <label for="no-date" id="noestado-date"class="no-estilo">
-                  No</label>
-            </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            ';
-        }
-
-        //hacemos la llamada a la API
+        #ahora checamos si este dia ya tiene programación
         $data = json_decode($data);
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "program/chekChapterExist",
+            ['body' => json_encode(
+                [
+                    'usuario_id' =>  session('id_user'),
+                    'landing_id' => $data->landing_id,
+                    'day' => $fecha_del_documento
+                ]
+            )]
+        );
+        $respuesta =  json_decode($response->getBody());
+        #vemos que es lo que dice la API
+        if ($respuesta->data == 1) {
+            #tiene progrmacion este dia entonces mandamos el modal
+
+            $respuesta->landing_id = $data->landing_id;
+            $respuesta->version_id = $data->version_id;
+            $respuesta->version_number = $data->version_number;
+            $respuesta->action_date = $fecha_del_documento;
+
+            $respuesta->programas = $programas;
+
+            echo (json_encode($respuesta));
+        } else {
+            //hacemos la llamad
+
+
+            $client = new Client([
+                'headers' => ['Content-Type' => 'application/json']
+            ]);
+            $response = $client->post(
+                $this->url . "program/CapturePrograming",
+                ['body' => json_encode(
+                    [
+                        'usuario_id' => $data->usuario_id,
+                        'landing_id' => $data->landing_id,
+                        'version_id' => $data->version_id,
+                        'version_number' => $data->version_number,
+                        'programs' => $programas
+                    ]
+                )]
+            );
+            $respuesta =  $response->getBody();
+            echo ($respuesta);
+        }
+    }
+    public function changePrograming(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "program/changePrograming",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'landing_id' => $request->landing_id,
+                    'version_id' => $request->version_id,
+                    'version_number' => $request->version_number,
+                    'programs' => $request->programas,
+                    'day' => $request->action_date,
+                ]
+            )]
+        );
+        $respuesta =  $response->getBody();
+        echo ($respuesta);
+    }
+    public function addPrograming(Request $request)
+    {
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
@@ -559,18 +380,20 @@ class ProgramacionGeneralController extends Controller
             $this->url . "program/CapturePrograming",
             ['body' => json_encode(
                 [
-                    'usuario_id' => $data->usuario_id,
-                    'landing_id' => $data->landing_id,
-                    'version_id' => $data->version_id,
-                    'version_number' => $data->version_number,
-                    'programs' => $programas
+                    'usuario_id' => session('id_user'),
+                    'landing_id' => $request->landing_id,
+                    'version_id' => $request->version_id,
+                    'version_number' => $request->version_number,
+                    'programs' => $request->programas
                 ]
             )]
         );
-        $respuesta =  $response->getBody()->getContents();
-
-        //echo ($respuesta);
+        $respuesta =  $response->getBody();
+        echo ($respuesta);
     }
+
+    //hacemos la llamada a la API
+
     public function newRow(Request $request)
     {
         //Obtenemos los datos de la vista en especifico
@@ -638,24 +461,24 @@ class ProgramacionGeneralController extends Controller
 
                                             </div>
             <!--Programar publicacición landing-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='landing-programar' chapter_id='" . $chapter_id . "' key=''>
-                                                <div class='programar-content pointer-none'>
-                        <div class='d-flex justify-content-end'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='landing-programar' chapter_id='" . $chapter_id . "' key='in_landing_publicacion'>
+                    <div class='programar-content pointer-none'>
+                        <div class='programar-schedule d-flex justify-content-end' key='in_landing_begin'>
                             <div>
                                 <label for='programar-landing' class='a-text-bold-brownish text-normal'>Inicio: </label>
-                                <input type='text' id='programar-landing' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                                <input type='text' id='programar-landing' class='landing-start-day  editable-attribute schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                             </div>
                             <div>
-                                <input type='text' id='programar-landing' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                                <input type='text' id='programar-landing' class='editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
                             </div>
                         </div>
-                        <div class='d-flex justify-content-end'>
+                        <div class='programar-schedule d-flex justify-content-end'key='in_landing_expiration' >
                             <div>
                                 <label for='programar-landing-end-date' class='a-text-bold-brownish text-normal'>Fin: </label>
-                                <input type='text' id='programar-landing-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                                <input type='text' id='programar-landing-end-date' class='editable-attribute landing-expiration-day schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                             </div>
                             <div>
-                                <input type='text' id='programar-landing-end-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                                <input type='text' id='programar-landing-end-hrs' class='landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
                             </div>
                         </div>
                     </div>
@@ -672,23 +495,23 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--HOME PROGRAMAR PUBLICACIÓN-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='programar-home-publicacion' chapter_id='" . $chapter_id . "'>
-                <div class='d-flex justify-content-end programar-content'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='programar-home-publicacion' chapter_id='" . $chapter_id . "' key='in_home_publicacion'>
+                <div class='programar-schedule d-flex justify-content-end programar-content' key='in_home_begin'>
                     <div>
                         <label for='programar-home-date' class='a-text-bold-brownish text-normal'>Inicio: </label>
-                        <input type='text' id='programar-home-start-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                        <input type='text' id='programar-home-start-date' class='home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                     </div>
                     <div>
-                        <input type='text' id='programar-home-start-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                        <input type='text' id='programar-home-start-hrs' class='home-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
                     </div>
                 </div>
-                <div class='d-flex justify-content-end'>
+                <div class='programar-schedule d-flex justify-content-end' key='in_home_expiration'>
                     <div>
                         <label for='programar-home-end-date' class='a-text-bold-brownish text-normal'>Fin: </label>
-                        <input type='text' id='programar-home-end-date' class='schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                        <input type='text' id='programar-home-end-date' class='home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                     </div>
                     <div>
-                        <input type='text' id='programar-home-end-hrs' class='time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
+                        <input type='text' id='programar-home-end-hrs' class='home-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>
                     </div>
                 </div>
             </div>

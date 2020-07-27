@@ -1,5 +1,7 @@
 import $ from "jquery";
-import { eventsGrilla } from "../operaciones_grilla";
+import {
+    eventsGrilla
+} from "../operaciones_grilla";
 
 $.ajaxSetup({
     headers: {
@@ -17,7 +19,7 @@ function editAttributeProgram(chapter_id, key, keyValue) {
         type: "POST",
         data: data,
         url: "program/editAttribute",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -32,18 +34,29 @@ function filterDates(startDate, lastDate) {
         type: "POST",
         data: data,
         url: "general-program/filterDates",
-        beforeSend: function() {
+        beforeSend: function () {
             $(".grilla-body").prepend(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader-table"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
-            //console.log(json);
+            console.log(json);
             let grills = json.data.grilla;
-            //Borramos el contenido actual de la grilla
+            //Géneros
+            let genres = json.data.genres;
+
+            let genreOption = "";
+            genres.forEach(genre => {
+                genreOption += `
+                <option class="a-text-regular-brownishtwo text-normal" value="${genre.title}">
+                    ${genre.title}
+                </option>
+                `;
+            })
+
             let header = `
             <div class="contenedor-fila" id="grilla-header">
                 <div class="contenedor-columna centro centro title-table" id="acciones">
@@ -133,7 +146,7 @@ function filterDates(startDate, lastDate) {
                                 <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1"  class="switch-landing" />
                                 <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
                                     Sí</label>
-                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" checked class="switch-landing" />
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" checked class="switch-landing switch-table" />
                                 <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
                                     No</label>
                             </div>
@@ -161,7 +174,7 @@ function filterDates(startDate, lastDate) {
                                 <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1" checked class="switch-landing" />
                                 <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
                                     Sí</label>
-                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing" />
+                                <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing switch-table" />
                                 <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
                                     No</label>
                             </div>
@@ -183,13 +196,13 @@ function filterDates(startDate, lastDate) {
                             </div>
                             `;
                             break;
-                        case 1:
+                        case 2:
                             inLanding = `
                                 <div class='yes-no mt-3'>
                                     <input type="radio" name="sino-landing-${program.chapter_id}" id="yes-landing-${program.chapter_id}" value="1" checked class="switch-landing" />
                                     <label for="yes-landing-${program.chapter_id}" id="siestado-landing-${program.chapter_id}" class="si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing" />
+                                    <input type="radio" name="sino-landing-${program.chapter_id}" id="no-landing-${program.chapter_id}" value="0" class="switch-landing switch-table" />
                                     <label for="no-landing-${program.chapter_id}" id="noestado-landing-${program.chapter_id}" class="no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
@@ -216,48 +229,75 @@ function filterDates(startDate, lastDate) {
                     }
                     /* Si hay algún programa en la sección de algún landing */
                     let inLandingExpiration = "";
+
                     if (program.in_landing == 0) {
                         inLandingExpiration = `
                         <div class="programar-content pointer-none">
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                 <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_landing_expiration">
                                 <div>
                                     <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing-end-date" class="landing-expiration-day schedule-date-input a-text-medium-brownish table-input editable-attribute" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours time-seconds-input a-text-medium-brownish table-input editable-attribute" placeholder="00:00:00">
                                 </div>
                             </div>
                         </div>
                         `;
                     } else {
+                        //Obtenemos la fecha y hora de inicio
+                        let scheduleBegin = program.in_landing_begin.split(" ");
+                        //Obtenemos la fecha de inicio
+                        let dateBegin = scheduleBegin[0].split("-");
+                        //Obtenemos el año, el mes y el día por separado
+                        let dateBeginYear = dateBegin[0];
+                        let dateBeginMonth = dateBegin[1];
+                        let dateBeginDay = dateBegin[2];
+                        //Obtenemos la hora de inicio
+                        let timeBegin = scheduleBegin[1];
+                        //Obtenemos la fecha y hora final
+                        let scheduleExpiration = program.in_landing_expiration.split(
+                            " "
+                        );
+                        //Obtenemos la fecha final
+                        let dateExpiration = scheduleExpiration[0].split("-");
+
+                        //Obtenemos el año, mes y día por separado
+                        let dateExpirationYear = dateExpiration[0];
+                        let dateExpirationMonth = dateExpiration[1];
+                        let dateExpirationDay = dateExpiration[2];
+                        //Verificamos si existe la hora, en todo caso que no, la variable es null
+                        let timeExpiration = scheduleExpiration[1] ?
+                            scheduleExpiration[1] :
+                            "00:00:0000";
+
                         inLandingExpiration = `
-                        <div class="landing-programar-content">
-                            <div class="d-flex justify-content-end">
+                        <div class="programar-content">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                 <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-landing" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing" class="landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="${dateBeginDay}-${dateBeginMonth}-${dateBeginYear}" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-landing" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-landing" class="landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeBegin}" placeholder="00:00:00">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
                                 <div>
                                     <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-landing-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing-end-date" class="landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="${dateExpirationDay}-${dateExpirationMonth}-${dateExpirationYear}" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-landing-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeExpiration}" placeholder="00:00:00">
                                 </div>
                             </div>
                         </div>
@@ -269,65 +309,89 @@ function filterDates(startDate, lastDate) {
                     if (program.in_home == 0) {
                         inHome = `
                         <div class="yes-no">
-                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home"/>
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home switch-table"/>
                             <label for="programar-si-${program.chapter_id}" id="siestado-${program.chapter_id}" class=" switch-label si-estilo cursor-pointer">
                                 Sí</label>
-                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home" checked />
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home switch-table" checked />
                             <label for="programar-no-${program.chapter_id}" id="noestado-${program.chapter_id}" class="switch-label no-estilo cursor-pointer">
                                 No</label>
                         </div>
                         `;
                         inHomeExpiration = `
                         <div class="programar-content pointer none">
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_home_begin">
                                 <div>
                                     <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
                                 <div>
                                     <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-home-end-date" class="editable-attribute home-expiration-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-home-end-hrs" class="editable-attribute home-expiration-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
                         </div>
                         `;
                     } else {
+                        //Extraemos la fecha y hora de inicio
+                        let inHomeBegin = program.in_home_begin ? program.in_home_begin.split(" ") : "";
+                        //En caso de que no exista la fecha, ponemos la fecha en 0
+                        let inHomeBeginDate = inHomeBegin[0] ? inHomeBegin[0].split("-") : "";
+                        //Obtenemos el año
+                        let inHomeBeginYear = inHomeBeginDate[0] ? inHomeBeginDate[0] : "0000";
+                        //Obtenemos el mes
+                        let inHomeBeginMonth = inHomeBeginDate[1] ? inHomeBeginDate[1] : "00";
+                        //Obtenemos el día
+                        let inHomeBeginDay = inHomeBeginDate[2] ? inHomeBeginDate[2] : "00";
+                        //En caso de que no exista la hora, ponemos la hora en 0
+                        let inHomeBeginTime = inHomeBegin[1] ? inHomeBegin[1] : "00:00:00";
+
+                        //Obtenemos la fecha y hora de fin
+                        let inHomeExp = program.in_home_expiration.split(" ");
+                        //Obtenemos la fecha y verificamos si efectivamente existe
+                        let inHomeExpDate = inHomeExp[0] ? inHomeExp[0].split("-") : "00-00-0000";
+                        //Obtenemos el año de la fecha extraida
+                        let inHomeExpYear = inHomeExpDate[0] ? inHomeExpDate[0] : "0000";
+                        //Obtenemos el mes
+                        let inHomeExpMonth = inHomeExpDate[1] ? inHomeExpDate[1] : "00";
+                        //Obtenemos el día
+                        let inHomeExpDay = inHomeExpDate[2] ? inHomeExpDate[2] : "00";
+
                         inHome = `
                         <div class="yes-no">
-                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home" checked/>
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-si-${program.chapter_id}" value="1" class="switch-home switch-table" checked/>
                             <label for="programar-si-${program.chapter_id}" id="siestado-${program.chapter_id}" class=" switch-label si-estilo cursor-pointer">
                                 Sí</label>
-                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home" />
+                            <input type="radio" name="yes-no-${program.chapter_id}" id="programar-no-${program.chapter_id}" value="0" class="switch-home switch-table" />
                             <label for="programar-no-${program.chapter_id}" id="noestado-${program.chapter_id}" class="switch-label no-estilo cursor-pointer">
                                 No</label>
                         </div>
                         `;
                         inHomeExpiration = `
                         <div class="programar-content pointer none">
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_home_begin">
                                 <div>
                                     <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-home-start-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" id="programar-home-start-date" value="${inHomeBeginDay}-${inHomeBeginMonth}-${inHomeBeginYear}" class="editable-attribute home-expiration-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-home-start-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" value="${inHomeBeginTime}" id="programar-home-start-hrs" class="editable-attribute home-expiration-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="programar-schedule d-flex justify-content-end" key="in_home_expiration">
                                 <div>
                                     <label for="programar-home-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-home-end-date" class="schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                    <input type="text" value="${inHomeExpDay}-${inHomeExpMonth}-${inHomeExpYear}" id="programar-home-end-date" class="editable-attribute home-expiration-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-home-end-hrs" class="time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                    <input type="text" id="programar-home-end-hrs" class="editable-attribute home-expiration-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                 </div>
                             </div>
                         </div>
@@ -335,18 +399,19 @@ function filterDates(startDate, lastDate) {
                     }
                     //Verificamos el número de imágenes que tiene cada programa
                     let images = "";
-                    if (program.cantity_images_uploaded_program < 9) {
+
+                    if (program.images.cantity_images_uploaded < 9) {
                         images = `
                         <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                             <a href="upimage/${program.chapter_id}">
                                 <div class="image-ta position-relative">
                                     <img src="./images/add-icon.svg" alt="añadir imagenes" class="add-images-icon">
-                                    <img src="${program.images.thumbnail_list_horizontal} alt="" class="image-program">
+                                    <img src="./storage/${program.images.thumbnail_list_horizontal}" alt="${program.title}" class="image-program">
                                 </div>
                             </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
                             <div>
-                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded_program}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded}</span><span class="a-text-regular-brownishtwo">/9</span>
                             </div>
                         </div>
                         `;
@@ -356,12 +421,12 @@ function filterDates(startDate, lastDate) {
                             <a href="upimage/${program.chapter_id}">
                                 <div class="image-ta position-relative">
                                     <img src="./images/basic-icons/pencil-edit-teal.svg" alt="añadir imagenes" class="add-images-icon">
-                                    <img src="${program.images.thumbnail_list_horizontal}" alt="" class="image-program">
+                                    <img src="./storage/${program.images.thumbnail_list_horizontal}" alt="" class="image-program">
                                 </div>
                             </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
                             <div>
-                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded_program}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                <span class="a-text-regular-brownishtwo">${program.images.cantity_images_uploaded}</span><span class="a-text-regular-brownishtwo">/9</span>
                             </div>
                         </div>
                         `;
@@ -377,10 +442,10 @@ function filterDates(startDate, lastDate) {
                         <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="${program.chapter_id}" >
                             <div class="schedule-date">
                                 <div class="yes-no">
-                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="1" checked class="switch-table" />
-                                    <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
+                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="1"  class="switch-table" />
+                                    <label for="yes-subbed-${program.chapter_id}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
                                         Sí</label>
-                                    <input type="radio" id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table" />
+                                    <input type="radio" checked id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table" />
                                     <label for="no-subbed-${program.chapter_id}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
                                         No</label>
                                 </div>
@@ -392,10 +457,10 @@ function filterDates(startDate, lastDate) {
                         <div class="contenedor-columna selectable-column centro editable-column" rel="subbed" key="subbed" chapter_id="${program.chapter_id}" >
                             <div class="schedule-date">
                                 <div class="yes-no">
-                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="1" class="switch-table" />
+                                    <input type="radio" id="yes-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" checked value="1" class="switch-table" />
                                     <label for="yes-subbed-{{$programs[$indexPrograms]->chapter_id}}" id="siestado-date2" class="switch-label cursor-pointer si-estilo">
                                         Sí</label>
-                                    <input type="radio" id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table"  checked />
+                                    <input type="radio" id="no-subbed-${program.chapter_id}" name="subbed-${program.chapter_id}" value="0" class="switch-table"/>
                                     <label for="no-subbed-${program.chapter_id}" id="noestado-date2" class="switch-label cursor-pointer no-estilo">
                                         No</label>
                                 </div>
@@ -469,7 +534,7 @@ function filterDates(startDate, lastDate) {
                         </div>
                         `;
                     }
-
+                    //Guardamos todos los programas
                     rows += `
                     <div class="contenedor-fila" id="programacion-claro-${program.chapter_id}">
                         <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-${program.chapter_id}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
@@ -488,15 +553,15 @@ function filterDates(startDate, lastDate) {
                             ${inLanding}
                         </div>
                         <!--Programar publicacición landing-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="${program.chapter_id}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="landing-programar" chapter_id="${program.chapter_id}" key="in_landing_publicacion">
                             ${inLandingExpiration}
                         </div>
                         <!--ESTABLECER EN HOME-->
-                        <div class="contenedor-columna selectable-column centro editable-column" id="programar-${program.chapter_id}" rel="establecer-home" chapter_id="${program.chapter_id}">
+                        <div class="contenedor-columna selectable-column centro editable-column" id="programar-${program.chapter_id}" rel="establecer-home" chapter_id="${program.chapter_id}" key="in_home">
                             ${inHome}
                         </div>
                         <!--HOME PROGRAMAR PUBLICACIÓN-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="${program.chapter_id}">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="programar-home-publicacion" chapter_id="${program.chapter_id}" key="in_home_publicacion">
                             ${inHomeExpiration}
                         </div>
                         <!--IMÁGENES-->
@@ -532,17 +597,12 @@ function filterDates(startDate, lastDate) {
                             </div>
                         </div>
                         <!--Program genre list-->
-                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="${program.chapter_id}" key="">
+                        <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="${program.chapter_id}" key="genre">
                             <div class="schedule-date">
-                                <div>
-                                    <details class="sel_users" name="genero"  style="width: 300px;" >
-                                        <option></option>
-                                        <option class="a-text-bold-warm text-normal" value='animacion'>Animación</option>
-                                        <option class="a-text-bold-warm text-normal" value='cultura'>Cultura</option>
-                                        <option class="a-text-bold-warm text-normal" value='series'>Series</option>
-                                        <option class="a-text-bold-warm text-normal" value='comedia'>Comedia</option>
-                                        <option class="a-text-bold-warm text-normal" value='romance'>Romance</option>
-                                    </details>
+                                <div class="d-flex justify-content-center">
+                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                        ${genreOption}
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -560,7 +620,7 @@ function filterDates(startDate, lastDate) {
                             <input class="a-text-regular-brownishtwo table-input text-center editable-attribute" value="${program.program_episode_number}" />
                         </div>
                         <!--SYNOPSIS-->
-                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="${program.chapter_id}" key="synopsis" synopsis="${program.synopsus}">
+                        <div class="contenedor-columna selectable-column centro editable-column" rel="synopsis" chapter_id="${program.chapter_id}" key="synopsis" synopsis="${program.synopsis}">
                             <div class="program-original text-left edit-cell" id="lb-synopsis-${program.chapter_id}">
                                 <span class="mb-0 lb-synopsis">${program.synopsis}</span>
                                 <span class="text-normal cursor-pointer a-text-bold-teal see-more" program_title="${program.title}">Ver más...</span>
@@ -606,7 +666,7 @@ function addImageToProgram(id_version, id_program, image) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -623,10 +683,13 @@ function deleteProgram(id_program, id_version) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
 }
 
-export { editAttributeProgram, filterDates };
+export {
+    editAttributeProgram,
+    filterDates
+};

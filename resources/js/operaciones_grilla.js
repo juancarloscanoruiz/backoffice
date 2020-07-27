@@ -1,7 +1,10 @@
 //JQUERY
 import $ from "jquery";
 //Métodos para aplicar ciertos estilos a las filas y columnas
-import { selectRow, selectColumn } from "./UI/UI.js";
+import {
+    selectRow,
+    selectColumn
+} from "./UI/UI.js";
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -40,7 +43,7 @@ function eventsGrilla() {
     let genres = "";
     let selectpicker = $(".selectpicker");
     //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function() {
+    selectpicker.on("change", function () {
         //Obtenemos los valores del selectpicker
         let selected = $(this).val();
         //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -56,7 +59,7 @@ function eventsGrilla() {
         }
     });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function() {
+    selectpicker.on("hide.bs.select", function () {
         //Seleccionamos la columna en la que estamos
         let currentColumn = $(this).closest(".contenedor-columna");
         //Obtenemos el cahpter_id de la columna
@@ -70,7 +73,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
 
-    $("button[id=btn-landing]").click(function() {
+    $("button[id=btn-landing]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -90,7 +93,7 @@ function eventsGrilla() {
         }
     });
     //Al momento de dar click en el boton de grilla
-    $("button[id=btn-grilla]").click(function() {
+    $("button[id=btn-grilla]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -111,22 +114,24 @@ function eventsGrilla() {
     });
 
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-    $(".lan-claro").click(function() {
+    $(".lan-claro").click(function () {
         showlanding();
     });
     //Cargamos la pantalla en donde previsualizamos el landing de concert channel
-    $(".lan-concert").click(function() {
+    $(".lan-concert").click(function () {
         showlanconcert();
     });
     // Damos click en el botón de "landing" en grilla de claro cinema
-    $(".lan-cinema").click(function(event) {
+    $(".lan-cinema").click(function (event) {
         //Hacemos una petición ajax para recibir una vista
         $.ajax({
             type: "POST",
             url: "view",
-            data: { view: "lan-cinema" },
+            data: {
+                view: "lan-cinema"
+            },
             //Insertamos un loader
-            beforeSend: function() {
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -134,7 +139,7 @@ function eventsGrilla() {
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 console.log("grilla de claro cinema");
                 //Insertamos la vista que recibimos en la vista actual
                 $("#bodymenu").html("");
@@ -150,7 +155,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function() {
+    $(".switch-landing").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -184,7 +189,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function() {
+    $(".switch-home").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -211,7 +216,7 @@ function eventsGrilla() {
         }
     });
     //Mostrar la sinópsis completa en modal
-    $(".see-more").click(function() {
+    $(".see-more").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
@@ -237,7 +242,7 @@ function eventsGrilla() {
     });
 
     //botón de modal de edición de de sinopsis
-    $(".edit-synopsis-button").click(function() {
+    $(".edit-synopsis-button").click(function () {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
         //Obtenemos la sinopsis nueva del textarea del modal
@@ -281,7 +286,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -291,10 +296,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -325,7 +330,7 @@ function eventsGrilla() {
         y hacemos la petición
     */
     let editableAttribute = $(".editable-attribute");
-    editableAttribute.keydown(function(e) {
+    editableAttribute.keydown(function (e) {
         //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -346,14 +351,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -405,6 +410,7 @@ function eventsGrilla() {
 
                     //Verificamos si es la fecha de inicio del home
                     if (scheduleHome == "in_home_begin") {
+                        console.log(scheduleHome);
                         //Obtenemos la fecha
                         let date = $(".home-start-day")
                             .val()
@@ -477,14 +483,24 @@ function eventsGrilla() {
     });
 
     //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-    editableAttribute.blur(function() {
+    editableAttribute.blur(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let key = currentColumn.attr("key");
         let keyValue = $(this).val();
         let chapterId = currentColumn.attr("chapter_id");
         //Verificamos el campo que estamos editando
         switch (key) {
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            //Verificamos si lo que estamos editando es Schedule Item Long Date
+            case "day":
+                //Seperamos la fecha
+                let date = $(this)
+                    .val()
+                    .split("-");
+                //Volvemos a unir la fecha empezando por el año y mandamos la petición
+                keyValue = `${date[2]}-${date[1]}-${date[0]}`;
+                editAttributeProgram(chapterId, key, keyValue);
+                break;
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -584,7 +600,7 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function() {
+    $(".switch-table").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
@@ -632,12 +648,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function(index, element) {
+    $(".lb-synopsis").each(function (index, element) {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -652,9 +668,11 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             multipleSeparator: " ",
             filter: true
         })
-        .on("changed.bs.select", function() {
+        .on("changed.bs.select", function () {
             $(this).selectpicker("refresh");
         });
 }
 
-export { eventsGrilla };
+export {
+    eventsGrilla
+};

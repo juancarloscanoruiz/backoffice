@@ -402,6 +402,10 @@ body {
 
 /* TEXT BASE */
 
+.h2 {
+  font-size: 32px;
+}
+
 .h3 {
   font-size: 24px;
 }
@@ -2705,6 +2709,27 @@ body {
   transform: translate(-50%, 150%);
 }
 
+.edit-image-icon {
+  width: 70px;
+  z-index: 1;
+}
+
+.arrow-right-programming,
+.arrow-left-programming {
+  top: 50%;
+  position: absolute;
+}
+
+.arrow-right-programming {
+  right: 0;
+  transform: translate(150%, -50%);
+}
+
+.arrow-left-programming {
+  left: 0;
+  transform: translate(-150%, -50%) rotate(180deg);
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -3598,6 +3623,10 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 /* TEXT BASE */
+
+.h2 {
+  font-size: 32px;
+}
 
 .h3 {
   font-size: 24px;
@@ -4928,6 +4957,22 @@ ul {
   height: 200px;
 }
 
+.programming-slider-dots .slick-dots {
+  position: static;
+  text-align: left;
+  bottom: auto;
+}
+
+.programming-slider-dots .presentation {
+  margin-right: 24px;
+}
+
+.programming-slider-dots .slick-dots li {
+  height: 37px;
+  width: 37px;
+  margin-right: 16px;
+}
+
 .navbar-progra-item-border {
   border-right: 2px solid #979797;
 }
@@ -5219,6 +5264,10 @@ iframe {
   width: 100vw;
   opacity: 0.5;
   top: 0;
+}
+
+.dots-container {
+  width: 1000px;
 }
 
 @font-face {
@@ -5551,8 +5600,17 @@ section {
   cursor: pointer;
 }
 
-.synopsis-image-slider {
+.synopsis-image-slider,
+.programming-slider {
   width: 1000px !important;
+}
+
+.programming-slider .slick-slide {
+  height: 342px !important;
+}
+
+.programming-slider .slick-slide div {
+  height: 100% !important;
 }
 
 .synopsis-image-slider .slick-dots {

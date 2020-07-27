@@ -51,7 +51,6 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 //Ruta para programación general
-
 Route::group(['prefix' => 'general-program', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@index")->name('programacion_general');
     Route::post('captureExcel', "ProgramacionGeneralController@captureExcel")->name('programacion_general.captureExcel');
@@ -59,7 +58,11 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('updateImages', "ProgramacionGeneralController@updateImages")->name('updateImages');
     Route::post('filterDates', "ProgramacionGeneralController@filterDates")->name('filterDates');
     Route::post('deleteChapter', "ProgramacionGeneralController@deleteChapter")->name('deleteChapter');
+    Route::post('changePrograming', "ProgramacionGeneralController@changePrograming")->name('changePrograming');
+    Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 });
+
+
 
 //RUTAS PARA LANDING
 Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
@@ -67,6 +70,9 @@ Route::get("/concert-channel", "landingController@showConcertChannelLanding")->n
 Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
+
+//Rutas para la edición de un programa en el sitio
+Route::get("/programming-carrusel", "programController@index");
 
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
