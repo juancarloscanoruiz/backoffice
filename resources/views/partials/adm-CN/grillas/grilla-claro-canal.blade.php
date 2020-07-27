@@ -497,7 +497,7 @@ $data_for_new_entry = json_encode([
                             </div>
                         </div>
                         <!--Imágenes-->
-                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded_program < 9)
+                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded < 9)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
@@ -507,7 +507,7 @@ $data_for_new_entry = json_encode([
                                 </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
                                 <div>
-                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded_program}}</span><span class="a-text-regular-brownishtwo">/9</span>
+                                    <span class="a-text-regular-brownishtwo">{{$programs[$indexPrograms]->images->cantity_images_uploaded}}</span><span class="a-text-regular-brownishtwo">/9</span>
                                 </div>
                             </div>
                         @else

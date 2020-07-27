@@ -44,26 +44,9 @@
 <body>
     <main>
         <div id="menu">
-            <div class="d-flex float-right mb-5 mr-5">
-            <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
-                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                      <input type="radio" name="sexo" id="edit" checked />
-                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
-                        <p class=" a-prev-title">EDITAR</p></label>
-                      <input type="radio" name="sexo" id="prev" />
-                      <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
-                      <p class=" a-prev-title ">PREVISUALIZAR</p></label>
-                    </div>
-                  </form>
-                <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
-                </div>
-            </div>
-            <div class="clearfix"></div>
+           
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
-                <div class="navbar-progra d-flex align-items-center justify-content-center mt-5">
+                <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
                     <!--<span class="p-3 arrow arrow-left">
             < </span>-->
@@ -103,20 +86,46 @@
             </nav>
             <div class="centro">
                 <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
-                    <p>Canal Claro</p>
+                  <!--  <p>Canal Claro</p>-->
                     <div class="float-left pl-3 mb-5 " style="margin-left: 7%;">
-                <div> <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
+                      <div>
+                       <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
                             <input type="checkbox">
                             <span class="checkmark1 border-green"></span>
-                        </label><span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
+                        </label>
+                        <span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
                         <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
                             <input type="checkbox">
                             <span class="checkmark2  border-red"></span>
-                        </label><span class=" ml-2 a-text-red">No guardar cambios</span>
+                        </label>
+                        <span class=" ml-2 a-text-red">No guardar cambios</span>
+                     </div>
+                  </div>
+            
+            <div class="d-flex float-right mb-0 mr-5">
+            <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
+                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
+                      <input type="radio" name="sexo" id="edit" checked />
+                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <p class=" a-prev-title">EDITAR</p></label>
+                      <input type="radio" name="sexo" id="prev" />
+                      <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                      <p class=" a-prev-title ">PREVISUALIZAR</p></label>
+                    </div>
+                  </form>
+                <div class="pt-2">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
             </div>
+            
             <div class="clearfix"></div>
-
+            <div class=" mr-5 d-flex float-right po-zona">
+            <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg" class="Icon_paises1" /></button>
+        </div>
+        <div class="clearfix"></div>
+          
                 </div>
             </div>
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
@@ -252,7 +261,31 @@
                         </label><span class=" ml-2 a-text-red">No guardar cambios</span>
                 </div>
             </div>
+            <div class="d-flex float-right mb-0 mr-5">
+            <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
+                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
+                      <input type="radio" name="sexo" id="edit" checked />
+                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <p class=" a-prev-title">EDITAR</p></label>
+                      <input type="radio" name="sexo" id="prev" />
+                      <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                      <p class=" a-prev-title ">PREVISUALIZAR</p></label>
+                    </div>
+                  </form>
+                <div class="pt-2">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
+                </div>
+            </div>
+            
             <div class="clearfix"></div>
+            <div class=" mr-5 d-flex float-right po-zona">
+            <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg" class="Icon_paises1" /></button>
+        </div>
+        <div class="clearfix"></div>
+          
+                </div>
 
                 </div>
             </div>
@@ -271,7 +304,31 @@
                         </label><span class=" ml-2 a-text-red">No guardar cambios</span>
                 </div>
             </div>
+            <div class="d-flex float-right mb-0 mr-5">
+            <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
+                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
+                      <input type="radio" name="sexo" id="edit" checked />
+                      <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <p class=" a-prev-title">EDITAR</p></label>
+                      <input type="radio" name="sexo" id="prev" />
+                      <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                      <p class=" a-prev-title ">PREVISUALIZAR</p></label>
+                    </div>
+                  </form>
+                <div class="pt-2">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
+                </div>
+            </div>
+            
             <div class="clearfix"></div>
+            <div class=" mr-5 d-flex float-right po-zona">
+            <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg" class="Icon_paises1" /></button>
+        </div>
+        <div class="clearfix"></div>
+          
+                </div>
 
                 </div>
 

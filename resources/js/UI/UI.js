@@ -6,7 +6,7 @@ import {
     deleteUserFront,
     getAllUserFront
 } from "../services/user.js";
-
+import { previewPage } from "../preview/prev.js";
 import { validateKeyUpEmail } from "../form/form.js";
 import $ from "jquery";
 import { eventsGrilla } from "../operaciones_grilla";
@@ -331,6 +331,15 @@ function showlanding() {
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
+            //para activar el prev de los iconos
+             /* Previsualizar contenido en diferentes tamaños */
+    const prevImage = $(".a-prev-image");
+
+    prevImage.click(function() {
+        let prevContainer = $("iframe");
+        previewPage($(this));
+    });
+            
         }
     });
 }
@@ -357,6 +366,14 @@ function showlanconcert() {
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
+             //para activar el prev de los iconos
+             /* Previsualizar contenido en diferentes tamaños */
+    const prevImage = $(".a-prev-image");
+
+    prevImage.click(function() {
+        let prevContainer = $("iframe");
+        previewPage($(this));
+    });
         }
     });
 }
