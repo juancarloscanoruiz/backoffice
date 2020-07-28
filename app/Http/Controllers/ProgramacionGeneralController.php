@@ -504,7 +504,7 @@ class ProgramacionGeneralController extends Controller
                 <div class='programar-schedule d-flex justify-content-end programar-content' key='in_home_begin'>
                     <div>
                         <label for='programar-home-date' class='a-text-bold-brownish text-normal'>Inicio: </label>
-                        <input type='text' id='programar-home-start-date' class='home-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
+                        <input type='text' id='programar-home-start-date' class='home-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input' placeholder='00-00-0000'>
                     </div>
                     <div>
                         <input type='text' id='programar-home-start-hrs' class='home-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input' placeholder='00:00:00'>

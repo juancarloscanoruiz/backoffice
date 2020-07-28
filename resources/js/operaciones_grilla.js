@@ -517,7 +517,7 @@ function eventsGrilla() {
                 if (schedule == "in_landing_begin") {
                     let day = $(".landing-start-day").val(); //Obtenemos fecha
                     let hours = $(".landing-start-hours").val(); //Obtenemos hora
-                    console.log(day, hours);
+                    console.log(day);
                     //En caso de tener ambos valores, hacemos al petición
                     if (day != "" && hours != "") {
                         console.log("Fecha inicio con horas");

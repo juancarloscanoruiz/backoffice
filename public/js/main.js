@@ -89087,7 +89087,7 @@ function eventsGrilla() {
 
           var hours = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-hours").val(); //Obtenemos hora
 
-          console.log(_day5, hours); //En caso de tener ambos valores, hacemos al petición
+          console.log(_day5); //En caso de tener ambos valores, hacemos al petición
 
           if (_day5 != "" && hours != "") {
             console.log("Fecha inicio con horas");
