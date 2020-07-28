@@ -778,7 +778,7 @@ $data_for_new_entry = json_encode([
         <!--cierre del div conten-tab-->
         <div class="contenedor mb-5 ml-5 pr-5">
             <div class="contenedor-columna centro">
-                <div id="agregar-canal-claro" class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">
+                <div id="agregar-concert-channel" class="d-flex align-items-center a-btn-basic-large a-btn-teal signo justify-content-center  ml-2">
                     <span class="text-crea" style="cursor:pointer">Crear nueva entrada</span>
                 </div>
             </div>
