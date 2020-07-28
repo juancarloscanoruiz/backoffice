@@ -152,7 +152,32 @@ $(document).ready(function () {
             }
         });
     });
-
+    divGrilla.on("click", "#agregar-concert-channel", function () {
+        $.ajax({
+            type: "POST",
+            url: "general-program/newRow",
+            data: {
+                landing: "Concert Channel"
+            },
+            success: function (result) {
+                $(".grilla-body").append(result);
+                eventsGrilla();
+            }
+        });
+    });
+    divGrilla.on("click", "#agregar-claro-cinema", function () {
+        $.ajax({
+            type: "POST",
+            url: "general-program/newRow",
+            data: {
+                landing: "Claro Cinema"
+            },
+            success: function (result) {
+                $(".grilla-body").append(result);
+                eventsGrilla();
+            }
+        });
+    });
     eventsGrilla();
 
     //SLIDER DE SINOPSIS
