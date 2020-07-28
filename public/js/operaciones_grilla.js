@@ -73729,6 +73729,120 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing").on("change", function () {
+    /**
+     * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+     * esto para no caursar poroblemas mayores se manda a null e value del form
+     * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
+     */
+    try {
+      var file = this.files[0];
+      var filename = this.files[0].name;
+
+      if (filename != null) {
+        var splName = filename.split(".");
+        var fileFormat = splName[splName.length - 1];
+
+        if (fileFormat != "xlsx" && fileFormat != "xls") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-file").modal("show");
+        } else {
+          var data_for_api = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('api');
+          sendFilePHP(file, data_for_api);
+          console.log(this.files[0].name);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    this.value = null; //aqui para evitar que se hagan registros dobles
+  });
+  /**
+    * Eviar archivo mediante ajax a un "controlador" php
+    */
+
+  function sendFilePHP(file, data_for_api) {
+    console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
+
+    var data = new FormData();
+    data.append("file", file);
+    data.append("datos", data_for_api); //Realizamos el ajax
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      processData: false,
+      //esto es para poder pasar el archivo
+      contentType: false,
+      //esto es para poder pasar el archivo
+      url: "general-program/captureExcel",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").prepend("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        var existe_programacion = JSON.parse(result);
+
+        if (existe_programacion.data == 1) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+          console.log("Preguntamos al usuario");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
+        } else {
+          console.log("se agregó la programación");
+        }
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-remplaza").click(function () {
+    console.log("Se remplaza la programacion");
+    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      url: "general-program/changePrograming",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+        console.log(JSON.parse(result));
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-agrega").click(function () {
+    console.log("Se agrega la programacion");
+    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      url: "general-program/addPrograming",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+        console.log(JSON.parse(result));
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-cancela").click(function () {
+    console.log("Se cancela la programacion");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(" ");
+    var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
+    console.log(programas);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+  });
 }
 
 
