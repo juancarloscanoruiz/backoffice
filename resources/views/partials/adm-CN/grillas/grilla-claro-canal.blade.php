@@ -1,4 +1,5 @@
 <?php
+
 //recuperamos datos obtenidos por la API
 $last_edition = $respuesta->data->grilla[0]->last_edition;
 $edited_for = $respuesta->data->grilla[0]->edited_for;
@@ -562,7 +563,7 @@ $data_for_new_entry = json_encode([
                         @endif
 
                         <!--Imágenes-->
-                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded < 9)
+                        @if ($programs[$indexPrograms]->images->cantity_images_uploaded == 0)
                             <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
@@ -621,13 +622,13 @@ $data_for_new_entry = json_encode([
                         <!--Estimated Schedule Item Duration-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="estimated-duration" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="duration">
                             <div class="schedule-date">
-                                <input type="text" class="editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}">
+                                <input type="text" class="editable-attribute table-input text-center time-seconds-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->duration}}" />
                             </div>
                         </div>
                         <!--Program Year Produced-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="program_year_produced">
                             <div class="schedule-date">
-                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY">
+                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY" />
                             </div>
                         </div>
                         <!--Program genre list-->

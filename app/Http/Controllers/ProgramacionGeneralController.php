@@ -414,7 +414,13 @@ class ProgramacionGeneralController extends Controller
         );
         $respuesta =  json_decode($response->getBody());
         if ($respuesta->code == 200) {
-            $chapter_id = $respuesta->data;
+            //var_dump($respuesta);
+            $genres = $respuesta->data->genres;
+            $genre = "";
+            for ($i = 0; $i < count($genres); $i++) {
+                $genre .= "<option  class='a-text-regular-brownishtwo text-normal'>" . $genres[$i]->title . "</option>";
+            }
+            $chapter_id = $respuesta->data->chapter_id;
             $html = "
             <div class='contenedor-fila' id='programacion-claro-$chapter_id'>
             <!--ACCIONES-->
@@ -458,8 +464,7 @@ class ProgramacionGeneralController extends Controller
                                 <span class='cursor-pointer a-text-medium-warmgrey ml-2'>Contenido exclusivo</span>
                             </div>
                         </div>
-
-                                            </div>
+                    </div>
             <!--Programar publicacición landing-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='landing-programar' chapter_id='" . $chapter_id . "' key='in_landing_publicacion'>
                     <div class='programar-content pointer-none'>
@@ -482,7 +487,7 @@ class ProgramacionGeneralController extends Controller
                             </div>
                         </div>
                     </div>
-                                        </div>
+                </div>
             <!--ESTABLECER EN HOME-->
             <div class='contenedor-columna selectable-column centro editable-column' id='programar-$chapter_id' rel='establecer-home' chapter_id='" . $chapter_id . "'>
                 <div class='yes-no'>
@@ -519,8 +524,7 @@ class ProgramacionGeneralController extends Controller
                 <div class='contenedor-columna selectable-column centro editable-column' rel='imagenes'>
                     <a href='upimage/$chapter_id'>
                         <div class='image-ta position-relative'>
-                            <img src='images/basic-icons/pencil-edit-teal.svg' alt='añadir imagenes' class='add-images-icon'>
-
+                            <img src='./images/add-icon.svg' alt='añadir imagenes' class='add-images-icon'>
                         </div>
                     </a>
                 <span class='d-block a-text-regular-brownishtwo pt-2'>Añade imágenes</span>
@@ -528,8 +532,6 @@ class ProgramacionGeneralController extends Controller
                         <span class='a-text-regular-brownishtwo'>0</span><span class='a-text-regular-brownishtwo'>/9</span>
                     </div>
                 </div>
-
-
             <!--Schedule item long date time-->
             <div class='contenedor-columna centro editable-column' rel='schedule-item-date-time'>
                 <div class='schedule-date'>
@@ -566,12 +568,7 @@ class ProgramacionGeneralController extends Controller
                     <div class='d-flex justify-content-center'>
 
                     <select class='selectpicker dropup a-text-regular-brownishtwo text-normal show-tick' title='Select Option' multiple data-live-search='true' data-live-search-placeholder='Buscar' data-header='Program List'  data-dropup-auto='false'>
-                    <option class='a-text-regular-brownishtwo text-normal'  >Animación</option>
-                    <option class='a-text-regular-brownishtwo text-normal' >Cultura</option>
-                    <option class='a-text-regular-brownishtwo text-normal'  >Series</option>
-                    <option  class='a-text-regular-brownishtwo text-normal'>Comedia</option>
-                    <option  class='a-text-regular-brownishtwo text-normal'  >Romance</option>
-                    <option  class='a-text-regular-brownishtwo text-normal'  >Kids</option>
+                        " . $genre . "
                     </select>
                     </div>
                 </div>
@@ -583,11 +580,11 @@ class ProgramacionGeneralController extends Controller
             </div>
             <!--Program episode season-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "' key='season'>
-                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Temporada...'/>
+                <input class='w-100 a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Temporada...'/>
             </div>
             <!--Program episode number-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-number' chapter_id='" . $chapter_id . "' key='program_episode_number'>
-                <input class='a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Episodio...'/>
+                <input class='w-100 a-text-regular-brownishtwo text-center editable-attribute table-input' value='' placeholder='Episodio...'/>
             </div>
             <!--Synopsis-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='synopsis' chapter_id='" . $chapter_id . "' key='synopsis'>

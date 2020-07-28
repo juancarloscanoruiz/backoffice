@@ -593,7 +593,7 @@ function filterDates(startDate, lastDate) {
                         <!--Program Year Produced-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="${program.chapter_id}" key="program_year_produced">
                             <div class="schedule-date">
-                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="${program.program_year_produced}" placeholder="YYYY">
+                                <input type="text" class="w-100 editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="${program.program_year_produced}" placeholder="YYYY">
                             </div>
                         </div>
                         <!--Program genre list-->
