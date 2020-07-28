@@ -89,7 +89,7 @@ class ProgramacionGeneralController extends Controller
             $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
             $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
             $genres = $respuesta->data->genres;
-            //var_dump($respuesta->data->grilla);
+            var_dump($respuesta->data->grilla);
             if ($respuesta->code == 200) {
                 return view('admin-site.Menu', compact("respuesta", "firstDate", "lastDate", "genres"));
             } else {

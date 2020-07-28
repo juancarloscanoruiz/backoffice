@@ -316,7 +316,7 @@ $data_for_new_entry = json_encode([
                             -->
                                 @if ($programs[$indexPrograms]->in_landing == 0)
                                     <div class='yes-no mt-3'>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1"  class="switch-landing" />
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1"  class="switch-landing switch-table" />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0" checked class="switch-landing switch-table" />
@@ -341,7 +341,7 @@ $data_for_new_entry = json_encode([
                                     </div>
                                 @else
                                     <div class='yes-no mt-3'>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked />
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked class="switch-table" />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
                                         <input type="radio" class="switch-table switch-landing" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
@@ -411,7 +411,7 @@ $data_for_new_entry = json_encode([
                                 </div>
                             @else
                                 <?php
-                                if (!empty($programs[$indexPrograms]->in_landing_begin)) {
+
                                     //Dividimos la hora y la fecha de inicio en landing
                                     $scheduleBegin = explode(" ", $programs[$indexPrograms]->in_landing_begin);
                                     //Dividimos la hora y la fecha de inicio en landing
@@ -419,9 +419,10 @@ $data_for_new_entry = json_encode([
                                     //Obtenemos la hora de inicio
                                     $timeBegin = isset($scheduleBegin[1]) ? $scheduleBegin[1] : null;
                                     //Obtenemos la fecha de inicio
-                                    $dateBegin = explode("-", $scheduleBegin[0]);
+                                    $dateBegin = isset($scheduleBegin[0]) ? explode("-", $scheduleBegin[0]) : null;
                                     //Obtenemos el año de la fecha de inicio
                                     $dateBeginYear = isset($dateBegin[0]) ? $dateBegin[0] : null;
+
                                     //Obtenemos el mes de la fecha de inicio
                                     $dateBeginMoth = isset($dateBegin[1]) ? $dateBegin[1] : null;
                                     //Obtenemos el día de la fecha de inicio
@@ -435,13 +436,13 @@ $data_for_new_entry = json_encode([
                                     $dateExpirationMonth = isset($dateExpiration[1]) ? $dateExpiration[1] : null;
                                     //Obtenemos el día de la fecha de inicio
                                     $dateExpirationDay = isset($dateExpiration[0]) ? $dateExpiration[0] : null;
-                                }
+
                                 ?>
                                 <div class="landing-programar-content">
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                        <input value="{{$dateBeginYear ?? ''}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day  schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateBeginYear}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day  schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                         <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
