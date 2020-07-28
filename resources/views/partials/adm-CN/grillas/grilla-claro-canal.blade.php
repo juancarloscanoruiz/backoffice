@@ -316,7 +316,7 @@ $data_for_new_entry = json_encode([
                             -->
                                 @if ($programs[$indexPrograms]->in_landing == 0)
                                     <div class='yes-no mt-3'>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1"  class="switch-landing switch-table" />
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1"  class="switch-landing" />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
                                         <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0" checked class="switch-landing switch-table" />
@@ -341,7 +341,7 @@ $data_for_new_entry = json_encode([
                                     </div>
                                 @else
                                     <div class='yes-no mt-3'>
-                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked class="switch-table" />
+                                        <input type="radio" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" value="1" checked />
                                         <label for="yes-landing-{{$programs[$indexPrograms]->chapter_id }}" id="siestado-landing-{{$programs[$indexPrograms]->chapter_id }}" class="si-estilo cursor-pointer switch-label">
                                             Sí</label>
                                         <input type="radio" class="switch-table switch-landing" name="sino-landing-{{$programs[$indexPrograms]->chapter_id }}" id="no-landing-{{$programs[$indexPrograms]->chapter_id }}" value="0"  />
@@ -366,7 +366,7 @@ $data_for_new_entry = json_encode([
                                             </div>
                                         </div>
                                     @else
-                                        <div class="establecer-options pointer-none">
+                                        <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
                                                 <label class="checkradio d-flex  ml-2">
                                                     <input type="radio" checked name="dontlose" class="switch-table" value="1" />

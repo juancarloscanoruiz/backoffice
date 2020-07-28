@@ -73297,7 +73297,6 @@ function eventsGrilla() {
   var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
 
   var calendarDay = currentDate.getDate();
-  console.log("".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay));
   var dateStartInput = document.getElementById("date-start-input");
 
   if (dateStartInput) {
@@ -73506,7 +73505,8 @@ function eventsGrilla() {
 
 
           var hours = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-hours").val(); //Obtenemos hora
-          //En caso de tener ambos valores, hacemos al petición
+
+          console.log(_day5, hours); //En caso de tener ambos valores, hacemos al petición
 
           if (_day5 != "" && hours != "") {
             console.log("Fecha inicio con horas");
@@ -73525,9 +73525,8 @@ function eventsGrilla() {
 
 
             var _hours4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-expiration-hours").val(); //Obtenemos hora
+            //En caso de tener ambos valores, hacemos la petición
 
-
-            console.log(day, _hours4); //En caso de tener ambos valores, hacemos la petición
 
             if (_date5 != "" && _hours4 != "") {
               var _day6 = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]);

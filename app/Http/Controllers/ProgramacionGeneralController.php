@@ -563,7 +563,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--Program genre list-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='program-genre' chapter_id='$chapter_id' key=''>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='program-genre' chapter_id='$chapter_id' key='genre'>
                 <div class='schedule-date'>
                     <div class='d-flex justify-content-center'>
 
@@ -576,7 +576,7 @@ class ProgramacionGeneralController extends Controller
             <!--Program title alternate (subtítulo de la película o nombre del capítulo
             de la serie-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-title-alternate' chapter_id='" . $chapter_id . "' key='subtitle'>
-                <textarea class='program-original edit-cell' id='lb-subtitle-$chapter_id' placeholder='Título alternativo...'></textarea>
+                <textarea class='program-original editable-attribute edit-cell' id='lb-subtitle-$chapter_id' placeholder='Título alternativo...'></textarea>
             </div>
             <!--Program episode season-->
             <div class='contenedor-columna selectable-column centro editable-column' rel='program-episode-season' chapter_id='" . $chapter_id . "' key='season'>
@@ -613,7 +613,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--DUBBED-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='dubbed' key='dubbed'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='dubbed' key='dubbed' chapter_id='" . $chapter_id . "'>
                 <div class='schedule-date'>
                     <div class='yes-no' chapter_id='" . $chapter_id . "'>
                         <input type='radio' id='yes-dubbed-$chapter_id' name='dubbed-$chapter_id' value='1' class='switch-table'>
@@ -626,7 +626,7 @@ class ProgramacionGeneralController extends Controller
                 </div>
             </div>
             <!--AUDIO 5.1-->
-            <div class='contenedor-columna selectable-column centro editable-column' rel='audio' key='audio5'>
+            <div class='contenedor-columna selectable-column centro editable-column' rel='audio' key='audio5' chapter_id='" . $chapter_id . "'>
                 <div class='schedule-date'>
                     <div class='yes-no' chapter_id='" . $chapter_id . "'>
                         <input type='radio' id='yes-audio-$chapter_id' name='audio-$chapter_id' value='1' class='switch-table'>

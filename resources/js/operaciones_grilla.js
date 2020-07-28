@@ -284,7 +284,6 @@ function eventsGrilla() {
     let calendarMonth = currentDate.getMonth() + 1;
     //Obtenemos el día
     let calendarDay = currentDate.getDate();
-    console.log(`${calendarYear}-${calendarMonth}-${calendarDay}`);
     let dateStartInput = document.getElementById("date-start-input");
     if (dateStartInput) {
         //Iniciamos el calendario Litepicker
@@ -518,6 +517,7 @@ function eventsGrilla() {
                 if (schedule == "in_landing_begin") {
                     let day = $(".landing-start-day").val(); //Obtenemos fecha
                     let hours = $(".landing-start-hours").val(); //Obtenemos hora
+                    console.log(day, hours);
                     //En caso de tener ambos valores, hacemos al petición
                     if (day != "" && hours != "") {
                         console.log("Fecha inicio con horas");
@@ -538,7 +538,6 @@ function eventsGrilla() {
                         .val()
                         .split("-"); //Obtenemos fecha
                     let hours = $(".landing-expiration-hours").val(); //Obtenemos hora
-                    console.log(day, hours);
                     //En caso de tener ambos valores, hacemos la petición
                     if (date != "" && hours != "") {
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
