@@ -746,7 +746,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     //PREV CLARO CANAL
     $("#prev").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
-            $("#navbar-prev-canal-claro").html(` <script>
+            $("#navbar-prev-canal-claro").append(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php",
                 container: "navbar-prev-canal-claro",
@@ -759,7 +759,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             });
             </script>`);
 
-            $("#navbar-prev-programacion").html(` <script>
+            $("#navbar-prev-programacion").append(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
             container: "navbar-prev-programacion",
@@ -771,7 +771,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-home").html(` <script>
+            $("#navbar-prev-home").append(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
             container: "navbar-prev-home",
@@ -831,7 +831,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     //PREV CINEMA
     $(".prev-cinema").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
-            $("#navbar-prev-claro-cinema").html(` <script>
+            $("#navbar-prev-claro-cinema").append(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php",
                 container: "navbar-prev-claro-cinema",
@@ -843,7 +843,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-programacion").html(` <script>
+            $("#navbar-prev-programacion").append(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
             container: "navbar-prev-programacion",
@@ -856,7 +856,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             });
             </script>`);
 
-            $("#navbar-prev-home").html(` <script>
+            $("#navbar-prev-home").append(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
             container: "navbar-prev-home",
