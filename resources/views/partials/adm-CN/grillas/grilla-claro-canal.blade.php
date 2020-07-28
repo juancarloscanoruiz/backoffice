@@ -442,7 +442,7 @@ $data_for_new_entry = json_encode([
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input value="{{$dateBeginYear}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000" chapter="{{$programs[$indexPrograms]->chapter_id}}" >
+                                            <input value="{{$dateBeginDay}}-{{$dateBeginMoth}}-{{$dateBeginYear}}" type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000" chapter="{{$programs[$indexPrograms]->chapter_id}}" >
                                         </div>
                                         <div>
                                             <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -451,7 +451,7 @@ $data_for_new_entry = json_encode([
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_expiration">
                                         <div>
                                             <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                        <input value="{{$dateExpirationYear}}-{{$dateExpirationMonth}}-{{$dateExpirationDay}}" type="text" id="programar-landing-end-date" class=" landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                        <input value="{{$dateExpirationDay}}-{{$dateExpirationMonth}}-{{$dateExpirationYear}}" type="text" id="programar-landing-end-date" class=" landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                         <input value="{{$timeExpiration}}" type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
@@ -544,7 +544,7 @@ $data_for_new_entry = json_encode([
                                     <div class="d-flex justify-content-end programar-schedule" key="in_home_begin">
                                         <div>
                                             <label for="programar-home-date" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                            <input type="text" value="{{$inHomeBeginYear}}-{{$inHomeBeginMonth}}-{{$inHomeBeginDay}}" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
+                                            <input type="text" value="{{$inHomeBeginDay}}-{{$inHomeBeginMonth}}-{{$inHomeBeginYear}}" id="programar-home-start-date" class="editable-attribute home-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000">
                                         </div>
                                         <div>
                                             <input type="text" id="programar-home-start-hrs" class="editable-attribute home-start-hours time-seconds-input a-text-medium-brownish table-input" value="{{$inHomeBeginTime}}" placeholder="00:00:00">

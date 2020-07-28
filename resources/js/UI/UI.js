@@ -353,7 +353,7 @@ function showlanding() {
                 let prevContainer = $("iframe");
                 previewPage($(this));
             });
-
+            eventsGrilla();
         }
     });
 }

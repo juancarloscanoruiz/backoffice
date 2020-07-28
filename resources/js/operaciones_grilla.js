@@ -426,7 +426,7 @@ function eventsGrilla() {
 
                     //Verificamos si es la fecha de inicio del home
                     if (scheduleHome == "in_home_begin") {
-                        console.log(scheduleHome);
+
                         //Obtenemos la fecha
                         let date = $(".home-start-day")
                             .val()
@@ -703,7 +703,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     //EDITAR CLARO CANAL
     $("#edit").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
-            $("#navbar-prev-canal-claro").html(` <script>
+            $("#navbar-prev-canal-claro").append(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
                 container: "navbar-prev-canal-claro",
@@ -716,7 +716,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-home").html(` <script>
+            $("#navbar-prev-home").append(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
                 container: "navbar-prev-home",
@@ -728,7 +728,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-programacion").html(` <script>
+            $("#navbar-prev-programacion").append(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: "navbar-prev-programacion",

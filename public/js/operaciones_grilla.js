@@ -72480,6 +72480,7 @@ function showlanding() {
         var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
       });
+      Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
     }
   });
 } //Mandamos traer con ajax la vista de previsualizacion de concert channel
@@ -73429,8 +73430,7 @@ function eventsGrilla() {
           var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio del home
 
           if (scheduleHome == "in_home_begin") {
-            console.log(scheduleHome); //Obtenemos la fecha
-
+            //Obtenemos la fecha
             var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
 
             var _day3 = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]); //Obtenemos la hora
@@ -73670,9 +73670,9 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php\",\n                container: \"navbar-prev-canal-claro\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n                container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro").append(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php\",\n                container: \"navbar-prev-canal-claro\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").append(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n                container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").append(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //PREV CLARO CANAL
 

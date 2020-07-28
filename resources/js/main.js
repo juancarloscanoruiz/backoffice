@@ -298,6 +298,7 @@ $(document).ready(function () {
 
     divGrilla.on("click", ".lan-claro", function () {
         showlanding();
+
     });
 
     //CHANGE TO grilla claro
@@ -407,7 +408,6 @@ $(document).ready(function () {
             }
         });
     });
-
 
     $(".option").click(function () {
         var value = $(this).attr("value");
