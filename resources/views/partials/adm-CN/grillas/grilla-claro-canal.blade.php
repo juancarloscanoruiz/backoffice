@@ -442,10 +442,10 @@ $data_for_new_entry = json_encode([
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                         <div>
                                             <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                        <input value="{{$dateBeginYear}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000" chapter="{{$programs[$indexPrograms]->chapter_id}}" >
+                                            <input value="{{$dateBeginYear}}-{{$dateBeginMoth}}-{{$dateBeginDay}}" type="text" id="programar-landing" class="editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input" placeholder="00-00-0000" chapter="{{$programs[$indexPrograms]->chapter_id}}" >
                                         </div>
                                         <div>
-                                        <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
+                                            <input value="{{$timeBegin}}" type="text" id="programar-landing" class="editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input" placeholder="00:00:00">
                                         </div>
                                     </div>
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_expiration">

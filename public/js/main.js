@@ -88955,44 +88955,51 @@ function eventsGrilla() {
         //Verificamos si el campo editable, es el de programar publicación para Landing
 
         case "in_landing_publicacion":
-          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio
+          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+          var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
 
           if (schedule == "in_landing_begin") {
-            var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-day").val().split("-"); //Obtenemos fecha
+            //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+            //Obteemos la fecha y la dividimos
+            var _date = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-            var _day = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0]);
+            var day = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0]);
+            var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
-            var hours = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-hours").val(); //Obtenemos hora
-            //En caso de tener ambos valores, hacemos al petición
+            console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
 
-            if (_date != "" && hours != "") {
-              keyValue = "".concat(_day, " ").concat(hours);
+            if (day != "" && hours != "") {
+              keyValue = "".concat(day, " ").concat(hours);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, mandamos la hora en 0
-            else if (_date != "" && hours == "") {
+            else if (day != "" && hours == "") {
                 hours = "00:00:00";
-                keyValue = "".concat(_day, " ").concat(hours);
+                keyValue = "".concat(day, " ").concat(hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
               }
           } //Verificamos si es la fecha fin
           else if (schedule == "in_landing_expiration") {
-              var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+              var _date2 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
-              var _day2 = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]);
+              var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
-              var _hours = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-expiration-hours").val(); //Obtenemos hora
-              //En caso de tener ambos valores, hacemos la petición
 
+              var _day = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+              console.log(_day, _hours);
 
               if (_date2 != "" && _hours != "") {
+                var _day2 = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]);
+
                 keyValue = "".concat(_day2, " ").concat(_hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
               } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
               else if (_date2 != "" && _hours == "") {
                   _hours = "00:00:00";
-                  keyValue = "".concat(_day2, " ").concat(_hours);
+                  keyValue = "".concat(_day, " ").concat(_hours);
                   Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
                 }
             }
@@ -89079,45 +89086,51 @@ function eventsGrilla() {
       //En caso de que el campo que estemos editando, sea el de programar publicación para landing
 
       case "in_landing_publicacion":
-        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio
+        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+        var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
 
         if (schedule == "in_landing_begin") {
-          var _day5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-day").val(); //Obtenemos fecha
+          //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+          //Obteemos la fecha y la dividimos
+          var _date5 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-          var hours = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-start-hours").val(); //Obtenemos hora
+          var day = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]);
+          var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
-          console.log(_day5); //En caso de tener ambos valores, hacemos al petición
+          console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
 
-          if (_day5 != "" && hours != "") {
-            console.log("Fecha inicio con horas");
-            keyValue = "".concat(_day5, " ").concat(hours);
+          if (day != "" && hours != "") {
+            keyValue = "".concat(day, " ").concat(hours);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
           } //En caso de solo tener el día, mandamos la hora en 0
-          else if (_day5 != "" && hours == "") {
-              console.log("Fecha inicio sin horas");
+          else if (day != "" && hours == "") {
               hours = "00:00:00";
-              keyValue = "".concat(_day5, " ").concat(hours);
+              keyValue = "".concat(day, " ").concat(hours);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
             }
         } //Verificamos si es la fecha fin
         else if (schedule == "in_landing_expiration") {
-            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+            var _date6 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
-            var _hours4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".landing-expiration-hours").val(); //Obtenemos hora
-            //En caso de tener ambos valores, hacemos la petición
+            var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-            if (_date5 != "" && _hours4 != "") {
-              var _day6 = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]);
+            var _day5 = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+            console.log(_day5, _hours4);
+
+            if (_date6 != "" && _hours4 != "") {
+              var _day6 = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]);
 
               keyValue = "".concat(_day6, " ").concat(_hours4);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-            else if (_date5 != "" && _hours4 == "") {
+            else if (_date6 != "" && _hours4 == "") {
                 _hours4 = "00:00:00";
-                keyValue = "".concat(day, " ").concat(_hours4);
+                keyValue = "".concat(_day5, " ").concat(_hours4);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
               }
           }
@@ -89125,43 +89138,45 @@ function eventsGrilla() {
         break;
 
       case "in_home_publicacion":
-        var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio del home
+        var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+        var parentHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio del home
 
         if (scheduleHome == "in_home_begin") {
           //Obtenemos la fecha
-          var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+          var _date7 = parentHome.find(".home-start-day").val().split("-");
 
-          var _day7 = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]); //Obtenemos la hora
-
-
-          var _hours5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+          var _day7 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]); //Obtenemos la hora
 
 
-          if (_date6 != "" && _hours5 != "") {
+          var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+          if (_date7 != "" && _hours5 != "") {
             keyValue = "".concat(_day7, " ").concat(_hours5);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date6 != "" && _hours5 == "") {
+          else if (_date7 != "" && _hours5 == "") {
               _hours5 = "00:00:00";
               keyValue = "".concat(_day7, " ").concat(_hours5);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             }
         } else if (scheduleHome == "in_home_expiration") {
           //Obtenemos la fecha
-          var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+          var _date8 = parentHome.find(".home-expiration-day").val().split("-");
 
-          var _day8 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]); //Obtenemos la hora
-
-
-          var _hours6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
+          var _day8 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]); //Obtenemos la hora
 
 
-          if (_date7 != "" && _hours6 != "") {
-            _day8 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]);
+          var _hours6 = parentHome.find(".home-expiration-hours").val();
+
+          console.log(_day8, _hours6); //Si ambos no están vacíos, hacemos la petición
+
+          if (_date8 != "" && _hours6 != "") {
+            _day8 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]);
             keyValue = "".concat(_day8, " ").concat(_hours6);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date7 != "" && _hours6 == "") {
+          else if (_date8 != "" && _hours6 == "") {
               _hours6 = "00:00:00";
               keyValue = "".concat(_day8, " ").concat(_hours6);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);

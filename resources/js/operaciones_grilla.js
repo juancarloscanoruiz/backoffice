@@ -370,20 +370,26 @@ function eventsGrilla() {
                     let schedule = $(this)
                         .closest(".programar-schedule")
                         .attr("key");
+                    let parent = $(this).closest(".programar-schedule");
                     //Verificamos si es la fecha de inicio
                     if (schedule == "in_landing_begin") {
-                        let date = $(".landing-start-day")
-                            .val()
-                            .split("-"); //Obtenemos fecha
+                        //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+
+                        //Obteemos la fecha y la dividimos
+                        let date = parent.find(".landing-start-day").val().split("-");
+                        //Re hacemos la fecha
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
-                        let hours = $(".landing-start-hours").val(); //Obtenemos hora
+                        let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+                        console.log(day, hours);
                         //En caso de tener ambos valores, hacemos al petición
-                        if (date != "" && hours != "") {
+                        if (day != "" && hours != "") {
+
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(chapterId, schedule, keyValue);
                         }
                         //En caso de solo tener el día, mandamos la hora en 0
-                        else if (date != "" && hours == "") {
+                        else if (day != "" && hours == "") {
+
                             hours = "00:00:00";
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(chapterId, schedule, keyValue);
@@ -391,13 +397,16 @@ function eventsGrilla() {
                     }
                     //Verificamos si es la fecha fin
                     else if (schedule == "in_landing_expiration") {
-                        let date = $(".landing-expiration-day")
+
+                        let date = parent.find(".landing-expiration-day")
                             .val()
                             .split("-"); //Obtenemos fecha
+                        let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
-                        let hours = $(".landing-expiration-hours").val(); //Obtenemos hora
                         //En caso de tener ambos valores, hacemos la petición
+                        console.log(day, hours);
                         if (date != "" && hours != "") {
+                            let day = `${date[2]}-${date[1]}-${date[0]}`;
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(chapterId, schedule, keyValue);
                         }
@@ -512,21 +521,26 @@ function eventsGrilla() {
                 let schedule = $(this)
                     .closest(".programar-schedule")
                     .attr("key");
-
+                let parent = $(this).closest(".programar-schedule");
                 //Verificamos si es la fecha de inicio
                 if (schedule == "in_landing_begin") {
-                    let day = $(".landing-start-day").val(); //Obtenemos fecha
-                    let hours = $(".landing-start-hours").val(); //Obtenemos hora
-                    console.log(day);
+                    //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+
+                    //Obteemos la fecha y la dividimos
+                    let date = parent.find(".landing-start-day").val().split("-");
+                    //Re hacemos la fecha
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+                    console.log(day, hours);
                     //En caso de tener ambos valores, hacemos al petición
                     if (day != "" && hours != "") {
-                        console.log("Fecha inicio con horas");
+
                         keyValue = `${day} ${hours}`;
                         editAttributeProgram(chapterId, schedule, keyValue);
                     }
                     //En caso de solo tener el día, mandamos la hora en 0
                     else if (day != "" && hours == "") {
-                        console.log("Fecha inicio sin horas");
+
                         hours = "00:00:00";
                         keyValue = `${day} ${hours}`;
                         editAttributeProgram(chapterId, schedule, keyValue);
@@ -534,11 +548,14 @@ function eventsGrilla() {
                 }
                 //Verificamos si es la fecha fin
                 else if (schedule == "in_landing_expiration") {
-                    let date = $(".landing-expiration-day")
+
+                    let date = parent.find(".landing-expiration-day")
                         .val()
                         .split("-"); //Obtenemos fecha
-                    let hours = $(".landing-expiration-hours").val(); //Obtenemos hora
+                    let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
                     //En caso de tener ambos valores, hacemos la petición
+                    console.log(day, hours);
                     if (date != "" && hours != "") {
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         keyValue = `${day} ${hours}`;
@@ -557,15 +574,17 @@ function eventsGrilla() {
                 let scheduleHome = $(this)
                     .closest(".programar-schedule")
                     .attr("key");
+                let parentHome = $(this).closest(".programar-schedule");
                 //Verificamos si es la fecha de inicio del home
                 if (scheduleHome == "in_home_begin") {
+
                     //Obtenemos la fecha
-                    let date = $(".home-start-day")
+                    let date = parentHome.find(".home-start-day")
                         .val()
                         .split("-");
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     //Obtenemos la hora
-                    let hours = $(".home-start-hours").val();
+                    let hours = parentHome.find(".home-start-hours").val();
                     //Si ambos no están vacíos, hacemos la petición
                     if (date != "" && hours != "") {
                         keyValue = `${day} ${hours}`;
@@ -579,12 +598,13 @@ function eventsGrilla() {
                     }
                 } else if (scheduleHome == "in_home_expiration") {
                     //Obtenemos la fecha
-                    let date = $(".home-expiration-day")
+                    let date = parentHome.find(".home-expiration-day")
                         .val()
                         .split("-");
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     //Obtenemos la hora
-                    let hours = $(".home-expiration-hours").val();
+                    let hours = parentHome.find(".home-expiration-hours").val();
+                    console.log(day, hours);
                     //Si ambos no están vacíos, hacemos la petición
                     if (date != "" && hours != "") {
                         day = `${date[2]}-${date[1]}-${date[0]}`;
