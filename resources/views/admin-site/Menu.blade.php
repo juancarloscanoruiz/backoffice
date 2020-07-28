@@ -7,13 +7,7 @@
 @section('content')
 
     <style>
-        #inp_programing_claro_canal {
-            display: none;
-        }
-        #inp_programing_claro_cinema {
-            display: none;
-        }
-        #inp_programing_concert_channel {
+        #inp_programing {
             display: none;
         }
     </style>
