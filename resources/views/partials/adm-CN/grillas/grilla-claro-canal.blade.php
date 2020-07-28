@@ -114,7 +114,6 @@ $data_for_new_entry = json_encode([
 
 
 
-<input type="hidden" name="data_for_api" id="data_for_api" value='<?php echo $data_for_new_entry; ?>' />
 <div class="grilla-claro-canal">
     <div class="ml-5 float-left">
         <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{$last_edition}}</span> </span></div>
@@ -130,8 +129,8 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                <input id="inp_programing_claro_canal" type="file">
-                <label for="inp_programing_claro_canal" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
+                <input id="inp_programing" type="file">
+                <label for="inp_programing" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
             </div>
             <!--Fecha de inicio de calendario-->
             <div class="position-relative">

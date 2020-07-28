@@ -206,9 +206,14 @@ class ProgramacionGeneralController extends Controller
                             break;
                         case 5:
                             # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                            try {
+                                $objFecha = Date::excelToDateTimeObject($value);
+                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
 
+                            } catch (\Throwable $th) {
+                                $cadena_nuevo_formato="2020-01-01";
+                            }
+                            
                             $programa['Vigencia_home'] = $cadena_nuevo_formato;
                             break;
                         case 6:
@@ -217,9 +222,13 @@ class ProgramacionGeneralController extends Controller
                             break;
                         case 7:
                             # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-                            $programa['Vigencia_landing'] = $cadena_nuevo_formato;
+                            try {
+                                $objFecha = Date::excelToDateTimeObject($value);
+                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+
+                            } catch (\Throwable $th) {
+                                $cadena_nuevo_formato="2020-01-01";
+                            }  $programa['Vigencia_landing'] = $cadena_nuevo_formato;
                             break;
                         case 8:
                             # code...

@@ -645,7 +645,7 @@ $(document).ready(function () {
      * Obtener el archivo subido
      */
 
-    $("#inp_programing_claro_canal").on("change", function () {
+    $("#inp_programing").on("change", function () {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -661,9 +661,11 @@ $(document).ready(function () {
                 if (fileFormat != "xlsx" && fileFormat != "xls") {
                     $(".load-file").modal("show");
                 } else {
-                    var data_for_api = $("#data_for_api").val();
+                    
+                    var data_for_api = $(this).attr('api');
                     sendFilePHP(file, data_for_api);
                     console.log(this.files[0].name);
+                   
                 }
             }
         } catch (error) {
