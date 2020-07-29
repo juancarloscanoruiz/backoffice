@@ -9,6 +9,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Routing\UrlGenerator;
 
 
 class ProgramacionGeneralController extends Controller
@@ -209,11 +210,10 @@ class ProgramacionGeneralController extends Controller
                             try {
                                 $objFecha = Date::excelToDateTimeObject($value);
                                 $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-
                             } catch (\Throwable $th) {
-                                $cadena_nuevo_formato="2020-01-01";
+                                $cadena_nuevo_formato = "2020-01-01";
                             }
-                            
+
                             $programa['Vigencia_home'] = $cadena_nuevo_formato;
                             break;
                         case 6:
@@ -225,10 +225,10 @@ class ProgramacionGeneralController extends Controller
                             try {
                                 $objFecha = Date::excelToDateTimeObject($value);
                                 $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-
                             } catch (\Throwable $th) {
-                                $cadena_nuevo_formato="2020-01-01";
-                            }  $programa['Vigencia_landing'] = $cadena_nuevo_formato;
+                                $cadena_nuevo_formato = "2020-01-01";
+                            }
+                            $programa['Vigencia_landing'] = $cadena_nuevo_formato;
                             break;
                         case 8:
                             # code...
@@ -683,7 +683,8 @@ class ProgramacionGeneralController extends Controller
     {
         $decrypted = Crypt::decrypt($id);
         $extension = $file->extension();
-        $path = substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $decrypted . "_" . $type . "" . "." . $extension), 7);
+        //$path = substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $decrypted . "_" . $type . "" . "." . $extension), 7);
+        $path = url('/storage') . "/" . substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $decrypted . "_" . $type . "" . "." . $extension), 7);
         return $path;
     }
 
@@ -738,9 +739,72 @@ class ProgramacionGeneralController extends Controller
                     $pathImageSlider3 = $this->storeImages($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_3"), "slider3");
                 }
                 break;
+            case 2:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-vertical"), "vertical");
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_1"), "slider1");
+                }
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_2"), "slider2");
+                }
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImages($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_3"), "slider3");
+                }
+                break;
+            case 3:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-vertical"), "vertical");
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_1"), "slider1");
+                }
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_2"), "slider2");
+                }
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImages($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_3"), "slider3");
+                }
+                break;
 
             default:
-
                 break;
         }
         $client = new Client([
@@ -768,7 +832,7 @@ class ProgramacionGeneralController extends Controller
 
 
         $respuesta =  json_decode($response->getBody());
-        //var_dump($respuesta);
+        var_dump($respuesta);
         if ($respuesta->code == 200) {
             return redirect()->route('programacion_general');
         }

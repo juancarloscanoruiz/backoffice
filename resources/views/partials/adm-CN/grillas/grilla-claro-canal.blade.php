@@ -429,11 +429,11 @@ $data_for_new_entry = json_encode([
                                     $timeExpiration = isset($scheduleExpiration[1]) ? $scheduleExpiration[1] : null;
                                     //Obtemnemos la fecha de fin
                                     $dateExpiration = explode("-", $scheduleExpiration[0]);
-                                    $dateExpirationYear = isset($dateExpiration[2]) ? $dateExpiration[2] : null;
+                                    $dateExpirationYear = isset($dateExpiration[2]) ? $dateExpiration[0] : null;
                                     //Obtenemos el mes de la fecha de inicio
                                     $dateExpirationMonth = isset($dateExpiration[1]) ? $dateExpiration[1] : null;
                                     //Obtenemos el día de la fecha de inicio
-                                    $dateExpirationDay = isset($dateExpiration[0]) ? $dateExpiration[0] : null;
+                                    $dateExpirationDay = isset($dateExpiration[0]) ? $dateExpiration[2] : null;
 
                                 ?>
                                 <div class="landing-programar-content">
@@ -568,7 +568,7 @@ $data_for_new_entry = json_encode([
                                     <div class="image-ta position-relative">
                                     <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
 
-                                    <img src="{{asset('/storage/'. $programs[$indexPrograms]->images->thumbnail_list_horizontal)}}" alt="" class="image-program">
+                                    <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                                     </div>
                                 </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
@@ -581,7 +581,7 @@ $data_for_new_entry = json_encode([
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
                                         <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="añadir imagenes" class="add-images-icon">
-                                        <img src="{{asset('/storage/'. $programs[$indexPrograms]->images->thumbnail_list_horizontal)}}" alt="" class="image-program">
+                                        <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                                     </div>
                                 </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
