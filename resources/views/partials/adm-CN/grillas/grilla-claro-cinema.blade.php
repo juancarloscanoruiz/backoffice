@@ -120,8 +120,8 @@ $data_for_new_entry = json_encode([
         <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{$edited_for}} (<label class="zona ">{{$rol_user_edit}}</label>)</label></span>
     </div>
     <div class="d-flex float-right mr-5 ">
-        <button class="btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus mr-3 gril-claro" id="btn-grilla"><span>Grilla</span></button>
-        <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-claro" id="btn-landing"><span>Landing</span></button>
+        <button class="btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus mr-3 gril-cinema" id="btn-grilla"><span>Grilla</span></button>
+        <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-cinema" id="btn-landing"><span>Landing</span></button>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -129,7 +129,7 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                <input id="inp_programing" type="file">
+                <input id="inp_programing" api='<?php echo $data_for_new_entry; ?>' type="file" class="d-none">
                 <label for="inp_programing" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
             </div>
             <!--Fecha de inicio de calendario-->

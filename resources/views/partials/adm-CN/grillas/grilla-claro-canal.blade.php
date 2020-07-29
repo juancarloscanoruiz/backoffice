@@ -129,7 +129,7 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                <input id="inp_programing" type="file">
+                <input id="inp_programing" type="file" api='<?php echo $data_for_new_entry; ?>'>
                 <label for="inp_programing" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
             </div>
             <!--Fecha de inicio de calendario-->
@@ -154,7 +154,6 @@ $data_for_new_entry = json_encode([
         </div>
 
         <!--end-->
-
         <div id="rempla-claro-canal" class="landing-table table-porcent">
             <div id="tb1" class="ml-5 pr-5 conten-tab">
                 <div class="mr-5 grilla-body position-relative">

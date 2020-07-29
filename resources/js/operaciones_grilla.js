@@ -1,10 +1,7 @@
 //JQUERY
 import $ from "jquery";
 //Métodos para aplicar ciertos estilos a las filas y columnas
-import {
-    selectRow,
-    selectColumn
-} from "./UI/UI.js";
+import { selectRow, selectColumn } from "./UI/UI.js";
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -43,7 +40,7 @@ function eventsGrilla() {
     let genres = "";
     let selectpicker = $(".selectpicker");
     //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function () {
+    selectpicker.on("change", function() {
         //Obtenemos los valores del selectpicker
         let selected = $(this).val();
         //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -59,7 +56,7 @@ function eventsGrilla() {
         }
     });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function () {
+    selectpicker.on("hide.bs.select", function() {
         //Seleccionamos la columna en la que estamos
         let currentColumn = $(this).closest(".contenedor-columna");
         //Obtenemos el cahpter_id de la columna
@@ -73,7 +70,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
 
-    $("button[id=btn-landing]").click(function () {
+    $("button[id=btn-landing]").click(function() {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -93,7 +90,7 @@ function eventsGrilla() {
         }
     });
     //Al momento de dar click en el boton de grilla
-    $("button[id=btn-grilla]").click(function () {
+    $("button[id=btn-grilla]").click(function() {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -114,56 +111,12 @@ function eventsGrilla() {
     });
 
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-    $(".lan-claro").click(function () {
+    $(".lan-claro").click(function() {
         showlanding();
-    });
-    //Cargamos la pantalla en donde previsualizamos el landing de concert channel
-    $(".lan-concert").click(function () {
-        showlanconcert();
-    });
-    // Damos click en el botón de "landing" en grilla de claro cinema
-    $(".lan-cinema").click(function (event) {
-        //Hacemos una petición ajax para recibir una vista
-        $.ajax({
-            type: "POST",
-            url: "view",
-            data: {
-                view: "lan-cinema"
-            },
-            //Insertamos un loader
-            beforeSend: function () {
-                const loader = `
-                <div class="loader-view-container">
-                  <img src="./images/loader.gif" class="loader" alt="">
-                </div>
-                `;
-                $("body").append(loader);
-            },
-            success: function (result) {
-                console.log("grilla de claro cinema");
-                //Insertamos la vista que recibimos en la vista actual
-                $("#bodymenu").html("");
-                $("#bodymenu").html(result);
-                //Habilitamos las acciones que se pueden hacer en la grilla
-                eventsGrilla();
-                //Quitamos el loader
-                $(".loader-view-container").remove();
-                //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
-                createNavbarProgramacionGeneral();
-                //para activar el prev de los iconos
-                /* Previsualizar contenido en diferentes tamaños */
-                const prevImage = $(".a-prev-image");
-
-                prevImage.click(function () {
-                    let prevContainer = $("iframe");
-                    previewPage($(this));
-                });
-            }
-        });
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function () {
+    $(".switch-landing").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -197,7 +150,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function () {
+    $(".switch-home").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -224,7 +177,7 @@ function eventsGrilla() {
         }
     });
     //Mostrar la sinópsis completa en modal
-    $(".see-more").click(function () {
+    $(".see-more").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
@@ -250,7 +203,7 @@ function eventsGrilla() {
     });
 
     //botón de modal de edición de de sinopsis
-    $(".edit-synopsis-button").click(function () {
+    $(".edit-synopsis-button").click(function() {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
         //Obtenemos la sinopsis nueva del textarea del modal
@@ -293,7 +246,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function () {
+            onShow: function() {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -303,10 +256,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function () {
+            onHide: function() {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function () {
+            onSelect: function() {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -337,7 +290,7 @@ function eventsGrilla() {
         y hacemos la petición
     */
     let editableAttribute = $(".editable-attribute");
-    editableAttribute.keydown(function (e) {
+    editableAttribute.keydown(function(e) {
         //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -358,14 +311,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo que estamos editando es el año de producción
+                //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo editable, es el de programar publicación para Landing
+                //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -376,20 +329,21 @@ function eventsGrilla() {
                         //Obtenemos el div padre para saber qué horario y fecha andamos modificando
 
                         //Obteemos la fecha y la dividimos
-                        let date = parent.find(".landing-start-day").val().split("-");
+                        let date = parent
+                            .find(".landing-start-day")
+                            .val()
+                            .split("-");
                         //Re hacemos la fecha
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
                         console.log(day, hours);
                         //En caso de tener ambos valores, hacemos al petición
                         if (day != "" && hours != "") {
-
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(chapterId, schedule, keyValue);
                         }
                         //En caso de solo tener el día, mandamos la hora en 0
                         else if (day != "" && hours == "") {
-
                             hours = "00:00:00";
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(chapterId, schedule, keyValue);
@@ -397,11 +351,13 @@ function eventsGrilla() {
                     }
                     //Verificamos si es la fecha fin
                     else if (schedule == "in_landing_expiration") {
-
-                        let date = parent.find(".landing-expiration-day")
+                        let date = parent
+                            .find(".landing-expiration-day")
                             .val()
                             .split("-"); //Obtenemos fecha
-                        let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+                        let hours = parent
+                            .find(".landing-expiration-hours")
+                            .val(); //Obtenemos hora
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         //En caso de tener ambos valores, hacemos la petición
                         console.log(day, hours);
@@ -426,7 +382,6 @@ function eventsGrilla() {
 
                     //Verificamos si es la fecha de inicio del home
                     if (scheduleHome == "in_home_begin") {
-
                         //Obtenemos la fecha
                         let date = $(".home-start-day")
                             .val()
@@ -499,7 +454,7 @@ function eventsGrilla() {
     });
 
     //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-    editableAttribute.blur(function () {
+    editableAttribute.blur(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         let key = currentColumn.attr("key");
         let keyValue = $(this).val();
@@ -516,7 +471,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -527,20 +482,21 @@ function eventsGrilla() {
                     //Obtenemos el div padre para saber qué horario y fecha andamos modificando
 
                     //Obteemos la fecha y la dividimos
-                    let date = parent.find(".landing-start-day").val().split("-");
+                    let date = parent
+                        .find(".landing-start-day")
+                        .val()
+                        .split("-");
                     //Re hacemos la fecha
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
                     console.log(day, hours);
                     //En caso de tener ambos valores, hacemos al petición
                     if (day != "" && hours != "") {
-
                         keyValue = `${day} ${hours}`;
                         editAttributeProgram(chapterId, schedule, keyValue);
                     }
                     //En caso de solo tener el día, mandamos la hora en 0
                     else if (day != "" && hours == "") {
-
                         hours = "00:00:00";
                         keyValue = `${day} ${hours}`;
                         editAttributeProgram(chapterId, schedule, keyValue);
@@ -548,8 +504,8 @@ function eventsGrilla() {
                 }
                 //Verificamos si es la fecha fin
                 else if (schedule == "in_landing_expiration") {
-
-                    let date = parent.find(".landing-expiration-day")
+                    let date = parent
+                        .find(".landing-expiration-day")
                         .val()
                         .split("-"); //Obtenemos fecha
                     let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
@@ -577,9 +533,9 @@ function eventsGrilla() {
                 let parentHome = $(this).closest(".programar-schedule");
                 //Verificamos si es la fecha de inicio del home
                 if (scheduleHome == "in_home_begin") {
-
                     //Obtenemos la fecha
-                    let date = parentHome.find(".home-start-day")
+                    let date = parentHome
+                        .find(".home-start-day")
                         .val()
                         .split("-");
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
@@ -598,7 +554,8 @@ function eventsGrilla() {
                     }
                 } else if (scheduleHome == "in_home_expiration") {
                     //Obtenemos la fecha
-                    let date = parentHome.find(".home-expiration-day")
+                    let date = parentHome
+                        .find(".home-expiration-day")
                         .val()
                         .split("-");
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
@@ -627,7 +584,7 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function () {
+    $(".switch-table").click(function() {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
@@ -675,12 +632,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function (index, element) {
+    $(".lb-synopsis").each(function(index, element) {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                .text()
-                .substr(0, 200) + "...";
+                    .text()
+                    .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -695,15 +652,16 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             multipleSeparator: " ",
             filter: true
         })
-        .on("changed.bs.select", function () {
+        .on("changed.bs.select", function() {
             $(this).selectpicker("refresh");
         });
 
-
     //EDITAR CLARO CANAL
-    $("#edit").click(function () {
+    $("#edit").click(function() {
         if ($('input[id="edit"]').is(":checked")) {
-            $("#navbar-prev-canal-claro").append(` <script>
+            $("#navbar-prev-canal-claro").html(`
+
+            <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
                 container: "navbar-prev-canal-claro",
@@ -716,7 +674,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-home").append(` <script>
+            $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
                 container: "navbar-prev-home",
@@ -728,7 +686,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-programacion").append(` <script>
+            $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: "navbar-prev-programacion",
@@ -744,22 +702,24 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     //PREV CLARO CANAL
-    $("#prev").click(function () {
+    $("#prev").click(function() {
         if ($('input[id="prev"]').is(":checked")) {
-            $("#navbar-prev-canal-claro").append(` <script>
-            new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php",
-                container: "navbar-prev-canal-claro",
-                onMessage: function(message, origin) {
-                    console.log(message);
-                    this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                    this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                }
-            });
-            </script>`);
+            $("#navbar-prev-canal-claro").html(`
+            <script>
+                new easyXDM.Socket({
+                    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php",
+                    container: "navbar-prev-canal-claro",
+                    onMessage: function(message, origin) {
+                        console.log(message);
+                        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                    }
+                });
+            </script>
+            `);
 
-            $("#navbar-prev-programacion").append(` <script>
+            $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
             container: "navbar-prev-programacion",
@@ -771,7 +731,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-home").append(` <script>
+            $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
             container: "navbar-prev-home",
@@ -787,7 +747,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     //EDITAR CINEMA
-    $(".edi-cinema").click(function () {
+    $(".edi-cinema").click(function() {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
       new easyXDM.Socket({
@@ -829,9 +789,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CINEMA
-    $(".prev-cinema").click(function () {
+    $(".prev-cinema").click(function() {
         if ($('input[id="prev"]').is(":checked")) {
-            $("#navbar-prev-claro-cinema").append(` <script>
+            $("#navbar-prev-claro-cinema").html(` <script>
             new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php",
                 container: "navbar-prev-claro-cinema",
@@ -843,7 +803,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 }
             });
             </script>`);
-            $("#navbar-prev-programacion").append(` <script>
+            $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
             container: "navbar-prev-programacion",
@@ -856,7 +816,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             });
             </script>`);
 
-            $("#navbar-prev-home").append(` <script>
+            $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
             container: "navbar-prev-home",
@@ -871,7 +831,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //EDITAR CONCERT
-    $(".edi-concert").click(function () {
+    $(".edi-concert").click(function() {
+        console.log("editar");
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -882,13 +843,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                     this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
                 }
             });
             </script>`);
             $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: "navbar-prev-programacion",
                 onMessage: function(message, origin) {
                     console.log(message);
@@ -913,11 +873,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CONCERT
-    $(".prev-concert").click(function () {
+    $(".prev-concert").click(function() {
+        console.log("prev concert channel");
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php",
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-prev.php",
                 container: "navbar-prev-concert-channel",
                 onMessage: function(message, origin) {
                     console.log(message);
@@ -954,7 +915,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //EDITAR HOME
-    $(".edi-home").click(function () {
+    $(".edi-home").click(function() {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -984,7 +945,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV HOME
-    $(".prev-home").click(function () {
+    $(".prev-home").click(function() {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -1012,7 +973,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             </script>`);
         }
     });
-    $("#inp_programing").on("change", function () {
+    $("#inp_programing").on("change", function() {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -1028,11 +989,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 if (fileFormat != "xlsx" && fileFormat != "xls") {
                     $(".load-file").modal("show");
                 } else {
-                    
-                    var data_for_api = $(this).attr('api');
+                    var data_for_api = $(this).attr("api");
                     sendFilePHP(file, data_for_api);
                     console.log(this.files[0].name);
-                   
                 }
             }
         } catch (error) {
@@ -1040,7 +999,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
         this.value = null; //aqui para evitar que se hagan registros dobles
     });
-   /**
+    /**
      * Eviar archivo mediante ajax a un "controlador" php
      */
 
@@ -1058,17 +1017,17 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            beforeSend: function () {
+            beforeSend: function() {
                 $("body").prepend(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
+            success: function(result) {
                 var existe_programacion = JSON.parse(result);
+                $(".loader-view-container").remove();
                 if (existe_programacion.data == 1) {
-                    $('.loader-view-container').remove();
                     console.log("Preguntamos al usuario");
                     $("#programas_procesados_por_el_excel").val(result);
                     $(".modal-information").modal("show");
@@ -1076,11 +1035,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     console.log("se agregó la programación");
                 }
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
+            $(".loader-view-container").remove();
             console.log(e);
         });
     }
-    $("#acccion-programacion-remplaza").click(function () {
+    $("#acccion-programacion-remplaza").click(function() {
         console.log("Se remplaza la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -1089,24 +1049,24 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             data: data,
             url: "general-program/changePrograming",
-            beforeSend: function () {
+            beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
-                $('.loader-container').remove();
+            success: function(result) {
+                $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
             console.log(e);
         });
     });
 
-    $("#acccion-programacion-agrega").click(function () {
+    $("#acccion-programacion-agrega").click(function() {
         console.log("Se agrega la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -1114,23 +1074,23 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             data: data,
             url: "general-program/addPrograming",
-            beforeSend: function () {
+            beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
-                $('.loader-container').remove();
+            success: function(result) {
+                $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
             console.log(e);
         });
     });
-    $("#acccion-programacion-cancela").click(function () {
+    $("#acccion-programacion-cancela").click(function() {
         console.log("Se cancela la programacion");
         $("#programas_procesados_por_el_excel").val(" ");
         let programas = $("#programas_procesados_por_el_excel").val();
@@ -1139,6 +1099,4 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 }
 
-export {
-    eventsGrilla
-};
+export { eventsGrilla };
