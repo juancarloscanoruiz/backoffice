@@ -2937,7 +2937,7 @@ input[type=radio]:checked + .no-estilo1 {
   background-color: white;
 }
 
-.checkradio input:checked ~ .checkmark {
+.checkradio input:checked + .checkmark {
   background-color: white;
 }
 
@@ -2947,7 +2947,7 @@ input[type=radio]:checked + .no-estilo1 {
   display: none;
 }
 
-.checkradio input:checked ~ .checkmark:after {
+.checkradio input:checked + .checkmark:after {
   display: block;
 }
 

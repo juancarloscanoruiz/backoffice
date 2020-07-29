@@ -152,7 +152,7 @@ input[type="radio"]:checked + .no-estilo1 {
     background-color: white;
 }
 
-.checkradio input:checked ~ .checkmark {
+.checkradio input:checked + .checkmark {
     background-color: white;
 }
 
@@ -162,7 +162,7 @@ input[type="radio"]:checked + .no-estilo1 {
     display: none;
 }
 
-.checkradio input:checked ~ .checkmark:after {
+.checkradio input:checked + .checkmark:after {
     display: block;
 }
 
@@ -310,10 +310,10 @@ input[type="radio"]:checked + .no-estilo1 {
 //class to selectpicker
 .bootstrap-select .btn:not(.bs-placeholder) {
     word-spacing: 100px;
-    white-space: normal!important;
-    word-wrap: break-word!important;
-  }
-  .bootstrap-select > .dropdown-toggle {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+.bootstrap-select > .dropdown-toggle {
     position: relative;
     width: 100%;
     z-index: 1;
@@ -321,9 +321,8 @@ input[type="radio"]:checked + .no-estilo1 {
     white-space: nowrap;
     overflow: auto;
     height: 70px;
-  
 }
-.dropdown-item{      
+.dropdown-item {
     display: inline-block;
     position: relative;
     line-height: 0;
@@ -335,10 +334,10 @@ input[type="radio"]:checked + .no-estilo1 {
     border-radius: 0em;
     border: 2px solid $morelightgray;
     background-color: white;
-  
+
     padding: 0.45em;
-    }
-    .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
+}
+.bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
     position: absolute;
     display: inline-block;
     left: 3px;
@@ -349,20 +348,19 @@ input[type="radio"]:checked + .no-estilo1 {
     margin-left: 15px;
 }
 
-
-    .bootstrap-select .bs-ok-default:after {
-    content: '';
+.bootstrap-select .bs-ok-default:after {
+    content: "";
     display: block;
-    width: 0.5em; 
+    width: 0.5em;
     left: 5px;
     top: 2px;
     height: 0.8em;
     border-style: solid;
-    border-color:$teal;
+    border-color: $teal;
     border-width: 0 0.26em 0.26em 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    }
+}
 ///end class to selectpicker

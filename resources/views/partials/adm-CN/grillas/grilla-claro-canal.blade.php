@@ -323,15 +323,15 @@ $data_for_new_entry = json_encode([
                                     </div>
                                     <div class="establecer-options pointer-none">
                                         <div class=" d-flex mt-2 ml-2 pt-2">
-                                            <label class="checkradio d-flex  ml-2">
-                                                <input type="radio" name="dontlose" value="1" class="switch-table">
+                                            <label class="checkradio d-flex ml-2" for="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}">
+                                            <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" id="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
                                         </div>
                                         <div class="d-flex ml-2 pt-2 pb-2">
-                                            <label class="checkradio d-flex ml-2">
-                                                <input type="radio" name="dontlose" value="2" class="switch-table">
+                                            <label class="checkradio d-flex ml-2" for="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}">
+                                            <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" id="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}" value="2" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
@@ -349,15 +349,15 @@ $data_for_new_entry = json_encode([
                                     @if ($programs[$indexPrograms]->in_landing == 1)
                                         <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
-                                                <label class="checkradio d-flex  ml-2">
-                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                <label class="checkradio d-flex  ml-2" for="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}">
+                                                <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" id="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}"/>
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
-                                                <label class="checkradio d-flex ml-2">
-                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                <label class="checkradio d-flex ml-2" for="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}">
+                                                <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" id="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}"/>
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <span class="cursor-pointer a-text-medium-brownish ml-2">Contenido exclusivo</span>
@@ -366,15 +366,15 @@ $data_for_new_entry = json_encode([
                                     @else
                                         <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
-                                                <label class="checkradio d-flex  ml-2">
-                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                <label class="checkradio d-flex  ml-2" for="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}">
+                                                <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" id="landing-section-1-{{$programs[$indexPrograms]->chapter_id}}"/>
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
-                                                <label class="checkradio d-flex ml-2">
-                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                <label class="checkradio d-flex ml-2" for="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}">
+                                                <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" id="landing-section-2-{{$programs[$indexPrograms]->chapter_id}}" />
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
