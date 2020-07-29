@@ -832,7 +832,7 @@ class ProgramacionGeneralController extends Controller
 
 
         $respuesta =  json_decode($response->getBody());
-        var_dump($respuesta);
+        //var_dump($respuesta);
         if ($respuesta->code == 200) {
             return redirect()->route('programacion_general');
         }
