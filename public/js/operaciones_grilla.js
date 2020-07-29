@@ -73742,7 +73742,7 @@ function eventsGrilla() {
       //esto es para poder pasar el archivo
       url: "general-program/captureExcel",
       beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").prepend("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       },
       success: function success(result) {
         var existe_programacion = JSON.parse(result);
@@ -73771,7 +73771,7 @@ function eventsGrilla() {
       data: data,
       url: "general-program/changePrograming",
       beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       },
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
@@ -73791,7 +73791,7 @@ function eventsGrilla() {
       data: data,
       url: "general-program/addPrograming",
       beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader-table\"/>\n                    </div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       },
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();

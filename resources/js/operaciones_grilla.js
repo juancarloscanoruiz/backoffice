@@ -1018,9 +1018,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
             beforeSend: function() {
-                $("body").prepend(
+                $("body").append(
                     `<div class="loader-view-container pointer-none">
-                        <img src="./images/loader.gif" class="loader-table"/>
+                        <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
@@ -1052,7 +1052,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
-                        <img src="./images/loader.gif" class="loader-table"/>
+                        <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
@@ -1077,7 +1077,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
-                        <img src="./images/loader.gif" class="loader-table"/>
+                        <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
