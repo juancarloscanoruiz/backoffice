@@ -325,17 +325,17 @@ $data_for_new_entry = json_encode([
                                     <div class="establecer-options pointer-none">
                                         <div class=" d-flex mt-2 ml-2 pt-2">
                                             <label class="checkradio d-flex  ml-2">
-                                                <input type="radio" name="dontlose" value="1" class="switch-table">
+                                                <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Imprescindibles</span>
                                         </div>
                                         <div class="d-flex ml-2 pt-2 pb-2">
                                             <label class="checkradio d-flex ml-2">
-                                                <input type="radio" name="dontlose" value="2" class="switch-table">
+                                                <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" value="2" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Por si te lo perdiste</span>
                                         </div>
                                     </div>
                                 @else
@@ -351,34 +351,34 @@ $data_for_new_entry = json_encode([
                                         <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
                                                 <label class="checkradio d-flex  ml-2">
-                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                    <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Imprescindibles</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
                                                 <label class="checkradio d-flex ml-2">
-                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                    <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenido exclusivo</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Por si te lo perdiste</span>
                                             </div>
                                         </div>
                                     @else
                                         <div class="establecer-options">
                                             <div class=" d-flex mt-2 ml-2 pt-2">
                                                 <label class="checkradio d-flex  ml-2">
-                                                    <input type="radio" checked name="dontlose" class="switch-table" value="1" />
+                                                    <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Tienes que verlo</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Imprescindibles</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
                                                 <label class="checkradio d-flex ml-2">
-                                                    <input type="radio" name="dontlose" class="switch-table" value="2" />
+                                                    <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="cursor-pointer a-text-medium-brownish ml-2">Contenio exclusivo</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Por si te lo perdiste</span>
                                             </div>
                                         </div>
                                     @endif
