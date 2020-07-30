@@ -71,6 +71,10 @@ Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('c
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
 
+Route::group(['prefix' => 'landing'], function () {
+    Route::get('edit-program', "landingController@showEditProgramView");
+});
+
 //Rutas para la edición de un programa en el sitio
 Route::get("/programming-carrusel", "programController@index");
 

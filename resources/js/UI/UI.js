@@ -336,6 +336,9 @@ function showlanding() {
         success: function(result) {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
+            $(window).on("hashchange", function() {
+                console.log("IFRAME HASH CHANGED");
+            });
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();

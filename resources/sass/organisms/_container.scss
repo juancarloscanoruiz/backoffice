@@ -277,3 +277,14 @@ iframe {
 .dots-container {
     width: 1000px;
 }
+
+.thermometer-container {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 5px 0 rgba(161, 161, 161, 0.5);
+    background-color: #ffffff;
+}
+
+.thermometer-hours-container {
+    width: 100%;
+}

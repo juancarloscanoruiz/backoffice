@@ -87374,6 +87374,9 @@ function showlanding() {
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html("");
       jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html(result);
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(window).on("hashchange", function () {
+        console.log("IFRAME HASH CHANGED");
+      });
       jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
 
       createNavbarProgramacionGeneral(); //para activar el prev de los iconos

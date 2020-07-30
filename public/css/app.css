@@ -4977,6 +4977,60 @@ ul {
   margin-right: 16px;
 }
 
+.thermometer-schedule-list,
+.thermometer-notation-list {
+  list-style: none;
+  width: 100%;
+}
+
+.thermometer-schedule-item {
+  width: calc(100% / 23);
+  height: 8px;
+  background-color: #d8d8d8;
+  cursor: pointer;
+}
+
+.thermometer-schedule-item {
+  width: calc(100% / 23);
+  height: 8px;
+  background-color: #d8d8d8;
+  cursor: pointer;
+}
+
+.thermometer-schedule-item:hover {
+  background-color: #c5c5c5;
+}
+
+.thermometer-hours-item {
+  width: calc(100% / 23);
+}
+
+/* Notaciones del termómetro */
+
+.thermometer-notation-item {
+  display: flex;
+}
+
+.thermometer-notation-item::before {
+  content: " ";
+  width: 23px;
+  padding-bottom: 23px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.thermometer-notation-blue::before {
+  background-color: #0097a9;
+}
+
+.thermometer-notation-orange::before {
+  background-color: #ff8200;
+}
+
+.thermometer-notation-gray::before {
+  background-color: #d8d8d8;
+}
+
 .navbar-progra-item-border {
   border-right: 2px solid #979797;
 }
@@ -5273,6 +5327,17 @@ iframe {
 
 .dots-container {
   width: 1000px;
+}
+
+.thermometer-container {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 5px 0 rgba(161, 161, 161, 0.5);
+  background-color: #ffffff;
+}
+
+.thermometer-hours-container {
+  width: 100%;
 }
 
 @font-face {

@@ -87,11 +87,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectPais:checked~#select-Pais {
+#selectPais:checked ~ #select-Pais {
     overflow: visible;
 }
 
-#selectPais:checked~#select-Pais .ListaDesplegablePaises {
+#selectPais:checked ~ #select-Pais .ListaDesplegablePaises {
     height: 158px;
 }
 
@@ -166,11 +166,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectDay:checked~#select-Dia {
+#selectDay:checked ~ #select-Dia {
     overflow: visible;
 }
 
-#selectDay:checked~#select-Dia .ListaDesplegableDias {
+#selectDay:checked ~ #select-Dia .ListaDesplegableDias {
     height: 200px;
 }
 
@@ -248,11 +248,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectMonth:checked~#select-Mes {
+#selectMonth:checked ~ #select-Mes {
     overflow: visible;
 }
 
-#selectMonth:checked~#select-Mes .ListaDesplegableMeses {
+#selectMonth:checked ~ #select-Mes .ListaDesplegableMeses {
     height: 200px;
 }
 
@@ -332,15 +332,13 @@ ul {
     border-radius: 12px;
 }
 
-#selectYear:checked~#select-Año {
+#selectYear:checked ~ #select-Año {
     overflow: visible;
 }
 
-#selectYear:checked~#select-Año .ListaDesplegableAños {
+#selectYear:checked ~ #select-Año .ListaDesplegableAños {
     height: 200px;
 }
-
-
 
 .programming-slider-dots {
     .slick-dots {
@@ -358,4 +356,57 @@ ul {
         width: 37px;
         margin-right: 16px;
     }
+}
+
+.thermometer-schedule-list,
+.thermometer-notation-list {
+    list-style: none;
+    width: 100%;
+}
+
+.thermometer-schedule-item {
+    width: calc(100% / 23);
+    height: 8px;
+    background-color: $beige;
+    cursor: pointer;
+}
+
+.thermometer-schedule-item {
+    width: calc(100% / 23);
+    height: 8px;
+    background-color: $beige;
+    cursor: pointer;
+}
+
+.thermometer-schedule-item:hover {
+    background-color: #c5c5c5;
+}
+
+.thermometer-hours-item {
+    width: calc(100% / 23);
+}
+
+/* Notaciones del termómetro */
+
+.thermometer-notation-item {
+    display: flex;
+}
+
+.thermometer-notation-item::before {
+    content: " ";
+    width: 23px;
+    padding-bottom: 23px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.thermometer-notation-blue::before {
+    background-color: $teal;
+}
+
+.thermometer-notation-orange::before {
+    background-color: $orange;
+}
+.thermometer-notation-gray::before {
+    background-color: $beige;
 }

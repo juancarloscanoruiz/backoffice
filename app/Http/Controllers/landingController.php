@@ -30,4 +30,9 @@ class landingController extends Controller
     {
         return view('admin-site.landings.home');
     }
+
+    public function showEditProgramView()
+    {
+        return view('.admin-site.landings.edit-program.edit-program');
+    }
 }
