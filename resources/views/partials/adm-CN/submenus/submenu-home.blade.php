@@ -271,7 +271,7 @@
                 <div class="navbar-progra-content mb-5" id="navbar-prev-home">
 
                     <p>Home</p>
-                    <div class="float-left pl-3 mb-5 " style="margin-left: 7%;">
+                    <div class="float-left pl-3 mb-4 " style="margin-left: 7%;">
                 <div> <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
                             <input type="checkbox" id="viewcarga">
                             <span class="checkmark1 border-green"></span>

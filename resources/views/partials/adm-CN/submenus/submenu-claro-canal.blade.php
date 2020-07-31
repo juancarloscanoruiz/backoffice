@@ -108,7 +108,7 @@
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
             </div>
-            <div class="float-left pl-3 mb-5 " style="margin-left: 7%;">
+            <div class="float-left pl-3 mb-4 " style="margin-left: 7%;">
                 <div>
                     <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
                         <input type="checkbox" id="viewcarga">
@@ -121,11 +121,11 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class=" mr-5 d-flex float-right po-zona">
+            <div class=" mr-5 d-flex float-right mb-5">
                 <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg"
                         class="Icon_paises1" /></button>
             </div>
-
+<div class="clearfix"></div>
             <div class="centro">
                 <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
                 </div>
