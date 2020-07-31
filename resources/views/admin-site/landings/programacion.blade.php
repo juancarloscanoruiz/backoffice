@@ -4,7 +4,7 @@
     <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
     <script>
         new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-backoffice.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: "programacion-container",
             onMessage: function(message, origin) {
                 console.log(message);
@@ -14,25 +14,26 @@
             }
         });
     </script>
+   
 @endsection
 @section('content')
     <body>
 
     @include('partials.headers.headerPrograGeneral')
-    <div id="title">
-        <div>
-            <div class="d-flex float-left mb-5 mt-4  ml-5 mr-5 ">
-                <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
-            </div>
-
-            <div class="d-flex float-right mt-4 mr-5">
-                <span class="text-normal a-text-medium-black mt-3"> PREVISUALIZAR</span>
-                <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
-                <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
-                <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
-            </div>
-            <div class="d-flex float-right mb-0 mr-5">
+    <div id="title" class="mt-3">
+        <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
+                <div>
+                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
+                        <input type="checkbox" id="viewcarga">
+                        <span class="checkmark1 border-green"></span>
+                    </label><span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
+                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
+                        <input type="checkbox">
+                        <span class="checkmark2  border-red"></span>
+                    </label><span class=" ml-2 a-text-red">No guardar cambios</span>
+                </div>
+            </div>                   
+            <div class="d-flex float-right mb-4 mr-5 ">
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                       <input type="radio" name="sexo" id="edit" checked />
@@ -48,25 +49,17 @@
                     <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
-            </div>
-            
+            </div>  
             <div class="clearfix"></div>
-            <div class=" mr-5 d-flex float-right po-zona">
+            <div class="ml-5 float-left mb-4">
+        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">septiembre 17 2019</span> </span></div>
+        <span class="a-text-black-light text-plus">Editado por: <label class="zona"> Antonio Pérez López (<label class="zona ">Usuario aprobador</label>)</label></span>
+    </div>            
+           
+            <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg" class="Icon_paises1" /></button>
         </div>
-        <div class="clearfix"></div>
-          
-
-        </div>
-        <div class=" ml-5"> <span cass="zona">Última edición : </span>
-            <label class=" text-menu-selec separacion">septiembre 17 2019</label>
-                <label class="text-menu-selec">18:33:25</label>
-            </div>
-            <div class="float-right mb-5 mr-5 ali">
-            <span class="zona">Por : </span><label class="text-menu-selec separacion"><span> Antonio Pérez López</span> </label> <label class="text-menu-selec">Usuario aprobador</label>
-            </div>
-        </div>
-        <div class="clearfix"></div>
+        <div class="clearfix"></div> 
         <div class="centro">
             <div class="navbar-progra-content  mb-5" id="programacion-container">
             </div>
