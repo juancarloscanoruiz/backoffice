@@ -1,7 +1,6 @@
 body {
     overscroll-behavior-x: none;
 }
-
 $slick-font-path: "~slick-carousel/slick/fonts/"; // To add
 $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "~slick-carousel/slick/slick";
@@ -25,4 +24,5 @@ $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "./organisms/parts";
 @import "./organisms/section";
 @import "./helpers/cursor";
+@import "./helpers/spacing";
 @import "./organisms/slider";

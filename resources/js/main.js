@@ -53,6 +53,18 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
+    //Slick slider
+    $(".calendar-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+    });
+
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
     let slideIndex = 3;
     //Añadimos un slide al slider de imágenes de programación

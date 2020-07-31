@@ -405,3 +405,73 @@
     left: 0;
     transform: translate(-150%, -50%) rotate(180deg);
 }
+
+.arrow-thermometer {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+}
+
+.arrow-thermometer-right {
+    right: 0;
+    transform: translate(calc(100% + 24px), -50%);
+}
+.arrow-thermometer-left {
+    left: 0;
+    transform: translate(calc(-100% - 24px), -50%) rotate(180deg);
+}
+
+//Calendar slider
+.arrow-next,
+.arrow-prev {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+}
+
+.arrow-next,
+.arrow-prev {
+    width: 32px;
+}
+
+.arrow-prev {
+    transform: translate(calc(-100% - 48px), -50%);
+    left: 0;
+}
+
+.arrow-next {
+    right: 0;
+    transform: translate(calc(100% + 48px), -50%);
+}
+
+.edit-thumbnail {
+    width: 100%;
+    background-color: lightgray;
+    padding-bottom: 47%;
+    position: relative;
+}
+
+.thumbnail-image-prev {
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+}
+
+.edit-program-camera {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail-heart-icon {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background-color: $warmGrey;
+    padding: 16px;
+    width: 110px;
+}

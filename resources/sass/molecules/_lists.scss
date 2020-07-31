@@ -378,6 +378,15 @@ ul {
     cursor: pointer;
 }
 
+.thermometer-schedule-current-item {
+    height: 11px;
+    background-color: $teal;
+}
+
+.thermometer-schedule-item-notavailable {
+    background-color: $orange;
+}
+
 .thermometer-schedule-item:hover {
     background-color: #c5c5c5;
 }
@@ -409,4 +418,39 @@ ul {
 }
 .thermometer-notation-gray::before {
     background-color: $beige;
+}
+
+//Slider de calendario en pantalla para editar programa
+.programming-item {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.programming-item {
+    .p {
+        color: $black-three;
+    }
+
+    p:nth-child(1) {
+        font-family: $MontserratLight;
+    }
+
+    p:nth-child(2) {
+        font-family: $MontserratSemiBold;
+    }
+}
+
+.programming-item-active {
+    background: #bd2c2c;
+    color: white;
+}
+
+.programming-item-active {
+    p:nth-child(1) {
+        font-family: $MontserratBold !important;
+    }
+
+    p:nth-child(2) {
+        font-family: $MontserratBlack !important;
+    }
 }

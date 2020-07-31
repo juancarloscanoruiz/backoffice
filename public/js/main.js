@@ -88028,7 +88028,18 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+  //Slick slider
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+    slidesToShow: 11,
+    slidesToScroll: 11,
+    infinite: true,
+    dots: false,
+    centerMode: false,
+    arrows: true,
+    prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+    nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+  }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+
   var slideIndex = 3; //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {

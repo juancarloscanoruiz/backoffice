@@ -492,6 +492,11 @@ body {
   font-family: "Montserrat-Bold";
 }
 
+.a-text-bold-coolgray {
+  color: #a7a8aa;
+  font-family: "Montserrat-Bold";
+}
+
 .a-text-bold-warm-grey-three {
   font-family: "Montserrat-Bold";
   color: #808080;
@@ -570,6 +575,11 @@ body {
 .a-text-semibold-warm-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #808080;
+}
+
+.a-text-semibold-brownish-grey-three {
+  font-family: "Montserrat-SemiBold";
+  color: #5f5c5c;
 }
 
 .a-text-semibold-white {
@@ -1297,6 +1307,12 @@ body {
   top: 0;
   right: 0;
   margin-right: 48px;
+}
+
+.size-thumbnail-text {
+  opacity: 0.7;
+  border-radius: 18px;
+  background-color: #ffffff;
 }
 
 @font-face {
@@ -2730,6 +2746,76 @@ body {
   transform: translate(-150%, -50%) rotate(180deg);
 }
 
+.arrow-thermometer {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.arrow-thermometer-right {
+  right: 0;
+  transform: translate(calc(100% + 24px), -50%);
+}
+
+.arrow-thermometer-left {
+  left: 0;
+  transform: translate(calc(-100% - 24px), -50%) rotate(180deg);
+}
+
+.arrow-next,
+.arrow-prev {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.arrow-next,
+.arrow-prev {
+  width: 32px;
+}
+
+.arrow-prev {
+  transform: translate(calc(-100% - 48px), -50%);
+  left: 0;
+}
+
+.arrow-next {
+  right: 0;
+  transform: translate(calc(100% + 48px), -50%);
+}
+
+.edit-thumbnail {
+  width: 100%;
+  background-color: lightgray;
+  padding-bottom: 47%;
+  position: relative;
+}
+
+.thumbnail-image-prev {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.edit-program-camera {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thumbnail-heart-icon {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  background-color: #9b9b9b;
+  padding: 16px;
+  width: 110px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -3150,6 +3236,13 @@ input[type=radio]:checked + .no-estilo1 {
   border-color: #0097a9;
   border-width: 0 0.26em 0.26em 0;
   transform: rotate(45deg);
+}
+
+.edit-program-input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
 }
 
 .line {
@@ -3718,6 +3811,11 @@ input[type=radio]:checked + .no-estilo1 {
   font-family: "Montserrat-Bold";
 }
 
+.a-text-bold-coolgray {
+  color: #a7a8aa;
+  font-family: "Montserrat-Bold";
+}
+
 .a-text-bold-warm-grey-three {
   font-family: "Montserrat-Bold";
   color: #808080;
@@ -3796,6 +3894,11 @@ input[type=radio]:checked + .no-estilo1 {
 .a-text-semibold-warm-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #808080;
+}
+
+.a-text-semibold-brownish-grey-three {
+  font-family: "Montserrat-SemiBold";
+  color: #5f5c5c;
 }
 
 .a-text-semibold-white {
@@ -4525,6 +4628,12 @@ input[type=radio]:checked + .no-estilo1 {
   margin-right: 48px;
 }
 
+.size-thumbnail-text {
+  opacity: 0.7;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
 .login-BO {
   height: 90vh;
   display: flex;
@@ -4997,6 +5106,15 @@ ul {
   cursor: pointer;
 }
 
+.thermometer-schedule-current-item {
+  height: 11px;
+  background-color: #0097a9;
+}
+
+.thermometer-schedule-item-notavailable {
+  background-color: #ff8200;
+}
+
 .thermometer-schedule-item:hover {
   background-color: #c5c5c5;
 }
@@ -5029,6 +5147,36 @@ ul {
 
 .thermometer-notation-gray::before {
   background-color: #d8d8d8;
+}
+
+.programming-item {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.programming-item .p {
+  color: #000000;
+}
+
+.programming-item p:nth-child(1) {
+  font-family: "Montserrat-Light";
+}
+
+.programming-item p:nth-child(2) {
+  font-family: "Montserrat-SemiBold";
+}
+
+.programming-item-active {
+  background: #bd2c2c;
+  color: white;
+}
+
+.programming-item-active p:nth-child(1) {
+  font-family: "Montserrat-Bold" !important;
+}
+
+.programming-item-active p:nth-child(2) {
+  font-family: "Montserrat-Black" !important;
 }
 
 .navbar-progra-item-border {
@@ -5340,6 +5488,27 @@ iframe {
   width: 100%;
 }
 
+.state-container,
+.alert-container {
+  width: 100%;
+  border-radius: 20px;
+  max-width: 500px;
+}
+
+.alert-container {
+  box-shadow: 0 2px 5px 0 #ff8200;
+}
+
+.state-container {
+  box-shadow: 0 2px 5px 0 #0097a9;
+}
+
+.edit-data-container {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 24px 16px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -5480,6 +5649,12 @@ header {
   align-items: center;
   color: #ffffff;
   box-shadow: 1px 0px 2px 1px #d8d8d8;
+}
+
+.thumbnail-header {
+  height: 100px;
+  background-color: #da291c;
+  width: 100%;
 }
 
 @font-face {
@@ -5638,25 +5813,24 @@ select:focus {
   background-color: #fcfcfc;
 }
 
-section {
-  grid-area: my-section;
-  background-color: #af272f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 1px 0px 2px 1px #d8d8d8;
-}
-
-section {
-  grid-area: my-section;
-  background-color: #af272f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  width: 100%;
-  box-shadow: 1px 0px 2px 1px #d8d8d8;
-}
+/*section {
+    grid-area: my-section;
+    background-color: $darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 0px 2px 1px $beige;
+  }
+  section {
+    grid-area: my-section;
+    background-color: $darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    width: 100%;
+    box-shadow: 1px 0px 2px 1px $beige;
+  }*/
 
 .pointer-none {
   pointer-events: none;
@@ -5670,9 +5844,49 @@ section {
   cursor: pointer;
 }
 
+.mt-6 {
+  margin-top: 56px;
+}
+
+.mb-6 {
+  margin-bottom: 56px;
+}
+
+.mr-6 {
+  margin-right: 56px;
+}
+
+.ml-6 {
+  margin-left: 56px;
+}
+
+.mb-7 {
+  margin-bottom: 96px;
+}
+
+.mt-7 {
+  margin-top: 96px;
+}
+
+.ml-7 {
+  margin-left: 96px;
+}
+
+.mr-7 {
+  margin-right: 96px;
+}
+
 .synopsis-image-slider,
 .programming-slider {
   width: 1000px !important;
+}
+
+.calendar-slider {
+  height: 68px;
+}
+
+.calendar-slider div {
+  height: 100%;
 }
 
 .programming-slider .slick-slide {

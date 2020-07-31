@@ -4,7 +4,6 @@
         remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
         container: "navbar-prev-canal-claro",
         onMessage: function(message, origin) {
-            console.log(typeof message);
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =

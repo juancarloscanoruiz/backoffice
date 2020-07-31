@@ -288,3 +288,23 @@ iframe {
 .thermometer-hours-container {
     width: 100%;
 }
+
+.state-container,
+.alert-container {
+    width: 100%;
+    border-radius: 20px;
+    max-width: 500px;
+}
+.alert-container {
+    box-shadow: 0 2px 5px 0 $orange;
+}
+
+.state-container {
+    box-shadow: 0 2px 5px 0 $teal;
+}
+
+.edit-data-container {
+    background-color: #f9f9f9;
+    border-radius: $radioButton;
+    padding: 24px 16px;
+}
