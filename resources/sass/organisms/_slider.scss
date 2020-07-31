@@ -5,6 +5,18 @@
     width: 1000px !important;
 }
 
+.programming-slider-dots {
+    .slick-dots {
+        .slick-active {
+            background-color: $teal;
+        }
+
+        .slick-active p {
+            color: $white !important;
+        }
+    }
+}
+
 .calendar-slider {
     height: 68px;
 }

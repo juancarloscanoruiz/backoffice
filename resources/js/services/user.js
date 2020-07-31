@@ -346,7 +346,7 @@ function getAllUsersBO() {
             <header>
             <div class="text-title">Usuario</div>
             </header>
-            <section>
+            <section class="section">
               <div class="text-title ">Rol</div>
             </section>
             <aside>
@@ -502,7 +502,7 @@ function getAllUserFront() {
             <header>
               <div class="text-title">Usuario</div>
             </header>
-            <section>
+            <section class="section">
               <div class="text-title">Acciones</div>
             </section>
             ${userF}

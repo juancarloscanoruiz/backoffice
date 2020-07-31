@@ -1,7 +1,7 @@
 <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
 <script>
     new easyXDM.Socket({
-        remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
         container: "navbar-prev-canal-claro",
         onMessage: function(message, origin) {
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -17,7 +17,22 @@
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: "navbar-prev-programacion",
         onMessage: function(message, origin) {
-            console.log(message);
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let json = JSON.parse(message);
+                switch (json.type) {
+                    case "program":
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
+                        break;
+                    case "slider-pagination":
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
+                        break;
+                    default:
+                        break;
+                }
+            }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
@@ -124,7 +139,7 @@
                 <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg"
                         class="Icon_paises1" /></button>
             </div>
-<div class="clearfix"></div>
+            <div class="clearfix"></div>
             <div class="centro">
                 <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
                 </div>

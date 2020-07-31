@@ -328,14 +328,14 @@ $data_for_new_entry = json_encode([
                                                 <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" value="1" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Imprescindibles</span>
+                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                         </div>
                                         <div class="d-flex ml-2 pt-2 pb-2">
                                             <label class="checkradio d-flex ml-2">
                                                 <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" value="2" class="switch-table">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Por si te lo perdiste</span>
+                                            <span class="text-left cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                         </div>
                                     </div>
                                 @else
@@ -354,14 +354,14 @@ $data_for_new_entry = json_encode([
                                                     <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Imprescindibles</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Carrusel 1</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
                                                 <label class="checkradio d-flex ml-2">
                                                     <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Por si te lo perdiste</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Carrusel 2</span>
                                             </div>
                                         </div>
                                     @else
@@ -371,14 +371,14 @@ $data_for_new_entry = json_encode([
                                                     <input type="radio" checked name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="1" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Imprescindibles</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Carrusel 1</span>
                                             </div>
                                             <div class="d-flex ml-2 pt-2 pb-2">
                                                 <label class="checkradio d-flex ml-2">
                                                     <input type="radio" name="dontlose-{{$programs[$indexPrograms]->chapter_id}}" class="switch-table" value="2" />
                                                     <span class="checkmark"></span>
                                                 </label>
-                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Por si te lo perdiste</span>
+                                                <span class="text-left cursor-pointer a-text-medium-brownish ml-2">Carrusel 2</span>
                                             </div>
                                         </div>
                                     @endif

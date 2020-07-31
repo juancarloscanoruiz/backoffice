@@ -8,6 +8,6 @@ class programController extends Controller
 {
     public function index()
     {
-        return view('admin-site.landings.edit-program.programming-carrusel');
+        return view('admin-site.landings.programming-carrusel');
     }
 }

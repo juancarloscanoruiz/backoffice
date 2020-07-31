@@ -3279,7 +3279,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .bor {
-  border: dashed 4px #d5d7d7;
+  border: dashed 2px #d5d7d7;
 }
 
 .cuadro-dia {
@@ -5820,17 +5820,18 @@ select:focus {
     justify-content: center;
     align-items: center;
     box-shadow: 1px 0px 2px 1px $beige;
-  }
-  section {
-    grid-area: my-section;
-    background-color: $darkred;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $white;
-    width: 100%;
-    box-shadow: 1px 0px 2px 1px $beige;
   }*/
+
+.section {
+  grid-area: my-section;
+  background-color: #af272f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 100%;
+  box-shadow: 1px 0px 2px 1px #d8d8d8;
+}
 
 .pointer-none {
   pointer-events: none;
@@ -5879,6 +5880,14 @@ select:focus {
 .synopsis-image-slider,
 .programming-slider {
   width: 1000px !important;
+}
+
+.programming-slider-dots .slick-dots .slick-active {
+  background-color: #0097a9;
+}
+
+.programming-slider-dots .slick-dots .slick-active p {
+  color: #ffffff !important;
 }
 
 .calendar-slider {

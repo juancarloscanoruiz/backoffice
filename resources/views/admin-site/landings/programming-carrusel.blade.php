@@ -22,7 +22,7 @@
                 <!--dots-->
                 <div class="programming-slider-dots mt-5 mb-5"></div>
                 <!--add slide-->
-                <img src="{{ asset('/images/add-gray.svg') }}" class="add-programming-image cursor-pointer">
+                <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image cursor-pointer">
             </div>
             <!--Calendar-->
             <div class="d-flex align-items-center">
