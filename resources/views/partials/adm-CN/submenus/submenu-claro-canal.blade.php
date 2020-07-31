@@ -19,13 +19,20 @@
         onMessage: function(message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                let loader = `
+                    <div class="loader-view-container">
+                        <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                        `;
                 let json = JSON.parse(message);
                 switch (json.type) {
                     case "program":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
                             "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
                         break;
                     case "slider-pagination":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
                             "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
                         break;

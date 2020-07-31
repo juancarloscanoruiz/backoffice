@@ -38,6 +38,11 @@
     color: $light;
 }
 
+.a-text-bold-silver {
+    font-family: $MontserratBold;
+    color: $silver;
+}
+
 .a-text-bold-charcoal {
     font-family: $MontserratBold;
     color: $charcoal;
@@ -126,6 +131,11 @@
 .a-text-medium-black {
     font-family: $MontserratRegular;
     color: $black;
+}
+
+.a-text-medium-coolgray {
+    color: $coolGray;
+    font-family: $MontserratMedium;
 }
 
 .a-text-medium-warmgrey {

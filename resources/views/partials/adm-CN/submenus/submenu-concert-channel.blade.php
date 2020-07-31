@@ -20,7 +20,29 @@
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: "navbar-prev-programacion",
         onMessage: function(message, origin) {
-            console.log(message);
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let json = JSON.parse(message);
+                switch (json.type) {
+                    case "program":
+                    let loader = `
+                            <div class="loader-view-container">
+                                <img src="./images/loader.gif" class="loader" alt="">
+                            </div>
+                                `;
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
+                        break;
+                    case "slider-pagination":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
+                        break;
+                    default:
+                        break;
+                }
+            }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =

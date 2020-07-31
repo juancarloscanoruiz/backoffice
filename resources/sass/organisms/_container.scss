@@ -308,3 +308,15 @@ iframe {
     border-radius: $radioButton;
     padding: 24px 16px;
 }
+
+.edit-rectangle-small-container {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 240px;
+}
+
+.edit-rectangle-container {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 100%;
+}
