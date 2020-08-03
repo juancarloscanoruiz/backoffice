@@ -94,8 +94,12 @@ Route::group(['prefix' => 'program'], function () {
 //RUTA PRUEBA DE MODALES
 Route::get('/menus', function () {
     return view('admin-site.landings.edit-program.menu-programs');
-})->name('delete-row');
-//Rutas para back
-Route::get('/landing', function () {
-    return view('admin-site.Admin-BO');
+});
+
+Route::get('/menurris', function () {
+    return view('admin-site.landings.edit-program.edit-program');
+});
+//RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
+Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
+    Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
