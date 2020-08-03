@@ -88199,6 +88199,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".buttonall").removeClass("btn-nav");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav-select");
+  }); //activacion de paginacion
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("slider-pagination-active");
   }); //Mostramos la vista para crear un usuario
 
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showFormCreateUser"])(); //Al dar click en el botón, hacemos el registro del usuario

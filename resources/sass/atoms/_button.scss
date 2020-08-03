@@ -514,6 +514,11 @@
     border: 1px solid $selecred;
     //.a-menu
 }
+.color-section {
+    background-color: $darkred;
+    border: 1px solid $darkred;
+    //.a-menu
+}
 .btn-menu-all {
     border: solid 1px $selecred;
     background-color: $white;
@@ -913,3 +918,37 @@
     cursor: pointer;
     height: 54px;
 }
+.white-shadow{
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+}
+
+
+.programming-dots{
+    transform: translate(300px, -50px);
+}
+.slider-pagination-active::after {
+    content: "";
+    border-width: 6px;
+    border-style: solid;
+    border-color: #4a4a4a transparent transparent transparent;
+    position: absolute; 
+    left: 36%;
+    bottom: 240px;
+    transform: rotate(180deg);
+  }
+  .slider-pagination-active::before {
+    content: "";
+    border-width: 6px;
+    border-style: solid;
+    border-color: $greyishBrownTwo transparent transparent transparent;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translate(-50%, 100%);
+    transform: translate(-50%, -95%);
+  }
+  .slider-pagination p {
+    color:$teal ;
+    font-family: $MontserratBlack;
+  }

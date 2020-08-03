@@ -92,6 +92,10 @@ Route::group(['prefix' => 'program'], function () {
 });
 
 //RUTA PRUEBA DE MODALES
-Route::get('/modales', function () {
-    return view('partials.adm-CN.grillas.modales-grilla.delete-row');
+Route::get('/menus', function () {
+    return view('admin-site.landings.edit-program.menu-programs');
 })->name('delete-row');
+//Rutas para back
+Route::get('/landing', function () {
+    return view('admin-site.Admin-BO');
+});

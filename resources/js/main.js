@@ -277,7 +277,12 @@ $(document).ready(function() {
         $(".buttonall").removeClass("btn-nav");
         $(this).addClass("btn-nav-select");
     });
-
+//activacion de paginacion
+$(".slider-pagination").click(function() {     
+    $(".slider-pagination").removeClass("slider-pagination-active");
+    $(this).addClass("slider-pagination-active");
+   
+});
     //Mostramos la vista para crear un usuario
     showFormCreateUser();
 
@@ -872,3 +877,4 @@ $(document).on("click", function(e) {
         $("#selectYear").prop("checked", false);
     }
 });
+
