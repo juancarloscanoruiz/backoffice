@@ -4,7 +4,7 @@
 
     <body>
         <!--Header-->
-        @include('partials.headers.headerPrograGeneral')
+        @include('partials.headers.headers-claro.header-programacion')
         <div class="ml-5 float-left">
             <div>
                 <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span> </span>

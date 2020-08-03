@@ -17,6 +17,47 @@ class ProgramacionGeneralController extends Controller
     private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
+    
+public function onlyday(Request $request)
+{
+
+        //se obtine la version que se peuda editar
+        //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
+        //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
+        //el dia en que inicia la version maestra es:
+        //$hoy = '2020-07-02';
+        try {
+            $firstDay = date('Y-m-d');
+            $usuario_id = session('id_user');
+            if (!isset($usuario_id)) {
+                $usuario_id = -1;
+            }
+            $client = new Client();
+            $response = $client->get(
+                $this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . $usuario_id
+            );
+
+            $respuesta =  json_decode($response->getBody());
+
+            $firstDate = $this->getDateCalendar($respuesta->data->first_day_calendar);
+            $lastDate = $this->getDateCalendar($respuesta->data->last_day_calendar);
+            $genres = $respuesta->data->genres;
+            //var_dump($respuesta->data->grilla);
+            if ($respuesta->code == 200) {
+                return view('partials.backs.back-progra-claro', compact("respuesta", "firstDate", "lastDate", "genres"));
+            } else {
+                return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
+            };
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+
+            $response = $e->getResponse();
+            if ($response && $response->getStatusCode() == 406 || $response && $response->getStatusCode() == 404) {
+                // Do something with a 406 response here (as an example).
+                return redirect('/');
+            }
+        }
+    }
+
 
     public function getDateCalendar($date)
     {

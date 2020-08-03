@@ -542,6 +542,11 @@ body {
   color: #9b9b9b;
 }
 
+.a-text-medium-brown-two {
+  font-family: "Montserrat-Medium";
+  color: #4a4a4a;
+}
+
 .a-text-black-brown-two {
   font-family: "Montserrat-Black";
   color: #4a4a4a;
@@ -1323,6 +1328,10 @@ body {
   opacity: 0.7;
   border-radius: 18px;
   background-color: #ffffff;
+}
+
+.edit-date-time-title {
+  margin-bottom: 116px;
 }
 
 @font-face {
@@ -2405,6 +2414,10 @@ body {
   font-family: "Montserrat-Black";
 }
 
+.slider-pagination-active {
+  background-color: #0097a9;
+}
+
 .add-images-icon {
   position: absolute;
   left: 50%;
@@ -2912,6 +2925,12 @@ body {
   src: url(/backoffice/public/fonts/Montserrat-Medium/Montserrat-Medium.ttf);
 }
 
+.input-basic {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
 .insert-data {
   box-shadow: none;
   -webkit-appearance: none;
@@ -3312,6 +3331,14 @@ input[type=radio]:checked + .no-estilo1 {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   background-color: white;
   border: none;
+}
+
+.edit-program-input {
+  width: 100px;
+}
+
+.edit-program-large-input {
+  width: 100%;
 }
 
 .line {
@@ -3928,6 +3955,11 @@ input[type=radio]:checked + .no-estilo1 {
 .a-text-medium-warmgrey {
   font-family: "Montserrat-Medium";
   color: #9b9b9b;
+}
+
+.a-text-medium-brown-two {
+  font-family: "Montserrat-Medium";
+  color: #4a4a4a;
 }
 
 .a-text-black-brown-two {
@@ -4711,6 +4743,10 @@ input[type=radio]:checked + .no-estilo1 {
   opacity: 0.7;
   border-radius: 18px;
   background-color: #ffffff;
+}
+
+.edit-date-time-title {
+  margin-bottom: 116px;
 }
 
 .login-BO {
@@ -5598,6 +5634,10 @@ iframe {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   width: 100%;
+}
+
+.edit-switches-home-container {
+  margin-bottom: 57px;
 }
 
 @font-face {

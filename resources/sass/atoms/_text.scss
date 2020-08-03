@@ -143,6 +143,11 @@
     color: $warmGrey;
 }
 
+.a-text-medium-brown-two {
+    font-family: $MontserratMedium;
+    color: $greyish-brown-two;
+}
+
 .a-text-black-brown-two {
     font-family: $MontserratBlack;
     color: $greyish-brown-two;
@@ -931,4 +936,8 @@
     opacity: 0.7;
     border-radius: 18px;
     background-color: #ffffff;
+}
+
+.edit-date-time-title {
+    margin-bottom: 116px;
 }

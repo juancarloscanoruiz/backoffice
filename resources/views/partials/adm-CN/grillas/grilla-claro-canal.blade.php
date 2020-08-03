@@ -409,7 +409,6 @@ $data_for_new_entry = json_encode([
                                 </div>
                             @else
                                 <?php
-
                                     //Dividimos la hora y la fecha de inicio en landing
                                     $scheduleBegin = explode(" ", $programs[$indexPrograms]->in_landing_begin);
                                     //Dividimos la hora y la fecha de inicio en landing
@@ -434,7 +433,6 @@ $data_for_new_entry = json_encode([
                                     $dateExpirationMonth = isset($dateExpiration[1]) ? $dateExpiration[1] : null;
                                     //Obtenemos el día de la fecha de inicio
                                     $dateExpirationDay = isset($dateExpiration[0]) ? $dateExpiration[2] : null;
-
                                 ?>
                                 <div class="landing-programar-content">
                                     <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
@@ -627,7 +625,7 @@ $data_for_new_entry = json_encode([
                         <!--Program Year Produced-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="program-year" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="program_year_produced">
                             <div class="schedule-date">
-                                <input type="text" class="editable-attribute table-input text-center year-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY" />
+                                <input type="text" class="editable-attribute table-input text-center year-input  a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->program_year_produced}}" placeholder="YYYY" />
                             </div>
                         </div>
                         <!--Program genre list-->

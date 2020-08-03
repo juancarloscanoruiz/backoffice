@@ -72949,9 +72949,12 @@ function ShowHidePassword(iconPassword) {
 function validateEmail(inputEmail, messageError) {
   var email = inputEmail.val();
   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  var error = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".error");
 
   if (email.length == 0) {
+    console.log("email vacío");
     messageError.css("color", "red").text("Debes ingresar un correo electrónico");
+    error.attr("src", "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg").css("display", "block");
     return false;
   } else if (!filter.test(email)) {
     messageError.css("color", "red").text("El correo electrónico no tiene un formato válido");
@@ -73025,14 +73028,17 @@ function validateKeyUpPassword(input, messageError) {
 
 function validatePassword(inputPassword, messageError) {
   var password = inputPassword.val();
+  var listo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".listo");
 
   if (password === "") {
     messageError.css("color", "red").text("Debes ingresar una contraseña");
     inputPassword.addClass("input-border-red");
+    listo.attr("src", "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg").css("display", "block");
     return false;
   } else if (password.length < 8) {
     messageError.css("color", "red").text("La contraseña debe tener al menos 8 caractéres");
     inputPassword.addClass("input-border-red");
+    listo.attr("src", "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg").css("display", "block");
     return false;
   } else {
     return true;

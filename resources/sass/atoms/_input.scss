@@ -1,6 +1,12 @@
 @import "../base/typography";
 @import "../base/color";
 
+.input-basic {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
 .insert-data {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -386,4 +392,12 @@ input[type="radio"]:checked + .no-estilo1 {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     background-color: white;
     border: none;
+}
+
+.edit-program-input {
+    width: 100px;
+}
+
+.edit-program-large-input {
+    width: 100%;
 }

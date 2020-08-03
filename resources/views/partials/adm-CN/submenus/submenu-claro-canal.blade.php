@@ -36,6 +36,15 @@
                         window.location.href =
                             "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
                         break;
+                        case "synopsis":
+                        window.location.href =
+                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
+                        break;
+                        case "menu-logos":
+                        window.location.href =
+                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/menus"
+                        break;
+                     
                     default:
                         break;
                 }

@@ -3,7 +3,7 @@
 @section('content')
 
     <body>
-        @include('partials.headers.headerPrograGeneral')
+        @include('partials.headers.headers-claro.header-programacion')
         <div class="ml-5 float-left">
             <div>
                 <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span> </span>
@@ -22,7 +22,7 @@
             <div class="d-flex justify-content-center mt-5">
                 <!--pagination-->
                 <div class=" d-flex programming-dots ">
-                     <p class='a-text-bold-teal slider-pagination slider-pagination-active '>1</p>
+                     <p class=' a-text-bold-white slider-pagination slider-pagination-active '>1</p>
                 </div>
                   <div class="centro position-relative mb-3">
                          <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">

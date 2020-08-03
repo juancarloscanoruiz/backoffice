@@ -14,11 +14,18 @@ function ShowHidePassword(iconPassword) {
 function validateEmail(inputEmail, messageError) {
     let email = inputEmail.val();
     let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
+    let error = $(".error");
     if (email.length == 0) {
+        console.log("email vacío");
         messageError
             .css("color", "red")
             .text("Debes ingresar un correo electrónico");
+        error
+            .attr(
+                "src",
+                "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg"
+            )
+            .css("display", "block");
         return false;
     } else if (!filter.test(email)) {
         messageError
@@ -118,15 +125,28 @@ function validateKeyUpPassword(input, messageError) {
 
 function validatePassword(inputPassword, messageError) {
     let password = inputPassword.val();
+    let listo = $(".listo");
     if (password === "") {
         messageError.css("color", "red").text("Debes ingresar una contraseña");
         inputPassword.addClass("input-border-red");
+        listo
+            .attr(
+                "src",
+                "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg"
+            )
+            .css("display", "block");
         return false;
     } else if (password.length < 8) {
         messageError
             .css("color", "red")
             .text("La contraseña debe tener al menos 8 caractéres");
         inputPassword.addClass("input-border-red");
+        listo
+            .attr(
+                "src",
+                "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg"
+            )
+            .css("display", "block");
         return false;
     } else {
         return true;

@@ -277,12 +277,16 @@ $(document).ready(function() {
         $(".buttonall").removeClass("btn-nav");
         $(this).addClass("btn-nav-select");
     });
-//activacion de paginacion
-$(".slider-pagination").click(function() {     
-    $(".slider-pagination").removeClass("slider-pagination-active");
-    $(this).addClass("slider-pagination-active");
-   
-});
+    //activacion de paginacion
+    $(".slider-pagination").click(function() {
+        $(".slider-pagination").removeClass("slider-pagination-active") &
+            $(".slider-pagination").removeClass("a-text-bold-white");
+        $(".slider-pagination").addClass("a-text-bold-teal");
+
+        $(this).addClass("slider-pagination-active") &
+            $(this).addClass("a-text-bold-white") &
+            $(this).removeClass("a-text-bold-teal");
+    });
     //Mostramos la vista para crear un usuario
     showFormCreateUser();
 
@@ -579,7 +583,18 @@ $(".slider-pagination").click(function() {
 
             return true;
         } else {
-            console.log("errro");
+            /*             $(".correo-valido")
+                .text("Ingresa un email")
+                .css("color", "red");
+            $(".caracteres-min")
+                .text("Ingresa una contraseña")
+                .css("color", "red");
+            $(".error")
+                .attr(
+                    "src",
+                    "http://www.claronetworks.openofficedospuntocero.info/images/registro/alerta.svg"
+                )
+                .css("display", "block"); */
             return false;
         }
     });
@@ -877,4 +892,3 @@ $(document).on("click", function(e) {
         $("#selectYear").prop("checked", false);
     }
 });
-
