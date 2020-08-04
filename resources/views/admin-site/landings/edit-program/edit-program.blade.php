@@ -1,41 +1,12 @@
 @extends('layaout.app')
 
 
-<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="    overflow: auto;">
-  <div class="modal-dialog" role="document"style="    max-width: 1500px;">
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="  display:contents;  overflow: auto;">
+  <div class="modal-dialog" role="document"style="    max-width: 1250px;">
     <div class="modal-content">
-      <div class="modal-header bg-color">
-            <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-            <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
 
-                
-        </span>
-        <span class='text-light1 mr-5 pt-4'>Administrador de contenido</span>
-    
-     <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>-->
-      </div>
       <div class="modal-body pt-0">
-      <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
-            <div class='ml-5'>
-                <span class='a-text-black-bold a-name-user'> Annet</span><br>
-                <span class='text-light1 '> Super Usuario</span>
-            </div>
-            <div class='mr-5'>
-          
-                    <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'data-dismiss="modal">REGRESAR</button>
-            
-            </div>
-        </div>
-  
-      <div class="ml-5 float-left">
-            <div>
-                <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span> </span>
-            </div>
-            <span class="a-text-black-light text-plus">Editado por:</span>
-        </div>
-        <div class="clearfix"></div>
+    
         <h3 class="a-text-bold-black h3 ml-5 mt-4">CANAL CLARO</h3>
         <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
         <h2 class="h2 text-center a-text-black-brown-two ">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
@@ -220,8 +191,9 @@
             </div>
             <!--Imagen de programa en slider-->
             <section>
+                <div class="justify-content-center">
                    
-  <select class="thumbnail-header1 thumbnail-header d-flex align-items-center justify-content-between position-relative"title ="TÍTULO DEL PROGRAMA" data-live-search-placeholder="Buscar" >
+  <select class="thumbnail-header1 thumbnail-header  align-items-center justify-content-between w-100" data-dropup-auto="false" >
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco</option>
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco2</option>
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco3</option>
@@ -231,6 +203,7 @@
                                         
               
                 <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
+                </div>
                 <div class="edit-thumbnail position-relative">
                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon" alt="camera" />
                     <div class="edit-program-camera">
@@ -439,14 +412,14 @@
                         <div class="edit-data-container">
                             <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list
                             </p>
-                            <div class="mb-3 edit-rectangle-container ">
+                           
                                
                               
-                                <select class="selectpicker  a-text-regular-brownishtwo text-normal show-tick" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                <select class="selectpicker mb-3 edit-rectangle-container  a-text-regular-brownishtwo text-normal show-tick" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
 
 
                                     </select>
-                            </div>
+                        
                         </div>
                     </div>
                     <!---->
