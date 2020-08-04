@@ -25,10 +25,11 @@ function editAttributeProgram(chapter_id, key, keyValue) {
     });
 }
 
-function filterDates(startDate, lastDate) {
+function filterDates(startDate, lastDate,landing) {
     let data = {
         startDate,
-        lastDate
+        lastDate,
+        landing
     };
     $.ajax({
         type: "POST",

@@ -316,10 +316,10 @@ function eventsGrilla() {
             onHide: function() {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
-                    .getElementById("programming-carrusel-calendar")
+                    .getElementById("date-start-input")
                     .value.split(",");
                 //  Fecha inicial del datepicker
                 let startDate = fullDate[0];
@@ -329,8 +329,10 @@ function eventsGrilla() {
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
-
+                let landing = $("#date-start-input").attr('landing');
+                //console.log("El landing es: "+landing);
                 let endDate = fullDate[1];
+                filterDates(startDate, endDate,landing);
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
                 $("#end-date-text").text(endDateFull);
