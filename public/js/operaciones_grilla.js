@@ -73311,6 +73311,49 @@ function eventsGrilla() {
       singleMode: false
     });
   }
+
+  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
+
+  if (programmingCarruselPicker) {
+    //Iniciamos el calendario Litepicker
+    var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_2___default.a({
+      element: programmingCarruselPicker,
+      format: "YYYY-MM-DD",
+      delimiter: ",",
+      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+      //Al aparecer, aplicamos estilos parecidos a los de un modal
+      onShow: function onShow() {
+        _picker.picker.style.left = "50%";
+        _picker.picker.style.top = "50%";
+        _picker.picker.style.transform = "translate(-50%, -50%)";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+      },
+      //Evento que utilizamos cada vez que el calendario se oculta
+      onHide: function onHide() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+      },
+      onSelect: function onSelect() {
+        //Separamos las dos fechas
+        var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
+
+        var startDate = fullDate[0]; //Separamos la primer fecha
+
+        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+        var endDate = fullDate[1];
+        var endDateSplit = endDate.split("-");
+        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+      },
+      numberOfMonths: 1,
+      numberOfColumns: 1,
+      singleMode: false
+    });
+  }
   /* Al dar "enter" cancelamos el salto de línea,
       conseguimos el valor del campo de la grilla
       y hacemos la petición

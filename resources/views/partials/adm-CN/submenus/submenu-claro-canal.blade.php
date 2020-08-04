@@ -17,6 +17,7 @@
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: "navbar-prev-programacion",
         onMessage: function(message, origin) {
+
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -24,7 +25,7 @@
                         <img src="./images/loader.gif" class="loader" alt="">
                     </div>
                         `;
-                let json = JSON.parse(message);
+
                 switch (json.type) {
                     case "program":
                         document.querySelector("body").insertAdjacentHTML("beforeend", loader);
@@ -36,15 +37,17 @@
                         window.location.href =
                             "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
                         break;
-                        case "synopsis":
+                    case "synopsis":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
-                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
                         break;
-                        case "menu-logos":
+                    case "menu-logos":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
-                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/menus"
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/menus"
                         break;
-                     
+
                     default:
                         break;
                 }

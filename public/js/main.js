@@ -88052,7 +88052,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     //Cada vez que se haga click, el contador incrementa
     slideIndex++; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n        <div class=\"slick-slide\">\n            <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming_".concat(slideIndex, "\" id=\"image_programming_").concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                        <img src=\"http://localhost:8888/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                </div>\n            </div>\n        </div>\n        "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n        <div class=\"slick-slide\">\n            <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                        <img src=\"http://localhost:8888/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                </div>\n            </div>\n        </div>\n        "));
   }); //Div en donde hacemos el intercambio de grillas de los diferentes canales
 
   var divGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming"); //Borrar un programa de la grilla
@@ -88161,8 +88161,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     initialSlide: 0,
     infinite: false,
     arrows: true,
-    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+    prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+    nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
     customPaging: function customPaging(slider, i) {
       var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
       return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
@@ -88978,6 +88978,49 @@ function eventsGrilla() {
 
         var endDate = fullDate[1];
         Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["filterDates"])(startDate, endDate);
+        var endDateSplit = endDate.split("-");
+        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+      },
+      numberOfMonths: 1,
+      numberOfColumns: 1,
+      singleMode: false
+    });
+  }
+
+  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
+
+  if (programmingCarruselPicker) {
+    //Iniciamos el calendario Litepicker
+    var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_2___default.a({
+      element: programmingCarruselPicker,
+      format: "YYYY-MM-DD",
+      delimiter: ",",
+      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+      //Al aparecer, aplicamos estilos parecidos a los de un modal
+      onShow: function onShow() {
+        _picker.picker.style.left = "50%";
+        _picker.picker.style.top = "50%";
+        _picker.picker.style.transform = "translate(-50%, -50%)";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+      },
+      //Evento que utilizamos cada vez que el calendario se oculta
+      onHide: function onHide() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+      },
+      onSelect: function onSelect() {
+        //Separamos las dos fechas
+        var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
+
+        var startDate = fullDate[0]; //Separamos la primer fecha
+
+        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+        var endDate = fullDate[1];
         var endDateSplit = endDate.split("-");
         var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);

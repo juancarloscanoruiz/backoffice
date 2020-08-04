@@ -78,7 +78,7 @@ $(document).ready(function() {
         <div class="slick-slide">
             <div>
                 <div class="bor thumbnail-image-program position-relative h-100">
-                <input type="file" name="image_programming_${slideIndex}" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
                     <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
                         <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                         <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -214,9 +214,9 @@ $(document).ready(function() {
         infinite: false,
         arrows: true,
         prevArrow:
-            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
         nextArrow:
-            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
         customPaging: function(slider, i) {
             var thumb = $(slider.$slides[i]).data();
             return (

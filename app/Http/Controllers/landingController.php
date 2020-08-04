@@ -35,4 +35,26 @@ class landingController extends Controller
     {
         return view('.admin-site.landings.edit-program.edit-program');
     }
+
+    public function showProgrammingSlider()
+    {
+        return view('admin-site.landings.programming-carrusel');
+    }
+
+    public function storeImages($name, $file, $url)
+    {
+        $extension = $file->extension();
+        $path = url('/storage') . "/" . substr($file->storeAs($url, $name . "." . $extension), 7);
+        return $path;
+    }
+
+    public function updateProgramminSliderImages(Request $request)
+    {
+        $images = $request->file("image_programming");
+        //var_dump($images);
+        foreach ($request->file("image_programming") as $image) {
+            $path = $this->storeImages("imageSlider", $image, "public/programacion/banner");
+            echo ($path);
+        }
+    }
 }
