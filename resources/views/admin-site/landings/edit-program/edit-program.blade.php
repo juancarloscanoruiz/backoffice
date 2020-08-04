@@ -4,18 +4,23 @@
 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="    overflow: auto;">
   <div class="modal-dialog" role="document"style="    max-width: 1500px;">
     <div class="modal-content">
-      <div class="modal-header">
-      <div class='bg-color'>
+      <div class="modal-header bg-color">
             <span class='d-flex align-items-center justify-content-between  py-xl-2'>
             <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
 
-                <span class='text-light1 mr-5'>Administrador de contenido</span>
+                
         </span>
-        </div>
-        <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
+        <span class='text-light1 mr-5 pt-4'>Administrador de contenido</span>
+    
+     <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+      <div class="modal-body pt-0">
+      <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
             <div class='ml-5'>
-                <span class='a-text-black-bold a-name-user'></span><br>
-                <span class='text-light1 '></span>
+                <span class='a-text-black-bold a-name-user'> Annet</span><br>
+                <span class='text-light1 '> Super Usuario</span>
             </div>
             <div class='mr-5'>
           
@@ -23,12 +28,7 @@
             
             </div>
         </div>
-    
-     <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>-->
-      </div>
-      <div class="modal-body">
+  
       <div class="ml-5 float-left">
             <div>
                 <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span> </span>
