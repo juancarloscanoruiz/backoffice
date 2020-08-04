@@ -1,10 +1,35 @@
 @extends('layaout.app')
 
-@section('content')
 
-    <body>
-        @include('partials.headers.headers-claro.header-programacion')
-        <div class="ml-5 float-left">
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="    overflow: auto;">
+  <div class="modal-dialog" role="document"style="    max-width: 1500px;">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class='bg-color'>
+            <span class='d-flex align-items-center justify-content-between  py-xl-2'>
+            <a href="{{ route('admin')}}"><span class='ml-5'><img src="{{asset('/images/home/claro-logo.svg')}}"> </span></a>
+
+                <span class='text-light1 mr-5'>Administrador de contenido</span>
+        </span>
+        </div>
+        <div id='user_information' class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
+            <div class='ml-5'>
+                <span class='a-text-black-bold a-name-user'></span><br>
+                <span class='text-light1 '></span>
+            </div>
+            <div class='mr-5'>
+          
+                    <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'data-dismiss="modal">REGRESAR</button>
+            
+            </div>
+        </div>
+    
+     <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+      <div class="modal-body">
+      <div class="ml-5 float-left">
             <div>
                 <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span> </span>
             </div>
@@ -195,11 +220,17 @@
             </div>
             <!--Imagen de programa en slider-->
             <section>
-                <div class="thumbnail-header d-flex align-items-center justify-content-between px-4">
-                    <input type="text" value="Título del programa"
-                        class="edit-program-input text-uppercase a-text-MBlack h2">
-                    <img src="{{ asset('/images/triangle.svg') }}" alt="">
-                </div>
+                   
+  <select class="thumbnail-header1 thumbnail-header d-flex align-items-center justify-content-between position-relative"title ="TÍTULO DEL PROGRAMA" data-live-search-placeholder="Buscar" >
+                                            <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco</option>
+                                            <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco2</option>
+                                            <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco3</option>
+
+
+                                            </select>                                      
+                                        
+              
+                <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                 <div class="edit-thumbnail position-relative">
                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon" alt="camera" />
                     <div class="edit-program-camera">
@@ -408,8 +439,13 @@
                         <div class="edit-data-container">
                             <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list
                             </p>
-                            <div class="mb-3 edit-rectangle-container p-3">
-                                <span class="a-text-bold-warm">Select options</span>
+                            <div class="mb-3 edit-rectangle-container ">
+                               
+                              
+                                <select class="selectpicker  a-text-regular-brownishtwo text-normal show-tick" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+
+
+                                    </select>
                             </div>
                         </div>
                     </div>
@@ -533,12 +569,17 @@
                     </div>
                 </div>
             </section>
-            <section class="text-center mb-5">
+</div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+      <section class="text-center mb-5">
                 <button
-                    class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus">aceptar</button>
+                    class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" data-dismiss="modal">aceptar</button>
                 <button
-                    class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal">cancelar</button>
+                    class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-dismiss="modal">cancelar</button>
             </section>
-        </div>
-    </body>
-@endsection
+            
+      </div>
+    </div>
+  </div>
+</div>
