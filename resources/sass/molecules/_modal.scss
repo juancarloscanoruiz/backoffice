@@ -13,3 +13,15 @@
         max-width: 750px !important;
     }
 }
+
+.modal-edit-icons .modal-content {
+    margin: auto;
+    width: 90%;
+}
+
+.modal-edit-icons {
+    .modal-dialog {
+        max-width: 100%;
+        height: auto;
+    }
+}
