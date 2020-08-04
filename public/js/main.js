@@ -88113,6 +88113,32 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       }
     });
   });
+  divGrilla.on("click", "#agregar-claro-cinema", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "general-program/newRow",
+      data: {
+        landing: "Claro Cinema"
+      },
+      success: function success(result) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").append(result);
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
+      }
+    });
+  });
+  divGrilla.on("click", "#agregar-concert-channel", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "general-program/newRow",
+      data: {
+        landing: "Concert Channel"
+      },
+      success: function success(result) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").append(result);
+        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
+      }
+    });
+  });
   divGrilla.on("click", "#agregar-concert-channel", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
@@ -88152,20 +88178,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     customPaging: function customPaging(slider, i) {
       var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
       return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-    initialSlide: 0,
-    infinite: false,
-    arrows: true,
-    prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-    nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-    customPaging: function customPaging(slider, i) {
-      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
     }
   }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
 
@@ -88788,7 +88800,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function eventsGrilla() {
-  //selectpicker pra ls titulos de los programas
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+    initialSlide: 0,
+    infinite: false,
+    arrows: true,
+    prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+    nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+    customPaging: function customPaging(slider, i) {
+      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
+    }
+  }); //selectpicker pra ls titulos de los programas
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").selectpicker({
     filter: true
   }); //selectpicker para el campo de género en un programa
@@ -89015,7 +89041,7 @@ function eventsGrilla() {
       },
       onSelect: function onSelect() {
         //Separamos las dos fechas
-        var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
+        var fullDate = document.getElementById("date-start-input").value.split(","); //  Fecha inicial del datepicker
 
         var startDate = fullDate[0]; //Separamos la primer fecha
 
@@ -89024,7 +89050,10 @@ function eventsGrilla() {
         var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
 
+        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing"); //console.log("El landing es: "+landing);
+
         var endDate = fullDate[1];
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["filterDates"])(startDate, endDate, landing);
         var endDateSplit = endDate.split("-");
         var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
@@ -89645,10 +89674,11 @@ function editAttributeProgram(chapter_id, key, keyValue) {
   });
 }
 
-function filterDates(startDate, lastDate) {
+function filterDates(startDate, lastDate, landing) {
   var data = {
     startDate: startDate,
-    lastDate: lastDate
+    lastDate: lastDate,
+    landing: landing
   };
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",

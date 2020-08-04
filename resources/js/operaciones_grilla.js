@@ -27,12 +27,32 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+    $(".programming-slider").slick({
+        slidesToShow: 1,
+        dots: true,
+        appendDots: $(".programming-slider-dots"),
+        initialSlide: 0,
+        infinite: false,
+        arrows: true,
+        prevArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+        nextArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+        customPaging: function(slider, i) {
+            var thumb = $(slider.$slides[i]).data();
+            return (
+                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                (i + 1) +
+                "</p>"
+            );
+        }
+    });
 
     //selectpicker pra ls titulos de los programas
     $(".thumbnail-header1").selectpicker({
-        filter: true,
+        filter: true
     });
-    
+
     //selectpicker para el campo de género en un programa
     $(".selectpicker").selectpicker({
         filter: true,
@@ -316,7 +336,7 @@ function eventsGrilla() {
             onHide: function() {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function () {
+            onSelect: function() {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -329,10 +349,10 @@ function eventsGrilla() {
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
-                let landing = $("#date-start-input").attr('landing');
+                let landing = $("#date-start-input").attr("landing");
                 //console.log("El landing es: "+landing);
                 let endDate = fullDate[1];
-                filterDates(startDate, endDate,landing);
+                filterDates(startDate, endDate, landing);
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
                 $("#end-date-text").text(endDateFull);

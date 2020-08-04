@@ -158,27 +158,27 @@ $(document).ready(function() {
             }
         });
     });
-    divGrilla.on("click", "#agregar-claro-cinema", function () {
+    divGrilla.on("click", "#agregar-claro-cinema", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Claro Cinema"
             },
-            success: function (result) {
+            success: function(result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
         });
     });
-    divGrilla.on("click", "#agregar-concert-channel", function () {
+    divGrilla.on("click", "#agregar-concert-channel", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Concert Channel"
             },
-            success: function (result) {
+            success: function(result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
@@ -232,26 +232,7 @@ $(document).ready(function() {
             );
         }
     });
-    $(".programming-slider").slick({
-        slidesToShow: 1,
-        dots: true,
-        appendDots: $(".programming-slider-dots"),
-        initialSlide: 0,
-        infinite: false,
-        arrows: true,
-        prevArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-        nextArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-        customPaging: function(slider, i) {
-            var thumb = $(slider.$slides[i]).data();
-            return (
-                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
-                (i + 1) +
-                "</p>"
-            );
-        }
-    });
+
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
     $(".synopsis-image-slider").on("afterChange", function(
         slick,
