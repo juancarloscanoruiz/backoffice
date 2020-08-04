@@ -27,6 +27,12 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+
+    //selectpicker pra ls titulos de los programas
+    $(".thumbnail-header1").selectpicker({
+        filter: true,
+    });
+    
     //selectpicker para el campo de género en un programa
     $(".selectpicker").selectpicker({
         filter: true,

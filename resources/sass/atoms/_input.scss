@@ -401,3 +401,47 @@ input[type="radio"]:checked + .no-estilo1 {
 .edit-program-large-input {
     width: 100%;
 }
+
+.thumbnail-header1 .bs-ok-default:after {
+    display: none !important; 
+   
+}
+.thumbnail-header1 .dropdown-toggle {
+    display:none !important;
+}
+
+.selectpicker select{
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 0px;
+    color: #ffffff;
+}
+
+.selectpicker > .dropdown-toggle {
+    /* position: relative; */
+    width: 100%;
+    z-index: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: auto;
+}
+.selectpicker .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 24rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
