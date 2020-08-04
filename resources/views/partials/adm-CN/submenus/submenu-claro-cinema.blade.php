@@ -26,7 +26,7 @@
                 let json = JSON.parse(message);
                 switch (json.type) {
                     case "program":
-                    let loader = `
+                        let loader = `
                             <div class="loader-view-container">
                                 <img src="./images/loader.gif" class="loader" alt="">
                             </div>
@@ -141,11 +141,11 @@
             </div>
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right mb-5">
-                <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg"
-                        class="Icon_paises1" /></button>
+                <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img
+                        src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" /></div>
             </div>
 
-<div class="clearfix"></div>
+            <div class="clearfix"></div>
             <div class="centro">
                 <div class="navbar-progra-content navbar-prev-claro-cinema mb-5" id="navbar-prev-claro-cinema">
                 </div>
