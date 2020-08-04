@@ -26,11 +26,6 @@
                 let json = JSON.parse(message);
                 switch (json.type) {
                     case "program":
-                        let loader = `
-                            <div class="loader-view-container">
-                                <img src="./images/loader.gif" class="loader" alt="">
-                            </div>
-                                `;
                         document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
                             "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
@@ -38,8 +33,19 @@
                     case "slider-pagination":
                         document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/programming-carrusel"
                         break;
+                    case "synopsis":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
+                        break;
+                    case "menu-logos":
+                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/menus"
+                        break;
+
                     default:
                         break;
                 }

@@ -35,7 +35,7 @@
                     case "slider-pagination":
                         document.querySelector("body").insertAdjacentHTML("beforeend", loader);
                         window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/programming-carrusel"
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/programming-carrusel"
                         break;
                     case "synopsis":
                         document.querySelector("body").insertAdjacentHTML("beforeend", loader);
