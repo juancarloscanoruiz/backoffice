@@ -27,6 +27,88 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+    //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+    let slideIndex = 3;
+    //Añadimos un slide al slider de imágenes de programación
+    $(".add-programming-image").click(function() {
+        //Cada vez que se haga click, el contador incrementa
+        slideIndex++;
+        //Agregamos un slide al slider de programación
+        $(".programming-slider").slick(
+            "slickAdd",
+            `
+            <div class="slick-slide">
+                <div>
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                    <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                        <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <img src="http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            `
+        );
+    });
+
+    let navbarPrograContainer = document.getElementById(
+        "navbar-prev-programacion"
+    );
+
+    //Verificamos si existe el contenedor para insertar el iframe
+    if (navbarPrograContainer) {
+        new easyXDM.Socket({
+            remote:
+                "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+
+            container: document.getElementById("navbar-prev-programacion"),
+            onMessage: function(message, origin) {
+                let json = JSON.parse(message);
+                if (typeof json == "object") {
+                    let loader = `
+                        <div class="loader-view-container">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                    switch (json.type) {
+                        case "program":
+                            document
+                                .querySelector("body")
+                                .insertAdjacentHTML("beforeend", loader);
+                            window.location.href =
+                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                            break;
+                        case "slider-pagination":
+                            $(".modal-programming-carousel").modal("show");
+                            $(".programming-slider").slick("refresh");
+                            break;
+                        case "synopsis":
+                            document
+                                .querySelector("body")
+                                .insertAdjacentHTML("beforeend", loader);
+                            window.location.href =
+                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                            break;
+                        case "menu-logos":
+                            $(".modal-edit-icons").modal("show");
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                this.container.getElementsByTagName("iframe")[0].style.height =
+                    message + "px";
+                //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                this.container.getElementsByTagName(
+                    "iframe"
+                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+            }
+        });
+    }
     $(".programming-slider").slick({
         slidesToShow: 1,
         dots: true,

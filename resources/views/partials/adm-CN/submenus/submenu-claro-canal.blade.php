@@ -1,6 +1,4 @@
-<script src="{{ asset('/js/lib/jquery-3.4.1.min.js') }}"></script>
-<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
-<script src="{{ asset('/js/lib/bootstrap.min.js') }}" defer></script>
+
 <script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
@@ -15,50 +13,7 @@
 
 </script>
 <script>
-    new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: "navbar-prev-programacion",
-        onMessage: function(message, origin) {
 
-            let json = JSON.parse(message);
-            if (typeof json == "object") {
-                let loader = `
-                    <div class="loader-view-container">
-                        <img src="./images/loader.gif" class="loader" alt="">
-                    </div>
-                        `;
-
-                switch (json.type) {
-                    case "program":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
-                        break;
-                    case "slider-pagination":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/programming-carrusel"
-                        break;
-                    case "synopsis":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
-                        break;
-                    case "menu-logos":
-                        $(".modal-edit-icons").modal("show");
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-        }
-    });
 
 </script>
 <script>

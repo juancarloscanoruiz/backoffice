@@ -65,32 +65,6 @@ $(document).ready(function() {
         nextArrow: '<img src="../images/next.png" class="arrow-next" />'
     });
 
-    //Declaramos un contador para poder diferenciar los label de los slides que se van creando
-    let slideIndex = 3;
-    //Añadimos un slide al slider de imágenes de programación
-    $(".add-programming-image").click(function() {
-        //Cada vez que se haga click, el contador incrementa
-        slideIndex++;
-        //Agregamos un slide al slider de programación
-        $(".programming-slider").slick(
-            "slickAdd",
-            `
-        <div class="slick-slide">
-            <div>
-                <div class="bor thumbnail-image-program position-relative h-100">
-                <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
-                    <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                        <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
-                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                        <img src="http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
-                    </label>
-                </div>
-            </div>
-        </div>
-        `
-        );
-    });
-
     //Div en donde hacemos el intercambio de grillas de los diferentes canales
     let divGrilla = $("#general-programming");
 
