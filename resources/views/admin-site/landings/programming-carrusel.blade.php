@@ -2,8 +2,8 @@
 
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="    max-width: 1000px;">
-    <div class="modal-content" style="    width: 110%;">
+  <div class="modal-dialog" role="document" style=" max-width: 75%;">
+    <div class="modal-content" >
      
       <div class="modal-body">
         
