@@ -208,197 +208,208 @@ public function onlyday(Request $request)
         $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
 
         $fecha_del_documento = $cadena_nuevo_formato;
+        $fecha_actual=date('Y-m-d');
+        if($fecha_del_documento < $fecha_actual){
+            $respuesta = [
+                "code"=>400,
+                "message"=>"La programacion Es de un dia enterior",
+                "data"=>-1
+            ];
 
-        # obtener conteo e iterar
-        $totalDeHojas = $documento->getSheetCount();
+            echo(json_encode($respuesta));
+        }else{
+            # obtener conteo e iterar
+            $totalDeHojas = $documento->getSheetCount();
 
-        $programas = [];
-        for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
-            $hojaActual = $documento->getSheet($indiceHoja);
-            # Calcular el máximo valor de la fila
-            $numeroMayorDeFila = $hojaActual->getHighestRow(); // Numérico
-            $letraMayorDeColumna = $hojaActual->getHighestColumn(); // Letra
-            # Convertir la letra al número de columna correspondiente
-            $numeroMayorDeColumna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($letraMayorDeColumna);
-            # Iterar filas con ciclo for e índices
-            for ($indiceFila = 3; $indiceFila <= $numeroMayorDeFila; $indiceFila++) {
-                # declaramos un arreglo que contendra los datos
-                $programa = [];
-                for ($indiceColumna = 1; $indiceColumna <= $numeroMayorDeColumna; $indiceColumna++) {
-                    # Obtener celda por columna y fila
-                    $celda = $hojaActual->getCellByColumnAndRow($indiceColumna, $indiceFila);
-                    # Y ahora que tenemos una celda trabajamos con ella
-                    $value = $celda->getValue();
-                    switch ($indiceColumna) {
-                        case 1:
-                            # Titulo del programa...
-                            $programa['Program_Title'] = $value;
-                            break;
-                        case 2:
-                            # code...
-                            $programa['Programar_publicacion'] = $value;
-                            break;
-                        case 3:
-                            # code...
-                            $programa['Periodicidad'] = $value;
-                            break;
-                        case 4:
-                            # code...
-                            $programa['Establecer_home'] = $value;
-                            break;
-                        case 5:
-                            # code...
-                            try {
+            $programas = [];
+            for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
+                $hojaActual = $documento->getSheet($indiceHoja);
+                # Calcular el máximo valor de la fila
+                $numeroMayorDeFila = $hojaActual->getHighestRow(); // Numérico
+                $letraMayorDeColumna = $hojaActual->getHighestColumn(); // Letra
+                # Convertir la letra al número de columna correspondiente
+                $numeroMayorDeColumna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($letraMayorDeColumna);
+                # Iterar filas con ciclo for e índices
+                for ($indiceFila = 3; $indiceFila <= $numeroMayorDeFila; $indiceFila++) {
+                    # declaramos un arreglo que contendra los datos
+                    $programa = [];
+                    for ($indiceColumna = 1; $indiceColumna <= $numeroMayorDeColumna; $indiceColumna++) {
+                        # Obtener celda por columna y fila
+                        $celda = $hojaActual->getCellByColumnAndRow($indiceColumna, $indiceFila);
+                        # Y ahora que tenemos una celda trabajamos con ella
+                        $value = $celda->getValue();
+                        switch ($indiceColumna) {
+                            case 1:
+                                # Titulo del programa...
+                                $programa['Program_Title'] = $value;
+                                break;
+                            case 2:
+                                # code...
+                                $programa['Programar_publicacion'] = $value;
+                                break;
+                            case 3:
+                                # code...
+                                $programa['Periodicidad'] = $value;
+                                break;
+                            case 4:
+                                # code...
+                                $programa['Establecer_home'] = $value;
+                                break;
+                            case 5:
+                                # code...
+                                try {
+                                    $objFecha = Date::excelToDateTimeObject($value);
+                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                                } catch (\Throwable $th) {
+                                    $cadena_nuevo_formato = "2020-01-01";
+                                }
+
+                                $programa['Vigencia_home'] = $cadena_nuevo_formato;
+                                break;
+                            case 6:
+                                # code...
+                                $programa['Establecer_landing'] = $value;
+                                break;
+                            case 7:
+                                # code...
+                                try {
+                                    $objFecha = Date::excelToDateTimeObject($value);
+                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                                } catch (\Throwable $th) {
+                                    $cadena_nuevo_formato = "2020-01-01";
+                                }
+                                $programa['Vigencia_landing'] = $cadena_nuevo_formato;
+                                break;
+                            case 8:
+                                # code...
+                                $objFecha = Date::excelToDateTimeObject($value);
+                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');;
+
+
+                                $programa['Schedule_Item_Date_Time'] = $cadena_nuevo_formato;
+                                break;
+                            case 9:
+                                # code...
                                 $objFecha = Date::excelToDateTimeObject($value);
                                 $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-                            } catch (\Throwable $th) {
-                                $cadena_nuevo_formato = "2020-01-01";
-                            }
 
-                            $programa['Vigencia_home'] = $cadena_nuevo_formato;
-                            break;
-                        case 6:
-                            # code...
-                            $programa['Establecer_landing'] = $value;
-                            break;
-                        case 7:
-                            # code...
-                            try {
+                                $programa['Schedule_Item_Long_Date'] = $cadena_nuevo_formato;
+
+                                break;
+                            case 10:
+                                # code...
                                 $objFecha = Date::excelToDateTimeObject($value);
-                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-                            } catch (\Throwable $th) {
-                                $cadena_nuevo_formato = "2020-01-01";
-                            }
-                            $programa['Vigencia_landing'] = $cadena_nuevo_formato;
-                            break;
-                        case 8:
-                            # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');;
+                                $cadena_nuevo_formato =  date_format($objFecha, 'H:i:s');
 
-
-                            $programa['Schedule_Item_Date_Time'] = $cadena_nuevo_formato;
-                            break;
-                        case 9:
-                            # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
-
-                            $programa['Schedule_Item_Long_Date'] = $cadena_nuevo_formato;
-
-                            break;
-                        case 10:
-                            # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'H:i:s');
-
-                            $programa['Schedule_Item_Long_Time'] = $cadena_nuevo_formato;
-                            break;
-                        case 11:
-                            # code...
-                            $objFecha = Date::excelToDateTimeObject($value);
-                            $cadena_nuevo_formato =  date_format($objFecha, 'H:i:s');
-                            $programa['Estimed_Schedule_Item_Duration'] = $cadena_nuevo_formato;
-                            break;
-                        case 12:
-                            # code...
-                            $programa['Program_Year_Produced'] = $value;
-                            break;
-                        case 13:
-                            # code...
-                            $programa['Program_Genre_List'] = $value;
-                            break;
-                        case 14:
-                            # code...
-                            $programa['Program_Title_Alternate'] = $value;
-                            break;
-                        case 15:
-                            # code...
-                            $programa['Program_Episode_Season'] = $value;
-                            break;
-                        case 16:
-                            # code...
-                            $programa['Program_Episode_Number'] = $value;
-                            break;
-                        case 17:
-                            # code...
-                            $programa['Synopsis'] = $value;
-                            break;
-                        case 18:
-                            # code...
-                            $programa['Schedule_Item_Rating_Code'] = $value;
-                            break;
-                        case 19:
-                            # code...
-                            $programa['Scheduled_Version_SUBBED'] = $value;
-                            break;
-                        case 20:
-                            # code...
-                            $programa['Scheduled_Version_DUBBED'] = $value;
-                            break;
-                        case 21:
-                            # code...
-                            $programa['Audio_5.1_avalieble'] = $value;
-                            break;
-                        default:
-                            # code...
-                            break;
+                                $programa['Schedule_Item_Long_Time'] = $cadena_nuevo_formato;
+                                break;
+                            case 11:
+                                # code...
+                                $objFecha = Date::excelToDateTimeObject($value);
+                                $cadena_nuevo_formato =  date_format($objFecha, 'H:i:s');
+                                $programa['Estimed_Schedule_Item_Duration'] = $cadena_nuevo_formato;
+                                break;
+                            case 12:
+                                # code...
+                                $programa['Program_Year_Produced'] = $value;
+                                break;
+                            case 13:
+                                # code...
+                                $programa['Program_Genre_List'] = $value;
+                                break;
+                            case 14:
+                                # code...
+                                $programa['Program_Title_Alternate'] = $value;
+                                break;
+                            case 15:
+                                # code...
+                                $programa['Program_Episode_Season'] = $value;
+                                break;
+                            case 16:
+                                # code...
+                                $programa['Program_Episode_Number'] = $value;
+                                break;
+                            case 17:
+                                # code...
+                                $programa['Synopsis'] = $value;
+                                break;
+                            case 18:
+                                # code...
+                                $programa['Schedule_Item_Rating_Code'] = $value;
+                                break;
+                            case 19:
+                                # code...
+                                $programa['Scheduled_Version_SUBBED'] = $value;
+                                break;
+                            case 20:
+                                # code...
+                                $programa['Scheduled_Version_DUBBED'] = $value;
+                                break;
+                            case 21:
+                                # code...
+                                $programa['Audio_5.1_avalieble'] = $value;
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
                     }
+                    $programas[$indiceFila - 3] = $programa;
                 }
-                $programas[$indiceFila - 3] = $programa;
             }
-        }
 
-        #ahora checamos si este dia ya tiene programación
-        $data = json_decode($data);
-        $client = new Client([
-            'headers' => ['Content-Type' => 'application/json']
-        ]);
-        $response = $client->post(
-            $this->url . "program/chekChapterExist",
-            ['body' => json_encode(
-                [
-                    'usuario_id' =>  session('id_user'),
-                    'landing_id' => $data->landing_id,
-                    'day' => $fecha_del_documento
-                ]
-            )]
-        );
-        $respuesta =  json_decode($response->getBody());
-        #vemos que es lo que dice la API
-        if ($respuesta->data == 1) {
-            #tiene progrmacion este dia entonces mandamos el modal
-
-            $respuesta->landing_id = $data->landing_id;
-            $respuesta->version_id = $data->version_id;
-            $respuesta->version_number = $data->version_number;
-            $respuesta->action_date = $fecha_del_documento;
-
-            $respuesta->programas = $programas;
-
-            echo (json_encode($respuesta));
-        } else {
-            //hacemos la llamad
-
-
+            #ahora checamos si este dia ya tiene programación
+            $data = json_decode($data);
             $client = new Client([
                 'headers' => ['Content-Type' => 'application/json']
             ]);
             $response = $client->post(
-                $this->url . "program/CapturePrograming",
+                $this->url . "program/chekChapterExist",
                 ['body' => json_encode(
                     [
-                        'usuario_id' => $data->usuario_id,
+                        'usuario_id' =>  session('id_user'),
                         'landing_id' => $data->landing_id,
-                        'version_id' => $data->version_id,
-                        'version_number' => $data->version_number,
-                        'programs' => $programas
+                        'day' => $fecha_del_documento
                     ]
                 )]
             );
-            $respuesta =  $response->getBody();
-            echo ($respuesta);
+            $respuesta =  json_decode($response->getBody());
+            #vemos que es lo que dice la API
+            if ($respuesta->data == 1) {
+                #tiene progrmacion este dia entonces mandamos el modal
+
+                $respuesta->landing_id = $data->landing_id;
+                $respuesta->version_id = $data->version_id;
+                $respuesta->version_number = $data->version_number;
+                $respuesta->action_date = $fecha_del_documento;
+
+                $respuesta->programas = $programas;
+
+                echo (json_encode($respuesta));
+            } else {
+                //hacemos la llamad
+
+
+                $client = new Client([
+                    'headers' => ['Content-Type' => 'application/json']
+                ]);
+                $response = $client->post(
+                    $this->url . "program/CapturePrograming",
+                    ['body' => json_encode(
+                        [
+                            'usuario_id' => $data->usuario_id,
+                            'landing_id' => $data->landing_id,
+                            'version_id' => $data->version_id,
+                            'version_number' => $data->version_number,
+                            'programs' => $programas
+                        ]
+                    )]
+                );
+                $respuesta =  $response->getBody();
+                echo ($respuesta);
+            }
         }
+       
     }
     public function changePrograming(Request $request)
     {

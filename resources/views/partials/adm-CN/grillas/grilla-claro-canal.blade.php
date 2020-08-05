@@ -800,4 +800,5 @@ $data_for_new_entry = json_encode([
 @include('partials.adm-CN.grillas.modales-grilla.synopsis')
 @include('partials.adm-CN.grillas.modales-grilla.load-file')
 @include('partials.adm-CN.grillas.modales-grilla.add-info')
+@include('partials.adm-CN.grillas.modales-grilla.file-date-before')
 
