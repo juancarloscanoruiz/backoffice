@@ -5,10 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-<select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-        <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
-        <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
-</select>
+
 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="  display:contents;  overflow: auto;">
   <div class="modal-dialog" role="document"style="    max-width: 1250px;">
     <div class="modal-content">
@@ -421,12 +418,10 @@
                             <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list
                             </p>
 
-
-
-                                <select class="selectpicker mb-3 edit-rectangle-container  a-text-regular-brownishtwo text-normal show-tick" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
-
-
-                                    </select>
+                            <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
+                                <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
+                        </select>
 
                         </div>
                     </div>

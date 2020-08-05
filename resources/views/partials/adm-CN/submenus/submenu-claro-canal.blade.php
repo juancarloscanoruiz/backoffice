@@ -257,7 +257,7 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-edit-icons" id="savesino" role="dialog">
+    <div class="modal fade modal-edit-icons" id="savesino" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content align-item-center centro">
                 <div class="modal-body ">
@@ -371,21 +371,17 @@
         </div>
     </div>
     <div class="modal fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true" style="    overflow: auto;">
-        <div class="modal-dialog" role="document" style="    max-width: 1500px;">
+        aria-hidden="true" style="overflow: auto;">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1500px;">
             <div class="modal-content">
                 <div class="modal-header bg-color">
                     <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-                        <a href="{{ route('admin') }}"><span class='ml-5'><img
-                                    src="{{ asset('/images/home/claro-logo.svg') }}"> </span></a>
-
-
+                        <a href="{{ route('admin') }}">
+                            <span class='ml-5'><img
+                                    src="{{ asset('/images/home/claro-logo.svg') }}"></span>
+                        </a>
                     </span>
                     <span class='text-light1 mr-5 pt-4'>Administrador de contenido</span>
-
-                    <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>-->
                 </div>
                 <div class="modal-body pt-0">
                     <div id='user_information'
@@ -914,8 +910,9 @@
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false">
-
-
+                                                <option value="">Lorem Ipsum</option>
+                                                <option value="">Lorem Ipsum</option>
+                                                <option value="">Lorem Ipsum</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1067,8 +1064,8 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-programming-carousel" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
-        <div class="modal-dialog" role="document" style="max-width: 100%;">
+    <div class="modal fade modal-programming-carousel" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%;">
           <div class="modal-content" >
             <div class="modal-body">
 
