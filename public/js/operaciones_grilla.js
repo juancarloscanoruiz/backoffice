@@ -73174,8 +73174,8 @@ function eventsGrilla() {
     initialSlide: 0,
     infinite: false,
     arrows: true,
-    prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-    nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
     customPaging: function customPaging(slider, i) {
       var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
       return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";

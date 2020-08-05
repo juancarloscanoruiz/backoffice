@@ -117,9 +117,9 @@ function eventsGrilla() {
         infinite: false,
         arrows: true,
         prevArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
         nextArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
         customPaging: function(slider, i) {
             var thumb = $(slider.$slides[i]).data();
             return (

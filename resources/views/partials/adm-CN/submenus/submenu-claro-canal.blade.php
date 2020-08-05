@@ -1068,8 +1068,8 @@
         </div>
     </div>
     <div class="modal modal-programming-carousel" id="exampleModalLong" role="dialog">
-        <div class="modal-dialog" role="document" style="max-width: 1000px;">
-            <div class="modal-content" style="width: 110%;">
+        <div class="modal-dialog" role="document" style="max-width: 100%;">
+            <div class="modal-content" style="width: 100%;">
 
                 <div class="modal-body">
 
