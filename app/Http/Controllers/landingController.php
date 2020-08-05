@@ -50,11 +50,13 @@ class landingController extends Controller
 
     public function updateProgramminSliderImages(Request $request)
     {
-        $images = $request->file("image_programming");
-        //var_dump($images);
+        $new_file = $_FILES['file'];
+        var_dump($new_file);
+        /*         $images = $request->file("image_programming");
+
         foreach ($request->file("image_programming") as $image) {
             $path = $this->storeImages("imageSlider", $image, "public/programacion/banner");
             echo ($path);
-        }
+        } */
     }
 }

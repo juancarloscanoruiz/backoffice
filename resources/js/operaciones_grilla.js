@@ -27,6 +27,35 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+    let imagesProgramming = "";
+    $(".image_programming").each(function() {
+        $(this).on("change", function() {
+            imagesProgramming = this.files;
+        });
+    });
+    /*     $(".image_programming").on("change", function() {
+        imagesProgramming = this.files;
+        console.log(imagesProgramming);
+    }); */
+
+    $("#image-programming-button").click(function() {
+        let data = new FormData();
+        data.append("file", imagesProgramming);
+        for (let pair of data.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+        }
+        $.ajax({
+            type: "POST",
+            data: data,
+            processData: false, //esto es para poder pasar el archivo
+            contentType: false, //esto es para poder pasar el archivo
+            url: "landing/update-programming-carrusel",
+            success: function(result) {
+                console.log(result);
+            }
+        });
+    });
+
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
     let slideIndex = 3;
     //Añadimos un slide al slider de imágenes de programación
@@ -82,7 +111,43 @@ function eventsGrilla() {
                             break;
                         case "slider-pagination":
                             $(".modal-programming-carousel").modal("show");
-                            $(".programming-slider").slick("refresh");
+
+                            $(".programming-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                arrows: true,
+                                prevArrow:
+                                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                                nextArrow:
+                                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                                customPaging: function(slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $(".input-image-program").change(function() {
+                                let currentInput = $(this);
+                                if (this.files && this.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        currentInput
+                                            .next()
+                                            .children(".prev-image-program")
+                                            .attr("src", e.target.result)
+                                            .addClass("h-100 w-100")
+                                            .css("z-index", "2");
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                }
+                            });
+
                             break;
                         case "synopsis":
                             document
@@ -109,26 +174,6 @@ function eventsGrilla() {
             }
         });
     }
-    $(".programming-slider").slick({
-        slidesToShow: 1,
-        dots: true,
-        appendDots: $(".programming-slider-dots"),
-        initialSlide: 0,
-        infinite: false,
-        arrows: true,
-        prevArrow:
-            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-        nextArrow:
-            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-        customPaging: function(slider, i) {
-            var thumb = $(slider.$slides[i]).data();
-            return (
-                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
-                (i + 1) +
-                "</p>"
-            );
-        }
-    });
 
     //selectpicker pra ls titulos de los programas
     $(".thumbnail-header1").selectpicker({

@@ -88779,6 +88779,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //JQUERY
  //Métodos para aplicar ciertos estilos a las filas y columnas
 
@@ -88793,7 +88799,50 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+  var imagesProgramming = "";
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).on("change", function () {
+      imagesProgramming = this.files;
+      console.log(imagesProgramming);
+    });
+  });
+  /*     $(".image_programming").on("change", function() {
+      imagesProgramming = this.files;
+      console.log(imagesProgramming);
+  }); */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
+    var data = new FormData();
+    data.append("file", imagesProgramming);
+
+    var _iterator = _createForOfIteratorHelper(data.entries()),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var pair = _step.value;
+        console.log(pair[0] + ", " + pair[1]);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      processData: false,
+      //esto es para poder pasar el archivo
+      contentType: false,
+      //esto es para poder pasar el archivo
+      url: "landing/update-programming-carrusel",
+      success: function success(result) {
+        console.log(resutl);
+      }
+    });
+  }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+
   var slideIndex = 3; //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
@@ -88822,7 +88871,33 @@ function eventsGrilla() {
 
             case "slider-pagination":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("refresh");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+                initialSlide: 0,
+                infinite: false,
+                arrows: true,
+                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                if (this.files && this.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                  };
+
+                  reader.readAsDataURL(this.files[0]);
+                }
+              });
               break;
 
             case "synopsis":
@@ -88844,22 +88919,8 @@ function eventsGrilla() {
         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
     });
-  }
+  } //selectpicker pra ls titulos de los programas
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-    initialSlide: 0,
-    infinite: false,
-    arrows: true,
-    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-    customPaging: function customPaging(slider, i) {
-      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
-    }
-  }); //selectpicker pra ls titulos de los programas
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").selectpicker({
     filter: true
