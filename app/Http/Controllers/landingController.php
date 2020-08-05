@@ -50,8 +50,22 @@ class landingController extends Controller
 
     public function updateProgramminSliderImages(Request $request)
     {
-        $new_file = $_FILES['file'];
-        var_dump($new_file);
+        $counter = 1;
+        $images=[];
+        $flag=true;
+       while (true) {
+           try {
+            $new_file = $_FILES['file'.$counter]['name'];
+            array_push($images,$new_file);
+            $counter++;
+           } catch (\Throwable $th) {
+            break;
+           }
+           
+            
+       }
+       
+        echo(json_encode($images));
         /*         $images = $request->file("image_programming");
 
         foreach ($request->file("image_programming") as $image) {
