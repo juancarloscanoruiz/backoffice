@@ -103,11 +103,19 @@ function eventsGrilla() {
                             `;
                     switch (json.type) {
                         case "program":
-                            document
-                                .querySelector("body")
-                                .insertAdjacentHTML("beforeend", loader);
-                            window.location.href =
-                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                            $(".modal-edit-program").modal("show");
+                            $(".calendar-slider").slick({
+                                slidesToShow: 11,
+                                slidesToScroll: 11,
+                                infinite: true,
+                                dots: false,
+                                centerMode: false,
+                                arrows: true,
+                                prevArrow:
+                                    '<img src="../images/prev.png" class="arrow-prev" />',
+                                nextArrow:
+                                    '<img src="../images/next.png" class="arrow-next" />'
+                            });
                             break;
                         case "slider-pagination":
                             $(".modal-programming-carousel").modal("show");
@@ -1237,13 +1245,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     $("#programas_procesados_por_el_excel").val(result);
                     $(".modal-information").modal("show");
                 } else {
-                    if(existe_programacion.data == -1){
+                    if (existe_programacion.data == -1) {
                         console.log("es de un dia anterior");
                         $(".modal-before").modal("show");
-                    }else{
+                    } else {
                         console.log("se agregó la programación");
                     }
-                    
                 }
             }
         }).fail(function(e) {

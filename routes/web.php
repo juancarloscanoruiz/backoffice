@@ -99,7 +99,7 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('admin-site.landings.programming-carrusel');
+    return view('admin-site.landings.edit-program.edit-program');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {

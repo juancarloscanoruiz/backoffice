@@ -370,7 +370,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="    overflow: auto;">
         <div class="modal-dialog" role="document" style="    max-width: 1500px;">
             <div class="modal-content">

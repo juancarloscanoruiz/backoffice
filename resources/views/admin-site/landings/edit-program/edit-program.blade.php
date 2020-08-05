@@ -1,12 +1,20 @@
 @extends('layaout.app')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+@yield('scripts')
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+<select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+        <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
+        <option class="a-text-regular-brownishtwo text-normal" value="">NAda</option>
+</select>
 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="  display:contents;  overflow: auto;">
   <div class="modal-dialog" role="document"style="    max-width: 1250px;">
     <div class="modal-content">
 
       <div class="modal-body pt-0">
-    
+
         <h3 class="a-text-bold-black h3 ml-5 mt-4">CANAL CLARO</h3>
         <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
         <h2 class="h2 text-center a-text-black-brown-two ">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
@@ -192,16 +200,16 @@
             <!--Imagen de programa en slider-->
             <section>
                 <div class="justify-content-center">
-                   
+
   <select class="thumbnail-header1 thumbnail-header  align-items-center justify-content-between w-100" data-dropup-auto="false" >
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco</option>
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco2</option>
                                             <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2" value="">caballeros de zodiaco3</option>
 
 
-                                            </select>                                      
-                                        
-              
+                                            </select>
+
+
                 <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                 </div>
                 <div class="edit-thumbnail position-relative">
@@ -412,14 +420,14 @@
                         <div class="edit-data-container">
                             <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list
                             </p>
-                           
-                               
-                              
+
+
+
                                 <select class="selectpicker mb-3 edit-rectangle-container  a-text-regular-brownishtwo text-normal show-tick" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
 
 
                                     </select>
-                        
+
                         </div>
                     </div>
                     <!---->
@@ -551,7 +559,7 @@
                 <button
                     class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-dismiss="modal">cancelar</button>
             </section>
-            
+
       </div>
     </div>
   </div>

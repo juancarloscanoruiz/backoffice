@@ -88034,18 +88034,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  //Slick slider
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-    slidesToShow: 11,
-    slidesToScroll: 11,
-    infinite: true,
-    dots: false,
-    centerMode: false,
-    arrows: true,
-    prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-    nextArrow: '<img src="../images/next.png" class="arrow-next" />'
-  }); //Div en donde hacemos el intercambio de grillas de los diferentes canales
-
+  //Div en donde hacemos el intercambio de grillas de los diferentes canales
   var divGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming"); //Borrar un programa de la grilla
 
   divGrilla.on("click", "#modal-button-delete", function () {
@@ -88656,7 +88645,12 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
         } else {
-          console.log("se agregó la programación");
+          if (existe_programacion.data == -1) {
+            console.log("es de un dia anterior");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
+          } else {
+            console.log("se agregó la programación");
+          }
         }
       }
     }).fail(function (e) {
@@ -88803,7 +88797,6 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).on("change", function () {
       imagesProgramming = this.files;
-      console.log(imagesProgramming);
     });
   });
   /*     $(".image_programming").on("change", function() {
@@ -88838,7 +88831,7 @@ function eventsGrilla() {
       //esto es para poder pasar el archivo
       url: "landing/update-programming-carrusel",
       success: function success(result) {
-        console.log(resutl);
+        console.log(result);
       }
     });
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
@@ -88865,8 +88858,17 @@ function eventsGrilla() {
 
           switch (json.type) {
             case "program":
-              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+                slidesToShow: 11,
+                slidesToScroll: 11,
+                infinite: true,
+                dots: false,
+                centerMode: false,
+                arrows: true,
+                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+                nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+              });
               break;
 
             case "slider-pagination":
@@ -89621,7 +89623,12 @@ function eventsGrilla() {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
         } else {
-          console.log("se agregó la programación");
+          if (existe_programacion.data == -1) {
+            console.log("es de un dia anterior");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
+          } else {
+            console.log("se agregó la programación");
+          }
         }
       }
     }).fail(function (e) {
