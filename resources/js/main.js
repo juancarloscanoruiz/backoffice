@@ -785,7 +785,13 @@ $(document).ready(function() {
                     $("#programas_procesados_por_el_excel").val(result);
                     $(".modal-information").modal("show");
                 } else {
-                    console.log("se agregó la programación");
+                    if(existe_programacion.data == -1){
+                        console.log("es de un dia anterior");
+                        $(".modal-before").modal("show");
+                    }else{
+                        console.log("se agregó la programación");
+                    }
+                    
                 }
             }
         }).fail(function(e) {
