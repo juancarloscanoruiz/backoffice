@@ -27,13 +27,12 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
-    let imagesProgramming = "";
+    //let imagesProgramming = "";
     let imagesProgramming = [];
-    
+
     $(".image_programming").each(function() {
         $(this).on("change", function() {
             imagesProgramming.push(this.files[0]);
-           
         });
     });
     /*     $(".image_programming").on("change", function() {
@@ -44,15 +43,14 @@ function eventsGrilla() {
     $("#image-programming-button").click(function() {
         let data = new FormData();
 
-        console.log('Se agregaran estas imagenes');
+        console.log("Se agregaran estas imagenes");
         console.log(imagesProgramming);
         for (let index = 0; index < imagesProgramming.length; index++) {
-            let file = "file"+(index+1).toString();
+            let file = "file" + (index + 1).toString();
             file = file.toString();
             data.append(file, imagesProgramming[index]);
-            
         }
-    
+
         $.ajax({
             type: "POST",
             data: data,
