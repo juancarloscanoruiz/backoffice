@@ -28,9 +28,12 @@ import {
 
 function eventsGrilla() {
     let imagesProgramming = "";
+    let imagesProgramming = [];
+    
     $(".image_programming").each(function() {
         $(this).on("change", function() {
-            imagesProgramming = this.files;
+            imagesProgramming.push(this.files[0]);
+           
         });
     });
     /*     $(".image_programming").on("change", function() {
@@ -40,10 +43,16 @@ function eventsGrilla() {
 
     $("#image-programming-button").click(function() {
         let data = new FormData();
-        data.append("file", imagesProgramming);
-        for (let pair of data.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
+
+        console.log('Se agregaran estas imagenes');
+        console.log(imagesProgramming);
+        for (let index = 0; index < imagesProgramming.length; index++) {
+            let file = "file"+(index+1).toString();
+            file = file.toString();
+            data.append(file, imagesProgramming[index]);
+            
         }
+    
         $.ajax({
             type: "POST",
             data: data,
