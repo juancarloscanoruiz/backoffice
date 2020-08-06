@@ -73097,7 +73097,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! litepicker */ "./node_modules/litepicker/dist/js/main.js");
 /* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(litepicker__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
-/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -73107,6 +73108,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
  //Servicios para editar campos en la grilla
 
+ //Servicios para editar landing
+
  //Configraciones para la librería de Cleave JS
 
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
@@ -73114,41 +73117,35 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //let imagesProgramming = "";
-  var imagesProgramming = [];
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).on("change", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
+    /*
+        Arreglo para saber la posición de las imágenes que cargo el usuario
+        es decir, saber si subió la 1 y 3, o 2,3 etc.
+    */
+    var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+    var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+      if (this.files[0]) {
+        imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+      }
+
       imagesProgramming.push(this.files[0]);
     });
-  });
-  /*     $(".image_programming").on("change", function() {
-      imagesProgramming = this.files;
-      console.log(imagesProgramming);
-  }); */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
-    var data = new FormData();
-    console.log("Se agregaran estas imagenes");
-    console.log(imagesProgramming);
+    var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
 
     for (var index = 0; index < imagesProgramming.length; index++) {
       var file = "file" + (index + 1).toString();
       file = file.toString();
       data.append(file, imagesProgramming[index]);
-    }
+    } //Posiciones de las imágenes
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      data: data,
-      processData: false,
-      //esto es para poder pasar el archivo
-      contentType: false,
-      //esto es para poder pasar el archivo
-      url: "landing/update-programming-carrusel",
-      success: function success(result) {
-        console.log(result);
-      }
-    });
+
+    data.append("positions", imagesPositions); //Hora inicio y fin
+
+    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()('#date-start-input').val());
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesOfProgrammingSlider"])(data);
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
   var slideIndex = 3; //Añadimos un slide al slider de imágenes de programación
@@ -73202,19 +73199,6 @@ function eventsGrilla() {
                   return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
                 }
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
-                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-                if (this.files && this.files[0]) {
-                  var reader = new FileReader();
-
-                  reader.onload = function (e) {
-                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                  };
-
-                  reader.readAsDataURL(this.files[0]);
-                }
-              });
               break;
 
             case "synopsis":
@@ -73236,8 +73220,22 @@ function eventsGrilla() {
         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
     });
-  } //selectpicker pra ls titulos de los programas
+  }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+    console.log("Imges");
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  }); //selectpicker pra ls titulos de los programas
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").selectpicker({
     filter: true
@@ -73773,28 +73771,28 @@ function eventsGrilla() {
   */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
-    new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_4__["scheduleTimeConfig"]);
+    new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_5__["scheduleTimeConfig"]);
   });
   /*
   Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
   */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
-    new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_4__["cleaveConfig"]);
+    new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_5__["cleaveConfig"]);
   });
   /*
   Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
   */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
-    new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_4__["timeWithSeconds"]);
+    new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_5__["timeWithSeconds"]);
   });
   /*
   Permite a todos los input con la clase year-input tener el formato YYYY
   */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".year-input").toArray().forEach(function (yearInput) {
-    new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_4__["year"]);
+    new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_5__["year"]);
   }); //Truncar texto de sinópsis con "..."
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
@@ -74292,6 +74290,40 @@ function deleteProgram(id_program, id_version) {
     type: "POST",
     data: data,
     url: "./adapters/generalSchedule.php",
+    success: function success(result) {
+      console.log(result);
+    }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/services/landing.js":
+/*!******************************************!*\
+  !*** ./resources/js/services/landing.js ***!
+  \******************************************/
+/*! exports provided: updateImagesOfProgrammingSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+//JQUERY
+
+
+function updateImagesOfProgrammingSlider(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    url: "landing/update-programming-carrusel",
     success: function success(result) {
       console.log(result);
     }

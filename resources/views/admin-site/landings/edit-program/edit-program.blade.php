@@ -9,14 +9,11 @@
 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"style="  display:contents;  overflow: auto;">
   <div class="modal-dialog" role="document"style="    max-width: 1250px;">
     <div class="modal-content">
-
       <div class="modal-body pt-0">
-
         <h3 class="a-text-bold-black h3 ml-5 mt-4">CANAL CLARO</h3>
         <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
         <h2 class="h2 text-center a-text-black-brown-two ">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
         <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-0">
-
         <div class="col-11 mx-auto">
             <!--Estado y alertas del programa-->
             <section class="mt-4 d-flex justify-content-between">

@@ -12,10 +12,7 @@
     });
 
 </script>
-<script>
 
-
-</script>
 <script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
@@ -111,7 +108,7 @@
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right mb-5">
                 <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img
-                        src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" /></div>
+                        src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px"/></div>
             </div>
             <div class="clearfix"></div>
             <div class="centro">
@@ -257,7 +254,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-edit-icons" id="savesino" role="dialog">
+    <div class="modal pr-0 fade modal-edit-icons" id="savesino" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content align-item-center centro">
                 <div class="modal-body ">
@@ -271,12 +268,12 @@
                             <div class=" d-flex programming-dots ">
                                 <p class=' a-text-bold-white slider-pagination slider-pagination-active '>1</p>
                             </div>
-                            <div class="centro position-relative mb-3">
+                            <div class="centro position-relative logo-lading-container mb-3" >
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
-                                    <input type="file" name="image-horizontal" id="imageThumb-horizontal"
-                                        class="input-image-program d-none">
-                                    <label for="imageThumb-horizontal"
+                                    <input type="file" name="image-icon1" id="image-icon1"
+                                        class="input-image-program logo-landing d-none">
+                                    <label for="image-icon1"
                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo" />
@@ -290,7 +287,7 @@
                                 <!--Div de los url-->
                                 <div class="mt-5 d-flex justify-content-center">
                                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                    <input type="text" name="links" id="links-logo"
+                                    <input type="text" name="links" id="link-logo-canal-claro"
                                         class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
 
                                 </div>
@@ -303,12 +300,12 @@
                                 <p class='a-text-bold-teal slider-pagination pag'>2</p>
                             </div>
                             <!--cargar imagenes-->
-                            <div class="centro position-relative mb-3">
+                            <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
-                                    <input type="file" name="image-horizontal" id="imageThumb-horizontal"
-                                        class="input-image-program d-none">
-                                    <label for="imageThumb-horizontal"
+                                    <input type="file" name="image-icon2" id="image-icon2"
+                                        class="input-image-program logo-landing d-none">
+                                    <label for="image-icon2"
                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo" />
@@ -333,12 +330,12 @@
                                 <p class='a-text-bold-teal slider-pagination '>3 </p>
                             </div>
                             <!--cargar imagenes-->
-                            <div class="centro position-relative mb-3">
+                            <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
-                                    <input type="file" name="image-horizontal" id="imageThumb-horizontal"
-                                        class="input-image-program d-none">
-                                    <label for="imageThumb-horizontal"
+                                    <input type="file" name="image-icon3" id="image-icon3"
+                                        class="input-image-program logo-landing d-none">
+                                    <label for="image-icon3"
                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo" />
@@ -361,7 +358,7 @@
                     <!--div botones-->
                     <div class="text-center mt-5 mb-5">
                         <button
-                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus">ACEPTAR</button>
+                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-buton">ACEPTAR</button>
                         <button
                             class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal"
                             data-dismiss="modal">CANCELAR</button>
@@ -370,7 +367,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal pr-0 fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="overflow: auto;">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1500px;">
             <div class="modal-content">
@@ -1064,7 +1061,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-programming-carousel" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
+    <div class="modal pr-0 modal-programming-carousel" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%;">
           <div class="modal-content" >
             <div class="modal-body">
@@ -1086,8 +1083,8 @@
                       <div>
                           <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
                       </div>
-                      <input type="text" id="date-start-input">
-                      <label for="date-start-input"
+                      <input type="text" id="programming-carrusel-calendar" class="d-none">
+                      <label for="programming-carrusel-calendar"
                           class="ml-4 mb-0 date-button date-start-table d-flex align-items-center pl-3 pr-3"
                           id="date-start-table">
                           <img src="./images/calendario.svg" alt="">
@@ -1098,7 +1095,7 @@
                       </label>
 
                       <!--Fecha de fin de calendario-->
-                      <label for="date-start-input"
+                      <label for="programming-carrusel-calendar"
                           class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
                           <img src="./images/calendario.svg" alt="">
                           <div class="ml-3">
@@ -1113,7 +1110,7 @@
               <div class="programming-slider mx-auto">
                   <!--Slide-->
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming">
+                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming" data-index="1">
                       <label for="image_programming_1"
                           class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
@@ -1125,7 +1122,7 @@
                   </div>
                   <!--Slide-->
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming">
+                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming" data-index="2">
                       <label for="image_programming_2"
                           class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
@@ -1137,7 +1134,7 @@
                   </div>
                   <!--Slide-->
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming">
+                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
                           class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
