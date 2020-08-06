@@ -644,7 +644,7 @@
 
                             <select
                                 class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
-                                title="TÍTULO DEL PROGRAMA" data-live-search-placeholder="Buscar">
+                                title="" id="prog_titulo_programa"data-live-search-placeholder="Buscar">
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                                     value="">caballeros de zodiaco</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
@@ -814,7 +814,7 @@
                         <section class="mb-5">
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
-                            <textarea class="edit-program-textarea a-text-semibold-warmgrey p-3"></textarea>
+                            <textarea class="edit-program-textarea a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
 
                         <section class="mb-3">

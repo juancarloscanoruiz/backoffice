@@ -16,7 +16,8 @@ import {
 
 //Servicios para editar landing
 import {
-    updateImagesOfProgrammingSlider
+    updateImagesOfProgrammingSlider,
+    getChapterInfo
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -134,17 +135,9 @@ function eventsGrilla() {
                             `;
                     switch (json.type) {
                         case "program":
-                            $(".modal-edit-program").modal("show");
-                            $(".calendar-slider").slick({
-                                slidesToShow: 11,
-                                slidesToScroll: 11,
-                                infinite: true,
-                                dots: false,
-                                centerMode: false,
-                                arrows: true,
-                                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-                                nextArrow: '<img src="../images/next.png" class="arrow-next" />'
-                            });
+                    
+                            console.log(json.chapterId);
+                            getChapterInfo(json.chapterId);
                             break;
                         case "slider-pagination":
                             $(".modal-programming-carousel").modal("show");
