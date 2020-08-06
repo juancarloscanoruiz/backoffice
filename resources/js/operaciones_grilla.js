@@ -1,7 +1,10 @@
 //JQUERY
 import $ from "jquery";
 //Métodos para aplicar ciertos estilos a las filas y columnas
-import { selectRow, selectColumn } from "./UI/UI.js";
+import {
+    selectRow,
+    selectColumn
+} from "./UI/UI.js";
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -10,6 +13,11 @@ import {
     editAttributeProgram,
     filterDates
 } from "./services/generalSchedule.js";
+
+//Servicios para editar landing
+import {
+    updateImagesOfProgrammingSlider
+} from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
 import {
@@ -27,46 +35,56 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
-    //let imagesProgramming = "";
-    let imagesProgramming = [];
 
-    $(".image_programming").each(function() {
-        $(this).on("change", function() {
+    $('.edit-logos-buton"').click(function () {
+
+        //Canal claro
+        let imageUrlCanalClaro = $("#image-icon1").files[0] || null;
+        let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
+
+        //Concert channel
+        let logoUrlConcertChannel = $("#image-icon2").files[0] || null;
+        let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
+    })
+
+    $("#image-programming-button").click(function () {
+        /*
+            Arreglo para saber la posición de las imágenes que cargo el usuario
+            es decir, saber si subió la 1 y 3, o 2,3 etc.
+        */
+        let imagesPositions = [];
+        //Arreglo para guardar imágenes de los usuarios
+        let imagesProgramming = [];
+        //Recorremos cada input para obtener las imágenes
+        $(".image_programming").each(function () {
+            if (this.files[0]) {
+                imagesPositions.push($(this).attr("data-index"));
+            }
+
             imagesProgramming.push(this.files[0]);
         });
-    });
-    /*     $(".image_programming").on("change", function() {
-        imagesProgramming = this.files;
-        console.log(imagesProgramming);
-    }); */
 
-    $("#image-programming-button").click(function() {
         let data = new FormData();
 
-        console.log("Se agregaran estas imagenes");
-        console.log(imagesProgramming);
+        //Hacemos un for para mandar file1, file2, etc. en el form data
         for (let index = 0; index < imagesProgramming.length; index++) {
             let file = "file" + (index + 1).toString();
             file = file.toString();
             data.append(file, imagesProgramming[index]);
         }
+        //Posiciones de las imágenes
+        data.append("positions", imagesPositions);
 
-        $.ajax({
-            type: "POST",
-            data: data,
-            processData: false, //esto es para poder pasar el archivo
-            contentType: false, //esto es para poder pasar el archivo
-            url: "landing/update-programming-carrusel",
-            success: function(result) {
-                console.log(result);
-            }
-        });
+        //Hora inicio y fin
+        data.append("date", $('#date-start-input').val());
+
+        updateImagesOfProgrammingSlider(data);
     });
 
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
     let slideIndex = 3;
     //Añadimos un slide al slider de imágenes de programación
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         //Cada vez que se haga click, el contador incrementa
         slideIndex++;
         //Agregamos un slide al slider de programación
@@ -96,11 +114,10 @@ function eventsGrilla() {
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
         new easyXDM.Socket({
-            remote:
-                "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
 
             container: document.getElementById("navbar-prev-programacion"),
-            onMessage: function(message, origin) {
+            onMessage: function (message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     let loader = `
@@ -118,10 +135,8 @@ function eventsGrilla() {
                                 dots: false,
                                 centerMode: false,
                                 arrows: true,
-                                prevArrow:
-                                    '<img src="../images/prev.png" class="arrow-prev" />',
-                                nextArrow:
-                                    '<img src="../images/next.png" class="arrow-next" />'
+                                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+                                nextArrow: '<img src="../images/next.png" class="arrow-next" />'
                             });
                             break;
                         case "slider-pagination":
@@ -134,11 +149,9 @@ function eventsGrilla() {
                                 initialSlide: 0,
                                 infinite: false,
                                 arrows: true,
-                                prevArrow:
-                                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                                nextArrow:
-                                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                                customPaging: function(slider, i) {
+                                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
@@ -147,21 +160,7 @@ function eventsGrilla() {
                                     );
                                 }
                             });
-                            $(".input-image-program").change(function() {
-                                let currentInput = $(this);
-                                if (this.files && this.files[0]) {
-                                    var reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        currentInput
-                                            .next()
-                                            .children(".prev-image-program")
-                                            .attr("src", e.target.result)
-                                            .addClass("h-100 w-100")
-                                            .css("z-index", "2");
-                                    };
-                                    reader.readAsDataURL(this.files[0]);
-                                }
-                            });
+
 
                             break;
                         case "synopsis":
@@ -190,6 +189,24 @@ function eventsGrilla() {
         });
     }
 
+
+    $(".input-image-program").change(function () {
+        console.log("Imges");
+        let currentInput = $(this);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                currentInput
+                    .next()
+                    .children(".prev-image-program")
+                    .attr("src", e.target.result)
+                    .addClass("h-100 w-100")
+                    .css("z-index", "2");
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
     //selectpicker pra ls titulos de los programas
     $(".thumbnail-header1").selectpicker({
         filter: true
@@ -208,7 +225,7 @@ function eventsGrilla() {
     let genres = "";
     let selectpicker = $(".selectpicker");
     //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function() {
+    selectpicker.on("change", function () {
         //Obtenemos los valores del selectpicker
         let selected = $(this).val();
         //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -224,7 +241,7 @@ function eventsGrilla() {
         }
     });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function() {
+    selectpicker.on("hide.bs.select", function () {
         //Seleccionamos la columna en la que estamos
         let currentColumn = $(this).closest(".contenedor-columna");
         //Obtenemos el cahpter_id de la columna
@@ -238,7 +255,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
 
-    $("button[id=btn-landing]").click(function() {
+    $("button[id=btn-landing]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -258,7 +275,7 @@ function eventsGrilla() {
         }
     });
     //Al momento de dar click en el boton de grilla
-    $("button[id=btn-grilla]").click(function() {
+    $("button[id=btn-grilla]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -279,12 +296,12 @@ function eventsGrilla() {
     });
 
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-    $(".lan-claro").click(function() {
+    $(".lan-claro").click(function () {
         showlanding();
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function() {
+    $(".switch-landing").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -318,7 +335,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function() {
+    $(".switch-home").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -345,7 +362,7 @@ function eventsGrilla() {
         }
     });
     //Mostrar la sinópsis completa en modal
-    $(".see-more").click(function() {
+    $(".see-more").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
@@ -371,7 +388,7 @@ function eventsGrilla() {
     });
 
     //botón de modal de edición de de sinopsis
-    $(".edit-synopsis-button").click(function() {
+    $(".edit-synopsis-button").click(function () {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
         //Obtenemos la sinopsis nueva del textarea del modal
@@ -414,7 +431,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -424,10 +441,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -465,7 +482,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -475,10 +492,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -510,7 +527,7 @@ function eventsGrilla() {
         y hacemos la petición
     */
     let editableAttribute = $(".editable-attribute");
-    editableAttribute.keydown(function(e) {
+    editableAttribute.keydown(function (e) {
         //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -531,14 +548,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -674,7 +691,7 @@ function eventsGrilla() {
     });
 
     //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-    editableAttribute.blur(function() {
+    editableAttribute.blur(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let key = currentColumn.attr("key");
         let keyValue = $(this).val();
@@ -691,7 +708,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -804,7 +821,7 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function() {
+    $(".switch-table").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
@@ -852,12 +869,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function(index, element) {
+    $(".lb-synopsis").each(function (index, element) {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -872,12 +889,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             multipleSeparator: " ",
             filter: true
         })
-        .on("changed.bs.select", function() {
+        .on("changed.bs.select", function () {
             $(this).selectpicker("refresh");
         });
 
     //EDITAR CLARO CANAL
-    $("#edit").click(function() {
+    $("#edit").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(`
 
@@ -922,7 +939,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     //PREV CLARO CANAL
-    $("#prev").click(function() {
+    $("#prev").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-canal-claro").html(`
             <script>
@@ -967,7 +984,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     //EDITAR CINEMA
-    $(".edi-cinema").click(function() {
+    $(".edi-cinema").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
       new easyXDM.Socket({
@@ -1009,7 +1026,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CINEMA
-    $(".prev-cinema").click(function() {
+    $(".prev-cinema").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
             new easyXDM.Socket({
@@ -1051,7 +1068,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //EDITAR CONCERT
-    $(".edi-concert").click(function() {
+    $(".edi-concert").click(function () {
         console.log("editar");
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
@@ -1093,7 +1110,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CONCERT
-    $(".prev-concert").click(function() {
+    $(".prev-concert").click(function () {
         console.log("prev concert channel");
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
@@ -1135,7 +1152,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //EDITAR HOME
-    $(".edi-home").click(function() {
+    $(".edi-home").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -1165,7 +1182,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV HOME
-    $(".prev-home").click(function() {
+    $(".prev-home").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-home").html(` <script>
             new easyXDM.Socket({
@@ -1193,7 +1210,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             </script>`);
         }
     });
-    $("#inp_programing").on("change", function() {
+    $("#inp_programing").on("change", function () {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -1223,7 +1240,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
      * Eviar archivo mediante ajax a un "controlador" php
      */
 
-    function updateGrill(landing){
+    function updateGrill(landing) {
         let canal = "canal-claro";
         switch (landing) {
             case 1:
@@ -1242,9 +1259,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             url: "view",
             data: {
-                view: "grilla-"+$canal+"-button"
+                view: "grilla-" + $canal + "-button"
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                 <img src="./images/loader.gif" class="loader" alt="">
@@ -1252,7 +1269,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 console.log("grilla de canal claro");
                 console.log(result);
                 $("#general-programming").html("");
@@ -1262,13 +1279,14 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             }
         });
     }
+
     function sendFilePHP(file, data_for_api) {
         console.log("enviando a php");
         //creamos un dato de formulario para pasarlo en el ajax
         let data = new FormData();
         data.append("file", file);
         data.append("datos", data_for_api);
-       
+
         //Realizamos el ajax
         $.ajax({
             type: "POST",
@@ -1276,17 +1294,17 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            beforeSend: function() {
+            beforeSend: function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
-            success: function(result) {
+            success: function (result) {
                 var existe_programacion = JSON.parse(result);
                 if (existe_programacion.data == 1) {
-                     $(".loader-view-container").remove();
+                    $(".loader-view-container").remove();
 
                     console.log("Preguntamos al usuario");
                     $("#programas_procesados_por_el_excel").val(result);
@@ -1294,84 +1312,91 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 } else {
                     $(".loader-view-container").remove();
 
-                    if(existe_programacion.data == -1){
+                    if (existe_programacion.data == -1) {
                         console.log("es de un dia anterior");
                         $(".modal-before").modal("show");
-                    }else{
+                    } else {
                         console.log("se agregó la programación");
-                        let landing=JSON.parse(data_for_api).landing_id;
-                        
+                        let landing = JSON.parse(data_for_api).landing_id;
+
                         updateGrill(landing);
                         $(".loader-view-container").remove();
 
                     }
-                    
+
                 }
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             $(".loader-view-container").remove();
             console.log(e);
         });
     }
-    $("#acccion-programacion-remplaza").click(function() {
-        console.log("Se remplaza la programacion");
-        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-        console.log(data);
+    $("#acccion-programacion-remplaza").click(function () {
+            console.log("Se remplaza la programacion");
+            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+            console.log(data);
 
-        $.ajax({
-            type: "POST",
-            data: data,
-            url: "general-program/changePrograming",
-            beforeSend: function() {
-                $(".modal-information .modal-content").prepend(
-                    `<div class="loader-container pointer-none">
+            $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "general-program/changePrograming",
+                    beforeSend: function () {
+                        $(".modal-information .modal-content").prepend(
+                            `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
-                );
-            },
-            success: function(result) {
-                updateGrill(data.landing_id);
-                $(".loader-container").remove();
-                $(".modal-information").modal("hide");
-                console.log(JSON.parse(result));
-            }
-        }).fail(function(e) {
-            console.log(e);
-        });
-    });
+                        );
+                    },
+                    <<
+                    << << < HEAD
+                    success: function (result) {
+                        ===
+                        === =
+                        success: function (result) {
+                            updateGrill(data.landing_id); >>>
+                            >>> > f6b03f088a2c66136073c0f1c44e9db1d44f3e91
+                            $(".loader-container").remove();
+                            $(".modal-information").modal("hide");
+                            console.log(JSON.parse(result));
+                        }
+                    }).fail(function (e) {
+                    console.log(e);
+                });
+            });
 
-    $("#acccion-programacion-agrega").click(function() {
-        console.log("Se agrega la programacion");
-        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-        console.log(data);
-        $.ajax({
-            type: "POST",
-            data: data,
-            url: "general-program/addPrograming",
-            beforeSend: function() {
-                $(".modal-information .modal-con tent").prepend(
-                    `<div class="loader-container pointer-none">
+        $("#acccion-programacion-agrega").click(function () {
+            console.log("Se agrega la programacion");
+            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "general-program/addPrograming",
+                beforeSend: function () {
+                    $(".modal-information .modal-con tent").prepend(
+                        `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
-                );
-            },
-            success: function(result) {
-                updateGrill(data.landing_id);
-                $(".loader-container").remove();
-                $(".modal-information").modal("hide");
-                console.log(JSON.parse(result));
-            }
-        }).fail(function(e) {
-            console.log(e);
+                    );
+                },
+                success: function (result) {
+                    updateGrill(data.landing_id);
+                    $(".loader-container").remove();
+                    $(".modal-information").modal("hide");
+                    console.log(JSON.parse(result));
+                }
+            }).fail(function (e) {
+                console.log(e);
+            });
+        }); $("#acccion-programacion-cancela").click(function () {
+            console.log("Se cancela la programacion");
+            $("#programas_procesados_por_el_excel").val(" ");
+            let programas = $("#programas_procesados_por_el_excel").val();
+            console.log(programas);
+            $(".modal-information").modal("hide");
         });
-    });
-    $("#acccion-programacion-cancela").click(function() {
-        console.log("Se cancela la programacion");
-        $("#programas_procesados_por_el_excel").val(" ");
-        let programas = $("#programas_procesados_por_el_excel").val();
-        console.log(programas);
-        $(".modal-information").modal("hide");
-    });
-}
+    }
 
-export { eventsGrilla };
+    export {
+        eventsGrilla
+    };

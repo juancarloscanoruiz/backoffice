@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="modal-body ">
         <img src="images/basic-icons/delete.svg" alt="advertencia de informacion dia anterior" class="mx-auto d-flex mt-5 ">
-          <p class="a-text-medium-warm-grey-three h3 mt-5 centro">El archivo contiene fechas anteriores. No se cargó. <br>
+          <p class="a-text-medium-warm-grey-three h3 mt-5">El archivo contiene fechas anteriores. <br>No se cargó.
             Por favor, intenta de nuevo con fechas posteriores al día de hoy <?php  echo(date('d/m/Y'))?></p>
         </div>
 

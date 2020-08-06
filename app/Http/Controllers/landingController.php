@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use GuzzleHttp\Client;
 
 use Illuminate\Http\Request;
 
 class landingController extends Controller
 {
+
+    private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
+
     public function showCanalClaroLanding()
     {
         return view('admin-site.landings.apro-claro');
@@ -50,19 +54,38 @@ class landingController extends Controller
 
     public function updateProgramminSliderImages(Request $request)
     {
-        $counter = 1;
-        $images = [];
-        $flag = true;
-        while (true) {
-            try {
-                $new_file = $_FILES['file' . $counter]['name'];
-                array_push($images, $new_file);
-                $counter++;
-            } catch (\Throwable $th) {
-                break;
-            }
+        //Imágene que subió el usuario
+        $files = $request->file();
+        //POsiciones de las imágenes
+        $positions = explode(",", $request->input("positions"));
+        $dates = ["00-00-0000", "00-00-0000"];
+        if($request->input("dates")){
+            $dates = explode(",", $request->input("date"));
         }
+        $counter = 0;
+        $images = [];
+        foreach ($files as $file) {
+            $newFile = $this->storeImages("imageProgrammingSlider" . $positions[$counter], $file, "public/programacion/banner");
+            $counter++;
+            array_push($images, $newFile);
+        }
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
 
-        echo (json_encode($images));
+        $response = $client->post(
+            $this->url . "programation/setImageSlider",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'value' => $images,
+                    'positions' => $positions,
+                    'schedule_date' => $dates[0],
+                    'expiration_date' => $dates[1]
+                ]
+            )]
+        );
+        $respuesta =  $response->getBody()->getContents();
+        var_dump($respuesta);
     }
 }
