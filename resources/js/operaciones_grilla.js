@@ -40,16 +40,16 @@ function eventsGrilla() {
 
         //Canal claro
         let imageUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
-        console.log(imageUrlCanalClaro);
         let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
 
         //Concert channel
-        let logoUrlConcertChannel = $("#image-icon2").files[0] || null;
+        let logoUrlConcertChannel = $("#image-icon2").files[0] || "";
         let urlConertChannel = $('#link-logo-concert-channel').val() || "";
 
         //Claro cinema
-        let logoUrlClaroCinema = $("#image-icon3").files[0] || null;
+        let logoUrlClaroCinema = $("#image-icon3").files[0] || "";
         let urlClaroCinema = $('#link-logo-claro-cinema').val() || "";
+
 
 
     })
