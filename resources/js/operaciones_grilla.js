@@ -36,15 +36,22 @@ import {
 
 function eventsGrilla() {
 
-    $('.edit-logos-buton"').click(function () {
+    $('#edit-logos-button').click(function () {
 
         //Canal claro
-        let imageUrlCanalClaro = $("#image-icon1").files[0] || null;
+        let imageUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
         let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
 
         //Concert channel
-        let logoUrlConcertChannel = $("#image-icon2").files[0] || null;
-        let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
+        let logoUrlConcertChannel = $("#image-icon2").files[0] || "";
+        let urlConertChannel = $('#link-logo-concert-channel').val() || "";
+
+        //Claro cinema
+        let logoUrlClaroCinema = $("#image-icon3").files[0] || "";
+        let urlClaroCinema = $('#link-logo-claro-cinema').val() || "";
+
+
+
     })
 
     $("#image-programming-button").click(function () {
@@ -1332,71 +1339,67 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
     }
     $("#acccion-programacion-remplaza").click(function () {
-            console.log("Se remplaza la programacion");
-            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-            console.log(data);
+        console.log("Se remplaza la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
 
-            $.ajax({
-                    type: "POST",
-                    data: data,
-                    url: "general-program/changePrograming",
-                    beforeSend: function () {
-                        $(".modal-information .modal-content").prepend(
-                            `<div class="loader-container pointer-none">
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/changePrograming",
+            beforeSend: function () {
+                $(".modal-information .modal-content").prepend(
+                    `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
-                        );
-                    },
-                    <<
-                    << << < HEAD
-                    success: function (result) {
-                        ===
-                        === =
-                        success: function (result) {
-                            updateGrill(data.landing_id); >>>
-                            >>> > f6b03f088a2c66136073c0f1c44e9db1d44f3e91
-                            $(".loader-container").remove();
-                            $(".modal-information").modal("hide");
-                            console.log(JSON.parse(result));
-                        }
-                    }).fail(function (e) {
-                    console.log(e);
-                });
-            });
+                );
+            },
 
-        $("#acccion-programacion-agrega").click(function () {
-            console.log("Se agrega la programacion");
-            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-            console.log(data);
-            $.ajax({
-                type: "POST",
-                data: data,
-                url: "general-program/addPrograming",
-                beforeSend: function () {
-                    $(".modal-information .modal-con tent").prepend(
-                        `<div class="loader-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
-                    );
-                },
-                success: function (result) {
-                    updateGrill(data.landing_id);
-                    $(".loader-container").remove();
-                    $(".modal-information").modal("hide");
-                    console.log(JSON.parse(result));
-                }
-            }).fail(function (e) {
-                console.log(e);
-            });
-        }); $("#acccion-programacion-cancela").click(function () {
-            console.log("Se cancela la programacion");
-            $("#programas_procesados_por_el_excel").val(" ");
-            let programas = $("#programas_procesados_por_el_excel").val();
-            console.log(programas);
-            $(".modal-information").modal("hide");
+
+            success: function (result) {
+                updateGrill(data.landing_id);
+                $(".modal-information").modal("hide");
+                console.log(JSON.parse(result));
+            }
+        }).fail(function (e) {
+            console.log(e);
         });
-    }
+    });
 
-    export {
-        eventsGrilla
-    };
+    $("#acccion-programacion-agrega").click(function () {
+        console.log("Se agrega la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/addPrograming",
+            beforeSend: function () {
+                $(".modal-information .modal-con tent").prepend(
+                    `<div class="loader-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+            },
+            success: function (result) {
+                updateGrill(data.landing_id);
+                $(".loader-container").remove();
+                $(".modal-information").modal("hide");
+                console.log(JSON.parse(result));
+            }
+        }).fail(function (e) {
+            console.log(e);
+        });
+    });
+    $("#acccion-programacion-cancela").click(function () {
+        console.log("Se cancela la programacion");
+        $("#programas_procesados_por_el_excel").val(" ");
+        let programas = $("#programas_procesados_por_el_excel").val();
+        console.log(programas);
+        $(".modal-information").modal("hide");
+    });
+}
+
+export {
+    eventsGrilla
+};

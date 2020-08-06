@@ -330,7 +330,7 @@
                                 <!--div urls-->
                                 <div class="mt-5 d-flex justify-content-center">
                                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                    <input type="text" name="links" id="links-logo"
+                                    <input type="text" name="links" id="link-logo-concert-channel"
                                         class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
 
                                 </div>
@@ -360,7 +360,7 @@
                                 <!--div urls-->
                                 <div class="mt-5 d-flex justify-content-center">
                                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                    <input type="text" name="links" id="links-logo"
+                                    <input type="text" name="links" id="link-logo-claro-cinema"
                                         class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
                                 </div>
                             </div>
@@ -370,7 +370,7 @@
                     <!--div botones-->
                     <div class="text-center  mb-4 pb-2">
                         <button
-                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-buton">ACEPTAR</button>
+                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
                         <button
                             class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal"
                             data-dismiss="modal">CANCELAR</button>
