@@ -73117,6 +73117,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-logos-button').click(function () {
+    //Canal claro
+    var imageUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+    console.log(imageUrlCanalClaro);
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-canal-claro').val() || ""; //Concert channel
+
+    var logoUrlConcertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon2").files[0] || null;
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-concert-channel').val() || ""; //Claro cinema
+
+    var logoUrlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon3").files[0] || null;
+    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-claro-cinema').val() || "";
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
     /*
         Arreglo para saber la posición de las imágenes que cargo el usuario
@@ -73909,6 +73921,47 @@ function eventsGrilla() {
    * Eviar archivo mediante ajax a un "controlador" php
    */
 
+  function updateGrill(landing) {
+    var canal = "canal-claro";
+
+    switch (landing) {
+      case 1:
+        canal = "canal-claro";
+        break;
+
+      case 2:
+        canal = "concert-channel";
+        break;
+
+      case 3:
+        canal = "claro-cinema";
+        break;
+
+      default:
+        break;
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "view",
+      data: {
+        view: "grilla-" + $canal + "-button"
+      },
+      beforeSend: function beforeSend() {
+        var loader = "\n                <div class=\"loader-view-container\">\n                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+      },
+      success: function success(result) {
+        console.log("grilla de canal claro");
+        console.log(result);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+        eventsGrilla();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }
+    });
+  }
+
   function sendFilePHP(file, data_for_api) {
     console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
 
@@ -73929,18 +73982,23 @@ function eventsGrilla() {
       },
       success: function success(result) {
         var existe_programacion = JSON.parse(result);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 
         if (existe_programacion.data == 1) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           console.log("Preguntamos al usuario");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
         } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+
           if (existe_programacion.data == -1) {
             console.log("es de un dia anterior");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
           } else {
             console.log("se agregó la programación");
+            var landing = JSON.parse(data_for_api).landing_id;
+            updateGrill(landing);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           }
         }
       }
@@ -73962,7 +74020,7 @@ function eventsGrilla() {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       },
       success: function success(result) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        updateGrill(data.landing_id);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
         console.log(JSON.parse(result));
       }
@@ -73979,9 +74037,10 @@ function eventsGrilla() {
       data: data,
       url: "general-program/addPrograming",
       beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-con tent").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       },
       success: function success(result) {
+        updateGrill(data.landing_id);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
         console.log(JSON.parse(result));
