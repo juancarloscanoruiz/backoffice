@@ -1223,13 +1223,52 @@ Permite a todos los input con la clase year-input tener el formato YYYY
      * Eviar archivo mediante ajax a un "controlador" php
      */
 
+    function updateGrill(landing){
+        let canal = "canal-claro";
+        switch (landing) {
+            case 1:
+                canal = "canal-claro";
+                break;
+            case 2:
+                canal = "concert-channel";
+                break;
+            case 3:
+                canal = "claro-cinema";
+                break;
+            default:
+                break;
+        }
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: {
+                view: "grilla-"+$canal+"-button"
+            },
+            beforeSend: function() {
+                const loader = `
+                <div class="loader-view-container">
+                <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+                $("body").append(loader);
+            },
+            success: function(result) {
+                console.log("grilla de canal claro");
+                console.log(result);
+                $("#general-programming").html("");
+                $("#general-programming").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
+            }
+        });
+    }
     function sendFilePHP(file, data_for_api) {
         console.log("enviando a php");
         //creamos un dato de formulario para pasarlo en el ajax
         let data = new FormData();
         data.append("file", file);
         data.append("datos", data_for_api);
-
+       
         //Realizamos el ajax
         $.ajax({
             type: "POST",
@@ -1246,18 +1285,27 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             },
             success: function(result) {
                 var existe_programacion = JSON.parse(result);
-                $(".loader-view-container").remove();
                 if (existe_programacion.data == 1) {
+                     $(".loader-view-container").remove();
+
                     console.log("Preguntamos al usuario");
                     $("#programas_procesados_por_el_excel").val(result);
                     $(".modal-information").modal("show");
                 } else {
-                    if (existe_programacion.data == -1) {
+                    $(".loader-view-container").remove();
+
+                    if(existe_programacion.data == -1){
                         console.log("es de un dia anterior");
                         $(".modal-before").modal("show");
-                    } else {
+                    }else{
                         console.log("se agregó la programación");
+                        let landing=JSON.parse(data_for_api).landing_id;
+                        
+                        updateGrill(landing);
+                        $(".loader-view-container").remove();
+
                     }
+                    
                 }
             }
         }).fail(function(e) {
@@ -1282,6 +1330,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 );
             },
             success: function(result) {
+                updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
@@ -1300,13 +1349,14 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             data: data,
             url: "general-program/addPrograming",
             beforeSend: function() {
-                $(".modal-information .modal-content").prepend(
+                $(".modal-information .modal-con tent").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
             success: function(result) {
+                updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
