@@ -73,6 +73,7 @@ Route::get("/home", "landingController@showHomeLanding")->name('home');
 
 Route::group(['prefix' => 'landing'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");
+    Route::get("/get-chapter-info/{id}", "landingController@getChapterInfo");
     Route::get("/programming-carrusel", "landingController@showProgrammingSlider");
     Route::post("/update-programming-carrusel", "landingController@updateProgramminSliderImages")->name("updateProgrammingSlider");
     Route::post("/updateLandingLogo", "landingController@updateLandingLogo");

@@ -143,4 +143,13 @@ class landingController extends Controller
         echo ($respuesta);
 
     }
+    public function getChapterInfo($id){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "programation/getChapter/". $id
+        );
+
+        $respuesta =  json_decode($response->getBody());
+        echo(json_encode($respuesta->data));
+    }
 }

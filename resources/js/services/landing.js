@@ -8,14 +8,14 @@ function updateImagesOfProgrammingSlider(data) {
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
         url: "landing/update-programming-carrusel",
-        beforeSend: function() {
+        beforeSend: function () {
             $(".modal-programming-carousel .modal-content").append(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -34,7 +34,7 @@ function updateLogosOfLanding(data) {
         data: data,
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
-        beforeSend: function() {
+        beforeSend: function () {
             $(".modal-edit-icons .modal-content").append(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -42,7 +42,7 @@ function updateLogosOfLanding(data) {
             );
         },
         url: "landing/updateLandingLogo",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -56,9 +56,8 @@ function updateLogosOfLanding(data) {
 function getChapterInfo(data) {
     $.ajax({
         type: "GET",
-        data: data,
         url: "landing/get-chapter-info/" + data,
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data.program.title);
             //$('#prog_titulo_programa').prop("title","ok");
@@ -71,8 +70,7 @@ function getChapterInfo(data) {
                 dots: false,
                 centerMode: false,
                 arrows: true,
-                prevArrow:
-                    '<img src="../images/prev.png" class="arrow-prev" />',
+                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
                 nextArrow: '<img src="../images/next.png" class="arrow-next" />'
             });
             $(".modal-edit-program").modal("show");
