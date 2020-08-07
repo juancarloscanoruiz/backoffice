@@ -462,8 +462,10 @@ function eventsGrilla() {
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
 
+                let landing = $("#date-start-input").attr("landing");
+                //console.log("El landing es: "+landing);
                 let endDate = fullDate[1];
-                filterDates(startDate, endDate);
+                filterDates(startDate, endDate, landing);
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
                 $("#end-date-text").text(endDateFull);

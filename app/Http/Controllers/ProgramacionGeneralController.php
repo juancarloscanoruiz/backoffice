@@ -895,11 +895,10 @@ public function onlyday(Request $request)
 
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getProgramingGrill/" . $request->input('startDate') . "&" . $request->input('lastDate') . "&Claro Canal&" . session('id_user')
+            $this->url . "program/getProgramingGrill/" . $request->input('startDate') . "&" . $request->input('lastDate') . "&".$request->landing."&" . session('id_user')
         );
         echo ($response->getBody()->getContents());
     }
-
     public function deleteChapter(Request $request)
     {
 
