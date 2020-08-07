@@ -1355,6 +1355,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             success: function(result) {
                 updateGrill(data.landing_id);
                 $(".modal-information").modal("hide");
+                $(".loader-view-container").remove();
+
                 console.log(JSON.parse(result));
             }
         }).fail(function(e) {
