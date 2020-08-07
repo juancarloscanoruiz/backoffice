@@ -83,30 +83,33 @@
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-5">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-canal-claro"
-                        navbar-index="1" rel="navbar-prev-claro-cinema">
-                        <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-regular-blacktwo">CLARO CINEMA</p>
-
-                        </div>
-                    </div>
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis" navbar-index="2"
-                        rel="navbar-prev-sinopsis">
-                        <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">SINÓPSIS</p>
-                        </div>
-                    </div>
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-programacion navbar-prev-programacion"
-                        navbar-index="3" rel="navbar-prev-programacion">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion"
+                        navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
 
                     </div>
-                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
+
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
+                        rel="navbar-prev-sinopsis">
+                        <div class="navbar-progra-item-container ml-3 mr-3">
+                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                        </div>
+                    </div>
+                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro pointer-none"
+                        navbar-index="3" rel="navbar-prev-claro-cinema">
+                        <div class="navbar-progra-item-container ml-3 mr-3">
+                            <p class="py-2 px-3 mb-0 a-text-bold-light a-text-regular-blacktwo">CLARO CINEMA</p>
+
+                        </div>
+                    </div>
+
+                   
+                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
                         rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">HOME</p>
+                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
                     </div>
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-right">
@@ -114,7 +117,7 @@
                 </div>
 
             </nav>
-            <div class="d-flex float-right mb-0 mr-5">
+            <div class="d-flex float-right mb-4 pb-2 mr-5">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                         <input type="radio" name="sexo" id="edit" class="edi-cinema" checked />
@@ -133,16 +136,10 @@
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
             </div>
-            <div class="float-left pl-3 mb-4 " style="margin-left: 7%;">
-                <div>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox" id="viewcarga">
-                        <span class="checkmark1 border-green"></span>
-                    </label><span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox">
-                        <span class="checkmark2  border-red"></span>
-                    </label><span class=" ml-2 a-text-red">No guardar cambios</span>
+            <div class="float-left ml-5 mb-4 ">
+            <div class="d-flex  ">
+                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -152,10 +149,12 @@
             </div>
 
             <div class="clearfix"></div>
-            <div class="centro">
-                <div class="navbar-progra-content navbar-prev-claro-cinema mb-5" id="navbar-prev-claro-cinema">
+            <!--iframe de programación-->
+            <div class="centro ">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
                 </div>
             </div>
+           <!--landing de sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <div id="prev-sinopsis">
                     <div class="mx-auto shadow mt-5  mb-5 content-table">
@@ -263,10 +262,12 @@
 
                 </div>
             </div>
-            <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
+            <!--iframe de claro cinema-->
+            <div class="centro">
+                <div class="navbar-progra-content navbar-prev-claro-cinema mb-5" id="navbar-prev-claro-cinema">
                 </div>
             </div>
+           <!--iframe de home-->
             <div class="centro ">
                 <div class="navbar-progra-content mb-5" id="navbar-prev-home">
                 </div>

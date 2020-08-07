@@ -329,6 +329,7 @@ input[type="radio"]:checked + .no-estilo1 {
     height: 70px;
     
 }
+
 .dropdown-item {
     display: inline-block;
     position: relative;
@@ -412,11 +413,6 @@ input[type="radio"]:checked + .no-estilo1 {
     align-items: center;
 }
 
-.thumbnail-header1 .dropdown-toggle::after {
-    content: url("http://localhost/backoffice1/backoffice/public/images/triangle.svg");
-    display: block;
-   
-}
 .thumbnail-header1 > .dropdown-toggle {
     position: relative;
     width: 100%;
@@ -425,6 +421,17 @@ input[type="radio"]:checked + .no-estilo1 {
     white-space: nowrap;
     overflow: auto;
     height: 100px !important;
+}
+
+.thumbnail-header1 .dropdown-toggle::after {
+    content: url(http://localhost/backoffice1/backoffice/public/images/triangle.svg) !important;
+    display: inline-block !important;
+    position: inherit;
+    border-bottom: 0px !important; 
+    border:0 !important;
+    top: 12px;
+    right: 12px;
+
 }
 .thumbnail-header1 .dropdown-item {
     display: inline-block;
@@ -445,13 +452,68 @@ input[type="radio"]:checked + .no-estilo1 {
     position: relative;
     margin-bottom: 9px;
 }
-.list1 .bootstrap-select > .dropdown-toggle {
+
+    .list1> .dropdown-toggle {
     position: relative;
-    width: 150%;
+    width: 150% !important;
     z-index: 1;
     text-align: right;
     white-space: nowrap;
     overflow: auto;
-    height: 70px;
+    height: 60px !important;
     border-radius: 1em;
+}
+
+.list1 .btn:not(.bs-placeholder) {
+    word-spacing: 100px;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.list1 .dropdown-item {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+    top: 0;
+    margin-top: 12px;
+    left: 25px;
+    height: 0px;
+    width: 0px;
+    border-radius: 0em;
+    border: 2px solid $morelightgray;
+    background-color: white;
+
+    padding: 0.45em;
+}
+.list1.show-tick .dropdown-menu .selected span.check-mark {
+    position: absolute;
+    display: inline-block;
+    left: 3px;
+    top: 0px;
+}
+
+.list1.show-tick .dropdown-menu li a span.text {
+    margin-left: 15px;
+}
+
+.list1 .bs-ok-default:after {
+    content: "";
+    display: block;
+    width: 0.5em;
+    left: 5px;
+    top: 2px;
+    height: 0.8em;
+    border-style: solid;
+    border-color: $teal;
+    border-width: 0 0.26em 0.26em 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.list1 .dropdown-menu {
+    min-width: 150% !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
