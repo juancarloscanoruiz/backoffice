@@ -45,8 +45,8 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis" navbar-index="2"
-                        rel="navbar-prev-sinopsis" style="pointer-events: none;">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
+                        rel="navbar-prev-sinopsis" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
@@ -54,8 +54,8 @@
 
 <!--inicio de claro canal-->
 
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro"
-                        navbar-index="3" rel="navbar-prev-canal-claro" style="pointer-events: none;">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro pointer-none"
+                        navbar-index="3" rel="navbar-prev-canal-claro" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="py-2 px-3 mb-0 a-text-regular-blacktwo a-text-bold-light">CANAL CLARO</p>
 
@@ -63,8 +63,8 @@
                     </div>
 <!--fin de claro canal-->
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
-                        rel="navbar-prev-home" style="pointer-events: none;">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
+                        rel="navbar-prev-home" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
@@ -77,7 +77,7 @@
 
             </nav>
 
-            <div class="d-flex float-right mb-0 mr-5">
+            <div class="d-flex float-right mb-4 pb-2 mr-5">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                         <input type="radio" name="sexo" id="edit" checked />
@@ -368,18 +368,17 @@
 
                     </div>
                     <!--div botones-->
-                    <div class="text-center  mb-4 pb-2">
+                    <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
-                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
-                        <button
-                            class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal"
-                            data-dismiss="modal">CANCELAR</button>
+                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
+                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal pr-0 fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal pr-0 fade modal-edit-program" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="overflow: auto;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
@@ -887,7 +886,7 @@
 
 
                                             <select
-                                                class="selectpicker list1 a-text-regular-brownishtwo text-normal show-tick"
+                                                class="list1 a-text-regular-brownishtwo text-normal show-tick"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false">
@@ -1031,13 +1030,12 @@
                         </section>
                     </div>
                     <div class=" d-flex justify-content-center">
-                    <section class="text-center mb-3">
+                    <section class="text-center mb-3 d-flex justify-content-center">
                         <button
-                            class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
+                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
                             data-dismiss="modal">ACEPTAR</button>
-                        <button
-                            class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal"
-                            data-dismiss="modal">CANCELAR</button>
+                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+
                     </section>
 
                 </div>
@@ -1046,7 +1044,7 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-programming-carousel pr-0" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
+    <div class="modal modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
           <div class="modal-content" >
             <div class="modal-body">
@@ -1131,15 +1129,40 @@
               </div>
               <!--End slider-->
               <!--Buttons-->
-              <div class="text-center mb-3">
+              <div class="text-center mb-3 d-flex justify-content-center">
                   <button
-                      class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
-                  <button
-                      class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-dismiss="modal">cancelar</button>
+                      class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
+                      <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+
+                     <!-- <button 
+                      class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
               </div>
+
             </div>
 
           </div>
         </div>
       </div>
-</body>
+
+   <!--modal para perder lo hecho en los landing de edit-->
+      <div class=" modal  delete-info" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"  data-modal-parent="#modalbanner">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content  ">
+          <div class="modal-body ">
+          <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
+            <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información,<span class="h3 a-text-bold-warm-grey-three"> NO PODRÁS </span>
+                                               recuperar la </br> ¿Desea continuar?.</p>
+          </div>
+
+          <div class="text-center mb-5 mt-4 pt-3 pb-4">
+            <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"data-dismiss="modal" data-dismiss="modal"data-dismiss="modal" >ACEPTAR</button>
+
+            <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+   
+    </body>

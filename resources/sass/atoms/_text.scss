@@ -2,7 +2,9 @@
 @import "../base/typography";
 
 /* TEXT BASE */
-
+.text-none{
+    text-decoration: none;
+}
 .h2 {
     font-size: 32px;
 }
