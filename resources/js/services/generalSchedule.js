@@ -407,7 +407,7 @@ function filterDates(startDate, lastDate,landing) {
                             <a href="upimage/${program.chapter_id}">
                                 <div class="image-ta position-relative">
                                     <img src="./images/add-icon.svg" alt="añadir imagenes" class="add-images-icon">
-                                    <img src="./storage/${program.images.thumbnail_list_horizontal}" alt="${program.title}" class="image-program">
+                                    <img src="${program.images.thumbnail_list_horizontal}" alt="${program.title}" class="image-program">
                                 </div>
                             </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Añade imágenes</span>
@@ -422,7 +422,7 @@ function filterDates(startDate, lastDate,landing) {
                             <a href="upimage/${program.chapter_id}">
                                 <div class="image-ta position-relative">
                                     <img src="./images/basic-icons/pencil-edit-teal.svg" alt="añadir imagenes" class="add-images-icon">
-                                    <img src="./storage/${program.images.thumbnail_list_horizontal}" alt="" class="image-program">
+                                    <img src="${program.images.thumbnail_list_horizontal}" alt="" class="image-program">
                                 </div>
                             </a>
                             <span class="d-block a-text-regular-brownishtwo pt-2">Modifica imágenes</span>
