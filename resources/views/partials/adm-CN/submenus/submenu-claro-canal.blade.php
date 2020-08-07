@@ -593,7 +593,10 @@
                                     class="arrow-thermometer arrow-thermometer-left" alt="arrow-left">
                                 <div class="thermometer-container">
                                     <ul class="thermometer-schedule-list d-flex p-3">
-                                        <li class="thermometer-schedule-item mr-1"></li>
+                                        <li class="thermometer-schedule-item mr-1 d-flex align-items-center">
+                                            <div class="w-50 h-100"></div>
+                                            <div class="w-50 h-100"></div>
+                                        </li>
                                         <li class="thermometer-schedule-item mr-1"></li>
                                         <li class="thermometer-schedule-item mr-1"></li>
                                         <li class="thermometer-schedule-item mr-1"></li>
@@ -643,15 +646,14 @@
 
                             <select
                                 class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
-                                title="" id="prog_titulo_programa"data-live-search-placeholder="Buscar">
+                                title="" id="prog_titulo_programa" data-live-search-placeholder="Buscar">
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
-                                    value="">caballeros de zodiaco</option>
+                                    value="">el reus</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
                                     value="">caballeros de zodiaco2</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
                                     value="">caballeros de zodiaco3</option>
                             </select>
-
 
                       <!--      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">-->
                             <div class="edit-thumbnail position-relative">
@@ -665,7 +667,7 @@
                                 </div>
 
                                 <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
-                                    class="thumbnail-image-prev">
+                                    class="thumbnail-image-prev edit-image-program" />
                             </div>
                             <!--Nombre de la imagen-->
                             <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
@@ -746,12 +748,12 @@
                                         <!--Switch-->
                                         <div class="d-flex align-items-center edit-switches-home-container">
                                             <input type="radio" name="sino-home" id="yes-landing" value="1"
-                                                class="switch-landing" />
+                                                class="switch-landing edit-in-home-yes" />
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-home" id="no-landing" value="0" checked
-                                                class="switch-landing switch-table" />
+                                                class="switch-landing switch-table edit-in-home-no" />
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -904,7 +906,7 @@
                                         </p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                             <input type="text"
-                                                class="text-center input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                class="text-center input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                                 placeholder="PG-00">
                                         </div>
                                     </div>
