@@ -5276,18 +5276,11 @@ ul {
 .thermometer-schedule-item {
   width: calc(100% / 23);
   height: 8px;
-  background-color: #d8d8d8;
   cursor: pointer;
+  background-color: #d8d8d8;
 }
 
-.thermometer-schedule-item {
-  width: calc(100% / 23);
-  height: 8px;
-  background-color: #d8d8d8;
-  cursor: pointer;
-}
-
-.thermometer-schedule-current-item {
+.schedule- .thermometer-schedule-current-item {
   height: 11px;
   background-color: #0097a9;
 }

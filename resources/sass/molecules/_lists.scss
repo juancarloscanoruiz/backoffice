@@ -87,11 +87,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectPais:checked ~ #select-Pais {
+#selectPais:checked~#select-Pais {
     overflow: visible;
 }
 
-#selectPais:checked ~ #select-Pais .ListaDesplegablePaises {
+#selectPais:checked~#select-Pais .ListaDesplegablePaises {
     height: 158px;
 }
 
@@ -166,11 +166,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectDay:checked ~ #select-Dia {
+#selectDay:checked~#select-Dia {
     overflow: visible;
 }
 
-#selectDay:checked ~ #select-Dia .ListaDesplegableDias {
+#selectDay:checked~#select-Dia .ListaDesplegableDias {
     height: 200px;
 }
 
@@ -248,11 +248,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectMonth:checked ~ #select-Mes {
+#selectMonth:checked~#select-Mes {
     overflow: visible;
 }
 
-#selectMonth:checked ~ #select-Mes .ListaDesplegableMeses {
+#selectMonth:checked~#select-Mes .ListaDesplegableMeses {
     height: 200px;
 }
 
@@ -332,11 +332,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectYear:checked ~ #select-Año {
+#selectYear:checked~#select-Año {
     overflow: visible;
 }
 
-#selectYear:checked ~ #select-Año .ListaDesplegableAños {
+#selectYear:checked~#select-Año .ListaDesplegableAños {
     height: 200px;
 }
 
@@ -367,18 +367,14 @@ ul {
 .thermometer-schedule-item {
     width: calc(100% / 23);
     height: 8px;
-    background-color: $beige;
     cursor: pointer;
+    background-color: $beige;
 }
 
-.thermometer-schedule-item {
-    width: calc(100% / 23);
-    height: 8px;
-    background-color: $beige;
-    cursor: pointer;
-}
 
-.thermometer-schedule-current-item {
+
+
+.schedule- .thermometer-schedule-current-item {
     height: 11px;
     background-color: $teal;
 }
@@ -416,6 +412,7 @@ ul {
 .thermometer-notation-orange::before {
     background-color: $orange;
 }
+
 .thermometer-notation-gray::before {
     background-color: $beige;
 }

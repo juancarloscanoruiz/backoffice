@@ -90101,17 +90101,42 @@ function updateLogosOfLanding(data) {
 function getChapterInfo(data) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
-    data: data,
-    processData: false,
-    //esto es para poder pasar el archivo
-    contentType: false,
-    //esto es para poder pasar el archivo
     url: "landing/get-chapter-info/" + data,
     success: function success(result) {
       var data = JSON.parse(result);
-      console.log(data.program.title); //$('#prog_titulo_programa').prop("title","ok");
+      console.log(data); //thermometer
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_sinopsis").val(data.program.synopsis);
+      var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
+
+      var itemThermometer = ""; //Container que representa media hora en el termómetro
+
+      var itemHalfThermometer = "";
+      var index = 1; //Recorremos el terommétro
+
+      for (var key in thermometer) {
+        itemHalfThermometer += "\n                    <div class=\"w-50 h-100\" status=\"".concat(thermometer[key].status, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                ");
+
+        if (index % 2 == 0) {
+          itemThermometer += "\n                        <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                            ".concat(itemHalfThermometer, "\n                        </li>\n                        ");
+          itemHalfThermometer = "";
+        }
+
+        index++;
+      }
+
+      console.log(data.image_program); //Insertamos el contenido en el termómetro
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Verficar si el programa se encuentra en el home
+
+      if (data.program.in_home == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
         slidesToShow: 11,
         slidesToScroll: 11,
@@ -90122,7 +90147,6 @@ function getChapterInfo(data) {
         prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
         nextArrow: '<img src="../images/next.png" class="arrow-next" />'
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
     }
   });
 }
