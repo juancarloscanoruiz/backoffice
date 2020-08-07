@@ -686,12 +686,12 @@
                                         <!--Switch-->
                                         <div class="d-flex align-items-center mb-3">
                                             <input type="radio" name="sino-landing" id="yes-landing" value="1"
-                                                class="switch-landing" />
+                                                class="switch-landing edit-landing-yes" />
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-landing" id="no-landing" value="0" checked
-                                                class="switch-landing switch-table" />
+                                                class="switch-landing switch-table edit-landing-no" />
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -699,14 +699,14 @@
                                         <!--Inputs radio-->
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2">
-                                                <input type="radio" checked name="dontlose" class="switch-table"
+                                                <input type="radio" checked name="dontlose" class="switch-table edit-carrusel-1"
                                                     value="2" id="landing-section-2" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                                 1</span>
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2-">
-                                                <input type="radio" checked name="dontlose" class="mb-0 switch-table"
+                                                <input type="radio" checked name="dontlose" class="mb-0 switch-table edit-carrusel-2"
                                                     value="2" id="landing-section-2" />
                                                 <span class="checkmark"></span>
                                             </label>
@@ -718,7 +718,7 @@
                                             <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Inicio: <input type="text"
                                                         class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
-                                                        placeholder="00-00-0000"></span>
+                                                        placeholder="00-00-0000" /></span>
                                             </div>
                                             <div class="mb-4 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Fin: <input type="text"
@@ -763,24 +763,24 @@
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
                                             <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin"
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                             <div class="mb-4 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Fin: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end"
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
                                         <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                             <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                     placeholder="00:00:00"></span>
                                         </div>
                                         <div class="text-center edit-rectangle-small-container py-3">
                                             <span class="a-text-bold-warm">Fin: <input type="text"
-                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                     placeholder="00:00:00"></span>
                                         </div>
                                     </div>

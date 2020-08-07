@@ -84,17 +84,50 @@ function getChapterInfo(data) {
                 }
                 index++;
             }
-            console.log(data.image_program);
+
             //Insertamos el contenido en el termómetro
             $('.thermometer-schedule-list').html(itemThermometer);
             //Insertamos la imagen del capítulo
             $('.edit-image-program').attr("src", data.image_program);
+
+            //Verificamos si el programa está en algunas de las secciones del landing
+            switch (data.program.in_landing) {
+                case 0:
+                    $('.edit-landing-no').prop("checked", true);
+                    break;
+                case 1:
+                    $('.edit-landing-yes').prop("checked", true);
+                    $('.edit-carrusel-1').prop("checked", true);
+                    break;
+                case 2:
+                    $('.edit-landing-yes').prop("checked", true);
+                    $('.edit-carrusel-2').prop("checked", true);
+                default:
+                    break;
+            }
+
+
             //Verficar si el programa se encuentra en el home
             if (data.program.in_home == 0) {
                 $('.edit-in-home-no').prop("checked", true)
             } else {
                 $('.edit-in-home-yes').prop("checked", true)
             }
+
+            if (data.program.in_home_begin) {
+                let homeBeginDateTime = data.program.in_home_begin.split(" ");
+                $('.edit-home-date-begin').val(homeBeginDateTime[0])
+                $('.edit-home-time-begin').val(homeBeginDateTime[1])
+            }
+
+            if (data.program.in_home_expiration) {
+                let homeExpirationDateTime = data.program.in_home_expiration.split(" ");
+                let fullDate = homeExpirationDateTime[0].split("-")
+                $('.edit-home-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                $('.edit-home-time-end').val(homeExpirationDateTime[1]);
+            }
+
+
 
             $(".modal-edit-program").modal("show");
             $(".calendar-slider").slick({

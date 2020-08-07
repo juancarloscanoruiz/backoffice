@@ -74274,9 +74274,9 @@ function filterDates(startDate, lastDate, landing) {
           var images = "";
 
           if (program.images.cantity_images_uploaded < 9) {
-            images = "\n                        <div class=\"contenedor-columna selectable-column centro editable-column\" rel=\"imagenes\">\n                            <a href=\"upimage/".concat(program.chapter_id, "\">\n                                <div class=\"image-ta position-relative\">\n                                    <img src=\"./images/add-icon.svg\" alt=\"a\xF1adir imagenes\" class=\"add-images-icon\">\n                                    <img src=\"./storage/").concat(program.images.thumbnail_list_horizontal, "\" alt=\"").concat(program.title, "\" class=\"image-program\">\n                                </div>\n                            </a>\n                            <span class=\"d-block a-text-regular-brownishtwo pt-2\">A\xF1ade im\xE1genes</span>\n                            <div>\n                                <span class=\"a-text-regular-brownishtwo\">").concat(program.images.cantity_images_uploaded, "</span><span class=\"a-text-regular-brownishtwo\">/9</span>\n                            </div>\n                        </div>\n                        ");
+            images = "\n                        <div class=\"contenedor-columna selectable-column centro editable-column\" rel=\"imagenes\">\n                            <a href=\"upimage/".concat(program.chapter_id, "\">\n                                <div class=\"image-ta position-relative\">\n                                    <img src=\"./images/add-icon.svg\" alt=\"a\xF1adir imagenes\" class=\"add-images-icon\">\n                                    <img src=\"").concat(program.images.thumbnail_list_horizontal, "\" alt=\"").concat(program.title, "\" class=\"image-program\">\n                                </div>\n                            </a>\n                            <span class=\"d-block a-text-regular-brownishtwo pt-2\">A\xF1ade im\xE1genes</span>\n                            <div>\n                                <span class=\"a-text-regular-brownishtwo\">").concat(program.images.cantity_images_uploaded, "</span><span class=\"a-text-regular-brownishtwo\">/9</span>\n                            </div>\n                        </div>\n                        ");
           } else {
-            images = "\n                        <div class=\"contenedor-columna selectable-column centro editable-column\" rel=\"imagenes\">\n                            <a href=\"upimage/".concat(program.chapter_id, "\">\n                                <div class=\"image-ta position-relative\">\n                                    <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"a\xF1adir imagenes\" class=\"add-images-icon\">\n                                    <img src=\"./storage/").concat(program.images.thumbnail_list_horizontal, "\" alt=\"\" class=\"image-program\">\n                                </div>\n                            </a>\n                            <span class=\"d-block a-text-regular-brownishtwo pt-2\">Modifica im\xE1genes</span>\n                            <div>\n                                <span class=\"a-text-regular-brownishtwo\">").concat(program.images.cantity_images_uploaded, "</span><span class=\"a-text-regular-brownishtwo\">/9</span>\n                            </div>\n                        </div>\n                        ");
+            images = "\n                        <div class=\"contenedor-columna selectable-column centro editable-column\" rel=\"imagenes\">\n                            <a href=\"upimage/".concat(program.chapter_id, "\">\n                                <div class=\"image-ta position-relative\">\n                                    <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"a\xF1adir imagenes\" class=\"add-images-icon\">\n                                    <img src=\"").concat(program.images.thumbnail_list_horizontal, "\" alt=\"\" class=\"image-program\">\n                                </div>\n                            </a>\n                            <span class=\"d-block a-text-regular-brownishtwo pt-2\">Modifica im\xE1genes</span>\n                            <div>\n                                <span class=\"a-text-regular-brownishtwo\">").concat(program.images.cantity_images_uploaded, "</span><span class=\"a-text-regular-brownishtwo\">/9</span>\n                            </div>\n                        </div>\n                        ");
           } //Cambiamos el formato de la fecha del campo schedule item long date time
 
 
@@ -74448,18 +74448,49 @@ function getChapterInfo(data) {
         }
 
         index++;
-      }
+      } //Insertamos el contenido en el termómetro
 
-      console.log(data.image_program); //Insertamos el contenido en el termómetro
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Verficar si el programa se encuentra en el home
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Verificamos si el programa está en algunas de las secciones del landing
+
+      switch (data.program.in_landing) {
+        case 0:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
+          break;
+
+        case 1:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+          break;
+
+        case 2:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
+
+        default:
+          break;
+      } //Verficar si el programa se encuentra en el home
+
 
       if (data.program.in_home == 0) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
       } else {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+      }
+
+      if (data.program.in_home_begin) {
+        var homeBeginDateTime = data.program.in_home_begin.split(" ");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val(homeBeginDateTime[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
+      }
+
+      if (data.program.in_home_expiration) {
+        var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
+        var fullDate = homeExpirationDateTime[0].split("-");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
