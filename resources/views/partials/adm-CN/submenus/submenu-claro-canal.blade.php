@@ -34,26 +34,10 @@
     <main>
         <div id="menu">
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
-                <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
+            <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-canal-claro"
-                        navbar-index="1" rel="navbar-prev-canal-claro">
-                        <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-regular-blacktwo">CANAL CLARO</p>
-
-                        </div>
-                    </div>
-
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis" navbar-index="2"
-                        rel="navbar-prev-sinopsis">
-                        <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">SINÓPSIS</p>
-                        </div>
-                    </div>
-
-
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-programacion navbar-prev-programacion"
-                        navbar-index="3" rel="navbar-prev-programacion">
+            <div class="navbar-progra-item navbar-progra-item-border navbar-programacion   navbar-progra-active navbar-prev-programacion"
+                        navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
@@ -61,10 +45,28 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
-                        rel="navbar-prev-home">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis" navbar-index="2"
+                        rel="navbar-prev-sinopsis" style="pointer-events: none;">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">HOME</p>
+                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                        </div>
+                    </div>
+
+<!--inicio de claro canal-->
+
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro"
+                        navbar-index="3" rel="navbar-prev-canal-claro" style="pointer-events: none;">
+                        <div class="navbar-progra-item-container ml-3 mr-3">
+                            <p class="py-2 px-3 mb-0 a-text-regular-blacktwo a-text-bold-light">CANAL CLARO</p>
+
+                        </div>
+                    </div>
+<!--fin de claro canal-->
+
+                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
+                        rel="navbar-prev-home" style="pointer-events: none;">
+                        <div class="navbar-progra-item-container ml-3 mr-3">
+                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
 
                     </div>
@@ -74,6 +76,7 @@
                 </div>
 
             </nav>
+
             <div class="d-flex float-right mb-0 mr-5">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
@@ -93,8 +96,12 @@
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
             </div>
-            <div class="float-left pl-3 mb-4 " style="margin-left: 7%;">
-                <div>
+            <div class="float-left ml-5 mb-4 ">
+            <div class="d-flex  ">
+                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
+                </div>
+               <!-- <div>
                     <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
                         <input type="checkbox" id="viewcarga">
                         <span class="checkmark1 border-green"></span>
@@ -103,7 +110,7 @@
                         <input type="checkbox">
                         <span class="checkmark2  border-red"></span>
                     </label><span class=" ml-2 a-text-red">No guardar cambios</span>
-                </div>
+                </div>-->
             </div>
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right mb-5">
@@ -111,10 +118,13 @@
                         src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px"/></div>
             </div>
             <div class="clearfix"></div>
-            <div class="centro">
-                <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
+               <!--colocacion de ifram de programacion-->
+            <div class="centro ">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
                 </div>
             </div>
+
+            <!--colocacion de iframde sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <div id="prev-sinopsis">
                 </div>
@@ -223,10 +233,12 @@
                 </div>
 
             </div>
-            <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
+            <!--iframe de canal claro-->
+            <div class="centro">
+                <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
                 </div>
             </div>
+            <!--iframe de home-->
             <div class="centro ">
                 <div class="navbar-progra-content mb-5" id="navbar-prev-home">
                 </div>
@@ -254,14 +266,14 @@
             </div>
         </div>
     </div>
-    <div class="modal pr-0 fade modal-edit-icons" id="savesino" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content align-item-center centro">
+    <div class="modal fade modal-edit-icons pr-0" id="savesino" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered m-0"  >
+            <div class="modal-content align-item-center centro " style="width: 100%" >
                 <div class="modal-body ">
-                    <h2 class="h2 text-center a-text-black-brown-two ">MENÚ DE CANALES</h2>
-                    <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-5">
+                    <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
+                    <hr class="d-flex align-content-center separationhr mb-4 col-12">
                     <!--div padre-->
-                    <div class="d-flex justify-content-around col-11 mb-5">
+                    <div class="d-flex justify-content-around col-11 mb-5 mt-5">
                         <!--Div primer logo-->
                         <div class="d-flex justify-content-center mt-5">
                             <!--pagination-->
@@ -356,7 +368,7 @@
 
                     </div>
                     <!--div botones-->
-                    <div class="text-center mt-5 mb-5">
+                    <div class="text-center  mb-4 pb-2">
                         <button
                             class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
                         <button
@@ -369,44 +381,14 @@
     </div>
     <div class="modal pr-0 fade modal-edit-program" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="overflow: auto;">
-        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1500px;">
+        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
-                <div class="modal-header bg-color">
-                    <span class='d-flex align-items-center justify-content-between  py-xl-2'>
-                        <a href="{{ route('admin') }}">
-                            <span class='ml-5'><img
-                                    src="{{ asset('/images/home/claro-logo.svg') }}"></span>
-                        </a>
-                    </span>
-                    <span class='text-light1 mr-5 pt-4'>Administrador de contenido</span>
-                </div>
+
                 <div class="modal-body pt-0">
-                    <div id='user_information'
-                        class='o-user-info-container d-flex align-items-center justify-content-between pt-xl-1 '>
-                        <div class='ml-5'>
-                            <span class='a-text-black-bold a-name-user'> Annet</span><br>
-                            <span class='text-light1 '> Super Usuario</span>
-                        </div>
-                        <div class='mr-5'>
 
-                            <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'
-                                data-dismiss="modal">REGRESAR</button>
 
-                        </div>
-                    </div>
-
-                    <div class="ml-5 float-left">
-                        <div>
-                            <span class="a-text-black-light text-plus">Última edición : <span class="zona"> </span>
-                            </span>
-                        </div>
-                        <span class="a-text-black-light text-plus">Editado por:</span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <h3 class="a-text-bold-black h3 ml-5 mt-4">CANAL CLARO</h3>
-                    <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
-                    <h2 class="h2 text-center a-text-black-brown-two ">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
-                    <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-0">
+                    <h2 class="h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
+                    <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                     <div class="col-11 mx-auto">
                         <!--Estado y alertas del programa-->
@@ -661,9 +643,9 @@
                         <section>
 
                             <select
-                                class="thumbnail-header1 thumbnail-header d-flex align-items-center justify-content-between position-relative"
-                                title="TÍTULO DEL PROGRAMA" data-live-search-placeholder="Buscar">
-                                <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
+                                class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
+                                title="" id="prog_titulo_programa"data-live-search-placeholder="Buscar">
+                                <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                                     value="">caballeros de zodiaco</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
                                     value="">caballeros de zodiaco2</option>
@@ -672,7 +654,7 @@
                             </select>
 
 
-                            <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
+                      <!--      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">-->
                             <div class="edit-thumbnail position-relative">
                                 <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                     alt="camera" />
@@ -832,7 +814,7 @@
                         <section class="mb-5">
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
-                            <textarea class="edit-program-textarea a-text-semibold-warmgrey p-3"></textarea>
+                            <textarea class="edit-program-textarea a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
 
                         <section class="mb-3">
@@ -903,7 +885,7 @@
 
 
                                             <select
-                                                class="selectpicker  a-text-regular-brownishtwo text-normal show-tick"
+                                                class="selectpicker list1 a-text-regular-brownishtwo text-normal show-tick"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false">
@@ -1046,30 +1028,30 @@
                             </div>
                         </section>
                     </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <section class="text-center mb-5">
+                    <div class=" d-flex justify-content-center">
+                    <section class="text-center mb-3">
                         <button
                             class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                            data-dismiss="modal">aceptar</button>
+                            data-dismiss="modal">ACEPTAR</button>
                         <button
                             class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal"
-                            data-dismiss="modal">cancelar</button>
+                            data-dismiss="modal">CANCELAR</button>
                     </section>
 
                 </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="modal pr-0 modal-programming-carousel" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
-        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%;">
+    <div class="modal modal-programming-carousel pr-0" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
+        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
           <div class="modal-content" >
             <div class="modal-body">
 
-            <h3 class="a-text-bold-black h3 ml-5 mt-4">CANAL CLARO</h3>
-              <h4 class="a-text-bold-black mt-4 text-plus ml-5 mb-4"> CARGAR IMÁGENES EN FORMATO JPG</h4>
-              <h2 class="h2 text-center a-text-black-brown-two ">BANNER PROGRAMACIÓN - CARRUSEL </h2>
-              <hr class="d-flex align-content-center separationhr col-11 mt-5 mb-0">
+
+              <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
+              <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
               <!--Slider pagination-->
               <div class="dots-container mx-auto d-flex justify-content-between">
                   <div class="d-flex">
@@ -1147,7 +1129,7 @@
               </div>
               <!--End slider-->
               <!--Buttons-->
-              <div class="text-center mb-5">
+              <div class="text-center mb-3">
                   <button
                       class="d-inline-block mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
                   <button

@@ -1,8 +1,8 @@
 @extends('layaout.app')
 
 
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document" style=" max-width: 80%;">
+<div class="modal fade " id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document" style=" max-width: 85%;">
     <div class="modal-content" >
      
       <div class="modal-body">

@@ -327,6 +327,7 @@ input[type="radio"]:checked + .no-estilo1 {
     white-space: nowrap;
     overflow: auto;
     height: 70px;
+    
 }
 .dropdown-item {
     display: inline-block;
@@ -402,12 +403,55 @@ input[type="radio"]:checked + .no-estilo1 {
     width: 100%;
 }
 
-.thumbnail-header1  > .dropdown-toggle {
-    position: absolute;
+.thumbnail-header1 .filter-option{
+    border: 2px solid $selecred;
+    background: $selecred;
+    color: white;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.thumbnail-header1 .dropdown-toggle::after {
+    content: url("http://localhost/backoffice1/backoffice/public/images/triangle.svg");
+    display: block;
+   
+}
+.thumbnail-header1 > .dropdown-toggle {
+    position: relative;
     width: 100%;
     z-index: 1;
     text-align: right;
     white-space: nowrap;
     overflow: auto;
+    height: 100px !important;
+}
+.thumbnail-header1 .dropdown-item {
+    display: inline-block;
+    width: 100%;
+    padding: 0 !important;
+    clear: both;
+    font-weight: 400;
+    color: $warmGrey;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.thumbnail-header1 .dropdown-menu .selected span.check-mark {
+  color: $greyishBrownTwo;
+}
+.thumbnail-header1 .dropdown-menu li {
+    position: relative;
+    margin-bottom: 9px;
+}
+.list1 .bootstrap-select > .dropdown-toggle {
+    position: relative;
+    width: 150%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto;
     height: 70px;
+    border-radius: 1em;
 }

@@ -88791,22 +88791,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-logos-button').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
     var data = new FormData(); //Canal claro
 
     var logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
     data.append("logoCanalClaro", logoUrlCanalClaro);
-    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-canal-claro').val() || "";
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
     data.append("urlCanalClaro", urlCanalClaro); //Concert channel
 
     var logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
     data.append("logoConcertChannel", logoUrlConcertChannel);
-    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-concert-channel').val() || "";
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
     data.append("urlConcertChannel", urlConertChannel); //Claro cinema
 
     var logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
     data.append("logoClaroCinema", logoUrlClaroCinema);
-    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-claro-cinema').val() || "";
+    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
     data.append("urlClaroCinema", urlClaroCinema);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateLogosOfLanding"])(data);
   });
@@ -88837,7 +88837,7 @@ function eventsGrilla() {
 
     data.append("positions", imagesPositions); //Hora inicio y fin
 
-    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()('#date-start-input').val());
+    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesOfProgrammingSlider"])(data);
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
@@ -88863,17 +88863,8 @@ function eventsGrilla() {
 
           switch (json.type) {
             case "program":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-                slidesToShow: 11,
-                slidesToScroll: 11,
-                infinite: true,
-                dots: false,
-                centerMode: false,
-                arrows: true,
-                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-                nextArrow: '<img src="../images/next.png" class="arrow-next" />'
-              });
+              console.log(json.chapterId);
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
               break;
 
             case "slider-pagination":
@@ -90044,11 +90035,12 @@ function deleteProgram(id_program, id_version) {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: updateImagesOfProgrammingSlider, updateLogosOfLanding */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChapterInfo", function() { return getChapterInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLogosOfLanding", function() { return updateLogosOfLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -90066,14 +90058,17 @@ function updateImagesOfProgrammingSlider(data) {
     //esto es para poder pasar el archivo
     url: "landing/update-programming-carrusel",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
+      console.log(result);
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
       }
     }
   });
@@ -90092,12 +90087,42 @@ function updateLogosOfLanding(data) {
     },
     url: "landing/updateLandingLogo",
     success: function success(result) {
+      console.log(result);
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
       }
+    }
+  });
+}
+
+function getChapterInfo(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "GET",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    url: "landing/get-chapter-info/" + data,
+    success: function success(result) {
+      var data = JSON.parse(result);
+      console.log(data.program.title); //$('#prog_titulo_programa').prop("title","ok");
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_sinopsis").val(data.program.synopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
     }
   });
 }
