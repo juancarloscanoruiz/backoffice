@@ -17,9 +17,6 @@ function updateImagesOfProgrammingSlider(data) {
 function getChapterInfo(data) {
     $.ajax({
         type: "GET",
-        data: data,
-        processData: false, //esto es para poder pasar el archivo
-        contentType: false, //esto es para poder pasar el archivo
         url: "landing/get-chapter-info/"+data,
         success: function (result) {
             let data = JSON.parse(result);
