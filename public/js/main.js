@@ -88792,16 +88792,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-logos-button').click(function () {
-    //Canal claro
-    var imageUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
-    console.log(imageUrlCanalClaro);
-    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-canal-claro').val() || ""; //Concert channel
+    var data = new FormData(); //Canal claro
 
-    var logoUrlConcertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon2").files[0] || null;
-    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-concert-channel').val() || ""; //Claro cinema
+    var logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+    data.append("logoCanalClaro", logoUrlCanalClaro);
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-canal-claro').val() || "";
+    data.append("urlCanalClaro", urlCanalClaro); //Concert channel
 
-    var logoUrlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon3").files[0] || null;
+    var logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
+    data.append("logoConcertChannel", logoUrlConcertChannel);
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-concert-channel').val() || "";
+    data.append("urlConcertChannel", urlConertChannel); //Claro cinema
+
+    var logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
+    data.append("logoClaroCinema", logoUrlClaroCinema);
     var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-logo-claro-cinema').val() || "";
+    data.append("urlClaroCinema", urlClaroCinema);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateLogosOfLanding"])(data);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
     /*
@@ -90037,12 +90044,13 @@ function deleteProgram(id_program, id_version) {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: updateImagesOfProgrammingSlider */
+/*! exports provided: updateImagesOfProgrammingSlider, updateLogosOfLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLogosOfLanding", function() { return updateLogosOfLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 //JQUERY
@@ -90057,8 +90065,39 @@ function updateImagesOfProgrammingSlider(data) {
     contentType: false,
     //esto es para poder pasar el archivo
     url: "landing/update-programming-carrusel",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
     success: function success(result) {
-      console.log(result);
+      var json = JSON.parse(result);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+      }
+    }
+  });
+}
+
+function updateLogosOfLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/updateLandingLogo",
+    success: function success(result) {
+      var json = JSON.parse(result);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+      }
     }
   });
 }

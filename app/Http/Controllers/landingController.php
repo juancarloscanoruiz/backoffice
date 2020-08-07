@@ -86,6 +86,61 @@ class landingController extends Controller
             )]
         );
         $respuesta =  $response->getBody()->getContents();
-        var_dump($respuesta);
+    echo($respuesta);
+    }
+
+    public function updateLandingLogo(Request $request){
+        $files = $request->file();
+        $logoCanalClaro = $request->file("logoCanalClaro");
+        $logoConcertChannel = $request->file("logoConcertChannel");
+        $urlCanalClaro = $request->input("urlCanalClaro");
+        $urlConcertChannel = $request->input("urlConcertChannel");
+        $urlClaroCinema = $request->input("urlClaroCinema");
+        $pathCanalClaro = "";
+        $pathConcertChannel = "";
+        $pathClaroCinema = "";
+
+        $logoClaroCinema = $request->file("logoClaroCinema");
+        if ($logoCanalClaro) {
+            $pathCanalClaro = $this->storeImages("logoCanalClaroNav", $logoCanalClaro, "public/canal-claro/logos");
+        }
+
+        if ($logoConcertChannel) {
+            $pathConcertChannel = $this->storeImages("logoConcertChannelNav", $logoConcertChannel, "public/claro-cinema/logos");
+        }
+
+        if ($logoClaroCinema) {
+            $pathClaroCinema = $this->storeImages("logoClaroCinemaNav", $logoClaroCinema, "public/concert-channel/logos");
+        }
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "programation/setIconChannel",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'concert_channel' => [
+                        'icon' => $pathConcertChannel,
+                        'url' => $urlConcertChannel
+                    ],
+                    'canal_claro' => [
+                        'icon' => $pathCanalClaro,
+                        'url' => $urlCanalClaro
+                    ],
+                    'claro_cinema' => [
+                        'icon' => $pathClaroCinema,
+                        'url' => $urlClaroCinema
+                    ],
+
+                ]
+            )]
+        );
+
+        $respuesta =  $response->getBody()->getContents();
+        echo ($respuesta);
+
     }
 }

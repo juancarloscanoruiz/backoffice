@@ -11,7 +11,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 9999;
 }
 
 .image-blue {
@@ -416,6 +416,7 @@
     right: 0;
     transform: translate(calc(100% + 24px), -50%);
 }
+
 .arrow-thermometer-left {
     left: 0;
     transform: translate(calc(-100% - 24px), -50%) rotate(180deg);
@@ -475,7 +476,8 @@
     padding: 16px;
     width: 110px;
 }
-.dropimg{
+
+.dropimg {
     transform: translate(1090px, -57px);
     z-index: 5;
 }

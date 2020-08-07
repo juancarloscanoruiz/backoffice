@@ -16,7 +16,8 @@ import {
 
 //Servicios para editar landing
 import {
-    updateImagesOfProgrammingSlider
+    updateImagesOfProgrammingSlider,
+    updateLogosOfLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -37,20 +38,25 @@ import {
 function eventsGrilla() {
 
     $('#edit-logos-button').click(function () {
-
+        let data = new FormData();
         //Canal claro
-        let imageUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+        let logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+        data.append("logoCanalClaro", logoUrlCanalClaro);
         let urlCanalClaro = $('#link-logo-canal-claro').val() || "";
+        data.append("urlCanalClaro", urlCanalClaro);
 
         //Concert channel
-        let logoUrlConcertChannel = $("#image-icon2").files[0] || "";
+        let logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
+        data.append("logoConcertChannel", logoUrlConcertChannel);
         let urlConertChannel = $('#link-logo-concert-channel').val() || "";
+        data.append("urlConcertChannel", urlConertChannel);
 
         //Claro cinema
-        let logoUrlClaroCinema = $("#image-icon3").files[0] || "";
+        let logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
+        data.append("logoClaroCinema", logoUrlClaroCinema);
         let urlClaroCinema = $('#link-logo-claro-cinema').val() || "";
-
-
+        data.append("urlClaroCinema", urlClaroCinema);
+        updateLogosOfLanding(data);
 
     })
 
