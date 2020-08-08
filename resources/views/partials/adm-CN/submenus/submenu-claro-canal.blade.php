@@ -641,14 +641,14 @@
                         <!--Imagen de programa en slider-->
                         <section>
                             <select
-                                class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
+                                class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                                 title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1">
-                                <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
+{{--                                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                                     value="">el reus</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
                                     value="">caballeros de zodiaco2</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
-                                    value="">caballeros de zodiaco3</option>
+                                    value="">caballeros de zodiaco3</option> --}}
                             </select>
 
                       <!--      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">-->
@@ -883,13 +883,10 @@
 
 
                                             <select
-                                                class="selectpicker list1 a-text-regular-brownishtwo text-normal show-tick"
+                                                class="list1 a-text-regular-brownishtwo text-normal show-tick"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
-                                                data-dropup-auto="false">
-                                                <option value="">Lorem Ipsum</option>
-                                                <option value="">Lorem Ipsum</option>
-                                                <option value="">Lorem Ipsum</option>
+                                                data-dropup-auto="false" key="genre">
                                             </select>
                                         </div>
                                     </div>

@@ -1,6 +1,11 @@
 //JQUERY
 import $ from "jquery";
 
+import {
+    editAttributeProgram,
+
+} from "./generalSchedule.js";
+
 function updateImagesOfProgrammingSlider(data) {
     $.ajax({
         type: "POST",
@@ -90,6 +95,77 @@ function getChapterInfo(data) {
             $('.thermometer-schedule-list').html(itemThermometer);
             //Insertamos la imagen del capítulo
             $('.edit-image-program').attr("src", data.image_program);
+            //Catalogo de programas
+            let options = "";
+            data.program_catalogue.forEach(program => {
+                options += `
+                <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
+                value="">${program.title}</option>
+                `
+            });
+            $('.programs-catalogue').append(options);
+            //selectpicker pra ls titulos de los programas
+            //selectpicker pra ls titulos de los programas
+            $(".thumbnail-header1").selectpicker();
+            let selectheader = $(".thumbnail-header1");
+            selectheader.on("change", function () {
+                let val = "";
+                let newitem = $('.form-control').val();
+                console.log(newitem);
+                if (newitem != "") {
+                    selectheader.append(`<option class="edit-program-input text-uppercase a-text-black-warmrey   backwhite h2"
+                    value="" style="display:none;">` + newitem + `</option>`);
+                }
+                selectheader.push(newitem);
+                selectheader.selectpicker('refresh');
+            });
+
+            data
+            //Genres
+            let optionGenre = ""
+            data.genres.forEach(genre => {
+                optionGenre += `
+                <option value="${genre.title}">${genre.title}</option>
+                `
+            });
+            $('.list1').append(optionGenre);
+            $(".list1").selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+            let editProgramLandingGenres = "";
+            let selectGenres = $(".list1");
+            //Verificamos si el usuario ha seleccionado un género o categoría
+            selectGenres.on("change", function () {
+                //Obtenemos los valores del selectpicker
+                let selected = $(this).val();
+                console.log(selected);
+                //Obtenemos el número de valores que hemos obtenido del arreglo
+                let selectedLength = selected.length;
+                editProgramLandingGenres = "";
+                for (let index = 0; index < selectedLength; index++) {
+                    //Si es la primera palabra o la última, no agregamos una coma
+                    if (selectedLength - 1 == index) {
+                        editProgramLandingGenres += `${selected[index]}`;
+                    } else {
+                        editProgramLandingGenres += `${selected[index]},`;
+                    }
+                }
+
+            });
+            //Evento para cuando cerramos el selectpicker
+            selectGenres.on("hide.bs.select", function () {
+                let chapterId = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                //Obtenemos la key
+                let key = $(this).attr("key");
+                //Obtenemos los géneros que pudo haber seleccionado el usuario
+                let keyValue = editProgramLandingGenres;
+                //Hacemos la petición
+
+                editAttributeProgram(chapterId, key, keyValue);
+            });
 
             //Verificamos si el programa está en algunas de las secciones del landing
             switch (data.program.in_landing) {
@@ -113,14 +189,25 @@ function getChapterInfo(data) {
                 let landingBeginDateTime = data.program.in_landing_begin.split(" ");
                 let fullDate = landingBeginDateTime[0].split("-")
                 $('.edit-landing-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
-                $('.edit-landing-time-begin').val(landingBeginDateTime[1])
+                if (landingBeginDateTime[1] == "00:00:00") {
+                    $('.edit-landing-time-begin').val("");
+                } else {
+                    $('.edit-landing-time-begin').val(landingBeginDateTime[1])
+                }
+
+
             }
 
             if (data.program.in_landing_expiration) {
                 let landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
                 let fullDate = landingExpirationDateTime[0].split("-")
                 $('.edit-landing-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
-                $('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+                if (landingExpirationDateTime[1] == "00:00:00") {
+                    $('.edit-landing-time-end').val("");
+                } else {
+                    $('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+                }
+
             }
 
 
@@ -132,15 +219,27 @@ function getChapterInfo(data) {
             }
             if (data.program.in_home_begin) {
                 let homeBeginDateTime = data.program.in_home_begin.split(" ");
-                $('.edit-home-date-begin').val(homeBeginDateTime[0])
-                $('.edit-home-time-begin').val(homeBeginDateTime[1])
+                let fullDate = homeBeginDateTime[0].split("-")
+                $('.edit-home-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                if (homeBeginDateTime[1] == "00:00:00") {
+                    $('.edit-home-time-begin').val("");
+                } else {
+                    $('.edit-home-time-begin').val(homeBeginDateTime[1]);
+                }
+
             }
 
             if (data.program.in_home_expiration) {
                 let homeExpirationDateTime = data.program.in_home_expiration.split(" ");
                 let fullDate = homeExpirationDateTime[0].split("-")
                 $('.edit-home-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
-                $('.edit-home-time-end').val(homeExpirationDateTime[1]);
+                if (homeExpirationDateTime[1] == "00:00:00") {
+                    $('.edit-home-time-end').val("");
+                } else {
+                    $('.edit-home-time-end').val(homeExpirationDateTime[1])
+                }
+
+
             }
 
             //Schedule Item Date Time

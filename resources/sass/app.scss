@@ -1,6 +1,7 @@
 body {
     overscroll-behavior-x: none;
 }
+
 $slick-font-path: "~slick-carousel/slick/fonts/"; // To add
 $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "~slick-carousel/slick/slick";
@@ -17,6 +18,7 @@ $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "./molecules/lists";
 @import "./molecules/nav";
 @import "./molecules/modal";
+@import "./molecules/dropdown";
 @import "./organisms/container";
 @import "./organisms/footer";
 @import "./organisms/grid";
