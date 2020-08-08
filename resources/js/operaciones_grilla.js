@@ -1265,7 +1265,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             url: "view",
             data: {
-                view: "grilla-" + $canal + "-button"
+                view: "grilla-" + canal + "-button"
             },
             beforeSend: function() {
                 const loader = `
