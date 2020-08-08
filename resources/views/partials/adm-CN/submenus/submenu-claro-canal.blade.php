@@ -642,7 +642,7 @@
                         <section>
                             <select
                                 class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
-                                title="" id="prog_titulo_programa" data-live-search-placeholder="Buscar">
+                                title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1">
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                                     value="">el reus</option>
                                 <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
