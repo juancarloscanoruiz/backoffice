@@ -503,8 +503,10 @@ function eventsGrilla() {
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
 
+                let landing = $("#date-start-input").attr("landing");
+                //console.log("El landing es: "+landing);
                 let endDate = fullDate[1];
-                filterDates(startDate, endDate);
+                filterDates(startDate, endDate, landing);
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
                 $("#end-date-text").text(endDateFull);
@@ -1304,7 +1306,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             url: "view",
             data: {
-                view: "grilla-" + $canal + "-button"
+                view: "grilla-" + canal + "-button"
             },
             beforeSend: function () {
                 const loader = `
@@ -1393,11 +1395,14 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
             success: function (result) {
                 updateGrill(data.landing_id);
+                $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
         }).fail(function (e) {
             console.log(e);
+            $(".loader-container").remove();
+            $(".modal-information").modal("hide");
         });
     });
 
@@ -1424,6 +1429,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             }
         }).fail(function (e) {
             console.log(e);
+            $(".loader-container").remove();
+            $(".modal-information").modal("hide");
         });
     });
     $("#acccion-programacion-cancela").click(function () {

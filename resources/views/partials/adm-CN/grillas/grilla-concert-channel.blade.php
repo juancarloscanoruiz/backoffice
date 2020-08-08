@@ -134,7 +134,7 @@ $data_for_new_entry = json_encode([
             </div>
             <!--Fecha de inicio de calendario-->
             <div class="position-relative">
-                <input type="text" id="date-start-input">
+                <input type="text" id="date-start-input" landing="Concert Channel">
                 <label for="date-start-input" class="mb-0 ml-5 date-button date-start-table d-flex align-items-center pl-3 pr-3" id="date-start-table">
                     <img src="./images/calendario.svg" alt="">
                     <div class="ml-3">
