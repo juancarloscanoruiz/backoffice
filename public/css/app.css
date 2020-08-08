@@ -355,6 +355,14 @@ body {
   border: transparent !important;
 }
 
+.text-none {
+  text-decoration: none;
+}
+
+.text-none:hover {
+  text-decoration: none;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -401,10 +409,6 @@ body {
 }
 
 /* TEXT BASE */
-
-.text-none {
-  text-decoration: none;
-}
 
 .h2 {
   font-size: 32px;
@@ -1456,6 +1460,14 @@ body {
 
 .select2-container--default .select2-selection--single {
   border: transparent !important;
+}
+
+.text-none {
+  text-decoration: none;
+}
+
+.text-none:hover {
+  text-decoration: none;
 }
 
 /* BOTONES REUTILIZABLES */
@@ -3407,7 +3419,7 @@ input[type=radio]:checked + .no-estilo1 {
 
 .list1 > .dropdown-toggle {
   position: relative;
-  width: 150% !important;
+  width: 120% !important;
   z-index: 1;
   text-align: right;
   white-space: nowrap;
@@ -3462,7 +3474,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .list1 .dropdown-menu {
-  min-width: 150% !important;
+  min-width: 120% !important;
   box-sizing: border-box;
 }
 
@@ -3941,10 +3953,6 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 /* TEXT BASE */
-
-.text-none {
-  text-decoration: none;
-}
 
 .h2 {
   font-size: 32px;

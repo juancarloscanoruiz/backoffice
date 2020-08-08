@@ -1,5 +1,5 @@
 //JQUERY
-import $ from "jquery";
+import $, { isEmptyObject } from "jquery";
 //Métodos para aplicar ciertos estilos a las filas y columnas
 import {
     selectRow,
@@ -272,9 +272,22 @@ function eventsGrilla() {
     });
 
     //selectpicker pra ls titulos de los programas
-    $(".thumbnail-header1").selectpicker({
-        filter: true
-    });
+    //selectpicker pra ls titulos de los programas
+    $(".thumbnail-header1").selectpicker();
+    let selectheader = $(".thumbnail-header1");
+selectheader.on("change", function(){
+    let val ="";
+ let newitem=  $('.form-control').val();
+ console.log(newitem);
+ if (newitem != ""){
+selectheader.append(`<option class="edit-program-input text-uppercase a-text-black-warmrey   backwhite h2"
+value="" style="display:none;">`+newitem+`</option>`);
+ }
+ selectheader.push(newitem);
+         selectheader.selectpicker('refresh');
+
+});
+ 
 
     //selectpicker para el campo de género en un programa
     $(".selectpicker").selectpicker({
