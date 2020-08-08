@@ -485,7 +485,7 @@ public function onlyday(Request $request)
             $html = "
             <div class='contenedor-fila' id='programacion-claro-$chapter_id'>
             <!--ACCIONES-->
-            <div class='contenedor-columna selectable-column centro cursor-pointer' id='entrada-$chapter_id' rel='acciones'><img src='./images/basic-icons/pencil-edit-teal.svg' class='mr-3 edit-row-pencil' alt='pencil'><img src='./images/basic-icons/trash.svg' class='trash-row' alt='trash'></div>
+            <div class='contenedor-columna selectable-column centro cursor-pointer' id='entrada-$chapter_id' rel='acciones'><img src='./images/basic-icons/pencil-edit-teal.svg' class='mr-3 edit-row-pencil' alt='pencil'><img src='./images/basic-icons/trash.svg' class='trash-row' alt='trash' chapter_id='" . $chapter_id . "'></div>
             <!--ESTADO-->
             <div class='contenedor-columna centro editable-column cursor-pointer' id='estado-$chapter_id'>
                 <span class='program-original'></span>
