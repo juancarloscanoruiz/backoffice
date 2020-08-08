@@ -73117,30 +73117,60 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-attribute-text').keydown(function (e) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
     if (e.which === 13 && !e.shiftKey) {
       var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
       var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
 
       if (key == "in_home_begin") {
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val()) {
-          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(time);
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
           console.log(value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val()) {
-          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " 00:00:00");
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
         }
       }
 
       if (key == "in_home_expiration") {
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-expiration').val()) {
-          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
-          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(time);
-          console.log(value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-expiration').val()) {
-          var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+          var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
-          value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " 00:00:00");
+          value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+          console.log(value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+          var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " 00:00:00");
+        }
+      }
+
+      if (key == "in_landing_begin") {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+          var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+          console.log("in_landing_begin" + _date3);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+          var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
+          console.log(value);
+        }
+      }
+
+      if (key == "in_landing_expiration") {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-expiration").val()) {
+          var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-expiration").val();
+
+          value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-expiration").val());
+          console.log(value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-expiration").val()) {
+          var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-expiration").val();
+
+          value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
+          console.log(value);
         }
       }
 
@@ -73150,13 +73180,13 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-switch').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-switch-home').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-home").click(function () {
     console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
@@ -73166,7 +73196,7 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-switch-landing').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
@@ -73594,10 +73624,10 @@ function eventsGrilla() {
           if (schedule == "in_landing_begin") {
             //Obtenemos el div padre para saber qué horario y fecha andamos modificando
             //Obteemos la fecha y la dividimos
-            var _date2 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+            var _date7 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-            var day = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]);
+            var day = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]);
             var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
             console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
@@ -73613,24 +73643,24 @@ function eventsGrilla() {
               }
           } //Verificamos si es la fecha fin
           else if (schedule == "in_landing_expiration") {
-              var _date3 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+              var _date8 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
               var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-              var _day = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]); //En caso de tener ambos valores, hacemos la petición
+              var _day = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]); //En caso de tener ambos valores, hacemos la petición
 
 
               console.log(_day, _hours);
 
-              if (_date3 != "" && _hours != "") {
-                var _day2 = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]);
+              if (_date8 != "" && _hours != "") {
+                var _day2 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]);
 
                 keyValue = "".concat(_day2, " ").concat(_hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
               } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-              else if (_date3 != "" && _hours == "") {
+              else if (_date8 != "" && _hours == "") {
                   _hours = "00:00:00";
                   keyValue = "".concat(_day, " ").concat(_hours);
                   Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
@@ -73644,38 +73674,38 @@ function eventsGrilla() {
 
           if (scheduleHome == "in_home_begin") {
             //Obtenemos la fecha
-            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+            var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
 
-            var _day3 = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0]); //Obtenemos la hora
+            var _day3 = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0]); //Obtenemos la hora
 
 
             var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date4 != "" && _hours2 != "") {
+            if (_date9 != "" && _hours2 != "") {
               keyValue = "".concat(_day3, " ").concat(_hours2);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date4 != "" && _hours2 == "") {
+            else if (_date9 != "" && _hours2 == "") {
                 _hours2 = "00:00:00";
                 keyValue = "".concat(_day3, " ").concat(_hours2);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
               }
           } else if (scheduleHome == "in_home_expiration") {
             //Obtenemos la fecha
-            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+            var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
 
-            var _day4 = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]); //Obtenemos la hora
+            var _day4 = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0]); //Obtenemos la hora
 
 
             var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date5 != "" && _hours3 != "") {
+            if (_date10 != "" && _hours3 != "") {
               keyValue = "".concat(_day4, " ").concat(_hours3);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date5 != "" && _hours3 == "") {
+            else if (_date10 != "" && _hours3 == "") {
                 _hours3 = "00:00:00";
                 keyValue = "".concat(_day4, " ").concat(_hours3);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
@@ -73724,10 +73754,10 @@ function eventsGrilla() {
         if (schedule == "in_landing_begin") {
           //Obtenemos el div padre para saber qué horario y fecha andamos modificando
           //Obteemos la fecha y la dividimos
-          var _date6 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+          var _date11 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-          var day = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]);
+          var day = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0]);
           var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
           console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
@@ -73743,24 +73773,24 @@ function eventsGrilla() {
             }
         } //Verificamos si es la fecha fin
         else if (schedule == "in_landing_expiration") {
-            var _date7 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+            var _date12 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
             var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-            var _day5 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]); //En caso de tener ambos valores, hacemos la petición
+            var _day5 = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0]); //En caso de tener ambos valores, hacemos la petición
 
 
             console.log(_day5, _hours4);
 
-            if (_date7 != "" && _hours4 != "") {
-              var _day6 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]);
+            if (_date12 != "" && _hours4 != "") {
+              var _day6 = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0]);
 
               keyValue = "".concat(_day6, " ").concat(_hours4);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-            else if (_date7 != "" && _hours4 == "") {
+            else if (_date12 != "" && _hours4 == "") {
                 _hours4 = "00:00:00";
                 keyValue = "".concat(_day5, " ").concat(_hours4);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
@@ -73775,40 +73805,40 @@ function eventsGrilla() {
 
         if (scheduleHome == "in_home_begin") {
           //Obtenemos la fecha
-          var _date8 = parentHome.find(".home-start-day").val().split("-");
+          var _date13 = parentHome.find(".home-start-day").val().split("-");
 
-          var _day7 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]); //Obtenemos la hora
+          var _day7 = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0]); //Obtenemos la hora
 
 
           var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-          if (_date8 != "" && _hours5 != "") {
+          if (_date13 != "" && _hours5 != "") {
             keyValue = "".concat(_day7, " ").concat(_hours5);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date8 != "" && _hours5 == "") {
+          else if (_date13 != "" && _hours5 == "") {
               _hours5 = "00:00:00";
               keyValue = "".concat(_day7, " ").concat(_hours5);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             }
         } else if (scheduleHome == "in_home_expiration") {
           //Obtenemos la fecha
-          var _date9 = parentHome.find(".home-expiration-day").val().split("-");
+          var _date14 = parentHome.find(".home-expiration-day").val().split("-");
 
-          var _day8 = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0]); //Obtenemos la hora
+          var _day8 = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0]); //Obtenemos la hora
 
 
           var _hours6 = parentHome.find(".home-expiration-hours").val();
 
           console.log(_day8, _hours6); //Si ambos no están vacíos, hacemos la petición
 
-          if (_date9 != "" && _hours6 != "") {
-            _day8 = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0]);
+          if (_date14 != "" && _hours6 != "") {
+            _day8 = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0]);
             keyValue = "".concat(_day8, " ").concat(_hours6);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date9 != "" && _hours6 == "") {
+          else if (_date14 != "" && _hours6 == "") {
               _hours6 = "00:00:00";
               keyValue = "".concat(_day8, " ").concat(_hours6);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
