@@ -73156,6 +73156,24 @@ function eventsGrilla() {
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id");
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-switch-home').click(function () {
+    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-switch-landing').click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+    }
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
     var data = new FormData(); //Canal claro
 
@@ -73477,8 +73495,10 @@ function eventsGrilla() {
         var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
 
+        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing"); //console.log("El landing es: "+landing);
+
         var endDate = fullDate[1];
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["filterDates"])(startDate, endDate);
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["filterDates"])(startDate, endDate, landing);
         var endDateSplit = endDate.split("-");
         var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
@@ -73982,7 +74002,7 @@ function eventsGrilla() {
       type: "POST",
       url: "view",
       data: {
-        view: "grilla-" + $canal + "-button"
+        view: "grilla-" + canal + "-button"
       },
       beforeSend: function beforeSend() {
         var loader = "\n                <div class=\"loader-view-container\">\n                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
@@ -74058,11 +74078,14 @@ function eventsGrilla() {
       },
       success: function success(result) {
         updateGrill(data.landing_id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
         console.log(JSON.parse(result));
       }
     }).fail(function (e) {
       console.log(e);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
     });
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-agrega").click(function () {
@@ -74084,6 +74107,8 @@ function eventsGrilla() {
       }
     }).fail(function (e) {
       console.log(e);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
     });
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-cancela").click(function () {

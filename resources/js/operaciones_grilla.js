@@ -78,6 +78,25 @@ function eventsGrilla() {
         editAttributeProgram(chapter_id, key, value);
     })
 
+    $('.edit-switch-home').click(function () {
+        console.log($(this).val());
+        if ($(this).val() == 0) {
+            $(".edit-home-date-end").val("");
+            $(".edit-home-date-begin").val("");
+            $(".edit-home-time-end").val("");
+            $(".edit-home-time-begin").val("");
+        }
+    });
+
+    $('.edit-switch-landing').click(function () {
+        if ($(this).val() == 0) {
+            $(".edit-landing-date-end").val("");
+            $(".edit-landing-date-begin").val("");
+            $(".edit-landing-time-end").val("");
+            $(".edit-landing-time-begin").val("");
+        }
+    })
+
     $("#edit-logos-button").click(function () {
         let data = new FormData();
         //Canal claro

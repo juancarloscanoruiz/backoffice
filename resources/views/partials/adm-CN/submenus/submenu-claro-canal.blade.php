@@ -681,12 +681,12 @@
                                         <!--Switch-->
                                         <div class="d-flex align-items-center mb-3">
                                             <input type="radio" name="sino-landing" id="yes-landing" value="1"
-                                                class="switch-landing edit-landing-yes" />
+                                                class="edit-switch-landing edit-landing-yes" key="in_landing" />
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-landing" id="no-landing" value="0"
-                                                class="switch-landing switch-table edit-landing-no" key="in_landing"/>
+                                                class="edit-switch-landing switch-table edit-landing-no" key="in_landing"/>
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -744,12 +744,12 @@
                                         <!--Switch-->
                                         <div class="d-flex align-items-center edit-switches-home-container">
                                             <input type="radio" name="sino-home" id="edit-in-home-yes" value="1"
-                                                class="switch-landing edit-program-switch edit-in-home-yes" />
+                                                class="edit-switch-home edit-program-switch edit-in-home-yes" key="in_home"/>
                                             <label for="edit-in-home-yes" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-home" id="edit-in-home-no" value="0" checked
-                                                class="switch-landing edit-program-switch edit-in-home-no" />
+                                                class="edit-switch-home edit-program-switch edit-in-home-no" key="in_home"/>
                                             <label for="edit-in-home-no" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
