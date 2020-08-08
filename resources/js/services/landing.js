@@ -60,6 +60,7 @@ function getChapterInfo(data) {
         success: function (result) {
 
             let data = JSON.parse(result);
+            $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id)
             console.log(data)
             //thermometer
             let thermometer = data.thermometer;
@@ -94,6 +95,8 @@ function getChapterInfo(data) {
             switch (data.program.in_landing) {
                 case 0:
                     $('.edit-landing-no').prop("checked", true);
+                    $('.edit-carrusel-1').prop("checked", false);
+                    $('.edit-carrusel-2').prop("checked", false);
                     break;
                 case 1:
                     $('.edit-landing-yes').prop("checked", true);
@@ -106,6 +109,20 @@ function getChapterInfo(data) {
                     break;
             }
 
+            if (data.program.in_landing_begin) {
+                let landingBeginDateTime = data.program.in_landing_begin.split(" ");
+                let fullDate = landingBeginDateTime[0].split("-")
+                $('.edit-landing-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                $('.edit-landing-time-begin').val(landingBeginDateTime[1])
+            }
+
+            if (data.program.in_landing_expiration) {
+                let landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
+                let fullDate = landingExpirationDateTime[0].split("-")
+                $('.edit-landing-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                $('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+            }
+
 
             //Verficar si el programa se encuentra en el home
             if (data.program.in_home == 0) {
@@ -113,7 +130,6 @@ function getChapterInfo(data) {
             } else {
                 $('.edit-in-home-yes').prop("checked", true)
             }
-
             if (data.program.in_home_begin) {
                 let homeBeginDateTime = data.program.in_home_begin.split(" ");
                 $('.edit-home-date-begin').val(homeBeginDateTime[0])
@@ -127,7 +143,44 @@ function getChapterInfo(data) {
                 $('.edit-home-time-end').val(homeExpirationDateTime[1]);
             }
 
+            //Schedule Item Date Time
+            let scheduleItemDate = data.program.day.split("-")
+            $('.edit-schedule-date').val(`${scheduleItemDate[2]}-${scheduleItemDate[1]}-${scheduleItemDate[0]}`)
+            $('.edit-schedule-item-time').val(data.program.hour);
 
+            //Synopsis
+            $('.edit-program-textarea').val(data.program.synopsis);
+            //Season
+            $('.edit-program-season').val(data.program.season);
+            //Program episode number
+            $('.edit-episode-number').val(data.program.episode_number);
+            //Year
+            $('.edit-year-produced').val(data.program.program.year);
+            //Subtitle
+            $('.edit-program-subtitle').val(data.program.subtitle);
+            //Rating
+            $('.edit-rating-code').val(data.program.program.rating);
+            //Duration
+            $('.edit-program-duration').val(data.program.duration);
+            //Subbed
+            if (data.program.subbed == 0) {
+                $('.edit-subbed-no').prop("checked", true);
+            } else {
+                $('.edit-subbed-yes').prop("checked", true);
+            }
+            //Dubbed
+            if (data.program.dubbed == 0) {
+                $('.edit-dubbed-no').prop("checked", true);
+            } else {
+                $('.edit-dubbed-yes').prop("checked", true);
+            }
+
+            //Audio 5.0
+            if (data.program.audio5 == 0) {
+                $('.edit-audio5-no').prop("checked", true);
+            } else {
+                $('.edit-audio5-yes').prop("checked", true);
+            }
 
             $(".modal-edit-program").modal("show");
             $(".calendar-slider").slick({

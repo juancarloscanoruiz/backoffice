@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\xampp\\\\htdocs\\\\backoffice1\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\backoffice1\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73117,6 +73117,45 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-attribute-text').keydown(function (e) {
+    if (e.which === 13 && !e.shiftKey) {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      if (key == "in_home_begin") {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val()) {
+          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(time);
+          console.log(value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val()) {
+          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " 00:00:00");
+        }
+      }
+
+      if (key == "in_home_expiration") {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-expiration').val()) {
+          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(time);
+          console.log(value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-expiration').val()) {
+          var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+
+          value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " 00:00:00");
+        }
+      }
+
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+      var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-switch').click(function () {
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id");
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
     var data = new FormData(); //Canal claro
 
@@ -73535,10 +73574,10 @@ function eventsGrilla() {
           if (schedule == "in_landing_begin") {
             //Obtenemos el div padre para saber qué horario y fecha andamos modificando
             //Obteemos la fecha y la dividimos
-            var _date = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+            var _date2 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-            var day = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0]);
+            var day = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]);
             var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
             console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
@@ -73554,24 +73593,24 @@ function eventsGrilla() {
               }
           } //Verificamos si es la fecha fin
           else if (schedule == "in_landing_expiration") {
-              var _date2 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+              var _date3 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
               var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-              var _day = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]); //En caso de tener ambos valores, hacemos la petición
+              var _day = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]); //En caso de tener ambos valores, hacemos la petición
 
 
               console.log(_day, _hours);
 
-              if (_date2 != "" && _hours != "") {
-                var _day2 = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0]);
+              if (_date3 != "" && _hours != "") {
+                var _day2 = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]);
 
                 keyValue = "".concat(_day2, " ").concat(_hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
               } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-              else if (_date2 != "" && _hours == "") {
+              else if (_date3 != "" && _hours == "") {
                   _hours = "00:00:00";
                   keyValue = "".concat(_day, " ").concat(_hours);
                   Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
@@ -73585,38 +73624,38 @@ function eventsGrilla() {
 
           if (scheduleHome == "in_home_begin") {
             //Obtenemos la fecha
-            var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
 
-            var _day3 = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0]); //Obtenemos la hora
+            var _day3 = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0]); //Obtenemos la hora
 
 
             var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date3 != "" && _hours2 != "") {
+            if (_date4 != "" && _hours2 != "") {
               keyValue = "".concat(_day3, " ").concat(_hours2);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date3 != "" && _hours2 == "") {
+            else if (_date4 != "" && _hours2 == "") {
                 _hours2 = "00:00:00";
                 keyValue = "".concat(_day3, " ").concat(_hours2);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
               }
           } else if (scheduleHome == "in_home_expiration") {
             //Obtenemos la fecha
-            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
 
-            var _day4 = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0]); //Obtenemos la hora
+            var _day4 = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]); //Obtenemos la hora
 
 
             var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date4 != "" && _hours3 != "") {
+            if (_date5 != "" && _hours3 != "") {
               keyValue = "".concat(_day4, " ").concat(_hours3);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date4 != "" && _hours3 == "") {
+            else if (_date5 != "" && _hours3 == "") {
                 _hours3 = "00:00:00";
                 keyValue = "".concat(_day4, " ").concat(_hours3);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
@@ -73665,10 +73704,10 @@ function eventsGrilla() {
         if (schedule == "in_landing_begin") {
           //Obtenemos el div padre para saber qué horario y fecha andamos modificando
           //Obteemos la fecha y la dividimos
-          var _date5 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+          var _date6 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-          var day = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0]);
+          var day = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]);
           var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
 
           console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
@@ -73684,24 +73723,24 @@ function eventsGrilla() {
             }
         } //Verificamos si es la fecha fin
         else if (schedule == "in_landing_expiration") {
-            var _date6 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+            var _date7 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
             var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-            var _day5 = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]); //En caso de tener ambos valores, hacemos la petición
+            var _day5 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]); //En caso de tener ambos valores, hacemos la petición
 
 
             console.log(_day5, _hours4);
 
-            if (_date6 != "" && _hours4 != "") {
-              var _day6 = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0]);
+            if (_date7 != "" && _hours4 != "") {
+              var _day6 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]);
 
               keyValue = "".concat(_day6, " ").concat(_hours4);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-            else if (_date6 != "" && _hours4 == "") {
+            else if (_date7 != "" && _hours4 == "") {
                 _hours4 = "00:00:00";
                 keyValue = "".concat(_day5, " ").concat(_hours4);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, schedule, keyValue);
@@ -73716,40 +73755,40 @@ function eventsGrilla() {
 
         if (scheduleHome == "in_home_begin") {
           //Obtenemos la fecha
-          var _date7 = parentHome.find(".home-start-day").val().split("-");
+          var _date8 = parentHome.find(".home-start-day").val().split("-");
 
-          var _day7 = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0]); //Obtenemos la hora
+          var _day7 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]); //Obtenemos la hora
 
 
           var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-          if (_date7 != "" && _hours5 != "") {
+          if (_date8 != "" && _hours5 != "") {
             keyValue = "".concat(_day7, " ").concat(_hours5);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date7 != "" && _hours5 == "") {
+          else if (_date8 != "" && _hours5 == "") {
               _hours5 = "00:00:00";
               keyValue = "".concat(_day7, " ").concat(_hours5);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             }
         } else if (scheduleHome == "in_home_expiration") {
           //Obtenemos la fecha
-          var _date8 = parentHome.find(".home-expiration-day").val().split("-");
+          var _date9 = parentHome.find(".home-expiration-day").val().split("-");
 
-          var _day8 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]); //Obtenemos la hora
+          var _day8 = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0]); //Obtenemos la hora
 
 
           var _hours6 = parentHome.find(".home-expiration-hours").val();
 
           console.log(_day8, _hours6); //Si ambos no están vacíos, hacemos la petición
 
-          if (_date8 != "" && _hours6 != "") {
-            _day8 = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0]);
+          if (_date9 != "" && _hours6 != "") {
+            _day8 = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0]);
             keyValue = "".concat(_day8, " ").concat(_hours6);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date8 != "" && _hours6 == "") {
+          else if (_date9 != "" && _hours6 == "") {
               _hours6 = "00:00:00";
               keyValue = "".concat(_day8, " ").concat(_hours6);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
@@ -74430,6 +74469,7 @@ function getChapterInfo(data) {
     url: "landing/get-chapter-info/" + data,
     success: function success(result) {
       var data = JSON.parse(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
       console.log(data); //thermometer
 
       var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
@@ -74458,6 +74498,8 @@ function getChapterInfo(data) {
       switch (data.program.in_landing) {
         case 0:
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
           break;
 
         case 1:
@@ -74471,6 +74513,22 @@ function getChapterInfo(data) {
 
         default:
           break;
+      }
+
+      if (data.program.in_landing_begin) {
+        var landingBeginDateTime = data.program.in_landing_begin.split(" ");
+        var fullDate = landingBeginDateTime[0].split("-");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
+      }
+
+      if (data.program.in_landing_expiration) {
+        var landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
+
+        var _fullDate = landingExpirationDateTime[0].split("-");
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
       } //Verficar si el programa se encuentra en el home
 
 
@@ -74488,9 +74546,50 @@ function getChapterInfo(data) {
 
       if (data.program.in_home_expiration) {
         var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
-        var fullDate = homeExpirationDateTime[0].split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+
+        var _fullDate2 = homeExpirationDateTime[0].split("-");
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
+      } //Schedule Item Date Time
+
+
+      var scheduleItemDate = data.program.day.split("-");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0]));
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour); //Synopsis
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
+
+      if (data.program.subbed == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
+      } //Dubbed
+
+
+      if (data.program.dubbed == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
+      } //Audio 5.0
+
+
+      if (data.program.audio5 == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
@@ -74772,8 +74871,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-          <div class="w3-card-4 bg-white d-flex">
-              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+         <div class="w3-card-4 bg-white d-flex">
+             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -74786,15 +74885,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                      </input>
-                      <p class="mt-4 ml-2">Rol de usuario</p>
+                     </input>
+                     <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-          </div>
+         </div>
         </div>
         </div>
         `);
@@ -74829,7 +74928,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-          showDescriptions();*/
+         showDescriptions();*/
       }
     }
   });
@@ -75428,7 +75527,7 @@ function sendEmailResetPassword(input) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\backoffice1\backoffice\resources\js\operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

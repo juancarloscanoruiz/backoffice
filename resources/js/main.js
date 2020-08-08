@@ -61,14 +61,13 @@ $.ajaxSetup({
 });
 
 $(document).ready(function () {
-
-   //para mostrar un modal encima del otro
+    //para mostrar un modal encima del otro
 
     $('.delete-info').on('show.bs.modal', function () {
         var modalParent = $(this).attr('data-modal-parent');
         $(modalParent).css('opacity', 0);
     });
-     
+
     $('.delete-info').on('hidden.bs.modal', function () {
         var modalParent = $(this).attr('data-modal-parent');
         $(modalParent).css('opacity', 1);

@@ -382,10 +382,7 @@
         aria-hidden="true" style="overflow: auto;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
-
                 <div class="modal-body pt-0">
-
-
                     <h2 class="h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
                     <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
@@ -643,7 +640,6 @@
                         </div>
                         <!--Imagen de programa en slider-->
                         <section>
-
                             <select
                                 class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative"
                                 title="" id="prog_titulo_programa" data-live-search-placeholder="Buscar">
@@ -676,7 +672,7 @@
                         <section class="mb-5">
                             <div class="row">
                                 <!--Landing-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
@@ -689,8 +685,8 @@
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
                                                 Sí</label>
-                                            <input type="radio" name="sino-landing" id="no-landing" value="0" checked
-                                                class="switch-landing switch-table edit-landing-no" />
+                                            <input type="radio" name="sino-landing" id="no-landing" value="0"
+                                                class="switch-landing switch-table edit-landing-no" key="in_landing"/>
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -699,14 +695,14 @@
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2">
                                                 <input type="radio" checked name="dontlose" class="switch-table edit-carrusel-1"
-                                                    value="2" id="landing-section-2" />
+                                                    value="2" id="landing-section-2" key="in_landing" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                                 1</span>
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2-">
                                                 <input type="radio" checked name="dontlose" class="mb-0 switch-table edit-carrusel-2"
-                                                    value="2" id="landing-section-2" />
+                                                    value="2" id="landing-section-2" key="in_landing"/>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="cursor-pointer a-text-bold-silver ml-2 text-uppercase">Carrusel
@@ -716,30 +712,30 @@
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
                                             <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
-                                                        placeholder="00-00-0000" /></span>
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-landing-date-begin"
+                                                        placeholder="00-00-0000" key="in_landing_begin" /></span>
                                             </div>
                                             <div class="mb-4 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">Fin: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-landing-date-end" key="in_landing_expiration"
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
                                         <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                             <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-landing-time-begin" key="in_landing_begin"
                                                     placeholder="00:00:00"></span>
                                         </div>
                                         <div class="text-center edit-rectangle-small-container py-3">
                                             <span class="a-text-bold-warm">Fin: <input type="text"
-                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-landing-time-end" key="in_landing_expiration"
                                                     placeholder="00:00:00"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <!--Home-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
@@ -747,33 +743,34 @@
                                         </p>
                                         <!--Switch-->
                                         <div class="d-flex align-items-center edit-switches-home-container">
-                                            <input type="radio" name="sino-home" id="yes-landing" value="1"
-                                                class="switch-landing edit-in-home-yes" />
-                                            <label for="yes-landing" id="siestado-landing"
+                                            <input type="radio" name="sino-home" id="edit-in-home-yes" value="1"
+                                                class="switch-landing edit-program-switch edit-in-home-yes" />
+                                            <label for="edit-in-home-yes" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
-                                            <input type="radio" name="sino-home" id="no-landing" value="0" checked
-                                                class="switch-landing switch-table edit-in-home-no" />
-                                            <label for="no-landing" id="noestado-landing"
+                                            <input type="radio" name="sino-home" id="edit-in-home-no" value="0" checked
+                                                class="switch-landing edit-program-switch edit-in-home-no" />
+                                            <label for="edit-in-home-no" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
                                         </div>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
                                             <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                                <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin"
-                                                        placeholder="00-00-0000"></span>
+                                                <span class="a-text-bold-warm">Inicio: <input key="in_home_begin" type="text"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
+                                                        placeholder="00-00-0000" /></span>
                                             </div>
                                             <div class="mb-4 text-center edit-rectangle-small-container py-3">
-                                                <span class="a-text-bold-warm">Fin: <input type="text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end"
+                                                <span class="a-text-bold-warm">Fin:
+                                                    <input type="text" key="in_home_expiration"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
                                         <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                            <span class="a-text-bold-warm">Inicio: <input type="text"
+                                            <span class="a-text-bold-warm">Inicio: <input key="in_home_begin" type="text"
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                     placeholder="00:00:00"></span>
                                         </div>
@@ -784,7 +781,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p
                                             class="edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray">
@@ -795,8 +792,8 @@
                                             <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
-                                                    <input type=" text"
-                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input"
+                                                    <input key="" type=" text"
+                                                        class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
@@ -804,7 +801,7 @@
                                         <div class="text-center edit-rectangle-small-container py-3">
                                             <span class="a-text-bold-warm"><img src="{{ asset('images/reloj.svg') }}"
                                                     alt="" class="mr-3"><input type="text"
-                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                                    class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
                                                     placeholder="00:00:00"></span>
                                         </div>
                                     </div>
@@ -812,49 +809,49 @@
                             </div>
                         </section>
                         <!--Sinopsis-->
-                        <section class="mb-5">
+                        <section class="mb-5 edit-program-data-container">
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
-                            <textarea class="edit-program-textarea a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
+                            <textarea key="synopsis" class="edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
 
                         <section class="mb-3">
                             <div class="row">
                                 <!--Program episode season-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode
                                             season
                                         </p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                            <input type="text"
-                                                class="text-center input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="season"
+                                                class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                 placeholder="00">
                                         </div>
                                     </div>
                                 </div>
                                 <!--Program episode number-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode
                                             number
                                         </p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                            <input type="text"
-                                                class="text-center input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="program_episode_number"
+                                                class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                 placeholder="000">
                                         </div>
                                     </div>
                                 </div>
                                 <!--Program year produced-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program year
                                             produced
                                         </p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                            <input type="text"
-                                                class="year-input text-center input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="program_year_produced"
+                                                class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                                 placeholder="YYYY">
                                         </div>
                                     </div>
@@ -864,20 +861,20 @@
                         <section class="mb-3">
                             <div class="row">
                                 <!--Program title alternate-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program title
                                             alternate
                                         </p>
                                         <div class="mb-3 edit-rectangle-container p-3">
-                                            <input type="text"
-                                                class="w-100 input-basic edit-program-input a-text-bold-warm"
+                                            <input type="text" key="subtitle"
+                                                class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
                                                 placeholder="Program Title Alternate">
                                         </div>
                                     </div>
                                 </div>
                                 <!--Program genre list-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre
                                             list
@@ -886,7 +883,7 @@
 
 
                                             <select
-                                                class="list1 a-text-regular-brownishtwo text-normal show-tick"
+                                                class="selectpicker list1 a-text-regular-brownishtwo text-normal show-tick"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false">
@@ -898,15 +895,15 @@
                                     </div>
                                 </div>
                                 <!---->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item
                                             rating
                                             code
                                         </p>
                                         <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                            <input type="text"
-                                                class="text-center input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
+                                            <input type="text" key="rating"
+                                                class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                                 placeholder="PG-00">
                                         </div>
                                     </div>
@@ -916,7 +913,7 @@
                         <section class="mb-3">
                             <div class="row">
                                 <!--Schedule item log date-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
@@ -925,13 +922,13 @@
                                         <div
                                             class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                             <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
-                                            <input type="text"
-                                                class="schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="day"
+                                                class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                                 placeholder="DD:MM:YY">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             time (gmt)
@@ -940,23 +937,22 @@
                                         <div
                                             class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                             <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
-                                            <input type="text"
-                                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="programing"
+                                                class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                                 placeholder="00:00:00">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container">
-                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
-                                            time (gmt)
+                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">estimated schedule item duration
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>
                                         <div
                                             class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                             <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
-                                            <input type="text"
-                                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            <input type="text" key="duration"
+                                                class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                                 placeholder="00:00:00">
                                         </div>
                                     </div>
@@ -966,19 +962,19 @@
                         <section class="mb-5">
                             <div class="row">
                                 <!--Schedule item log date-->
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule version
                                             subbed
                                         </p>
                                         <div class="d-flex">
                                             <input type="radio" name="subbed" id="yes-subbed" value="1"
-                                                class="switch-landing" />
+                                                class="edit-program-switch switch-landing edit-subbed-yes" key="subbed"/>
                                             <label for="yes-subbed" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="subbed" id="no-dubbed" value="0" checked
-                                                class="switch-landing switch-table" />
+                                                class="edit-program-switch switch-landing switch-table edit-subbed-no" key="subbed"/>
                                             <label for="no-dubbed" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -986,19 +982,19 @@
 
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule version
                                             dubbed
                                         </p>
                                         <div class="d-flex">
                                             <input type="radio" name="dubbed" id="yes-dubbed" value="1"
-                                                class="switch-landing" />
+                                                class="edit-program-switch switch-landing edit-dubbed-yes" key="dubbed"/>
                                             <label for="yes-dubbed" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="dubbed" id="no-dubbed" value="0" checked
-                                                class="switch-landing switch-table" />
+                                                class="edit-program-switch switch-landing switch-table edit-dubbed-yes" key="dubbed"/>
                                             <label for="no-dubbed" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -1006,19 +1002,19 @@
 
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Audio 5.1<br>
                                             available
                                         </p>
                                         <div class="d-flex">
                                             <input type="radio" name="audio5" id="yes-audio5" value="1"
-                                                class="switch-landing" />
+                                                class="edit-program-switch switch-landing edit-audio5-yes" key="audio5"/>
                                             <label for="yes-audio5" id="siestado-landing"
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="audio5" id="no-audio5" value="0" checked
-                                                class="switch-landing switch-table" />
+                                                class="edit-program-switch switch-landing switch-table edit-audio5-no" key="audio5"/>
                                             <label for="no-audio5" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -1134,7 +1130,7 @@
                       class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
                       <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
 
-                     <!-- <button 
+                     <!-- <button
                       class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
               </div>
 
@@ -1164,5 +1160,5 @@
     </div>
 
   </div>
-   
+
     </body>

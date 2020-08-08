@@ -613,7 +613,7 @@ $data_for_new_entry = json_encode([
                         <!--Schedule Item Long Time (GMT)-->
                         <div class="contenedor-columna selectable-column centro editable-column" rel="schedule-item-time" chapter_id="{{$programs[$indexPrograms]->chapter_id}}" key="programing">
                             <div class="schedule-date">
-                                <input type="text" class="editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo" value="{{$programs[$indexPrograms]->programing}}">
+                                <input type="text" class="editable-attribute table-input text-center schedule-time-input a-text-regular-brownishtwo edit-schedule-item-time" value="{{$programs[$indexPrograms]->programing}}">
                             </div>
                         </div>
                         <!--Estimated Schedule Item Duration-->
