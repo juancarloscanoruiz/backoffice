@@ -88888,6 +88888,118 @@ function eventsGrilla() {
 
     }
   });
+  /*$(".edit-program-attribute-text").blur(function () {
+      let key = $(this).attr("key");
+      let chapter_id = $(".edit-program-data-container").attr(
+          "chapter_id"
+      );
+      let value = $(this).val();
+      switch (key) {
+          case "in_home_begin":
+               if (
+                  $(".edit-home-date-begin").val() &&
+                  $(".edit-home-time-begin").val()
+              ) {
+                  value = `${$(this).val()} ${$(
+                              ".edit-home-time-begin"
+                          ).val()}`;
+                  console.log(value);
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              } else if (
+                  $(".edit-home-date-begin").val() &&
+                  !$(".edit-home-time-begin").val()
+              ) {
+                  let date = $(this)
+                      .val()
+                      .split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              }
+               break;
+          case "in_home_expiration":
+               if (
+                  $(".edit-home-date-expiration").val() &&
+                  $(".edit-home-time-expiration").val()
+              ) {
+                  let date = $(".edit-home-date-expiration")
+                      .val()
+                      .split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                  ".edit-home-time-expiration"
+                              ).val()}`;
+                  console.log(value);
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              } else if (
+                  $(".edit-home-date-expiration").val() &&
+                  !$(".edit-home-time-expiration").val()
+              ) {
+                  let date = $(".edit-home-date-expiration")
+                      .val()
+                      .split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              }
+               break;
+          case "in_landing_begin":
+               if (
+                  $(".edit-landing-date-begin").val() &&
+                  $(".edit-landing-time-begin").val()
+              ) {
+                  let date = $(".edit-landing-date-begin")
+                      .val()
+                      .split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                  ".edit-landing-time-begin"
+                              ).val()}`;
+                   editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              } else if (
+                  $(".edit-landing-date-begin").val() &&
+                  !$(".edit-landing-time-begin").val()
+              ) {
+                  let date = $(".edit-landing-date-begin")
+                      .val()
+                      .split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              }
+               break;
+          case "in_landing_expiration":
+              if (
+                  $(".edit-landing-date-end").val() &&
+                  $(".edit-landing-time-end").val()
+              ) {
+                  let date = $(".edit-landing-date-end").val().split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                      ".edit-landing-time-end"
+                  ).val()}`;
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              } else if (
+                  $(".edit-landing-date-end").val() &&
+                  !$(".edit-landing-time-end").val()
+              ) {
+                  let date = $(".edit-landing-date-end").val().split("-");
+                  value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                  console.log("landing_expiration sin tiempo: " + value);
+                  editAttributeProgram(chapter_id, key, value);
+                  $(this).blur();
+              }
+               break;
+          default:
+              editAttributeProgram(chapter_id, key, value);
+              $(this).blur();
+              break;
+      }
+      //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+      //$("#navbar-prev-programacion iframe").attr("src", iframe);
+   });*/
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
@@ -90228,10 +90340,15 @@ function getChapterInfo(data) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
     url: "landing/get-chapter-info/" + data,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
     success: function success(result) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       var data = JSON.parse(result);
+      console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-      console.log(data); //thermometer
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
 
       var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
 
@@ -90258,24 +90375,28 @@ function getChapterInfo(data) {
 
       var options = "";
       data.program_catalogue.forEach(function (program) {
-        options += "\n                <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                value=\"\">".concat(program.title, "</option>\n                ");
+        options += "\n                <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                ");
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
       //selectpicker pra ls titulos de los programas
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").selectpicker();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
       var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
-      selectheader.on("change", function () {
-        var val = "";
-        var newitem = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.form-control').val();
-        console.log(newitem);
+      selectheader.on("hide.bs.select", function () {
+        var keyValue = "";
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
 
-        if (newitem != "") {
-          selectheader.append("<option class=\"edit-program-input text-uppercase a-text-black-warmrey   backwhite h2\"\n                    value=\"\" style=\"display:none;\">" + newitem + "</option>");
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         }
 
-        selectheader.push(newitem);
-        selectheader.selectpicker('refresh');
+        console.log(keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
       data; //Genres
 
@@ -90284,12 +90405,13 @@ function getChapterInfo(data) {
         optionGenre += "\n                <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                ");
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
         filter: true,
         multipleSeparator: ", "
       });
       var editProgramLandingGenres = "";
-      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
+      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
 
       selectGenres.on("change", function () {
         //Obtenemos los valores del selectpicker
@@ -90307,12 +90429,15 @@ function getChapterInfo(data) {
             editProgramLandingGenres += "".concat(selected[_index], ",");
           }
         }
-      }); //Evento para cuando cerramos el selectpicker
+
+        console.log("Géneros agregados: " + editProgramLandingGenres);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
 
       selectGenres.on("hide.bs.select", function () {
         var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
 
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
 
         var keyValue = editProgramLandingGenres; //Hacemos la petición
 
@@ -90402,8 +90527,7 @@ function getChapterInfo(data) {
 
 
       var scheduleItemDate = data.program.day.split("-");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0]));
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour); //Synopsis
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
 

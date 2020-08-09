@@ -3279,7 +3279,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .bootstrap-select .btn:not(.bs-placeholder) {
-  word-spacing: 100px;
+  word-spacing: initial !important;
   white-space: normal !important;
   word-wrap: break-word !important;
 }
@@ -3373,6 +3373,7 @@ input[type=radio]:checked + .no-estilo1 {
   font-size: 32px;
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .thumbnail-header1 > .dropdown-toggle {
@@ -5476,6 +5477,10 @@ ul {
   width: 100% !important;
 }
 
+.edit-program-image .dropdown {
+  margin-bottom: 0;
+}
+
 .loader-container {
   width: 100%;
   height: 100%;
@@ -5782,6 +5787,10 @@ iframe {
 
 .edit-switches-home-container {
   margin-bottom: 57px;
+}
+
+.edit-data-container-large {
+  height: 561px;
 }
 
 @font-face {

@@ -175,6 +175,127 @@ function eventsGrilla() {
         }
     });
 
+    /*$(".edit-program-attribute-text").blur(function () {
+        let key = $(this).attr("key");
+        let chapter_id = $(".edit-program-data-container").attr(
+            "chapter_id"
+        );
+        let value = $(this).val();
+        switch (key) {
+            case "in_home_begin":
+
+                if (
+                    $(".edit-home-date-begin").val() &&
+                    $(".edit-home-time-begin").val()
+                ) {
+                    value = `${$(this).val()} ${$(
+                                ".edit-home-time-begin"
+                            ).val()}`;
+                    console.log(value);
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                } else if (
+                    $(".edit-home-date-begin").val() &&
+                    !$(".edit-home-time-begin").val()
+                ) {
+                    let date = $(this)
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                }
+
+                break;
+            case "in_home_expiration":
+
+                if (
+                    $(".edit-home-date-expiration").val() &&
+                    $(".edit-home-time-expiration").val()
+                ) {
+                    let date = $(".edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".edit-home-time-expiration"
+                                ).val()}`;
+                    console.log(value);
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                } else if (
+                    $(".edit-home-date-expiration").val() &&
+                    !$(".edit-home-time-expiration").val()
+                ) {
+                    let date = $(".edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                }
+
+                break;
+            case "in_landing_begin":
+
+                if (
+                    $(".edit-landing-date-begin").val() &&
+                    $(".edit-landing-time-begin").val()
+                ) {
+                    let date = $(".edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".edit-landing-time-begin"
+                                ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                } else if (
+                    $(".edit-landing-date-begin").val() &&
+                    !$(".edit-landing-time-begin").val()
+                ) {
+                    let date = $(".edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                }
+
+                break;
+            case "in_landing_expiration":
+                if (
+                    $(".edit-landing-date-end").val() &&
+                    $(".edit-landing-time-end").val()
+                ) {
+                    let date = $(".edit-landing-date-end").val().split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".edit-landing-time-end"
+                    ).val()}`;
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                } else if (
+                    $(".edit-landing-date-end").val() &&
+                    !$(".edit-landing-time-end").val()
+                ) {
+                    let date = $(".edit-landing-date-end").val().split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    console.log("landing_expiration sin tiempo: " + value);
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                }
+
+                break;
+            default:
+                editAttributeProgram(chapter_id, key, value);
+                $(this).blur();
+                break;
+        }
+        //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+    });*/
+
     $(".edit-program-switch").click(function () {
         let value = $(this).val();
         let key = $(this).attr("key");

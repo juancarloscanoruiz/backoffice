@@ -17,7 +17,7 @@ class ProgramacionGeneralController extends Controller
     private $url = "http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/";
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
-    
+
 public function onlyday(Request $request)
 {
 
@@ -409,7 +409,7 @@ public function onlyday(Request $request)
                 echo ($respuesta);
             }
         }
-       
+
     }
     public function changePrograming(Request $request)
     {

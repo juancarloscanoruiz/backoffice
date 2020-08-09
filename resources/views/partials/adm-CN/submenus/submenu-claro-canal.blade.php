@@ -10,7 +10,6 @@
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     });
-
 </script>
 
 <script>
@@ -429,28 +428,20 @@
                                     <p class="mb-0">01</p>
                                 </li>
                                 <li class="programming-item">
-
                                     <p class="mb-0">MIER</p>
                                     <p class="mb-0">01</p>
-
                                 </li>
                                 <li class="programming-item">
-
                                     <p class="mb-0">MIER</p>
                                     <p class="mb-0">01</p>
-
                                 </li>
                                 <li class="programming-item">
-
                                     <p class="mb-0">MIER</p>
                                     <p class="mb-0">01</p>
-
                                 </li>
                                 <li class="programming-item">
-
                                     <p class="mb-0">MIER</p>
                                     <p class="mb-0">01</p>
-
                                 </li>
                                 <li class="programming-item">
 
@@ -639,16 +630,10 @@
                             </ul>
                         </div>
                         <!--Imagen de programa en slider-->
-                        <section>
+                        <section class="edit-program-image">
                             <select
                                 class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
-                                title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1">
-{{--                                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
-                                    value="">el reus</option>
-                                <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
-                                    value="">caballeros de zodiaco2</option>
-                                <option class="edit-program-input text-uppercase a-text-black-warmrey backwhite h2"
-                                    value="">caballeros de zodiaco3</option> --}}
+                                title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                             </select>
 
                       <!--      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">-->
@@ -672,8 +657,8 @@
                         <section class="mb-5">
                             <div class="row">
                                 <!--Landing-->
-                                <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                <div class="col-4 edit-program-data-container edit-data-container-large">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
                                             en landing
@@ -735,8 +720,8 @@
                                     </div>
                                 </div>
                                 <!--Home-->
-                                <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                <div class="col-4 edit-program-data-container edit-data-container-large">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
                                             en home
@@ -781,8 +766,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                <div class="col-4 edit-program-data-container edit-data-container-large">
+                                    <div class="edit-data-container h-100">
                                         <p
                                             class="edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Schedule Item Date time
@@ -814,7 +799,6 @@
                             <!--Textarea-->
                             <textarea key="synopsis" class="edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
-
                         <section class="mb-3">
                             <div class="row">
                                 <!--Program episode season-->
@@ -874,16 +858,14 @@
                                     </div>
                                 </div>
                                 <!--Program genre list-->
-                                <div class="col-4 edit-program-data-container">
+                                <div class="col-4 edit-program-data-container" id="edit-genre-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre
                                             list
                                         </p>
                                         <div class="mb-3 edit-rectangle-container ">
-
-
                                             <select
-                                                class="list1 a-text-regular-brownishtwo text-normal show-tick"
+                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal show-tick" id="edit-program-genres"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false" key="genre">
@@ -991,7 +973,7 @@
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="dubbed" id="no-dubbed" value="0" checked
-                                                class="edit-program-switch switch-landing switch-table edit-dubbed-yes" key="dubbed"/>
+                                                class="edit-program-switch switch-landing switch-table edit-dubbed-no" key="dubbed"/>
                                             <label for="no-dubbed" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -1027,8 +1009,6 @@
                         <button
                             class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
                             data-dismiss="modal">ACEPTAR</button>
-                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
-
                     </section>
 
                 </div>

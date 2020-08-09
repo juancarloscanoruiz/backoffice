@@ -62,11 +62,19 @@ function getChapterInfo(data) {
     $.ajax({
         type: "GET",
         url: "landing/get-chapter-info/" + data,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
         success: function (result) {
-
+            $('.loader-view-container').remove();
             let data = JSON.parse(result);
+            console.log(data);
             $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id)
-            console.log(data)
+            $('.thumbnail-header1').attr("title", data.program.title)
             //thermometer
             let thermometer = data.thermometer;
             //Container completo que representa una hora en el termometro
@@ -100,24 +108,29 @@ function getChapterInfo(data) {
             data.program_catalogue.forEach(program => {
                 options += `
                 <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
-                value="">${program.title}</option>
+                value="${program.title}">${program.title}</option>
                 `
             });
             $('.programs-catalogue').append(options);
             //selectpicker pra ls titulos de los programas
             //selectpicker pra ls titulos de los programas
-            $(".thumbnail-header1").selectpicker();
+            $("#prog_titulo_programa").selectpicker('destroy');
+            $("#prog_titulo_programa").selectpicker();
             let selectheader = $(".thumbnail-header1");
-            selectheader.on("change", function () {
-                let val = "";
-                let newitem = $('.form-control').val();
-                console.log(newitem);
-                if (newitem != "") {
-                    selectheader.append(`<option class="edit-program-input text-uppercase a-text-black-warmrey   backwhite h2"
-                    value="" style="display:none;">` + newitem + `</option>`);
+            selectheader.on("hide.bs.select", function () {
+                let keyValue = "";
+                let key = $("#prog_titulo_programa").attr("key");
+                let chapter_id = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                if ($(this).val()) {
+                    keyValue = $(this).val();
+                } else {
+                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    keyValue = $(this).val();
                 }
-                selectheader.push(newitem);
-                selectheader.selectpicker('refresh');
+                console.log(keyValue);
+                editAttributeProgram(chapter_id, key, keyValue);
             });
 
             data
@@ -129,12 +142,13 @@ function getChapterInfo(data) {
                 `
             });
             $('.list1').append(optionGenre);
+            $(".list1").selectpicker('destroy');
             $(".list1").selectpicker({
                 filter: true,
                 multipleSeparator: ", "
             });
             let editProgramLandingGenres = "";
-            let selectGenres = $(".list1");
+            let selectGenres = $("#edit-program-genres");
             //Verificamos si el usuario ha seleccionado un género o categoría
             selectGenres.on("change", function () {
                 //Obtenemos los valores del selectpicker
@@ -151,15 +165,16 @@ function getChapterInfo(data) {
                         editProgramLandingGenres += `${selected[index]},`;
                     }
                 }
-
+                console.log("Géneros agregados: " + editProgramLandingGenres);
             });
+            $("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
             //Evento para cuando cerramos el selectpicker
             selectGenres.on("hide.bs.select", function () {
                 let chapterId = $(".edit-program-data-container").attr(
                     "chapter_id"
                 );
                 //Obtenemos la key
-                let key = $(this).attr("key");
+                let key = $("#edit-program-genres").attr("key");
                 //Obtenemos los géneros que pudo haber seleccionado el usuario
                 let keyValue = editProgramLandingGenres;
                 //Hacemos la petición
@@ -226,7 +241,6 @@ function getChapterInfo(data) {
                 } else {
                     $('.edit-home-time-begin').val(homeBeginDateTime[1]);
                 }
-
             }
 
             if (data.program.in_home_expiration) {
@@ -238,14 +252,12 @@ function getChapterInfo(data) {
                 } else {
                     $('.edit-home-time-end').val(homeExpirationDateTime[1])
                 }
-
-
             }
 
             //Schedule Item Date Time
-            let scheduleItemDate = data.program.day.split("-")
-            $('.edit-schedule-date').val(`${scheduleItemDate[2]}-${scheduleItemDate[1]}-${scheduleItemDate[0]}`)
-            $('.edit-schedule-item-time').val(data.program.hour);
+            let scheduleItemDate = data.program.day.split("-");
+            $('.edit-schedule-date').val(`${scheduleItemDate[2]}-${scheduleItemDate[1]}-${scheduleItemDate[0]}
+                ${$('.edit-schedule-item-time').val(data.program.hour)}`);
 
             //Synopsis
             $('.edit-program-textarea').val(data.program.synopsis);
