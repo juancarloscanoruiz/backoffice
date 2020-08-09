@@ -407,7 +407,7 @@ function eventsGrilla() {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     let loader = `
-                        <div class="loader-view-container">
+                        <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
@@ -418,7 +418,10 @@ function eventsGrilla() {
                             break;
                         case "slider-pagination":
                             $("body").append(loader);
-
+                            setTimeout(function() {
+                                $(".modal-programming-carousel").modal("show");
+                                $("#loader1").remove();
+                            }, 3000);
                             $(".modal-programming-carousel").modal("show");
                             $(".modal-programming-carousel").on(
                                 "show.bs.modal",
@@ -457,7 +460,12 @@ function eventsGrilla() {
                                 "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
                             break;
                         case "menu-logos":
-                            $(".modal-edit-icons").modal("show");
+                            $("body").append(loader);
+                            setTimeout(function() {
+                                $(".modal-edit-icons").modal("show");
+                                console.log("entro en el tiempo x2");
+                                $("#loader1").remove();
+                            }, 3000);
 
                             break;
 

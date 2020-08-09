@@ -27,11 +27,16 @@ function updateImagesOfProgrammingSlider(data) {
             if (json.code == 200) {
                 $(".modal-programming-carousel").modal("hide");
             } else {
+                $(".loader-container").remove();
                 $(".modal-programming-carousel").modal("hide");
 
             }
         }
-    });
+    }).fail(function (e) {
+        $(".loader-container").remove();
+        $(".modal-programming-carousel").modal("hide");
+        console.log(e);
+    });;
 }
 
 function updateLogosOfLanding(data) {

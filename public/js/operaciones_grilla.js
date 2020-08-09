@@ -73409,7 +73409,7 @@ function eventsGrilla() {
         var json = JSON.parse(message);
 
         if (_typeof(json) == "object") {
-          var loader = "\n                        <div class=\"loader-view-container\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
           switch (json.type) {
             case "program":
@@ -73419,6 +73419,10 @@ function eventsGrilla() {
 
             case "slider-pagination":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").on("show.bs.modal", function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
@@ -73446,7 +73450,12 @@ function eventsGrilla() {
               break;
 
             case "menu-logos":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                console.log("entro en el tiempo x2");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
               break;
 
             default:
@@ -74962,10 +74971,16 @@ function updateImagesOfProgrammingSlider(data) {
       if (json.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
       } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
       }
     }
+  }).fail(function (e) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+    console.log(e);
   });
+  ;
 }
 
 function updateLogosOfLanding(data) {

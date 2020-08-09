@@ -61,8 +61,19 @@ $.ajaxSetup({
 });
 
 $(document).ready(function () {
-    //para mostrar un modal encima del otro
-
+  //loader, antes de subir un archivo
+    $(".upload-files").on("click",function(){  
+        const loader = `
+        <div class="loader-view-container" id="loader2">
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+    $("body").append(loader);  
+  setTimeout(function() {
+        $("#loader2").remove();
+ }, 6000);
+    });
+     //para mostrar un modal encima del otro
     $('.delete-info').on('show.bs.modal', function () {
         var modalParent = $(this).attr('data-modal-parent');
         $(modalParent).css('opacity', 0);
