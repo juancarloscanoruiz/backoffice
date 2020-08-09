@@ -73418,7 +73418,12 @@ function eventsGrilla() {
               break;
 
             case "slider-pagination":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").on("show.bs.modal", function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              }); //$(".loader-view-container").remove();
+
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,
                 dots: true,

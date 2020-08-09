@@ -417,8 +417,16 @@ function eventsGrilla() {
                             getChapterInfo(json.chapterId);
                             break;
                         case "slider-pagination":
-                            $(".modal-programming-carousel").modal("show");
+                            $("body").append(loader);
 
+                            $(".modal-programming-carousel").modal("show");
+                            $(".modal-programming-carousel").on(
+                                "show.bs.modal",
+                                function() {
+                                    $(".loader-view-container").remove();
+                                }
+                            );
+                            //$(".loader-view-container").remove();
                             $(".programming-slider").slick({
                                 slidesToShow: 1,
                                 dots: true,
