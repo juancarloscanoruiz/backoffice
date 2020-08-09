@@ -636,7 +636,7 @@
                                 title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                             </select>
 
-                      <!--      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">-->
+                      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                             <div class="edit-thumbnail position-relative">
                                 <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                     alt="camera" />
@@ -1123,7 +1123,7 @@
         <div class="modal-content  ">
           <div class="modal-body ">
           <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-            <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS 
+            <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
                                                recuperar la <span class="h3 a-text-bold-warm-grey-three"> información</span></p>
           </div>
 

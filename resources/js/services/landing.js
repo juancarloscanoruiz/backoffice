@@ -22,12 +22,13 @@ function updateImagesOfProgrammingSlider(data) {
         },
         success: function (result) {
             console.log(result);
+            $(".loader-container").remove();
             let json = JSON.parse(result);
             if (json.code == 200) {
-                $(".loader-container").remove();
                 $(".modal-programming-carousel").modal("hide");
             } else {
                 $(".modal-programming-carousel").modal("hide");
+
             }
         }
     });
