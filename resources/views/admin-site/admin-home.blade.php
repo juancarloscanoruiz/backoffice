@@ -26,28 +26,28 @@
                 <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
-            <div class="pd-5">HOME</div>
+            <div class="pd-5 text-sexo">HOME</div>
             <div class="justify-content-center">
             <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">CANAL CLARO</div>
+            <div class="pd-5 text-sexo">CANAL CLARO</div>
             <div class="justify-content-center">
             <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">CONCERT CHANNEL</div>
+            <div class="pd-5 text-sexo">CONCERT CHANNEL</div>
             <div class="justify-content-center">
             <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">CLARO CINEMA</div>
+            <div class="pd-5 text-sexo">CLARO CINEMA</div>
             <div class="justify-content-center">
               
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
@@ -55,26 +55,26 @@
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">CLARO SPORT</div>
+            <div class="pd-5 text-sexo">CLARO SPORT</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
-            <div class="pd-5">NUESTRA VISIÓN</div>
+            <div class="pd-5 text-sexo">NUESTRA VISIÓN</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
-            <div class="pd-5">FOOTER</div>
+            <div class="pd-5 text-sexo">FOOTER</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">SINÓPSIS</div>
+            <div class="pd-5 text-sexo">SINÓPSIS</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
