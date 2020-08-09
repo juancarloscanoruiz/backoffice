@@ -1124,7 +1124,7 @@
           <div class="modal-body ">
           <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
             <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
-                                               recuperar la <span class="h3 a-text-bold-warm-grey-three"> información</span></p>
+                                               recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
           </div>
 
           <div class="text-center mb-5 mt-4 pt-3 pb-4">
