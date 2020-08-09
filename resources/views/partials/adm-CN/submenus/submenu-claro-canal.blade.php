@@ -47,7 +47,7 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
                         rel="navbar-prev-sinopsis" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro pointer-none"
                         navbar-index="3" rel="navbar-prev-canal-claro" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-regular-blacktwo a-text-bold-light">CANAL CLARO</p>
+                            <p class="py-2 px-3 mb-0  a-text-bold-light">CANAL CLARO</p>
 
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
                         rel="navbar-prev-home" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">HOME</p>
+                            <p class=" a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
 
                     </div>
@@ -1123,8 +1123,8 @@
         <div class="modal-content  ">
           <div class="modal-body ">
           <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-            <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información,<span class="h3 a-text-bold-warm-grey-three"> NO PODRÁS </span>
-                                               recuperar la </br> ¿Desea continuar?.</p>
+            <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS 
+                                               recuperar la <span class="h3 a-text-bold-warm-grey-three"> información</span></p>
           </div>
 
           <div class="text-center mb-5 mt-4 pt-3 pb-4">
