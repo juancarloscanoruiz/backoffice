@@ -94,13 +94,13 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
                         rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
                     <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro pointer-none"
                         navbar-index="3" rel="navbar-prev-claro-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-bold-light a-text-regular-blacktwo">CLARO CINEMA</p>
+                            <p class="py-2 px-3 mb-0 a-text-bold-light">CLARO CINEMA</p>
 
                         </div>
                     </div>

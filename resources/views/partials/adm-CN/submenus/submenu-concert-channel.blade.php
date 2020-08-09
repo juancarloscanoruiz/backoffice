@@ -94,13 +94,13 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
                         rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
                     <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro pointer-none"
                         navbar-index="3" rel="navbar-prev-concert-channel">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-bold-light a-text-regular-blacktwo">CONCERT CHANNEL</p>
+                            <p class="py-2 px-3 mb-0 a-text-bold-light ">CONCERT CHANNEL</p>
                         </div>
                     </div>
 
@@ -108,7 +108,7 @@
                     <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
                         rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo  a-text-bold-light py-2 px-3 mb-0">HOME</p>
+                            <p class="  a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
                     </div>
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-right">
