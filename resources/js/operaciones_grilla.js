@@ -21,7 +21,8 @@ import {
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
     getChapterInfo,
-    updateImageProgramOfLanding
+    updateImageProgramOfLanding,
+    newProgram
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS

@@ -383,7 +383,7 @@
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
                             class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
-                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                     </div>
                 </div>
@@ -906,7 +906,7 @@
                             <div class="row">
                                 <!--Schedule item log date-->
                                 <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
                                         </p>
@@ -921,7 +921,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             time (gmt)
                                         </p>
@@ -1118,7 +1118,7 @@
               <div class="text-center mb-3 d-flex justify-content-center">
                   <button
                       class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
-                      <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+                      <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                      <!-- <button
                       class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->

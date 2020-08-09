@@ -78,6 +78,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/update-programming-carrusel", "landingController@updateProgramminSliderImages")->name("updateProgrammingSlider");
     Route::post("/updateLandingLogo", "landingController@updateLandingLogo");
     Route::post("/updateImageProgram", "landingController@updateImageProgramOfLanding");
+    Route::post("/newProgram", "landingController@newProgram");
 });
 
 //Rutas para la edición de un programa en el sitio

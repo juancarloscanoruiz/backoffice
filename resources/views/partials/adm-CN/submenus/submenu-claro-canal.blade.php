@@ -370,7 +370,7 @@
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
                             class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button edit-landing-modal-button">ACEPTAR</button>
-                            <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</button>
+                            <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button>
 
                     </div>
                 </div>
@@ -629,6 +629,7 @@
                                 <li>
                             </ul>
                         </div>
+                        <div class="edit-info-container">
                         <!--Imagen de programa en slider-->
                         <section class="edit-program-image">
                             <select
@@ -640,7 +641,7 @@
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none">
-                                <label for="edit-image-horizontal">
+                                <label for="edit-image-horizontal d-inline">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                     alt="camera" />
                                 <div class="edit-program-camera">
@@ -653,7 +654,6 @@
                                 <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
                                     class="thumbnail-image-prev edit-image-program prev-image-program" />
                                 </label>
-
                             </div>
                             <!--Nombre de la imagen-->
                             <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
@@ -898,7 +898,7 @@
                             <div class="row">
                                 <!--Schedule item log date-->
                                 <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
                                         </p>
@@ -913,7 +913,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4 edit-program-data-container">
-                                    <div class="edit-data-container">
+                                    <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             time (gmt)
                                         </p>
@@ -1008,6 +1008,8 @@
                                 </div>
                             </div>
                         </section>
+                        </div>
+
                     </div>
                     <div class=" d-flex justify-content-center">
                     <section class="text-center mb-3 d-flex justify-content-center">
@@ -1110,7 +1112,7 @@
               <div class="text-center mb-3 d-flex justify-content-center">
                   <button
                       class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro">aceptar</button>
-                      <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</button>
+                      <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button>
 
                      <!-- <button
                       class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->

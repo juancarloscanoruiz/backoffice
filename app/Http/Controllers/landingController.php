@@ -190,6 +190,10 @@ class landingController extends Controller
         echo ($respuesta);
 
     }
+
+    public function newProgram(Request $request){
+        var_dump($request->input('landing'));
+    }
     public function getChapterInfo($id){
         $client = new Client();
         $response = $client->get(

@@ -6129,6 +6129,11 @@ select:focus {
   cursor: pointer;
 }
 
+.cancel:hover {
+  text-decoration: none;
+  color: #0097a9 !important;
+}
+
 .mt-6 {
   margin-top: 56px;
 }

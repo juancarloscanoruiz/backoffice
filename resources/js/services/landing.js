@@ -329,9 +329,21 @@ function updateImageProgramOfLanding(data) {
     });
 }
 
+function newProgram(landing) {
+    $.ajax({
+        type: "POST",
+        data: landing,
+        url: "landing/newProgram",
+        success: function (result) {
+            console.log(result);
+        }
+    });
+}
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
-    updateImageProgramOfLanding
+    updateImageProgramOfLanding,
+    newProgram
 };
