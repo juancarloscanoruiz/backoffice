@@ -666,7 +666,7 @@ function eventsGrilla() {
             onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
-                    .getElementById("date-start-input")
+                    .getElementById("programming-carrusel-calendar")
                     .value.split(",");
                 //  Fecha inicial del datepicker
                 let startDate = fullDate[0];
@@ -676,10 +676,7 @@ function eventsGrilla() {
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
                 //   Fecha final del datepicker
-                let landing = $("#date-start-input").attr("landing");
-                //console.log("El landing es: "+landing);
                 let endDate = fullDate[1];
-                filterDates(startDate, endDate, landing);
                 let endDateSplit = endDate.split("-");
                 let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
                 $("#end-date-text").text(endDateFull);
@@ -689,7 +686,13 @@ function eventsGrilla() {
             singleMode: false
         });
     }
-
+    $('#close_modals').click(function (){
+        console.log('cerrar_modals');
+        $('.modal-programming-carousel').modal('hide');
+        $('.modal-delete-user').modal('hide');
+        $('.modal-edit-icons').modal('hide');
+        $('.modal-edit-program').modal('hide');
+    });
     /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla
         y hacemos la petición
