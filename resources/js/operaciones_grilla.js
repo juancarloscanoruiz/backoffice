@@ -471,7 +471,7 @@ function eventsGrilla() {
 
                         default:
                             break;
-                    }
+                    } 
                 }
                 this.container.getElementsByTagName("iframe")[0].style.height =
                     message + "px";

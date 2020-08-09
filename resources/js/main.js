@@ -71,7 +71,7 @@ $(document).ready(function () {
     $("body").append(loader);  
   setTimeout(function() {
         $("#loader2").remove();
- }, 6000);
+ }, 6000); 
     });
      //para mostrar un modal encima del otro
     $('.delete-info').on('show.bs.modal', function () {
