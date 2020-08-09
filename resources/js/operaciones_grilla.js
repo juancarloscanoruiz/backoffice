@@ -20,7 +20,8 @@ import {
 import {
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
-    getChapterInfo
+    getChapterInfo,
+    updateImageProgramOfLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -39,6 +40,34 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+
+    $('.edit-landing-modal-button').click(function () {
+        let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        $("#navbar-prev-programacion iframe").attr("src", iframe);
+    })
+
+    $('#edit-image-horizontal').on("change", function () {
+        let image = this.files[0];
+        let editProgramDataContainer = $(".edit-program-data-container");
+        let name = editProgramDataContainer.attr(
+            "program"
+        );
+        let landing = editProgramDataContainer.attr(
+            "section"
+        );
+        let chapter_id = editProgramDataContainer.attr(
+            "chapter_id"
+        );
+
+        let data = new FormData();
+
+        data.append("image-horizontal", image);
+        data.append("landing", landing);
+        data.append("chapter_id", chapter_id);
+        data.append("name", name);
+        updateImageProgramOfLanding(data);
+    });
+
     $(".edit-program-attribute-text").keydown(function (e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this).attr("key");

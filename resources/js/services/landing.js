@@ -79,7 +79,9 @@ function getChapterInfo(data) {
             $('.loader-view-container').remove();
             let data = JSON.parse(result);
             console.log(data);
-            $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id)
+            $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
+            $('.edit-program-data-container').attr("section", data.program.section_id);
+            $('.edit-program-data-container').attr("program", data.program.program.title);
             $('.thumbnail-header1').attr("title", data.program.title)
             //thermometer
             let thermometer = data.thermometer;
@@ -314,8 +316,22 @@ function getChapterInfo(data) {
     });
 }
 
+function updateImageProgramOfLanding(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        url: "landing/updateImageProgram",
+        success: function (result) {
+            console.log(result);
+        }
+    });
+}
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
-    updateLogosOfLanding
+    updateLogosOfLanding,
+    updateImageProgramOfLanding
 };

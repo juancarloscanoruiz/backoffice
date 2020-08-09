@@ -73117,6 +73117,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
+    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-image-horizontal').on("change", function () {
+    var image = this.files[0];
+    var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
+    var name = editProgramDataContainer.attr("program");
+    var landing = editProgramDataContainer.attr("section");
+    var chapter_id = editProgramDataContainer.attr("chapter_id");
+    var data = new FormData();
+    data.append("image-horizontal", image);
+    data.append("landing", landing);
+    data.append("chapter_id", chapter_id);
+    data.append("name", name);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImageProgramOfLanding"])(data);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
     if (e.which === 13 && !e.shiftKey) {
       var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
@@ -74936,7 +74953,7 @@ function deleteProgram(id_program, id_version) {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74944,6 +74961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChapterInfo", function() { return getChapterInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLogosOfLanding", function() { return updateLogosOfLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImageProgramOfLanding", function() { return updateImageProgramOfLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -75019,6 +75037,8 @@ function getChapterInfo(data) {
       var data = JSON.parse(result);
       console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
 
       var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
@@ -75245,6 +75265,21 @@ function getChapterInfo(data) {
         prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
         nextArrow: '<img src="../images/next.png" class="arrow-next" />'
       });
+    }
+  });
+}
+
+function updateImageProgramOfLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    url: "landing/updateImageProgram",
+    success: function success(result) {
+      console.log(result);
     }
   });
 }

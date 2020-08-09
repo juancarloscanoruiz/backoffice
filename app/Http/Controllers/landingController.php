@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class landingController extends Controller
 {
@@ -50,6 +51,52 @@ class landingController extends Controller
         $extension = $file->extension();
         $path = url('/storage') . "/" . substr($file->storeAs($url, $name . "." . $extension), 7);
         return $path;
+    }
+
+    public function updateImageProgramOfLanding(Request $request){
+        $name = str_replace(" ", "", $request->input('name'));
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+            switch ($request->input('landing')) {
+                case 1:
+                    $pathImageHorizontal = $this->storeImages($name . $request->input('chapter_id') , $request->file('image-horizontal'), "public/canal-claro/horizontal/");
+                    break;
+                case 2:
+                    $pathImageHorizontal = $this->storeImages($name . $request->input('chapter_id'), $request->file('image-horizontal'), "public/concert-channel/horizontal/");
+                    break;
+                case 3:
+                    $pathImageHorizontal = $this->storeImages($name . $request->input('chapter_id'), $request->file('image-horizontal'), "public/claro-cinema/horizontal/");
+                    break;
+
+                default:
+
+                    break;
+            }
+
+        var_dump($pathImageHorizontal);
+
+        $response = $client->post(
+            $this->url . "program/CaptureImagesForChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    "thumbnail_list_horizontal" => $pathImageHorizontal,
+                    "thumbnail_list_vertical" => "",
+                    "image_synopsis" => "",
+                    "image_synopsis_frame_1" => "",
+                    "image_synopsis_frame_2" => "",
+                    "image_synopsis_frame_3" => "",
+                    "image_background_1" => "",
+                    "image_background_2" => "",
+                    "image_background_3" => ""
+                ]
+            )]
+        );
+
+        var_dump($response->getBody()->getContents());
     }
 
     public function updateProgramminSliderImages(Request $request)

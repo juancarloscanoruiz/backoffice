@@ -369,8 +369,8 @@
                     <!--div botones-->
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
-                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
-                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button edit-landing-modal-button">ACEPTAR</button>
+                            <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</button>
 
                     </div>
                 </div>
@@ -638,9 +638,10 @@
 
                             <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                             <!--Imagen del programa--->
-                            <input type="file" name="image-horizontal" id="imageThumb-horizontal" class="input-image-program d-none">
                             <div class="edit-thumbnail position-relative">
-                                <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                                <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none">
+                                <label for="edit-image-horizontal">
+                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                     alt="camera" />
                                 <div class="edit-program-camera">
                                     <img src="{{ asset('/images/synopsis/camara.svg') }}" class="" alt="camera" />
@@ -650,7 +651,9 @@
                                 </div>
 
                                 <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
-                                    class="thumbnail-image-prev edit-image-program" />
+                                    class="thumbnail-image-prev edit-image-program prev-image-program" />
+                                </label>
+
                             </div>
                             <!--Nombre de la imagen-->
                             <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
@@ -1009,8 +1012,8 @@
                     <div class=" d-flex justify-content-center">
                     <section class="text-center mb-3 d-flex justify-content-center">
                         <button
-                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                            data-dismiss="modal">ACEPTAR</button>
+                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                            data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
                     </section>
 
                 </div>
@@ -1106,8 +1109,8 @@
               <!--Buttons-->
               <div class="text-center mb-3 d-flex justify-content-center">
                   <button
-                      class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro">aceptar</button>
-                      <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</a>
+                      class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro">aceptar</button>
+                      <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal">CANCELAR</button>
 
                      <!-- <button
                       class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
