@@ -88036,7 +88036,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   //loader, antes de subir un archivo
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-files").on("click", function () {
-    var loader = "\n        <div class=\"loader-view-container\" id=\"loader2\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+    var loader = "\n    <div class=\"loader-view-container\" id=\"loader2\">\n      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n    </div>\n    ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
