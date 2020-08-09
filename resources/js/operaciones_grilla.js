@@ -195,7 +195,7 @@ function eventsGrilla() {
         }
     });
 
-    /*$(".edit-program-attribute-text").blur(function () {
+    $(".edit-synopsis").blur(function (e) {
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr(
             "chapter_id"
@@ -308,13 +308,13 @@ function eventsGrilla() {
                 break;
             default:
                 editAttributeProgram(chapter_id, key, value);
-                $(this).blur();
                 break;
         }
+
         //let iframe = $("#navbar-prev-programacion iframe").attr("src");
         //$("#navbar-prev-programacion iframe").attr("src", iframe);
 
-    });*/
+    });
 
     $(".edit-program-switch").click(function () {
         let value = $(this).val();

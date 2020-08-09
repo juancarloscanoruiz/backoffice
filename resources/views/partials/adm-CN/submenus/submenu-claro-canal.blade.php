@@ -802,7 +802,7 @@
                         <section class="mb-5 edit-program-data-container">
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
-                            <textarea key="synopsis" class="edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
+                            <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
                         <section class="mb-3">
                             <div class="row">
