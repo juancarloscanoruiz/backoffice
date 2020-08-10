@@ -74,14 +74,13 @@ function getChapterInfo(data) {
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
-        },
-        beforeSend: function () {
             $(".modal-edit-program .modal-content").append(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
+
         success: function (result) {
             $('.loader-view-container').remove();
             $('.loader-container').remove();
