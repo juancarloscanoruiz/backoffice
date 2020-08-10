@@ -48,6 +48,7 @@ function eventsGrilla() {
 
     $('.edit-landing-modal-button').click(function () {
         let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        console.log(iframe);
         $("#navbar-prev-programacion iframe").attr("src", iframe);
     })
 
@@ -346,56 +347,56 @@ function eventsGrilla() {
             $(".edit-landing-time-begin").val("");
         }
     });
-//loader, antes de subir un archivo
-$(".load-modales").click(function () {
-    $(".modal-edit-icons .modal-content").append(
-        `<div class="loader-view-container pointer-none" >
+    //loader, antes de subir un archivo
+    $(".load-modales").click(function () {
+        $(".modal-edit-icons .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
-    );
-    console.log("si lo agrega");
-    setTimeout(function () {
-        $(".loader-view-container").remove();
-        console.log("si lo borra");
-    }, 3000);
-});
-//loader, antes de subir un archivo
-$(".load-modal-programming").click(function () {
-    $(".modal-edit-program .modal-content").append(
-        `<div class="loader-view-container pointer-none" >
+        );
+        console.log("si lo agrega");
+        setTimeout(function () {
+            $(".loader-view-container").remove();
+            console.log("si lo borra");
+        }, 3000);
+    });
+    //loader, antes de subir un archivo
+    $(".load-modal-programming").click(function () {
+        $(".modal-edit-program .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
-    );
-    console.log("si lo agrega");
-    setTimeout(function () {
-        $(".loader-view-container").remove();
-        console.log("si lo borra");
-    }, 3000);
-});
-//loader, antes de subir un archivo
-$(".load-programming-carousel").click(function () {
-    $(".modal-programming-carousel .modal-content").append(
-        `<div class="loader-view-container pointer-none" >
+        );
+        console.log("si lo agrega");
+        setTimeout(function () {
+            $(".loader-view-container").remove();
+            console.log("si lo borra");
+        }, 3000);
+    });
+    //loader, antes de subir un archivo
+    $(".load-programming-carousel").click(function () {
+        $(".modal-programming-carousel .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
-    );
-    console.log("si lo agrega");
-    setTimeout(function () {
-        $(".loader-view-container").remove();
-        console.log("si lo borra");
-    }, 3000);
-});
+        );
+        console.log("si lo agrega");
+        setTimeout(function () {
+            $(".loader-view-container").remove();
+            console.log("si lo borra");
+        }, 3000);
+    });
 
- //activacion de paginacion
- $(".slider-logo").click(function () {
-    $(".slider-pagination").removeClass("slider-pagination-active") &
-        $(".slider-pagination").removeClass("a-text-bold-white");
-    $(" .slider-pagination").addClass("a-text-bold-teal");
+    //activacion de paginacion
+    $(".slider-logo").click(function () {
+        $(".slider-pagination").removeClass("slider-pagination-active") &
+            $(".slider-pagination").removeClass("a-text-bold-white");
+        $(" .slider-pagination").addClass("a-text-bold-teal");
 
-    $(this).find(".slider-pagination").addClass("slider-pagination-active") &
-        $(this).find(".slider-pagination").addClass("a-text-bold-white") &
-        $(this).find(".slider-pagination").removeClass("a-text-bold-teal");
-});
+        $(this).find(".slider-pagination").addClass("slider-pagination-active") &
+            $(this).find(".slider-pagination").addClass("a-text-bold-white") &
+            $(this).find(".slider-pagination").removeClass("a-text-bold-teal");
+    });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
         //Canal claro
@@ -538,12 +539,12 @@ $(".load-programming-carousel").click(function () {
                                 "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
                             break;
                         case "menu-logos":
-                          $("body").append(loader);
-                          setTimeout(function () {
-                               
+                            $("body").append(loader);
+                            setTimeout(function () {
+
                                 $(".modal-edit-icons").modal("show");
-                              console.log("entro en el tiempo x2");
-                             $("#loader1").remove();
+
+                                $("#loader1").remove();
                             }, 3000);
                             break;
 

@@ -73123,6 +73123,7 @@ function eventsGrilla() {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
     var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
+    console.log(iframe);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-image-horizontal').on("change", function () {
@@ -73470,7 +73471,6 @@ function eventsGrilla() {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               setTimeout(function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                console.log("entro en el tiempo x2");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
               }, 3000);
               break;
@@ -75085,6 +75085,10 @@ function getChapterInfo(data) {
 
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
+
+      if (data.image_program) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+      }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
 

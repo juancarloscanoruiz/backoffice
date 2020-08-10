@@ -288,7 +288,7 @@
                                     <label for="image-icon1"
                                         class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales"  >
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo " />
+                                            class="add-photo" />
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow">472px X
                                             295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
@@ -625,10 +625,10 @@
                             <div class="edit-thumbnail position-relative">
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
                                 <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
-                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon "
-                                    alt="camera" />
+                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                                    alt="heart-icon" />
                                 <div class="edit-program-camera">
-                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="" alt="camera" />
+                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="edit-program-icon-image" alt="camera" />
                                     <p class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
                                         472
                                         x 245px</p>

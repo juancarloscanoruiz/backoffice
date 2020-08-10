@@ -279,9 +279,9 @@ class landingController extends Controller
                                     <label for='yes-landing' id='siestado-landing'
                                         class='mb-0 si-estilo cursor-pointer switch-label'>
                                         Sí</label>
-                                    <input type='radio' name='sino-landing' id='no-landing' value='0'
+                                    <input type='radio' name='sino-landing' id='no-landing-".$chapter_id."' value='0'
                                         class='edit-switch-landing switch-table edit-landing-no' key='in_landing'/>
-                                    <label for='no-landing' id='noestado-landing'
+                                    <label for='no-landing-".$chapter_id."' id='noestado-landing'
                                         class='mb-0 no-estilo cursor-pointer switch-label'>
                                         No</label>
                                 </div>

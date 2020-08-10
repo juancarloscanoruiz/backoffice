@@ -5502,7 +5502,7 @@ ul {
   height: 100%;
   position: absolute;
   background: white;
-  z-index: 3;
+  z-index: 10000;
   opacity: 0.8;
   display: flex;
   align-items: center;
@@ -5744,7 +5744,7 @@ iframe {
 }
 
 .loader-view-container {
-  z-index: 1;
+  z-index: 10000;
   background: white;
   position: fixed;
   height: 100vh;

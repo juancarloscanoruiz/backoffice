@@ -134,6 +134,9 @@ function getChapterInfo(data) {
             //Insertamos el contenido en el termómetro
             $('.thermometer-schedule-list').html(itemThermometer);
             //Insertamos la imagen del capítulo
+            if (data.image_program) {
+                $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+            }
             $('.edit-image-program').attr("src", data.image_program);
             //Catalogo de programas
             let options = "";
