@@ -88223,12 +88223,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".buttonall").removeClass("btn-nav");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-nav-select");
-  }); //activacion de paginacion
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("a-text-bold-white");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").addClass("a-text-bold-teal");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-bold-teal");
   }); //Mostramos la vista para crear un usuario
 
   Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showFormCreateUser"])(); //Al dar click en el botón, hacemos el registro del usuario
@@ -89021,6 +89015,39 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
     }
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modales").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    console.log("si lo agrega");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      console.log("si lo borra");
+    }, 3000);
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modal-programming").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    console.log("si lo agrega");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      console.log("si lo borra");
+    }, 3000);
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    console.log("si lo agrega");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      console.log("si lo borra");
+    }, 3000);
+  }); //activacion de paginacion
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").removeClass("a-text-bold-white");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").addClass("a-text-bold-teal");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").removeClass("a-text-bold-teal");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
     var data = new FormData(); //Canal claro
