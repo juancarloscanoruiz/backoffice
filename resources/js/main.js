@@ -77,7 +77,7 @@ $(document).ready(function () {
      //loader, antes de subir un archivo
      $(".load-photo").on("click", function () {
         const loader = `
-        <div class="loader-view-container position-relative" id="loader1" style="z-index:1000;>
+        <div class="loader-view-container" id="loader1">
           <img src="./images/loader.gif" class="loader" alt="">
         </div>
         `;
