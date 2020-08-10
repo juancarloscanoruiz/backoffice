@@ -88,6 +88,7 @@ $(document).ready(function () {
             console.log("si lo borra");
         }, 5000);
     });
+ 
 
     //para mostrar un modal encima del otro
     $('.delete-info').on('show.bs.modal', function () {
@@ -291,16 +292,7 @@ $(document).ready(function () {
         $(".buttonall").removeClass("btn-nav");
         $(this).addClass("btn-nav-select");
     });
-    //activacion de paginacion
-    $(".slider-pagination").click(function () {
-        $(".slider-pagination").removeClass("slider-pagination-active") &
-            $(".slider-pagination").removeClass("a-text-bold-white");
-        $(".slider-pagination").addClass("a-text-bold-teal");
-
-        $(this).addClass("slider-pagination-active") &
-            $(this).addClass("a-text-bold-white") &
-            $(this).removeClass("a-text-bold-teal");
-    });
+   
     //Mostramos la vista para crear un usuario
     showFormCreateUser();
 

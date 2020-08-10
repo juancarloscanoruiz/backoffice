@@ -1,4 +1,3 @@
-
 <script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
@@ -119,7 +118,7 @@
             <div class="clearfix"></div>
                <!--colocacion de ifram de programacion-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
+              <div class="navbar-progra-content mb-5 navbar-prev-programacion " id="navbar-prev-programacion">
                 </div>
             </div>
 
@@ -243,7 +242,7 @@
                 </div>
             </div>
         </div>
-    </main>
+        </main>
     <div class="modal show modal-delete-user" id="savesino" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content align-item-center centro  modal-save">
@@ -265,27 +264,29 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-edit-icons pr-0" id="savesino" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered m-0"  >
+    <!--menu de logos-->
+    <div class="modal  modal-edit-icons pr-0"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg modal-dialog-centered m-0"role="document"  >
             <div class="modal-content align-item-center centro " style="width: 100%" >
                 <div class="modal-body ">
                     <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
                     <hr class="d-flex align-content-center separationhr mb-4 col-12">
                     <!--div padre-->
+                  <form >
                     <div class="d-flex justify-content-around col-11 mb-5 mt-5">
                         <!--Div primer logo-->
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center  slider-logo mt-5">
                             <!--pagination-->
                             <div class=" d-flex programming-dots ">
-                                <p class=' a-text-bold-white slider-pagination slider-pagination-active '>1</p>
+                                <p class=' a-text-bold-white slider-pagination slider-pagination-logo slider-pagination-active '>1</p>
                             </div>
                             <div class="centro position-relative logo-lading-container mb-3" >
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon1" id="image-icon1"
-                                        class="input-image-program logo-landing d-none upload-files">
+                                        class="input-image-program logo-landing d-none" >
                                     <label for="image-icon1"
-                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales"  >
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow">472px X
@@ -305,19 +306,19 @@
 
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center   slider-logo mt-5">
                             <!--pagination-->
                             <div class=" d-flex programming-dots ">
-                                <p class='a-text-bold-teal slider-pagination pag'>2</p>
+                                <p class='a-text-bold-teal slider-pagination slider-pagination-logo pag'>2</p>
                             </div>
                             <!--cargar imagenes-->
                             <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon2" id="image-icon2"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none" >
                                     <label for="image-icon2"
-                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales" >
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo " />
                                         <span class="a-text-bold-warm text-plus  p-2 pr-3 pl-3  white-shadow">472px X
@@ -335,19 +336,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center slider-logo mt-5 ">
                             <!--pagination-->
                             <div class=" programming-dots ">
-                                <p class='a-text-bold-teal slider-pagination '>3 </p>
+                                <p class='a-text-bold-teal slider-pagination slider-pagination-logo '>3 </p>
                             </div>
                             <!--cargar imagenes-->
                             <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon3" id="image-icon3"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none"  >
                                     <label for="image-icon3"
-                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo" />
                                         <span class="a-text-bold-warm text-plus  white-shadow  p-2 pr-3 pl-3  ">472px X
@@ -373,9 +374,12 @@
                             <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button>
 
                     </div>
+                    </form>
                 </div>
+            
             </div>
         </div>
+       
     </div>
     <div class="modal pr-0 fade modal-edit-program" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="overflow: auto;">
@@ -620,11 +624,11 @@
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
-                                <label for="edit-image-horizontal" class="load-photo">
+                                <label for="edit-image-horizontal" class="load-modal-programming" id="imagenes">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon "
                                     alt="camera" />
                                 <div class="edit-program-camera">
-                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="load-photo" alt="camera" />
+                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="" alt="camera" />
                                     <p class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
                                         472
                                         x 245px</p>
@@ -1054,7 +1058,7 @@
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
                       <label for="image_programming_1"
-                          class="h-100 mb-0 d-flex justify-content-center  load-photo align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                               class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -1066,7 +1070,7 @@
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming " data-index="2">
                       <label for="image_programming_2"
-                          class="h-100 mb-0 d-flex justify-content-center load-photo align-items-center  flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                               class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -1078,7 +1082,7 @@
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
-                          class="h-100 mb-0 d-flex justify-content-center load-photo align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                               class=" cursor-pointer add-photo" />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -1124,5 +1128,7 @@
     </div>
 
   </div>
-
+  
     </body>
+   
+  

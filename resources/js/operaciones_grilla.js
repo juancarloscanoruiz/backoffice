@@ -342,7 +342,56 @@ function eventsGrilla() {
             $(".edit-landing-time-begin").val("");
         }
     });
+//loader, antes de subir un archivo
+$(".load-modales").click(function () {
+    $(".modal-edit-icons .modal-content").append(
+        `<div class="loader-view-container pointer-none" >
+            <img src="./images/loader.gif" class="loader"/>
+        </div>`
+    );
+    console.log("si lo agrega");
+    setTimeout(function () {
+        $(".loader-view-container").remove();
+        console.log("si lo borra");
+    }, 3000);
+});
+//loader, antes de subir un archivo
+$(".load-modal-programming").click(function () {
+    $(".modal-edit-program .modal-content").append(
+        `<div class="loader-view-container pointer-none" >
+            <img src="./images/loader.gif" class="loader"/>
+        </div>`
+    );
+    console.log("si lo agrega");
+    setTimeout(function () {
+        $(".loader-view-container").remove();
+        console.log("si lo borra");
+    }, 3000);
+});
+//loader, antes de subir un archivo
+$(".load-programming-carousel").click(function () {
+    $(".modal-programming-carousel .modal-content").append(
+        `<div class="loader-view-container pointer-none" >
+            <img src="./images/loader.gif" class="loader"/>
+        </div>`
+    );
+    console.log("si lo agrega");
+    setTimeout(function () {
+        $(".loader-view-container").remove();
+        console.log("si lo borra");
+    }, 3000);
+});
 
+ //activacion de paginacion
+ $(".slider-logo").click(function () {
+    $(" .slider-pagination").removeClass("slider-pagination-active") &
+        $(" .slider-pagination").removeClass("a-text-bold-white");
+    $(" .slider-pagination").addClass("a-text-bold-teal");
+
+    $(".slider-logo .slider-pagination").addClass("slider-pagination-active") &
+        $(".slider-logo .slider-pagination").addClass("a-text-bold-white") &
+        $(".slider-logo .slider-pagination").removeClass("a-text-bold-teal");
+});
     $("#edit-logos-button").click(function () {
         let data = new FormData();
         //Canal claro
@@ -489,11 +538,12 @@ function eventsGrilla() {
                                 "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
                             break;
                         case "menu-logos":
-                            $("body").append(loader);
-                            setTimeout(function () {
+                          $("body").append(loader);
+                          setTimeout(function () {
+                               
                                 $(".modal-edit-icons").modal("show");
-                                console.log("entro en el tiempo x2");
-                                $("#loader1").remove();
+                              console.log("entro en el tiempo x2");
+                             $("#loader1").remove();
                             }, 3000);
                             break;
 

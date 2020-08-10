@@ -19,7 +19,7 @@
         <!--div padre-->
         <div class="d-flex justify-content-around col-11 mb-5">
             <!--Div primer logo-->
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center logos mt-5">
                 <!--pagination-->
                 <div class=" d-flex programming-dots ">
                     <p class=' a-text-bold-white slider-pagination slider-pagination-active '>1</p>
@@ -29,7 +29,7 @@
                         <input type="file" name="image-horizontal" id="imageThumb-horizontal"
                             class="input-image-program d-none">
                         <label for="imageThumb-horizontal"
-                            class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                            class="mb-0 cursor-pointer d-flex justify-content-center  load-photo align-items-center h-100 flex-column">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo" />
                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow">472px X 295px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
@@ -47,7 +47,7 @@
 
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center logos mt-5">
                 <!--pagination-->
                 <div class=" d-flex programming-dots ">
                     <p class='a-text-bold-teal slider-pagination pag '>2</p>
@@ -58,7 +58,7 @@
                         <input type="file" name="image-horizontal" id="imageThumb-horizontal"
                             class="input-image-program d-none">
                         <label for="imageThumb-horizontal"
-                            class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                            class="mb-0 cursor-pointer d-flex justify-content-center load-photo align-items-center h-100 flex-column">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo" />
                             <span class="a-text-bold-warm text-plus  p-2 pr-3 pl-3  white-shadow">472px X 295px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center logos mt-5">
                 <!--pagination-->
                 <div class=" programming-dots ">
                     <p class='a-text-bold-teal slider-pagination '>3 </p>
@@ -85,7 +85,7 @@
                         <input type="file" name="image-horizontal" id="imageThumb-horizontal"
                             class="input-image-program d-none">
                         <label for="imageThumb-horizontal"
-                            class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                            class="mb-0 cursor-pointer d-flex justify-content-center  load-photo align-items-center h-100 flex-column">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo" />
                             <span class="a-text-bold-warm text-plus  white-shadow  p-2 pr-3 pl-3  ">472px X 295px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
