@@ -71,8 +71,24 @@ $(document).ready(function () {
         $("body").append(loader);
         setTimeout(function () {
             $("#loader2").remove();
-        }, 6000);
+        }, 9000);
     });
+
+     //loader, antes de subir un archivo
+     $(".load-photo").on("click", function () {
+        const loader = `
+        <div class="loader-view-container position-relative" id="loader1" style="z-index:1000;>
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+        $("body").append(loader);
+        console.log("si lo agrega");
+        setTimeout(function () {
+            $("#loader1").remove();
+            console.log("si lo borra");
+        }, 5000);
+    });
+
     //para mostrar un modal encima del otro
     $('.delete-info').on('show.bs.modal', function () {
         var modalParent = $(this).attr('data-modal-parent');
