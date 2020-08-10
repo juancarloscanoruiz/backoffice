@@ -7,6 +7,8 @@ import { selectRow, selectColumn } from "./UI/UI.js";
 import Litepicker from "litepicker";
 //Servicios para editar campos en la grilla
 import {
+    addImagesModalBanner,
+    addImagesModalIcons,
     editAttributeProgram,
     filterDates
 } from "./services/generalSchedule.js";
@@ -499,6 +501,7 @@ function eventsGrilla() {
                         case "slider-pagination":
                             $("body").append(loader);
                             setTimeout(function() {
+                                addImagesModalBanner();
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
                                 $(".programming-slider").slick({
@@ -534,6 +537,8 @@ function eventsGrilla() {
                         case "menu-logos":
                             $("body").append(loader);
                             setTimeout(function() {
+                                addImagesModalIcons();
+
                                 $(".modal-edit-icons").modal("show");
 
                                 $("#loader1").remove();
