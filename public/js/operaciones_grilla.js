@@ -73408,11 +73408,7 @@ function eventsGrilla() {
               setTimeout(function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              }, 3000);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").on("show.bs.modal", function () {
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }); //$(".loader-view-container").remove();
+              }, 9000); //$(".loader-view-container").remove();
 
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,

@@ -88040,7 +88040,17 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
-    }, 6000);
+    }, 9000);
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-photo").on("click", function () {
+    var loader = "\n        <div class=\"loader-view-container position-relative\" id=\"loader1\" style=\"z-index:1000;>\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    console.log("si lo agrega");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+      console.log("si lo borra");
+    }, 5000);
   }); //para mostrar un modal encima del otro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.delete-info').on('show.bs.modal', function () {
@@ -89089,11 +89099,7 @@ function eventsGrilla() {
               setTimeout(function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              }, 3000);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").on("show.bs.modal", function () {
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }); //$(".loader-view-container").remove();
+              }, 9000); //$(".loader-view-container").remove();
 
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,

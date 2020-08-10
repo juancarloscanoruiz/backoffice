@@ -12,7 +12,7 @@
             </div>
             <div class='mr-5'>
                 <a href="{{route('admin')}}">
-                    <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return'>REGRESAR</button>
+                    <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return load-photo'>REGRESAR</button>
                 </a>
             </div>
         </div>

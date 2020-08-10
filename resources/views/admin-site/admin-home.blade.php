@@ -14,14 +14,14 @@
             <div class="pd-5">PROGRAMACIÓN GENERAL</div>
             <div class="justify-content-center">
                 <a href="general-program"><input type="image" src="./images/lapiz-acti.svg" alt=""
-                        class="ml-3 btn-focus" /></a>
+                        class="ml-3 btn-focus  load-photo" /></a>
                 <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus"></input>
                 <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus"></input>
             </div>
             <div class="pd-5">PROGRAMACIÓN</div>
             <div class="justify-content-center">
                 <a href="{{ route('programacion') }}">
-                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus"></input>
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
                 <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>

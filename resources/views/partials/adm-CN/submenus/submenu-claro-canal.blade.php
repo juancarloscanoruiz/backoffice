@@ -283,11 +283,11 @@
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon1" id="image-icon1"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none upload-files">
                                     <label for="image-icon1"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo" />
+                                            class="add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow">472px X
                                             295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
@@ -317,9 +317,9 @@
                                     <input type="file" name="image-icon2" id="image-icon2"
                                         class="input-image-program logo-landing d-none">
                                     <label for="image-icon2"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo" />
+                                            class="add-photo " />
                                         <span class="a-text-bold-warm text-plus  p-2 pr-3 pl-3  white-shadow">472px X
                                             295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
@@ -347,7 +347,7 @@
                                     <input type="file" name="image-icon3" id="image-icon3"
                                         class="input-image-program logo-landing d-none">
                                     <label for="image-icon3"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer load-photo d-flex justify-content-center align-items-center h-100 flex-column">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo" />
                                         <span class="a-text-bold-warm text-plus  white-shadow  p-2 pr-3 pl-3  ">472px X
@@ -619,12 +619,12 @@
                             <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
-                                <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none">
-                                <label for="edit-image-horizontal d-inline">
-                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                                <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
+                                <label for="edit-image-horizontal" class="load-photo">
+                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon "
                                     alt="camera" />
                                 <div class="edit-program-camera">
-                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="" alt="camera" />
+                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="load-photo" alt="camera" />
                                     <p class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
                                         472
                                         x 245px</p>
@@ -1024,9 +1024,10 @@
                       <div>
                           <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
                       </div>
-                      <input type="text" id="programming-carrusel-calendar" class="d-none">
+
+                      <input type="text" id="programming-carrusel-calendar " class="d-none">
                       <label for="programming-carrusel-calendar"
-                          class="ml-4 mb-0 date-button date-start-table d-flex align-items-center pl-3 pr-3"
+                          class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3"
                           id="date-start-table">
                           <img src="./images/calendario.svg" alt="">
                           <div class="ml-3">
@@ -1051,11 +1052,11 @@
               <div class="programming-slider mx-auto">
                   <!--Slide-->
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming" data-index="1">
+                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
                       <label for="image_programming_1"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center  load-photo align-items-center flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
+                              class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                           <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
@@ -1063,11 +1064,11 @@
                   </div>
                   <!--Slide-->
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming" data-index="2">
+                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming " data-index="2">
                       <label for="image_programming_2"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center load-photo align-items-center  flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
+                              class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                           <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
@@ -1077,7 +1078,7 @@
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center load-photo align-items-center flex-column">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                               class=" cursor-pointer add-photo" />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
