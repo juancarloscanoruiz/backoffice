@@ -88044,7 +88044,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   }); //loader, antes de subir un archivo
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-photo").on("click", function () {
-    var loader = "\n        <div class=\"loader-view-container position-relative\" id=\"loader1\" style=\"z-index:1000;>\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+    var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
     console.log("si lo agrega");
     setTimeout(function () {
