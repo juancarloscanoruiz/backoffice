@@ -135,7 +135,10 @@ function getChapterInfo(data) {
             $('.thermometer-schedule-list').html(itemThermometer);
             //Insertamos la imagen del capítulo
             if (data.image_program) {
-                $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+                $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+                    width: "80px",
+                    "margin-bottom": "16px"
+                });
             }
             $('.edit-image-program').attr("src", data.image_program);
             //Catalogo de programas

@@ -90772,7 +90772,10 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
 
       if (data.image_program) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+          width: "80px",
+          "margin-bottom": "16px"
+        });
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas

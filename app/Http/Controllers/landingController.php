@@ -233,7 +233,7 @@ class landingController extends Controller
             $chapter_id = $respuesta->data->chapter_id;
             $respuestaProgramming = json_decode($responseProgramming->getBody()->getContents());
 
-            if($respuestaProgramming->code == 200){
+            if ($respuestaProgramming->code == 200) {
                 $html = "
                 <!--Establecer en landing, home, schedule item date time-->
                 <section class='edit-program-image'>
@@ -242,21 +242,21 @@ class landingController extends Controller
                     title='TÍTULO DEL PROGRAMA' id='prog_titulo_programa' data-live-search='true' data-live-search-placeholder='Agregar título de nuevo programa' name='thumbnail-header1' key='title'>
                 </select>
 
-                <img src='".asset('/images/triangle.svg')."' alt='' class='position-absolute dropimg'>
+                <img src='" . asset('/images/triangle.svg') . "' alt='' class='position-absolute dropimg'>
                 <!--Imagen del programa--->
                 <div class='edit-thumbnail position-relative'>
                     <input type='file' name='image-horizontal' id='edit-image-horizontal' class='input-image-program d-none '>
                     <label for='edit-image-horizontal' class='load-photo'>
-                        <img src='".asset('/images/heart-icon.svg')."' class='thumbnail-heart-icon '
+                        <img src='" . asset('/images/heart-icon.svg') . "' class='thumbnail-heart-icon '
                         alt='camera' />
                     <div class='edit-program-camera'>
-                        <img src='".asset('/images/synopsis/camara.svg')."' class='load-photo' alt='camera' />
+                        <img src='" . asset('/images/synopsis/camara.svg') . "' class='load-photo' alt='camera' />
                         <p class='p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two'>
                             472
                             x 245px</p>
                     </div>
 
-                    <img src='".asset('/images/synopsis/image-synopsis-carrusel.jpg')."' alt=''
+                    <img src='" . asset('/images/synopsis/image-synopsis-carrusel.jpg') . "' alt=''
                         class='thumbnail-image-prev edit-image-program prev-image-program' />
                     </label>
                 </div>
@@ -266,7 +266,7 @@ class landingController extends Controller
                 <section class='mb-5'>
                     <div class='row'>
                         <!--Landing-->
-                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container h-100'>
                                 <p class='mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray'>
                                     Establecer
@@ -279,23 +279,23 @@ class landingController extends Controller
                                     <label for='yes-landing' id='siestado-landing'
                                         class='mb-0 si-estilo cursor-pointer switch-label'>
                                         Sí</label>
-                                    <input type='radio' name='sino-landing' id='no-landing-".$chapter_id."' value='0'
-                                        class='edit-switch-landing switch-table edit-landing-no' key='in_landing'/>
-                                    <label for='no-landing-".$chapter_id."' id='noestado-landing'
+                                    <input type='radio' name='sino-landing' id='no-landing-" . $chapter_id . "' value='0' checked
+                                        class='edit-switch-landing edit-program-switch checked switch-table edit-landing-no' key='in_landing'/>
+                                    <label for='no-landing-" . $chapter_id . "' id='noestado-landing'
                                         class='mb-0 no-estilo cursor-pointer switch-label'>
                                         No</label>
                                 </div>
                                 <!--Inputs radio-->
                                 <div class='d-flex align-items-center mb-3'>
                                     <label class='checkradio d-flex ml-2 mb-0' for='landing-section-2'>
-                                        <input type='radio' checked name='dontlose' class='switch-table edit-carrusel-1'
+                                        <input type='radio' name='dontlose' class='switch-table edit-carrusel-1'
                                             value='2' id='landing-section-2' key='in_landing' />
                                         <span class='checkmark'></span>
                                     </label>
                                     <span class='a-text-bold-silver cursor-pointer ml-2 text-uppercase'>Carrusel
                                         1</span>
                                     <label class='checkradio d-flex ml-2 mb-0' for='landing-section-2-'>
-                                        <input type='radio' checked name='dontlose' class='mb-0 switch-table edit-carrusel-2'
+                                        <input type='radio' name='dontlose' class='mb-0 switch-table edit-carrusel-2'
                                             value='2' id='landing-section-2' key='in_landing'/>
                                         <span class='checkmark'></span>
                                     </label>
@@ -329,7 +329,7 @@ class landingController extends Controller
                             </div>
                         </div>
                         <!--Home-->
-                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container h-100'>
                                 <p class='mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray'>
                                     Establecer
@@ -375,7 +375,7 @@ class landingController extends Controller
                                 </div>
                             </div>
                         </div>
-                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container edit-data-container-large' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container h-100'>
                                 <p
                                     class='edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray'>
@@ -385,7 +385,7 @@ class landingController extends Controller
                                     <p class='mb-3 text-plus a-text-medium-coolgray text-uppercase'>Fecha</p>
                                     <div class='mb-3 text-center edit-rectangle-small-container py-3'>
                                         <span class='a-text-bold-warm'>
-                                            <img src='".asset('images/calendario.svg')."' alt='' class='mr-3'>
+                                            <img src='" . asset('images/calendario.svg') . "' alt='' class='mr-3'>
                                             <input key='' type=' text'
                                                 class='input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date'
                                                 placeholder='00-00-0000'></span>
@@ -403,7 +403,7 @@ class landingController extends Controller
                     </div>
                 </section>
                 <!--Sinopsis-->
-                <section class='mb-5 edit-program-data-container' chapter_id='".$chapter_id."'>
+                <section class='mb-5 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                     <h3 class='h3 text-uppercase a-text-bold-brown-two mb-3'>Sinopsis</h3>
                     <!--Textarea-->
                     <textarea key='synopsis' class='edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3' id='prog_sinopsis'></textarea>
@@ -411,7 +411,7 @@ class landingController extends Controller
                 <section class='mb-3'>
                     <div class='row'>
                         <!--Program episode season-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Program episode
                                     season
@@ -424,7 +424,7 @@ class landingController extends Controller
                             </div>
                         </div>
                         <!--Program episode number-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Program episode
                                     number
@@ -437,7 +437,7 @@ class landingController extends Controller
                             </div>
                         </div>
                         <!--Program year produced-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Program year
                                     produced
@@ -454,7 +454,7 @@ class landingController extends Controller
                 <section class='mb-3'>
                     <div class='row'>
                         <!--Program title alternate-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Program title
                                     alternate
@@ -467,7 +467,7 @@ class landingController extends Controller
                             </div>
                         </div>
                         <!--Program genre list-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."' id='edit-genre-container'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "' id='edit-genre-container'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Program genre
                                     list
@@ -484,7 +484,7 @@ class landingController extends Controller
                             </div>
                         </div>
                         <!---->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Schedule item
                                     rating
@@ -502,7 +502,7 @@ class landingController extends Controller
                 <section class='mb-3'>
                     <div class='row'>
                         <!--Schedule item log date-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container h-100'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Schedule item log
                                     date
@@ -510,14 +510,14 @@ class landingController extends Controller
                                 <p class='a-text-medium-brown-two text-plus text-uppercase'>Fecha</p>
                                 <div
                                     class='mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center'>
-                                    <img src='".asset('images/calendario.svg')."' alt='' class='mr-3'>
+                                    <img src='" . asset('images/calendario.svg') . "' alt='' class='mr-3'>
                                     <input type='text' key='day'
                                         class='edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase'
                                         placeholder='DD:MM:YY'>
                                 </div>
                             </div>
                         </div>
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container h-100'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Schedule item log
                                     time (gmt)
@@ -525,21 +525,21 @@ class landingController extends Controller
                                 <p class='a-text-medium-brown-two text-plus text-uppercase'>HORA</p>
                                 <div
                                     class='mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center'>
-                                    <img src='".asset('images/reloj.svg')."' alt='' class='mr-3'>
+                                    <img src='" . asset('images/reloj.svg') . "' alt='' class='mr-3'>
                                     <input type='text' key='programing'
                                         class='edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase'
                                         placeholder='00:00:00'>
                                 </div>
                             </div>
                         </div>
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>estimated schedule item duration
                                 </p>
                                 <p class='a-text-medium-brown-two text-plus text-uppercase'>HORA</p>
                                 <div
                                     class='mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center'>
-                                    <img src='".asset('images/reloj.svg')."' alt='' class='mr-3'>
+                                    <img src='" . asset('images/reloj.svg') . "' alt='' class='mr-3'>
                                     <input type='text' key='duration'
                                         class='edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase'
                                         placeholder='00:00:00'>
@@ -551,7 +551,7 @@ class landingController extends Controller
                 <section class='mb-5'>
                     <div class='row'>
                         <!--Schedule item log date-->
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container d-flex justify-content-between'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Schedule version
                                     subbed
@@ -571,7 +571,7 @@ class landingController extends Controller
 
                             </div>
                         </div>
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container d-flex justify-content-between'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Schedule version
                                     dubbed
@@ -591,7 +591,7 @@ class landingController extends Controller
 
                             </div>
                         </div>
-                        <div class='col-4 edit-program-data-container' chapter_id='".$chapter_id."'>
+                        <div class='col-4 edit-program-data-container' chapter_id='" . $chapter_id . "'>
                             <div class='edit-data-container d-flex justify-content-between'>
                                 <p class='mb-3 text-plus text-uppercase a-text-bold-brown-two'>Audio 5.1<br>
                                     available

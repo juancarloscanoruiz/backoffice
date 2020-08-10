@@ -627,7 +627,7 @@
                                 <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                     alt="heart-icon" />
-                                <div class="edit-program-camera">
+                                <div class="edit-program-camera text-center">
                                     <img src="{{ asset('/images/synopsis/camara.svg') }}" class="edit-program-icon-image" alt="camera" />
                                     <p class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
                                         472
