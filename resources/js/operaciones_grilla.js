@@ -388,13 +388,13 @@ $(".load-programming-carousel").click(function () {
 
  //activacion de paginacion
  $(".slider-logo").click(function () {
-    $(" .slider-pagination").removeClass("slider-pagination-active") &
-        $(" .slider-pagination").removeClass("a-text-bold-white");
+    $(".slider-pagination").removeClass("slider-pagination-active") &
+        $(".slider-pagination").removeClass("a-text-bold-white");
     $(" .slider-pagination").addClass("a-text-bold-teal");
 
-    $(".slider-logo .slider-pagination").addClass("slider-pagination-active") &
-        $(".slider-logo .slider-pagination").addClass("a-text-bold-white") &
-        $(".slider-logo .slider-pagination").removeClass("a-text-bold-teal");
+    $(this).find(".slider-pagination").addClass("slider-pagination-active") &
+        $(this).find(".slider-pagination").addClass("a-text-bold-white") &
+        $(this).find(".slider-pagination").removeClass("a-text-bold-teal");
 });
     $("#edit-logos-button").click(function () {
         let data = new FormData();

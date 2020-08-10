@@ -89045,9 +89045,9 @@ function eventsGrilla() {
   }); //activacion de paginacion
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").removeClass("a-text-bold-white");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("a-text-bold-white");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").addClass("a-text-bold-teal");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo .slider-pagination").removeClass("a-text-bold-teal");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").removeClass("a-text-bold-teal");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
     var data = new FormData(); //Canal claro

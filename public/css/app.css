@@ -3424,7 +3424,7 @@ input[type=radio]:checked + .no-estilo1 {
 
 .list1 > .dropdown-toggle {
   position: relative;
-  width: 120% !important;
+  width: 165% !important;
   z-index: 1;
   text-align: right;
   white-space: nowrap;
@@ -3479,7 +3479,7 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .list1 .dropdown-menu {
-  min-width: 120% !important;
+  min-width: 165% !important;
   box-sizing: border-box;
 }
 
