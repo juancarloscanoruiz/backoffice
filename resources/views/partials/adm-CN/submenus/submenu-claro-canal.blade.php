@@ -1090,6 +1090,19 @@
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
+                   <!--Slide-->
+                   <div class="bor thumbnail-image-program position-relative h-100">
+                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
+                      <label for="image_programming_3"
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
+                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                              class=" cursor-pointer add-photo" />
+                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
+                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                      </label>
+                  </div>
+
               </div>
               <!--End slider-->
               <!--Buttons-->

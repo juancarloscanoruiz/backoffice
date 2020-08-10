@@ -22,15 +22,9 @@
     @include('partials.headers.headerPrograGeneral')
     <div id="title" class="mt-3">
         <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
-                <div>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox" id="viewcarga">
-                        <span class="checkmark1 border-green"></span>
-                    </label><span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox">
-                        <span class="checkmark2  border-red"></span>
-                    </label><span class=" ml-2 a-text-red">No guardar cambios</span>
+        <div class="d-flex  ">
+                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
                 </div>
             </div>                   
             <div class="d-flex float-right mb-4 mr-5 ">

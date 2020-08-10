@@ -19,7 +19,7 @@
     <div class='mr-5'>
         <form method="POST" action="{{ route('logout') }}">
             {{ csrf_field() }}
-            <button type="submit" class='btn-cerrar textcerrar' id='signout-button'>CERRAR SESIÓN</button>
+            <button type="submit" class='btn-cerrar textcerrar load-photo' id='signout-button'>CERRAR SESIÓN</button>
         </form>
     </div>
 </div>
