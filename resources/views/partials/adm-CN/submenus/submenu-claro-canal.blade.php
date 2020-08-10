@@ -762,7 +762,7 @@
                                         </p>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                            <div class="text-center edit-rectangle-small-container py-3" style="margin-bottom: 81px">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                     <input key="" type=" text"
@@ -882,7 +882,7 @@
                                 <!--Schedule item log date-->
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
+                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
@@ -897,7 +897,7 @@
                                 </div>
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
+                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             time (gmt)
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>

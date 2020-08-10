@@ -88802,16 +88802,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').on("click", ".unavailable", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapter_id);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
-    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
+    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src") + "?random=".concat(new Date().getTime() + Math.floor(Math.random() * 1000000));
     console.log(iframe);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-image-horizontal').on("change", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
     var image = this.files[0];
     var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
     var name = editProgramDataContainer.attr("program");
