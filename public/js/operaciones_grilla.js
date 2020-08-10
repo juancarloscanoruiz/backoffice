@@ -73408,22 +73408,21 @@ function eventsGrilla() {
               setTimeout(function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              }, 9000); //$(".loader-view-container").remove();
-
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                initialSlide: 0,
-                infinite: false,
-                arrows: true,
-                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
-                }
-              });
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
+                  slidesToShow: 1,
+                  dots: true,
+                  appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+                  initialSlide: 0,
+                  infinite: false,
+                  arrows: true,
+                  prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                  nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                  customPaging: function customPaging(slider, i) {
+                    var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
+                  }
+                });
+              }, 3000);
               break;
 
             case "synopsis":

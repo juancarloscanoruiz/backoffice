@@ -435,7 +435,7 @@ function eventsGrilla() {
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
-     
+
         let socketProgramacion = new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: document.getElementById("navbar-prev-programacion"),
@@ -458,27 +458,27 @@ function eventsGrilla() {
                             setTimeout(function () {
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
-                            }, 9000);
-                            
-                            //$(".loader-view-container").remove();
-                            $(".programming-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                arrows: true,
-                                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
+
+                                $(".programming-slider").slick({
+                                    slidesToShow: 1,
+                                    dots: true,
+                                    appendDots: $(".programming-slider-dots"),
+                                    initialSlide: 0,
+                                    infinite: false,
+                                    arrows: true,
+                                    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                                    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                                    customPaging: function (slider, i) {
+                                        var thumb = $(slider.$slides[i]).data();
+                                        return (
+                                            "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                                            (i + 1) +
+                                            "</p>"
+                                        );
+                                    }
+                                });
+                            }, 3000);
+
 
                             break;
                         case "synopsis":

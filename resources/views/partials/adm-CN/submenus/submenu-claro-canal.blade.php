@@ -369,7 +369,7 @@
                     <!--div botones-->
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
-                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button edit-landing-modal-button">ACEPTAR</button>
+                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button">ACEPTAR</button>
                             <button href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button>
 
                     </div>
