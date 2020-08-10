@@ -75,13 +75,25 @@ function getChapterInfo(data) {
                 </div>`
             );
         },
+        beforeSend: function () {
+            $(".modal-edit-program .modal-content").append(
+                `<div class="loader-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
         success: function (result) {
             $('.loader-view-container').remove();
+            $('.loader-container').remove();
             let data = JSON.parse(result);
             console.log(data);
+            let modaTitle = $('.edit-program-modal-title');
             $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
             $('.edit-program-data-container').attr("section", data.program.section_id);
             $('.edit-program-data-container').attr("program", data.program.program.title);
+            modaTitle.attr("chapter_id", data.program.chapter_id)
+            modaTitle.attr("section", data.program.section_id)
+            modaTitle.attr("program", data.program.program.title)
             $('.thumbnail-header1').attr("title", data.program.title)
             //thermometer
             let thermometer = data.thermometer;
@@ -105,9 +117,8 @@ function getChapterInfo(data) {
                         classStatus = "current";
                         break;
                 }
-
                 itemHalfThermometer += `
-                    <div class="w-50 h-100 thermometer-half-item cursor-pointer ${classStatus}" status="${thermometer[key].status}" section="${data.program.section_id}" chapter_id="${thermometer[key].chapter_id}" style="background: ${thermometer[key].color};"></div>
+                    <div schedule="${key}" class="w-50 h-100 thermometer-half-item cursor-pointer ${classStatus}" status="${thermometer[key].status}" section="${data.program.section_id}" chapter_id="${thermometer[key].chapter_id}" style="background: ${thermometer[key].color};"></div>
                 `;
 
                 if (index % 2 == 0) {
@@ -219,7 +230,8 @@ function getChapterInfo(data) {
                     default:
                         break;
                 }
-                newProgram(section);
+                let schedule = $(this).attr("schedule");
+                newProgram(section, schedule);
             });
 
             //Verificamos si el programa está en algunas de las secciones del landing
@@ -252,7 +264,6 @@ function getChapterInfo(data) {
 
 
             }
-
             if (data.program.in_landing_expiration) {
                 let landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
                 let fullDate = landingExpirationDateTime[0].split("-")
@@ -264,8 +275,6 @@ function getChapterInfo(data) {
                 }
 
             }
-
-
             //Verficar si el programa se encuentra en el home
             if (data.program.in_home == 0) {
                 $('.edit-in-home-no').prop("checked", true)
@@ -334,17 +343,19 @@ function getChapterInfo(data) {
             }
 
             $(".modal-edit-program").modal("show");
+            setTimeout(() => {
+                $(".calendar-slider").slick({
+                    slidesToShow: 11,
+                    slidesToScroll: 11,
+                    infinite: true,
+                    dots: false,
+                    centerMode: false,
+                    arrows: true,
+                    prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+                    nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+                });
+            }, 250);
 
-            $(".calendar-slider").slick({
-                slidesToShow: 11,
-                slidesToScroll: 11,
-                infinite: true,
-                dots: false,
-                centerMode: false,
-                arrows: true,
-                prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-                nextArrow: '<img src="../images/next.png" class="arrow-next" />'
-            });
         }
     });
 }
@@ -362,16 +373,381 @@ function updateImageProgramOfLanding(data) {
     });
 }
 
-function newProgram(landing) {
-    console.log("Landing: " + landing)
+
+function newProgram(landing, schedule) {
     $.ajax({
         type: "POST",
         data: {
+            schedule: schedule,
             landing: landing
+        },
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
         },
         url: "landing/newProgram",
         success: function (result) {
+            $('.loader-view-container').remove();
+            //Nuevo programa
             $('.edit-info-container').html(result);
+            //Editar imagen
+            $('#edit-image-horizontal').on("change", function () {
+                let image = this.files[0];
+                let editProgramDataContainer = $(".edit-program-data-container");
+                let name = editProgramDataContainer.attr(
+                    "program"
+                );
+                let landing = editProgramDataContainer.attr(
+                    "section"
+                );
+                let chapter_id = editProgramDataContainer.attr(
+                    "chapter_id"
+                );
+
+                let data = new FormData();
+
+
+                data.append("image-horizontal", image);
+                data.append("landing", landing);
+                data.append("chapter_id", chapter_id);
+                data.append("name", name);
+                updateImageProgramOfLanding(data);
+            });
+
+            $(".edit-program-attribute-text").keydown(function (e) {
+                if (e.which === 13 && !e.shiftKey) {
+                    let key = $(this).attr("key");
+                    let chapter_id = $(".edit-program-data-container").attr(
+                        "chapter_id"
+                    );
+                    let value = $(this).val();
+                    switch (key) {
+                        case "in_home_begin":
+                            if (
+                                $(".edit-home-date-begin").val() &&
+                                $(".edit-home-time-begin").val()
+                            ) {
+                                value = `${$(this).val()} ${$(
+                                    ".edit-home-time-begin"
+                                ).val()}`;
+                                console.log(value);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            } else if (
+                                $(".edit-home-date-begin").val() &&
+                                !$(".edit-home-time-begin").val()
+                            ) {
+                                let date = $(this)
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            }
+
+                            break;
+                        case "in_home_expiration":
+                            if (
+                                $(".edit-home-date-expiration").val() &&
+                                $(".edit-home-time-expiration").val()
+                            ) {
+                                let date = $(".edit-home-date-expiration")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".edit-home-time-expiration"
+                                ).val()}`;
+                                console.log(value);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            } else if (
+                                $(".edit-home-date-expiration").val() &&
+                                !$(".edit-home-time-expiration").val()
+                            ) {
+                                let date = $(".edit-home-date-expiration")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            }
+
+                            break;
+                        case "in_landing_begin":
+                            if (
+                                $(".edit-landing-date-begin").val() &&
+                                $(".edit-landing-time-begin").val()
+                            ) {
+                                let date = $(".edit-landing-date-begin")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".edit-landing-time-begin"
+                                ).val()}`;
+                                console.log("in_landing_begin" + date);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            } else if (
+                                $(".edit-landing-date-begin").val() &&
+                                !$(".edit-landing-time-begin").val()
+                            ) {
+                                let date = $(".edit-landing-date-begin")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                                console.log(value);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            }
+
+                            break;
+                        case "in_landing_expiration":
+                            if (
+                                $(".edit-landing-date-end").val() &&
+                                $(".edit-landing-time-end").val()
+                            ) {
+                                let date = $(".edit-landing-date-end")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".edit-landing-time-end"
+                                ).val()}`;
+                                console.log($(".edit-landing-time-end").val());
+                                console.log("landing_expiration con tiempo: " + value);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            } else if (
+                                $(".edit-landing-date-end").val() &&
+                                !$(".edit-landing-time-end").val()
+                            ) {
+                                let date = $(".edit-landing-date-end")
+                                    .val()
+                                    .split("-");
+                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                                console.log("landing_expiration sin tiempo: " + value);
+                                editAttributeProgram(chapter_id, key, value);
+                                $(this).blur();
+                            }
+
+                            break;
+                        default:
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                            break;
+                    }
+
+                    //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+                    //$("#navbar-prev-programacion iframe").attr("src", iframe);
+                }
+            });
+
+            $(".edit-synopsis").blur(function (e) {
+                let key = $(this).attr("key");
+                let chapter_id = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                let value = $(this).val();
+                switch (key) {
+                    case "in_home_begin":
+
+                        if (
+                            $(".edit-home-date-begin").val() &&
+                            $(".edit-home-time-begin").val()
+                        ) {
+                            value = `${$(this).val()} ${$(
+                                        ".edit-home-time-begin"
+                                    ).val()}`;
+                            console.log(value);
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        } else if (
+                            $(".edit-home-date-begin").val() &&
+                            !$(".edit-home-time-begin").val()
+                        ) {
+                            let date = $(this)
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        }
+
+                        break;
+                    case "in_home_expiration":
+
+                        if (
+                            $(".edit-home-date-expiration").val() &&
+                            $(".edit-home-time-expiration").val()
+                        ) {
+                            let date = $(".edit-home-date-expiration")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                            ".edit-home-time-expiration"
+                                        ).val()}`;
+                            console.log(value);
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        } else if (
+                            $(".edit-home-date-expiration").val() &&
+                            !$(".edit-home-time-expiration").val()
+                        ) {
+                            let date = $(".edit-home-date-expiration")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        }
+
+                        break;
+                    case "in_landing_begin":
+
+                        if (
+                            $(".edit-landing-date-begin").val() &&
+                            $(".edit-landing-time-begin").val()
+                        ) {
+                            let date = $(".edit-landing-date-begin")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                            ".edit-landing-time-begin"
+                                        ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        } else if (
+                            $(".edit-landing-date-begin").val() &&
+                            !$(".edit-landing-time-begin").val()
+                        ) {
+                            let date = $(".edit-landing-date-begin")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        }
+
+                        break;
+                    case "in_landing_expiration":
+                        if (
+                            $(".edit-landing-date-end").val() &&
+                            $(".edit-landing-time-end").val()
+                        ) {
+                            let date = $(".edit-landing-date-end").val().split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".edit-landing-time-end"
+                            ).val()}`;
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        } else if (
+                            $(".edit-landing-date-end").val() &&
+                            !$(".edit-landing-time-end").val()
+                        ) {
+                            let date = $(".edit-landing-date-end").val().split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            console.log("landing_expiration sin tiempo: " + value);
+                            editAttributeProgram(chapter_id, key, value);
+                            $(this).blur();
+                        }
+
+                        break;
+                    default:
+                        editAttributeProgram(chapter_id, key, value);
+                        break;
+                }
+
+                //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+                //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+            });
+
+            $(".edit-program-switch").click(function () {
+                let value = $(this).val();
+                let key = $(this).attr("key");
+                let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+                editAttributeProgram(chapter_id, key, value);
+            });
+
+            $(".edit-switch-home").click(function () {
+                console.log($(this).val());
+                if ($(this).val() == 0) {
+                    $(".edit-home-date-end").val("");
+                    $(".edit-home-date-begin").val("");
+                    $(".edit-home-time-end").val("");
+                    $(".edit-home-time-begin").val("");
+                }
+            });
+
+            $(".edit-switch-landing").click(function () {
+                if ($(this).val() == 0) {
+                    $(".edit-landing-date-end").val("");
+                    $(".edit-landing-date-begin").val("");
+                    $(".edit-landing-time-end").val("");
+                    $(".edit-landing-time-begin").val("");
+                }
+            });
+
+            $(".list1").selectpicker('destroy');
+            $(".list1").selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+
+            $("#prog_titulo_programa").selectpicker('destroy');
+            $("#prog_titulo_programa").selectpicker();
+            let selectheader = $(".thumbnail-header1");
+            selectheader.on("hide.bs.select", function () {
+                let keyValue = "";
+                let key = $("#prog_titulo_programa").attr("key");
+                let chapter_id = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                if ($(this).val()) {
+                    keyValue = $(this).val();
+                } else {
+                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    keyValue = $(this).val();
+                }
+                console.log(keyValue);
+                editAttributeProgram(chapter_id, key, keyValue);
+            });
+
+            let editProgramLandingGenres = "";
+            let selectGenres = $("#edit-program-genres");
+            //Verificamos si el usuario ha seleccionado un género o categoría
+            selectGenres.on("change", function () {
+                //Obtenemos los valores del selectpicker
+                let selected = $(this).val();
+                //Obtenemos el número de valores que hemos obtenido del arreglo
+                let selectedLength = selected.length;
+                editProgramLandingGenres = "";
+                for (let index = 0; index < selectedLength; index++) {
+                    //Si es la primera palabra o la última, no agregamos una coma
+                    if (selectedLength - 1 == index) {
+                        editProgramLandingGenres += `${selected[index]}`;
+                    } else {
+                        editProgramLandingGenres += `${selected[index]},`;
+                    }
+                }
+                console.log("Géneros agregados: " + editProgramLandingGenres);
+            });
+
+            selectGenres.on("hide.bs.select", function () {
+                let chapterId = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                //Obtenemos la key
+                let key = $("#edit-program-genres").attr("key");
+                //Obtenemos los géneros que pudo haber seleccionado el usuario
+                let keyValue = editProgramLandingGenres;
+                //Hacemos la petición
+
+                editAttributeProgram(chapterId, key, keyValue);
+            });
         }
     });
 }

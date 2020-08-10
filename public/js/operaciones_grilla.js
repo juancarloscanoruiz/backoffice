@@ -73117,6 +73117,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').on("click", ".unavailable", function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapter_id);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
     var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
@@ -73399,7 +73403,6 @@ function eventsGrilla() {
 
           switch (json.type) {
             case "program":
-              console.log(json.chapterId);
               Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
               break;
 
@@ -74930,6 +74933,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //JQUERY
 
 
@@ -74991,68 +74996,540 @@ function updateLogosOfLanding(data) {
 }
 
 function getChapterInfo(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  var _$$ajax;
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax((_$$ajax = {
     type: "GET",
     url: "landing/get-chapter-info/" + data,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-    },
+    }
+  }, _defineProperty(_$$ajax, "beforeSend", function beforeSend() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+  }), _defineProperty(_$$ajax, "success", function success(result) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+    var data = JSON.parse(result);
+    console.log(data);
+    var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
+    modaTitle.attr("chapter_id", data.program.chapter_id);
+    modaTitle.attr("section", data.program.section_id);
+    modaTitle.attr("program", data.program.program.title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
+
+    var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
+
+    var itemThermometer = ""; //Container que representa media hora en el termómetro
+
+    var itemHalfThermometer = "";
+    var index = 1; //Recorremos el terommétro
+
+    for (var key in thermometer) {
+      var status = thermometer[key].status;
+      var classStatus = "";
+
+      switch (status) {
+        case "Disponible":
+          classStatus = "available";
+          break;
+
+        case "Ocupado":
+          classStatus = "unavailable";
+          break;
+
+        default:
+          classStatus = "current";
+          break;
+      }
+
+      itemHalfThermometer += "\n                    <div schedule=\"".concat(key, "\" class=\"w-50 h-100 thermometer-half-item cursor-pointer ").concat(classStatus, "\" status=\"").concat(thermometer[key].status, "\" section=\"").concat(data.program.section_id, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                ");
+
+      if (index % 2 == 0) {
+        itemThermometer += "\n                        <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                            ".concat(itemHalfThermometer, "\n                        </li>\n                        ");
+        itemHalfThermometer = "";
+      }
+
+      index++;
+    } //Insertamos el contenido en el termómetro
+
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
+
+    var options = "";
+    data.program_catalogue.forEach(function (program) {
+      options += "\n                <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                ");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
+    //selectpicker pra ls titulos de los programas
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
+    var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
+    selectheader.on("hide.bs.select", function () {
+      var keyValue = "";
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
+        keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+        keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      }
+
+      console.log(keyValue);
+      Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+    });
+    data; //Genres
+
+    var optionGenre = "";
+    data.genres.forEach(function (genre) {
+      optionGenre += "\n                <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                ");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+      filter: true,
+      multipleSeparator: ", "
+    });
+    var editProgramLandingGenres = "";
+    var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
+
+    selectGenres.on("change", function () {
+      //Obtenemos los valores del selectpicker
+      var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+
+      var selectedLength = selected.length;
+      editProgramLandingGenres = "";
+
+      for (var _index = 0; _index < selectedLength; _index++) {
+        //Si es la primera palabra o la última, no agregamos una coma
+        if (selectedLength - 1 == _index) {
+          editProgramLandingGenres += "".concat(selected[_index]);
+        } else {
+          editProgramLandingGenres += "".concat(selected[_index], ",");
+        }
+      }
+
+      console.log("Géneros agregados: " + editProgramLandingGenres);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
+
+    selectGenres.on("hide.bs.select", function () {
+      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
+
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+
+      var keyValue = editProgramLandingGenres; //Hacemos la petición
+
+      Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
+      var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
+
+      switch (section) {
+        case "1":
+          section = "Claro Canal";
+          break;
+
+        case "2":
+          section = "Concert Channel";
+          break;
+
+        case "3":
+          section = "Claro Cinema";
+          break;
+
+        default:
+          break;
+      }
+
+      var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
+      newProgram(section, schedule);
+    }); //Verificamos si el programa está en algunas de las secciones del landing
+
+    switch (data.program.in_landing) {
+      case 0:
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
+        break;
+
+      case 1:
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+        break;
+
+      case 2:
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
+
+      default:
+        break;
+    }
+
+    if (data.program.in_landing_begin) {
+      var landingBeginDateTime = data.program.in_landing_begin.split(" ");
+      var fullDate = landingBeginDateTime[0].split("-");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+
+      if (landingBeginDateTime[1] == "00:00:00") {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
+      }
+    }
+
+    if (data.program.in_landing_expiration) {
+      var landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
+
+      var _fullDate = landingExpirationDateTime[0].split("-");
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
+
+      if (landingExpirationDateTime[1] == "00:00:00") {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+      }
+    } //Verficar si el programa se encuentra en el home
+
+
+    if (data.program.in_home == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+    }
+
+    if (data.program.in_home_begin) {
+      var homeBeginDateTime = data.program.in_home_begin.split(" ");
+
+      var _fullDate2 = homeBeginDateTime[0].split("-");
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
+
+      if (homeBeginDateTime[1] == "00:00:00") {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
+      }
+    }
+
+    if (data.program.in_home_expiration) {
+      var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
+
+      var _fullDate3 = homeExpirationDateTime[0].split("-");
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
+
+      if (homeExpirationDateTime[1] == "00:00:00") {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
+      }
+    } //Schedule Item Date Time
+
+
+    var scheduleItemDate = data.program.day.split("-");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
+
+    if (data.program.subbed == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
+    } //Dubbed
+
+
+    if (data.program.dubbed == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
+    } //Audio 5.0
+
+
+    if (data.program.audio5 == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+      });
+    }, 1000);
+  }), _$$ajax));
+}
+
+function updateImageProgramOfLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    url: "landing/updateImageProgram",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      var data = JSON.parse(result);
-      console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
+      console.log(result);
+    }
+  });
+}
 
-      var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
+function newProgram(landing, schedule) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: {
+      schedule: schedule,
+      landing: landing
+    },
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/newProgram",
+    success: function success(result) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove(); //Nuevo programa
 
-      var itemThermometer = ""; //Container que representa media hora en el termómetro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-info-container').html(result); //Editar imagen
 
-      var itemHalfThermometer = "";
-      var index = 1; //Recorremos el terommétro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-image-horizontal').on("change", function () {
+        var image = this.files[0];
+        var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
+        var name = editProgramDataContainer.attr("program");
+        var landing = editProgramDataContainer.attr("section");
+        var chapter_id = editProgramDataContainer.attr("chapter_id");
+        var data = new FormData();
+        data.append("image-horizontal", image);
+        data.append("landing", landing);
+        data.append("chapter_id", chapter_id);
+        data.append("name", name);
+        updateImageProgramOfLanding(data);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
+        if (e.which === 13 && !e.shiftKey) {
+          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+          var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+          var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
 
-      for (var key in thermometer) {
-        var status = thermometer[key].status;
-        var classStatus = "";
+          switch (key) {
+            case "in_home_begin":
+              if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+                value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+                console.log(value);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+                var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+                value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              }
 
-        switch (status) {
-          case "Disponible":
-            classStatus = "available";
+              break;
+
+            case "in_home_expiration":
+              if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+                var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+                value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+                console.log(value);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+                var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+                value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " 00:00:00");
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              }
+
+              break;
+
+            case "in_landing_begin":
+              if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+                var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+                value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+                console.log("in_landing_begin" + _date3);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+                var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+                value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
+                console.log(value);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              }
+
+              break;
+
+            case "in_landing_expiration":
+              if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+                var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+                value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+                console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+                console.log("landing_expiration con tiempo: " + value);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+                var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+                value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
+                console.log("landing_expiration sin tiempo: " + value);
+                Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              }
+
+              break;
+
+            default:
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+              break;
+          } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+          //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis").blur(function (e) {
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+        switch (key) {
+          case "in_home_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+              value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+              console.log(value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+              var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+              value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
             break;
 
-          case "Ocupado":
-            classStatus = "unavailable";
+          case "in_home_expiration":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+              var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+              value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+              console.log(value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+              var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+              value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " 00:00:00");
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+              var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+              var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " 00:00:00");
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_expiration":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+              var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+              var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " 00:00:00");
+              console.log("landing_expiration sin tiempo: " + value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
             break;
 
           default:
-            classStatus = "current";
+            Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
             break;
-        }
+        } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
 
-        itemHalfThermometer += "\n                    <div class=\"w-50 h-100 thermometer-half-item cursor-pointer ".concat(classStatus, "\" status=\"").concat(thermometer[key].status, "\" section=\"").concat(data.program.section_id, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                ");
-
-        if (index % 2 == 0) {
-          itemThermometer += "\n                        <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                            ".concat(itemHalfThermometer, "\n                        </li>\n                        ");
-          itemHalfThermometer = "";
-        }
-
-        index++;
-      } //Insertamos el contenido en el termómetro
-
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
-
-      var options = "";
-      data.program_catalogue.forEach(function (program) {
-        options += "\n                <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                ");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
-      //selectpicker pra ls titulos de los programas
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-home").click(function () {
+        console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
 
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+        filter: true,
+        multipleSeparator: ", "
+      });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
       var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
@@ -75071,18 +75548,6 @@ function getChapterInfo(data) {
         console.log(keyValue);
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
-      data; //Genres
-
-      var optionGenre = "";
-      data.genres.forEach(function (genre) {
-        optionGenre += "\n                <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                ");
-      });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
-        filter: true,
-        multipleSeparator: ", "
-      });
       var editProgramLandingGenres = "";
       var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
 
@@ -75093,19 +75558,17 @@ function getChapterInfo(data) {
         var selectedLength = selected.length;
         editProgramLandingGenres = "";
 
-        for (var _index = 0; _index < selectedLength; _index++) {
+        for (var index = 0; index < selectedLength; index++) {
           //Si es la primera palabra o la última, no agregamos una coma
-          if (selectedLength - 1 == _index) {
-            editProgramLandingGenres += "".concat(selected[_index]);
+          if (selectedLength - 1 == index) {
+            editProgramLandingGenres += "".concat(selected[index]);
           } else {
-            editProgramLandingGenres += "".concat(selected[_index], ",");
+            editProgramLandingGenres += "".concat(selected[index], ",");
           }
         }
 
         console.log("Géneros agregados: " + editProgramLandingGenres);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
-
       selectGenres.on("hide.bs.select", function () {
         var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
 
@@ -75115,188 +75578,6 @@ function getChapterInfo(data) {
 
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
-        var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
-
-        switch (section) {
-          case "1":
-            section = "Claro Canal";
-            break;
-
-          case "2":
-            section = "Concert Channel";
-            break;
-
-          case "3":
-            section = "Claro Cinema";
-            break;
-
-          default:
-            break;
-        }
-
-        newProgram(section);
-      }); //Verificamos si el programa está en algunas de las secciones del landing
-
-      switch (data.program.in_landing) {
-        case 0:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
-          break;
-
-        case 1:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
-          break;
-
-        case 2:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
-
-        default:
-          break;
-      }
-
-      if (data.program.in_landing_begin) {
-        var landingBeginDateTime = data.program.in_landing_begin.split(" ");
-        var fullDate = landingBeginDateTime[0].split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
-
-        if (landingBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
-        }
-      }
-
-      if (data.program.in_landing_expiration) {
-        var landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
-
-        var _fullDate = landingExpirationDateTime[0].split("-");
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
-
-        if (landingExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
-        }
-      } //Verficar si el programa se encuentra en el home
-
-
-      if (data.program.in_home == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
-      }
-
-      if (data.program.in_home_begin) {
-        var homeBeginDateTime = data.program.in_home_begin.split(" ");
-
-        var _fullDate2 = homeBeginDateTime[0].split("-");
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
-
-        if (homeBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
-        }
-      }
-
-      if (data.program.in_home_expiration) {
-        var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
-
-        var _fullDate3 = homeExpirationDateTime[0].split("-");
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
-
-        if (homeExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
-        }
-      } //Schedule Item Date Time
-
-
-      var scheduleItemDate = data.program.day.split("-");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
-
-      if (data.program.subbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
-      } //Dubbed
-
-
-      if (data.program.dubbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
-      } //Audio 5.0
-
-
-      if (data.program.audio5 == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
-      }
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-        slidesToShow: 11,
-        slidesToScroll: 11,
-        infinite: true,
-        dots: false,
-        centerMode: false,
-        arrows: true,
-        prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-        nextArrow: '<img src="../images/next.png" class="arrow-next" />'
-      });
-    }
-  });
-}
-
-function updateImageProgramOfLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "POST",
-    data: data,
-    processData: false,
-    //esto es para poder pasar el archivo
-    contentType: false,
-    //esto es para poder pasar el archivo
-    url: "landing/updateImageProgram",
-    success: function success(result) {
-      console.log(result);
-    }
-  });
-}
-
-function newProgram(landing) {
-  console.log("Landing: " + landing);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "POST",
-    data: {
-      landing: landing
-    },
-    url: "landing/newProgram",
-    success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-info-container').html(result);
     }
   });
 }

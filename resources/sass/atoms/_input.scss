@@ -335,6 +335,10 @@ input[type="radio"]:checked+.no-estilo1 {
     outline: none !important;
 }
 
+.edit-program-textarea {
+    outline: none;
+}
+
 //class to selectpicker
 .bootstrap-select .btn:not(.bs-placeholder) {
     word-spacing: initial !important;

@@ -451,3 +451,17 @@ ul {
         font-family: $MontserratBlack !important;
     }
 }
+
+
+.unavailable:hover {
+    background-color: #E17301 !important;
+}
+
+
+.available:hover {
+    background-color: #ADADAD !important;
+}
+
+.current {
+    background-color: #018292 !important;
+}

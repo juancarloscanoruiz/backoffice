@@ -382,7 +382,7 @@
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body pt-0">
-                    <h2 class="h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
+                    <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
                     <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                     <div class="col-11 mx-auto">
@@ -620,7 +620,7 @@
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
-                                <label for="edit-image-horizontal" class="load-photo">
+                                <label for="edit-image-horizontal" class="load-photo d-inline">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon "
                                     alt="camera" />
                                 <div class="edit-program-camera">

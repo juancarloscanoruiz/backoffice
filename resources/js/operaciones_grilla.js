@@ -40,6 +40,10 @@ import {
 
 function eventsGrilla() {
 
+    $('.thermometer-schedule-list').on("click", ".unavailable", function () {
+        let chapter_id = $(this).attr("chapter_id");
+        getChapterInfo(chapter_id);
+    })
 
 
     $('.edit-landing-modal-button').click(function () {
@@ -435,7 +439,6 @@ function eventsGrilla() {
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
-
         let socketProgramacion = new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: document.getElementById("navbar-prev-programacion"),
@@ -449,8 +452,6 @@ function eventsGrilla() {
                             `;
                     switch (json.type) {
                         case "program":
-                            console.log(json.chapterId);
-
                             getChapterInfo(json.chapterId);
                             break;
                         case "slider-pagination":
@@ -458,7 +459,6 @@ function eventsGrilla() {
                             setTimeout(function () {
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
-
                                 $(".programming-slider").slick({
                                     slidesToShow: 1,
                                     dots: true,

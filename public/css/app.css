@@ -3278,6 +3278,10 @@ input[type=radio]:checked + .no-estilo1 {
   outline: none !important;
 }
 
+.edit-program-textarea {
+  outline: none;
+}
+
 .bootstrap-select .btn:not(.bs-placeholder) {
   word-spacing: initial !important;
   white-space: normal !important;
@@ -5423,6 +5427,18 @@ ul {
 
 .programming-item-active p:nth-child(2) {
   font-family: "Montserrat-Black" !important;
+}
+
+.unavailable:hover {
+  background-color: #E17301 !important;
+}
+
+.available:hover {
+  background-color: #ADADAD !important;
+}
+
+.current {
+  background-color: #018292 !important;
 }
 
 .navbar-progra-item-border {
