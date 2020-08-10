@@ -480,6 +480,88 @@ function eventsGrilla() {
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
+        $("#edit-program-modal-button").click(function() {
+            socketProgramacion.destroy();
+            let newSocketProgramación = new easyXDM.Socket({
+                remote:
+                    "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+                container: document.getElementById("navbar-prev-programacion"),
+                onMessage: function(message, origin) {
+                    let json = JSON.parse(message);
+                    if (typeof json == "object") {
+                        let loader = `
+                            <div class="loader-view-container" id="loader1">
+                                <img src="./images/loader.gif" class="loader" alt="">
+                            </div>
+                                `;
+                        switch (json.type) {
+                            case "program":
+                                getChapterInfo(json.chapterId);
+                                break;
+                            case "slider-pagination":
+                                $("body").append(loader);
+                                setTimeout(function() {
+                                    $(".modal-programming-carousel").modal(
+                                        "show"
+                                    );
+                                    $("#loader1").remove();
+                                    $(".programming-slider").slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        arrows: true,
+                                        prevArrow:
+                                            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                                        nextArrow:
+                                            '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                                        customPaging: function(slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                }, 3000);
+
+                                break;
+                            case "synopsis":
+                                document
+                                    .querySelector("body")
+                                    .insertAdjacentHTML("beforeend", loader);
+                                window.location.href =
+                                    "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                                break;
+                            case "menu-logos":
+                                $("body").append(loader);
+                                setTimeout(function() {
+                                    $(".modal-edit-icons").modal("show");
+
+                                    $("#loader1").remove();
+                                }, 3000);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            });
+        });
         let socketProgramacion = new easyXDM.Socket({
             remote:
                 "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
