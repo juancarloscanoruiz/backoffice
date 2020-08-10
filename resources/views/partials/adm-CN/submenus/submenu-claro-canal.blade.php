@@ -483,6 +483,10 @@
                             <div class="thermometer-hours-container mt-4">
                                 <ul class="thermometer-hours-list d-flex pr-3 pl-3">
                                     <li
+                                    class="thermometer-hours-item mr-1 text-center text-plus a-text-black-brown-two">
+                                        0
+                                    </li>
+                                    <li
                                         class="thermometer-hours-item mr-1 text-center text-plus a-text-black-brown-two">
                                         1
                                     </li>
@@ -581,32 +585,7 @@
                                     class="arrow-thermometer arrow-thermometer-left" alt="arrow-left">
                                 <div class="thermometer-container">
                                     <ul class="thermometer-schedule-list d-flex p-3">
-                                        <li class="thermometer-schedule-item mr-1 d-flex align-items-center">
-                                            <div class="w-50 h-100"></div>
-                                            <div class="w-50 h-100"></div>
-                                        </li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item"></li>
+
                                     </ul>
                                 </div>
                                 <img src="{{ asset('/images/arrow-dark.svg') }}"

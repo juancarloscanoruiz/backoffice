@@ -35,12 +35,12 @@ import {
 
 //Métodos para mostrar las vistas de "Landing" o "Grilla"
 import {
-    showlanding,
-    showlanconcert,
-    createNavbarProgramacionGeneral
+    showlanding
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+
+
 
     $('.edit-landing-modal-button').click(function () {
         let iframe = $("#navbar-prev-programacion iframe").attr("src");
@@ -428,6 +428,7 @@ function eventsGrilla() {
         );
     });
 
+
     let navbarPrograContainer = document.getElementById(
         "navbar-prev-programacion"
     );
@@ -448,6 +449,7 @@ function eventsGrilla() {
                     switch (json.type) {
                         case "program":
                             console.log(json.chapterId);
+
                             getChapterInfo(json.chapterId);
                             break;
                         case "slider-pagination":

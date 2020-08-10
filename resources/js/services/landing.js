@@ -92,8 +92,22 @@ function getChapterInfo(data) {
             let index = 1
             //Recorremos el terommétro
             for (const key in thermometer) {
+                let status = thermometer[key].status;
+                let classStatus = "";
+                switch (status) {
+                    case "Disponible":
+                        classStatus = "available";
+                        break;
+                    case "Ocupado":
+                        classStatus = "unavailable";
+                        break;
+                    default:
+                        classStatus = "current";
+                        break;
+                }
+
                 itemHalfThermometer += `
-                    <div class="w-50 h-100" status="${thermometer[key].status}" chapter_id="${thermometer[key].chapter_id}" style="background: ${thermometer[key].color};"></div>
+                    <div class="w-50 h-100 thermometer-half-item cursor-pointer ${classStatus}" status="${thermometer[key].status}" section="${data.program.section_id}" chapter_id="${thermometer[key].chapter_id}" style="background: ${thermometer[key].color};"></div>
                 `;
 
                 if (index % 2 == 0) {
@@ -161,7 +175,6 @@ function getChapterInfo(data) {
             selectGenres.on("change", function () {
                 //Obtenemos los valores del selectpicker
                 let selected = $(this).val();
-                console.log(selected);
                 //Obtenemos el número de valores que hemos obtenido del arreglo
                 let selectedLength = selected.length;
                 editProgramLandingGenres = "";
@@ -188,6 +201,25 @@ function getChapterInfo(data) {
                 //Hacemos la petición
 
                 editAttributeProgram(chapterId, key, keyValue);
+            });
+
+            $('.available').click(function () {
+                let section = $(this).attr("section");
+                switch (section) {
+                    case "1":
+                        section = "Claro Canal";
+                        break;
+                    case "2":
+                        section = "Concert Channel";
+                        break;
+                    case "3":
+                        section = "Claro Cinema";
+                        break;
+
+                    default:
+                        break;
+                }
+                newProgram(section);
             });
 
             //Verificamos si el programa está en algunas de las secciones del landing
@@ -302,6 +334,7 @@ function getChapterInfo(data) {
             }
 
             $(".modal-edit-program").modal("show");
+
             $(".calendar-slider").slick({
                 slidesToShow: 11,
                 slidesToScroll: 11,
@@ -330,12 +363,15 @@ function updateImageProgramOfLanding(data) {
 }
 
 function newProgram(landing) {
+    console.log("Landing: " + landing)
     $.ajax({
         type: "POST",
-        data: landing,
+        data: {
+            landing: landing
+        },
         url: "landing/newProgram",
         success: function (result) {
-            console.log(result);
+            $('.edit-info-container').html(result);
         }
     });
 }

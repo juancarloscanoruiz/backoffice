@@ -74922,7 +74922,7 @@ function deleteProgram(id_program, id_version) {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, newProgram */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74931,6 +74931,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLogosOfLanding", function() { return updateLogosOfLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImageProgramOfLanding", function() { return updateImageProgramOfLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newProgram", function() { return newProgram; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -75018,7 +75019,24 @@ function getChapterInfo(data) {
       var index = 1; //Recorremos el terommétro
 
       for (var key in thermometer) {
-        itemHalfThermometer += "\n                    <div class=\"w-50 h-100\" status=\"".concat(thermometer[key].status, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                ");
+        var status = thermometer[key].status;
+        var classStatus = "";
+
+        switch (status) {
+          case "Disponible":
+            classStatus = "available";
+            break;
+
+          case "Ocupado":
+            classStatus = "unavailable";
+            break;
+
+          default:
+            classStatus = "current";
+            break;
+        }
+
+        itemHalfThermometer += "\n                    <div class=\"w-50 h-100 thermometer-half-item cursor-pointer ".concat(classStatus, "\" status=\"").concat(thermometer[key].status, "\" section=\"").concat(data.program.section_id, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                ");
 
         if (index % 2 == 0) {
           itemThermometer += "\n                        <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                            ".concat(itemHalfThermometer, "\n                        </li>\n                        ");
@@ -75075,8 +75093,7 @@ function getChapterInfo(data) {
 
       selectGenres.on("change", function () {
         //Obtenemos los valores del selectpicker
-        var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-        console.log(selected); //Obtenemos el número de valores que hemos obtenido del arreglo
+        var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
 
         var selectedLength = selected.length;
         editProgramLandingGenres = "";
@@ -75102,6 +75119,28 @@ function getChapterInfo(data) {
         var keyValue = editProgramLandingGenres; //Hacemos la petición
 
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
+        var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
+
+        switch (section) {
+          case "1":
+            section = "Claro Canal";
+            break;
+
+          case "2":
+            section = "Concert Channel";
+            break;
+
+          case "3":
+            section = "Claro Cinema";
+            break;
+
+          default:
+            break;
+        }
+
+        newProgram(section);
       }); //Verificamos si el programa está en algunas de las secciones del landing
 
       switch (data.program.in_landing) {
@@ -75249,6 +75288,20 @@ function updateImageProgramOfLanding(data) {
     url: "landing/updateImageProgram",
     success: function success(result) {
       console.log(result);
+    }
+  });
+}
+
+function newProgram(landing) {
+  console.log("Landing: " + landing);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: {
+      landing: landing
+    },
+    url: "landing/newProgram",
+    success: function success(result) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-info-container').html(result);
     }
   });
 }

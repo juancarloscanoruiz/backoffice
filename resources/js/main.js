@@ -235,7 +235,7 @@ $(document).ready(function () {
         subir un archivo
     */
     $(".input-image-program").change(function () {
-        console.log("Imges");
+
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -253,7 +253,7 @@ $(document).ready(function () {
 
     $("#modal-button-delete").click(function () {
         let aa = $(this).attr("chapter_id");
-        console.log(aa);
+
         $(".trash-row")
             .prev()
             .attr("src", "./images/basic-icons/pencil-edit-teal.svg");
@@ -304,7 +304,7 @@ $(document).ready(function () {
             .parent()
             .attr("_id");
         let username = $(this).attr("_username");
-        console.log(username);
+
         $(".modal-delete-username-bo").text(username);
         $(".modal-delete-user").modal("show");
         deleteUserUI(id);
@@ -330,7 +330,7 @@ $(document).ready(function () {
 
     //UPDATE USERS BACKOFFICE
     $("#cambio").on("click", ".edit-user-icon", function () {
-        console.log("update");
+
         let id = $(this)
             .parent()
             .attr("_id");
@@ -366,7 +366,7 @@ $(document).ready(function () {
                 $("body").append(loader);
             },
             success: function (result) {
-                console.log("grilla de claro cinema");
+
                 //Insertamos la vista que recibimos en la vista actual
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
@@ -405,7 +405,7 @@ $(document).ready(function () {
                 $("body").append(loader);
             },
             success: function (result) {
-                console.log("grilla de canal claro");
+
                 console.log(result);
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
@@ -441,7 +441,7 @@ $(document).ready(function () {
 
     //CHANGE TO grilla concert
     $(".gril-concert").click(function (event) {
-        console.log("grilla Concert Channel");
+
         $.ajax({
             type: "POST",
             url: "view",
@@ -475,7 +475,7 @@ $(document).ready(function () {
                 view: "grilla-home-button"
             },
             success: function (result) {
-                console.log("Grilla Home");
+
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
             }
@@ -507,7 +507,7 @@ $(document).ready(function () {
     $(".Dias").click(function () {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
-        console.log($(this));
+
         $("#" + select + " > p").text(value);
     });
     //CHOOSE MONTH
@@ -774,7 +774,7 @@ $(document).ready(function () {
      */
 
     function sendFilePHP(file, data_for_api) {
-        console.log("enviando a php");
+
         //creamos un dato de formulario para pasarlo en el ajax
         let data = new FormData();
         data.append("file", file);
