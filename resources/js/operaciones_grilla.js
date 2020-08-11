@@ -337,7 +337,7 @@ function eventsGrilla() {
     });
 
     $(".edit-switch-home").click(function () {
-        console.log($(this).val());
+
         if ($(this).val() == 0) {
             $(".edit-home-date-end").val("");
             $(".edit-home-date-begin").val("");
