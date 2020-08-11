@@ -6,6 +6,58 @@ import {
 
 } from "./generalSchedule.js";
 
+function getMonth(idMonth) {
+    let date = new Date();
+    let month = date.getMonth() + idMonth;
+    return month;
+}
+
+function getDays(month) {
+    let date = new Date();
+    return new Date(date.getFullYear(), date.getMonth() + month, 0).getDate();
+}
+
+function getDay() {
+    let date = new Date();
+    return date.getDate();
+}
+
+function getDayName(month, day) {
+    let date = new Date();
+    let currentDay = new Date(date.getFullYear(), month, day).getUTCDay();
+
+    let days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"];
+
+    return days[currentDay];
+}
+
+function getYear() {
+    let date = new Date();
+    return date.getFullYear();
+}
+
+function getMonthAndYear(month) {
+    let date = new Date();
+    let year = date.getFullYear();
+    let months = [
+        "ENERO",
+        "FEBRERO",
+        "MARZO",
+        "ABRIL",
+        "MAYO",
+        "JUNIO",
+        "JULIO",
+        "AGOSTO",
+        "SEPTIEMBRE",
+        "OCTUBRE",
+        "NOVIEMBRE",
+        "DICIEMBRE"
+    ];
+
+    return `${months[month]} ${year}`;
+}
+
+
 function updateImagesOfProgrammingSlider(data) {
     $.ajax({
         type: "POST",
@@ -86,6 +138,101 @@ function getChapterInfo(data) {
             $('.loader-container').remove();
             let data = JSON.parse(result);
             console.log(data);
+
+            let date = new Date();
+
+            /* Número de días del mes actual */
+            let currentMonthDays = getDays(1);
+
+            /* Número de mes actual*/
+            let currentMonth = date.getMonth();
+
+            /*Número de días del mes siguiente */
+            let nextMonth = getDays(2);
+
+            /* Número de días restantes del mes actual */
+            let numberLastDays = getDays(1) - getDay();
+
+            var totalDaysSlider = 0;
+            var daysSlider = "";
+            $("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
+
+            if (numberLastDays <= 15) {
+                totalDaysSlider = getDays(2) + (getDays(1) - getDay());
+                //Días del primer mes
+                for (let i = getDay(); i <= getDays(1); i++) {
+
+                    //Día actual
+                    if (i == getDay()) {
+                        daysSlider += `
+                        <li
+                        0
+                    )}" class="programming-item programming-item-active">
+                        <div class="day">
+                            <p class="day-text">${getDayName(currentMonth, i)}</p>
+                            <p class="day-number">${i}</p>
+                        </div>
+                        </li>
+                    `;
+                    } else {
+                        //Días restantes
+                        daysSlider += `
+                        <li class="programming-item">
+                        <div class="day">
+                            <p class="day-text">${getDayName(currentMonth, i)}</p>
+                            <p class="day-number">${i}</p>
+                        </div>
+                        </li>
+
+                         `;
+                    }
+                }
+
+                //Días del mes siguiente
+                for (let i = 1; i <= getDays(2); i++) {
+                    daysSlider += `
+                                    <li class="programming-item">
+                                        <div class="day">
+                                            <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
+                                            <p class="day-number">${i}</p>
+                                        </div>
+                                    </li>
+                                `;
+                }
+            } else {
+
+                //En caso de que al mes le falten más de 15 días para terminar
+                totalDaysSlider = currentMonthDays;
+                for (let i = getDay(); i <= totalDaysSlider; i++) {
+                    if (i == getDay()) {
+                        //Día actual activo
+                        daysSlider += `
+                            <li class="programming-item programming-item-active">
+                            <div class="day">
+                                <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                <p class="day-number">${i}</p>
+                            </div>
+                            </li>
+                        `;
+                    } else {
+                        //Días siguientes
+                        daysSlider += `
+                        <li class="programming-item">
+                        <div class="day">
+                            <p class="day-text">${getDayName(currentMonth, i)}</p>
+                            <p class="day-number">${i}</p>
+                        </div>
+                        </li>
+                        `;
+
+                    }
+                }
+
+            }
+
+            $('.calendar-slider').html(daysSlider);
+            //End caledario
+
             let modaTitle = $('.edit-program-modal-title');
             $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
             $('.edit-program-data-container').attr("section", data.program.section_id);
@@ -349,6 +496,7 @@ function getChapterInfo(data) {
 
             $(".modal-edit-program").modal("show");
             setTimeout(() => {
+                $(".calendar-slider").slick('reinit');
                 $(".calendar-slider").slick({
                     slidesToShow: 11,
                     slidesToScroll: 11,
@@ -356,9 +504,10 @@ function getChapterInfo(data) {
                     dots: false,
                     centerMode: false,
                     arrows: true,
-                    prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-                    nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+                    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
                 });
+
             }, 250);
 
         }

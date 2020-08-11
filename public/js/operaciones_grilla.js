@@ -73106,7 +73106,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
  //Librería para mostrar calendario
 
- //Servicios para editar campos en la grilla
+ //Servicios para editar campos en la grilla''
 
  //Servicios para editar landing
 
@@ -73503,7 +73503,6 @@ function eventsGrilla() {
             case "slider-pagination":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               setTimeout(function () {
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
@@ -73520,6 +73519,7 @@ function eventsGrilla() {
                     return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
                   }
                 });
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
               }, 3000);
               break;
 
@@ -75049,6 +75049,7 @@ function addImagesModalBanner() {
       }
 
       console.log(slider);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("unslick");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").append(slider);
     }
   });
@@ -75078,6 +75079,41 @@ __webpack_require__.r(__webpack_exports__);
 //JQUERY
 
 
+
+function getMonth(idMonth) {
+  var date = new Date();
+  var month = date.getMonth() + idMonth;
+  return month;
+}
+
+function getDays(month) {
+  var date = new Date();
+  return new Date(date.getFullYear(), date.getMonth() + month, 0).getDate();
+}
+
+function getDay() {
+  var date = new Date();
+  return date.getDate();
+}
+
+function getDayName(month, day) {
+  var date = new Date();
+  var currentDay = new Date(date.getFullYear(), month, day).getUTCDay();
+  var days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"];
+  return days[currentDay];
+}
+
+function getYear() {
+  var date = new Date();
+  return date.getFullYear();
+}
+
+function getMonthAndYear(month) {
+  var date = new Date();
+  var year = date.getFullYear();
+  var months = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+  return "".concat(months[month], " ").concat(year);
+}
 
 function updateImagesOfProgrammingSlider(data) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -75148,6 +75184,57 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
       var data = JSON.parse(result);
       console.log(data);
+      var date = new Date();
+      /* Número de días del mes actual */
+
+      var currentMonthDays = getDays(1);
+      /* Número de mes actual*/
+
+      var currentMonth = date.getMonth();
+      /*Número de días del mes siguiente */
+
+      var nextMonth = getDays(2);
+      /* Número de días restantes del mes actual */
+
+      var numberLastDays = getDays(1) - getDay();
+      var totalDaysSlider = 0;
+      var daysSlider = "";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
+
+      if (numberLastDays <= 15) {
+        totalDaysSlider = getDays(2) + (getDays(1) - getDay()); //Días del primer mes
+
+        for (var i = getDay(); i <= getDays(1); i++) {
+          //Día actual
+          if (i == getDay()) {
+            daysSlider += "\n                        <li\n                        0\n                    )}\" class=\"programming-item programming-item-active\">\n                        <div class=\"day\">\n                            <p class=\"day-text\">".concat(getDayName(currentMonth, i), "</p>\n                            <p class=\"day-number\">").concat(i, "</p>\n                        </div>\n                        </li>\n                    ");
+          } else {
+            //Días restantes
+            daysSlider += "\n                        <li class=\"programming-item\">\n                        <div class=\"day\">\n                            <p class=\"day-text\">".concat(getDayName(currentMonth, i), "</p>\n                            <p class=\"day-number\">").concat(i, "</p>\n                        </div>\n                        </li>\n\n                         ");
+          }
+        } //Días del mes siguiente
+
+
+        for (var _i = 1; _i <= getDays(2); _i++) {
+          daysSlider += "\n                                    <li class=\"programming-item\">\n                                        <div class=\"day\">\n                                            <p class=\"day-text\">".concat(getDayName(currentMonth + 1, _i), "</p>\n                                            <p class=\"day-number\">").concat(_i, "</p>\n                                        </div>\n                                    </li>\n                                ");
+        }
+      } else {
+        //En caso de que al mes le falten más de 15 días para terminar
+        totalDaysSlider = currentMonthDays;
+
+        for (var _i2 = getDay(); _i2 <= totalDaysSlider; _i2++) {
+          if (_i2 == getDay()) {
+            //Día actual activo
+            daysSlider += "\n                            <li class=\"programming-item programming-item-active\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">".concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                        ");
+          } else {
+            //Días siguientes
+            daysSlider += "\n                        <li class=\"programming-item\">\n                        <div class=\"day\">\n                            <p class=\"day-text\">".concat(getDayName(currentMonth, _i2), "</p>\n                            <p class=\"day-number\">").concat(_i2, "</p>\n                        </div>\n                        </li>\n                        ");
+          }
+        }
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').html(daysSlider); //End caledario
+
       var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
@@ -75418,6 +75505,7 @@ function getChapterInfo(data) {
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
       setTimeout(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick('reinit');
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
           slidesToShow: 11,
           slidesToScroll: 11,
@@ -75425,8 +75513,8 @@ function getChapterInfo(data) {
           dots: false,
           centerMode: false,
           arrows: true,
-          prevArrow: '<img src="../images/prev.png" class="arrow-prev" />',
-          nextArrow: '<img src="../images/next.png" class="arrow-next" />'
+          prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+          nextArrow: '<img src="./images/next.png" class="arrow-next" />'
         });
       }, 250);
     }
