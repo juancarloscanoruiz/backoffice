@@ -711,7 +711,7 @@ function addImagesModalBanner(){
         success: function (result) {
             result=JSON.parse(result);
            let slider = ""
-           let dot =""
+        
            let counter=1;
             while(true){
                 try {
@@ -728,9 +728,7 @@ function addImagesModalBanner(){
                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                     </label>
                 </div>` ;
-           dot=dot +`<div class='d-flex'><p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>
-           ${counter}
-       </p> </div>`
+
                         counter++;
                 
                    
@@ -748,7 +746,7 @@ function addImagesModalBanner(){
             console.log(slider);
             $(".programming-slider").slick("unslick");
         
-          $(".programming-slider-dots").append(dot); //la agrege, para ver si pone los numero de dots
+        
             $(".programming-slider").append(slider);
         }
     });
