@@ -80,6 +80,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/updateImageProgram", "landingController@updateImageProgramOfLanding");
     Route::post("/newProgram", "landingController@newProgram");
     Route::get("/getSection/{section}", "landingController@getSection")->name('getSection');
+    Route::post("/getProgramming", "landingController@getProgramming");
 
 });
 

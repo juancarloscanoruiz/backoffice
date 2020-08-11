@@ -636,9 +636,19 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "section/".$section 
+            $this->url . "section/".$section
         );
 
+        $respuesta =  json_decode($response->getBody());
+        echo (json_encode($respuesta->data));
+    }
+
+    public function getProgramming(Request $request){
+
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "programation/getChapterByDate/".$request->input('date')."&".$request->input('time')."&". $request->input('section')
+        );
         $respuesta =  json_decode($response->getBody());
         echo (json_encode($respuesta->data));
     }
