@@ -121,6 +121,21 @@ function updateLogosOfLanding(data) {
     });
 }
 
+
+
+function updateImageProgramOfLanding(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        url: "landing/updateImageProgram",
+        success: function (result) {
+            console.log(result);
+        }
+    });
+}
+
 function getChapterInfo(data) {
     $.ajax({
         type: "GET",
@@ -630,19 +645,6 @@ function getChapterInfo(data) {
 
 
 
-        }
-    });
-}
-
-function updateImageProgramOfLanding(data) {
-    $.ajax({
-        type: "POST",
-        data: data,
-        processData: false, //esto es para poder pasar el archivo
-        contentType: false, //esto es para poder pasar el archivo
-        url: "landing/updateImageProgram",
-        success: function (result) {
-            console.log(result);
         }
     });
 }
