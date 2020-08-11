@@ -654,7 +654,7 @@
                                         </p>
                                         <!--Switch-->
                                         <div class="d-flex align-items-center mb-3">
-                                            <input type="radio" name="sino-landing" id="yes-landing" value="1"
+                                            <input type="radio" name="sino-landing" id="yes-landing" value="3"
                                                 class="edit-switch-landing edit-landing-yes" key="in_landing" />
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
@@ -665,17 +665,17 @@
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
                                         </div>
-                                        <!--Inputs radio-->
+                                                                              <!--Inputs radio-->
                                         <div class="d-flex align-items-center mb-3">
-                                            <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2">
-                                                <input type="radio" checked name="dontlose" class="switch-table edit-carrusel-1"
-                                                    value="2" id="landing-section-2" key="in_landing" />
+                                            <label class="checkradio d-flex ml-2 mb-0" for="landing-section-1">
+                                                <input type="radio" disabled name="dontlose" class="switch-table edit-carrusel-1"
+                                                    value="1" id="landing-section-1" key="in_landing" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                                 1</span>
-                                            <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2-">
-                                                <input type="radio" checked name="dontlose" class="mb-0 switch-table edit-carrusel-2"
+                                            <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2">
+                                                <input type="radio" disabled name="dontlose" class="mb-0 switch-table edit-carrusel-2"
                                                     value="2" id="landing-section-2" key="in_landing"/>
                                                 <span class="checkmark"></span>
                                             </label>
