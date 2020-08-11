@@ -738,6 +738,7 @@ function addImagesModalBanner(){
                 }
             }
             console.log(slider);
+            $(".programming-slider").slick("unslick");
         
             $(".programming-slider").append(slider);
         }
