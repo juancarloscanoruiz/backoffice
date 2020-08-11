@@ -87,11 +87,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectPais:checked~#select-Pais {
+#selectPais:checked ~ #select-Pais {
     overflow: visible;
 }
 
-#selectPais:checked~#select-Pais .ListaDesplegablePaises {
+#selectPais:checked ~ #select-Pais .ListaDesplegablePaises {
     height: 158px;
 }
 
@@ -166,11 +166,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectDay:checked~#select-Dia {
+#selectDay:checked ~ #select-Dia {
     overflow: visible;
 }
 
-#selectDay:checked~#select-Dia .ListaDesplegableDias {
+#selectDay:checked ~ #select-Dia .ListaDesplegableDias {
     height: 200px;
 }
 
@@ -248,11 +248,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectMonth:checked~#select-Mes {
+#selectMonth:checked ~ #select-Mes {
     overflow: visible;
 }
 
-#selectMonth:checked~#select-Mes .ListaDesplegableMeses {
+#selectMonth:checked ~ #select-Mes .ListaDesplegableMeses {
     height: 200px;
 }
 
@@ -332,11 +332,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectYear:checked~#select-Año {
+#selectYear:checked ~ #select-Año {
     overflow: visible;
 }
 
-#selectYear:checked~#select-Año .ListaDesplegableAños {
+#selectYear:checked ~ #select-Año .ListaDesplegableAños {
     height: 200px;
 }
 
@@ -370,9 +370,6 @@ ul {
     cursor: pointer;
     background-color: $beige;
 }
-
-
-
 
 .schedule- .thermometer-schedule-current-item {
     height: 11px;
@@ -419,7 +416,6 @@ ul {
 
 //Slider de calendario en pantalla para editar programa
 .programming-item {
-    padding: 10px 0;
     text-align: center;
 }
 
@@ -452,14 +448,12 @@ ul {
     }
 }
 
-
 .unavailable:hover {
-    background-color: #E17301 !important;
+    background-color: #e17301 !important;
 }
 
-
 .available:hover {
-    background-color: #ADADAD !important;
+    background-color: #adadad !important;
 }
 
 .current {
