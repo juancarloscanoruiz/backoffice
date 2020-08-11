@@ -580,7 +580,7 @@ function eventsGrilla() {
                         case "slider-pagination":
                             $("body").append(loader);
                             setTimeout(function() {
-                                addImagesModalBanner();
+                              
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
                                 $(".programming-slider").slick({
@@ -603,6 +603,7 @@ function eventsGrilla() {
                                         );
                                     }
                                 });
+                                addImagesModalBanner();
                             }, 3000);
 
                             break;
