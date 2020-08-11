@@ -124,7 +124,7 @@
                         <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
-                        <input type="radio" name="sexo" id="prev" class="prev-concert" />
+                        <input type="radio" name="sexo" id="prev" class="prev-concert"onload="preloader()" />
                         <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
                             <p class=" a-prev-title ">PREVISUALIZAR</p>
                         </label>
@@ -278,31 +278,35 @@
             </div>
         </div>
     </main>
-    <div class="modal fade modal-edit-icons pr-0" id="savesino" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered m-0"  >
+    <!--inicio de modales para edición-->
+
+       <!--menu de logos-->
+       <div class="modal  modal-edit-icons pr-0"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg modal-dialog-centered m-0"role="document"  >
             <div class="modal-content align-item-center centro " style="width: 100%" >
                 <div class="modal-body ">
                     <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
                     <hr class="d-flex align-content-center separationhr mb-4 col-12">
                     <!--div padre-->
+                  <form >
                     <div class="d-flex justify-content-around col-11 mb-5 mt-5">
                         <!--Div primer logo-->
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center  slider-logo mt-5">
                             <!--pagination-->
                             <div class=" d-flex programming-dots ">
-                                <p class=' a-text-bold-white slider-pagination slider-pagination-active '>1</p>
+                                <p class=' a-text-bold-white slider-pagination slider-pagination-logo slider-pagination-active '>1</p>
                             </div>
                             <div class="centro position-relative logo-lading-container mb-3" >
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon1" id="image-icon1"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none" >
                                     <label for="image-icon1"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales"  >
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo" />
-                                        <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow">472px X
-                                            295px</span>
+                                        class="add-photo " style="z-index:10000"/>
+                                        <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
+                                           295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
@@ -318,23 +322,23 @@
 
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center   slider-logo mt-5">
                             <!--pagination-->
                             <div class=" d-flex programming-dots ">
-                                <p class='a-text-bold-teal slider-pagination pag'>2</p>
+                                <p class='a-text-bold-teal slider-pagination slider-pagination-logo pag'>2</p>
                             </div>
                             <!--cargar imagenes-->
                             <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon2" id="image-icon2"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none" >
                                     <label for="image-icon2"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales" >
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo" />
-                                        <span class="a-text-bold-warm text-plus  p-2 pr-3 pl-3  white-shadow">472px X
-                                            295px</span>
+                                        class="add-photo " style="z-index:10000"/>
+                                        <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
+                                          295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
@@ -348,23 +352,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="d-flex justify-content-center slider-logo mt-5 ">
                             <!--pagination-->
                             <div class=" programming-dots ">
-                                <p class='a-text-bold-teal slider-pagination '>3 </p>
+                                <p class='a-text-bold-teal slider-pagination slider-pagination-logo '>3 </p>
                             </div>
                             <!--cargar imagenes-->
                             <div class="centro position-relative mb-3 logo-lading-container">
                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                     id="thumbnail-home-horizontal">
                                     <input type="file" name="image-icon3" id="image-icon3"
-                                        class="input-image-program logo-landing d-none">
+                                        class="input-image-program logo-landing d-none"  >
                                     <label for="image-icon3"
-                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column">
+                                        class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo" />
-                                        <span class="a-text-bold-warm text-plus  white-shadow  p-2 pr-3 pl-3  ">472px X
-                                            295px</span>
+                                        class="add-photo " style="z-index:10000"/>
+                                        <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
+                                          295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
@@ -382,20 +386,23 @@
                     <!--div botones-->
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
-                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-logos-button">ACEPTAR</button>
+                            class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
                             <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                     </div>
+                    </form>
                 </div>
+
             </div>
         </div>
+
     </div>
     <div class="modal pr-0 fade modal-edit-program" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true" style="overflow: auto;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body pt-0">
-                    <h2 class="h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
+                    <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN PRINCIPAL - CARRUSEL 1</h2>
                     <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                     <div class="col-11 mx-auto">
@@ -496,6 +503,10 @@
                             <div class="thermometer-hours-container mt-4">
                                 <ul class="thermometer-hours-list d-flex pr-3 pl-3">
                                     <li
+                                    class="thermometer-hours-item mr-1 text-center text-plus a-text-black-brown-two">
+                                        0
+                                    </li>
+                                    <li
                                         class="thermometer-hours-item mr-1 text-center text-plus a-text-black-brown-two">
                                         1
                                     </li>
@@ -594,32 +605,7 @@
                                     class="arrow-thermometer arrow-thermometer-left" alt="arrow-left">
                                 <div class="thermometer-container">
                                     <ul class="thermometer-schedule-list d-flex p-3">
-                                        <li class="thermometer-schedule-item mr-1 d-flex align-items-center">
-                                            <div class="w-50 h-100"></div>
-                                            <div class="w-50 h-100"></div>
-                                        </li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item mr-1"></li>
-                                        <li class="thermometer-schedule-item"></li>
+
                                     </ul>
                                 </div>
                                 <img src="{{ asset('/images/arrow-dark.svg') }}"
@@ -642,6 +628,7 @@
                                 <li>
                             </ul>
                         </div>
+                        <div class="edit-info-container">
                         <!--Imagen de programa en slider-->
                         <section class="edit-program-image">
                             <select
@@ -649,19 +636,23 @@
                                 title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                             </select>
 
-                      <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
+                            <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
+                            <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
-                                <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
-                                    alt="camera" />
-                                <div class="edit-program-camera">
-                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="" alt="camera" />
+                                <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
+                                <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
+                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                                    alt="heart-icon" />
+                                <div class="edit-program-camera text-center">
+                                    <img src="{{ asset('/images/synopsis/camara.svg') }}" class="edit-program-icon-image" alt="camera" />
                                     <p class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
                                         472
                                         x 245px</p>
                                 </div>
 
                                 <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
-                                    class="thumbnail-image-prev edit-image-program" />
+                                    class="thumbnail-image-prev edit-image-program prev-image-program" />
+                                </label>
                             </div>
                             <!--Nombre de la imagen-->
                             <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
@@ -787,7 +778,7 @@
                                         </p>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                            <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 81px">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                     <input key="" type=" text"
@@ -795,8 +786,8 @@
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
-                                        <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                        <div class="text-center edit-rectangle-small-container py-3">
+                                        <p class="mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                        <div class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
                                             <span class="a-text-bold-warm"><img src="{{ asset('images/reloj.svg') }}"
                                                     alt="" class="mr-3"><input type="text"
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -810,7 +801,7 @@
                         <section class="mb-5 edit-program-data-container">
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
-                            <textarea key="synopsis" class="edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
+                            <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
                         </section>
                         <section class="mb-3">
                             <div class="row">
@@ -871,14 +862,14 @@
                                     </div>
                                 </div>
                                 <!--Program genre list-->
-                                <div class="col-4 edit-program-data-container" id="edit-genre-container">
+                                <div class="col-4 edit-program-data-container position-relative" id="edit-genre-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre
                                             list
                                         </p>
                                         <div class="mb-3 edit-rectangle-container ">
                                             <select
-                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal show-tick" id="edit-program-genres"
+                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick" id="edit-program-genres"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false" key="genre">
@@ -907,7 +898,7 @@
                                 <!--Schedule item log date-->
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
+                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
@@ -922,7 +913,7 @@
                                 </div>
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log
+                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             time (gmt)
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>
@@ -1016,12 +1007,14 @@
                                 </div>
                             </div>
                         </section>
+                        </div>
+
                     </div>
                     <div class=" d-flex justify-content-center">
                     <section class="text-center mb-3 d-flex justify-content-center">
                         <button
-                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                            data-dismiss="modal">ACEPTAR</button>
+                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                            data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
                     </section>
 
                 </div>
@@ -1051,9 +1044,10 @@
                       <div>
                           <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
                       </div>
-                      <input type="text" id="programming-carrusel-calendar" class="d-none">
+
+                      <input type="text" id="programming-carrusel-calendar " class="d-none">
                       <label for="programming-carrusel-calendar"
-                          class="ml-4 mb-0 date-button date-start-table d-flex align-items-center pl-3 pr-3"
+                          class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3"
                           id="date-start-table">
                           <img src="./images/calendario.svg" alt="">
                           <div class="ml-3">
@@ -1076,35 +1070,35 @@
 
               <!--Slider-->
               <div class="programming-slider mx-auto">
-                  <!--Slide-->
+                  <!--Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming" data-index="1">
+                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
                       <label for="image_programming_1"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
+                              class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                           <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
-                  <!--Slide-->
+                  Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming" data-index="2">
+                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming " data-index="2">
                       <label for="image_programming_2"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
+                              class=" cursor-pointer add-photo " />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                           <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
-                  <!--Slide-->
+                  Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
                           <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                               class=" cursor-pointer add-photo" />
                           <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -1112,12 +1106,26 @@
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
+                   Slide
+                   <div class="bor thumbnail-image-program position-relative h-100">
+                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
+                      <label for="image_programming_3"
+                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
+                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                              class=" cursor-pointer add-photo" />
+                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
+                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                      </label>
+                  </div>
+
+          
+              End slider-->
               </div>
-              <!--End slider-->
               <!--Buttons-->
               <div class="text-center mb-3 d-flex justify-content-center">
                   <button
-                      class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button">aceptar</button>
+                      class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro">aceptar</button>
                       <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                      <!-- <button
@@ -1137,11 +1145,11 @@
           <div class="modal-body ">
           <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
             <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
-                                               recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
+                recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
           </div>
 
           <div class="text-center mb-5 mt-4 pt-3 pb-4">
-            <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"data-dismiss="modal" data-dismiss="modal"data-dismiss="modal" >ACEPTAR</button>
+            <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"data-dismiss="modal" data-dismiss="modal"data-dismiss="modal"id="close_modals" >ACEPTAR</button>
 
             <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
           </div>
@@ -1150,24 +1158,6 @@
     </div>
 
   </div>
-</body>
-<div class="modal show modal-delete-user" id="savesino" role="dialog">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content align-item-center centro  modal-save">
-            <div class="modal-body ">
-                <img src="./images/bien.svg" alt="aprovado" class="m-3">
-                <h3 class="h3 a-text-medium-brownish mt-3 mb-3">Fueron guardados los cambios en la sinópsis de:</h3>
-                <div class="d-flex justify-content-center mb-5">
-                    <label for="" class="h3 a-text-bold-brownish">Mad Men</label>
-                </div>
-                <div class="d-flex justify-content-center mb-5">
-                    <button type="button" class="a-btn-border-teal  a-btn-general-modal text-no  mr-5 btn-focus"
-                        id="back-list" data-dismiss="modal">VOLVER AL LISTADO</button>
 
-                    <button type="button" class="a-btn-teal  a-btn-general-modal text-si  btn-focus" id="modal-button"
-                        data-dismiss="modal">SIGUIENTE SINÓPSIS</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+ 
+ </body>

@@ -61,19 +61,22 @@ $.ajaxSetup({
 });
 
 $(document).ready(function () {
-    //loader, antes de subir un archivo
-    $(".upload-files").on("click", function () {
+  
+
+     //loader, images
+     $(".load-picture").on("click", function () {
         const loader = `
-        <div class="loader-view-container" id="loader2">
-          <img src="./images/loader.gif" class="loader" alt="">
+        <div class="loader-view-container" id="loader1">
+          <img src="../images/loader.gif" class="loader" alt="">
         </div>
         `;
         $("body").append(loader);
+        console.log("si lo agrega");
         setTimeout(function () {
-            $("#loader2").remove();
+            $("#loader1").remove();
+            console.log("si lo borra");
         }, 3000);
     });
-
      //loader, antes de subir un archivo
      $(".load-photo").on("click", function () {
         const loader = `
@@ -193,7 +196,7 @@ $(document).ready(function () {
             }
         });
     });
-    divGrilla.on("click", "#agregar-concert-channel", function () {
+    /*divGrilla.on("click", "#agregar-concert-channel", function () {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
@@ -218,7 +221,7 @@ $(document).ready(function () {
                 eventsGrilla();
             }
         });
-    });
+    });*/
     eventsGrilla();
 
     //SLIDER DE SINOPSIS

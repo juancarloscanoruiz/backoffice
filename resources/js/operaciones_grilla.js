@@ -41,6 +41,18 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+      //loader, antes de subir un archivo
+    $(".upload-files").on("click", function () {
+        const loader = `
+        <div class="loader-view-container" id="loader2">
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+        $("body").append(loader);
+        setTimeout(function () {
+            $("#loader2").remove();
+        }, 3000);
+    });
 
 
     //Evento para cuando cerramos el selectpicker
@@ -1711,7 +1723,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
           onMessage: function(message, origin) {
               console.log(message);
               this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-              this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+              
               this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
 
           }
@@ -1724,7 +1736,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                    
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1753,7 +1765,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                 
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1765,7 +1777,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                    
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1778,7 +1790,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                    
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1796,7 +1808,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+             
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1808,7 +1820,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+               
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1820,7 +1832,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1838,7 +1850,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                  
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1850,7 +1862,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                    
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1862,7 +1874,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 onMessage: function(message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                    this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                    
                     this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });

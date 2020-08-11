@@ -565,7 +565,7 @@ input[type="radio"]:checked + .no-estilo1 {
     background-color: transparent !important;
     border-color: transparent !important;
 }
-.bootstrap-select .dropdown-toggle:focus {
+div .bootstrap-select > .dropdown-toggle:focus {
     outline: 0 !important;
     outline: none !important;
     outline-offset: 0 !important;
@@ -574,6 +574,7 @@ input[type="radio"]:checked + .no-estilo1 {
     background-color: transparent !important;
     border-color: transparent !important;
 }
+
 .btn.focus,
 .btn:focus {
     outline: 0 !important;

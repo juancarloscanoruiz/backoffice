@@ -567,7 +567,7 @@ $data_for_new_entry = json_encode([
                             <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
-                                    <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon">
+                                    <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon upload-files">
 
                                     <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                                     </div>
@@ -581,7 +581,7 @@ $data_for_new_entry = json_encode([
                             <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
-                                        <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="añadir imagenes" class="add-images-icon">
+                                        <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="añadir imagenes" class="add-images-icon upload-files">
                                         <img src="{{$programs[$indexPrograms]->images->thumbnail_list_horizontal}}" alt="" class="image-program">
                                     </div>
                                 </a>
