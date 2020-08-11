@@ -222,7 +222,7 @@ function eventsGrilla() {
         }
     });
 
-    $(".edit-synopsis").blur(function (e) {
+    $(".edit-program-attribute-text").blur(function (e) {
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
@@ -359,12 +359,26 @@ function eventsGrilla() {
     });
 
     $(".edit-switch-landing").click(function () {
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
         if ($(this).val() == 0) {
             $(".edit-landing-date-end").val("");
             $(".edit-landing-date-begin").val("");
             $(".edit-landing-time-end").val("");
             $(".edit-landing-time-begin").val("");
+            $('#landing-section-1').prop('checked',false);
+            $('#landing-section-1').attr('disabled',true);
+            $('#landing-section-2').prop('checked',false);
+            $('#landing-section-2').attr('disabled',true);
+            editAttributeProgram(chapter_id, key, value);
+        }else{
+            $('#landing-section-1').attr('disabled',false);
+            $('#landing-section-2').attr('disabled',false);
+
         }
+       
+       
     });
     //loader, antes de subir un archivo
     $(".load-modales").click(function () {
@@ -1551,16 +1565,13 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function () {
-        let currentColumn = $(this).closest(".contenedor-columna");
-        //Sacamos el valor del switch o radio button
-        let keyValue = $(this).val();
-        //De la columna, sacamos el chapter_id
-        let chapterId = currentColumn.attr("chapter_id");
-        //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
-        let key = currentColumn.attr("key");
+      //Sacar los valores de los switches en la grilla
+      $(".switch-table").click(function () {
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
         //Hacemos la petición
-        editAttributeProgram(chapterId, key, keyValue);
+        editAttributeProgram(chapter_id, key, value);
     });
 
     /*
