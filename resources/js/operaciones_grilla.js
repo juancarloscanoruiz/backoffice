@@ -40,11 +40,8 @@ function eventsGrilla() {
     });
 
     $(".edit-landing-modal-button").click(function() {
-        let iframe =
-            $("#navbar-prev-programacion iframe").attr("src") +
-            `?random=${new Date().getTime() +
-                Math.floor(Math.random() * 1000000)}`;
-        console.log(iframe);
+        let iframe = $("#navbar-prev-programacion iframe").attr("src");
+
         $("#navbar-prev-programacion iframe").attr("src", iframe);
     });
 

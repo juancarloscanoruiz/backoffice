@@ -762,7 +762,7 @@
                                         </p>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="text-center edit-rectangle-small-container py-3" style="margin-bottom: 81px">
+                                            <div class="text-center edit-rectangle-small-container py-3" style="margin-bottom: 87px">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                     <input key="" type=" text"

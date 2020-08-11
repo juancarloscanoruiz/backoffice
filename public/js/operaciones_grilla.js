@@ -73122,8 +73122,7 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapter_id);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src") + "?random=".concat(new Date().getTime() + Math.floor(Math.random() * 1000000));
-    console.log(iframe);
+    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
@@ -73504,6 +73503,7 @@ function eventsGrilla() {
             case "slider-pagination":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               setTimeout(function () {
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
@@ -73531,6 +73531,7 @@ function eventsGrilla() {
             case "menu-logos":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               setTimeout(function () {
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
               }, 3000);
@@ -74777,11 +74778,13 @@ function previewPage(icon) {
 /*!**************************************************!*\
   !*** ./resources/js/services/generalSchedule.js ***!
   \**************************************************/
-/*! exports provided: editAttributeProgram, filterDates */
+/*! exports provided: addImagesModalBanner, addImagesModalIcons, editAttributeProgram, filterDates */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addImagesModalBanner", function() { return addImagesModalBanner; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addImagesModalIcons", function() { return addImagesModalIcons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAttributeProgram", function() { return editAttributeProgram; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterDates", function() { return filterDates; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -75002,6 +75005,51 @@ function deleteProgram(id_program, id_version) {
     url: "./adapters/generalSchedule.php",
     success: function success(result) {
       console.log(result);
+    }
+  });
+}
+
+function addImagesModalIcons() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "GET",
+    url: "landing/getSection/programation",
+    success: function success(result) {
+      result = JSON.parse(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
+    }
+  });
+}
+/**
+ * Se consulta a la API y se colocan las imagenes que se encuentren
+ */
+
+
+function addImagesModalBanner() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "GET",
+    url: "landing/getSection/programation",
+    success: function success(result) {
+      result = JSON.parse(result);
+      var slider = "";
+      var counter = 1;
+
+      while (true) {
+        try {
+          if (result["image_slider_" + counter]) {
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            counter++;
+          } else {
+            break;
+          }
+        } catch (error) {
+          break;
+        }
+      }
+
+      console.log(slider);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").append(slider);
     }
   });
 }
