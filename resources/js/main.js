@@ -71,7 +71,7 @@ $(document).ready(function () {
         $("body").append(loader);
         setTimeout(function () {
             $("#loader2").remove();
-        }, 9000);
+        }, 3000);
     });
 
      //loader, antes de subir un archivo
@@ -86,7 +86,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $("#loader1").remove();
             console.log("si lo borra");
-        }, 5000);
+        }, 3000);
     });
  
 

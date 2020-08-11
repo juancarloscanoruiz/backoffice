@@ -118,7 +118,8 @@
             <div class="clearfix"></div>
                <!--colocacion de ifram de programacion-->
             <div class="centro ">
-              <div class="navbar-progra-content mb-5 navbar-prev-programacion " id="navbar-prev-programacion">
+            <div class="loader-view-container" id="loader-view" > <img src="./images/loader.gif" class="loader" alt="">   </div>
+              <div class="navbar-progra-content mb-5 navbar-prev-programacion "onload="preloader()" id="navbar-prev-programacion" style="display:none;">
                 </div>
             </div>
 
