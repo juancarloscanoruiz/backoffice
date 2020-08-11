@@ -3483,6 +3483,10 @@ input[type=radio]:checked + .no-estilo1 {
   box-sizing: border-box;
 }
 
+.programming-item {
+  cursor: pointer;
+}
+
 .line {
   width: 100%;
   height: 1px;

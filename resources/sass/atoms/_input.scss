@@ -42,13 +42,13 @@
     letter-spacing: normal;
 }
 
-input[type="radio"]:checked+.a-btn-check:before {
+input[type="radio"]:checked + .a-btn-check:before {
     content: "\02713";
     font-size: 30px;
     color: $kelley-green;
 }
 
-input[type="radio"]:checked+.hombre-estilo {
+input[type="radio"]:checked + .hombre-estilo {
     background: $lemongreen;
     color: $white;
     border: none;
@@ -89,19 +89,19 @@ input[type="radio"] {
     margin: auto;
 }
 
-option:checked+.roles {
+option:checked + .roles {
     background: $lemongreen;
     color: $white;
     border: none;
 }
 
-input[type="radio"]:checked+.mujer-estilo {
+input[type="radio"]:checked + .mujer-estilo {
     background: $lemongreen;
     color: $white;
     border: none;
 }
 
-input[type="radio"]:checked+.mujer-estilo1 {
+input[type="radio"]:checked + .mujer-estilo1 {
     background: $lemongreen;
     color: $white;
     border: none;
@@ -118,7 +118,7 @@ input[type="radio"]:checked + .no-estilo {
     border: none;
 }*/
 
-input[type="radio"]:checked+.switch-label {
+input[type="radio"]:checked + .switch-label {
     background-color: $teal;
     color: $white;
     border: none;
@@ -129,13 +129,13 @@ input[type="radio"]:checked+.switch-label {
     font-family: $MontserratSemiBold;
 }
 
-input[type="radio"]:checked+.si-estilo1 {
+input[type="radio"]:checked + .si-estilo1 {
     background-color: $darkinput;
     color: $white;
     border: none;
 }
 
-input[type="radio"]:checked+.no-estilo1 {
+input[type="radio"]:checked + .no-estilo1 {
     background-color: $darkinput;
     color: $white;
     border: none;
@@ -171,7 +171,7 @@ input[type="radio"]:checked+.no-estilo1 {
     background-color: white;
 }
 
-.checkradio input:checked+.checkmark {
+.checkradio input:checked + .checkmark {
     background-color: white;
 }
 
@@ -181,7 +181,7 @@ input[type="radio"]:checked+.no-estilo1 {
     display: none;
 }
 
-.checkradio input:checked+.checkmark:after {
+.checkradio input:checked + .checkmark:after {
     display: block;
 }
 
@@ -233,11 +233,11 @@ input[type="radio"]:checked+.no-estilo1 {
     background-color: white;
 }
 
-.checksquare input:checked~.checkmark1 {
+.checksquare input:checked ~ .checkmark1 {
     background-color: white;
 }
 
-.checksquare input:checked~.checkmark2 {
+.checksquare input:checked ~ .checkmark2 {
     background-color: white;
 }
 
@@ -253,11 +253,11 @@ input[type="radio"]:checked+.no-estilo1 {
     display: none;
 }
 
-.checksquare input:checked~.checkmark1:after {
+.checksquare input:checked ~ .checkmark1:after {
     display: block;
 }
 
-.checksquare input:checked~.checkmark2:after {
+.checksquare input:checked ~ .checkmark2:after {
     display: block;
 }
 
@@ -346,7 +346,7 @@ input[type="radio"]:checked+.no-estilo1 {
     word-wrap: break-word !important;
 }
 
-.bootstrap-select>.dropdown-toggle {
+.bootstrap-select > .dropdown-toggle {
     position: relative;
     width: 100%;
     z-index: 1;
@@ -354,7 +354,6 @@ input[type="radio"]:checked+.no-estilo1 {
     white-space: nowrap;
     overflow: auto;
     height: 70px;
-
 }
 
 .dropdown-item {
@@ -444,7 +443,7 @@ input[type="radio"]:checked+.no-estilo1 {
     text-transform: uppercase;
 }
 
-.thumbnail-header1>.dropdown-toggle {
+.thumbnail-header1 > .dropdown-toggle {
     position: relative;
     width: 100%;
     z-index: 1;
@@ -462,7 +461,6 @@ input[type="radio"]:checked+.no-estilo1 {
     border: 0 !important;
     top: 12px;
     right: 12px;
-
 }
 
 .thumbnail-header1 .dropdown-item {
@@ -487,7 +485,7 @@ input[type="radio"]:checked+.no-estilo1 {
     margin-bottom: 9px;
 }
 
-.list1>.dropdown-toggle {
+.list1 > .dropdown-toggle {
     position: relative;
     width: 165% !important;
     z-index: 1;
@@ -552,4 +550,8 @@ input[type="radio"]:checked+.no-estilo1 {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.programming-item {
+    cursor: pointer;
 }

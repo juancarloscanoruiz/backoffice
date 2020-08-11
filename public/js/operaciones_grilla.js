@@ -75293,6 +75293,8 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').html(daysSlider); //End caledario
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').removeClass("programming-item-active");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
         var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
         var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
         var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.current').attr("schedule");
