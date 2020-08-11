@@ -487,7 +487,7 @@ input[type="radio"]:checked + .no-estilo1 {
 
 .list1 > .dropdown-toggle {
     position: relative;
-    width: 165% !important;
+    // width: 165% !important;
     z-index: 1;
     text-align: right;
     white-space: nowrap;
@@ -546,7 +546,7 @@ input[type="radio"]:checked + .no-estilo1 {
 }
 
 .list1 .dropdown-menu {
-    min-width: 165% !important;
+    //min-width: 165% !important;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -554,4 +554,31 @@ input[type="radio"]:checked + .no-estilo1 {
 
 .programming-item {
     cursor: pointer;
+}
+.list1:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100% !important;
+}
+
+//clases generales de estilos de sombra gris en seleckpicker
+.show > .btn-light.dropdown-toggle {
+    color: #212529;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.bootstrap-select .dropdown-toggle:focus {
+    outline: 0 !important;
+    outline: none !important;
+    outline-offset: 0 !important;
+}
+.btn-light:focus {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.btn.focus,
+.btn:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+*:focus {
+    outline: 0 !important;
 }

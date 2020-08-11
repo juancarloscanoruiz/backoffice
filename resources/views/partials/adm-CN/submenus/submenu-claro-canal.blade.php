@@ -118,8 +118,8 @@
             <div class="clearfix"></div>
                <!--colocacion de ifram de programacion-->
             <div class="centro ">
-            <div class="loader-view-container" id="loader-view" > <img src="./images/loader.gif" class="loader" alt="">   </div>
-              <div class="navbar-progra-content mb-5 navbar-prev-programacion "onload="preloader()" id="navbar-prev-programacion" style="display:none;">
+            <div class="load-view pointer-none" id="loader-view">    </div>
+              <div class="navbar-progra-content mb-5 navbar-prev-programacion "onload='preloader()' id="navbar-prev-programacion" style="display:none;">
                 </div>
             </div>
 
@@ -371,7 +371,7 @@
                     <!--div botones-->
                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                         <button
-                            class="d-flex m-0  mr-3 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button">ACEPTAR</button>
+                            class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
                             <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                     </div>
@@ -763,7 +763,7 @@
                                         </p>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="text-center edit-rectangle-small-container py-3" style="margin-bottom: 87px">
+                                            <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 81px">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                     <input key="" type=" text"
@@ -771,8 +771,8 @@
                                                         placeholder="00-00-0000"></span>
                                             </div>
                                         </div>
-                                        <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                        <div class="text-center edit-rectangle-small-container py-3">
+                                        <p class="mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                        <div class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
                                             <span class="a-text-bold-warm"><img src="{{ asset('images/reloj.svg') }}"
                                                     alt="" class="mr-3"><input type="text"
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -847,14 +847,14 @@
                                     </div>
                                 </div>
                                 <!--Program genre list-->
-                                <div class="col-4 edit-program-data-container" id="edit-genre-container">
+                                <div class="col-4 edit-program-data-container position-relative" id="edit-genre-container">
                                     <div class="edit-data-container">
                                         <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre
                                             list
                                         </p>
                                         <div class="mb-3 edit-rectangle-container ">
                                             <select
-                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal show-tick" id="edit-program-genres"
+                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick" id="edit-program-genres"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false" key="genre">

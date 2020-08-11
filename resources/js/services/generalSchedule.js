@@ -711,6 +711,7 @@ function addImagesModalBanner(){
         success: function (result) {
             result=JSON.parse(result);
            let slider = ""
+           let dot =""
            let counter=1;
             while(true){
                 try {
@@ -719,7 +720,7 @@ function addImagesModalBanner(){
                     <div class="bor thumbnail-image-program position-relative h-100">
                     <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="${counter}">
                     <label for="image_programming_${counter}"
-                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
+                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel">
                         <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
                             class=" cursor-pointer add-photo " />
                         <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -727,7 +728,14 @@ function addImagesModalBanner(){
                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                     </label>
                 </div>` ;
-                    counter++;
+           dot=dot +`<div class='d-flex'><p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>
+           ${counter}
+       </p> </div>`
+                        counter++;
+                
+                   
+                
+                  
                     }else{
                     break;
                     
@@ -740,6 +748,7 @@ function addImagesModalBanner(){
             console.log(slider);
             $(".programming-slider").slick("unslick");
         
+          $(".programming-slider-dots").append(dot); //la agrege, para ver si pone los numero de dots
             $(".programming-slider").append(slider);
         }
     });

@@ -3424,7 +3424,6 @@ input[type=radio]:checked + .no-estilo1 {
 
 .list1 > .dropdown-toggle {
   position: relative;
-  width: 165% !important;
   z-index: 1;
   text-align: right;
   white-space: nowrap;
@@ -3479,12 +3478,42 @@ input[type=radio]:checked + .no-estilo1 {
 }
 
 .list1 .dropdown-menu {
-  min-width: 165% !important;
   box-sizing: border-box;
 }
 
 .programming-item {
   cursor: pointer;
+}
+
+.list1:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+  width: 100% !important;
+}
+
+.show > .btn-light.dropdown-toggle {
+  color: #212529;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+  outline: 0 !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+
+.btn-light:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+*:focus {
+  outline: 0 !important;
 }
 
 .line {
@@ -5796,6 +5825,7 @@ iframe {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   width: 240px;
+  height: 56px;
 }
 
 .edit-rectangle-container {
@@ -5810,6 +5840,19 @@ iframe {
 
 .edit-data-container-large {
   height: 561px;
+}
+
+.load-view {
+  z-index: 10000;
+  background: white;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  top: 0;
+  margin: auto;
+  background: url(/images/loader.gif) no-repeat;
+  cursor: wait;
 }
 
 @font-face {
