@@ -89107,14 +89107,14 @@ function eventsGrilla() {
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
-
-  function preloader() {
-    console.log("si entra al metodo desde submenu");
-    document.getElementById('loader-view').style.display = 'none';
-    document.getElementById('navbar-prev-programacion').style.display = 'block';
+  /*function preloader() {
+      console.log("si entra al metodo desde submenu");
+      document.getElementById("loader-view").style.display = "none";
+      document.getElementById("navbar-prev-programacion").style.display =
+          "block";
   }
+  window.onload = preloader;*/
 
-  window.onload = preloader;
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion"); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
@@ -90884,415 +90884,409 @@ function getChapterInfo(data) {
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+      var date = new Date();
+      /* Número de días del mes actual */
 
-      if (data.length > 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
-        var date = new Date();
-        /* Número de días del mes actual */
+      var currentMonthDays = getDays(1);
+      /* Número de mes actual*/
 
-        var currentMonthDays = getDays(1);
-        /* Número de mes actual*/
+      var currentMonth = date.getUTCMonth();
+      /*Número de días del mes siguiente */
 
-        var currentMonth = date.getUTCMonth();
-        /*Número de días del mes siguiente */
+      var nextMonth = getDays(2);
+      /* Número de días restantes del mes actual */
 
-        var nextMonth = getDays(2);
-        /* Número de días restantes del mes actual */
+      var numberLastDays = getDays(1) - getDay();
+      var totalDaysSlider = 0;
+      var daysSlider = ""; //Pegamos el nombre del mes y el año
 
-        var numberLastDays = getDays(1) - getDay();
-        var totalDaysSlider = 0;
-        var daysSlider = ""; //Pegamos el nombre del mes y el año
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
+      var dateUTC = new Date(); //Día en horario central
 
-        var dateUTC = new Date(); //Día en horario central
+      var dayUTC = ""; //Mes en horario central
 
-        var dayUTC = ""; //Mes en horario central
+      var monthUTC = ""; //Año en horario central
 
-        var monthUTC = ""; //Año en horario central
+      var yearUTC = dateUTC.getUTCFullYear();
 
-        var yearUTC = dateUTC.getUTCFullYear();
+      if (dateUTC.getUTCMonth() < 10) {
+        monthUTC = "0".concat(dateUTC.getUTCMonth() + 1);
+      } else {
+        monthUTC = dateUTC.getUTCMonth() + 1;
+      }
 
-        if (dateUTC.getUTCMonth() < 10) {
-          monthUTC = "0".concat(dateUTC.getUTCMonth() + 1);
-        } else {
-          monthUTC = dateUTC.getUTCMonth() + 1;
-        }
+      if (dateUTC.getUTCDate() < 10) {
+        dayUTC = "0".concat(dateUTC.getUTCDate());
+      } else {
+        dayUTC = dateUTC.getUTCDate();
+      }
 
-        if (dateUTC.getUTCDate() < 10) {
-          dayUTC = "0".concat(dateUTC.getUTCDate());
-        } else {
-          dayUTC = dateUTC.getUTCDate();
-        }
+      if (numberLastDays <= 15) {
+        totalDaysSlider = getDays(2) + (getDays(1) - getDay()); //Días del primer mes
 
-        if (numberLastDays <= 15) {
-          totalDaysSlider = getDays(2) + (getDays(1) - getDay()); //Días del primer mes
-
-          for (var i = getDay(); i <= getDays(1); i++) {
-            //Día actual
-            if (i == getDay()) {
-              if (i < 10) {
-                daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
-              } else {
-                daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
-              }
+        for (var i = getDay(); i <= getDays(1); i++) {
+          //Día actual
+          if (i == getDay()) {
+            if (i < 10) {
+              daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
             } else {
-              if (i < 10) {
-                //Días restantes
-                daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
-              } else {
-                //Días restantes
-                daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
-              }
+              daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
             }
-          } //Días del mes siguiente
-
-
-          for (var _i = 1; _i <= getDays(2); _i++) {
-            if (_i < 10) {
-              daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-0").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
-            } else {
-              daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
-            }
-          }
-        } else {
-          //En caso de que al mes le falten más de 15 días para terminar
-          totalDaysSlider = currentMonthDays;
-
-          for (var _i2 = getDay(); _i2 <= totalDaysSlider; _i2++) {
-            if (_i2 == getDay()) {
-              if (_i2 < 10) {
-                //Día actual activo
-                daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
-              } else {
-                //Día actual activo
-                daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
-              }
-            } else {
-              if (_i2 < 10) {
-                //Días siguientes
-                daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
-              } else {
-                //Días siguientes
-                daysSlider += "\n                                    <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
-              }
-            }
-          }
-        }
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').html(daysSlider); //End caledario
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').click(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').removeClass("programming-item-active");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
-          var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
-          var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.current').attr("schedule");
-          console.log(date, section, time);
-          getProgramming(date, section, time);
-        });
-        var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
-        modaTitle.attr("chapter_id", data.program.chapter_id);
-        modaTitle.attr("section", data.program.section_id);
-        modaTitle.attr("program", data.program.program.title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
-
-        var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
-
-        var itemThermometer = ""; //Container que representa media hora en el termómetro
-
-        var itemHalfThermometer = "";
-        var index = 1; //Recorremos el terommétro
-
-        for (var key in thermometer) {
-          var status = thermometer[key].status;
-          var classStatus = "";
-
-          switch (status) {
-            case "Disponible":
-              classStatus = "available";
-              break;
-
-            case "Ocupado":
-              classStatus = "unavailable";
-              break;
-
-            default:
-              classStatus = "current";
-              break;
-          }
-
-          itemHalfThermometer += "\n                        <div schedule=\"".concat(key, "\" class=\"w-50 h-100 thermometer-half-item cursor-pointer ").concat(classStatus, "\" status=\"").concat(thermometer[key].status, "\" section=\"").concat(data.program.section_id, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                    ");
-
-          if (index % 2 == 0) {
-            itemThermometer += "\n                            <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                                ".concat(itemHalfThermometer, "\n                            </li>\n                            ");
-            itemHalfThermometer = "";
-          }
-
-          index++;
-        } //Insertamos el contenido en el termómetro
-
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
-
-        if (data.image_program) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
-            width: "80px",
-            "margin-bottom": "16px"
-          });
-        }
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
-
-        var options = "";
-        data.program_catalogue.forEach(function (program) {
-          options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
-        //selectpicker pra ls titulos de los programas
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
-        var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
-        selectheader.on("hide.bs.select", function () {
-          var keyValue = "";
-          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
-          var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
-            keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
-            keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-          }
-
-          console.log(keyValue);
-          Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
-        });
-        data; //Genres
-
-        var optionGenre = "";
-        data.genres.forEach(function (genre) {
-          optionGenre += "\n                    <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                    ");
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
-          filter: true,
-          multipleSeparator: ", "
-        }); //End if
-
-        var editProgramLandingGenres = "";
-        var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
-
-        selectGenres.on("change", function () {
-          //Obtenemos los valores del selectpicker
-          var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
-
-          var selectedLength = selected.length;
-          editProgramLandingGenres = "";
-
-          for (var _index = 0; _index < selectedLength; _index++) {
-            //Si es la primera palabra o la última, no agregamos una coma
-            if (selectedLength - 1 == _index) {
-              editProgramLandingGenres += "".concat(selected[_index]);
+            if (i < 10) {
+              //Días restantes
+              daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
             } else {
-              editProgramLandingGenres += "".concat(selected[_index], ",");
+              //Días restantes
+              daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
             }
           }
+        } //Días del mes siguiente
 
-          console.log("Géneros agregados: " + editProgramLandingGenres);
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
 
-        selectGenres.on("hide.bs.select", function () {
-          var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
-
-          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
-
-          var keyValue = editProgramLandingGenres; //Hacemos la petición
-
-          Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
-          var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
-
-          switch (section) {
-            case "1":
-              section = "Claro Canal";
-              break;
-
-            case "2":
-              section = "Concert Channel";
-              break;
-
-            case "3":
-              section = "Claro Cinema";
-              break;
-
-            default:
-              break;
+        for (var _i = 1; _i <= getDays(2); _i++) {
+          if (_i < 10) {
+            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-0").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+          } else {
+            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
           }
+        }
+      } else {
+        //En caso de que al mes le falten más de 15 días para terminar
+        totalDaysSlider = currentMonthDays;
 
-          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
-          newProgram(section, schedule);
-        }); //Verificamos si el programa está en algunas de las secciones del landing
+        for (var _i2 = getDay(); _i2 <= totalDaysSlider; _i2++) {
+          if (_i2 == getDay()) {
+            if (_i2 < 10) {
+              //Día actual activo
+              daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+            } else {
+              //Día actual activo
+              daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+            }
+          } else {
+            if (_i2 < 10) {
+              //Días siguientes
+              daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
+            } else {
+              //Días siguientes
+              daysSlider += "\n                                    <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"").concat(data.program.section_id, "\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
+            }
+          }
+        }
+      }
 
-        switch (data.program.in_landing) {
-          case 0:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').html(daysSlider); //End caledario
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').removeClass("programming-item-active");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+        var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
+        var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
+        var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.current').attr("schedule");
+        console.log(date, section, time);
+        getProgramming(date, section, time);
+      });
+      var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
+      modaTitle.attr("chapter_id", data.program.chapter_id);
+      modaTitle.attr("section", data.program.section_id);
+      modaTitle.attr("program", data.program.program.title);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
+
+      var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
+
+      var itemThermometer = ""; //Container que representa media hora en el termómetro
+
+      var itemHalfThermometer = "";
+      var index = 1; //Recorremos el terommétro
+
+      for (var key in thermometer) {
+        var status = thermometer[key].status;
+        var classStatus = "";
+
+        switch (status) {
+          case "Disponible":
+            classStatus = "available";
             break;
 
-          case 1:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+          case "Ocupado":
+            classStatus = "unavailable";
             break;
 
-          case 2:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
+          default:
+            classStatus = "current";
+            break;
+        }
+
+        itemHalfThermometer += "\n                        <div schedule=\"".concat(key, "\" class=\"w-50 h-100 thermometer-half-item cursor-pointer ").concat(classStatus, "\" status=\"").concat(thermometer[key].status, "\" section=\"").concat(data.program.section_id, "\" chapter_id=\"").concat(thermometer[key].chapter_id, "\" style=\"background: ").concat(thermometer[key].color, ";\"></div>\n                    ");
+
+        if (index % 2 == 0) {
+          itemThermometer += "\n                            <li class=\"thermometer-schedule-item mr-1 d-flex align-items-center\">\n                                ".concat(itemHalfThermometer, "\n                            </li>\n                            ");
+          itemHalfThermometer = "";
+        }
+
+        index++;
+      } //Insertamos el contenido en el termómetro
+
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
+
+      if (data.image_program) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+          width: "80px",
+          "margin-bottom": "16px"
+        });
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
+
+      var options = "";
+      data.program_catalogue.forEach(function (program) {
+        options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
+      //selectpicker pra ls titulos de los programas
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
+      var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
+      selectheader.on("hide.bs.select", function () {
+        var keyValue = "";
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        }
+
+        console.log(keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+      });
+      data; //Genres
+
+      var optionGenre = "";
+      data.genres.forEach(function (genre) {
+        optionGenre += "\n                    <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                    ");
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+        filter: true,
+        multipleSeparator: ", "
+      }); //End if
+
+      var editProgramLandingGenres = "";
+      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
+
+      selectGenres.on("change", function () {
+        //Obtenemos los valores del selectpicker
+        var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+
+        var selectedLength = selected.length;
+        editProgramLandingGenres = "";
+
+        for (var _index = 0; _index < selectedLength; _index++) {
+          //Si es la primera palabra o la última, no agregamos una coma
+          if (selectedLength - 1 == _index) {
+            editProgramLandingGenres += "".concat(selected[_index]);
+          } else {
+            editProgramLandingGenres += "".concat(selected[_index], ",");
+          }
+        }
+
+        console.log("Géneros agregados: " + editProgramLandingGenres);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
+
+      selectGenres.on("hide.bs.select", function () {
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
+
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+
+        var keyValue = editProgramLandingGenres; //Hacemos la petición
+
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
+        var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
+
+        switch (section) {
+          case "1":
+            section = "Claro Canal";
+            break;
+
+          case "2":
+            section = "Concert Channel";
+            break;
+
+          case "3":
+            section = "Claro Cinema";
+            break;
 
           default:
             break;
         }
 
-        if (data.program.in_landing_begin) {
-          var landingBeginDateTime = data.program.in_landing_begin.split(" ");
-          var fullDate = landingBeginDateTime[0].split("-");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
+        newProgram(section, schedule);
+      }); //Verificamos si el programa está en algunas de las secciones del landing
 
-          if (landingBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
-          } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
-          }
-        }
+      switch (data.program.in_landing) {
+        case 0:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
+          break;
 
-        if (data.program.in_landing_expiration) {
-          var landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
+        case 1:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+          break;
 
-          var _fullDate = landingExpirationDateTime[0].split("-");
+        case 2:
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
-
-          if (landingExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
-          } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
-          }
-        } //Verficar si el programa se encuentra en el home
-
-
-        if (data.program.in_home == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
-        }
-
-        if (data.program.in_home_begin) {
-          var homeBeginDateTime = data.program.in_home_begin.split(" ");
-
-          var _fullDate2 = homeBeginDateTime[0].split("-");
-
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
-
-          if (homeBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
-          } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
-          }
-        }
-
-        if (data.program.in_home_expiration) {
-          var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
-
-          var _fullDate3 = homeExpirationDateTime[0].split("-");
-
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
-
-          if (homeExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
-          } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
-          }
-        } //Schedule Item Date Time
-
-
-        var scheduleItemDate = data.program.day.split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
-
-        if (data.program.subbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
-        } //Dubbed
-
-
-        if (data.program.dubbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
-        } //Audio 5.0
-
-
-        if (data.program.audio5 == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
-        }
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
-        setTimeout(function () {
-          try {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick("unslick");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-              slidesToShow: 11,
-              slidesToScroll: 11,
-              infinite: true,
-              dots: false,
-              centerMode: false,
-              arrows: true,
-              prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-              nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-            });
-          } catch (error) {
-            console.log(error);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-              slidesToShow: 11,
-              slidesToScroll: 11,
-              infinite: true,
-              dots: false,
-              centerMode: false,
-              arrows: true,
-              prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-              nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-            });
-          }
-        }, 250);
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+        default:
+          break;
       }
+
+      if (data.program.in_landing_begin) {
+        var landingBeginDateTime = data.program.in_landing_begin.split(" ");
+        var fullDate = landingBeginDateTime[0].split("-");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+
+        if (landingBeginDateTime[1] == "00:00:00") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
+        }
+      }
+
+      if (data.program.in_landing_expiration) {
+        var landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
+
+        var _fullDate = landingExpirationDateTime[0].split("-");
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
+
+        if (landingExpirationDateTime[1] == "00:00:00") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+        }
+      } //Verficar si el programa se encuentra en el home
+
+
+      if (data.program.in_home == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+      }
+
+      if (data.program.in_home_begin) {
+        var homeBeginDateTime = data.program.in_home_begin.split(" ");
+
+        var _fullDate2 = homeBeginDateTime[0].split("-");
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
+
+        if (homeBeginDateTime[1] == "00:00:00") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
+        }
+      }
+
+      if (data.program.in_home_expiration) {
+        var homeExpirationDateTime = data.program.in_home_expiration.split(" ");
+
+        var _fullDate3 = homeExpirationDateTime[0].split("-");
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
+
+        if (homeExpirationDateTime[1] == "00:00:00") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
+        }
+      } //Schedule Item Date Time
+
+
+      var scheduleItemDate = data.program.day.split("-");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
+
+      if (data.program.subbed == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
+      } //Dubbed
+
+
+      if (data.program.dubbed == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
+      } //Audio 5.0
+
+
+      if (data.program.audio5 == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
+      setTimeout(function () {
+        try {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick("unslick");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            infinite: true,
+            dots: false,
+            centerMode: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+          });
+        } catch (error) {
+          console.log(error);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            infinite: true,
+            dots: false,
+            centerMode: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+          });
+        }
+      }, 250);
     }
   });
 }
