@@ -744,10 +744,10 @@ function addImagesModalBanner(){
                 }
             }
             console.log(slider);
-            $(".programming-slider").slick("unslick");
+           $(".programming-slider").slick( "slickAdd",slider); //agregar la información al slider
         
         
-            $(".programming-slider").append(slider);
+         //   $(".programming-slider").append(slider);
         }
     });
 }
