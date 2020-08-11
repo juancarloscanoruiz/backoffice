@@ -139,12 +139,13 @@ function getChapterInfo(data) {
         },
 
         success: function (result) {
-            $('.loader-view-container').remove();
-            $('.loader-container').remove();
+
             let data = JSON.parse(result);
             console.log(data);
 
             if (data.length > 0) {
+                $('.loader-view-container').remove();
+                $('.loader-container').remove();
                 let date = new Date();
 
                 /* Número de días del mes actual */
@@ -639,7 +640,8 @@ function getChapterInfo(data) {
 
 
             } else {
-
+                $('.loader-view-container').remove();
+                $('.loader-container').remove();
             }
         }
     });

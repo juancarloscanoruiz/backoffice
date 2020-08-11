@@ -90882,12 +90882,12 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
       var data = JSON.parse(result);
       console.log(data);
 
       if (data.length > 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
         var date = new Date();
         /* Número de días del mes actual */
 
@@ -91289,7 +91289,10 @@ function getChapterInfo(data) {
             });
           }
         }, 250);
-      } else {}
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+      }
     }
   });
 }
