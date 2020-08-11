@@ -1066,7 +1066,7 @@
 
               <!--Slider-->
               <div class="programming-slider mx-auto">
-                  <!--Slide-->
+                  <!--Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
                       <label for="image_programming_1"
@@ -1078,7 +1078,7 @@
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
-                  <!--Slide-->
+                  Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming " data-index="2">
                       <label for="image_programming_2"
@@ -1090,7 +1090,7 @@
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
-                  <!--Slide-->
+                Slide
                   <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
@@ -1102,7 +1102,7 @@
                               class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                       </label>
                   </div>
-                   <!--Slide-->
+                   Slide
                    <div class="bor thumbnail-image-program position-relative h-100">
                       <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
                       <label for="image_programming_3"
@@ -1115,8 +1115,9 @@
                       </label>
                   </div>
 
+             
+              End slider-->
               </div>
-              <!--End slider-->
               <!--Buttons-->
               <div class="text-center mb-3 d-flex justify-content-center">
                   <button
