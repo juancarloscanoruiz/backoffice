@@ -564,15 +564,18 @@ input[type="radio"]:checked+.no-estilo1 {
     border-color: transparent !important;
 }
 .bootstrap-select .dropdown-toggle:focus{
+    outline: 0 !important;
     outline: none !important;
-    outline: none !important;
-    outline-offset: 0px !important;
+    outline-offset: 0 !important;
 }
-.btn-light:focus{
+ .btn-light:focus{
     background-color: transparent !important;
     border-color: transparent !important;
     }
-    .btn.focus, .btn:focus {
-        outline: none !important;
-         box-shadow: transparent !important;
+      .btn.focus, .btn:focus {
+        outline: 0 !important;
+         box-shadow: none !important;
+    } 
+    *:focus{
+        outline: 0!important;
     }

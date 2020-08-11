@@ -854,7 +854,7 @@
                                         </p>
                                         <div class="mb-3 edit-rectangle-container ">
                                             <select
-                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal show-tick" id="edit-program-genres"
+                                                class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick" id="edit-program-genres"
                                                 title="Genere list" multiple data-live-search="true"
                                                 data-live-search-placeholder="Buscar" data-header="Program List"
                                                 data-dropup-auto="false" key="genre">
