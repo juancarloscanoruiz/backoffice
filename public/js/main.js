@@ -88040,7 +88040,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
-    }, 9000);
+    }, 3000);
   }); //loader, antes de subir un archivo
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-photo").on("click", function () {
@@ -88050,7 +88050,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
       console.log("si lo borra");
-    }, 5000);
+    }, 3000);
   }); //para mostrar un modal encima del otro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.delete-info').on('show.bs.modal', function () {
@@ -89107,6 +89107,14 @@ function eventsGrilla() {
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
+
+  function preloader() {
+    console.log("si entra al metodo desde submenu");
+    document.getElementById('loader-view').style.display = 'none';
+    document.getElementById('navbar-prev-programacion').style.display = 'block';
+  }
+
+  window.onload = preloader;
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion"); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
@@ -91190,17 +91198,31 @@ function getChapterInfo(data) {
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
       setTimeout(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick('reinit');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
-          slidesToShow: 11,
-          slidesToScroll: 11,
-          infinite: true,
-          dots: false,
-          centerMode: false,
-          arrows: true,
-          prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-          nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-        });
+        try {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick("unslick");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            infinite: true,
+            dots: false,
+            centerMode: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+          });
+        } catch (error) {
+          console.log(error);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            infinite: true,
+            dots: false,
+            centerMode: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+          });
+        }
       }, 250);
     }
   });

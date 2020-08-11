@@ -479,7 +479,13 @@ function eventsGrilla() {
             `
         );
     });
-
+    function preloader(){
+        console.log("si entra al metodo desde submenu");
+        document.getElementById('loader-view').style.display = 'none';
+       document.getElementById('navbar-prev-programacion').style.display = 'block';
+    
+        }
+        window.onload = preloader;   
     let navbarPrograContainer = document.getElementById(
         "navbar-prev-programacion"
     );

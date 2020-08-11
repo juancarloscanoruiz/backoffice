@@ -496,17 +496,32 @@ function getChapterInfo(data) {
 
             $(".modal-edit-program").modal("show");
             setTimeout(() => {
-                $(".calendar-slider").slick('reinit');
-                $(".calendar-slider").slick({
-                    slidesToShow: 11,
-                    slidesToScroll: 11,
-                    infinite: true,
-                    dots: false,
-                    centerMode: false,
-                    arrows: true,
-                    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-                    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-                });
+                try {
+                    $(".calendar-slider").slick("unslick");
+                    $(".calendar-slider").slick({
+                        slidesToShow: 11,
+                        slidesToScroll: 11,
+                        infinite: true,
+                        dots: false,
+                        centerMode: false,
+                        arrows: true,
+                        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+                    });
+                } catch (error) {
+                    console.log(error)
+                    $(".calendar-slider").slick({
+                        slidesToShow: 11,
+                        slidesToScroll: 11,
+                        infinite: true,
+                        dots: false,
+                        centerMode: false,
+                        arrows: true,
+                        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+                    });
+                }
+
 
             }, 250);
 
