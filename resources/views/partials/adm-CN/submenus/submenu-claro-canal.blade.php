@@ -293,7 +293,7 @@
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
                                            295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" id="icon_canal_claro_edit"/>
                                     </label>
                                 </div>
 
@@ -325,7 +325,7 @@
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
                                           295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"id="icon_concert_channel_edit" />
                                     </label>
                                 </div>
                                 <!--div urls-->
@@ -355,7 +355,7 @@
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
                                           295px</span>
                                         <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" id="icon_claro_cinema_edit"/>
                                     </label>
                                 </div>
                                 <!--div urls-->
