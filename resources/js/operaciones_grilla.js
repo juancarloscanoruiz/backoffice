@@ -41,6 +41,18 @@ import {
 } from "./UI/UI.js";
 
 function eventsGrilla() {
+      //loader, antes de subir un archivo
+    $(".upload-files").on("click", function () {
+        const loader = `
+        <div class="loader-view-container" id="loader2">
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+        $("body").append(loader);
+        setTimeout(function () {
+            $("#loader2").remove();
+        }, 3000);
+    });
 
 
     //Evento para cuando cerramos el selectpicker

@@ -585,7 +585,7 @@ public function onlyday(Request $request)
                 <div class='contenedor-columna selectable-column centro editable-column' rel='imagenes'>
                     <a href='upimage/$chapter_id'>
                         <div class='image-ta position-relative'>
-                            <img src='./images/add-icon.svg' alt='añadir imagenes' class='add-images-icon'>
+                            <img src='./images/add-icon.svg' alt='añadir imagenes' class='add-images-icon upload-files'>
                         </div>
                     </a>
                 <span class='d-block a-text-regular-brownishtwo pt-2'>Añade imágenes</span>
