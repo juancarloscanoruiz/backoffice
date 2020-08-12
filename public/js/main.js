@@ -90732,7 +90732,7 @@ function deleteProgram(id_program, id_version) {
 
 function addImagesModalIcons() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "GET",
+    type: "POST",
     url: "landing/getSection/programation",
     cache: false,
     success: function success(result) {
@@ -90750,7 +90750,7 @@ function addImagesModalIcons() {
 
 function addImagesModalBanner() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "GET",
+    type: "POST",
     cache: false,
     url: "landing/getSection/programation",
     success: function success(result) {
@@ -90774,7 +90774,21 @@ function addImagesModalBanner() {
 
       console.log(slider);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
-      //   $(".programming-slider").append(slider);
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+        console.log("Imges");
+        var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+          };
+
+          reader.readAsDataURL(this.files[0]);
+        }
+      }); //   $(".programming-slider").append(slider);
     }
   });
 }
