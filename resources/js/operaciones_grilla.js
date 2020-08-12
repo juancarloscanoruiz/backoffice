@@ -510,9 +510,9 @@ function eventsGrilla() {
                     <div class="bor thumbnail-image-program position-relative h-100">
                     <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
                         <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                            <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                            <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
                         </label>
                     </div>
                 </div>

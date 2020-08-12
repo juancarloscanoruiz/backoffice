@@ -886,7 +886,7 @@
                                         <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
                                             date
                                         </p>
-                                        <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">Fecha</p>
+                                        <p class="a-text-medium-brown-two text-plus text-uppercase pt-5">Fecha</p>
                                         <div
                                             class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                             <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
@@ -913,9 +913,9 @@
                                 </div>
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class=" text-plus text-uppercase a-text-bold-brown-two" style="margin-bottom: 42px">estimated schedule item duration
+                                        <p class=" text-plus text-uppercase a-text-bold-brown-two" style="margin-bottom: 43px">estimated schedule item duration
                                         </p>
-                                        <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>
+                                        <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
                                         <div
                                             class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                             <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
