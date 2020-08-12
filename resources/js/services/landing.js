@@ -69,6 +69,7 @@ function updateImagesOfProgrammingSlider(data) {
         data: data,
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
+        cache: false,
         url: "landing/update-programming-carrusel",
         beforeSend: function () {
             $(".modal-programming-carousel .modal-content").append(
@@ -657,6 +658,7 @@ function newProgram(landing, schedule) {
             schedule: schedule,
             landing: landing
         },
+
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -667,8 +669,11 @@ function newProgram(landing, schedule) {
         url: "landing/newProgram",
         success: function (result) {
             $('.loader-view-container').remove();
-            
-         }
+            console.log('se creo el registro:');
+            console.log(result);
+            let data = JSON.parse(result);
+            getChapterInfo(data.chapter_id);
+        }
     });
 }
 
@@ -680,6 +685,7 @@ function getProgramming(date, section, time) {
             section: section,
             time: time
         },
+
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -691,7 +697,7 @@ function getProgramming(date, section, time) {
         success: function (result) {
             $('.loader-view-container').remove();
             let data = JSON.parse(result);
-            console.log(data);
+            //console.log(data);
 
             if (data.id_status >= 1) {
 
@@ -776,7 +782,7 @@ function getProgramming(date, section, time) {
                         $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
                         keyValue = $(this).val();
                     }
-                    console.log(keyValue);
+                    //console.log(keyValue);
                     editAttributeProgram(chapter_id, key, keyValue);
                 });
                 //Genres
@@ -812,8 +818,9 @@ function getProgramming(date, section, time) {
                             break;
                     }
                     let schedule = $(this).attr("schedule");
+                    console.log(time + " " + schedule);
                     newProgram(channel, schedule);
-                    getProgramming(date, section, time)
+                    // getProgramming(date, section, schedule)
                 });
                 //Verificamos si el programa está en algunas de las secciones del landing
                 switch (data.program.in_landing) {
@@ -920,21 +927,21 @@ function getProgramming(date, section, time) {
                 }
             } else {
 
-                console.log('dia sin informacion '+section + date +time);
-                newProgramByDate(section,date,time);
-                getProgramming(date, section, time);
+                console.log('dia sin informacion ' + section + date + time);
+                newProgramByDate(section, date, time);
+                //getProgramming(date, section, time);
             }
         }
     })
 }
 
-function newProgramByDate(section,date,time){
+function newProgramByDate(section, date, time) {
     $.ajax({
         type: "POST",
         data: {
             day: date,
             landing: section,
-            time:time
+            time: time
         },
         beforeSend: function () {
             $("body").append(
@@ -946,7 +953,10 @@ function newProgramByDate(section,date,time){
         url: "landing/newProgramByDate",
         success: function (result) {
             $('.loader-view-container').remove();
-
+            console.log('se creo el registro:');
+            console.log(result);
+            let data = JSON.parse(result);
+            getChapterInfo(data.chapter_id);
         }
     });
 }

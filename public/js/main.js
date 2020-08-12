@@ -89129,7 +89129,7 @@ function eventsGrilla() {
     //Cada vez que se haga click, el contador incrementa
     slideIndex++; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"http://localhost:8888/backoffice/public/images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   /*function preloader() {
       console.log("si entra al metodo desde submenu");
@@ -89142,9 +89142,8 @@ function eventsGrilla() {
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
     if (socketProgramacion) {
-      console.log("socket destruido");
-      socketProgramacion.destroy();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion').html("");
+      socketProgramacion.destroy(); //$('#navbar-prev-programacion').html("");
+
       new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: document.getElementById("navbar-prev-programacion"),
@@ -90868,6 +90867,7 @@ function updateImagesOfProgrammingSlider(data) {
     //esto es para poder pasar el archivo
     contentType: false,
     //esto es para poder pasar el archivo
+    cache: false,
     url: "landing/update-programming-carrusel",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
@@ -91353,6 +91353,10 @@ function newProgram(landing, schedule) {
     url: "landing/newProgram",
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      console.log('se creo el registro:');
+      console.log(result);
+      var data = JSON.parse(result);
+      getChapterInfo(data.chapter_id);
     }
   });
 }
@@ -91371,8 +91375,7 @@ function getProgramming(date, section, time) {
     url: "landing/getProgramming",
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      var data = JSON.parse(result);
-      console.log(data);
+      var data = JSON.parse(result); //console.log(data);
 
       if (data.id_status >= 1) {
         var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
@@ -91451,9 +91454,9 @@ function getProgramming(date, section, time) {
           } else {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
             keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-          }
+          } //console.log(keyValue);
 
-          console.log(keyValue);
+
           Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
         }); //Genres
 
@@ -91489,8 +91492,8 @@ function getProgramming(date, section, time) {
           }
 
           var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
-          newProgram(channel, schedule);
-          getProgramming(date, section, time);
+          console.log(time + " " + schedule);
+          newProgram(channel, schedule); // getProgramming(date, section, schedule)
         }); //Verificamos si el programa está en algunas de las secciones del landing
 
         switch (data.program.in_landing) {
@@ -91613,8 +91616,7 @@ function getProgramming(date, section, time) {
         }
       } else {
         console.log('dia sin informacion ' + section + date + time);
-        newProgramByDate(section, date, time);
-        getProgramming(date, section, time);
+        newProgramByDate(section, date, time); //getProgramming(date, section, time);
       }
     }
   });
@@ -91634,6 +91636,10 @@ function newProgramByDate(section, date, time) {
     url: "landing/newProgramByDate",
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      console.log('se creo el registro:');
+      console.log(result);
+      var data = JSON.parse(result);
+      getChapterInfo(data.chapter_id);
     }
   });
 }
