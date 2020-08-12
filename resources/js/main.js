@@ -57,14 +57,16 @@ import {
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-    }
+
+    },
+    cache: false
 });
 
 $(document).ready(function () {
-  
 
-     //loader, images
-     $(".load-picture").on("click", function () {
+
+    //loader, images
+    $(".load-picture").on("click", function () {
         const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="../images/loader.gif" class="loader" alt="">
@@ -77,8 +79,8 @@ $(document).ready(function () {
             console.log("si lo borra");
         }, 3000);
     });
-     //loader, antes de subir un archivo
-     $(".load-photo").on("click", function () {
+    //loader, antes de subir un archivo
+    $(".load-photo").on("click", function () {
         const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="./images/loader.gif" class="loader" alt="">
@@ -91,7 +93,7 @@ $(document).ready(function () {
             console.log("si lo borra");
         }, 3000);
     });
- 
+
 
     //para mostrar un modal encima del otro
     $('.delete-info').on('show.bs.modal', function () {
@@ -295,7 +297,7 @@ $(document).ready(function () {
         $(".buttonall").removeClass("btn-nav");
         $(this).addClass("btn-nav-select");
     });
-   
+
     //Mostramos la vista para crear un usuario
     showFormCreateUser();
 

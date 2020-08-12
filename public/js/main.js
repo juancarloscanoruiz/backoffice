@@ -88031,7 +88031,8 @@ __webpack_require__.r(__webpack_exports__);
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   headers: {
     "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr("content")
-  }
+  },
+  cache: false
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   //loader, images
@@ -88932,7 +88933,7 @@ function eventsGrilla() {
 
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis").blur(function (e) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
@@ -88943,12 +88944,10 @@ function eventsGrilla() {
           value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
           console.log(value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
           var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
           value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         }
 
         break;
@@ -88960,13 +88959,11 @@ function eventsGrilla() {
           value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
           console.log(value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
           var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
           value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         }
 
         break;
@@ -88977,13 +88974,11 @@ function eventsGrilla() {
 
           value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
           var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
           value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         }
 
         break;
@@ -88994,14 +88989,12 @@ function eventsGrilla() {
 
           value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
           var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
           value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " 00:00:00");
           console.log("landing_expiration sin tiempo: " + value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
         }
 
         break;
@@ -89028,11 +89021,23 @@ function eventsGrilla() {
     }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').prop('checked', false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').attr('disabled', true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').prop('checked', false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').attr('disabled', true);
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').attr('disabled', false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').attr('disabled', false);
     }
   }); //loader, antes de subir un archivo
 
@@ -89134,12 +89139,13 @@ function eventsGrilla() {
   }
   window.onload = preloader;*/
 
-  var navbarPrograContainer = document.getElementById("navbar-prev-programacion"); //Verificamos si existe el contenedor para insertar el iframe
-
-  if (navbarPrograContainer) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-modal-button").click(function () {
+  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
+    if (socketProgramacion) {
+      console.log("Socket destruido");
       socketProgramacion.destroy();
-      var newSocketProgramación = new easyXDM.Socket({
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion').html("");
+      new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function onMessage(message, origin) {
@@ -89169,9 +89175,10 @@ function eventsGrilla() {
                     nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
                     customPaging: function customPaging(slider, i) {
                       var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
+                      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
                     }
                   });
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
                 }, 3000);
                 break;
 
@@ -89183,6 +89190,7 @@ function eventsGrilla() {
               case "menu-logos":
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
                 setTimeout(function () {
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
                   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
                   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
                 }, 3000);
@@ -89197,8 +89205,12 @@ function eventsGrilla() {
           this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
       });
-    });
-    var socketProgramacion = new easyXDM.Socket({
+    }
+  });
+  var socketProgramacion = ""; //Verificamos si existe el contenedor para insertar el iframe
+
+  if (navbarPrograContainer) {
+    socketProgramacion = new easyXDM.Socket({
       remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
       container: document.getElementById("navbar-prev-programacion"),
       onMessage: function onMessage(message, origin) {
@@ -89228,7 +89240,7 @@ function eventsGrilla() {
                   nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
                   customPaging: function customPaging(slider, i) {
                     var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
+                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
                   }
                 });
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
@@ -90009,17 +90021,14 @@ function eventsGrilla() {
         break;
     }
   }); //Sacar los valores de los switches en la grilla
+  //Sacar los valores de los switches en la grilla
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sacamos el valor del switch o radio button
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Hacemos la petición
 
-    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //De la columna, sacamos el chapter_id
-
-    var chapterId = currentColumn.attr("chapter_id"); //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
-
-    var key = currentColumn.attr("key"); //Hacemos la petición
-
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
   });
   /*
   Permite a todos los campos de Schedule item log time tener el formato
@@ -90156,17 +90165,17 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edi-cinema").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php\",\n        container: \"navbar-prev-claro-cinema\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n              \n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n                container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php\",\n        container: \"navbar-prev-claro-cinema\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n                container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n                container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //PREV CINEMA
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".prev-cinema").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="prev"]').is(":checked")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php\",\n                container: \"navbar-prev-claro-cinema\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                 \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n            container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php\",\n                container: \"navbar-prev-claro-cinema\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n            container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //EDITAR CONCERT
 
@@ -90174,9 +90183,9 @@ function eventsGrilla() {
     console.log("editar");
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n            container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n             \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n               \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n          \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n            container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //PREV CONCERT
 
@@ -90184,9 +90193,9 @@ function eventsGrilla() {
     console.log("prev concert channel");
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="prev"]').is(":checked")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-prev.php\",\n                container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                  \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    \n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-prev.php\",\n                container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   });
   /*     //EDITAR HOME
@@ -90725,6 +90734,7 @@ function addImagesModalIcons() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
     url: "landing/getSection/programation",
+    cache: false,
     success: function success(result) {
       result = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
@@ -90741,10 +90751,12 @@ function addImagesModalIcons() {
 function addImagesModalBanner() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
+    cache: false,
     url: "landing/getSection/programation",
     success: function success(result) {
       result = JSON.parse(result);
       var slider = "";
+      console.log(result);
       var counter = 1;
 
       while (true) {
@@ -90907,6 +90919,7 @@ function getChapterInfo(data) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
     url: "landing/get-chapter-info/" + data,
+    cache: false,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
@@ -91428,7 +91441,7 @@ function newProgram(landing, schedule) {
 
         }
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis").blur(function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
         var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
         var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
         var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
@@ -91439,12 +91452,10 @@ function newProgram(landing, schedule) {
               value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
               console.log(value);
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
               var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
               value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -91456,13 +91467,11 @@ function newProgram(landing, schedule) {
               value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
               console.log(value);
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
               var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
               value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -91473,13 +91482,11 @@ function newProgram(landing, schedule) {
 
               value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
               var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
               value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -91490,14 +91497,12 @@ function newProgram(landing, schedule) {
 
               value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
               var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
               value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " 00:00:00");
               console.log("landing_expiration sin tiempo: " + value);
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -91970,7 +91975,7 @@ function newProgramByDate(section, date, time) {
 
         }
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis").blur(function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
         var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
         var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
         var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
@@ -91981,13 +91986,11 @@ function newProgramByDate(section, date, time) {
               value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
               console.log(value);
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
               var _date20 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
 
               value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -92005,7 +92008,6 @@ function newProgramByDate(section, date, time) {
 
               value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -92016,13 +92018,11 @@ function newProgramByDate(section, date, time) {
 
               value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
               var _date24 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
               value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " 00:00:00");
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;
@@ -92033,14 +92033,12 @@ function newProgramByDate(section, date, time) {
 
               value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
               var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
               value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " 00:00:00");
               console.log("landing_expiration sin tiempo: " + value);
               Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
             }
 
             break;

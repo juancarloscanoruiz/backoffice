@@ -87,11 +87,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectPais:checked ~ #select-Pais {
+#selectPais:checked~#select-Pais {
     overflow: visible;
 }
 
-#selectPais:checked ~ #select-Pais .ListaDesplegablePaises {
+#selectPais:checked~#select-Pais .ListaDesplegablePaises {
     height: 158px;
 }
 
@@ -166,11 +166,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectDay:checked ~ #select-Dia {
+#selectDay:checked~#select-Dia {
     overflow: visible;
 }
 
-#selectDay:checked ~ #select-Dia .ListaDesplegableDias {
+#selectDay:checked~#select-Dia .ListaDesplegableDias {
     height: 200px;
 }
 
@@ -248,11 +248,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectMonth:checked ~ #select-Mes {
+#selectMonth:checked~#select-Mes {
     overflow: visible;
 }
 
-#selectMonth:checked ~ #select-Mes .ListaDesplegableMeses {
+#selectMonth:checked~#select-Mes .ListaDesplegableMeses {
     height: 200px;
 }
 
@@ -332,11 +332,11 @@ ul {
     border-radius: 12px;
 }
 
-#selectYear:checked ~ #select-Año {
+#selectYear:checked~#select-Año {
     overflow: visible;
 }
 
-#selectYear:checked ~ #select-Año .ListaDesplegableAños {
+#selectYear:checked~#select-Año .ListaDesplegableAños {
     height: 200px;
 }
 
@@ -355,6 +355,7 @@ ul {
         height: 37px;
         width: 37px;
         margin-right: 16px;
+        margin-bottom: 16px;
     }
 }
 

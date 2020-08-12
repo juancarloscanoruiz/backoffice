@@ -237,7 +237,7 @@ function eventsGrilla() {
                     ).val()}`;
                     console.log(value);
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 } else if (
                     $(".edit-home-date-begin").val() &&
                     !$(".edit-home-time-begin").val()
@@ -247,7 +247,7 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 }
 
                 break;
@@ -264,7 +264,7 @@ function eventsGrilla() {
                     ).val()}`;
                     console.log(value);
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 } else if (
                     $(".edit-home-date-expiration").val() &&
                     !$(".edit-home-time-expiration").val()
@@ -274,7 +274,7 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 }
 
                 break;
@@ -291,7 +291,7 @@ function eventsGrilla() {
                     ).val()}`;
 
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 } else if (
                     $(".edit-landing-date-begin").val() &&
                     !$(".edit-landing-time-begin").val()
@@ -301,7 +301,7 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 }
 
                 break;
@@ -317,7 +317,7 @@ function eventsGrilla() {
                         ".edit-landing-time-end"
                     ).val()}`;
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 } else if (
                     $(".edit-landing-date-end").val() &&
                     !$(".edit-landing-time-end").val()
@@ -328,7 +328,7 @@ function eventsGrilla() {
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     console.log("landing_expiration sin tiempo: " + value);
                     editAttributeProgram(chapter_id, key, value);
-                    $(this).blur();
+
                 }
 
                 break;
@@ -367,18 +367,18 @@ function eventsGrilla() {
             $(".edit-landing-date-begin").val("");
             $(".edit-landing-time-end").val("");
             $(".edit-landing-time-begin").val("");
-            $('#landing-section-1').prop('checked',false);
-            $('#landing-section-1').attr('disabled',true);
-            $('#landing-section-2').prop('checked',false);
-            $('#landing-section-2').attr('disabled',true);
+            $('#landing-section-1').prop('checked', false);
+            $('#landing-section-1').attr('disabled', true);
+            $('#landing-section-2').prop('checked', false);
+            $('#landing-section-2').attr('disabled', true);
             editAttributeProgram(chapter_id, key, value);
-        }else{
-            $('#landing-section-1').attr('disabled',false);
-            $('#landing-section-2').attr('disabled',false);
+        } else {
+            $('#landing-section-1').attr('disabled', false);
+            $('#landing-section-2').attr('disabled', false);
 
         }
-       
-       
+
+
     });
     //loader, antes de subir un archivo
     $(".load-modales").click(function () {
@@ -531,9 +531,91 @@ function eventsGrilla() {
         "navbar-prev-programacion"
     );
 
+    $('.edit-landing-modal-button').click(function () {
+        if (socketProgramacion) {
+            console.log("Socket destruido");
+            socketProgramacion.destroy();
+            $('#navbar-prev-programacion').html("");
+            new easyXDM.Socket({
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+                container: document.getElementById("navbar-prev-programacion"),
+                onMessage: function (message, origin) {
+                    let json = JSON.parse(message);
+                    if (typeof json == "object") {
+                        let loader = `
+                            <div class="loader-view-container" id="loader1">
+                                <img src="./images/loader.gif" class="loader" alt="">
+                            </div>
+                                `;
+                        switch (json.type) {
+                            case "program":
+                                getChapterInfo(json.chapterId);
+                                break;
+                            case "slider-pagination":
+                                $("body").append(loader);
+                                setTimeout(function () {
+                                    $(".modal-programming-carousel").modal("show");
+                                    $("#loader1").remove();
+                                    $(".programming-slider").slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(".programming-slider-dots"),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        arrows: true,
+                                        prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                                        nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(slider.$slides[i]).data();
+                                            return (
+                                                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                    addImagesModalBanner();
+                                }, 3000);
+
+                                break;
+                            case "synopsis":
+                                document
+                                    .querySelector("body")
+                                    .insertAdjacentHTML("beforeend", loader);
+                                window.location.href =
+                                    "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                                break;
+                            case "menu-logos":
+                                $("body").append(loader);
+                                setTimeout(function () {
+                                    addImagesModalIcons();
+
+                                    $(".modal-edit-icons").modal("show");
+
+                                    $("#loader1").remove();
+                                }, 3000);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    this.container.getElementsByTagName("iframe")[0].style.height =
+                        message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            });
+        }
+
+    })
+
+    let socketProgramacion = "";
+
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
-        let socketProgramacion = new easyXDM.Socket({
+        socketProgramacion = new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
             container: document.getElementById("navbar-prev-programacion"),
             onMessage: function (message, origin) {
@@ -565,7 +647,7 @@ function eventsGrilla() {
                                     customPaging: function (slider, i) {
                                         var thumb = $(slider.$slides[i]).data();
                                         return (
-                                            "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
+                                            "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
                                             (i + 1) +
                                             "</p>"
                                         );
@@ -604,6 +686,7 @@ function eventsGrilla() {
                 )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
         });
+
         let socketProgramacionPrev = "";
         let socketProgramacionEdi = "";
         $("#prev").click(function () {
@@ -1486,8 +1569,8 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-      //Sacar los valores de los switches en la grilla
-      $(".switch-table").click(function () {
+    //Sacar los valores de los switches en la grilla
+    $(".switch-table").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");

@@ -25,7 +25,7 @@ function editAttributeProgram(chapter_id, key, keyValue) {
     });
 }
 
-function filterDates(startDate, lastDate,landing) {
+function filterDates(startDate, lastDate, landing) {
     let data = {
         startDate,
         lastDate,
@@ -689,34 +689,37 @@ function deleteProgram(id_program, id_version) {
         }
     });
 }
-function addImagesModalIcons(){
+
+function addImagesModalIcons() {
     $.ajax({
         type: "GET",
         url: "landing/getSection/programation",
+        cache: false,
         success: function (result) {
-            result=JSON.parse(result);
-            $('#icon_canal_claro_edit').attr('src',result.icon_canal_claro);
-            $('#icon_claro_cinema_edit').attr('src',result.icon_claro_cinema);
-            $('#icon_concert_channel_edit').attr('src',result.icon_concert_channel);
+            result = JSON.parse(result);
+            $('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
+            $('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
+            $('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
         }
     });
 }
 /**
  * Se consulta a la API y se colocan las imagenes que se encuentren
  */
-function addImagesModalBanner(){
+function addImagesModalBanner() {
     $.ajax({
         type: "GET",
+        cache: false,
         url: "landing/getSection/programation",
         success: function (result) {
-            result=JSON.parse(result);
-           let slider = ""
-        
-           let counter=1;
-            while(true){
+            result = JSON.parse(result);
+            let slider = ""
+            console.log(result);
+            let counter = 1;
+            while (true) {
                 try {
-                    if(result["image_slider_"+counter]){
-                    slider = slider +`
+                    if (result["image_slider_" + counter]) {
+                        slider = slider + `
                     <div class="bor thumbnail-image-program position-relative h-100">
                     <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="${counter}">
                     <label for="image_programming_${counter}"
@@ -727,27 +730,27 @@ function addImagesModalBanner(){
                         <img src="${result["image_slider_"+counter]}"
                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                     </label>
-                </div>` ;
+                </div>`;
 
                         counter++;
-                
-                   
-                
-                  
-                    }else{
-                    break;
-                    
+
+
+
+
+                    } else {
+                        break;
+
                     }
                 } catch (error) {
                     break;
-                
+
                 }
             }
             console.log(slider);
-           $(".programming-slider").slick( "slickAdd",slider); //agregar la información al slider
-        
-        
-         //   $(".programming-slider").append(slider);
+            $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
+
+
+            //   $(".programming-slider").append(slider);
         }
     });
 }

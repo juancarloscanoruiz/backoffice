@@ -140,6 +140,7 @@ function getChapterInfo(data) {
     $.ajax({
         type: "GET",
         url: "landing/get-chapter-info/" + data,
+        cache: false,
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -819,7 +820,7 @@ function newProgram(landing, schedule) {
                 }
             });
 
-            $(".edit-synopsis").blur(function (e) {
+            $(".edit-program-attribute-text").blur(function (e) {
                 let key = $(this).attr("key");
                 let chapter_id = $(".edit-program-data-container").attr(
                     "chapter_id"
@@ -837,7 +838,7 @@ function newProgram(landing, schedule) {
                                     ).val()}`;
                             console.log(value);
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-home-date-begin").val() &&
                             !$(".edit-home-time-begin").val()
@@ -847,7 +848,7 @@ function newProgram(landing, schedule) {
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -865,7 +866,7 @@ function newProgram(landing, schedule) {
                                         ).val()}`;
                             console.log(value);
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-home-date-expiration").val() &&
                             !$(".edit-home-time-expiration").val()
@@ -875,7 +876,7 @@ function newProgram(landing, schedule) {
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -893,7 +894,7 @@ function newProgram(landing, schedule) {
                                         ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-landing-date-begin").val() &&
                             !$(".edit-landing-time-begin").val()
@@ -903,7 +904,7 @@ function newProgram(landing, schedule) {
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -917,7 +918,7 @@ function newProgram(landing, schedule) {
                                 ".edit-landing-time-end"
                             ).val()}`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-landing-date-end").val() &&
                             !$(".edit-landing-time-end").val()
@@ -926,7 +927,7 @@ function newProgram(landing, schedule) {
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             console.log("landing_expiration sin tiempo: " + value);
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -1048,7 +1049,7 @@ function getProgramming(date, section, time) {
             let data = JSON.parse(result);
             console.log(data);
 
-            if (data.id_status >=1) {
+            if (data.id_status >= 1) {
 
                 let modaTitle = $('.edit-program-modal-title');
                 $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
@@ -1272,21 +1273,22 @@ function getProgramming(date, section, time) {
                 } else {
                     $('.edit-audio5-yes').prop("checked", true);
                 }
-            }else{
-                
-             console.log('dia sin informacion '+section + date +time);
-                newProgramByDate(section,date,time)
+            } else {
+
+                console.log('dia sin informacion ' + section + date + time);
+                newProgramByDate(section, date, time)
             }
         }
     })
 }
-function newProgramByDate(section,date,time){
+
+function newProgramByDate(section, date, time) {
     $.ajax({
         type: "POST",
         data: {
             day: date,
             landing: section,
-            time:time
+            time: time
         },
         beforeSend: function () {
             $("body").append(
@@ -1451,7 +1453,7 @@ function newProgramByDate(section,date,time){
                 }
             });
 
-            $(".edit-synopsis").blur(function (e) {
+            $(".edit-program-attribute-text").blur(function (e) {
                 let key = $(this).attr("key");
                 let chapter_id = $(".edit-program-data-container").attr(
                     "chapter_id"
@@ -1469,7 +1471,7 @@ function newProgramByDate(section,date,time){
                                     ).val()}`;
                             console.log(value);
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-home-date-begin").val() &&
                             !$(".edit-home-time-begin").val()
@@ -1479,7 +1481,7 @@ function newProgramByDate(section,date,time){
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -1507,7 +1509,7 @@ function newProgramByDate(section,date,time){
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -1525,7 +1527,7 @@ function newProgramByDate(section,date,time){
                                         ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-landing-date-begin").val() &&
                             !$(".edit-landing-time-begin").val()
@@ -1535,7 +1537,7 @@ function newProgramByDate(section,date,time){
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
@@ -1549,7 +1551,7 @@ function newProgramByDate(section,date,time){
                                 ".edit-landing-time-end"
                             ).val()}`;
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         } else if (
                             $(".edit-landing-date-end").val() &&
                             !$(".edit-landing-time-end").val()
@@ -1558,7 +1560,7 @@ function newProgramByDate(section,date,time){
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             console.log("landing_expiration sin tiempo: " + value);
                             editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
+
                         }
 
                         break;
