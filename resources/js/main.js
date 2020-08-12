@@ -5,22 +5,14 @@ import "bootstrap";
 //VENDOR
 import Cleave from "cleave.js";
 
-import {
-    showlanding
-} from "./UI/UI.js";
+import { showlanding } from "./UI/UI.js";
 
 import "slick-carousel/slick/slick";
 import "bootstrap-select";
 
-import {
-    eventsGrilla
-} from "./operaciones_grilla";
-import {
-    previewPage
-} from "./preview/prev.js";
-import {
-    showContentNav
-} from "./nav/nav.js";
+import { eventsGrilla } from "./operaciones_grilla";
+import { previewPage } from "./preview/prev.js";
+import { showContentNav } from "./nav/nav.js";
 
 //UI
 import {
@@ -57,30 +49,27 @@ import {
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-
     },
     cache: false
 });
 
-$(document).ready(function () {
-
-
+$(document).ready(function() {
     //loader, images
-    $(".load-picture").on("click", function () {
+    $(".load-picture").on("click", function() {
         const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="../images/loader.gif" class="loader" alt="">
         </div>
         `;
         $("body").append(loader);
-        console.log("si lo agrega");
-        setTimeout(function () {
+
+        setTimeout(function() {
             $("#loader1").remove();
             console.log("si lo borra");
         }, 3000);
     });
     //loader, antes de subir un archivo
-    $(".load-photo").on("click", function () {
+    $(".load-photo").on("click", function() {
         const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="./images/loader.gif" class="loader" alt="">
@@ -88,28 +77,27 @@ $(document).ready(function () {
         `;
         $("body").append(loader);
         console.log("si lo agrega");
-        setTimeout(function () {
+        setTimeout(function() {
             $("#loader1").remove();
             console.log("si lo borra");
         }, 3000);
     });
 
-
     //para mostrar un modal encima del otro
-    $('.delete-info').on('show.bs.modal', function () {
-        var modalParent = $(this).attr('data-modal-parent');
-        $(modalParent).css('opacity', 0);
+    $(".delete-info").on("show.bs.modal", function() {
+        var modalParent = $(this).attr("data-modal-parent");
+        $(modalParent).css("opacity", 0);
     });
 
-    $('.delete-info').on('hidden.bs.modal', function () {
-        var modalParent = $(this).attr('data-modal-parent');
-        $(modalParent).css('opacity', 1);
+    $(".delete-info").on("hidden.bs.modal", function() {
+        var modalParent = $(this).attr("data-modal-parent");
+        $(modalParent).css("opacity", 1);
     });
     //Div en donde hacemos el intercambio de grillas de los diferentes canales
     let divGrilla = $("#general-programming");
 
     //Borrar un programa de la grilla
-    divGrilla.on("click", "#modal-button-delete", function () {
+    divGrilla.on("click", "#modal-button-delete", function() {
         let program = $(this).attr("program");
         let chapter_id = $(this).attr("chapter_id");
         $.ajax({
@@ -118,7 +106,7 @@ $(document).ready(function () {
             data: {
                 chapter_id: chapter_id
             },
-            success: function (result) {
+            success: function(result) {
                 console.log(result);
                 result = JSON.parse(result);
                 if (result.code == 200) {
@@ -140,7 +128,7 @@ $(document).ready(function () {
         });
     });
 
-    divGrilla.on("click", ".trash-row", function () {
+    divGrilla.on("click", ".trash-row", function() {
         let allRows = $(".contenedor-fila");
         allRows.removeClass("row-selected");
         $(this).attr("src", "./images/eliminar-acti.svg");
@@ -159,40 +147,40 @@ $(document).ready(function () {
         $(".modal-delete-row").modal("show");
     });
 
-    divGrilla.on("click", "#agregar-canal-claro", function () {
+    divGrilla.on("click", "#agregar-canal-claro", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Claro Canal"
             },
-            success: function (result) {
+            success: function(result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
         });
     });
-    divGrilla.on("click", "#agregar-claro-cinema", function () {
+    divGrilla.on("click", "#agregar-claro-cinema", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Claro Cinema"
             },
-            success: function (result) {
+            success: function(result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
         });
     });
-    divGrilla.on("click", "#agregar-concert-channel", function () {
+    divGrilla.on("click", "#agregar-concert-channel", function() {
         $.ajax({
             type: "POST",
             url: "general-program/newRow",
             data: {
                 landing: "Concert Channel"
             },
-            success: function (result) {
+            success: function(result) {
                 $(".grilla-body").append(result);
                 eventsGrilla();
             }
@@ -233,9 +221,11 @@ $(document).ready(function () {
         initialSlide: 0,
         infinite: false,
         arrows: true,
-        prevArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
-        nextArrow: '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
-        customPaging: function (slider, i) {
+        prevArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
+        nextArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
+        customPaging: function(slider, i) {
             var thumb = $(slider.$slides[i]).data();
             return (
                 "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -246,7 +236,7 @@ $(document).ready(function () {
     });
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".synopsis-image-slider").on("afterChange", function (
+    $(".synopsis-image-slider").on("afterChange", function(
         slick,
         currentSlide
     ) {
@@ -256,12 +246,11 @@ $(document).ready(function () {
     /* Previsualizar una imagen a la hora de
         subir un archivo
     */
-    $(".input-image-program").change(function () {
-
+    $(".input-image-program").change(function() {
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -273,7 +262,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#modal-button-delete").click(function () {
+    $("#modal-button-delete").click(function() {
         let aa = $(this).attr("chapter_id");
 
         $(".trash-row")
@@ -284,14 +273,14 @@ $(document).ready(function () {
     showUserFront();
 
     //GET USER
-    $("#cambio").on("click", ".view-user-icon", function () {
+    $("#cambio").on("click", ".view-user-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
         getUser(id);
     });
 
-    $(".buttonall").click(function () {
+    $(".buttonall").click(function() {
         $(".buttonall").removeClass("btn-nav-select");
         $(this).addClass("btn-nav");
         $(".buttonall").removeClass("btn-nav");
@@ -302,7 +291,7 @@ $(document).ready(function () {
     showFormCreateUser();
 
     //Al dar click en el botón, hacemos el registro del usuario
-    $("#cambio").on("click", ".register-user-button", function () {
+    $("#cambio").on("click", ".register-user-button", function() {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
@@ -312,7 +301,7 @@ $(document).ready(function () {
         registerUser(username, email, rol);
     });
 
-    $("#cambio").on("click", ".delete-userbo-icon", function () {
+    $("#cambio").on("click", ".delete-userbo-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -324,17 +313,17 @@ $(document).ready(function () {
     });
 
     //BACK TO THE FRONTPAGE USERS' PAGE
-    $("#cambio").on("click", ".closeViewFront", function () {
+    $("#cambio").on("click", ".closeViewFront", function() {
         showPageUsersFront();
     });
 
     //BACK TO BACKOFFICE USERS' PAGE
-    $("#cambio").on("click", ".closeViewBO", function () {
+    $("#cambio").on("click", ".closeViewBO", function() {
         showPageUsersBO();
     });
 
     //UPDATE CLARO NETWORKS USER
-    $("#cambio").on("click", ".edit-user-front", function () {
+    $("#cambio").on("click", ".edit-user-front", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -342,8 +331,7 @@ $(document).ready(function () {
     });
 
     //UPDATE USERS BACKOFFICE
-    $("#cambio").on("click", ".edit-user-icon", function () {
-
+    $("#cambio").on("click", ".edit-user-icon", function() {
         let id = $(this)
             .parent()
             .attr("_id");
@@ -351,17 +339,17 @@ $(document).ready(function () {
     });
     //CHANGE TO LANDING
 
-    divGrilla.on("click", ".lan-claro", function () {
+    divGrilla.on("click", ".lan-claro", function() {
         showlanding();
     });
 
     //Cargamos la pantalla en donde previsualizamos el landing de concert channel
-    divGrilla.on("click", ".lan-concert", function () {
+    divGrilla.on("click", ".lan-concert", function() {
         showlanconcert();
     });
 
     // Damos click en el botón de "landing" en grilla de claro cinema
-    divGrilla.on("click", ".lan-cinema", function (event) {
+    divGrilla.on("click", ".lan-cinema", function(event) {
         //Hacemos una petición ajax para recibir una vista
         $.ajax({
             type: "POST",
@@ -370,7 +358,7 @@ $(document).ready(function () {
                 view: "lan-cinema"
             },
             //Insertamos un loader
-            beforeSend: function () {
+            beforeSend: function() {
                 const loader = `
                     <div class="loader-view-container">
                       <img src="./images/loader.gif" class="loader" alt="">
@@ -378,8 +366,7 @@ $(document).ready(function () {
                     `;
                 $("body").append(loader);
             },
-            success: function (result) {
-
+            success: function(result) {
                 //Insertamos la vista que recibimos en la vista actual
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
@@ -393,7 +380,7 @@ $(document).ready(function () {
                 /* Previsualizar contenido en diferentes tamaños */
                 const prevImage = $(".a-prev-image");
                 eventsGrilla();
-                prevImage.click(function () {
+                prevImage.click(function() {
                     let prevContainer = $("iframe");
                     previewPage($(this));
                 });
@@ -402,14 +389,14 @@ $(document).ready(function () {
     });
 
     //CHANGE TO grilla claro
-    divGrilla.on("click", ".gril-claro", function (event) {
+    divGrilla.on("click", ".gril-claro", function(event) {
         $.ajax({
             type: "POST",
             url: "view",
             data: {
                 view: "grilla-canal-claro-button"
             },
-            beforeSend: function () {
+            beforeSend: function() {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -417,8 +404,7 @@ $(document).ready(function () {
                 `;
                 $("body").append(loader);
             },
-            success: function (result) {
-
+            success: function(result) {
                 console.log(result);
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
@@ -428,14 +414,14 @@ $(document).ready(function () {
         });
     });
     //CHANGE TO grilla cinema
-    $(".gril-cinema").click(function (event) {
+    $(".gril-cinema").click(function(event) {
         $.ajax({
             type: "POST",
             url: "view",
             data: {
                 view: "grilla-claro-cinema-button"
             },
-            beforeSend: function () {
+            beforeSend: function() {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -443,7 +429,7 @@ $(document).ready(function () {
                 `;
                 $("body").append(loader);
             },
-            success: function (result) {
+            success: function(result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -453,15 +439,14 @@ $(document).ready(function () {
     });
 
     //CHANGE TO grilla concert
-    $(".gril-concert").click(function (event) {
-
+    $(".gril-concert").click(function(event) {
         $.ajax({
             type: "POST",
             url: "view",
             data: {
                 view: "grilla-concert-channel-button"
             },
-            beforeSend: function () {
+            beforeSend: function() {
                 const loader = `
                 <div class="loader-view-container">
                   <img src="./images/loader.gif" class="loader" alt="">
@@ -470,7 +455,7 @@ $(document).ready(function () {
                 $("body").append(loader);
             },
 
-            success: function (result) {
+            success: function(result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
                 eventsGrilla();
@@ -480,36 +465,35 @@ $(document).ready(function () {
     });
 
     //CHANGE TO grilla home
-    $(".gril-home").click(function (event) {
+    $(".gril-home").click(function(event) {
         $.ajax({
             type: "POST",
             url: "view",
             data: {
                 view: "grilla-home-button"
             },
-            success: function (result) {
-
+            success: function(result) {
                 $("#general-programming").html("");
                 $("#general-programming").html(result);
             }
         });
     });
     //CHANGE TO LANDING HOME
-    $(".lan-home").click(function (event) {
+    $(".lan-home").click(function(event) {
         $.ajax({
             type: "POST",
             url: "view",
             data: {
                 view: "lan-home"
             },
-            success: function (result) {
+            success: function(result) {
                 $("#bodymenu").html("");
                 $("#bodymenu").html(result);
             }
         });
     });
 
-    $(".option").click(function () {
+    $(".option").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
@@ -517,14 +501,14 @@ $(document).ready(function () {
     });
 
     //CHOOSE DAY
-    $(".Dias").click(function () {
+    $(".Dias").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
         $("#" + select + " > p").text(value);
     });
     //CHOOSE MONTH
-    $(".Meses").click(function () {
+    $(".Meses").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
@@ -532,14 +516,14 @@ $(document).ready(function () {
     });
 
     //CHOOSE YEAR
-    $(".Años").click(function () {
+    $(".Años").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
         $("#" + select + " > p").text(value);
     });
 
-    $("#mujer").click(function () {
+    $("#mujer").click(function() {
         if ($('input[id="mujer"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -552,7 +536,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#hombre").click(function () {
+    $("#hombre").click(function() {
         if ($('input[id="hombre"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -570,7 +554,7 @@ $(document).ready(function () {
     //END NAVBAR PROGRAMACIÓN GENERAL
 
     /* LOGIN */
-    $("#button-login").click(function () {
+    $("#button-login").click(function() {
         let inputEmail = $(".input-email");
         let inputPassword = $(".input-password");
         let messageError = $(".warning-email-text");
@@ -611,7 +595,7 @@ $(document).ready(function () {
     });
 
     /*REGISTER NEW USER*/
-    $(".register-user-button").click(function () {
+    $(".register-user-button").click(function() {
         let rol = $(".btn-rol-select").attr("id_rol");
         let email = $("#email-user-bo").val();
         let username = $("#name-user-bo").val();
@@ -627,36 +611,36 @@ $(document).ready(function () {
     //$(".selectable-column").click(selectColumn);
 
     //Mostrar grilla de concert channel
-    $(".bn-nav").click(function () {
+    $(".bn-nav").click(function() {
         let id = $(this).attr("id");
         showLandingSchedule(id);
     });
 
-    $(".btn-nav").click(function () {
+    $(".btn-nav").click(function() {
         let rel = $(this).attr("rel");
         console.log(rel);
     });
 
     /* Show the form to create a new user */
 
-    $("#admin-users-section").click(function () {
+    $("#admin-users-section").click(function() {
         showPageUsersBO();
     });
 
     /* SHOW VIEW USERS FRONT */
-    $("#admin-users-front-section").click(function () {
+    $("#admin-users-front-section").click(function() {
         showPageUsersFront();
     });
 
     /* SHOW VIEW ADMIN SITE */
-    $(".admin-site-button").click(function () {
+    $(".admin-site-button").click(function() {
         showAdminSite();
     });
 
     /* Previsualizar contenido en diferentes tamaños */
     const prevImage = $(".a-prev-image");
 
-    prevImage.click(function () {
+    prevImage.click(function() {
         let prevContainer = $("iframe");
         previewPage($(this));
     });
@@ -669,7 +653,7 @@ $(document).ready(function () {
     adminContent.hide();
     $(".admin-content:first").show();
 
-    adminNavItem.click(function () {
+    adminNavItem.click(function() {
         showContentNav(adminContent, $(this), adminNavItem, activeClass);
     });
     /* End Navigation*/
@@ -679,7 +663,7 @@ $(document).ready(function () {
     const inputPassword1 = $("#signup-password");
     const caracteresMin1 = $(".caracteres-min");
     const listo1 = $(".listo");
-    inputPassword1.keyup(function () {
+    inputPassword1.keyup(function() {
         if (
             inputPassword1.val().length < 8 &&
             inputPassword1.val().length >= 1
@@ -699,7 +683,7 @@ $(document).ready(function () {
 
     const inputCorreo = $(".input-email");
 
-    inputCorreo.keyup(function () {
+    inputCorreo.keyup(function() {
         const correoValido = $(".correo-valido");
         const imagenError = $(".error");
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -707,7 +691,7 @@ $(document).ready(function () {
     });
 
     /* VALIDATE LOGIN PASSWORD */
-    $(".input-password").keyup(function () {
+    $(".input-password").keyup(function() {
         validateKeyUpPassword($(this), $(".caracteres-min"));
     });
 
@@ -715,7 +699,7 @@ $(document).ready(function () {
 
     const inputReEmail = $(".input-email");
     const messageError = $(".correo-valido");
-    $("#reset-email").click(function () {
+    $("#reset-email").click(function() {
         if (validateEmail(inputReEmail, messageError)) {
             sendEmailResetPassword(inputReEmail);
         } else {
@@ -728,7 +712,7 @@ $(document).ready(function () {
     const inputConfirmPassword = $("#new-confirm-password");
     const newPasswordButton = $("#send-password-button");
 
-    newPasswordButton.click(function () {
+    newPasswordButton.click(function() {
         if (validateNewPassword(inputNewPassword, inputConfirmPassword)) {
             sendNewPassword(inputNewPassword, inputConfirmPassword);
             return true;
@@ -741,7 +725,7 @@ $(document).ready(function () {
 
     if (iconPassword !== null) {
         for (let i = 0; i < iconLength; i++) {
-            iconPassword[i].addEventListener("click", function () {
+            iconPassword[i].addEventListener("click", function() {
                 ShowHidePassword(this);
             });
         }
@@ -756,7 +740,7 @@ $(document).ready(function () {
      * Obtener el archivo subido
      */
 
-    $("#inp_programing").on("change", function () {
+    $("#inp_programing").on("change", function() {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -787,7 +771,6 @@ $(document).ready(function () {
      */
 
     function sendFilePHP(file, data_for_api) {
-
         //creamos un dato de formulario para pasarlo en el ajax
         let data = new FormData();
         data.append("file", file);
@@ -800,14 +783,14 @@ $(document).ready(function () {
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            beforeSend: function () {
+            beforeSend: function() {
                 $("body").prepend(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
+            success: function(result) {
                 var existe_programacion = JSON.parse(result);
                 $(".loader-view-container").remove();
                 if (existe_programacion.data == 1) {
@@ -823,12 +806,12 @@ $(document).ready(function () {
                     }
                 }
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
             $(".loader-view-container").remove();
             console.log(e);
         });
     }
-    $("#acccion-programacion-remplaza").click(function () {
+    $("#acccion-programacion-remplaza").click(function() {
         console.log("Se remplaza la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -837,24 +820,24 @@ $(document).ready(function () {
             type: "POST",
             data: data,
             url: "general-program/changePrograming",
-            beforeSend: function () {
+            beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
+            success: function(result) {
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
             console.log(e);
         });
     });
 
-    $("#acccion-programacion-agrega").click(function () {
+    $("#acccion-programacion-agrega").click(function() {
         console.log("Se agrega la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -862,23 +845,23 @@ $(document).ready(function () {
             type: "POST",
             data: data,
             url: "general-program/addPrograming",
-            beforeSend: function () {
+            beforeSend: function() {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader-table"/>
                     </div>`
                 );
             },
-            success: function (result) {
+            success: function(result) {
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function (e) {
+        }).fail(function(e) {
             console.log(e);
         });
     });
-    $("#acccion-programacion-cancela").click(function () {
+    $("#acccion-programacion-cancela").click(function() {
         console.log("Se cancela la programacion");
         $("#programas_procesados_por_el_excel").val(" ");
         let programas = $("#programas_procesados_por_el_excel").val();
@@ -886,7 +869,7 @@ $(document).ready(function () {
         $(".modal-information").modal("hide");
     });
 
-    $("#agregar").click(function () {
+    $("#agregar").click(function() {
         agregar();
     });
 
@@ -899,7 +882,7 @@ $(document).ready(function () {
 });
 
 /**para la seleccion de paises */
-$(document).on("click", function (e) {
+$(document).on("click", function(e) {
     let container = $("#drop-paises, .cuadro-fecha");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         $("#selectPais").prop("checked", false);

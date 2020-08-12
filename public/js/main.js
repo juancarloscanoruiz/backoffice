@@ -88039,7 +88039,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-picture").on("click", function () {
     var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"../images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-    console.log("si lo agrega");
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
       console.log("si lo borra");
@@ -88056,13 +88055,13 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     }, 3000);
   }); //para mostrar un modal encima del otro
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.delete-info').on('show.bs.modal', function () {
-    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('data-modal-parent');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css('opacity', 0);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-info").on("show.bs.modal", function () {
+    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css("opacity", 0);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.delete-info').on('hidden.bs.modal', function () {
-    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('data-modal-parent');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css('opacity', 1);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-info").on("hidden.bs.modal", function () {
+    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css("opacity", 1);
   }); //Div en donde hacemos el intercambio de grillas de los diferentes canales
 
   var divGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming"); //Borrar un programa de la grilla
@@ -89122,14 +89121,13 @@ function eventsGrilla() {
     data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesOfProgrammingSlider"])(data);
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
-
-  var slideIndex = 3; //Añadimos un slide al slider de imágenes de programación
+  //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    //Cada vez que se haga click, el contador incrementa
-    slideIndex++; //Agregamos un slide al slider de programación
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').length + 1; //Cada vez que se haga click, el contador incrementa
+    //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   /*function preloader() {
       console.log("si entra al metodo desde submenu");
