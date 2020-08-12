@@ -1569,15 +1569,27 @@ function eventsGrilla() {
         }
     });
 
-    //Sacar los valores de los switches en la grilla
-    //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function () {
-        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
-        let value = $(this).val();
-        let key = $(this).attr("key");
-        //Hacemos la petición
-        editAttributeProgram(chapter_id, key, value);
-    });
+//Sacar los valores de los switches en la grilla
+$(".switch-table").click(function() {
+    let currentColumn = $(this).closest(".contenedor-columna");
+    //Sacamos el valor del switch o radio button
+    let keyValue = $(this).val();
+    //De la columna, sacamos el chapter_id
+    let chapterId = currentColumn.attr("chapter_id");
+    //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+    let key = currentColumn.attr("key");
+    //Hacemos la petición
+    editAttributeProgram(chapterId, key, keyValue);
+});
+//Sacar los valores de los switches en el modal de edicion
+$(".switch-table-edit").click(function () {
+    let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+    let value = $(this).val();
+    let key = $(this).attr("key");
+    //Hacemos la petición
+    editAttributeProgram(chapter_id, key, value);
+});
+
 
     /*
     Permite a todos los campos de Schedule item log time tener el formato

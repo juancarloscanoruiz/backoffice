@@ -675,7 +675,7 @@
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-landing" id="no-landing" value="0"
-                                                class="edit-switch-landing switch-table edit-landing-no" key="in_landing"/>
+                                                class="edit-switch-landing switch-table-edit edit-landing-no" key="in_landing"/>
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -683,14 +683,14 @@
                                         <!--Inputs radio-->
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2">
-                                                <input type="radio" checked name="dontlose" class="switch-table edit-carrusel-1"
+                                                <input type="radio" checked name="dontlose" class="switch-table-edit edit-carrusel-1"
                                                     value="2" id="landing-section-2" key="in_landing" />
                                                 <span class="checkmark"></span>
                                             </label>
                                             <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                                 1</span>
                                             <label class="checkradio d-flex ml-2 mb-0" for="landing-section-2-">
-                                                <input type="radio" checked name="dontlose" class="mb-0 switch-table edit-carrusel-2"
+                                                <input type="radio" checked name="dontlose" class="mb-0 switch-table-edit edit-carrusel-2"
                                                     value="2" id="landing-section-2" key="in_landing"/>
                                                 <span class="checkmark"></span>
                                             </label>
@@ -957,7 +957,7 @@
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="subbed" id="no-dubbed" value="0" checked
-                                                class="edit-program-switch switch-landing switch-table edit-subbed-no" key="subbed"/>
+                                                class="edit-program-switch switch-landing switch-table-edit edit-subbed-no" key="subbed"/>
                                             <label for="no-dubbed" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -977,7 +977,7 @@
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="dubbed" id="no-dubbed" value="0" checked
-                                                class="edit-program-switch switch-landing switch-table edit-dubbed-no" key="dubbed"/>
+                                                class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no" key="dubbed"/>
                                             <label for="no-dubbed" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -997,7 +997,7 @@
                                                 class="si-estilo cursor-pointer mb-0 switch-label">
                                                 Sí</label>
                                             <input type="radio" name="audio5" id="no-audio5" value="0" checked
-                                                class="edit-program-switch switch-landing switch-table edit-audio5-no" key="audio5"/>
+                                                class="edit-program-switch switch-landing switch-table-edit edit-audio5-no" key="audio5"/>
                                             <label for="no-audio5" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
