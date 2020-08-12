@@ -752,7 +752,7 @@ function addImagesModalBanner() {
 
                 }
             }
-            console.log(slider);
+
             let conf = {
                 slidesToShow: 1,
                 dots: true,
@@ -771,16 +771,18 @@ function addImagesModalBanner() {
                     );
                 }
             }
+            const programmingSlider = $('.programming-slider');
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
-            $(".programming-slider").html(slider); //agregar la información al slider
+            programmingSlider.html(""); //agregar la información al slider
+            programmingSlider.html(slider); //agregar la información al slider
             try {
-                $(".programming-slider").slick("unslick");
-                $(".programming-slider").slick(conf);
+                programmingSlider.slick("unslick");
+                programmingSlider.slick(conf);
             } catch (error) {
-                $(".programming-slider").slick(conf);
+                programmingSlider.slick(conf);
             }
             $(".input-image-program").change(function () {
-                console.log("Imges");
+
                 let currentInput = $(this);
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();

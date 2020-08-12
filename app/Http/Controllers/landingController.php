@@ -247,7 +247,7 @@ class landingController extends Controller
                 $channel = "Claro Cinema";
 
                 break;
-            
+
             default:
                 # code...
                 break;
@@ -262,7 +262,7 @@ class landingController extends Controller
                     "usuario_id" => session('id_user'),
                     "landing" => $channel,
                     "day" => $request->day
-                    
+
                 ]
             )]
         );
