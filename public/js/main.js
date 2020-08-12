@@ -89142,7 +89142,7 @@ function eventsGrilla() {
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
     if (socketProgramacion) {
-      console.log("Socket destruido");
+      console.log("socket destruido");
       socketProgramacion.destroy();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion').html("");
       new easyXDM.Socket({
@@ -90773,6 +90773,8 @@ function addImagesModalBanner() {
       }
 
       console.log(slider);
+      /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
+
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {

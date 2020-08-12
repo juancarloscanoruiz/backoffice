@@ -533,7 +533,7 @@ function eventsGrilla() {
 
     $('.edit-landing-modal-button').click(function () {
         if (socketProgramacion) {
-            console.log("Socket destruido");
+            console.log("socket destruido");
             socketProgramacion.destroy();
             $('#navbar-prev-programacion').html("");
             new easyXDM.Socket({

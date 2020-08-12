@@ -748,6 +748,7 @@ function addImagesModalBanner() {
                 }
             }
             console.log(slider);
+            /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
             $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
             $(".input-image-program").change(function () {
                 console.log("Imges");
