@@ -443,7 +443,7 @@
                         <div class="edit-data-container">
                             <p  style="margin-bottom: 43px" class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log date
                             </p>
-                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-5">Fecha</p>
+                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">Fecha</p>
                             <div
                                 class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                 <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
@@ -455,7 +455,7 @@
                     </div>
                     <div class="col-4">
                         <div class="edit-data-container">
-                            <p style="margin-bottom: 43px" class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log time (gmt)
+                            <p style="margin-bottom: 43px" class="mb-3 text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log time (gmt)
                             </p>
                             <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
                             <div
@@ -469,9 +469,9 @@
                     </div>
                     <div class="col-4">
                         <div class="edit-data-container">
-                            <p style="margin-bottom: 43px" class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item log time (gmt)
+                            <p  class="mb-3 text-plus text-uppercase a-text-bold-brown-two" style="margin-bottom: 43px">Schedule item log time (gmt)
                             </p>
-                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
+                            <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
                             <div
                                 class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                 <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">

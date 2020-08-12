@@ -898,7 +898,7 @@
                                 </div>
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log
+                                        <p style="margin-bottom: 43px" class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log
                                             time (gmt)
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
@@ -913,7 +913,7 @@
                                 </div>
                                 <div class="col-4 edit-program-data-container">
                                     <div class="edit-data-container h-100">
-                                        <p class=" text-plus text-uppercase a-text-bold-brown-two" style="margin-bottom: 43px">estimated schedule item duration
+                                        <p class=" text-plus text-uppercase a-text-bold-brown-two "style="margin-bottom: 43px" >estimated schedule item duration
                                         </p>
                                         <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
                                         <div
