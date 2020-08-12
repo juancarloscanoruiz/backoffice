@@ -697,9 +697,14 @@ function addImagesModalIcons() {
         cache: false,
         success: function (result) {
             result = JSON.parse(result);
-            $('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
-            $('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
-            $('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
+            $('#icon_canal_claro_edit').attr('src', "");
+            $('#icon_claro_cinema_edit').attr('src', "");
+            $('#icon_concert_channel_edit').attr('src', "");
+
+
+            $('#icon_canal_claro_edit').attr('src', result.icon_canal_claro `?${new Date().getTime()}`);
+            $('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema `?${new Date().getTime()}`);
+            $('#icon_concert_channel_edit').attr('src', result.icon_concert_channel `?${new Date().getTime()}`);
         }
     });
 }
@@ -728,7 +733,7 @@ function addImagesModalBanner() {
                         <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
                             class=" cursor-pointer add-photo " />
                         <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                        <img src="${result["image_slider_"+counter]}"
+                        <img src="${result["image_slider_"+counter]}?${new Date().getTime()}"
                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                     </label>
                 </div>`;
@@ -748,8 +753,32 @@ function addImagesModalBanner() {
                 }
             }
             console.log(slider);
+            let conf = {
+                slidesToShow: 1,
+                dots: true,
+                appendDots: $(".programming-slider-dots"),
+                initialSlide: 0,
+                infinite: false,
+                arrows: true,
+                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                customPaging: function (slider, i) {
+                    var thumb = $(slider.$slides[i]).data();
+                    return (
+                        "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
+                        (i + 1) +
+                        "</p>"
+                    );
+                }
+            }
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
-            $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
+            $(".programming-slider").html(slider); //agregar la información al slider
+            try {
+                $(".programming-slider").slick("unslick");
+                $(".programming-slider").slick(conf);
+            } catch (error) {
+                $(".programming-slider").slick(conf);
+            }
             $(".input-image-program").change(function () {
                 console.log("Imges");
                 let currentInput = $(this);

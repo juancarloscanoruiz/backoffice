@@ -103,6 +103,7 @@ function updateLogosOfLanding(data) {
         data: data,
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
+        cache: false,
         beforeSend: function () {
             $(".modal-edit-icons .modal-content").append(
                 `<div class="loader-container pointer-none">
@@ -130,6 +131,7 @@ function updateImageProgramOfLanding(data) {
         data: data,
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
+        cache: false,
         url: "landing/updateImageProgram",
         success: function (result) {
             console.log(result);
@@ -658,6 +660,7 @@ function newProgram(landing, schedule) {
             schedule: schedule,
             landing: landing
         },
+        cache: false,
 
         beforeSend: function () {
             $("body").append(
@@ -685,7 +688,7 @@ function getProgramming(date, section, time) {
             section: section,
             time: time
         },
-
+        cache: false,
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -943,6 +946,7 @@ function newProgramByDate(section, date, time) {
             landing: section,
             time: time
         },
+        cache: false,
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">

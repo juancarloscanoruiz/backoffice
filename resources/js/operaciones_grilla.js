@@ -557,24 +557,7 @@ function eventsGrilla() {
                                 setTimeout(function () {
                                     $(".modal-programming-carousel").modal("show");
                                     $("#loader1").remove();
-                                    $(".programming-slider").slick({
-                                        slidesToShow: 1,
-                                        dots: true,
-                                        appendDots: $(".programming-slider-dots"),
-                                        initialSlide: 0,
-                                        infinite: false,
-                                        arrows: true,
-                                        prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                                        nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                                        customPaging: function (slider, i) {
-                                            var thumb = $(slider.$slides[i]).data();
-                                            return (
-                                                "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
-                                                (i + 1) +
-                                                "</p>"
-                                            );
-                                        }
-                                    });
+
                                     addImagesModalBanner();
                                 }, 3000);
 
@@ -636,24 +619,6 @@ function eventsGrilla() {
                             setTimeout(function () {
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
-                                $(".programming-slider").slick({
-                                    slidesToShow: 1,
-                                    dots: true,
-                                    appendDots: $(".programming-slider-dots"),
-                                    initialSlide: 0,
-                                    infinite: false,
-                                    arrows: true,
-                                    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                                    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                                    customPaging: function (slider, i) {
-                                        var thumb = $(slider.$slides[i]).data();
-                                        return (
-                                            "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
-                                            (i + 1) +
-                                            "</p>"
-                                        );
-                                    }
-                                });
                                 addImagesModalBanner();
                             }, 3000);
 

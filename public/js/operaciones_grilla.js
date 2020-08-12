@@ -73473,20 +73473,6 @@ function eventsGrilla() {
                 setTimeout(function () {
                   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                    initialSlide: 0,
-                    infinite: false,
-                    arrows: true,
-                    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                    customPaging: function customPaging(slider, i) {
-                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
-                    }
-                  });
                   Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
                 }, 3000);
                 break;
@@ -73538,20 +73524,6 @@ function eventsGrilla() {
               setTimeout(function () {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                  slidesToShow: 1,
-                  dots: true,
-                  appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                  initialSlide: 0,
-                  infinite: false,
-                  arrows: true,
-                  prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                  nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                  customPaging: function customPaging(slider, i) {
-                    var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
-                  }
-                });
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
               }, 3000);
               break;
@@ -74820,6 +74792,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["?", ""]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["?", ""]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["?", ""]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
@@ -75046,9 +75050,12 @@ function addImagesModalIcons() {
     cache: false,
     success: function success(result) {
       result = JSON.parse(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', "");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', "");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', "");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro(_templateObject(), new Date().getTime()));
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema(_templateObject2(), new Date().getTime()));
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel(_templateObject3(), new Date().getTime()));
     }
   });
 }
@@ -75071,7 +75078,7 @@ function addImagesModalBanner() {
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
             counter++;
           } else {
             break;
@@ -75082,9 +75089,30 @@ function addImagesModalBanner() {
       }
 
       console.log(slider);
+      var conf = {
+        slidesToShow: 1,
+        dots: true,
+        appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+        initialSlide: 0,
+        infinite: false,
+        arrows: true,
+        prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+        nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+        customPaging: function customPaging(slider, i) {
+          var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+          return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
+        }
+      };
       /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", slider); //agregar la información al slider
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").html(slider); //agregar la información al slider
+
+      try {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("unslick");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick(conf);
+      } catch (error) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick(conf);
+      }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
         console.log("Imges");
@@ -75210,6 +75238,7 @@ function updateLogosOfLanding(data) {
     //esto es para poder pasar el archivo
     contentType: false,
     //esto es para poder pasar el archivo
+    cache: false,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -75234,6 +75263,7 @@ function updateImageProgramOfLanding(data) {
     //esto es para poder pasar el archivo
     contentType: false,
     //esto es para poder pasar el archivo
+    cache: false,
     url: "landing/updateImageProgram",
     success: function success(result) {
       console.log(result);
@@ -75657,6 +75687,7 @@ function newProgram(landing, schedule) {
       schedule: schedule,
       landing: landing
     },
+    cache: false,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -75679,6 +75710,7 @@ function getProgramming(date, section, time) {
       section: section,
       time: time
     },
+    cache: false,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -75940,6 +75972,7 @@ function newProgramByDate(section, date, time) {
       landing: section,
       time: time
     },
+    cache: false,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
