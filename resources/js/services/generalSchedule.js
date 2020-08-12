@@ -538,7 +538,7 @@ function filterDates(startDate, lastDate, landing) {
                     //Guardamos todos los programas
                     rows += `
                     <div class="contenedor-fila" id="programacion-claro-${program.chapter_id}">
-                        <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-${program.chapter_id}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash"></div>
+                        <div class="contenedor-columna selectable-column centro cursor-pointer" id="entrada-${program.chapter_id}" rel="acciones"><img src="./images/basic-icons/pencil-edit-teal.svg" class="mr-3 edit-row-pencil" alt="pencil"><img src="./images/eliminar-acti.svg" class="delete-row-pencil trash-row" alt="trash" chapter_id="${program.chapter_id}"></div>
                         <!--ESTADO-->
                         <div class="contenedor-columna centro editable-column cursor-pointer" id="estado-${program.chapter_id}">
                             <span class="program-original">Aprobado</span>
