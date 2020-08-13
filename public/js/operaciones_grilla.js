@@ -73432,6 +73432,13 @@ function eventsGrilla() {
 
     data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesOfProgrammingSlider"])(data);
+  }); //para agregar un slider más en cinema
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').length + 1; //Cada vez que se haga click, el contador incrementa
+    //Agregamos un slide al slider de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-image-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
   //Añadimos un slide al slider de imágenes de programación
 
@@ -73501,7 +73508,7 @@ function eventsGrilla() {
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
           }
         });
-      }, 3000);
+      }, 2000);
     }
   });
   var socketProgramacion = ""; //Verificamos si existe el contenedor para insertar el iframe
@@ -74211,6 +74218,10 @@ function eventsGrilla() {
       var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
     }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".listcinema").selectpicker({
+    multipleSeparator: " ",
+    filter: true
   }); //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]); //Al dar click en una columna, aplicamos estilos
