@@ -495,6 +495,31 @@ function eventsGrilla() {
         updateImagesOfProgrammingSlider(data);
     });
 
+    //para agregar un slider más en cinema
+    $(".add-programming-image").click(function () {
+        let slideIndex = $('.load-programming-carousel').length + 1;
+        //Cada vez que se haga click, el contador incrementa
+
+        //Agregamos un slide al slider de programación
+        $(".cinema-image-slider").slick(
+            "slickAdd",
+            `
+            <div class="slick-slide">
+                <div>
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                    <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                        <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                            <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            `
+        );
+    });
+
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
     //Añadimos un slide al slider de imágenes de programación
@@ -1637,6 +1662,11 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
 
+      $(".listcinema")
+        .selectpicker({
+            multipleSeparator: " ",
+            filter: true
+        })
     //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
     $(".edit-row-pencil").click(selectRow);
     //Al dar click en una columna, aplicamos estilos

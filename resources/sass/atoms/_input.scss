@@ -583,3 +583,74 @@ div .bootstrap-select > .dropdown-toggle:focus {
 *:focus {
     outline: 0 !important;
 }
+//list cinema
+
+.listcinema > .dropdown-toggle {
+    position: relative;
+    // width: 165% !important;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto;
+    height: 60px !important;
+    border-radius: 1em;
+}
+
+.listcinema .btn:not(.bs-placeholder) {
+    word-spacing: 100px;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.listcinema .dropdown-item {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+    top: 0;
+    margin-top: 12px;
+    left: 25px;
+    height: 0px;
+    width: 0px;
+    border-radius: 0em;
+    border: 2px solid $morelightgray;
+    background-color: white;
+
+    padding: 0.45em;
+}
+
+.listcinema.show-tick .dropdown-menu .selected span.check-mark {
+    position: absolute;
+    display: inline-block;
+    left: 3px;
+    top: 0px;
+}
+
+.listcinema.show-tick .dropdown-menu li a span.text {
+    margin-left: 15px;
+}
+
+.listcinema .bs-ok-default:after {
+    content: "";
+    display: block;
+    width: 0.5em;
+    left: 5px;
+    top: 2px;
+    height: 0.8em;
+    border-style: solid;
+    border-color: $teal;
+    border-width: 0 0.26em 0.26em 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.listcinema .dropdown-menu {
+    //min-width: 165% !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.listcinema:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100% !important;
+}

@@ -214,6 +214,37 @@ $(document).ready(function() {
     });*/
     eventsGrilla();
 
+    
+    //SLIDER DE CINEMA
+    $(".cinema-image-slider").slick({
+        slidesToShow: 1,
+        dots: true,
+        appendDots: $(".programming-slider-dots1"),
+        initialSlide: 0,
+        infinite: false,
+        arrows: true,
+        prevArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
+        nextArrow:
+            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
+        customPaging: function(slider, i) {
+            var thumb = $(slider.$slides[i]).data();
+            return (
+                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                (i + 1) +
+                "</p>"
+            );
+        }
+    });
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".cinema-image-slider").on("afterChange", function(
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
     //SLIDER DE SINOPSIS
     $(".synopsis-image-slider").slick({
         slidesToShow: 1,
