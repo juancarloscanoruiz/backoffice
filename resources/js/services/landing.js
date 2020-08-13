@@ -79,7 +79,7 @@ function updateImagesOfProgrammingSlider(data) {
             );
         },
         success: function (result) {
-            console.log(result);
+
             $(".loader-container").remove();
             let json = JSON.parse(result);
             if (json.code == 200) {

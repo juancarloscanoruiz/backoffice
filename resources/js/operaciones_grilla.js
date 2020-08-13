@@ -54,19 +54,17 @@ function eventsGrilla() {
         }, 3000);
     });
 
-
     //Evento para cuando cerramos el selectpicker
 
-
-    $('.calendar-slider').on("click", ".programming-item", function () {
-        $('.programming-item').removeClass("programming-item-active");
+    $(".calendar-slider").on("click", ".programming-item", function () {
+        $(".programming-item").removeClass("programming-item-active");
         $(this).addClass("programming-item-active");
-        let date = $(this).attr("date")
+        let date = $(this).attr("date");
         let section = $(this).attr("section_id");
-        let time = $('.current').attr("schedule");
+        let time = $(".current").attr("schedule");
         console.log(date, section, time);
         getProgramming(date, section, time);
-    })
+    });
 
     $(".thermometer-schedule-list").on("click", ".unavailable", function () {
         let chapter_id = $(this).attr("chapter_id");
@@ -237,7 +235,6 @@ function eventsGrilla() {
                     ).val()}`;
                     console.log(value);
                     editAttributeProgram(chapter_id, key, value);
-
                 } else if (
                     $(".edit-home-date-begin").val() &&
                     !$(".edit-home-time-begin").val()
@@ -247,7 +244,6 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-
                 }
 
                 break;
@@ -264,7 +260,6 @@ function eventsGrilla() {
                     ).val()}`;
                     console.log(value);
                     editAttributeProgram(chapter_id, key, value);
-
                 } else if (
                     $(".edit-home-date-expiration").val() &&
                     !$(".edit-home-time-expiration").val()
@@ -274,7 +269,6 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-
                 }
 
                 break;
@@ -291,7 +285,6 @@ function eventsGrilla() {
                     ).val()}`;
 
                     editAttributeProgram(chapter_id, key, value);
-
                 } else if (
                     $(".edit-landing-date-begin").val() &&
                     !$(".edit-landing-time-begin").val()
@@ -301,7 +294,6 @@ function eventsGrilla() {
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     editAttributeProgram(chapter_id, key, value);
-
                 }
 
                 break;
@@ -317,7 +309,6 @@ function eventsGrilla() {
                         ".edit-landing-time-end"
                     ).val()}`;
                     editAttributeProgram(chapter_id, key, value);
-
                 } else if (
                     $(".edit-landing-date-end").val() &&
                     !$(".edit-landing-time-end").val()
@@ -328,7 +319,6 @@ function eventsGrilla() {
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                     console.log("landing_expiration sin tiempo: " + value);
                     editAttributeProgram(chapter_id, key, value);
-
                 }
 
                 break;
@@ -349,7 +339,6 @@ function eventsGrilla() {
     });
 
     $(".edit-switch-home").click(function () {
-
         if ($(this).val() == 0) {
             $(".edit-home-date-end").val("");
             $(".edit-home-date-begin").val("");
@@ -367,18 +356,15 @@ function eventsGrilla() {
             $(".edit-landing-date-begin").val("");
             $(".edit-landing-time-end").val("");
             $(".edit-landing-time-begin").val("");
-            $('#landing-section-1').prop('checked', false);
-            $('#landing-section-1').attr('disabled', true);
-            $('#landing-section-2').prop('checked', false);
-            $('#landing-section-2').attr('disabled', true);
+            $("#landing-section-1").prop("checked", false);
+            $("#landing-section-1").attr("disabled", true);
+            $("#landing-section-2").prop("checked", false);
+            $("#landing-section-2").attr("disabled", true);
             editAttributeProgram(chapter_id, key, value);
         } else {
-            $('#landing-section-1').attr('disabled', false);
-            $('#landing-section-2').attr('disabled', false);
-
+            $("#landing-section-1").attr("disabled", false);
+            $("#landing-section-2").attr("disabled", false);
         }
-
-
     });
     //loader, antes de subir un archivo
     $(".load-modales").click(function () {
@@ -499,7 +485,7 @@ function eventsGrilla() {
 
     //Añadimos un slide al slider de imágenes de programación
     $(".add-programming-image").click(function () {
-        let slideIndex = $('.load-programming-carousel').length + 1;
+        let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
         //Agregamos un slide al slider de programación
@@ -532,68 +518,78 @@ function eventsGrilla() {
         "navbar-prev-programacion"
     );
 
-    $('.edit-landing-modal-button').click(function () {
+    $(".edit-landing-modal-button").click(function () {
         if (socketProgramacion) {
+            //socketProgramacion.destroy();
+            $('#navbar-prev-programacion iframe').remove()
+            setTimeout(() => {
+                new easyXDM.Socket({
+                    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+                    container: document.getElementById(
+                        "navbar-prev-programacion"
+                    ),
+                    onMessage: function (message, origin) {
+                        let json = JSON.parse(message);
+                        if (typeof json == "object") {
+                            let loader = `
+                                    <div class="loader-view-container" id="loader1">
+                                        <img src="./images/loader.gif" class="loader" alt="">
+                                    </div>
+                                        `;
+                            switch (json.type) {
+                                case "program":
+                                    getChapterInfo(json.chapterId);
+                                    break;
+                                case "slider-pagination":
+                                    $("body").append(loader);
 
-            socketProgramacion.destroy();
-            //$('#navbar-prev-programacion').html("");
-            new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-                container: document.getElementById("navbar-prev-programacion"),
-                onMessage: function (message, origin) {
-                    let json = JSON.parse(message);
-                    if (typeof json == "object") {
-                        let loader = `
-                            <div class="loader-view-container" id="loader1">
-                                <img src="./images/loader.gif" class="loader" alt="">
-                            </div>
-                                `;
-                        switch (json.type) {
-                            case "program":
-                                getChapterInfo(json.chapterId);
-                                break;
-                            case "slider-pagination":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    $(".modal-programming-carousel").modal("show");
-                                    $("#loader1").remove();
+                                    setTimeout(function () {
+                                        $(".modal-programming-carousel").modal(
+                                            "show"
+                                        );
+                                        $("#loader1").remove();
 
-                                    addImagesModalBanner();
-                                }, 3000);
+                                        addImagesModalBanner();
+                                    }, 3000);
 
-                                break;
-                            case "synopsis":
-                                document
-                                    .querySelector("body")
-                                    .insertAdjacentHTML("beforeend", loader);
-                                window.location.href =
-                                    "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                                break;
-                            case "menu-logos":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    addImagesModalIcons();
+                                    break;
+                                case "synopsis":
+                                    document
+                                        .querySelector("body")
+                                        .insertAdjacentHTML(
+                                            "beforeend",
+                                            loader
+                                        );
+                                    window.location.href =
+                                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                                    break;
+                                case "menu-logos":
+                                    $("body").append(loader);
+                                    setTimeout(function () {
+                                        addImagesModalIcons();
 
-                                    $(".modal-edit-icons").modal("show");
+                                        $(".modal-edit-icons").modal("show");
 
-                                    $("#loader1").remove();
-                                }, 3000);
-                                break;
+                                        $("#loader1").remove();
+                                    }, 3000);
+                                    break;
 
-                            default:
-                                break;
+                                default:
+                                    break;
+                            }
                         }
+                        this.container.getElementsByTagName(
+                            "iframe"
+                        )[0].style.height = message + "px";
+                        this.container.getElementsByTagName(
+                                "iframe"
+                            )[0].style.boxShadow =
+                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                     }
-                    this.container.getElementsByTagName("iframe")[0].style.height =
-                        message + "px";
-                    this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                }
-            });
+                });
+            }, 2000);
         }
-
-    })
+    });
 
     let socketProgramacion = "";
 
@@ -616,6 +612,7 @@ function eventsGrilla() {
                             break;
                         case "slider-pagination":
                             $("body").append(loader);
+
                             setTimeout(function () {
                                 $(".modal-programming-carousel").modal("show");
                                 $("#loader1").remove();
@@ -742,8 +739,6 @@ function eventsGrilla() {
                 }
             });
         });
-
-
     }
 
     $(".input-image-program").change(function () {
@@ -1376,27 +1371,26 @@ function eventsGrilla() {
         }
     });
 
-//Sacar los valores de los switches en la grilla
-$(".switch-table").click(function() {
-    let currentColumn = $(this).closest(".contenedor-columna");
-    //Sacamos el valor del switch o radio button
-    let keyValue = $(this).val();
-    //De la columna, sacamos el chapter_id
-    let chapterId = currentColumn.attr("chapter_id");
-    //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
-    let key = currentColumn.attr("key");
-    //Hacemos la petición
-    editAttributeProgram(chapterId, key, keyValue);
-});
-//Sacar los valores de los switches en el modal de edicion
-$(".switch-table-edit").click(function () {
-    let chapter_id = $(".edit-program-data-container").attr("chapter_id");
-    let value = $(this).val();
-    let key = $(this).attr("key");
-    //Hacemos la petición
-    editAttributeProgram(chapter_id, key, value);
-});
-
+    //Sacar los valores de los switches en la grilla
+    $(".switch-table").click(function () {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        //Sacamos el valor del switch o radio button
+        let keyValue = $(this).val();
+        //De la columna, sacamos el chapter_id
+        let chapterId = currentColumn.attr("chapter_id");
+        //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+        let key = currentColumn.attr("key");
+        //Hacemos la petición
+        editAttributeProgram(chapterId, key, keyValue);
+    });
+    //Sacar los valores de los switches en el modal de edicion
+    $(".switch-table-edit").click(function () {
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        //Hacemos la petición
+        editAttributeProgram(chapter_id, key, value);
+    });
 
     /*
     Permite a todos los campos de Schedule item log time tener el formato

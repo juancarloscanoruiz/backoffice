@@ -88814,12 +88814,12 @@ function eventsGrilla() {
     }, 3000);
   }); //Evento para cuando cerramos el selectpicker
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').on("click", ".programming-item", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-item').removeClass("programming-item-active");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").on("click", ".programming-item", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
     var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
     var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
-    var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.current').attr("schedule");
+    var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current").attr("schedule");
     console.log(date, section, time);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramming"])(date, section, time);
   });
@@ -89029,14 +89029,14 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').prop('checked', false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').attr('disabled', true);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').prop('checked', false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').attr('disabled', true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
       Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
     } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-1').attr('disabled', false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#landing-section-2').attr('disabled', false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
     }
   }); //loader, antes de subir un archivo
 
@@ -89124,7 +89124,7 @@ function eventsGrilla() {
   //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').length + 1; //Cada vez que se haga click, el contador incrementa
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
@@ -89138,56 +89138,58 @@ function eventsGrilla() {
   window.onload = preloader;*/
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
     if (socketProgramacion) {
-      socketProgramacion.destroy(); //$('#navbar-prev-programacion').html("");
+      //socketProgramacion.destroy();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion iframe').remove();
+      setTimeout(function () {
+        new easyXDM.Socket({
+          remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+          container: document.getElementById("navbar-prev-programacion"),
+          onMessage: function onMessage(message, origin) {
+            var json = JSON.parse(message);
 
-      new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function onMessage(message, origin) {
-          var json = JSON.parse(message);
+            if (_typeof(json) == "object") {
+              var loader = "\n                                    <div class=\"loader-view-container\" id=\"loader1\">\n                                        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                                    </div>\n                                        ";
 
-          if (_typeof(json) == "object") {
-            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+              switch (json.type) {
+                case "program":
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+                  break;
 
-            switch (json.type) {
-              case "program":
-                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-                break;
+                case "slider-pagination":
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+                  setTimeout(function () {
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+                  }, 3000);
+                  break;
 
-              case "slider-pagination":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                setTimeout(function () {
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-                }, 3000);
-                break;
+                case "synopsis":
+                  document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+                  window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                  break;
 
-              case "synopsis":
-                document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                break;
+                case "menu-logos":
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+                  setTimeout(function () {
+                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+                  }, 3000);
+                  break;
 
-              case "menu-logos":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                setTimeout(function () {
-                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                }, 3000);
-                break;
-
-              default:
-                break;
+                default:
+                  break;
+              }
             }
-          }
 
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-      });
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        });
+      }, 3000);
     }
   });
   var socketProgramacion = ""; //Verificamos si existe el contenedor para insertar el iframe
@@ -89842,9 +89844,20 @@ function eventsGrilla() {
         break;
     }
   }); //Sacar los valores de los switches en la grilla
-  //Sacar los valores de los switches en la grilla
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sacamos el valor del switch o radio button
+
+    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //De la columna, sacamos el chapter_id
+
+    var chapterId = currentColumn.attr("chapter_id"); //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+
+    var key = currentColumn.attr("key"); //Hacemos la petición
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
+  }); //Sacar los valores de los switches en el modal de edicion
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table-edit").click(function () {
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Hacemos la petición
@@ -90332,38 +90345,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["?", ""]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["?", ""]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["?", ""]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
@@ -90590,12 +90571,10 @@ function addImagesModalIcons() {
     cache: false,
     success: function success(result) {
       result = JSON.parse(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', "");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', "");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', "");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro(_templateObject(), new Date().getTime()));
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema(_templateObject2(), new Date().getTime()));
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel(_templateObject3(), new Date().getTime()));
+      console.log(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
     }
   });
 }
@@ -90612,13 +90591,14 @@ function addImagesModalBanner() {
     success: function success(result) {
       result = JSON.parse(result);
       var slider = "";
-      console.log(result);
       var counter = 1;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-image-program').val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.prev-image-program').attr("src", "");
 
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
             counter++;
           } else {
             break;
@@ -90752,7 +90732,6 @@ function updateImagesOfProgrammingSlider(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      console.log(result);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
       var json = JSON.parse(result);
 
