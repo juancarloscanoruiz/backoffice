@@ -621,9 +621,10 @@
                                 title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                             </select>
 
-                            <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
+
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
+
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
                                 <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
@@ -1104,7 +1105,7 @@
                       </label>
                   </div>
 
-            
+
               End slider-->
               </div>
               <!--Buttons-->

@@ -2905,8 +2905,11 @@ body {
 }
 
 .dropimg {
-  transform: translate(1090px, -57px);
   z-index: 5;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  margin-right: 16px;
 }
 
 @font-face {

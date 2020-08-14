@@ -417,8 +417,9 @@ function getChapterInfo(data) {
             $('.programs-catalogue').append(options);
             //selectpicker pra ls titulos de los programas
             //selectpicker pra ls titulos de los programas
-            $("#prog_titulo_programa").selectpicker('destroy');
-            $("#prog_titulo_programa").selectpicker();
+            const dropdownTitles = $("#prog_titulo_programa")
+            dropdownTitles.selectpicker('destroy');
+            dropdownTitles.selectpicker();
 
             let selectheader = $(".thumbnail-header1");
             selectheader.on("hide.bs.select", function () {
@@ -436,6 +437,14 @@ function getChapterInfo(data) {
                 console.log(keyValue);
                 editAttributeProgram(chapter_id, key, keyValue);
             });
+
+            let imageTriangle = `
+            <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
+        `;
+            $('.edit-program-image .bootstrap-select').append(imageTriangle);
+            $('.dropimg').click(function () {
+                dropdownTitles.selectpicker('toggle');
+            })
 
             data
             //Genres
