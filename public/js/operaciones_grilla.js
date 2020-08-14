@@ -73435,7 +73435,7 @@ function eventsGrilla() {
   }); //para agregar un slider más en cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').length + 1; //Cada vez que se haga click, el contador incrementa
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-image-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
@@ -73457,115 +73457,69 @@ function eventsGrilla() {
   window.onload = preloader;*/
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+  var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
+  var confIframe = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+    container: document.getElementById("navbar-prev-programacion"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
     if (socketProgramacion) {
       //socketProgramacion.destroy();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion iframe').remove();
+      iframeProgramacion.remove();
       setTimeout(function () {
-        new easyXDM.Socket({
-          remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-          container: document.getElementById("navbar-prev-programacion"),
-          onMessage: function onMessage(message, origin) {
-            var json = JSON.parse(message);
-
-            if (_typeof(json) == "object") {
-              var loader = "\n                                    <div class=\"loader-view-container\" id=\"loader1\">\n                                        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                                    </div>\n                                        ";
-
-              switch (json.type) {
-                case "program":
-                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-                  break;
-
-                case "slider-pagination":
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                  setTimeout(function () {
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-                  }, 3000);
-                  break;
-
-                case "synopsis":
-                  document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                  window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                  break;
-
-                case "menu-logos":
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                  setTimeout(function () {
-                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                  }, 3000);
-                  break;
-
-                default:
-                  break;
-              }
-            }
-
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-          }
-        });
+        new easyXDM.Socket(confIframe);
       }, 2000);
     }
-  });
-  var socketProgramacion = ""; //Verificamos si existe el contenedor para insertar el iframe
+  }); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
-    socketProgramacion = new easyXDM.Socket({
-      remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-      container: document.getElementById("navbar-prev-programacion"),
-      onMessage: function onMessage(message, origin) {
-        var json = JSON.parse(message);
-
-        if (_typeof(json) == "object") {
-          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-          switch (json.type) {
-            case "program":
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-              break;
-
-            case "slider-pagination":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-              setTimeout(function () {
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-              }, 3000);
-              break;
-
-            case "synopsis":
-              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-              break;
-
-            case "menu-logos":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-              setTimeout(function () {
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              }, 3000);
-              break;
-
-            default:
-              break;
-          }
-        }
-
-        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      }
-    });
-    var socketProgramacionPrev = "";
-    var socketProgramacionEdi = "";
+    new easyXDM.Socket(confIframe);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-      socketProgramacion.destroy();
-      socketProgramacionPrev = new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      new easyXDM.Socket({
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -73575,58 +73529,8 @@ function eventsGrilla() {
       });
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
-      socketProgramacionPrev.destroy();
-      socketProgramacionEdi = new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function onMessage(message, origin) {
-          var json = JSON.parse(message);
-
-          if (_typeof(json) == "object") {
-            var loader = "\n                            <div class=\"loader-view-container\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
-
-            switch (json.type) {
-              case "program":
-                console.log(json.chapterId);
-                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-                break;
-
-              case "slider-pagination":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                  slidesToShow: 1,
-                  dots: true,
-                  appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                  initialSlide: 0,
-                  infinite: false,
-                  arrows: true,
-                  prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                  nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                  customPaging: function customPaging(slider, i) {
-                    var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
-                  }
-                });
-                break;
-
-              case "synopsis":
-                document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                break;
-
-              case "menu-logos":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                break;
-
-              default:
-                break;
-            }
-          }
-
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-      });
+      iframeProgramacion.remove();
+      new easyXDM.Socket(confIframe);
     });
   }
 
@@ -74915,13 +74819,11 @@ function addImagesModalBanner() {
       result = JSON.parse(result);
       var slider = "";
       var counter = 1;
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-image-program').val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.prev-image-program').attr("src", "");
 
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                        <label for=\"image_programming_").concat(counter, "\"\n                            class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                            <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                                class=\" cursor-pointer add-photo\" />\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                        </label>\n                    </div>");
             counter++;
           } else {
             break;
@@ -74971,7 +74873,7 @@ function addImagesModalBanner() {
 
           reader.readAsDataURL(this.files[0]);
         }
-      }); //   $(".programming-slider").append(slider);
+      });
     }
   });
 }

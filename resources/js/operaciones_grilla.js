@@ -483,7 +483,7 @@ function eventsGrilla() {
 
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
-        let slideIndex = $('.load-programming-carousel').length + 1;
+        let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
         //Agregamos un slide al slider de programación
@@ -543,144 +543,79 @@ function eventsGrilla() {
         "navbar-prev-programacion"
     );
 
-    $(".edit-landing-modal-button").click(function () {
-        if (socketProgramacion) {
-            //socketProgramacion.destroy();
-            $('#navbar-prev-programacion iframe').remove()
-            setTimeout(() => {
-                new easyXDM.Socket({
-                    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-                    container: document.getElementById(
-                        "navbar-prev-programacion"
-                    ),
-                    onMessage: function (message, origin) {
-                        let json = JSON.parse(message);
-                        if (typeof json == "object") {
-                            let loader = `
-                                    <div class="loader-view-container" id="loader1">
-                                        <img src="./images/loader.gif" class="loader" alt="">
-                                    </div>
-                                        `;
-                            switch (json.type) {
-                                case "program":
-                                    getChapterInfo(json.chapterId);
-                                    break;
-                                case "slider-pagination":
-                                    $("body").append(loader);
-
-                                    setTimeout(function () {
-                                        $(".modal-programming-carousel").modal(
-                                            "show"
-                                        );
-                                        $("#loader1").remove();
-
-                                        addImagesModalBanner();
-                                    }, 3000);
-
-                                    break;
-                                case "synopsis":
-                                    document
-                                        .querySelector("body")
-                                        .insertAdjacentHTML(
-                                            "beforeend",
-                                            loader
-                                        );
-                                    window.location.href =
-                                        "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                                    break;
-                                case "menu-logos":
-                                    $("body").append(loader);
-                                    setTimeout(function () {
-                                        addImagesModalIcons();
-
-                                        $(".modal-edit-icons").modal("show");
-
-                                        $("#loader1").remove();
-                                    }, 3000);
-                                    break;
-
-                                default:
-                                    break;
-                            }
-                        }
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName(
-                                "iframe"
-                            )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                });
-            }, 2000);
-        }
-    });
-
-    let socketProgramacion = "";
-
-    //Verificamos si existe el contenedor para insertar el iframe
-    if (navbarPrograContainer) {
-        socketProgramacion = new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-            container: document.getElementById("navbar-prev-programacion"),
-            onMessage: function (message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    let iframeProgramacion = $("#navbar-prev-programacion iframe");
+    let confIframe = {
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+        container: document.getElementById("navbar-prev-programacion"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-                    switch (json.type) {
-                        case "program":
-                            getChapterInfo(json.chapterId);
-                            break;
-                        case "slider-pagination":
-                            $("body").append(loader);
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
 
-                            setTimeout(function () {
-                                $(".modal-programming-carousel").modal("show");
-                                $("#loader1").remove();
-                                addImagesModalBanner();
-                            }, 3000);
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
 
-                            break;
-                        case "synopsis":
-                            document
-                                .querySelector("body")
-                                .insertAdjacentHTML("beforeend", loader);
-                            window.location.href =
-                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                            break;
-                        case "menu-logos":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                addImagesModalIcons();
+                            addImagesModalBanner();
+                        }, 3000);
 
-                                $(".modal-edit-icons").modal("show");
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
 
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
+                            $(".modal-edit-icons").modal("show");
 
-                        default:
-                            break;
-                    }
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        });
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    $(".edit-landing-modal-button").click(function () {
+        if (socketProgramacion) {
+            //socketProgramacion.destroy();
+            iframeProgramacion.remove();
+            setTimeout(() => {
+                new easyXDM.Socket(confIframe);
+            }, 2000);
+        }
+    });
 
-        let socketProgramacionPrev = "";
-        let socketProgramacionEdi = "";
+    //Verificamos si existe el contenedor para insertar el iframe
+    if (navbarPrograContainer) {
+        new easyXDM.Socket(confIframe);
+
         $("#prev").click(function () {
-            socketProgramacion.destroy();
-            socketProgramacionPrev = new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+            $("#navbar-prev-programacion iframe").remove();
+            new easyXDM.Socket({
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
                 container: document.getElementById("navbar-prev-programacion"),
                 onMessage: function (message, origin) {
                     this.container.getElementsByTagName(
@@ -698,71 +633,8 @@ function eventsGrilla() {
         });
 
         $("#editar").click(function () {
-            socketProgramacionPrev.destroy();
-            socketProgramacionEdi = new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-                container: document.getElementById("navbar-prev-programacion"),
-                onMessage: function (message, origin) {
-                    let json = JSON.parse(message);
-                    if (typeof json == "object") {
-                        let loader = `
-                            <div class="loader-view-container">
-                                <img src="./images/loader.gif" class="loader" alt="">
-                            </div>
-                                `;
-                        switch (json.type) {
-                            case "program":
-                                console.log(json.chapterId);
-                                getChapterInfo(json.chapterId);
-                                break;
-                            case "slider-pagination":
-                                $(".modal-programming-carousel").modal("show");
-
-                                $(".programming-slider").slick({
-                                    slidesToShow: 1,
-                                    dots: true,
-                                    appendDots: $(".programming-slider-dots"),
-                                    initialSlide: 0,
-                                    infinite: false,
-                                    arrows: true,
-                                    prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                                    nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                                    customPaging: function (slider, i) {
-                                        var thumb = $(slider.$slides[i]).data();
-                                        return (
-                                            "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" +
-                                            (i + 1) +
-                                            "</p>"
-                                        );
-                                    }
-                                });
-
-                                break;
-                            case "synopsis":
-                                document
-                                    .querySelector("body")
-                                    .insertAdjacentHTML("beforeend", loader);
-                                window.location.href =
-                                    "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                                break;
-                            case "menu-logos":
-                                $(".modal-edit-icons").modal("show");
-
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                    this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.height = message + "px";
-                    this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                }
-            });
+            iframeProgramacion.remove();
+            new easyXDM.Socket(confIframe);
         });
     }
 
@@ -1463,11 +1335,10 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
 
-      $(".listcinema")
-        .selectpicker({
-            multipleSeparator: " ",
-            filter: true
-        })
+    $(".listcinema").selectpicker({
+        multipleSeparator: " ",
+        filter: true
+    });
     //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
     $(".edit-row-pencil").click(selectRow);
     //Al dar click en una columna, aplicamos estilos
