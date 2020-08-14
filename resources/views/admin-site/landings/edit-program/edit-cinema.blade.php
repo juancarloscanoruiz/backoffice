@@ -253,11 +253,11 @@
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
             </div>
             </div>
-                    <div class="d-flex  mt-2 justify-content-around">
+                    <div class="d-flex  mt-2 justify-content-around mb-5">
                     <div class="col-4 m-2">
                     <section class="mb-3">
                             <div class="row">
-                    <div class="w-100 edit-program-data-container edit-data-container-large">
+                    <div class="w-100 edit-program-data-container ">
                                     <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
@@ -295,7 +295,8 @@
                                         </div>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                            <div class="d-flex justify-content-around">
+                                            <div class="mb-3 text-center edit-rectangle-small-container py-3 mr-3">
                                                 <span class="a-text-bold-warm">Inicio: <input type="text"
                                                         class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                                         placeholder="00-00-0000" key="in_landing_begin" /></span>
@@ -305,9 +306,11 @@
                                                         class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end" key="in_landing_expiration"
                                                         placeholder="00-00-0000"></span>
                                             </div>
+                                            </div>
                                         </div>
                                         <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                        <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                        <div class="d-flex justify-content-around">
+                                        <div class="mb-3 text-center edit-rectangle-small-container py-3 mr-3">
                                             <span class="a-text-bold-warm">Inicio: <input type="text"
                                                     class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin" key="in_landing_begin"
                                                     placeholder="00:00:00"></span>
@@ -317,13 +320,14 @@
                                                     class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end" key="in_landing_expiration"
                                                     placeholder="00:00:00"></span>
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                                 </section>
                                 <!--Home-->
                                 <section class="mb-3">
                             <div class="row">
-                                <div class="w-100 edit-program-data-container edit-data-container-large">
+                                <div class="w-100 edit-program-data-container ">
                                     <div class="edit-data-container h-100">
                                         <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Establecer
@@ -344,7 +348,8 @@
                                         </div>
                                         <div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                            <div class="d-flex justify-content-around">
+                                            <div class="mb-3 text-center edit-rectangle-small-container py-3 mr-3">
                                                 <span class="a-text-bold-warm">Inicio: <input key="in_home_begin" type="text"
                                                         class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                                                         placeholder="00-00-0000" /></span>
@@ -355,9 +360,11 @@
                                                         class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
                                                         placeholder="00-00-0000"></span>
                                             </div>
+                                            </div>
                                         </div>
                                         <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                        <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                        <div class="d-flex justify-content-around">
+                                        <div class="mb-3 text-center edit-rectangle-small-container py-3 mr-3">
                                             <span class="a-text-bold-warm">Inicio: <input key="in_home_begin" type="text"
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                     placeholder="00:00:00"></span>
@@ -367,6 +374,7 @@
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                     placeholder="00:00:00"></span>
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                               </section>
@@ -375,7 +383,7 @@
                     <div class="col-4 m-2">
                     <section class="mb-3">
                             <div class="row">
-                    <div class="w-100 edit-program-data-container edit-data-container-large">
+                    <div class="w-100 edit-program-data-container ">
                                     <div class="edit-data-container h-100">
                                         <p
                                             class="edit-date-time-title1 text-plus text-plus text-uppercase a-text-bold-coolgray">
@@ -383,7 +391,7 @@
                                         </p>
                                         <div>
                                             <p class="mb-3 pb-1 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
-                                            <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 81px">
+                                            <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center mb-2" >
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                     <input key="" type=" text"
@@ -392,7 +400,7 @@
                                             </div>
                                         </div>
                                         <p class="mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                        <div class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                        <div class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center mb-3 py-2">
                                             <span class="a-text-bold-warm"><img src="{{ asset('images/reloj.svg') }}"
                                                     alt="" class="mr-3"><input type="text"
                                                     class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -425,7 +433,7 @@
                                     </div>
                                 </div>
                                 </section>
-                                <section class="mb-5" style="margin-top:28%">
+                                <section class="mb-5 mt-5">
                             <div class="row">
                                 <div class="w-100 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
@@ -448,7 +456,7 @@
                                     </div>
                                 </div>
                                 </section>
-                                <section style="margin-top:28%">
+                                <section class="pt-4">
                             <div class="row">
                                 <div class="w-100 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
@@ -474,7 +482,7 @@
                     </div>
                     <div class="col-4 mb-4 mt-2">
                    
-            <div class="cinema-image-slider mx-auto">
+            <div class="cinema-image-slider mx-auto mb-0">
               
                     <div class="bor thumbnail-image-program position-relative h-100" >
                         <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
@@ -506,9 +514,9 @@
                             <img src="{{asset('/images/synopsis/image-vertical.svg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
-              
+                  
             </div>
-           
+            <p class="a-text-bold-brown-two text-plus mt-2">NombreDeLaImagen</p>
                     </div>
 
 

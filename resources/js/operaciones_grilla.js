@@ -1590,7 +1590,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
   </script>`);
             $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
                 container: "navbar-prev-programacion",
                 onMessage: function(message, origin) {
                     console.log(message);
@@ -1674,7 +1674,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             </script>`);
             $("#navbar-prev-programacion").html(` <script>
             new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
             container: "navbar-prev-programacion",
                 onMessage: function(message, origin) {
                     console.log(message);
