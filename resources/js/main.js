@@ -222,11 +222,8 @@ $(document).ready(function() {
         appendDots: $(".programming-slider-dots1"),
         initialSlide: 0,
         infinite: false,
-        arrows: true,
-        prevArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-left-synopsis" />',
-        nextArrow:
-            '<img src="../images/synopsis/arrow.svg" class="cursor-pointer arrow-right-synopsis" />',
+       
+      
         customPaging: function(slider, i) {
             var thumb = $(slider.$slides[i]).data();
             return (

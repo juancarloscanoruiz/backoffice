@@ -10,7 +10,7 @@
 
 
   <div class="modal pr-0  modal-edit-program" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true" style="overflow: auto;">
+        aria-hidden="true" style="overflow: auto;     display: contents;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body pt-0">
@@ -18,7 +18,7 @@
                     <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                     <div class="col-11 mx-auto">
-                        <div class="float-right">
+                        <div class="float-right" >
                             <div class="d-flex pl-5 ">
                                 <div class=" position-relative programming-slider-dots1 mt-4 mb-4">    </div>
                                 <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image mb-3  cursor-pointer">
@@ -26,7 +26,7 @@
                         </div>
                       <div class="clearfix"></div>
                         <!--Estado y alertas del programa-->
-                        <section class="mt-4 d-flex justify-content-between mb-5">
+                        <section class=" d-flex justify-content-between mb-4">
                             <div class="col-5">
                                 <h3 class="h3 a-text-semibold-warmgrey text-uppercase mb-4">Estado</h3>
                                 <div class="state-container py-2 d-flex align-items-center justify-content-center">
@@ -34,7 +34,7 @@
                                     <p class="mb-0 ml-3 a-text-bold-teal">En edición</p>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col-5" style="margin-right: -12px;">
                                 <h3 class="h3 a-text-semibold-warmgrey text-uppercase mb-4">Alerta</h3>
                                 <div class="py-2 alert-container d-flex align-items-center justify-content-center">
                                     <img src="
@@ -248,13 +248,13 @@
                             </ul>
                         </div>
                         <div class="edit-info-container">-->
-                        <div class="mt-4">
+                        <div class="mt-2 mb-2 ">
                     <div class="current-slide-container a-text-bold-teal mb-2" style="display:contents;">
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
             </div>
             </div>
-                    <div class="d-flex  col-12 pr-4 pl-4 justify-content-around">
-                    <div class="col-4 pl-2 m-4">
+                    <div class="d-flex  mt-2 justify-content-around">
+                    <div class="col-4 m-2">
                     <section class="mb-3">
                             <div class="row">
                     <div class="w-100 edit-program-data-container edit-data-container-large">
@@ -271,7 +271,7 @@
                                                 class="mb-0 si-estilo cursor-pointer switch-label">
                                                 Sí</label>
                                             <input type="radio" name="sino-landing" id="no-landing" value="0"
-                                                class="edit-switch-landing switch-table-edit edit-landing-no" key="in_landing"/>
+                                                class="edit-switch-landing switch-table-edit edit-landing-no" key="in_landing"checked/>
                                             <label for="no-landing" id="noestado-landing"
                                                 class="mb-0 no-estilo cursor-pointer switch-label">
                                                 No</label>
@@ -372,17 +372,17 @@
                               </section>
 
                     </div>
-                    <div class="col-4 pl-2 m-4">
+                    <div class="col-4 m-2">
                     <section class="mb-3">
                             <div class="row">
                     <div class="w-100 edit-program-data-container edit-data-container-large">
                                     <div class="edit-data-container h-100">
                                         <p
-                                            class="edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray">
+                                            class="edit-date-time-title1 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                             Schedule Item Date time
                                         </p>
                                         <div>
-                                            <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
+                                            <p class="mb-3 pb-1 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
                                             <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 81px">
                                                 <span class="a-text-bold-warm">
                                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
@@ -402,7 +402,7 @@
                                 </div> 
                             </div>
                             </section>
-                            <section class="mb-5">
+                            <section class="mb-5" style="margin-top:-21px" >
                             <div class="row">
                             <div class="w-100 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
@@ -425,7 +425,7 @@
                                     </div>
                                 </div>
                                 </section>
-                                <section class="mb-5 pt-5">
+                                <section class="mb-5" style="margin-top:28%">
                             <div class="row">
                                 <div class="w-100 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
@@ -448,7 +448,7 @@
                                     </div>
                                 </div>
                                 </section>
-                                <section class="mb-5 pt-5">
+                                <section style="margin-top:28%">
                             <div class="row">
                                 <div class="w-100 edit-program-data-container">
                                     <div class="edit-data-container d-flex justify-content-between">
@@ -472,16 +472,19 @@
                                 </div>
                                 </section>
                     </div>
-                    <div class="col-4 mb-4 mt-4">
+                    <div class="col-4 mb-4 mt-2">
                    
             <div class="cinema-image-slider mx-auto">
               
                     <div class="bor thumbnail-image-program position-relative h-100" >
                         <input type="file" name="image_background_1" id="image_background_1" class="input-image-program d-none">
+                        <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
+                                    <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                                    alt="heart-icon" />
                         <label for="image_background_1" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-picture">
                         <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                        <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        <img src="{{asset('/images/synopsis/image-vertical.svg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
             
@@ -491,7 +494,7 @@
                         <label for="image_background_2" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-picture">
                             <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                            <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                            <img src="{{asset('/images/synopsis/image-vertical.svg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
                
@@ -500,7 +503,7 @@
                         <label for="image_background_3" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-picture">
                             <img src="{{asset('/images/synopsis/camara.svg')}}" alt="add-photo"  class=" cursor-pointer add-photo"/>
                                 <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                            <img src="{{asset('/images/synopsis/image-synopsis-carrusel.jpg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                            <img src="{{asset('/images/synopsis/image-vertical.svg')}}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
               
