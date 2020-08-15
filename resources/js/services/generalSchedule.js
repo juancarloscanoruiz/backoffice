@@ -716,8 +716,7 @@ function addImagesModalBanner() {
             result = JSON.parse(result);
             let slider = ""
             let counter = 1;
-            $('.input-image-program').val("");
-            $('.prev-image-program').attr("src", "");
+
             while (true) {
                 try {
                     if (result["image_slider_" + counter]) {
@@ -789,8 +788,6 @@ function addImagesModalBanner() {
                     reader.readAsDataURL(this.files[0]);
                 }
             });
-
-            //   $(".programming-slider").append(slider);
         }
     });
 }

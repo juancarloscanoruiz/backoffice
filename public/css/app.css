@@ -1342,6 +1342,10 @@ body {
   margin-bottom: 116px;
 }
 
+.edit-date-time-title1 {
+  margin-bottom: 114px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -4985,6 +4989,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .edit-date-time-title {
   margin-bottom: 116px;
+}
+
+.edit-date-time-title1 {
+  margin-bottom: 114px;
 }
 
 .login-BO {

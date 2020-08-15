@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\xampp\\\\htdocs\\\\backoffice1\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\xampp\\\\htdocs\\\\backoffice1\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73435,7 +73435,7 @@ function eventsGrilla() {
   }); //para agregar un slider más en cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').length + 1; //Cada vez que se haga click, el contador incrementa
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-image-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
@@ -73457,115 +73457,69 @@ function eventsGrilla() {
   window.onload = preloader;*/
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+  var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
+  var confIframe = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+    container: document.getElementById("navbar-prev-programacion"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
     if (socketProgramacion) {
       //socketProgramacion.destroy();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion iframe').remove();
+      iframeProgramacion.remove();
       setTimeout(function () {
-        new easyXDM.Socket({
-          remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-          container: document.getElementById("navbar-prev-programacion"),
-          onMessage: function onMessage(message, origin) {
-            var json = JSON.parse(message);
-
-            if (_typeof(json) == "object") {
-              var loader = "\n                                    <div class=\"loader-view-container\" id=\"loader1\">\n                                        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                                    </div>\n                                        ";
-
-              switch (json.type) {
-                case "program":
-                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-                  break;
-
-                case "slider-pagination":
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                  setTimeout(function () {
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-                  }, 3000);
-                  break;
-
-                case "synopsis":
-                  document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                  window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                  break;
-
-                case "menu-logos":
-                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-                  setTimeout(function () {
-                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                  }, 3000);
-                  break;
-
-                default:
-                  break;
-              }
-            }
-
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-          }
-        });
+        new easyXDM.Socket(confIframe);
       }, 2000);
     }
-  });
-  var socketProgramacion = ""; //Verificamos si existe el contenedor para insertar el iframe
+  }); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
-    socketProgramacion = new easyXDM.Socket({
-      remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-      container: document.getElementById("navbar-prev-programacion"),
-      onMessage: function onMessage(message, origin) {
-        var json = JSON.parse(message);
-
-        if (_typeof(json) == "object") {
-          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-          switch (json.type) {
-            case "program":
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-              break;
-
-            case "slider-pagination":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-              setTimeout(function () {
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-              }, 3000);
-              break;
-
-            case "synopsis":
-              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-              break;
-
-            case "menu-logos":
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-              setTimeout(function () {
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              }, 3000);
-              break;
-
-            default:
-              break;
-          }
-        }
-
-        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      }
-    });
-    var socketProgramacionPrev = "";
-    var socketProgramacionEdi = "";
+    new easyXDM.Socket(confIframe);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-      socketProgramacion.destroy();
-      socketProgramacionPrev = new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      new easyXDM.Socket({
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -73575,58 +73529,8 @@ function eventsGrilla() {
       });
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
-      socketProgramacionPrev.destroy();
-      socketProgramacionEdi = new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function onMessage(message, origin) {
-          var json = JSON.parse(message);
-
-          if (_typeof(json) == "object") {
-            var loader = "\n                            <div class=\"loader-view-container\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
-
-            switch (json.type) {
-              case "program":
-                console.log(json.chapterId);
-                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-                break;
-
-              case "slider-pagination":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                  slidesToShow: 1,
-                  dots: true,
-                  appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                  initialSlide: 0,
-                  infinite: false,
-                  arrows: true,
-                  prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                  nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                  customPaging: function customPaging(slider, i) {
-                    var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                    return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4'>" + (i + 1) + "</p>";
-                  }
-                });
-                break;
-
-              case "synopsis":
-                document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                break;
-
-              case "menu-logos":
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-                break;
-
-              default:
-                break;
-            }
-          }
-
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-      });
+      iframeProgramacion.remove();
+      new easyXDM.Socket(confIframe);
     });
   }
 
@@ -74237,7 +74141,7 @@ function eventsGrilla() {
       $("#edit").click(function () {
           if ($('input[id="edit"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
-               <script>
+                <script>
               new easyXDM.Socket({
                   remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
                   container: "navbar-prev-canal-claro",
@@ -74246,7 +74150,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                   }
+                    }
               });
               </script>`);
               $("#navbar-prev-home").html(` <script>
@@ -74275,7 +74179,7 @@ function eventsGrilla() {
               </script>`);
           }
       });
-       //PREV CLARO CANAL
+        //PREV CLARO CANAL
       $("#prev").click(function () {
           if ($('input[id="prev"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
@@ -74292,7 +74196,7 @@ function eventsGrilla() {
                   });
               </script>
               `);
-               $("#navbar-prev-programacion").html(` <script>
+                $("#navbar-prev-programacion").html(` <script>
               new easyXDM.Socket({
               remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
               container: "navbar-prev-programacion",
@@ -74323,7 +74227,7 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edi-cinema").click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php\",\n        container: \"navbar-prev-claro-cinema\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n                container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php\",\n                container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n                container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //PREV CINEMA
@@ -74341,7 +74245,7 @@ function eventsGrilla() {
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n            container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
     }
   }); //PREV CONCERT
@@ -74367,7 +74271,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                   }
+                    }
               });
               </script>`);
               $("#navbar-prev-programacion").html(` <script>
@@ -74915,13 +74819,11 @@ function addImagesModalBanner() {
       result = JSON.parse(result);
       var slider = "";
       var counter = 1;
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-image-program').val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.prev-image-program').attr("src", "");
 
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                        <label for=\"image_programming_").concat(counter, "\"\n                            class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                            <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                                class=\" cursor-pointer add-photo\" />\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                        </label>\n                    </div>");
             counter++;
           } else {
             break;
@@ -74971,7 +74873,7 @@ function addImagesModalBanner() {
 
           reader.readAsDataURL(this.files[0]);
         }
-      }); //   $(".programming-slider").append(slider);
+      });
     }
   });
 }
@@ -76094,8 +75996,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-         <div class="w3-card-4 bg-white d-flex">
-             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+          <div class="w3-card-4 bg-white d-flex">
+              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -76108,15 +76010,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                     </input>
-                     <p class="mt-4 ml-2">Rol de usuario</p>
+                      </input>
+                      <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-         </div>
+          </div>
         </div>
         </div>
         `);
@@ -76151,7 +76053,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-         showDescriptions();*/
+          showDescriptions();*/
       }
     }
   });
@@ -76750,7 +76652,7 @@ function sendEmailResetPassword(input) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\backoffice1\backoffice\resources\js\operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),
