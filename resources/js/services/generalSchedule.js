@@ -717,7 +717,6 @@ function addImagesModalBanner() {
             let slider = ""
             let counter = 1;
 
-            
             while (true) {
                 try {
                     if (result["image_slider_" + counter]) {
