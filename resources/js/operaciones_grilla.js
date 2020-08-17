@@ -1,7 +1,12 @@
 //JQUERY
-import $, { isEmptyObject } from "jquery";
+import $, {
+    isEmptyObject
+} from "jquery";
 //Métodos para aplicar ciertos estilos a las filas y columnas
-import { selectRow, selectColumn } from "./UI/UI.js";
+import {
+    selectRow,
+    selectColumn
+} from "./UI/UI.js";
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -31,25 +36,33 @@ import {
 } from "./config/config.js";
 
 //Métodos para mostrar las vistas de "Landing" o "Grilla"
-import { showlanding } from "./UI/UI.js";
+import {
+    showlanding
+} from "./UI/UI.js";
+
+//Config
+
+import {
+    confProgramacionClaroCinema,
+} from "./config/easyXDM.js";
 
 function eventsGrilla() {
     //loader, antes de subir un archivo
-    $(".upload-files").on("click", function() {
+    $(".upload-files").on("click", function () {
         const loader = `
         <div class="loader-view-container" id="loader2">
           <img src="./images/loader.gif" class="loader" alt="">
         </div>
         `;
         $("body").append(loader);
-        setTimeout(function() {
+        setTimeout(function () {
             $("#loader2").remove();
         }, 3000);
     });
 
     //Evento para cuando cerramos el selectpicker
 
-    $(".calendar-slider").on("click", ".programming-item", function() {
+    $(".calendar-slider").on("click", ".programming-item", function () {
         $(".programming-item").removeClass("programming-item-active");
         $(this).addClass("programming-item-active");
         let date = $(this).attr("date");
@@ -59,18 +72,18 @@ function eventsGrilla() {
         getProgramming(date, section, time);
     });
 
-    $(".thermometer-schedule-list").on("click", ".unavailable", function() {
+    $(".thermometer-schedule-list").on("click", ".unavailable", function () {
         let chapter_id = $(this).attr("chapter_id");
         getChapterInfo(chapter_id);
     });
 
-    $(".edit-landing-modal-button").click(function() {
+    $(".edit-landing-modal-button").click(function () {
         let iframe = $("#navbar-prev-programacion iframe").attr("src");
 
         $("#navbar-prev-programacion iframe").attr("src", iframe);
     });
 
-    $("#edit-image-horizontal").on("change", function() {
+    $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
         let editProgramDataContainer = $(".edit-program-data-container");
         let name = editProgramDataContainer.attr("program");
@@ -86,7 +99,7 @@ function eventsGrilla() {
         updateImageProgramOfLanding(data);
     });
 
-    $(".edit-program-attribute-text").keydown(function(e) {
+    $(".edit-program-attribute-text").keydown(function (e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this).attr("key");
             let chapter_id = $(".edit-program-data-container").attr(
@@ -213,7 +226,7 @@ function eventsGrilla() {
         }
     });
 
-    $(".edit-program-attribute-text").blur(function(e) {
+    $(".edit-program-attribute-text").blur(function (e) {
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
@@ -324,14 +337,14 @@ function eventsGrilla() {
         //$("#navbar-prev-programacion iframe").attr("src", iframe);
     });
 
-    $(".edit-program-switch").click(function() {
+    $(".edit-program-switch").click(function () {
         let value = $(this).val();
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         editAttributeProgram(chapter_id, key, value);
     });
 
-    $(".edit-switch-home").click(function() {
+    $(".edit-switch-home").click(function () {
         if ($(this).val() == 0) {
             $(".edit-home-date-end").val("");
             $(".edit-home-date-begin").val("");
@@ -340,7 +353,7 @@ function eventsGrilla() {
         }
     });
 
-    $(".edit-switch-landing").click(function() {
+    $(".edit-switch-landing").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");
@@ -360,47 +373,47 @@ function eventsGrilla() {
         }
     });
     //loader, antes de subir un archivo
-    $(".load-modales").click(function() {
+    $(".load-modales").click(function () {
         $(".modal-edit-icons .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
         console.log("si lo agrega");
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
             console.log("si lo borra");
         }, 3000);
     });
     //loader, antes de subir un archivo
-    $(".load-modal-programming").click(function() {
+    $(".load-modal-programming").click(function () {
         $(".modal-edit-program .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
         console.log("si lo agrega");
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
             console.log("si lo borra");
         }, 3000);
     });
     //loader, antes de subir un archivo
-    $(".load-programming-carousel").click(function() {
+    $(".load-programming-carousel").click(function () {
         $(".modal-programming-carousel .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
         console.log("si lo agrega");
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
             console.log("si lo borra");
         }, 3000);
     });
 
     //activacion de paginacion
-    $(".slider-logo").click(function() {
+    $(".slider-logo").click(function () {
         $(".slider-pagination").removeClass("slider-pagination-active") &
             $(".slider-pagination").removeClass("a-text-bold-white");
         $(" .slider-pagination").addClass("a-text-bold-teal");
@@ -409,13 +422,13 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
-    $("#edit-logos-button").click(function() {
+    $("#edit-logos-button").click(function () {
         let data = new FormData();
         //Canal claro
         let logoUrlCanalClaro =
@@ -440,7 +453,7 @@ function eventsGrilla() {
         updateLogosOfLanding(data);
     });
 
-    $("#image-programming-button").click(function() {
+    $("#image-programming-button").click(function () {
         /*
             Arreglo para saber la posición de las imágenes que cargo el usuario
             es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -449,7 +462,7 @@ function eventsGrilla() {
         //Arreglo para guardar imágenes de los usuarios
         let imagesProgramming = [];
         //Recorremos cada input para obtener las imágenes
-        $(".image_programming").each(function() {
+        $(".image_programming").each(function () {
             if (this.files[0]) {
                 imagesPositions.push($(this).attr("data-index"));
             }
@@ -475,7 +488,7 @@ function eventsGrilla() {
     });
 
     //para agregar un slider más en cinema
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
@@ -502,7 +515,7 @@ function eventsGrilla() {
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
     //Añadimos un slide al slider de imágenes de programación
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
@@ -532,16 +545,16 @@ function eventsGrilla() {
             "block";
     }
     window.onload = preloader;*/
-    let navbarPrograContainer = document.getElementById(
-        "navbar-prev-programacion"
-    );
 
-    let iframeProgramacion = $("#navbar-prev-programacion iframe");
-    let confIframe = {
-        remote:
-            "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function(message, origin) {
+
+    //Landing de programación de claro cinema
+    let navbarPrograContainerCinema = document.getElementById(
+        "navbar-prev-programacion-cinema"
+    );
+    let confProgramacionClaroCinema = {
+        remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-cinema.php",
+        container: document.getElementById("navbar-prev-programacion-cinema"),
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -556,7 +569,7 @@ function eventsGrilla() {
                     case "slider-pagination":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
 
@@ -573,7 +586,7 @@ function eventsGrilla() {
                         break;
                     case "menu-logos":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             addImagesModalIcons();
 
                             $(".modal-edit-icons").modal("show");
@@ -592,9 +605,140 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    $(".edit-landing-modal-button").click(function() {
+    let iframeProgramacionCinema = $("#navbar-prev-programacion-cinema iframe");
+    if (navbarPrograContainerCinema) {
+        iframeProgramacionCinema.remove();
+        new easyXDM.Socket(confProgramacionClaroCinema);
+    }
+    //Landing de programacion de concert channel
+    let navbarPrograContainerConcert = document.getElementById(
+        "navbar-prev-programacion-concert"
+    );
+    let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
+    let confProgramacionConcertChannel = {
+        remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-concert.php",
+        container: document.getElementById(
+            "navbar-prev-programacion-concert"
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
+
+                            addImagesModalBanner();
+                        }, 3000);
+
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
+
+                            $(".modal-edit-icons").modal("show");
+
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    if (navbarPrograContainerConcert) {
+        iframeProgramacionConcert.remove();
+        new easyXDM.Socket(confProgramacionConcertChannel);
+    }
+
+
+    //Landing de programación de claro canal
+    //Canal claro
+    let navbarPrograContainer = document.getElementById(
+        "navbar-prev-programacion"
+    );
+    let iframeProgramacion = $("#navbar-prev-programacion iframe");
+    let confIframe = {
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+        container: document.getElementById("navbar-prev-programacion"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
+
+                            addImagesModalBanner();
+                        }, 3000);
+
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
+
+                            $(".modal-edit-icons").modal("show");
+
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    $(".edit-landing-modal-button").click(function () {
         if (socketProgramacion) {
-            //socketProgramacion.destroy();
             iframeProgramacion.remove();
             setTimeout(() => {
                 new easyXDM.Socket(confIframe);
@@ -606,37 +750,36 @@ function eventsGrilla() {
     if (navbarPrograContainer) {
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-        $("#prev").click(function() {
+        $("#prev").click(function () {
             $("#navbar-prev-programacion iframe").remove();
             new easyXDM.Socket({
-                remote:
-                    "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
+                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
                 container: document.getElementById("navbar-prev-programacion"),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     this.container.getElementsByTagName(
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
         });
 
-        $("#editar").click(function() {
+        $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $("#navbar-prev-programacion iframe").remove();
             new easyXDM.Socket(confIframe);
         });
     }
 
-    $(".input-image-program").change(function() {
+    $(".input-image-program").change(function () {
         console.log("Imges");
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -661,7 +804,7 @@ function eventsGrilla() {
     let genres = "";
     let selectpicker = $(".selectpicker");
     //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function() {
+    selectpicker.on("change", function () {
         //Obtenemos los valores del selectpicker
         let selected = $(this).val();
         //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -677,7 +820,7 @@ function eventsGrilla() {
         }
     });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function() {
+    selectpicker.on("hide.bs.select", function () {
         //Seleccionamos la columna en la que estamos
         let currentColumn = $(this).closest(".contenedor-columna");
         //Obtenemos el cahpter_id de la columna
@@ -691,7 +834,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
 
-    $("button[id=btn-landing]").click(function() {
+    $("button[id=btn-landing]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -711,7 +854,7 @@ function eventsGrilla() {
         }
     });
     //Al momento de dar click en el boton de grilla
-    $("button[id=btn-grilla]").click(function() {
+    $("button[id=btn-grilla]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -732,12 +875,12 @@ function eventsGrilla() {
     });
 
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-    $(".lan-claro").click(function() {
+    $(".lan-claro").click(function () {
         showlanding();
     });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function() {
+    $(".switch-landing").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -771,7 +914,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function() {
+    $(".switch-home").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -798,7 +941,7 @@ function eventsGrilla() {
         }
     });
     //Mostrar la sinópsis completa en modal
-    $(".see-more").click(function() {
+    $(".see-more").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
@@ -824,7 +967,7 @@ function eventsGrilla() {
     });
 
     //botón de modal de edición de de sinopsis
-    $(".edit-synopsis-button").click(function() {
+    $(".edit-synopsis-button").click(function () {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
         //Obtenemos la sinopsis nueva del textarea del modal
@@ -867,7 +1010,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -877,10 +1020,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -920,7 +1063,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -930,10 +1073,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("programming-carrusel-calendar")
@@ -956,7 +1099,7 @@ function eventsGrilla() {
             singleMode: false
         });
     }
-    $("#close_modals").click(function() {
+    $("#close_modals").click(function () {
         console.log("cerrar_modals");
         $(".modal-programming-carousel").modal("hide");
         $(".modal-delete-user").modal("hide");
@@ -968,7 +1111,7 @@ function eventsGrilla() {
         y hacemos la petición
     */
     let editableAttribute = $(".editable-attribute");
-    editableAttribute.keydown(function(e) {
+    editableAttribute.keydown(function (e) {
         //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -989,14 +1132,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -1132,7 +1275,7 @@ function eventsGrilla() {
     });
 
     //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-    editableAttribute.blur(function() {
+    editableAttribute.blur(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let key = currentColumn.attr("key");
         let keyValue = $(this).val();
@@ -1149,7 +1292,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -1262,7 +1405,7 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function() {
+    $(".switch-table").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
@@ -1274,7 +1417,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
     //Sacar los valores de los switches en el modal de edicion
-    $(".switch-table-edit").click(function() {
+    $(".switch-table-edit").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");
@@ -1318,12 +1461,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function(index, element) {
+    $(".lb-synopsis").each(function (index, element) {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -1342,7 +1485,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             multipleSeparator: " ",
             filter: true
         })
-        .on("changed.bs.select", function() {
+        .on("changed.bs.select", function () {
             $(this).selectpicker("refresh");
         });
 
@@ -1437,7 +1580,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }); */
 
     //EDITAR CINEMA
-    $(".edi-cinema").click(function() {
+    $(".edi-cinema").click(function () {
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
       new easyXDM.Socket({
@@ -1479,7 +1622,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CINEMA
-    $(".prev-cinema").click(function() {
+    $(".prev-cinema").click(function () {
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-claro-cinema").html(` <script>
             new easyXDM.Socket({
@@ -1521,7 +1664,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //EDITAR CONCERT
-    $(".edi-concert").click(function() {
+    $(".edi-concert").click(function () {
         console.log("editar");
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
@@ -1563,7 +1706,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         }
     });
     //PREV CONCERT
-    $(".prev-concert").click(function() {
+    $(".prev-concert").click(function () {
         console.log("prev concert channel");
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
@@ -1663,7 +1806,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 </script>`);
             }
         }); */
-    $("#inp_programing").on("change", function() {
+    $("#inp_programing").on("change", function () {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -1714,7 +1857,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             data: {
                 view: "grilla-" + canal + "-button"
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                 <img src="./images/loader.gif" class="loader" alt="">
@@ -1722,7 +1865,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 console.log("grilla de canal claro");
                 console.log(result);
                 $("#general-programming").html("");
@@ -1747,14 +1890,14 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            beforeSend: function() {
+            beforeSend: function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
-            success: function(result) {
+            success: function (result) {
                 var existe_programacion = JSON.parse(result);
                 if (existe_programacion.data == 1) {
                     $(".loader-view-container").remove();
@@ -1777,12 +1920,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     }
                 }
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             $(".loader-view-container").remove();
             console.log(e);
         });
     }
-    $("#acccion-programacion-remplaza").click(function() {
+    $("#acccion-programacion-remplaza").click(function () {
         console.log("Se remplaza la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -1791,7 +1934,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             data: data,
             url: "general-program/changePrograming",
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -1799,20 +1942,20 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 );
             },
 
-            success: function(result) {
+            success: function (result) {
                 updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             console.log(e);
             $(".loader-container").remove();
             $(".modal-information").modal("hide");
         });
     });
 
-    $("#acccion-programacion-agrega").click(function() {
+    $("#acccion-programacion-agrega").click(function () {
         console.log("Se agrega la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -1820,26 +1963,26 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             type: "POST",
             data: data,
             url: "general-program/addPrograming",
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".modal-information .modal-con tent").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
-            success: function(result) {
+            success: function (result) {
                 updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             console.log(e);
             $(".loader-container").remove();
             $(".modal-information").modal("hide");
         });
     });
-    $("#acccion-programacion-cancela").click(function() {
+    $("#acccion-programacion-cancela").click(function () {
         console.log("Se cancela la programacion");
         $("#programas_procesados_por_el_excel").val(" ");
         let programas = $("#programas_procesados_por_el_excel").val();
@@ -1848,4 +1991,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 }
 
-export { eventsGrilla };
+export {
+    eventsGrilla
+};

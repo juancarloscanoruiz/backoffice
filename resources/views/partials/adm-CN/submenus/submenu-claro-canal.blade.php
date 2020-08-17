@@ -39,10 +39,7 @@
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
-
                     </div>
-
-
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
                         rel="navbar-prev-sinopsis" >
                         <div class="navbar-progra-item-container ml-3 mr-3">

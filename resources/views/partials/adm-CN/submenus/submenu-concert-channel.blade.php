@@ -16,49 +16,6 @@
 
 </script>
 <script>
-  /*   new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-        container: "navbar-prev-programacion",
-        onMessage: function(message, origin) {
-            let json = JSON.parse(message);
-            if (typeof json == "object") {
-                let json = JSON.parse(message);
-                switch (json.type) {
-                    case "program":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
-                        break;
-                    case "slider-pagination":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/programming-carrusel"
-                        break;
-                    case "synopsis":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program"
-                        break;
-                    case "menu-logos":
-                        document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/menus"
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-        }
-    }); */
-
-</script>
-<script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
         container: "navbar-prev-home",
@@ -85,7 +42,7 @@
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
 
                     <div class="navbar-progra-item navbar-progra-item-border navbar-programacion navbar-progra-active navbar-prev-programacion"
-                        navbar-index="1" rel="navbar-prev-programacion">
+                        navbar-index="1" rel="navbar-prev-programacion-concert">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
@@ -154,9 +111,10 @@
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion">
+                <div class="load-view pointer-none" id="loader-view"></div>
+                  <div class="navbar-progra-content mb-5 navbar-prev-programacion" onload='preloader()' id="navbar-prev-programacion-concert" style="display:none;">
+                    </div>
                 </div>
-            </div>
           <!--sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <div id="prev-sinopsis">
@@ -1119,7 +1077,7 @@
                       </label>
                   </div>
 
-          
+
               End slider-->
               </div>
               <!--Buttons-->
@@ -1159,5 +1117,5 @@
 
   </div>
 
- 
+
  </body>
