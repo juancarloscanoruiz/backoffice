@@ -355,7 +355,7 @@
         </div>
 
     </div>
-    @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-concert'))
+    @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-concert', "modalButtonClass" => "modal-program-concert-channel"))
     <div class="modal modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important" >
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
           <div class="modal-content" >

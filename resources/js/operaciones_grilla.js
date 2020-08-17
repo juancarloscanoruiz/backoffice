@@ -605,6 +605,11 @@ function eventsGrilla() {
         iframeProgramacionCinema.remove();
         new easyXDM.Socket(confProgramacionClaroCinema);
     }
+
+    $(".modal-program-claro-cinema").click(function () {
+        resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionConcertChannel);
+    });
+
     //Landing de programacion de concert channel
     let navbarPrograContainerConcert = document.getElementById(
         "navbar-prev-programacion-concert"
@@ -670,6 +675,10 @@ function eventsGrilla() {
         iframeProgramacionConcert.remove();
         new easyXDM.Socket(confProgramacionConcertChannel);
     }
+
+    $(".modal-program-concert-channel").click(function () {
+        resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+    });
 
 
     //Landing de programación de claro canal

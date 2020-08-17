@@ -89212,8 +89212,11 @@ function eventsGrilla() {
   if (navbarPrograContainerCinema) {
     iframeProgramacionCinema.remove();
     new easyXDM.Socket(confProgramacionClaroCinema);
-  } //Landing de programacion de concert channel
+  }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionConcertChannel);
+  }); //Landing de programacion de concert channel
 
   var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
   var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
@@ -89267,9 +89270,12 @@ function eventsGrilla() {
   if (navbarPrograContainerConcert) {
     iframeProgramacionConcert.remove();
     new easyXDM.Socket(confProgramacionConcertChannel);
-  } //Landing de programación de claro canal
-  //Canal claro
+  }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+  }); //Landing de programación de claro canal
+  //Canal claro
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
   var confIframe = {
