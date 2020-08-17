@@ -9,6 +9,7 @@ header {
     align-items: center;
     box-shadow: 1px 0px 2px 1px $beige;
 }
+
 header {
     grid-area: my-header;
     background-color: $darkred;
@@ -22,5 +23,5 @@ header {
 .thumbnail-header {
     height: 100px;
     background-color: $selecred;
-    z-index:9;
+    z-index: 9;
 }

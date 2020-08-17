@@ -43,8 +43,8 @@ import {
 //Config
 
 import {
-    confProgramacionClaroCinema,
-} from "./config/easyXDM.js";
+    resetIframe
+} from "./vendor/easyXDM.js";
 
 function eventsGrilla() {
     //loader, antes de subir un archivo
@@ -77,11 +77,6 @@ function eventsGrilla() {
         getChapterInfo(chapter_id);
     });
 
-    $(".edit-landing-modal-button").click(function () {
-        let iframe = $("#navbar-prev-programacion iframe").attr("src");
-
-        $("#navbar-prev-programacion iframe").attr("src", iframe);
-    });
 
     $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
@@ -682,7 +677,6 @@ function eventsGrilla() {
     let navbarPrograContainer = document.getElementById(
         "navbar-prev-programacion"
     );
-    let iframeProgramacion = $("#navbar-prev-programacion iframe");
     let confIframe = {
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: document.getElementById("navbar-prev-programacion"),
@@ -738,12 +732,7 @@ function eventsGrilla() {
         }
     };
     $(".edit-landing-modal-button").click(function () {
-        if (socketProgramacion) {
-            iframeProgramacion.remove();
-            setTimeout(() => {
-                new easyXDM.Socket(confIframe);
-            }, 2000);
-        }
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
     });
 
     //Verificamos si existe el contenedor para insertar el iframe

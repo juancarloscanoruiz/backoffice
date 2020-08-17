@@ -3377,9 +3377,29 @@ input[type="radio"]:checked + .no-estilo1 {
   width: 100%;
 }
 
-.thumbnail-header1 .filter-option {
+.thumbnail-header-claro .filter-option {
   border: 2px solid #da291c;
   background: #da291c;
+  color: white;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.thumbnail-header-concert .filter-option {
+  border: 2px solid #0068ff;
+  background: #0068ff;
+  color: white;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.thumbnail-header-cinema .filter-option {
+  border: 2px solid #0097a9;
+  background: #0097a9;
   color: white;
   font-size: 32px;
   display: flex;
