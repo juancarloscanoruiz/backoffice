@@ -37,12 +37,9 @@
             <div class="navbar-progra-item navbar-progra-item-border navbar-programacion   navbar-progra-active navbar-prev-programacion"
                         navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
+                            <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
-
                     </div>
-
-
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
                         rel="navbar-prev-sinopsis" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
@@ -52,11 +49,10 @@
 
 <!--inicio de claro canal-->
 
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro pointer-none"
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro"
                         navbar-index="3" rel="navbar-prev-canal-claro" >
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0  a-text-bold-light">CANAL CLARO</p>
-
+                            <p class="py-2 px-3 mb-0 a-text-bold-two">CANAL CLARO</p>
                         </div>
                     </div>
 <!--fin de claro canal-->
@@ -617,13 +613,12 @@
                         <!--Imagen de programa en slider-->
                         <section class="edit-program-image">
                             <select
-                                class="thumbnail-header1 thumbnail-header w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                                class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                                 title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                             </select>
-
-                            <img src="{{ asset('/images/triangle.svg') }}" alt="" class="position-absolute dropimg">
                             <!--Imagen del programa--->
                             <div class="edit-thumbnail position-relative">
+
                                 <input type="file" name="image-horizontal" id="edit-image-horizontal" class="input-image-program d-none ">
                                 <label for="edit-image-horizontal" class="load-modal-programming load-photo d-inline" id="imagenes">
                                     <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
@@ -1104,7 +1099,7 @@
                       </label>
                   </div>
 
-            
+
               End slider-->
               </div>
               <!--Buttons-->

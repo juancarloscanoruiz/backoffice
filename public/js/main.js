@@ -87234,7 +87234,9 @@ function showDescriptions() {
 
 
 function createNavbarProgramacionGeneral() {
-  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
+  //Escondemos todos los div
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide(); //mostramos el primero
+
   jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content:first").show();
   var navbarPrograItems = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-item");
   var arrowLeft = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".arrow-progra-left");
@@ -87248,7 +87250,6 @@ function createNavbarProgramacionGeneral() {
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
-      console.log("canal claro");
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
@@ -88345,7 +88346,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     });
   }); //CHANGE TO grilla cinema
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-cinema").click(function (event) {
+  divGrilla.on("click", ".gril-cinema", function (event) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "view",
@@ -88365,7 +88366,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     });
   }); //CHANGE TO grilla concert
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".gril-concert").click(function (event) {
+  divGrilla.on("click", ".gril-concert", function (event) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
       type: "POST",
       url: "view",
@@ -88803,6 +88804,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
 /* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -88817,6 +88819,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  //Configraciones para la librería de Cleave JS
 
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
+
+ //Config
 
 
 
@@ -88842,10 +88846,6 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapter_id);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    var iframe = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").attr("src", iframe);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
     var image = this.files[0];
@@ -89159,9 +89159,126 @@ function eventsGrilla() {
           "block";
   }
   window.onload = preloader;*/
+  //Landing de programación de claro cinema
+
+  var navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
+  var confProgramacionClaroCinema = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
+    container: document.getElementById("navbar-prev-programacion-cinema"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var iframeProgramacionCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe");
+
+  if (navbarPrograContainerCinema) {
+    iframeProgramacionCinema.remove();
+    new easyXDM.Socket(confProgramacionClaroCinema);
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+  }); //Landing de programacion de concert channel
+
+  var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
+  var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
+  var confProgramacionConcertChannel = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
+    container: document.getElementById("navbar-prev-programacion-concert"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+
+  if (navbarPrograContainerConcert) {
+    iframeProgramacionConcert.remove();
+    new easyXDM.Socket(confProgramacionConcertChannel);
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+  }); //Landing de programación de claro canal
+  //Canal claro
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
-  var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
   var confIframe = {
     remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
     container: document.getElementById("navbar-prev-programacion"),
@@ -89209,17 +89326,12 @@ function eventsGrilla() {
     }
   };
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    if (socketProgramacion) {
-      //socketProgramacion.destroy();
-      iframeProgramacion.remove();
-      setTimeout(function () {
-        new easyXDM.Socket(confIframe);
-      }, 2000);
-    }
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
   }); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
-    new easyXDM.Socket(confIframe);
+    new easyXDM.Socket(confIframe); //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
       new easyXDM.Socket({
@@ -89227,13 +89339,13 @@ function eventsGrilla() {
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
           this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
       });
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
-      iframeProgramacion.remove();
+      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
       new easyXDM.Socket(confIframe);
     });
   }
@@ -90892,8 +91004,9 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
       //selectpicker pra ls titulos de los programas
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
+      var dropdownTitles = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa");
+      dropdownTitles.selectpicker('destroy');
+      dropdownTitles.selectpicker();
       var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
       selectheader.on("hide.bs.select", function () {
         var keyValue = "";
@@ -90909,6 +91022,11 @@ function getChapterInfo(data) {
 
         console.log(keyValue);
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+      });
+      var imageTriangle = "\n            <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n        ";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-image .bootstrap-select').append(imageTriangle);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dropimg').click(function () {
+        dropdownTitles.selectpicker('toggle');
       });
       data; //Genres
 
@@ -92266,6 +92384,27 @@ function sendEmailResetPassword(input) {
       }
     }
   });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/vendor/easyXDM.js":
+/*!****************************************!*\
+  !*** ./resources/js/vendor/easyXDM.js ***!
+  \****************************************/
+/*! exports provided: resetIframe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetIframe", function() { return resetIframe; });
+function resetIframe(iframeToDestroy, confNewIframe) {
+  iframeToDestroy.remove();
+  setTimeout(function () {
+    new easyXDM.Socket(confNewIframe);
+  }, 2000);
 }
 
 

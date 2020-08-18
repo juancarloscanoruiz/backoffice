@@ -40,6 +40,12 @@ import {
     showlanding
 } from "./UI/UI.js";
 
+//Config
+
+import {
+    resetIframe
+} from "./vendor/easyXDM.js";
+
 function eventsGrilla() {
     //loader, antes de subir un archivo
     $(".upload-files").on("click", function () {
@@ -71,11 +77,6 @@ function eventsGrilla() {
         getChapterInfo(chapter_id);
     });
 
-    $(".edit-landing-modal-button").click(function () {
-        let iframe = $("#navbar-prev-programacion iframe").attr("src");
-
-        $("#navbar-prev-programacion iframe").attr("src", iframe);
-    });
 
     $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
@@ -539,11 +540,152 @@ function eventsGrilla() {
             "block";
     }
     window.onload = preloader;*/
+
+
+    //Landing de programación de claro cinema
+    let navbarPrograContainerCinema = document.getElementById(
+        "navbar-prev-programacion-cinema"
+    );
+    let confProgramacionClaroCinema = {
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
+        container: document.getElementById("navbar-prev-programacion-cinema"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
+
+                            addImagesModalBanner();
+                        }, 3000);
+
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
+
+                            $(".modal-edit-icons").modal("show");
+
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let iframeProgramacionCinema = $("#navbar-prev-programacion-cinema iframe");
+    if (navbarPrograContainerCinema) {
+        iframeProgramacionCinema.remove();
+        new easyXDM.Socket(confProgramacionClaroCinema);
+    }
+
+    $(".modal-program-claro-cinema").click(function () {
+        resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+    });
+
+    //Landing de programacion de concert channel
+    let navbarPrograContainerConcert = document.getElementById(
+        "navbar-prev-programacion-concert"
+    );
+    let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
+    let confProgramacionConcertChannel = {
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
+        container: document.getElementById(
+            "navbar-prev-programacion-concert"
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
+
+                            addImagesModalBanner();
+                        }, 3000);
+
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
+
+                            $(".modal-edit-icons").modal("show");
+
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    if (navbarPrograContainerConcert) {
+        iframeProgramacionConcert.remove();
+        new easyXDM.Socket(confProgramacionConcertChannel);
+    }
+
+    $(".modal-program-concert-channel").click(function () {
+        resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+    });
+
+
+    //Landing de programación de claro canal
+    //Canal claro
     let navbarPrograContainer = document.getElementById(
         "navbar-prev-programacion"
     );
-
-    let iframeProgramacion = $("#navbar-prev-programacion iframe");
     let confIframe = {
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
         container: document.getElementById("navbar-prev-programacion"),
@@ -599,19 +741,13 @@ function eventsGrilla() {
         }
     };
     $(".edit-landing-modal-button").click(function () {
-        if (socketProgramacion) {
-            //socketProgramacion.destroy();
-            iframeProgramacion.remove();
-            setTimeout(() => {
-                new easyXDM.Socket(confIframe);
-            }, 2000);
-        }
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
     });
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
         new easyXDM.Socket(confIframe);
-
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $("#prev").click(function () {
             $("#navbar-prev-programacion iframe").remove();
             new easyXDM.Socket({
@@ -621,9 +757,6 @@ function eventsGrilla() {
                     this.container.getElementsByTagName(
                         "iframe"
                     )[0].style.height = message + "px";
-                    this.container
-                        .getElementsByTagName("iframe")[0]
-                        .setAttribute("scrolling", "no");
                     this.container.getElementsByTagName(
                             "iframe"
                         )[0].style.boxShadow =
@@ -633,7 +766,8 @@ function eventsGrilla() {
         });
 
         $("#editar").click(function () {
-            iframeProgramacion.remove();
+            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            $("#navbar-prev-programacion iframe").remove();
             new easyXDM.Socket(confIframe);
         });
     }
