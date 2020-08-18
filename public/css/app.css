@@ -5605,6 +5605,7 @@ ul {
 }
 
 .navbar-progra-active p {
+  font-family: "Montserrat-Bold";
   color: #da291c !important;
 }
 

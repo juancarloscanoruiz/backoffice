@@ -1,26 +1,27 @@
 @import "../base/color";
 
 .navbar-progra-item-border {
-  border-right: 2px solid $morelightgray;
+    border-right: 2px solid $morelightgray;
 }
 
 .navbar-progra-item:nth-child(0) {
-  background: lightblue;
+    background: lightblue;
 }
 
 .navbar-progra-item-container {
-  border-radius: 7px;
-  cursor: pointer;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 .navbar-progra-active {
-  .navbar-progra-item-container {
-    border-radius: 20px;
-    background: $white;
-    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
-  }
+    .navbar-progra-item-container {
+        border-radius: 20px;
+        background: $white;
+        box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
+    }
 
-  p {
-    color: $selecred !important;
-  }
+    p {
+        font-family: $MontserratBold;
+        color: $selecred !important;
+    }
 }

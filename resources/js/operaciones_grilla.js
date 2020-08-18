@@ -547,7 +547,7 @@ function eventsGrilla() {
         "navbar-prev-programacion-cinema"
     );
     let confProgramacionClaroCinema = {
-        remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-cinema.php",
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
         container: document.getElementById("navbar-prev-programacion-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -607,7 +607,7 @@ function eventsGrilla() {
     }
 
     $(".modal-program-claro-cinema").click(function () {
-        resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionConcertChannel);
+        resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
     });
 
     //Landing de programacion de concert channel
@@ -616,7 +616,7 @@ function eventsGrilla() {
     );
     let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
     let confProgramacionConcertChannel = {
-        remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-concert.php",
+        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
         container: document.getElementById(
             "navbar-prev-programacion-concert"
         ),

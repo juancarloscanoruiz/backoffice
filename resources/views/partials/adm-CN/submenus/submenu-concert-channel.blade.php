@@ -2,7 +2,7 @@
 
 <script>
     new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php",
         container: "navbar-prev-concert-channel",
         onMessage: function(message, origin) {
             console.log(message);
@@ -44,7 +44,7 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-programacion navbar-progra-active navbar-prev-programacion"
                         navbar-index="1" rel="navbar-prev-programacion-concert">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
+                            <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
                     </div>
 
@@ -54,10 +54,10 @@
                             <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
-                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro pointer-none"
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro
                         navbar-index="3" rel="navbar-prev-concert-channel">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-bold-light ">CONCERT CHANNEL</p>
+                            <p class="py-2 px-3 mb-0 a-text-bold-two">CONCERT CHANNEL</p>
                         </div>
                     </div>
 

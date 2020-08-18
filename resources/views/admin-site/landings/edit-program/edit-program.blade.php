@@ -237,8 +237,6 @@ aria-hidden="true" style="overflow: auto;">
                         class="thumbnail-header1 {{$style}} w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                         title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true" data-live-search-placeholder="Agregar título de nuevo programa" name="thumbnail-header1" key="title">
                     </select>
-
-
                     <!--Imagen del programa--->
                     <div class="edit-thumbnail position-relative">
 

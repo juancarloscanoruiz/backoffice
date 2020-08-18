@@ -87234,7 +87234,9 @@ function showDescriptions() {
 
 
 function createNavbarProgramacionGeneral() {
-  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
+  //Escondemos todos los div
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide(); //mostramos el primero
+
   jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content:first").show();
   var navbarPrograItems = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-item");
   var arrowLeft = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".arrow-progra-left");
@@ -87248,7 +87250,6 @@ function createNavbarProgramacionGeneral() {
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
-      console.log("canal claro");
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
@@ -89162,7 +89163,7 @@ function eventsGrilla() {
 
   var navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
   var confProgramacionClaroCinema = {
-    remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-cinema.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
     container: document.getElementById("navbar-prev-programacion-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -89215,13 +89216,13 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionConcertChannel);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
   }); //Landing de programacion de concert channel
 
   var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
   var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
   var confProgramacionConcertChannel = {
-    remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-concert.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
     container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
