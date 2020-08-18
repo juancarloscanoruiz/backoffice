@@ -919,3 +919,4 @@ $(document).on("click", function(e) {
         $("#selectYear").prop("checked", false);
     }
 });
+

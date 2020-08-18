@@ -11219,6 +11219,13 @@ $(".arrow-right").click(function () {
 $(".arrow-left").click(function () {
   $("#option").carousel("next");
 });*/
+// ZAID
+
+function modal() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal').modal('show');
+}
+
+modal(); // ZAID
 
 /***/ }),
 
@@ -11229,7 +11236,7 @@ $(".arrow-left").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\backoffice1\backoffice\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Zaid\claro\backoffice\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })
