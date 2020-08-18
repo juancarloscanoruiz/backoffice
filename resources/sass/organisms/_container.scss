@@ -330,6 +330,7 @@ iframe {
 .edit-data-container-large {
     height: 561px;
 }
+
 .load-view {
     display: flex;
     justify-content: center;
@@ -338,6 +339,48 @@ iframe {
     z-index: 1000;
     background: url(/images/loader.gif) no-repeat;
     cursor: wait;
-  }
+}
 
-  
+.schedule-item-body {
+    border-bottom: 2px solid #979797;
+    padding-bottom: 25px;
+    display: flex;
+}
+
+.schedule-item-body:first-child {
+    margin-top: 0px;
+}
+
+.schedule-container {
+    margin-top: 26px;
+}
+
+.schedule-details {
+    width: 63%;
+}
+
+.schedule-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.schedule-details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.schedule-details-header {
+    height: 100%;
+}
+
+.rating-container {
+    margin: 30px 0px;
+}
+
+.synopsis-details-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

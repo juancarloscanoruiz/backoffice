@@ -2,6 +2,7 @@
     width: 567px;
     margin: auto;
 }
+
 .modal-save {
     width: 749px;
     height: 430px;
@@ -23,5 +24,16 @@
     .modal-dialog {
         max-width: 100%;
         height: auto;
+    }
+}
+
+.modal-programming-landing {
+    .modal-dialog {
+        width: 900px;
+        margin: auto;
+    }
+
+    .modal-body {
+        padding: 48px;
     }
 }

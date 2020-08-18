@@ -113,6 +113,11 @@
     font-family: $MontserratRegular;
 }
 
+.a-text-regular-warm-grey-five {
+    font-family: $MontserratRegular;
+    color: $warmGreyFive;
+}
+
 .a-text-regular-brownishtwo {
     color: $darkred1;
     font-family: $MontserratRegular;
@@ -191,6 +196,11 @@
 .a-text-semibold-warm-grey-three {
     font-family: $MontserratSemiBold;
     color: $warm-grey-three;
+}
+
+.a-text-semibold-warm-grey-five {
+    font-family: $MontserratSemiBold;
+    color: $warmGreyFive;
 }
 
 .a-text-semibold-brownish-grey-three {
@@ -886,7 +896,7 @@
     font-family: $MontserratBlack;
 }
 
-.active-title-table > span {
+.active-title-table>span {
     font-family: $MontserratBlack;
 }
 
@@ -932,6 +942,7 @@
     right: 0;
     margin-right: 48px;
 }
+
 .size-thumbnail-text {
     opacity: 0.7;
     border-radius: 18px;
@@ -941,6 +952,7 @@
 .edit-date-time-title {
     margin-bottom: 116px;
 }
+
 .edit-date-time-title1 {
     margin-bottom: 114px;
 }

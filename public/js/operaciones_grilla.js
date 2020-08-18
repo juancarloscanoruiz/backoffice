@@ -73121,7 +73121,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //loader, antes de subir un archivo
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+    slidesToShow: 11,
+    slidesToScroll: 11,
+    infinite: true,
+    dots: false,
+    centerMode: false,
+    arrows: true,
+    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  }); //loader, antes de subir un archivo
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-files").on("click", function () {
     var loader = "\n        <div class=\"loader-view-container\" id=\"loader2\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
