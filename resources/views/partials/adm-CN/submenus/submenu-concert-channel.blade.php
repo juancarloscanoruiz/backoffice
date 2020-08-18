@@ -30,11 +30,8 @@
     });
 
 </script>
-
-
 <body>
     <main>
-
         <div id="menu">
             <!--Navbar para ir viendo previsualizaciones de landings-->
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">

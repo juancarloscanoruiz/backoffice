@@ -485,3 +485,25 @@
     right: 0;
     margin-right: 16px;
 }
+
+
+.heart-gray {
+    fill: none;
+}
+
+.heart-gray-filled {
+    fill: #7a7777;
+}
+
+.schedule-poster {
+    width: 37%;
+    margin-right: 5%;
+}
+
+
+.pencil-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}

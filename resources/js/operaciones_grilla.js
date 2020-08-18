@@ -47,6 +47,16 @@ import {
 } from "./vendor/easyXDM.js";
 
 function eventsGrilla() {
+    $(".calendar-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
     //loader, antes de subir un archivo
     $(".upload-files").on("click", function () {
         const loader = `
