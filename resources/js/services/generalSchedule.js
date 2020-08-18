@@ -722,16 +722,16 @@ function addImagesModalBanner() {
                     if (result["image_slider_" + counter]) {
                         slider = slider + `
                     <div class="bor thumbnail-image-program position-relative h-100">
-                        <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" data-index="${counter}">
-                        <label for="image_programming_${counter}"
-                            class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel">
-                            <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
-                                class=" cursor-pointer add-photo" />
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                            <img src="${result["image_slider_"+counter]}?${new Date().getTime()}"
-                                class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                        </label>
-                    </div>`;
+                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" data-index="${counter}">
+                    <label for="image_programming_${counter}"
+                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel">
+                        <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
+                            class=" cursor-pointer add-photo" />
+                        <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                        <img
+                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                    </label>
+                </div>`;
 
                         counter++;
                     } else {
