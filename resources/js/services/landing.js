@@ -395,6 +395,7 @@ function getChapterInfo(data) {
 
             //Insertamos el contenido en el termómetro
             $('.thermometer-schedule-list').html(itemThermometer);
+
             //Insertamos la imagen del capítulo
             if (data.image_program) {
                 $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({

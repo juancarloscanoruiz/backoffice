@@ -2452,6 +2452,7 @@ body {
   background-color: white !important;
 }
 
+/** ** ** */
 
 .modal-encabezado {
   width: 1200px;
@@ -2601,6 +2602,13 @@ hr {
   display: block;
 }
 
+.slider-pagination-active {
+  background-color: #0097a9;
+}
+
+.backwhite {
+  background-color: white !important;
+}
 
 .button-none {
   background: none;
@@ -2611,7 +2619,6 @@ hr {
 .button-none:focus {
   outline: none;
 }
-
 
 .add-images-icon {
   position: absolute;
@@ -3101,6 +3108,10 @@ hr {
   top: 0;
   right: 0;
   transform: translate(50%, -50%);
+}
+
+.moda-programming-landing-logo {
+  width: 80px;
 }
 
 @font-face {
