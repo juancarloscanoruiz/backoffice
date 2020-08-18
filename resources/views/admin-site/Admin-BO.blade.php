@@ -1,6 +1,5 @@
 @extends('layaout.app')
 
-
 @section('content')
 <body class="scroll">
     <main>
@@ -23,6 +22,7 @@
       </nav>
       <hr class=' mt-2 ml-3 mr-3' />
       <br>
+      
       <!--Div para el cambio-->
       <div id="cambio">
         @include('admin-site.admin-home');
@@ -31,3 +31,20 @@
 
   </body>
 @endsection
+
+<div id="modal" class="modal fade">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body modLogin">
+                <img src="img/logo.png" alt="Logo">
+                <p id="txtP"></p>
+                <p id="txtS"></p>
+                <nav class="mt-4">
+                    <a id="registro" class="btn btn-outline-dark float-left" href="registro.jsp">Registrarme</a>
+                    <a class="btn btn-dark float-right" href="#" data-dismiss="modal">Cerrar</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

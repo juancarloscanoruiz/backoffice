@@ -307,3 +307,10 @@ $(".arrow-right").click(function () {
 $(".arrow-left").click(function () {
   $("#option").carousel("next");
 });*/
+
+// ZAID
+function modal(){
+    $('#modal').modal('show');
+  }
+modal();
+// ZAID
