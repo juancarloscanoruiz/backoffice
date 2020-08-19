@@ -641,6 +641,7 @@ function eventsGrilla() {
         ),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
+            console.log(json);
             if (typeof json == "object") {
                 let loader = `
                         <div class="loader-view-container" id="loader1">

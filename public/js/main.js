@@ -89248,40 +89248,19 @@ function eventsGrilla() {
   var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
   var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
   var confProgramacionConcertChannel = {
-    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
+    remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php",
     container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
+      console.log(json);
 
       if (_typeof(json) == "object") {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
-          case "program":
+          case "header-landing-concert":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-            break;
-
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-            }, 3000);
-            break;
-
-          case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-            break;
-
-          case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
             break;
 
           default:
