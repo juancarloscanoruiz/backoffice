@@ -52,11 +52,4 @@
         </div>
     </div>
     <!-- Modal 2 -->
-
-    <!--IMAGEN-->
-    <script>
-        $(document).ready(function() {
-            Img();
-        });
-    </script>
 </body>
