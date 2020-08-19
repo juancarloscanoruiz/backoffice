@@ -635,7 +635,7 @@ function eventsGrilla() {
     );
     let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
     let confProgramacionConcertChannel = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php",
         container: document.getElementById(
             "navbar-prev-programacion-concert"
         ),
@@ -648,38 +648,10 @@ function eventsGrilla() {
                         </div>
                             `;
                 switch (json.type) {
-                    case "program":
+                    case "header-landing-concert":
+                        $("body").append(loader);
                         getChapterInfo(json.chapterId);
                         break;
-                    case "slider-pagination":
-                        $("body").append(loader);
-
-                        setTimeout(function () {
-                            $(".modal-programming-carousel").modal("show");
-                            $("#loader1").remove();
-
-                            addImagesModalBanner();
-                        }, 3000);
-
-                        break;
-                    case "synopsis":
-                        document
-                            .querySelector("body")
-                            .insertAdjacentHTML("beforeend", loader);
-                        window.location.href =
-                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                        break;
-                    case "menu-logos":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            addImagesModalIcons();
-
-                            $(".modal-edit-icons").modal("show");
-
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-
                     default:
                         break;
                 }
