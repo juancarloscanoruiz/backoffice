@@ -113,3 +113,7 @@ Route::get('/menurris', function () {
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
+// MODALES
+Route::get('/test', function () {
+    return view('modal.index');
+});
