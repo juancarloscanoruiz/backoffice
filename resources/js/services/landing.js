@@ -173,8 +173,6 @@ function getChapterInfo(data) {
             /* Número de mes actual*/
             let currentMonth = date.getUTCMonth();
 
-            /*Número de días del mes siguiente */
-            let nextMonth = getDays(2);
 
             /* Número de días restantes del mes actual */
             let numberLastDays = getDays(1) - getDay();

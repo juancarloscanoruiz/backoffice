@@ -498,7 +498,7 @@
                                             date
                                         </p>
                                         <div>
-                                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-5">Fecha</p>
+                                            <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
                                             <div
                                                 class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                                 <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
@@ -517,7 +517,7 @@
                                             time (gmt)
                                         </p>
                                         <div>
-                                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
+                                            <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>
                                             <div
                                                 class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                                 <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
@@ -535,7 +535,7 @@
                                             item duration
                                         </p>
                                         <div>
-                                            <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA</p>
+                                            <p class="a-text-medium-brown-two text-plus text-uppercase">HORA</p>
                                             <div
                                                 class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                                 <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">

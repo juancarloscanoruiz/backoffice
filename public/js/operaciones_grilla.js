@@ -72914,6 +72914,30 @@ var year = {
 
 /***/ }),
 
+/***/ "./resources/js/config/slick.js":
+/*!**************************************!*\
+  !*** ./resources/js/config/slick.js ***!
+  \**************************************/
+/*! exports provided: calendarSlick */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calendarSlick", function() { return calendarSlick; });
+var calendarSlick = {
+  slidesToShow: 11,
+  slidesToScroll: 11,
+  infinite: true,
+  dots: false,
+  centerMode: false,
+  arrows: true,
+  prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+  nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+};
+
+
+/***/ }),
+
 /***/ "./resources/js/form/form.js":
 /*!***********************************!*\
   !*** ./resources/js/form/form.js ***!
@@ -73100,7 +73124,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
 /* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
-/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
+/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./config/slick.js */ "./resources/js/config/slick.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -73114,28 +73140,57 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
  //Configraciones para la librería de Cleave JS
 
+ //Configraciones para la librería de Cleave JS
+
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
 
  //Config
 
 
 
+
 function eventsGrilla() {
-  var confConcertChanneLanding = {
+  var confLandingConcertChannel = {
     remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
-    container: "navbar-prev-concert-channel",
+    container: document.getElementById("navbar-prev-concert-channel"),
     onMessage: function onMessage(message, origin) {
-      console.log(message);
+      var json = JSON.parse(message);
+      console.log(json);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "current-programming-concert":
+            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarSlider2);
+
+            try {
+              calendarSlider2.slick("unslick");
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
+            } catch (error) {
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
+            }
+
+            break;
+
+          default:
+            break;
+        }
+      }
+
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
-  var concertChannelContainer = document.getElementById("navbar-prev-programacion-concert");
+  var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
 
-  if (concertChannelContainer) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-programacion-concert iframe').remove();
-    new easyXDM.Socket(confConcertChanneLanding);
+  if (navbarPrevConcertChannel) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe').remove();
+    new easyXDM.Socket(confLandingConcertChannel);
   } //loader, antes de subir un archivo
 
 
@@ -73529,25 +73584,46 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
   }); //Landing de programacion de concert channel
 
   var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
   var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
   var confProgramacionConcertChannel = {
-    remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
     container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
-      console.log(json);
 
       if (_typeof(json) == "object") {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
-          case "header-landing-concert":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+          case "program":
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
             break;
 
           default:
@@ -73566,7 +73642,7 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
   }); //Landing de programación de claro canal
   //Canal claro
 
@@ -73618,7 +73694,7 @@ function eventsGrilla() {
     }
   };
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
   }); //Verificamos si existe el contenedor para insertar el iframe
 
   if (navbarPrograContainer) {
@@ -75145,9 +75221,6 @@ function getChapterInfo(data) {
       /* Número de mes actual*/
 
       var currentMonth = date.getUTCMonth();
-      /*Número de días del mes siguiente */
-
-      var nextMonth = getDays(2);
       /* Número de días restantes del mes actual */
 
       var numberLastDays = getDays(1) - getDay();
@@ -76697,6 +76770,149 @@ function resetIframe(iframeToDestroy, confNewIframe) {
   setTimeout(function () {
     new easyXDM.Socket(confNewIframe);
   }, 2000);
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/vendor/slick.js":
+/*!**************************************!*\
+  !*** ./resources/js/vendor/slick.js ***!
+  \**************************************/
+/*! exports provided: createSlickSlider, createCalendarDays */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSlickSlider", function() { return createSlickSlider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCalendarDays", function() { return createCalendarDays; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function getDays(month) {
+  var date = new Date();
+  return new Date(date.getUTCFullYear(), date.getUTCMonth() + month, 0).getUTCDate();
+}
+
+function getDay() {
+  var date = new Date();
+  return date.getUTCDate();
+}
+
+function getDayName(month, day) {
+  var date = new Date();
+  var currentDay = new Date(date.getUTCFullYear(), month, day).getUTCDay();
+  var days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"];
+  return days[currentDay];
+}
+
+function getMonthAndYear(month) {
+  var date = new Date();
+  var year = date.getUTCFullYear();
+  var months = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+  return "".concat(months[month], " ").concat(year);
+} //Creamos los días del slider de calendario
+
+
+function createCalendarDays(container) {
+  var date = new Date();
+  /* Número de días del mes actual */
+
+  var currentMonthDays = getDays(1);
+  /* Número de mes actual*/
+
+  var currentMonth = date.getUTCMonth();
+  /* Número de días restantes del mes actual */
+
+  var numberLastDays = getDays(1) - getDay();
+  var totalDaysSlider = 0;
+  var daysSlider = ""; //Pegamos el nombre del mes y el año
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
+
+  var dateUTC = new Date(); //Día en horario central
+
+  var dayUTC = ""; //Mes en horario central
+
+  var monthUTC = ""; //Año en horario central
+
+  var yearUTC = dateUTC.getUTCFullYear();
+
+  if (dateUTC.getUTCMonth() < 10) {
+    monthUTC = "0".concat(dateUTC.getUTCMonth() + 1);
+  } else {
+    monthUTC = dateUTC.getUTCMonth() + 1;
+  }
+
+  if (dateUTC.getUTCDate() < 10) {
+    dayUTC = "0".concat(dateUTC.getUTCDate());
+  } else {
+    dayUTC = dateUTC.getUTCDate();
+  }
+
+  if (numberLastDays <= 15) {
+    totalDaysSlider = getDays(2) + (getDays(1) - getDay()); //Días del primer mes
+
+    for (var i = getDay(); i <= getDays(1); i++) {
+      //Día actual
+      if (i == getDay()) {
+        if (i < 10) {
+          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
+        } else {
+          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
+        }
+      } else {
+        if (i < 10) {
+          //Días restantes
+          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
+        } else {
+          //Días restantes
+          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
+        }
+      }
+    } //Días del mes siguiente
+
+
+    for (var _i = 1; _i <= getDays(2); _i++) {
+      if (_i < 10) {
+        daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-0").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+      } else {
+        daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+      }
+    }
+  } else {
+    //En caso de que al mes le falten más de 15 días para terminar
+    totalDaysSlider = currentMonthDays;
+
+    for (var _i2 = getDay(); _i2 <= totalDaysSlider; _i2++) {
+      if (_i2 == getDay()) {
+        if (_i2 < 10) {
+          //Día actual activo
+          daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+        } else {
+          //Día actual activo
+          daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+        }
+      } else {
+        if (_i2 < 10) {
+          //Días siguientes
+          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
+        } else {
+          //Días siguientes
+          daysSlider += "\n                                    <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
+        }
+      }
+    }
+  }
+
+  container.html(daysSlider);
+} //Creamos un slider de slick slider
+
+
+function createSlickSlider(container, options) {
+  container.slick(options);
 }
 
 

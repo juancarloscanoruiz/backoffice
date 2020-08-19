@@ -1,8 +1,38 @@
 //
+let confLandingConcertChannel = {
+    remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php",
+    container: document.getElementById(
+        "navbar-prev-concert-channel"
+    ),
+    onMessage: function (message, origin) {
+        let json = JSON.parse(message);
+        console.log(json);
+        if (typeof json == "object") {
+            let loader = `
+                    <div class="loader-view-container" id="loader1">
+                        <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                        `;
+            switch (json.type) {
+                case "current-programming-concert":
+                    $("body").append(loader);
+                    $('.modal-programming-landing').modal("show");
+                    $('.loader-view-container').remove();
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.container.getElementsByTagName("iframe")[0].style.height =
+            message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+};
 
 
 let confProgramacionConcertChannel = {
-    remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-concert.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
     container: document.getElementById(
         "navbar-prev-programacion-concert"
     ),
@@ -57,6 +87,8 @@ let confProgramacionConcertChannel = {
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
 };
+
+
 let confProgramacionClaroCinema = {
     remote: "http://localhost:8888/MaquetaCNetworks/programacion-edi-cinema.php",
     container: document.getElementById("navbar-prev-programacion"),
@@ -115,5 +147,6 @@ let confProgramacionClaroCinema = {
 
 export {
     confProgramacionClaroCinema,
-    confProgramacionConcertChannel
+    confProgramacionConcertChannel,
+    confLandingConcertChannel
 }

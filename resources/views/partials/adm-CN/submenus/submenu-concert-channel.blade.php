@@ -1,20 +1,6 @@
 <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
 
-<script>
-    new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
-        container: "navbar-prev-concert-channel",
-        onMessage: function(message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
 
-        }
-    });
-
-</script>
 <script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
@@ -370,6 +356,8 @@
     </div>
     @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-concert',
     "modalButtonClass" => "modal-program-concert-channel"))
+    @include('admin-site.landings.programming-landing')
+
     <div class="modal modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">

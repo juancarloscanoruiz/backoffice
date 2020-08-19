@@ -931,7 +931,8 @@
                                                 date
                                             </p>
                                             <div>
-                                                <p class="a-text-medium-brown-two text-plus text-uppercase pt-5">Fecha
+                                                <p class="a-text-medium-brown-two text-plus text-uppercase
+                                                ">Fecha
                                                 </p>
                                                 <div
                                                     class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
@@ -952,7 +953,7 @@
                                                 time (gmt)
                                             </p>
                                             <div>
-                                                <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA
+                                                <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                 </p>
                                                 <div
                                                     class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
@@ -972,7 +973,7 @@
                                                 schedule item duration
                                             </p>
                                             <div>
-                                                <p class="a-text-medium-brown-two text-plus text-uppercase pt-4">HORA
+                                                <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                 </p>
                                                 <div
                                                     class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
