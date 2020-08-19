@@ -47,25 +47,16 @@ import {
 } from "./vendor/easyXDM.js";
 
 function eventsGrilla() {
-    let confConcertChanneLanding = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
-        container: "navbar-prev-concert-channel",
-        onMessage: function (message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-        }
-    }
-
-    let concertChannelContainer = document.getElementById("navbar-prev-programacion-concert");
-    if (concertChannelContainer) {
-        $('#navbar-prev-programacion-concert iframe').remove();
-        new easyXDM.Socket(confConcertChanneLanding);
-    }
-
+    $(".calendar-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
     //loader, antes de subir un archivo
     $(".upload-files").on("click", function () {
         const loader = `

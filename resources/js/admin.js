@@ -2,74 +2,74 @@ import $ from "jquery";
 
 //mostrar las acciones de los roles
 $(".histo").hover(
-    function () {
+    function() {
         $(".histori").css("display", "block");
     },
-    function () {
+    function() {
         $(".histori").css("display", "none");
     }
 );
 $(".editar").hover(
-    function () {
+    function() {
         $(".edit").css("display", "block");
     },
-    function () {
+    function() {
         $(".edit").css("display", "none");
     }
 );
 $(".notify").hover(
-    function () {
+    function() {
         $(".noti").css("display", "block");
     },
-    function () {
+    function() {
         $(".noti").css("display", "none");
     }
 );
 $(".ver").hover(
-    function () {
+    function() {
         $(".veri").css("display", "block");
     },
-    function () {
+    function() {
         $(".veri").css("display", "none");
     }
 );
 $(".edi").hover(
-    function () {
+    function() {
         $(".edita").css("display", "block");
     },
-    function () {
+    function() {
         $(".edita").css("display", "none");
     }
 );
 $(".borrar").hover(
-    function () {
+    function() {
         $(".borra").css("display", "block");
     },
-    function () {
+    function() {
         $(".borra").css("display", "none");
     }
 );
 $(".ver").hover(
-    function () {
+    function() {
         $(".veri1").css("display", "block");
     },
-    function () {
+    function() {
         $(".veri1").css("display", "none");
     }
 );
 $(".edi").hover(
-    function () {
+    function() {
         $(".edita1").css("display", "block");
     },
-    function () {
+    function() {
         $(".edita1").css("display", "none");
     }
 );
 $(".borrar").hover(
-    function () {
+    function() {
         $(".borra1").css("display", "block");
     },
-    function () {
+    function() {
         $(".borra1").css("display", "none");
     }
 ); //fin
@@ -85,18 +85,13 @@ function verusuarios() {
     $("#usuarios").replaceWith();
     $("#cambio").load("VisualUser.php");
 }
-
 function editarusuarios() {}
-
 function verfront() {}
-
 function editfront() {}
-
 function cerrarequis() {
     $("#segunda").replaceWith();
     $("#cambio").load("Adm-users-BO.php");
 }
-
 function Verarchi() {
     $("#carga").replaceWith();
     $("#rempla").load("Cargar.php");
@@ -110,12 +105,12 @@ function viewsinopsis() {
     $("#prev-sinopsis").replaceWith();
     $("#changeview").load("Prev-sinopsis.php");
 }
-$("#viewcarga").click(function () {
+$("#viewcarga").click(function() {
     alert("cambio3");
     $("#carga-exitosa").replaceWith();
     $("#menu").load("Cargar-landing.php");
 });
-$("#viewbackgrilla").click(function () {
+$("#viewbackgrilla").click(function() {
     alert("cambio50000");
     $("#grilla").replaceWith();
     $("#carga-exitosa").load("Progra_general.php");
@@ -126,15 +121,12 @@ $("#viewbackgrilla").click(function () {
 function abrirModal() {
     $("#myModal").modal();
 }
-
 function Mostrarsave() {
     $("#abrirsave").modal("show");
 }
-
 function abrirBorrar() {
     $("#abrirBorrar").modal("show");
 }
-
 function abrirlisto() {
     $("#abrirListo").modal("show");
 }
@@ -143,12 +135,11 @@ function abrirlisto() {
 function AbrirNav() {
     $("#navall").load("#Admin-BO.php");
 }
-
 function verhisto() {
     $(".descri-overlay").show();
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     //Otro Array para los nombres de los meses
     let meses = new Array(
         "ENERO",
@@ -184,7 +175,7 @@ $(document).ready(function () {
     $(".day").text(dianumero);
     //resaltar boton de localidad-actual
 
-    $(".btn-rol-all").click(function () {
+    $(".btn-rol-all").click(function() {
         $("button[id=btn-rol]").removeClass("btn-rol-select");
         $(this).addClass("btn-rol");
         $("button[id=btn-rol]").removeClass("btn-rol");
@@ -192,7 +183,7 @@ $(document).ready(function () {
     });
 
     const allSlides = $(".bn-nav");
-    $(".bn-nav").click(function () {
+    $(".bn-nav").click(function() {
         allSlides.addClass("btn-menu-all").removeClass("btn-menu-select");
         allSlides.addClass("a-text-bold-brown-two").removeClass("menu");
         $(this)
@@ -203,7 +194,7 @@ $(document).ready(function () {
             .removeClass("a-text-bold-brown-two");
     });
     const allnav = $(".sub-nav");
-    $(".sub-nav").click(function () {
+    $(".sub-nav").click(function() {
         allnav.addClass("txtmenu").removeClass("btn-menu-select");
         allnav.addClass("text-menu-selec").removeClass("menu");
         $(this)
@@ -218,7 +209,7 @@ $(document).ready(function () {
     //descripción de acciones
 
     //seleccion de día,mes,año,bandera
-    $(".option").click(function () {
+    $(".option").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
         var img = $(this).attr("img");
@@ -227,19 +218,19 @@ $(document).ready(function () {
             .text(value);
     });
 
-    $(".Dias").click(function () {
+    $(".Dias").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
         $("#" + select + " > p").text(value);
     });
-    $(".Meses").click(function () {
+    $(".Meses").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
         $("#" + select + " > p").text(value);
     });
-    $(".Años").click(function () {
+    $(".Años").click(function() {
         var value = $(this).attr("value");
         var select = $(this).attr("id-select");
 
@@ -247,7 +238,7 @@ $(document).ready(function () {
     });
     //fin
     //switch entre h-m
-    $("#mujer").click(function () {
+    $("#mujer").click(function() {
         if ($('input[id="mujer"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -260,7 +251,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#hombre").click(function () {
+    $("#hombre").click(function() {
         if ($('input[id="hombre"]').is(":checked")) {
             $("#women").attr(
                 "src",
@@ -273,17 +264,17 @@ $(document).ready(function () {
         }
     });
 
-    $("#sino-save").click(function () {
+    $("#sino-save").click(function() {
         if ($('input[id="sino-save"]').is(":checked")) {
             //alert("cambio2");
             $("#savesino").modal("show");
         }
     });
-    $("#back-list").click(function () {
+    $("#back-list").click(function() {
         $("#prev-sinopsis").replaceWith();
         $("#navbar-prev-sinopsis").load("submenu.php");
     });
-    $("#viewapro").click(function () {
+    $("#viewapro").click(function() {
         //alert("cambio3");
         $("#savechange").modal("show");
     });
@@ -294,7 +285,7 @@ $(document).ready(function () {
     $(".slider li").hide();
     $(".slider li:first").show();
     //para agregar una nueva fila
-    $("#agregar").click(function () {
+    $("#agregar").click(function() {
         agregar();
     });
 });
