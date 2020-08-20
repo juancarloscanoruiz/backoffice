@@ -101,6 +101,15 @@ $(document).ready(function () {
         var modalParent = $(this).attr("data-modal-parent");
         $(modalParent).css("opacity", 1);
     });
+
+      //para mostrar un modal de url-promo encima del otro
+      $(".url-promo").on("show.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
+
+    $(".url-promo").on("hidden.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
     //Div en donde hacemos el intercambio de grillas de los diferentes canales
     let divGrilla = $("#general-programming");
 

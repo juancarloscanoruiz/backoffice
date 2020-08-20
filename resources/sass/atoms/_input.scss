@@ -684,3 +684,36 @@ div .bootstrap-select>.dropdown-toggle:focus {
 .listcinema:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 100% !important;
 }
+.url-container{
+    width: 83%;
+}
+.url-input{
+    border-radius: 0px !important;
+    width: 246px;
+    height: 43px;
+    -o-object-fit: contain;
+    object-fit: contain;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0,0 );
+}
+.input-title{
+    width: 634px;
+    height: 111px;
+    border-radius: 0px !important;
+    -o-object-fit: contain;
+    object-fit: contain;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0,0 );
+
+}
+
+.concert-input::placeholder{
+    font-family: $MontserratBold;
+    color:$bright-cyan;
+}
+.hoy-en::placeholder{
+    font-family: $MontserratBold;
+    color: $white;
+}
+.concert-input-title::placeholder{
+    font-family: $MontserratBlack;
+    color:$bright-cyan;
+}
