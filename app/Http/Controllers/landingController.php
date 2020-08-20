@@ -320,4 +320,8 @@ class landingController extends Controller
         $respuesta =  json_decode($response->getBody());
         echo (json_encode($respuesta->data));
     }
+
+    public function editHeaderLanding(Request $request){
+
+    }
 }

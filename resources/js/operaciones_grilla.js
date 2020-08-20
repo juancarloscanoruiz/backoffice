@@ -58,8 +58,13 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
+    $('.btn-prueba').click(function () {
+        console.log("nlksdnvlksndv");
+    })
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+
     let confLandingConcertChannel = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
+        remote: `${baseURL}concert-channel-edi.php`,
         container: document.getElementById(
             "navbar-prev-concert-channel"
         ),
@@ -459,7 +464,6 @@ function eventsGrilla() {
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
-        console.log("si lo agrega");
         setTimeout(function () {
             $(".loader-view-container").remove();
             console.log("si lo borra");
@@ -605,8 +609,9 @@ function eventsGrilla() {
     let navbarPrograContainerCinema = document.getElementById(
         "navbar-prev-programacion-cinema"
     );
+
     let confProgramacionClaroCinema = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php",
+        remote: `${baseURL}programacion-edi-cinema.php`,
         container: document.getElementById("navbar-prev-programacion-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -675,7 +680,7 @@ function eventsGrilla() {
     );
     let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
     let confProgramacionConcertChannel = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php",
+        remote: `${baseURL}programacion-edi-concert.php`,
         container: document.getElementById(
             "navbar-prev-programacion-concert"
         ),
@@ -744,7 +749,7 @@ function eventsGrilla() {
         "navbar-prev-programacion"
     );
     let confIframe = {
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+        remote: `${baseURL}programacion-edi.php`,
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -808,7 +813,7 @@ function eventsGrilla() {
         $("#prev").click(function () {
             $("#navbar-prev-programacion iframe").remove();
             new easyXDM.Socket({
-                remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion.php",
+                remote: `${baseURL}programacion.php`,
                 container: document.getElementById("navbar-prev-programacion"),
                 onMessage: function (message, origin) {
                     this.container.getElementsByTagName(

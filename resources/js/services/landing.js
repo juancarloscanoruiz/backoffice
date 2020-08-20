@@ -706,6 +706,7 @@ function getProgramming(date, section, time) {
         },
         url: "landing/getProgramming",
         success: function (result) {
+
             $('.loader-view-container').remove();
             let data = JSON.parse(result);
             //console.log(data);
