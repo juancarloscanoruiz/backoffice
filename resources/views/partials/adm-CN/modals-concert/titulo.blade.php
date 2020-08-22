@@ -1,7 +1,6 @@
-@extends('layaout.app')
 
 
-<div class="modal" tabindex="-1" role="dialog"style="    display: contents;">
+<div class="modal modal-titles p-0 m-0" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document" 
   >
     <div class="modal-content align-item-center centro w-100" >

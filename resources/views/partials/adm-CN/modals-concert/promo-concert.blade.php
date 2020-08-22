@@ -1,5 +1,4 @@
-@extends('layaout.app')
-<div class="modal" tabindex="-1" role="dialog"style="    display: contents;">
+<div class="modal modal-promos p-0 m-0" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
     <div class="modal-content  align-item-center centro w-100"  >    
       <div class="modal-body ">
@@ -22,7 +21,7 @@
                     <video width="472"class="d-none" id="video-promo" controls>  <source src="" type="video/mp4"></video>
             </label>
         
-            <label for="url-promo"   class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center w-50 mb-3  h-100 flex-column load-modales"> 
+            <label for="url-promo"   class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center w-50   h-100 flex-column load-modales"> 
             <a href="#url-promo" role="button"
                                 
                                 data-toggle="modal">   <img src="{{ asset('/images/basic-icons/link.svg')  }}" alt="add-photo" class="add-photo  cursor-pointer  " style="width:70px"/></a>
@@ -34,7 +33,7 @@
             <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100">
          </div>
          <div class="ml-3 mt-3"style="text-align:initial;">
-         <span class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.jpg</span>
+         <span class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.jpg</span><br>
          <span class="a-text-bold-brown-two text-normal ">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
          </div>
          <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">

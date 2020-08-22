@@ -92,6 +92,26 @@ function eventsGrilla() {
 
                         }
                         break;
+                        case "header-landing-concert": 
+                   
+                        $('.modal-promos').modal("show");
+                        break;
+                        case "pencil-header":
+                   
+                            $('.modal-titles').modal("show");
+                            break;
+                            case "pencil-video":
+                   
+                                $('.modal-promos').modal("show");
+                                break;
+                                case "pencil-header1":
+                   
+                                    $('.modal-titles').modal("show");
+                                    break;
+                                    case "header2":
+                   
+                                        $('.modal-titles').modal("show");
+                                        break;
                     default:
                         break;
                 }
