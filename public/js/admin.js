@@ -11229,7 +11229,7 @@ $(".arrow-left").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Zaid\claro\backoffice\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\backoffice1\backoffice\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

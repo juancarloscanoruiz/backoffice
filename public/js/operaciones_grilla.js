@@ -73181,6 +73181,26 @@ function eventsGrilla() {
 
             break;
 
+          case "header-landing-concert":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
+            break;
+
+          case "pencil-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+            break;
+
+          case "pencil-video":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
+            break;
+
+          case "pencil-header1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+            break;
+
+          case "header2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+            break;
+
           default:
             break;
         }

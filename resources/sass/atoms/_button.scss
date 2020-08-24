@@ -33,7 +33,10 @@
     -webkit-box-shadow: none;
     transition: all 0.3s;
 }
-
+.a-btn-pink{
+    background: $pink;
+    border-color: $pink;
+}
 .a-btn-basic-large {
     width: 294px;
     height: 54px;
@@ -1192,4 +1195,6 @@ hr {
 .button-none:focus {
     outline: none;
 }
+
+
 

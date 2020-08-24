@@ -88087,6 +88087,13 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-info").on("hidden.bs.modal", function () {
     var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css("opacity", 1);
+  }); //para mostrar un modal de url-promo encima del otro
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".url-promo").on("show.bs.modal", function () {
+    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".url-promo").on("hidden.bs.modal", function () {
+    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
   }); //Div en donde hacemos el intercambio de grillas de los diferentes canales
 
   var divGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming"); //Borrar un programa de la grilla
@@ -88892,6 +88899,26 @@ function eventsGrilla() {
               Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
             }
 
+            break;
+
+          case "header-landing-concert":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
+            break;
+
+          case "pencil-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+            break;
+
+          case "pencil-video":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
+            break;
+
+          case "pencil-header1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+            break;
+
+          case "header2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
             break;
 
           default:
