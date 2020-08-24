@@ -58,6 +58,7 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
+
     $('.btn-prueba').click(function () {
         console.log("nlksdnvlksndv");
     })
@@ -480,11 +481,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-            .find(".slider-pagination")
-            .addClass("a-text-bold-white") &
+                .find(".slider-pagination")
+                .addClass("a-text-bold-white") &
             $(this)
-            .find(".slider-pagination")
-            .removeClass("a-text-bold-teal");
+                .find(".slider-pagination")
+                .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -820,8 +821,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1192,14 +1193,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo que estamos editando es el año de producción
+                //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo editable, es el de programar publicación para Landing
+                //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -1352,7 +1353,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -1525,8 +1526,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                .text()
-                .substr(0, 200) + "...";
+                    .text()
+                    .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -2049,6 +2050,71 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         console.log(programas);
         $(".modal-information").modal("hide");
     });
+
+    // Modal
+    $('#btn-test').click(function () {
+        $("#modal-banner").modal("show");
+    })
+
+    $('#promo-claro').change(function () {
+        File(this)
+    })
+
+    $('#header-claro').change(function () {
+        File(this)
+    })
+
+    function File(objFileInput) {
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#"+objFileInput.name).html('<img src="' + e.target.result + '" />');
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+
+    let headLandingClaroCanal = {
+        remote: `${baseURL}claro-canal-edi.php`,
+        container: document.getElementById(
+            "navbar-prev-canal-claro"
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            console.log(json);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+                switch (json.type) {
+                    case "current-programming-concert":
+                        let calendarSlider2 = $(".calendar-slider2");
+                        $("body").append(loader);
+                        $('.modal-programming-landing').modal("show");
+                        $('.loader-view-container').remove();
+                        createCalendarDays(calendarSlider2);
+                        try {
+                            calendarSlider2.slick("unslick");
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        } catch (error) {
+                            createSlickSlider(calendarSlider2, calendarSlick);
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    // Modal
+
 }
 
 export {
