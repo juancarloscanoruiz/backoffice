@@ -39,7 +39,7 @@
                                             <div class="d-flex mt-5 position-absolute mr-4"style="right:0">
                                             <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link"
                                             class="mr-3">
-                                            <a href="#url-promo" role="button"
+                                            <a href="#url-encabezado" role="button"
                                 
                                 data-toggle="modal">  
                                         <input type="text" name="links" id="link-logo-canal-claro"
@@ -72,8 +72,8 @@
 
  <!--Vinculo para url-->
 
- <div class=" modal  url-promo" data-backdrop-limit="1" id="url-promo" tabindex="-1" role="dialog"
-        data-modal-parent="#url-promo">
+ <div class=" modal  url-encabezado" data-backdrop-limit="1" id="url-encabezado" tabindex="-1" role="dialog"
+        data-modal-parent="#url-encabezado">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content  ">
                 <div class="modal-body pl-5 ml-3 ">

@@ -227,9 +227,7 @@
 
 
 
-@include('partials.adm-CN.modals-concert.titulo')
-@include('partials.adm-CN.modals-concert.promo-concert')
-@include('partials.adm-CN.modals-concert.encabezado')
+
     <!--menu de logos-->
     <div class="modal  modal-edit-icons pr-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -509,5 +507,9 @@
 
     </div>
 <!--modal encabezado-->
+
+@include('partials.adm-CN.modals-concert.titulo')
+@include('partials.adm-CN.modals-concert.promo-concert')
+@include('partials.adm-CN.modals-concert.encabezado')
 </body>
 

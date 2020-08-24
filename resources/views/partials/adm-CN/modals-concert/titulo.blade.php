@@ -1,8 +1,7 @@
 
 
 <div class="modal modal-titles p-0 m-0" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg modal-dialog-centered " role="document" 
-  >
+  <div class="modal-dialog modal-lg modal-dialog-centered " role="document" >
     <div class="modal-content align-item-center centro w-100" >
      
       <div class="modal-body">
@@ -35,4 +34,5 @@
      
     </div>
   </div>
+</div>
 </div>

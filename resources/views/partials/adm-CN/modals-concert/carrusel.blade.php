@@ -1,6 +1,7 @@
 
-<div class="modal pr-0 fade modal-edit-program" id="modaledi" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto;">
+
+<div class="modal pr-0 fade modal-edit-program-carrusel " id="modaledicarrusel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; display:contents;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body ">
@@ -11,7 +12,7 @@
                     <div class="col-11 mx-auto">
                     <div class="float-right" >
                             <div class="d-flex pl-5 ">
-                                <div class=" position-relative programming-slider-dots mt-4 mb-4">    </div>
+                                <div class=" position-relative carrusel1-slider-dots1 mt-4 mb-4">    </div>
                                 <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image mb-3  cursor-pointer">
                             </div>
                         </div>
@@ -42,6 +43,10 @@
                             <div class="current-slide-container a-text-bold-teal mb-2">
                 <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
             </div>
+<!--sliderparacarrusel-->
+                     <div class="carrusel1-slider">
+                         <div>
+
                             <section class="edit-program-image">
                                 <select
                                     class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
@@ -475,6 +480,8 @@
                         </div>
 
                     </div>
+                    </div>
+                </div>
                     <div class=" d-flex justify-content-center">
                         <section class="text-center mb-3 d-flex justify-content-center">
                             <button
@@ -483,7 +490,7 @@
                         </section>
 
                     </div>
-                </div>
+                 
 
             </div>
         </div>

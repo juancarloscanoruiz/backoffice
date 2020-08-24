@@ -376,6 +376,24 @@ ul {
         margin-bottom: 16px;
     }
 }
+.carrusel1-slider-dots1 {
+    .slick-dots {
+        position: static;
+        text-align: left;
+        bottom: auto;
+    }
+
+    .presentation {
+        margin-right: 24px;
+    }
+
+    .slick-dots li {
+        height: 37px;
+        width: 37px;
+        margin-right: 16px;
+        margin-bottom: 16px;
+    }
+}
 .thermometer-schedule-list,
 .thermometer-notation-list {
     list-style: none;
