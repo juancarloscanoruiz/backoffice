@@ -95,7 +95,7 @@ function eventsGrilla() {
                         break;
                         case "header-landing-concert": 
                    
-                        $('.modal-promos').modal("show");
+                        $('.modal-encabezados').modal("show");
                         break;
                         case "pencil-header":
                    
