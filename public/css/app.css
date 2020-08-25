@@ -3119,6 +3119,10 @@ hr {
   width: 80px;
 }
 
+.modal-programming-landing-logo {
+  width: 200px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -6330,6 +6334,16 @@ a:hover {
      object-fit: cover;
   position: absolute;
   left: 0;
+}
+
+.day-style {
+  display: flex;
+}
+
+.day-style li {
+  list-style: none;
+  width: 62px;
+  height: 76px;
 }
 
 .dropdown-menu {

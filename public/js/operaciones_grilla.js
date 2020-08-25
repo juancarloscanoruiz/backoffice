@@ -73157,10 +73157,13 @@ function eventsGrilla() {
 
   var confLandingConcertChannel = {
     remote: "".concat(baseURL, "concert-channel-edi.php"),
+    // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
+    // remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
     container: document.getElementById("navbar-prev-concert-channel"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
-      console.log(json);
+      console.log(this.remote);
+      console.log('Hola', json);
 
       if (_typeof(json) == "object") {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
@@ -73246,6 +73249,7 @@ function eventsGrilla() {
   var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
 
   if (navbarPrevConcertChannel) {
+    console.log('Entro if Concer');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe').remove();
     new easyXDM.Socket(confLandingConcertChannel);
   } //loader, antes de subir un archivo
@@ -74741,11 +74745,64 @@ function eventsGrilla() {
     var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
     console.log(programas);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-  }); // Modal
+  }); // Canal Claro
+
+  var landingCanalClaro = {
+    // remote: `${baseURL}concert-channel-edi.php`,
+    // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
+    container: document.getElementById("navbar-prev-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+      console.log('buenas', json);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "claro-header":
+            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("show");
+            break;
+
+          case "claro-programacion":
+            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-claro').modal("show");
+            break;
+
+          case "claro-title":
+            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+            break;
+
+          case "claro-promo":
+            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("show");
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
+
+  if (menuClaroCanal) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-canal-claro iframe').remove();
+    console.log('enviando....');
+    new easyXDM.Socket(landingCanalClaro);
+  } // Canal Claro
+
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-banner").modal("show");
+    console.log('funciona');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi-claro").modal("show");
   });
+}
+
+
+
+function eveClaroCanal() {
+  // Modal
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro').change(function () {
     File(this);
   });
@@ -74763,47 +74820,9 @@ function eventsGrilla() {
 
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  }
+  } // Modal
 
-  var headLandingClaroCanal = {
-    remote: "".concat(baseURL, "claro-canal-edi.php"),
-    container: document.getElementById("navbar-prev-canal-claro"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-      console.log(json);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "current-programming-concert":
-            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarSlider2);
-
-            try {
-              calendarSlider2.slick("unslick");
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
-            } catch (error) {
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
-            }
-
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; // Modal
 }
-
-
 
 /***/ }),
 

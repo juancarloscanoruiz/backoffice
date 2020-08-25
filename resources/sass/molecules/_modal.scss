@@ -367,3 +367,13 @@ a:hover {
     position: absolute;
     left: 0;
 } 
+
+.day-style {
+    display: flex;
+}
+
+.day-style li {
+    list-style: none;
+    width: 62px;
+    height: 76px;
+}

@@ -1,4 +1,4 @@
-<script>
+{{-- <script>
     new easyXDM.Socket({
         remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
         container: "navbar-prev-canal-claro",
@@ -10,7 +10,7 @@
         }
     });
 
-</script>
+</script> --}}
 
 <script>
     new easyXDM.Socket({
@@ -47,8 +47,6 @@
                             <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
-
-                    <!--inicio de claro canal-->
 
                     <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro" navbar-index="3"
                         rel="navbar-prev-canal-claro">
@@ -1220,6 +1218,6 @@
         </div>
     </div>
 
-    </div>
+    @include('partials.adm-CN.modals-claro.index')
 
 </body>
