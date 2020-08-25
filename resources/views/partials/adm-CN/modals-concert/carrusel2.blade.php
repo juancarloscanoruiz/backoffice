@@ -1,15 +1,15 @@
 
-<div class="modal pr-0 fade modal-edit-program-carrusel " id="modaledicarrusel" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; display:contents;">
+<div class="modal pr-0 fade modal-edit-program-carrusel2 " id="modaledicarrusel" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; display:contents;">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body ">
-                    <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN   PRINCIPAL - CARRUSEL 1</h2>
+                    <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN   PRINCIPAL - CARRUSEL 2</h2>
                          <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                     <div class="col-11 mx-auto">
                          <div class="float-right" >
                             <div class="d-flex pl-5 ">
-                                <div class=" position-relative carrusel1-slider-dots1 mt-4 mb-4">    </div>
+                                <div class=" position-relative carrusel2-slider-dots1 mt-4 mb-4">    </div>
                                 <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image mb-3  cursor-pointer">
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                   <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
                           </div>
 <!--sliderparacarrusel-->
-                     <div class="carrusel1-slider">
+                     <div class="carrusel2-slider">
                          <div>
 
                             <section class="edit-program-image">
@@ -103,7 +103,7 @@
                                                
                                                 <span
                                                     class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
-                                                    1</span>
+                                                    2</span>
                                                
                                             </div>
                                             <div>
@@ -534,7 +534,7 @@
                     
                     <span
                         class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
-                        1</span>
+                        2</span>
                    
                   
                 </div>
@@ -968,7 +968,7 @@
                   
                     <span
                         class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
-                        1</span>
+                        2</span>
                    
                 </div>
                 <div>

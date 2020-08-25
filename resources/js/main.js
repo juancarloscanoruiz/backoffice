@@ -238,6 +238,34 @@ $(document).ready(function () {
         });
     });*/
     eventsGrilla();
+
+    //slider para carrusel concert-channel
+$(".carrusel2-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: $(".carrusel2-slider-dots1"),
+    initialSlide: 0,
+    infinite: false,
+
+
+    customPaging: function (slider, i) {
+        var thumb = $(slider.$slides[i]).data();
+        return (
+            "<p class='a-text-bold-teal slider-pagination-item'>" +
+            (i + 1) +
+            "</p>"
+        );
+    }
+});
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel2-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
 //slider para carrusel concert-channel
 $(".carrusel1-slider").slick({
     slidesToShow: 1,
