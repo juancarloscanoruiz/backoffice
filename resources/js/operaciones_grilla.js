@@ -25,6 +25,7 @@ import {
     getChapterInfo,
     updateImageProgramOfLanding,
     getProgramming
+
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -59,10 +60,11 @@ import {
 
 function eventsGrilla() {
     $('.btn-prueba').click(function () {
-        console.log("nlksdnvlksndv");
+        getHeaderLanding()
     })
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
 
+    //Landing de concert channel
     let confLandingConcertChannel = {
         remote: `${baseURL}concert-channel-edi.php`,
         container: document.getElementById(
@@ -107,8 +109,6 @@ function eventsGrilla() {
         $('#navbar-prev-concert-channel iframe').remove();
         new easyXDM.Socket(confLandingConcertChannel);
     }
-
-
 
 
     //loader, antes de subir un archivo
