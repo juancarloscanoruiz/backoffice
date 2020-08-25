@@ -504,8 +504,6 @@
             </div>
         </div>
     </div>
-
-    </div>
 <!--modal encabezado-->
 
 @include('partials.adm-CN.modals-concert.titulo')
