@@ -324,4 +324,13 @@ class landingController extends Controller
     public function editHeaderLanding(Request $request){
 
     }
+
+    public function getContentConcertChannel(Request $request){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/concert_channel"
+        );
+
+        echo ($response->getBody()->getContents());
+    }
 }

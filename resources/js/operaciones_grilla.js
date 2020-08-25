@@ -24,8 +24,8 @@ import {
     updateLogosOfLanding,
     getChapterInfo,
     updateImageProgramOfLanding,
-    getProgramming
-
+    getProgramming,
+    getContentConcertChannelHeader
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -80,6 +80,7 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
+
                 switch (json.type) {
                     case "current-programming-concert":
                         let calendarSlider2 = $(".calendar-slider2");
@@ -95,65 +96,61 @@ function eventsGrilla() {
 
                         }
                         break;
-                        case "header-landing-concert": 
+                    case "header-landing-concert":
+                        getContentConcertChannelHeader();
+                        $("#loader1").remove();
+                        break;
+                    case "pencil-header":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-encabezados').modal("show");
+                            $('.modal-titles').modal("show");
+
+                        }, 3000);
+
+
+                        break;
+                    case "pencil-video":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promos').modal("show");
                             $("#loader1").remove();
                         }, 3000);
-          
-                        break;
-                        case "pencil-header":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-titles').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                   
-                           
-                            break;
-                            case "pencil-video":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-promos').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                            
-                                break;
-                                case "pencil-header1":
-                                      $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                                    
-                                    break;
-                                    case "header2":
-                                        $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                   
-                                        
-                                        break;
-                                        case "pencil-carusel1":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                $('.modal-edit-program-carrusel').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
 
-                                        case "pencil-carusel2":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                $('.modal-edit-program-carrusel2').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
+                        break;
+                    case "pencil-header1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+                        break;
+                    case "header2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+
+                        break;
+                    case "pencil-carusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel2').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
                     default:
                         break;
                 }
@@ -540,11 +537,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -605,7 +602,7 @@ function eventsGrilla() {
         updateImagesOfProgrammingSlider(data);
     });
 
-    
+
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -632,11 +629,11 @@ function eventsGrilla() {
     });
 
 
-//para agregar un slider más en carrusel2-concert
-$(".add-programming-image").click(function(){
-    let sliderIndex = $(".load-programming-carousel").length + 1;
-    $(".carrusel2-slider").slick(
-        "slickAdd",  `
+    //para agregar un slider más en carrusel2-concert
+    $(".add-programming-image").click(function () {
+        let sliderIndex = $(".load-programming-carousel").length + 1;
+        $(".carrusel2-slider").slick(
+            "slickAdd", `
         <!--otro slider-->
 <div>
 
@@ -698,12 +695,12 @@ $(".add-programming-image").click(function(){
                 </div>
                 <!--Inputs radio-->
                 <div class="d-flex align-items-center mb-3">
-                    
+
                     <span
                         class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                         2</span>
-                   
-                  
+
+
                 </div>
                 <div>
                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha
@@ -798,7 +795,7 @@ $(".add-programming-image").click(function(){
                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                 class="mr-3">
                         <span class="a-text-bold-warm mt-3">
-                          
+
                             <input key="" type=" text"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
                                 placeholder="00-00-0000"></span>
@@ -1070,10 +1067,10 @@ $(".add-programming-image").click(function(){
 </div>
 </div>
 
-       <!--fin del otro slider-->          
+       <!--fin del otro slider-->
 `
-    );
-});
+        );
+    });
     //para agregar un slider más en carrusel1-concert
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -1144,11 +1141,11 @@ $(".add-programming-image").click(function(){
                             </div>
                             <!--Inputs radio-->
                             <div class="d-flex align-items-center mb-3">
-                               
+
                                 <span
                                     class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                     1</span>
-                               
+
                             </div>
                             <div>
                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha
@@ -1243,7 +1240,7 @@ $(".add-programming-image").click(function(){
                                     <img src="{{ asset('images/calendario.svg') }}" alt=""
                                             class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                       
+
                                         <input key="" type=" text"
                                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
                                             placeholder="00-00-0000"></span>
@@ -1769,8 +1766,8 @@ $(".add-programming-image").click(function(){
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -2141,14 +2138,14 @@ $(".add-programming-image").click(function(){
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -2301,7 +2298,7 @@ $(".add-programming-image").click(function(){
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -2474,8 +2471,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -3016,7 +3013,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#"+objFileInput.name).html('<img src="' + e.target.result + '" />');
+                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }

@@ -706,10 +706,8 @@ function getProgramming(date, section, time) {
         },
         url: "landing/getProgramming",
         success: function (result) {
-
             $('.loader-view-container').remove();
             let data = JSON.parse(result);
-            //console.log(data);
 
             if (data.id_status >= 1) {
 
@@ -973,10 +971,48 @@ function newProgramByDate(section, date, time) {
         }
     });
 }
+
+
+//Landing concert channel
+function getContentConcertChannelHeader() {
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            if (data.code == 200) {
+                $('.modal-header-concert-channel .modal-header-title-1').val(data.data.block_2_title_1);
+                $('.modal-header-concert-channel .modal-header-title-2').val(data.data.block_2_title_2);
+                $('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
+                $('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
+                $('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
+                if (data.data.block_2_icon_channel) {
+                    $(".label-no-image").remove();
+                }
+                $('#icon_canal_claro_edit').attr("src", data.data.block_2_icon_channel);
+                //Mostramos el modal
+                $('.modal-header-concert-channel').modal("show");
+                //Eliminamos
+                $('.loader-view-container').remove();
+            }
+
+        }
+    })
+}
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
     updateImageProgramOfLanding,
-    getProgramming
+    getProgramming,
+    getContentConcertChannelHeader
 };
