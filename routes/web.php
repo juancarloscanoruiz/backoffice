@@ -107,7 +107,7 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('admin-site.landings.programming-landing');
+    return view('partials.adm-CN.modals-concert.carrusel2');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
@@ -115,5 +115,6 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
 });
 // MODALES
 Route::get('/test', function () {
-    return view('modal.index');
+    return view('partials.adm-CN.modals-claro.index');
+    // return view('modal.index');
 });

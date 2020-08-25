@@ -33,7 +33,10 @@
     -webkit-box-shadow: none;
     transition: all 0.3s;
 }
-
+.a-btn-pink{
+    background: $pink;
+    border-color: $pink;
+}
 .a-btn-basic-large {
     width: 294px;
     height: 54px;
@@ -1049,17 +1052,17 @@
 }
 
 .p-text-bold-black {
-    font-family: $MontserratBold;
+    // font-family: $MontserratBold;
     font-size: 18px;
     color: $black;
     font-weight: 600;
-    margin-top: 23px;
+    // margin-top: 23px;
     margin-left: 47px;
     margin-bottom: 0;
 }
 
 .p-title-black {
-    font-family: $MontserratBlack;
+    // font-family: $MontserratBlack;
     font-size: 24px;
     color: $greyishBrownTwo;
     text-align: center;
@@ -1100,7 +1103,7 @@ hr {
 }
 
 .txt-content p {
-    font-family: $MontserratBlack;
+    // font-family: $MontserratBlack;
     font-size: 32px;
     color: $greyishBrownTwo;
     margin-bottom: 0;
@@ -1109,7 +1112,7 @@ hr {
 }
 
 .txt-content span {
-    font-family: $MontserratBlack;
+    // font-family: $MontserratBlack;
     font-size: 32px;
     color: $selecred;
     margin-bottom: 0;
@@ -1192,4 +1195,6 @@ hr {
 .button-none:focus {
     outline: none;
 }
+
+
 

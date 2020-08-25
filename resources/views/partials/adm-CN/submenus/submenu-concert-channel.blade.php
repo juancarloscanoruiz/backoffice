@@ -225,6 +225,9 @@
     </main>
     <!--inicio de modales para edición-->
 
+
+
+
     <!--menu de logos-->
     <div class="modal  modal-edit-icons pr-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -477,6 +480,7 @@
         </div>
     </div>
 
+  
     <!--modal para perder lo hecho en los landing de edit-->
     <div class=" modal  delete-info" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
         data-modal-parent="#modalbanner">
@@ -502,6 +506,12 @@
     </div>
 
     </div>
+<!--modal encabezado-->
 
-
+@include('partials.adm-CN.modals-concert.titulo')
+@include('partials.adm-CN.modals-concert.promo-concert')
+@include('partials.adm-CN.modals-concert.encabezado')
+<!--@include('partials.adm-CN.modals-concert.carrusel')
+@include('partials.adm-CN.modals-concert.carrusel2')-->
 </body>
+

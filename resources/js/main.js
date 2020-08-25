@@ -101,6 +101,23 @@ $(document).ready(function () {
         var modalParent = $(this).attr("data-modal-parent");
         $(modalParent).css("opacity", 1);
     });
+
+      //para mostrar un modal de url-promo encima del otro
+      $(".url-promo").on("show.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
+
+    $(".url-promo").on("hidden.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
+     //para mostrar un modal de url-encabezado encima del otro
+     $(".url-encabezado").on("show.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
+
+    $(".url-encabezado").on("hidden.bs.modal", function () {
+        var modalParent = $(this).attr("data-modal-parent");
+    });
     //Div en donde hacemos el intercambio de grillas de los diferentes canales
     let divGrilla = $("#general-programming");
 
@@ -221,6 +238,60 @@ $(document).ready(function () {
         });
     });*/
     eventsGrilla();
+
+    //slider para carrusel concert-channel
+$(".carrusel2-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: $(".carrusel2-slider-dots1"),
+    initialSlide: 0,
+    infinite: false,
+
+
+    customPaging: function (slider, i) {
+        var thumb = $(slider.$slides[i]).data();
+        return (
+            "<p class='a-text-bold-teal slider-pagination-item'>" +
+            (i + 1) +
+            "</p>"
+        );
+    }
+});
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel2-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+//slider para carrusel concert-channel
+$(".carrusel1-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: $(".carrusel1-slider-dots1"),
+    initialSlide: 0,
+    infinite: false,
+
+
+    customPaging: function (slider, i) {
+        var thumb = $(slider.$slides[i]).data();
+        return (
+            "<p class='a-text-bold-teal slider-pagination-item'>" +
+            (i + 1) +
+            "</p>"
+        );
+    }
+});
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel1-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
 
 
     //SLIDER DE CINEMA

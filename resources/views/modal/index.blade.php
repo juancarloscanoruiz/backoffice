@@ -32,7 +32,7 @@
             <div class="modal-footer">
                 <div class="btn-content m-auto">
                     <button class="btn-prueba a-btn-basic-small a-button-outline-teal" style="opacity: .3;">ACEPTAR</button>
-                    <button data-dismiss="modal" class="ml-5 a-btn-basic-small a-button-outline-teal">CANCELAR</button>
+                    <button data-dismiss="modal" class="ml-4 a-btn-basic-small a-button-outline-teal">CANCELAR</button>
                 </div>
             </div>
         </div>
