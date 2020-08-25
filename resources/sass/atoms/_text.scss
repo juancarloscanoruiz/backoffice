@@ -77,10 +77,12 @@
     font-family: $MontserratBold;
     color: $white;
 }
-.a-text-bold-bright-cyan{
+
+.a-text-bold-bright-cyan {
     font-family: $MontserratBold;
-    color:$bright-cyan;
+    color: $bright-cyan;
 }
+
 .a-text-bold-teal {
     color: $teal;
     font-family: $MontserratBold;
@@ -159,6 +161,11 @@
 .a-text-black-brown-two {
     font-family: $MontserratBlack;
     color: $greyish-brown-two;
+}
+
+.a-text-black-bright-cyan {
+    font-family: $MontserratBlack;
+    color: $bright-cyan;
 }
 
 .a-text-black-warmrey {

@@ -88946,14 +88946,10 @@ function eventsGrilla() {
 
           case "header-landing-concert":
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelHeader"])();
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             break;
 
           case "pencil-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlockHeader3"])();
             break;
 
           case "pencil-video":
@@ -88965,19 +88961,11 @@ function eventsGrilla() {
             break;
 
           case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlock4One"])();
             break;
 
           case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlock4OTwo"])();
             break;
 
           case "pencil-carusel1":
@@ -90975,7 +90963,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90986,6 +90974,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImageProgramOfLanding", function() { return updateImageProgramOfLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramming", function() { return getProgramming; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelHeader", function() { return getContentConcertChannelHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlockHeader3", function() { return getContentConcertChannelBlockHeader3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4One", function() { return getContentConcertChannelBlock4One; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4OTwo", function() { return getContentConcertChannelBlock4OTwo; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -91836,6 +91827,7 @@ function getContentConcertChannelHeader() {
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
+      console.log(data);
 
       if (data.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1').val(data.data.block_2_title_1);
@@ -91852,6 +91844,72 @@ function getContentConcertChannelHeader() {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("show"); //Eliminamos
 
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      }
+    }
+  });
+}
+
+function getContentConcertChannelBlockHeader3() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/concertChannel",
+    success: function success(result) {
+      var data = JSON.parse(result);
+
+      if (data.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_3_title);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_3_subtitle);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      }
+    }
+  });
+}
+
+function getContentConcertChannelBlock4One() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/concertChannel",
+    success: function success(result) {
+      var data = JSON.parse(result);
+
+      if (data.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_1_title);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_1_subtitle);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      }
+    }
+  });
+}
+
+function getContentConcertChannelBlock4OTwo() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/concertChannel",
+    success: function success(result) {
+      var data = JSON.parse(result);
+
+      if (data.code == 200) {
+        console.log(data);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_2_title);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_2_subtitle);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       }
     }

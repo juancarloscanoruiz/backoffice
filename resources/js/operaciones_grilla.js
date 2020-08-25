@@ -25,7 +25,10 @@ import {
     getChapterInfo,
     updateImageProgramOfLanding,
     getProgramming,
-    getContentConcertChannelHeader
+    getContentConcertChannelHeader,
+    getContentConcertChannelBlockHeader3,
+    getContentConcertChannelBlock4One,
+    getContentConcertChannelBlock4OTwo
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -85,7 +88,6 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
-
                     case "current-programming-concert":
                         let calendarSlider2 = $(".calendar-slider2");
                         $("body").append(loader);
@@ -102,16 +104,9 @@ function eventsGrilla() {
                         break;
                     case "header-landing-concert":
                         getContentConcertChannelHeader();
-                        $("#loader1").remove();
                         break;
                     case "pencil-header":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-
-                        }, 3000);
-
-
+                        getContentConcertChannelBlockHeader3();
                         break;
                     case "pencil-video":
                         $("body").append(loader);
@@ -119,26 +114,13 @@ function eventsGrilla() {
                             $('.modal-promos').modal("show");
                             $("#loader1").remove();
                         }, 3000);
-
                         break;
                     case "pencil-header1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
+                        getContentConcertChannelBlock4One();
 
                         break;
                     case "header2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-
-
+                        getContentConcertChannelBlock4OTwo();
                         break;
                     case "pencil-carusel1":
                         $("body").append(loader);

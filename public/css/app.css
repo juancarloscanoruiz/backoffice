@@ -570,6 +570,11 @@ body {
   color: #4a4a4a;
 }
 
+.a-text-black-bright-cyan {
+  font-family: "Montserrat-Black";
+  color: #3cc1ff;
+}
+
 .a-text-black-warmrey {
   font-family: "Montserrat-Black";
   color: #9b9b9b;
@@ -4549,6 +4554,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-black-brown-two {
   font-family: "Montserrat-Black";
   color: #4a4a4a;
+}
+
+.a-text-black-bright-cyan {
+  font-family: "Montserrat-Black";
+  color: #3cc1ff;
 }
 
 .a-text-black-warmrey {
