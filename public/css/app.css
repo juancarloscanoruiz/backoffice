@@ -4349,6 +4349,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
   transform: translateY(-30px);
 }
 
+.height-btn {
+  height: 44px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -6356,6 +6360,12 @@ a:hover {
   height: 76px;
 }
 
+.div-promo {
+  height: 50%;
+  align-items: center;
+  width: 90%;
+}
+
 .dropdown-menu {
   width: 100% !important;
 }
@@ -6734,6 +6744,17 @@ iframe {
 .container-promo {
   border-radius: 12px;
   background-color: #1f2887;
+}
+
+.container-promo-cinema {
+  border-radius: 12px;
+  background-color: #f5dd30;
+}
+
+.container-promotitle-cinema {
+  background-color: #ffeb5a;
+  border: #ffeb5a;
+  box-shadow: 0 2px 4px 0 #2d2926;
 }
 
 .container-promotitle {

@@ -108,7 +108,7 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('partials.adm-CN.modals-concert.carrusel2');
+    return view('partials.adm-CN.modals-cinema.encabezado');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {

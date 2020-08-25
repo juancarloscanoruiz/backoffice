@@ -1,6 +1,7 @@
 a:hover {
     text-decoration: none !important;
 }
+
 .modal-edit-usersfront-content {
     width: 567px;
     margin: auto;
@@ -75,7 +76,7 @@ a:hover {
     border: solid 2px $lightpink;
 }
 
-.img-content{
+.img-content {
     width: 775px;
     height: 442px;
 }
@@ -87,14 +88,14 @@ a:hover {
     object-fit: cover;
     position: absolute;
     left: 0;
-} 
+}
 
 #img-header-claro img {
     top: 0;
     object-fit: cover;
     position: absolute;
     left: 0;
-} 
+}
 
 .btn-content button {
     color: $waterblue;
@@ -234,23 +235,24 @@ a:hover {
     display: block;
 }
 
-.btn-tomato, .btn-tomato:hover {
+.btn-tomato,
+.btn-tomato:hover {
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 16px 35px;
 }
 
-.btn-content button{
+.btn-content button {
     color: $teal;
     font-weight: bold;
-}	
+}
 
 /** ** URL ** **/
 
 .modal-url {
     width: 949px;
-    height: 446px; 
+    height: 446px;
     background: $white;
     margin: auto;
 }
@@ -266,14 +268,14 @@ a:hover {
 /** ** TITULO ** **/
 .modal-title {
     width: 952px;
-    height: 328px; 
+    height: 328px;
     background: $white;
     margin: 75px auto 0 auto;
     text-align: center;
     padding-top: 24px;
 }
 
-.modal-title p{
+.modal-title p {
     color: #4a4a4a;
     font-weight: 600;
     font-weight: bold;
@@ -314,7 +316,7 @@ a:hover {
 /** ** BANNER ** **/
 .modal-banner-claro {
     width: 1344px;
-    height: 708px; 
+    height: 708px;
     background: $white;
     margin: 75px auto 0 auto;
     padding-top: 19px;
@@ -366,7 +368,7 @@ a:hover {
     object-fit: cover;
     position: absolute;
     left: 0;
-} 
+}
 
 .day-style {
     display: flex;
@@ -376,4 +378,10 @@ a:hover {
     list-style: none;
     width: 62px;
     height: 76px;
+}
+
+.div-promo {
+    height: 50%;
+    align-items: center;
+    width: 90%;
 }

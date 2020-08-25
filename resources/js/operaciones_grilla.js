@@ -63,6 +63,28 @@ import {
 
 function eventsGrilla() {
 
+
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel2-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel1-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+
+
+
     $('.btn-prueba').click(function () {
         getHeaderLanding()
     })
@@ -88,6 +110,7 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
+
                     case "current-programming-concert":
                         let calendarSlider2 = $(".calendar-slider2");
                         $("body").append(loader);
@@ -126,6 +149,24 @@ function eventsGrilla() {
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-edit-program-carrusel').modal("show");
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
                             $("#loader1").remove();
                         }, 3000);
                         break;
@@ -134,6 +175,23 @@ function eventsGrilla() {
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-edit-program-carrusel2').modal("show");
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
                             $("#loader1").remove();
                         }, 3000);
                         break;
@@ -2988,7 +3046,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     let landingCanalClaro = {
         // remote: `${baseURL}concert-channel-edi.php`,
         // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php`,
+        remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);

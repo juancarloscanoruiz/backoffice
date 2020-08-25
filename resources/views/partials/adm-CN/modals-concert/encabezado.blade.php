@@ -2,9 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document"
         style="max-width:1000px; transform: translate(-50px);">
         <div class="modal-content align-item-center centro w-100">
-
             <div class="modal-body">
-
                 <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO
                     PNG</p>
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">ENCABEZADO </h2>
@@ -38,8 +36,10 @@
                             <input type="text" name="links" id="concert-link"
                                 class="text-uppercase modal-header-title-2 url-input container-promo text-normal a-text-bold-bright-cyan ml-3 concert-input mr-3">
                             <div>
-                                <button
-                                    class="a-btn-basic-medium modal-header-button-title a-btn-pink a-text-MBlack text-uppercase"></button>
+
+                                <input type="text"
+                                    class="modal-header-button-title a-btn-basic-medium a-btn-pink  pl-3 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn"
+                                    value="" placeholder="VER PROGRAMACIÓN">
                                 <div class="d-flex mt-5 position-absolute mr-4" style="right:0">
                                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
                                     <a href="#url-encabezado" role="button" data-toggle="modal">
@@ -66,57 +66,55 @@
             </div>
         </div>
     </div>
+</div>
+<!--Vinculo para url-->
+<div class=" modal url-encabezado" data-backdrop-limit="1" id="url-header-concert" tabindex="-1" role="dialog"
+    data-modal-parent="#url-encabezado">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content  ">
+            <div class="modal-body pl-5 ml-3 ">
 
-    <!--Vinculo para url-->
-    <div class=" modal url-encabezado" data-backdrop-limit="1" id="url-header-concert" tabindex="-1" role="dialog"
-        data-modal-parent="#url-encabezado">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body pl-5 ml-3 ">
-
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 d-flex centro">Vínculo a una página Web existente.
-                    </p>
-                    <div class="mt-5 d-flex ">
-                        <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                        <input type="text" name="links" id="link-logo-canal-claro"
-                            class="urls a-text-bold-warm text-normal url-container" placeholder=" Enlace o URL">
-
-                    </div>
-                </div>
-
-                <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
-                    <button
-                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                        id="" data-dismiss="modal">ACEPTAR</button>
-                    <a href="#delete-info-encabezado" role="button"
-                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
+                <p class="a-text-medium-warm-grey-three h3 mt-5 d-flex centro">Vínculo a una página Web existente.
+                </p>
+                <div class="mt-5 d-flex ">
+                    <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
+                    <input type="text" name="links" id="link-logo-canal-claro"
+                        class="urls a-text-bold-warm text-normal url-container" placeholder=" Enlace o URL">
 
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!--modal para perder lo hecho en los landing de edit-->
-    <div class=" modal  delete-info-encabezado" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1"
-        role="dialog" data-modal-parent="#modalbanner">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body ">
-                    <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
-                    <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
-                </div>
+            <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
+                <button
+                    class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
+                    id="" data-dismiss="modal">ACEPTAR</button>
+                <a href="#delete-info-encabezado" role="button"
+                    class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                    data-toggle="modal">CANCELAR</a>
 
-                <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                    <button type="button"
-                        class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                        data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                        id="close_modals">ACEPTAR</button>
-
-                    <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                        data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-                </div>
             </div>
         </div>
     </div>
+</div>
+
+<!--modal para perder lo hecho en los landing de edit-->
+<div class=" modal  delete-info-encabezado" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1"
+    role="dialog" data-modal-parent="#modalbanner">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content  ">
+            <div class="modal-body ">
+                <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
+                <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
+                <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
+            </div>
+
+            <div class="text-center mb-5 mt-4 pt-3 pb-4">
+                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals">ACEPTAR</button>
+
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
+                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>

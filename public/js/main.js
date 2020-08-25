@@ -88214,39 +88214,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       });
   });*/
 
-  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])(); //slider para carrusel concert-channel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
-    customPaging: function customPaging(slider, i) {
-      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-    }
-  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
-  }); //slider para carrusel concert-channel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
-    customPaging: function customPaging(slider, i) {
-      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-    }
-  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
-  }); //SLIDER DE CINEMA
+  Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])(); //SLIDER DE CINEMA
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-image-slider").slick({
     slidesToShow: 1,
@@ -88909,6 +88877,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.btn-prueba').click(function () {
     getHeaderLanding();
   });
@@ -88971,7 +88947,19 @@ function eventsGrilla() {
           case "pencil-carusel1":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("show"); //slider para carrusel concert-channel
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -88980,6 +88968,17 @@ function eventsGrilla() {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel2').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -90497,7 +90496,7 @@ function eventsGrilla() {
   var landingCanalClaro = {
     // remote: `${baseURL}concert-channel-edi.php`,
     // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
+    remote: "http://localhost/MaquetaCNetworks/claro-canal-edi.php",
     container: document.getElementById("navbar-prev-canal-claro"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -91070,7 +91069,6 @@ function updateLogosOfLanding(data) {
     },
     url: "landing/updateLandingLogo",
     success: function success(result) {
-      console.log(result);
       var json = JSON.parse(result);
 
       if (json.code == 200) {
@@ -91108,7 +91106,6 @@ function getChapterInfo(data) {
     },
     success: function success(result) {
       var data = JSON.parse(result);
-      console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
       var date = new Date();
@@ -91282,7 +91279,6 @@ function getChapterInfo(data) {
           keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         }
 
-        console.log(keyValue);
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
       var imageTriangle = "\n            <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n        ";
@@ -91321,8 +91317,6 @@ function getChapterInfo(data) {
             editProgramLandingGenres += "".concat(selected[_index], ",");
           }
         }
-
-        console.log("Géneros agregados: " + editProgramLandingGenres);
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre); //Evento para cuando cerramos el selectpicker
 
@@ -91523,8 +91517,6 @@ function newProgram(landing, schedule) {
     url: "landing/newProgram",
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      console.log('se creo el registro:');
-      console.log(result);
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -91625,8 +91617,7 @@ function getProgramming(date, section, time) {
           } else {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
             keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-          } //console.log(keyValue);
-
+          }
 
           Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
         }); //Genres
@@ -91663,7 +91654,6 @@ function getProgramming(date, section, time) {
           }
 
           var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
-          console.log(time + " " + schedule);
           newProgram(channel, schedule); // getProgramming(date, section, schedule)
         }); //Verificamos si el programa está en algunas de las secciones del landing
 
@@ -91786,7 +91776,6 @@ function getProgramming(date, section, time) {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
         }
       } else {
-        console.log('dia sin informacion ' + section + date + time);
         newProgramByDate(section, date, time); //getProgramming(date, section, time);
       }
     }
@@ -91808,8 +91797,6 @@ function newProgramByDate(section, date, time) {
     url: "landing/newProgramByDate",
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      console.log('se creo el registro:');
-      console.log(result);
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -91827,7 +91814,6 @@ function getContentConcertChannelHeader() {
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
-      console.log(data);
 
       if (data.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1').val(data.data.block_2_title_1);
@@ -91904,9 +91890,6 @@ function getContentConcertChannelBlock4OTwo() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        console.log(data);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_2_title);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_2_subtitle);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");

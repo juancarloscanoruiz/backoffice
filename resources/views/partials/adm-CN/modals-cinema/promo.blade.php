@@ -1,4 +1,6 @@
-<div class="modal modal-promos p-0 m-0" tabindex="-1" role="dialog" id="modalpromos">
+@extends('layaout.app')
+
+<div class="modal modal-promo-cinema p-0 m-0" tabindex="-1" role="dialog" id="modalpromos" >
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
     <div class="modal-content  align-item-center centro w-100"  >    
       <div class="modal-body ">
@@ -6,9 +8,9 @@
       <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO JPG O VIDEOS MP4</p>
          <h2 class="h2 text-center a-text-black-brown-two pt-3">PROMO </h2>
          <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-         <div class="container-promo p-3  mt-4">
+         <div class="container-promo-cinema p-3  mt-4">
                    
-         <div class="justify-content-around position-absolute d-flex p-5  "style="   height: 50%; align-items: center; width:90%;" > 
+         <div class="justify-content-around position-absolute d-flex p-5  div-promo"> 
             <input type="file" name="" id="image-promo"class="d-none">
             <label for="image-promo"  class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales"> 
                 <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo  cursor-pointer " style="width:95px" />
