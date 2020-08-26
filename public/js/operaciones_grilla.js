@@ -73170,8 +73170,6 @@ function eventsGrilla() {
     container: document.getElementById("navbar-prev-concert-channel"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
-      console.log(this.remote);
-      console.log('Hola', json);
 
       if (_typeof(json) == "object") {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
@@ -73268,7 +73266,6 @@ function eventsGrilla() {
   var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
 
   if (navbarPrevConcertChannel) {
-    console.log('Entro if Concer');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe').remove();
     new easyXDM.Socket(confLandingConcertChannel);
   } //loader, antes de subir un archivo
@@ -73288,7 +73285,7 @@ function eventsGrilla() {
     var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
     var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
     var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current").attr("schedule");
-    console.log(date, section, time);
+    ;
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramming"])(date, section, time);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
@@ -73318,7 +73315,6 @@ function eventsGrilla() {
         case "in_home_begin":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
             value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
-            console.log(value);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
@@ -73335,7 +73331,6 @@ function eventsGrilla() {
             var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
             value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
-            console.log(value);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
@@ -73353,14 +73348,12 @@ function eventsGrilla() {
             var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
             value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
-            console.log("in_landing_begin" + _date3);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
             var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
             value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
-            console.log(value);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -73372,15 +73365,12 @@ function eventsGrilla() {
             var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
             value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
-            console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
-            console.log("landing_expiration con tiempo: " + value);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
             var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
             value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
-            console.log("landing_expiration sin tiempo: " + value);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -73405,7 +73395,6 @@ function eventsGrilla() {
       case "in_home_begin":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
           value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
-          console.log(value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
           var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
@@ -73420,7 +73409,6 @@ function eventsGrilla() {
           var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
           value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
-          console.log(value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
           var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
@@ -73456,7 +73444,6 @@ function eventsGrilla() {
           var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
           value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " 00:00:00");
-          console.log("landing_expiration sin tiempo: " + value);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -73506,19 +73493,15 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modales").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
-    console.log("si lo agrega");
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      console.log("si lo borra");
     }, 3000);
   }); //loader, antes de subir un archivo
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modal-programming").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
-    console.log("si lo agrega");
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      console.log("si lo borra");
     }, 3000);
   }); //loader, antes de subir un archivo
 
@@ -73526,7 +73509,6 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
     setTimeout(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      console.log("si lo borra");
     }, 3000);
   }); //activacion de paginacion
 
@@ -73810,7 +73792,6 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
-    console.log("Imges");
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
     if (this.files && this.files[0]) {
@@ -73863,7 +73844,6 @@ function eventsGrilla() {
 
     var keyValue = genres; //Hacemos la petición
 
-    console.log(keyValue);
     Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["editAttributeProgram"])(chapterId, key, keyValue);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
@@ -74011,8 +73991,7 @@ function eventsGrilla() {
         var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
 
-        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing"); //console.log("El landing es: "+landing);
-
+        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
         var endDate = fullDate[1];
         Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["filterDates"])(startDate, endDate, landing);
         var endDateSplit = endDate.split("-");
@@ -74069,7 +74048,6 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-    console.log("cerrar_modals");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-user").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
@@ -74119,8 +74097,7 @@ function eventsGrilla() {
 
             var day = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0]);
             var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-
-            console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
+            //En caso de tener ambos valores, hacemos al petición
 
             if (day != "" && hours != "") {
               keyValue = "".concat(day, " ").concat(hours);
@@ -74141,8 +74118,6 @@ function eventsGrilla() {
 
               var _day = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0]); //En caso de tener ambos valores, hacemos la petición
 
-
-              console.log(_day, _hours);
 
               if (_date14 != "" && _hours != "") {
                 var _day2 = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0]);
@@ -74249,8 +74224,7 @@ function eventsGrilla() {
 
           var day = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0]);
           var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-
-          console.log(day, hours); //En caso de tener ambos valores, hacemos al petición
+          //En caso de tener ambos valores, hacemos al petición
 
           if (day != "" && hours != "") {
             keyValue = "".concat(day, " ").concat(hours);
@@ -74271,8 +74245,6 @@ function eventsGrilla() {
 
             var _day5 = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0]); //En caso de tener ambos valores, hacemos la petición
 
-
-            console.log(_day5, _hours4);
 
             if (_date18 != "" && _hours4 != "") {
               var _day6 = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0]);
@@ -74319,9 +74291,8 @@ function eventsGrilla() {
           var _day8 = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0]); //Obtenemos la hora
 
 
-          var _hours6 = parentHome.find(".home-expiration-hours").val();
+          var _hours6 = parentHome.find(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
-          console.log(_day8, _hours6); //Si ambos no están vacíos, hacemos la petición
 
           if (_date20 != "" && _hours6 != "") {
             _day8 = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0]);
@@ -74516,8 +74487,6 @@ function eventsGrilla() {
   }); //EDITAR CONCERT
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edi-concert").click(function () {
-    console.log("editar");
-
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n            container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
@@ -74526,8 +74495,6 @@ function eventsGrilla() {
   }); //PREV CONCERT
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".prev-concert").click(function () {
-    console.log("prev concert channel");
-
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="prev"]').is(":checked")) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-prev.php\",\n                container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
@@ -74767,8 +74734,6 @@ function eventsGrilla() {
   }); // Canal Claro
 
   var landingCanalClaro = {
-    // remote: `${baseURL}concert-channel-edi.php`,
-    // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
     remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
     container: document.getElementById("navbar-prev-canal-claro"),
     onMessage: function onMessage(message, origin) {
@@ -74993,27 +74958,37 @@ function filterDates(startDate, lastDate, landing) {
           if (program.in_landing == 0) {
             inLandingExpiration = "\n                        <div class=\"programar-content pointer-none\">\n                            <div class=\"programar-schedule d-flex justify-content-end\" key=\"in_landing_begin\">\n                                <div>\n                                    <label for=\"programar-landing\" class=\"a-text-bold-brownish text-normal\">Inicio: </label>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"editable-attribute landing-start-day schedule-date-input a-text-medium-brownish table-input\" placeholder=\"00-00-0000\">\n                                </div>\n                                <div>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"editable-attribute landing-start-hours time-seconds-input a-text-medium-brownish table-input\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                            <div class=\"programar-schedule d-flex justify-content-end\" key=\"in_landing_expiration\">\n                                <div>\n                                    <label for=\"programar-landing-end-date\" class=\"a-text-bold-brownish text-normal\">Fin: </label>\n                                    <input type=\"text\" id=\"programar-landing-end-date\" class=\"landing-expiration-day schedule-date-input a-text-medium-brownish table-input editable-attribute\" placeholder=\"00-00-0000\">\n                                </div>\n                                <div>\n                                    <input type=\"text\" id=\"programar-landing-end-hrs\" class=\"landing-expiration-hours time-seconds-input a-text-medium-brownish table-input editable-attribute\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        ";
           } else {
-            //Obtenemos la fecha y hora de inicio
-            var scheduleBegin = program.in_landing_begin.split(" "); //Obtenemos la fecha de inicio
+            var inputsBegin = "\n                        <div class=\"programar-schedule d-flex justify-content-end\" key=\"in_landing_begin\">\n                            <div>\n                                <label for=\"programar-landing\" class=\"a-text-bold-brownish text-normal\">Inicio: </label>\n                                <input type=\"text\" id=\"programar-landing\" class=\"landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00-00-0000\">\n                            </div>\n                            <div>\n                                <input type=\"text\" id=\"programar-landing\" class=\"landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00:00:00\">\n                            </div>\n                        </div>\n                        ";
+            var inputsExpiration = "\n                        <div class=\"d-flex justify-content-end programar-schedule\" key=\"in_landing_expiration\">\n                            <div>\n                                <label for=\"programar-landing-end-date\" class=\"a-text-bold-brownish text-normal\">Fin: </label>\n                                <input type=\"text\" id=\"programar-landing-end-date\" class=\"landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00-00-0000\">\n                            </div>\n                            <div>\n                                <input type=\"text\" id=\"programar-landing-end-hrs\" class=\"landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00:00:00\">\n                            </div>\n                        </div>\n                        "; //Obtenemos la fecha y hora de inicio
 
-            var dateBegin = scheduleBegin[0].split("-"); //Obtenemos el año, el mes y el día por separado
+            if (program.in_landing_begin) {
+              var scheduleBegin = program.in_landing_begin.split(" "); //Obtenemos la fecha de inicio
 
-            var dateBeginYear = dateBegin[0];
-            var dateBeginMonth = dateBegin[1];
-            var dateBeginDay = dateBegin[2]; //Obtenemos la hora de inicio
+              var dateBegin = scheduleBegin[0].split("-"); //Obtenemos el año, el mes y el día por separado
 
-            var timeBegin = scheduleBegin[1]; //Obtenemos la fecha y hora final
+              var dateBeginYear = dateBegin[0];
+              var dateBeginMonth = dateBegin[1];
+              var dateBeginDay = dateBegin[2]; //Obtenemos la hora de inicio
 
-            var scheduleExpiration = program.in_landing_expiration.split(" "); //Obtenemos la fecha final
+              var timeBegin = scheduleBegin[1];
+              inputsBegin = "\n                            <div class=\"programar-schedule d-flex justify-content-end\" key=\"in_landing_begin\">\n                                <div>\n                                    <label for=\"programar-landing\" class=\"a-text-bold-brownish text-normal\">Inicio: </label>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00-00-0000\">\n                                </div>\n                                <div>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                            ";
+            }
 
-            var dateExpiration = scheduleExpiration[0].split("-"); //Obtenemos el año, mes y día por separado
+            if (program.in_landing_expiration) {
+              //Obtenemos la fecha y hora final
+              var scheduleExpiration = program.in_landing_expiration.split(" "); //Obtenemos la fecha final
 
-            var dateExpirationYear = dateExpiration[0];
-            var dateExpirationMonth = dateExpiration[1];
-            var dateExpirationDay = dateExpiration[2]; //Verificamos si existe la hora, en todo caso que no, la variable es null
+              var dateExpiration = scheduleExpiration[0].split("-"); //Obtenemos el año, mes y día por separado
 
-            var timeExpiration = scheduleExpiration[1] ? scheduleExpiration[1] : "00:00:0000";
-            inLandingExpiration = "\n                        <div class=\"programar-content\">\n                            <div class=\"programar-schedule d-flex justify-content-end\" key=\"in_landing_begin\">\n                                <div>\n                                    <label for=\"programar-landing\" class=\"a-text-bold-brownish text-normal\">Inicio: </label>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"".concat(dateBeginDay, "-").concat(dateBeginMonth, "-").concat(dateBeginYear, "\" placeholder=\"00-00-0000\">\n                                </div>\n                                <div>\n                                    <input type=\"text\" id=\"programar-landing\" class=\"landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"").concat(timeBegin, "\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                            <div class=\"d-flex justify-content-end programar-schedule\" key=\"in_landing_expiration\">\n                                <div>\n                                    <label for=\"programar-landing-end-date\" class=\"a-text-bold-brownish text-normal\">Fin: </label>\n                                    <input type=\"text\" id=\"programar-landing-end-date\" class=\"landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"").concat(dateExpirationDay, "-").concat(dateExpirationMonth, "-").concat(dateExpirationYear, "\" placeholder=\"00-00-0000\">\n                                </div>\n                                <div>\n                                    <input type=\"text\" id=\"programar-landing-end-hrs\" class=\"landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"").concat(timeExpiration, "\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        ");
+              var dateExpirationYear = dateExpiration[0];
+              var dateExpirationMonth = dateExpiration[1];
+              var dateExpirationDay = dateExpiration[2]; //Verificamos si existe la hora, en todo caso que no, la variable es null
+
+              var timeExpiration = scheduleExpiration[1] ? scheduleExpiration[1] : "00:00:0000";
+              inputsExpiration = "\n                                <div class=\"d-flex justify-content-end programar-schedule\" key=\"in_landing_expiration\">\n                                    <div>\n                                        <label for=\"programar-landing-end-date\" class=\"a-text-bold-brownish text-normal\">Fin: </label>\n                                        <input type=\"text\" id=\"programar-landing-end-date\" class=\"landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input\" value=\"".concat(dateExpirationDay, "-").concat(dateExpirationMonth, "-").concat(dateExpirationYear, "\" placeholder=\"00-00-0000\">\n                                    </div>\n                                    <div>\n                                        <input type=\"text\" id=\"programar-landing-end-hrs\" class=\"landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input\" value=\"").concat(timeExpiration, "\" placeholder=\"00:00:00\">\n                                    </div>\n                                </div>\n                                ");
+            }
+
+            inLandingExpiration = "\n                        <div class=\"programar-content\">\n                            ".concat(inputsBegin, "\n                            ").concat(inputsExpiration, "\n                        </div>\n                        ");
           } //Verificamos si algún programa se encuentra en el home
 
 
@@ -76080,10 +76055,15 @@ function getContentConcertChannelHeader() {
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
+      console.log(data);
 
       if (data.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1').val(data.data.block_2_title_1);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-2').val(data.data.block_2_title_2);
+        //Título en header de concert channel color blanco
+        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1'); //Título en header de concert channel color azul
+
+        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-2');
+        headerTitle1.val(data.data.block_2_title_1);
+        headerTitle2.val(data.data.block_2_title_2);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
@@ -76096,7 +76076,11 @@ function getContentConcertChannelHeader() {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("show"); //Eliminamos
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove(); //Edición de datos
+
+        headerTitle1.blur(function () {
+          console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
+        });
       }
     }
   });

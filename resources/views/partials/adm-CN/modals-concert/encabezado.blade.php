@@ -12,9 +12,9 @@
                         <div class="d-flex p-4 position-relative logo-lading-container mb-3">
                             <div class="bor mx-auto position-relative thumbnail-image-program"
                                 id="thumbnail-home-horizontal">
-                                <input type="file" name="image-icon1" id="image-icon1"
+                                <input type="file" name="image-icon1" id="header-lading-concert-logo"
                                     class="input-image-program logo-landing d-none">
-                                <label for="image-icon1"
+                                <label for="header-lading-concert-logo"
                                     class="mb-0 cursor-pointer p-4 d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                     <div class="label-no-image">
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
@@ -55,14 +55,12 @@
                 <div class="text-center  mb-3 d-flex justify-content-center pb-2 mt-4">
                     <button
                         class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                        id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
+                        id="edit-logos-button">ACEPTAR</button>
                     <a href="#delete-info-encabezado" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
+                        data-dismiss="modal">CANCELAR</a>
 
                 </div>
-
-
             </div>
         </div>
     </div>

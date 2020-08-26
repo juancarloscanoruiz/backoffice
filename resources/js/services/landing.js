@@ -976,10 +976,14 @@ function getContentConcertChannelHeader() {
         url: "landing/concertChannel",
         success: function (result) {
             let data = JSON.parse(result);
-
+            console.log(data);
             if (data.code == 200) {
-                $('.modal-header-concert-channel .modal-header-title-1').val(data.data.block_2_title_1);
-                $('.modal-header-concert-channel .modal-header-title-2').val(data.data.block_2_title_2);
+                //Título en header de concert channel color blanco
+                let headerTitle1 = $('.modal-header-concert-channel .modal-header-title-1');
+                //Título en header de concert channel color azul
+                let headerTitle2 = $('.modal-header-concert-channel .modal-header-title-2');
+                headerTitle1.val(data.data.block_2_title_1);
+                headerTitle2.val(data.data.block_2_title_2);
                 $('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
                 $('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
                 $('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
@@ -991,6 +995,11 @@ function getContentConcertChannelHeader() {
                 $('.modal-header-concert-channel').modal("show");
                 //Eliminamos
                 $('.loader-view-container').remove();
+
+                //Edición de datos
+                headerTitle1.blur(function () {
+                    console.log($(this).val());
+                });
             }
 
         }
@@ -1071,6 +1080,9 @@ function getContentConcertChannelBlock4OTwo() {
         }
     })
 }
+
+
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
