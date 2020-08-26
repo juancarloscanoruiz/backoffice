@@ -1,6 +1,7 @@
+@extends('layaout.app')
 
 
-<div class="modal modal-encabezados p-0 m-0" tabindex="-1" role="dialog">
+<div class="modal modal-encabezado-cinema p-0 m-0" tabindex="-1" role="dialog" style=" display:contents;">
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width:1000px;     transform: translate(-50px);">
     <div class="modal-content align-item-center centro w-100" >
      
@@ -9,7 +10,7 @@
       <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO PNG</p>
          <h2 class="h2 text-center a-text-black-brown-two pt-3">ENCABEZADO </h2>
          <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-         <div class="container-promo mt-4">
+         <div class="container-promo-cinema mt-4">
              <div class="justify-content-around">
              <div class="d-flex p-4 position-relative logo-lading-container mb-3">
                                     <div class="bor mx-auto position-relative thumbnail-image-program"
@@ -30,10 +31,10 @@
                                     </div>
                  
                  <input type="text" name="links" id="hoy-channel"
-                                            class="url-input container-promo text-normal ml-3 a-text-bold-white hoy-en" placeholder=" HOY EN" >
+                                            class="url-input container-promotitle-cinema text-normal ml-3 a-text-bold-white hoy-en text-uppercase" placeholder=" HOY EN" >
 
                  <input type="text" name="links" id="concert-link"
-                                            class="url-input container-promo text-normal a-text-bold-bright-cyan ml-3 concert-input mr-3" placeholder=" CONCERT CHANNEL" >
+                                            class="url-input container-promotitle-cinema text-normal a-text-bold-bright-cyan ml-3 concert-input mr-3 text-uppercase" placeholder=" CLARO CINEMA" >
                                         <div>
                                         <input type="text"  class="a-btn-basic-medium a-btn-pink  pl-3 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn" value="" placeholder="VER PROGRAMACIÓN">
                                   

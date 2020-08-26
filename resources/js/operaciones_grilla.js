@@ -58,6 +58,28 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
+    
+   
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel2-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel1-slider").on("afterChange", function (
+        slick,
+        currentSlide
+    ) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+
+
 
     $('.btn-prueba').click(function () {
         console.log("nlksdnvlksndv");
@@ -141,17 +163,54 @@ function eventsGrilla() {
                    
                                         
                                         break;
-                                        case "pencil-carusel1":
+                                        case "pencil-carrusel1":
                                             $("body").append(loader);
                                             setTimeout(function () {
+                                                
+//slider para carrusel concert-channel
+$(".carrusel1-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: $(".carrusel1-slider-dots1"),
+    initialSlide: 0,
+    infinite: false,
+
+
+    customPaging: function (slider, i) {
+        var thumb = $(slider.$slides[i]).data();
+        return (
+            "<p class='a-text-bold-teal slider-pagination-item'>" +
+            (i + 1) +
+            "</p>"
+        );
+    }
+});
                                                 $('.modal-edit-program-carrusel').modal("show");
                                                 $("#loader1").remove();
                                             }, 3000);
                                         break;
 
-                                        case "pencil-carusel2":
+                                        case "pencil-carrusel2":
                                             $("body").append(loader);
                                             setTimeout(function () {
+                                                 //slider para carrusel concert-channel
+$(".carrusel2-slider").slick({
+    slidesToShow: 1,
+    dots: true,
+    appendDots: $(".carrusel2-slider-dots1"),
+    initialSlide: 0,
+    infinite: false,
+
+
+    customPaging: function (slider, i) {
+        var thumb = $(slider.$slides[i]).data();
+        return (
+            "<p class='a-text-bold-teal slider-pagination-item'>" +
+            (i + 1) +
+            "</p>"
+        );
+    }
+});
                                                 $('.modal-edit-program-carrusel2').modal("show");
                                                 $("#loader1").remove();
                                             }, 3000);

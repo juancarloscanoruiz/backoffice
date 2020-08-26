@@ -1,5 +1,5 @@
 
-<div class="modal pr-0 fade modal-edit-program-carrusel2 " id="modaledicarrusel" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; display:contents;">
+<div class="modal pr-0  modal-edit-program-carrusel2 " id="modaledicarrusel" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; ">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body ">

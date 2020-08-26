@@ -25,7 +25,7 @@
                             <button
                                 class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                                 id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
-                            <a href="#delete-info-titles" role="button"
+                            <a href="#delete-info-title" role="button"
                                 class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                                 data-toggle="modal">CANCELAR</a>
 
