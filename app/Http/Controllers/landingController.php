@@ -323,12 +323,51 @@ class landingController extends Controller
 
     public function editHeaderLanding(Request $request){
 
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editBlockProgramingLanding",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "landing" => $request->input('landing'),
+                    "icon_chanel" => "",
+                    "title_1" => $request->input('title1'),
+                    "title_2" => $request->input('title2'),
+                    "url_programation" => $request->input("link")
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
     }
 
     public function getContentConcertChannel(Request $request){
         $client = new Client();
         $response = $client->get(
             $this->url . "section/concert_channel"
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
+    public function editElementLanding(Request $request){
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $request->input('value'),
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
         );
 
         echo ($response->getBody()->getContents());

@@ -996,10 +996,6 @@ function getContentConcertChannelHeader() {
                 //Eliminamos
                 $('.loader-view-container').remove();
 
-                //Edición de datos
-                headerTitle1.blur(function () {
-                    console.log($(this).val());
-                });
             }
 
         }
@@ -1021,8 +1017,12 @@ function getContentConcertChannelBlockHeader3() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-                $('.modal-titles .section-landing-title').val(data.data.block_3_title);
-                $('.modal-titles .section-landing-subtitle').val(data.data.block_3_subtitle);
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_3_title");
+                landingSubtitle.attr("key", "block_3_subtitle");
+                landingTitle.val(data.data.block_3_title);
+                landingSubtitle.val(data.data.block_3_subtitle);
                 $('.modal-titles').modal("show");
 
                 $('.loader-view-container').remove();
@@ -1046,8 +1046,12 @@ function getContentConcertChannelBlock4One() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-                $('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_1_title);
-                $('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_1_subtitle);
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_4_carrusel_1_title");
+                landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
+                landingTitle.val(data.data.block_4_carrusel_1_title);
+                landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
                 $('.modal-titles').modal("show");
 
                 $('.loader-view-container').remove();
@@ -1071,9 +1075,12 @@ function getContentConcertChannelBlock4OTwo() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-
-                $('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_2_title);
-                $('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_2_subtitle);
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_4_carrusel_2_title");
+                landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
+                landingTitle.val(data.data.block_4_carrusel_2_title);
+                landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
                 $('.modal-titles').modal("show");
                 $('.loader-view-container').remove();
             }
@@ -1081,6 +1088,51 @@ function getContentConcertChannelBlock4OTwo() {
     })
 }
 
+function editHeaderLanding(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editHeaderLanding",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('.modal-header-concert-channel').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+function editElementLanding(data) {
+
+    $.ajax({
+        type: "POST",
+        data: data,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editElementLanding",
+        success: function (result) {
+            console.log(result);
+            $('.loader-view-container').remove();
+        }
+    })
+}
 
 
 export {
@@ -1092,5 +1144,7 @@ export {
     getContentConcertChannelHeader,
     getContentConcertChannelBlockHeader3,
     getContentConcertChannelBlock4One,
-    getContentConcertChannelBlock4OTwo
+    getContentConcertChannelBlock4OTwo,
+    editHeaderLanding,
+    editElementLanding
 };

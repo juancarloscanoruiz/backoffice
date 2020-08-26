@@ -73150,7 +73150,62 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-header-landing-concert').click(function () {
+    var landing = "Concert Channel";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1').val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-2').val() || "";
+    var logo = document.getElementById('header-lading-concert-logo').files[0] || "";
+    var link = "";
+    console.log(title1, title2, logo);
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLanding"])(data);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-titles-landing-concert').click(function () {
+    //Title
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
+    var landing = "Concert Channel";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLanding"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); //Subtitle
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLanding"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+  });
+  /*     $('.modal-titles-concert-channel .section-landing-title').blur(function () {
+          let value = $(this).val();
+          let key = $(this).attr("key");
+          let landing = "Concert Channel";
+          editElementLanding({
+              value: value,
+              key: key,
+              landing: landing
+          });
+      });
+       $('.modal-titles-concert-channel .section-landing-subtitle').blur(function () {
+          let value = $(this).val();
+          let key = $(this).attr("key");
+          let landing = "Concert Channel";
+          editElementLanding({
+              value: value,
+              key: value,
+              landing: landing
+          });
+      }); */
   //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
   }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
@@ -75203,7 +75258,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75217,6 +75272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlockHeader3", function() { return getContentConcertChannelBlockHeader3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4One", function() { return getContentConcertChannelBlock4One; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4OTwo", function() { return getContentConcertChannelBlock4OTwo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLanding", function() { return editHeaderLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -76076,11 +76133,7 @@ function getContentConcertChannelHeader() {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("show"); //Eliminamos
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove(); //Edición de datos
-
-        headerTitle1.blur(function () {
-          console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
-        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       }
     }
   });
@@ -76098,8 +76151,12 @@ function getContentConcertChannelBlockHeader3() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_3_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_3_subtitle);
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        landingTitle.attr("key", "block_3_title");
+        landingSubtitle.attr("key", "block_3_subtitle");
+        landingTitle.val(data.data.block_3_title);
+        landingSubtitle.val(data.data.block_3_subtitle);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       }
@@ -76119,8 +76176,12 @@ function getContentConcertChannelBlock4One() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_1_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_1_subtitle);
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        landingTitle.attr("key", "block_4_carrusel_1_title");
+        landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
+        landingTitle.val(data.data.block_4_carrusel_1_title);
+        landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       }
@@ -76140,11 +76201,54 @@ function getContentConcertChannelBlock4OTwo() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title').val(data.data.block_4_carrusel_2_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle').val(data.data.block_4_carrusel_2_subtitle);
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        landingTitle.attr("key", "block_4_carrusel_2_title");
+        landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
+        landingTitle.val(data.data.block_4_carrusel_2_title);
+        landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       }
+    }
+  });
+}
+
+function editHeaderLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editHeaderLanding",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  });
+}
+
+function editElementLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editElementLanding",
+    success: function success(result) {
+      console.log(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
 }

@@ -28,7 +28,9 @@ import {
     getContentConcertChannelHeader,
     getContentConcertChannelBlockHeader3,
     getContentConcertChannelBlock4One,
-    getContentConcertChannelBlock4OTwo
+    getContentConcertChannelBlock4OTwo,
+    editHeaderLanding,
+    editElementLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -63,6 +65,43 @@ import {
 
 function eventsGrilla() {
 
+    $('#edit-header-landing-concert').click(function () {
+        let landing = "Concert Channel";
+        let title1 = $('.modal-header-concert-channel .modal-header-title-1').val() || "";
+        let title2 = $('.modal-header-concert-channel .modal-header-title-2').val() || "";
+        let logo = document.getElementById('header-lading-concert-logo').files[0] || "";
+        let link = ""
+        console.log(title1, title2, logo);
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link)
+        editHeaderLanding(data);
+    });
+
+    $('#edit-titles-landing-concert').click(function () {
+
+        //Title
+        let value = $(".modal-concert-title").val();
+        let key = $(".modal-concert-title").attr("key");
+        let landing = "Concert Channel";
+        editElementLanding({
+            value: value,
+            key: key,
+            landing: landing
+        });
+
+        //Subtitle
+        let valueSub = $(".modal-concert-subtitle").val();
+        let keySub = $(".modal-concert-subtitle").attr("key");
+        editElementLanding({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+    })
 
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
@@ -2095,6 +2134,8 @@ function eventsGrilla() {
             singleMode: false
         });
     }
+
+
 
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"
