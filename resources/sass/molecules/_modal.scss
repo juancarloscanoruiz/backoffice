@@ -48,15 +48,13 @@ a:hover {
     height: 826px;
     background-color: $white;
     margin: 75px auto 0 auto;
-    padding-top: 24px;
+    padding: 24px 49px 28px 49px;
     text-align: center;
 }
 
 .modal-promo-claro p {
     color: $black;
-    margin-left: 49px;
-    font-weight: 600;
-    // font-family: $MontserratBold;
+    font-weight: bold;
     text-align: left;
 }
 
@@ -64,29 +62,64 @@ a:hover {
     color: $greyishBrownTwo;
     font-weight: 800;
     display: block;
-    margin: 9px 0 22px;
+    margin: 8px 0 22px;
     font-weight: bold;
-    // font-family: $MontserratBlack;
 }
 
-.hr-promo {
-    width: 89%;
-    height: 2px;
+.hr {
+    width: 100%;
     border: solid 2px $lightpink;
 }
 
-.img-content{
-    width: 775px;
-    height: 442px;
+.img-content-promo{
+    width: 824px;
+    height: 496px;
+    margin: auto;
 }
 
-#img-promo-claro img {
-    border: 28px solid $selecred;
-    border-radius: 10px;
-    top: 12px;
-    object-fit: cover;
+.img-promo-claro {
+    width: 824px;
+    height: 496px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+}
+
+#padre{
+    position:relative;
+    background-color: green;
+  }
+  
+  #uno {
     position: absolute;
+    background-color: red;
+    top: 0;
     left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 20px;
+  }
+
+.add-file {
+    // width: 32%;
+    width: 266px;
+    height: 174px;
+    z-index: 9999;
+}
+
+.add-file img {
+    width: 20%;
+}
+
+ .img-back-promo {
+     border: 28px solid $selecred;
+     border-radius: 10px;
+     width: 100%;
+     margin-top: 16px;
+     top: 12px;
+    object-fit: cover;
+     position: absolute;
+     left: 0;
 } 
 
 #img-header-claro img {

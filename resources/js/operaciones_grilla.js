@@ -3051,26 +3051,12 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     $('#btn-test').click(function () {
         console.log('funciona');
-        $("#modaledi-claro").modal("show");
+        // $("#modal-banner").modal("show");
+        $("#modal-promo").modal("show");
     })
-}
-
-export {
-    eventsGrilla
-};
-
-function eveClaroCanal() {
-    // Modal
-
-
-    $('#promo-claro').change(function () {
+    $('#modal-promo').change(function () {
         File(this)
     })
-
-    $('#header-claro').change(function () {
-        File(this)
-    })
-
     function File(objFileInput) {
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
@@ -3080,5 +3066,8 @@ function eveClaroCanal() {
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
-    // Modal
 }
+
+export {
+    eventsGrilla
+};
