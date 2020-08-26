@@ -3044,7 +3044,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     let landingCanalClaro = {
         // remote: `${baseURL}concert-channel-edi.php`,
         // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-        remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
+        remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -3086,23 +3086,10 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     $('#btn-test').click(function () {
         console.log('funciona');
-        $("#modaledi-claro").modal("show");
+        // $("#modal-banner").modal("show");
+        $("#modal-promo").modal("show");
     })
-}
-
-export {
-    eventsGrilla
-};
-
-function eveClaroCanal() {
-    // Modal
-
-
-    $('#promo-claro').change(function () {
-        File(this)
-    })
-
-    $('#header-claro').change(function () {
+    $('#modal-promo').change(function () {
         File(this)
     })
 
@@ -3115,5 +3102,8 @@ function eveClaroCanal() {
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
-    // Modal
 }
+
+export {
+    eventsGrilla
+};

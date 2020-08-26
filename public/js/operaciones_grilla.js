@@ -74769,7 +74769,7 @@ function eventsGrilla() {
   var landingCanalClaro = {
     // remote: `${baseURL}concert-channel-edi.php`,
     // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-    remote: "http://localhost/MaquetaCNetworks/claro-canal-edi.php",
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
     container: document.getElementById("navbar-prev-canal-claro"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -74813,19 +74813,11 @@ function eventsGrilla() {
 
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
-    console.log('funciona');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi-claro").modal("show");
+    console.log('funciona'); // $("#modal-banner").modal("show");
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
   });
-}
-
-
-
-function eveClaroCanal() {
-  // Modal
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro').change(function () {
-    File(this);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#header-claro').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').change(function () {
     File(this);
   });
 
@@ -74839,9 +74831,10 @@ function eveClaroCanal() {
 
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  } // Modal
-
+  }
 }
+
+
 
 /***/ }),
 

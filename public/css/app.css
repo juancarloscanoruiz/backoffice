@@ -6026,14 +6026,13 @@ a:hover {
   height: 826px;
   background-color: #ffffff;
   margin: 75px auto 0 auto;
-  padding-top: 24px;
+  padding: 24px 49px 28px 49px;
   text-align: center;
 }
 
 .modal-promo-claro p {
   color: #161515;
-  margin-left: 49px;
-  font-weight: 600;
+  font-weight: bold;
   text-align: left;
 }
 
@@ -6041,13 +6040,12 @@ a:hover {
   color: #4a4a4a;
   font-weight: 800;
   display: block;
-  margin: 9px 0 22px;
+  margin: 8px 0 22px;
   font-weight: bold;
 }
 
-.hr-promo {
-  width: 89%;
-  height: 2px;
+.hr {
+  width: 100%;
   border: solid 2px #d3d3d3;
 }
 
@@ -6056,9 +6054,50 @@ a:hover {
   height: 442px;
 }
 
-#img-promo-claro img {
+.img-content-promo {
+  width: 824px;
+  height: 496px;
+  margin: auto;
+}
+
+.img-promo-claro {
+  width: 824px;
+  height: 496px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+}
+
+#padre {
+  position: relative;
+  background-color: green;
+}
+
+#uno {
+  position: absolute;
+  background-color: red;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 20px;
+}
+
+.add-file {
+  width: 266px;
+  height: 174px;
+  z-index: 9999;
+}
+
+.add-file img {
+  width: 20%;
+}
+
+.img-back-promo {
   border: 28px solid #da291c;
   border-radius: 10px;
+  width: 100%;
+  margin-top: 16px;
   top: 12px;
   -o-object-fit: cover;
      object-fit: cover;
