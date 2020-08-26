@@ -145,7 +145,7 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                    case "pencil-carusel1":
+                    case "pencil-carrusel1":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-edit-program-carrusel').modal("show");
@@ -156,8 +156,6 @@ function eventsGrilla() {
                                 appendDots: $(".carrusel1-slider-dots1"),
                                 initialSlide: 0,
                                 infinite: false,
-
-
                                 customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
@@ -171,7 +169,7 @@ function eventsGrilla() {
                         }, 3000);
                         break;
 
-                    case "pencil-carusel2":
+                    case "pencil-carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-edit-program-carrusel2').modal("show");

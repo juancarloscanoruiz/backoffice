@@ -73217,7 +73217,7 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlock4OTwo"])();
             break;
 
-          case "pencil-carusel1":
+          case "pencil-carrusel1":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("show"); //slider para carrusel concert-channel
@@ -73237,7 +73237,7 @@ function eventsGrilla() {
             }, 3000);
             break;
 
-          case "pencil-carusel2":
+          case "pencil-carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel2').modal("show");
