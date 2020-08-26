@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\Zaid\\\\claro\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\Zaid\\\\claro\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73183,28 +73183,7 @@ function eventsGrilla() {
       key: keySub,
       landing: landing
     });
-  });
-  /*     $('.modal-titles-concert-channel .section-landing-title').blur(function () {
-          let value = $(this).val();
-          let key = $(this).attr("key");
-          let landing = "Concert Channel";
-          editElementLanding({
-              value: value,
-              key: key,
-              landing: landing
-          });
-      });
-       $('.modal-titles-concert-channel .section-landing-subtitle').blur(function () {
-          let value = $(this).val();
-          let key = $(this).attr("key");
-          let landing = "Concert Channel";
-          editElementLanding({
-              value: value,
-              key: value,
-              landing: landing
-          });
-      }); */
-  //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
@@ -73220,19 +73199,17 @@ function eventsGrilla() {
 
   var confLandingConcertChannel = {
     remote: "".concat(baseURL, "concert-channel-edi.php"),
-    // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-    // remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
     container: document.getElementById("navbar-prev-concert-channel"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var _loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "current-programming-concert":
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarSlider2);
@@ -73255,7 +73232,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-video":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -73271,7 +73248,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("show"); //slider para carrusel concert-channel
 
@@ -73291,7 +73268,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel2').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
@@ -73305,6 +73282,78 @@ function eventsGrilla() {
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "pencil-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "pencil-video":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promos').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "pencil-header1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "header2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "pencil-carrusel1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              //slider para carrusel concert-channel
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "pencil-carrusel2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              //slider para carrusel concert-channel
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel2').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -73665,7 +73714,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var _loader2 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -73673,7 +73722,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -73682,12 +73731,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            document.querySelector("body").insertAdjacentHTML("beforeend", _loader2);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -73724,7 +73773,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var _loader3 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -73732,7 +73781,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader3);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -73741,12 +73790,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            document.querySelector("body").insertAdjacentHTML("beforeend", _loader3);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader3);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -73782,7 +73831,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var _loader4 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -73790,7 +73839,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader4);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -73799,12 +73848,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            document.querySelector("body").insertAdjacentHTML("beforeend", _loader4);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader4);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -74442,7 +74491,7 @@ function eventsGrilla() {
       $("#edit").click(function () {
           if ($('input[id="edit"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
-               <script>
+                <script>
               new easyXDM.Socket({
                   remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
                   container: "navbar-prev-canal-claro",
@@ -74451,7 +74500,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                   }
+                    }
               });
               </script>`);
               $("#navbar-prev-home").html(` <script>
@@ -74480,7 +74529,7 @@ function eventsGrilla() {
               </script>`);
           }
       });
-       //PREV CLARO CANAL
+        //PREV CLARO CANAL
       $("#prev").click(function () {
           if ($('input[id="prev"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
@@ -74497,7 +74546,7 @@ function eventsGrilla() {
                   });
               </script>
               `);
-               $("#navbar-prev-programacion").html(` <script>
+                $("#navbar-prev-programacion").html(` <script>
               new easyXDM.Socket({
               remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
               container: "navbar-prev-programacion",
@@ -74568,7 +74617,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                   }
+                    }
               });
               </script>`);
               $("#navbar-prev-programacion").html(` <script>
@@ -74796,25 +74845,55 @@ function eventsGrilla() {
       console.log('buenas', json);
 
       if (_typeof(json) == "object") {
+        var _loader5 = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                    <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                    ";
+
         switch (json.type) {
           case "claro-header":
-            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             break;
 
           case "claro-programacion":
-            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-claro').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             break;
 
           case "claro-title":
-            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             break;
 
           case "claro-promo":
-            console.log('header funciona ok');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            break;
+
+          case "claro-carrusel1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-1').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            break;
+
+          case "claro-carrusel2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-2').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            break;
+
+          case "claro-carrusel-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            break;
+
+          case "claro-carrusel-title2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             break;
         }
       }
@@ -74832,21 +74911,92 @@ function eventsGrilla() {
   } // Canal Claro
 
 
+  var loader = "\n    <div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n    </div>\n        ";
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
-    console.log('funciona'); // $("#modal-banner").modal("show");
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-1").modal("show");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#banner-claro').change(function () {
     File(this);
   });
 
   function File(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+
+    if (objFileInput.files[0]) {
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      };
+
+      fileReader.readAsDataURL(objFileInput.files[0]);
+    }
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#header-claro').change(function () {
+    FileHeader(this);
+  });
+
+  function FileHeader(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+
     if (objFileInput.files[0]) {
       var fileReader = new FileReader();
 
       fileReader.onload = function (e) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      };
+
+      fileReader.readAsDataURL(objFileInput.files[0]);
+    }
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro').change(function () {
+    FilePromoImg(this);
+  });
+
+  function FilePromoImg(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+
+    if (objFileInput.files[0]) {
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
+      };
+
+      fileReader.readAsDataURL(objFileInput.files[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-video').change(function () {
+    FilePromoVideo(this);
+  });
+
+  function FilePromoVideo(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+
+    if (objFileInput.files[0]) {
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video controls class="img-back-promo" src="' + e.target.result + '" /></video>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       };
 
       fileReader.readAsDataURL(objFileInput.files[0]);
@@ -76517,8 +76667,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-         <div class="w3-card-4 bg-white d-flex">
-             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+          <div class="w3-card-4 bg-white d-flex">
+              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -76531,15 +76681,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                     </input>
-                     <p class="mt-4 ml-2">Rol de usuario</p>
+                      </input>
+                      <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-         </div>
+          </div>
         </div>
         </div>
         `);
@@ -76574,7 +76724,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-         showDescriptions();*/
+          showDescriptions();*/
       }
     }
   });
@@ -77337,7 +77487,7 @@ function createSlickSlider(container, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! C:\Zaid\claro\backoffice\resources\js\operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

@@ -1,67 +1,82 @@
 <body class="bg-dark">
     <button id="btn-test">Modal</button>
 
-    <!-- PROMO LANDING CANAL CLARO 1 -->
-    <div id="modal-promo" class="modal">
-        <div class="modal-promo-claro">
-            <p>CARGAR IMÁGENES EN FORMATO JPG O VIDEOS MP4</p>
-            <span class="h3">PROMO</span>
+    <!-- BANNER LANDING CANAL CLARO 4 -->
+    <div id="modal-banner" class="modal">
+        <div class="modal-banner-claro">
+            <p class="text-plus text-banner-p">CARGAR IMAGENES EN FORMATO JPG</p>
+            <span class="h3">BANNER - CANAL CLARO</span>
             <hr class="hr">
 
-            <div id="padre">
-                <img class="img-back-promo" src="images/modals/img-back-promo.png">
-            </div>
-
-            <div class="img-content-promo">
-                <div class="img-promo-claro">
-                    <input class="d-none" id="promo-claro" name="img-promo-claro" type="file">
-                    <label for="promo-claro" class="add-file">
-                        <img src="images/modals/camara.svg" alt="add-photo" />
-                        <span class="px-4 mt-4 text-plus">Añade tu archivo jpg 472px X 295px</span>
-                    </label>
-                    <label for="promo-claro" class="add-file">
-                        <img src="images/basic-icons/video.svg" alt="add-video" />
-                        <span class="px-4 mt-4 text-plus">Añade tu archivo mp4 1280px X 720px</span>
-                    </label>
-                    <label for="promo-claro" class="add-file">
-                        <img src="images/basic-icons/link.svg" alt="add-link" />
-                        <span class="mt-4 text-plus">Utiliza un enlace o URL</span>
-                    </label>
+            <div class="d-flex content-calendario">
+                <!--dots-->
+                <div class="programming-slider-dots">
+                    <ul class="slick-dots" role="tablist">
+                        <li class="slick-active" role="presentation">
+                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">1</p>
+                        </li>
+                        <li role="presentation">
+                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">2</p>
+                        </li>
+                        <li role="presentation">
+                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">3</p>
+                        </li>
+                        <li role="presentation">
+                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">4</p>
+                        </li>
+                        <!--add slide-->
+                        <img src="/images/add-icon.svg" class="add-programming-image cursor-pointer">
+                    </ul>
                 </div>
-                <div class="position-relative h-100">
 
-                </div>
-            </div>
+                <div class="d-flex align-items-center">
+                    <span class="h3 my-0 pr-4">VIGENCIA</span>
 
-            <!-- <div class="img-content-promo">
-            <div class="position-relative h-100">
-                    <label for="promo-claro">
-                        <div id="img-promo-claro">
-                            <img src="images/modals/img-back-promo.png">
+                    <input type="text" id="date-start-input">
+                    <label for="date-start-input" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center pl-3 pr-3" id="date-start-table">
+                        <img src="./images/calendario.svg" alt="">
+                        <div class="ml-3">
+                            <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
+                            <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
                         </div>
-                        <input required class="d-none" id="promo-claro" name="img-promo-claro" type="file">
                     </label>
-                </div>
-            </div> -->
 
-
-            <!-- <div class="img-content">
-                <div class="position-relative h-100">
-                    <label for="promo-claro">
-                        <div id="img-promo-claro">
-                            <img src="images/modals/img-back-promo.png">
+                    <label for="date-start-input" class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
+                        <img src="./images/calendario.svg" alt="">
+                        <div class="ml-3">
+                            <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
+                            <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
                         </div>
-                        <input required class="d-none" id="promo-claro" name="img-promo-claro" type="file">
                     </label>
                 </div>
             </div>
-            <div class="btn-content btn-content-promo">
-                <button class="a-btn-basic-small">ACEPTAR</button>
-                <button data-dismiss="modal" class="ml-5 a-btn-basic-small">CANCELAR</button>
-            </div> -->
+
+            <div class="img-content-banner mt-4">
+                <div class="position-relative h-100">
+                    <!-- BTN ARROWS -->
+                    <img src="images/synopsis/arrow.svg" class="arrow-modal-right">
+                    <img src="images/synopsis/arrow.svg" class="arrow-modal-left">
+                    <!-- LABEL IMAGEN -->
+                    <label for="banner-claro">
+                        <div id="img-banner-claro">
+                            <img src="images/modals/img-banner.png" style="width: 100%;">
+                            <img class="img-add-photo" src="images/modals/camara.svg" alt="add-photo" />
+                            <span class="text-add-photo">472px X 295px</span>
+                        </div>
+                        <input required class="d-none" id="banner-claro" name="img-banner-claro" type="file">
+                    </label>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="d-flex justify-content-center btn-modal-progra">
+                <button class="a-btn-basic-small btn-grilla a-text-MBlack mr-3">ACEPTAR</button>
+                <button data-dismiss="modal" class="ml-3  a-btn-basic-small btn-landing a-text-bold-teal">CANCELAR</button>
+            </div>
         </div>
     </div>
-    <!-- PROMO LANDING CANAL CLARO 1 -->
+    <!-- BANNER LANDING CANAL CLARO 4 -->
+
 
     <!-- ENCABEZADO LANDING CANAL CLARO 1 -->
 
@@ -69,7 +84,7 @@
         <div class="modal-header-claro">
             <p class="p-text-bold-black">CARGAR IMAGENES FORMATO PNG</p>
             <p class="p-title-black">ENCABEZADO</p>
-            <hr>
+            <hr class="hr">
             <div class="content">
                 <div class="img-content-header">
                     <div class="position-relative h-100">
@@ -83,28 +98,66 @@
                     </div>
                 </div>
                 <div class="txt-content">
-                    <p>HOY EN</p>
+                    <input class="inp-text-modal-1" type="text" placeholder="HOY EN">
                 </div>
                 <div class="txt-content">
-                    <span>CANAL CLARO</span>
+                    <input class="inp-text-modal-2" type="text" placeholder="CANAL CLARO">
                 </div>
                 <div class="programacion-content">
-                    <a class="btn-tomato" href="#">VER PROGRAMACIÓN</a>
+                    <input class="inp-text-modal-3" type="text" placeholder="VER PROGRAMACIÓN">
                 </div>
             </div>
             <div class="url-content">
-                <img src="images/basic-icons/link.svg">
+                <img id="url-encabezado" src="images/basic-icons/link.svg">
                 <input class="input-url" placeholder="Enlace o URL" type="text">
             </div>
             <div class="modal-footer">
                 <div class="btn-content m-auto">
-                    <button class="a-btn-basic-small" style="opacity: .5;">ACEPTAR</button>
+                    <button class="a-btn-basic-small">ACEPTAR</button>
                     <button data-dismiss="modal" class="ml-5 a-btn-basic-small">CANCELAR</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- ENCABEZADO LANDING CANAL CLARO 1 -->
+
+    <!-- PROMO LANDING CANAL CLARO 1 -->
+    <div id="modal-promo" class="modal">
+        <div class="modal-promo-claro">
+            <p>CARGAR IMÁGENES EN FORMATO JPG O VIDEOS MP4</p>
+            <span class="h3">PROMO</span>
+            <hr class="hr">
+
+            <div id="back-promo-claro">
+                <img class="img-back-promo" src="images/modals/img-back-promo.png">
+            </div>
+
+            <div class="img-content-promo">
+                <div class="img-promo-claro">
+                    <input class="d-none" id="promo-claro" name="img-promo-claro" type="file">
+                    <input class="d-none" id="promo-claro-video" name="img-promo-claro" type="file">
+                    <label for="promo-claro" class="add-file">
+                        <img class="cursor-pointer" src="images/modals/camara.svg" alt="add-photo" />
+                        <span class="px-3 mt-4 text-plus">Añade tu archivo jpg 472px X 295px</span>
+                    </label>
+                    <label for="promo-claro-video" class="add-file">
+                        <img class="cursor-pointer" src="images/basic-icons/video.svg" alt="add-video" />
+                        <span class="px-3 mt-4 text-plus">Añade tu archivo mp4 1280px X 720px</span>
+                    </label>
+                    <div class="add-file">
+                        <img id="url-promo" class="cursor-pointer" src="images/basic-icons/link.svg" alt="add-link" />
+                        <span class="mt-3 mt-4 text-plus">Utiliza un enlace o URL</span>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br>
+            <div class="btn-content d-flex justify-content-center">
+                <button class="a-btn-basic-small">ACEPTAR</button>
+                <button data-dismiss="modal" class="ml-5 a-btn-basic-small">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+    <!-- PROMO LANDING CANAL CLARO 1 -->
 
     <!-- ENCABEZADO LANDING CANAL CLARO 5 -->
     <div id="modal-url" class="modal">
@@ -146,84 +199,8 @@
     </div>
     <!-- TEXTO-PROMO LANDING CANAL CLARO 1 -->
 
-    <!-- BANNER LANDING CANAL CLARO 4 -->
-    <div id="modal-banner" class="modal">
-        <div class="modal-banner-claro">
-            <p class="text-plus modal-banner-p">CARGAR IMAGENES EN FORMATO JPG</p>
-            <span class="h3">BANNER - CANAL CLARO</span>
-            <hr class="hr-banner">
-
-            <div class="d-flex content-calendario">
-                <!--dots-->
-                <div class="programming-slider-dots">
-                    <ul class="slick-dots" role="tablist">
-                        <li class="slick-active" role="presentation">
-                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">1</p>
-                        </li>
-                        <li role="presentation">
-                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">2</p>
-                        </li>
-                        <li role="presentation">
-                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">3</p>
-                        </li>
-                        <li role="presentation">
-                            <p class="mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3">4</p>
-                        </li>
-                        <!--add slide-->
-                        <img src="/images/add-icon.svg" class="add-programming-image cursor-pointer">
-                    </ul>
-                </div>
-
-                <div class="d-flex align-items-center">
-                    <span class="h3 my-0">VIGENCIA</span>
-
-                    <input type="text" id="date-start-input">
-                    <label for="date-start-input"
-                        class="ml-4 mb-0 date-button date-start-table d-flex align-items-center pl-3 pr-3"
-                        id="date-start-table">
-                        <img src="./images/calendario.svg" alt="">
-                        <div class="ml-3">
-                            <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
-                            <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
-                        </div>
-                    </label>
-
-                    <label for="date-start-input"
-                        class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
-                        <img src="./images/calendario.svg" alt="">
-                        <div class="ml-3">
-                            <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
-                            <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="img-content-banner mt-2">
-                <div class="position-relative h-100">
-                    <label for="banner-claro">
-                        <div id="img-banner-claro">
-                            <img src="images/modals/CANAL-CLARO-03-A.jpg">
-                        </div>
-                        <input required class="d-none" id="banner-claro" name="img-banner-claro" type="file">
-                    </label>
-                </div>
-            </div>
-
-            <div class="modal-footer mt-5">
-                <div class="m-auto btn-content">
-                    <button class="a-btn-basic-small">ACEPTAR</button>
-                    <button data-dismiss="modal" class="ml-5 a-btn-basic-small">CANCELAR</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- BANNER LANDING CANAL CLARO 4 -->
-
-    <!-- 7777777 -->
-    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <!-- SLAIDER -->
+    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body">
@@ -443,9 +420,15 @@
             </div>
         </div>
     </div>
-    <!-- 7777777 -->
+    <!-- SLAIDER -->
 
 
+
+
+
+
+
+    
 
     <!-- **************************************************************************************************** -->
     <div class="modal show modal-delete-user" id="savesino" role="dialog">

@@ -244,5 +244,7 @@
     </main>
 
     @include('partials.adm-CN.modals-claro.index')
+    @include('partials.adm-CN.modals-claro.carrusel')
+    @include('partials.adm-CN.modals-claro.carrusel2')
 
 </body>
