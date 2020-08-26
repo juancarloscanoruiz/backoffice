@@ -58,8 +58,8 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
-    
-   
+
+
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
     $(".carrusel2-slider").on("afterChange", function (
@@ -88,8 +88,6 @@ function eventsGrilla() {
 
     let confLandingConcertChannel = {
         remote: `${baseURL}concert-channel-edi.php`,
-        // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-        // remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
         container: document.getElementById(
             "navbar-prev-concert-channel"
         ),
@@ -119,102 +117,102 @@ function eventsGrilla() {
 
                         }
                         break;
-                        case "header-landing-concert": 
+                    case "header-landing-concert":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-encabezados').modal("show");
                             $("#loader1").remove();
                         }, 3000);
-          
+
                         break;
-                        case "pencil-header":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-titles').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                   
-                           
-                            break;
-                            case "pencil-video":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-promos').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                            
-                                break;
-                                case "pencil-header1":
-                                      $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                                    
-                                    break;
-                                    case "header2":
-                                        $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                   
-                                        
-                                        break;
-                                        case "pencil-carrusel1":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                
-//slider para carrusel concert-channel
-$(".carrusel1-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: $(".carrusel1-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
+                    case "pencil-header":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
 
 
-    customPaging: function (slider, i) {
-        var thumb = $(slider.$slides[i]).data();
-        return (
-            "<p class='a-text-bold-teal slider-pagination-item'>" +
-            (i + 1) +
-            "</p>"
-        );
-    }
-});
-                                                $('.modal-edit-program-carrusel').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
+                        break;
+                    case "pencil-video":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promos').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
 
-                                        case "pencil-carrusel2":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                 //slider para carrusel concert-channel
-$(".carrusel2-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: $(".carrusel2-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
+                        break;
+                    case "pencil-header1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
 
 
-    customPaging: function (slider, i) {
-        var thumb = $(slider.$slides[i]).data();
-        return (
-            "<p class='a-text-bold-teal slider-pagination-item'>" +
-            (i + 1) +
-            "</p>"
-        );
-    }
-});
-                                                $('.modal-edit-program-carrusel2').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
+                        break;
+                    case "header2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $('.modal-edit-program-carrusel').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            //slider para carrusel concert-channel
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $('.modal-edit-program-carrusel2').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
                     default:
                         break;
                 }
@@ -669,7 +667,7 @@ $(".carrusel2-slider").slick({
         updateImagesOfProgrammingSlider(data);
     });
 
-    
+
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -696,11 +694,11 @@ $(".carrusel2-slider").slick({
     });
 
 
-//para agregar un slider más en carrusel2-concert
-$(".add-programming-image").click(function(){
-    let sliderIndex = $(".load-programming-carousel").length + 1;
-    $(".carrusel2-slider").slick(
-        "slickAdd",  `
+    //para agregar un slider más en carrusel2-concert
+    $(".add-programming-image").click(function () {
+        let sliderIndex = $(".load-programming-carousel").length + 1;
+        $(".carrusel2-slider").slick(
+            "slickAdd", `
         <!--otro slider-->
 <div>
 
@@ -1136,8 +1134,8 @@ $(".add-programming-image").click(function(){
 
        <!--fin del otro slider-->          
 `
-    );
-});
+        );
+    });
     //para agregar un slider más en carrusel1-concert
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -3074,22 +3072,52 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             let json = JSON.parse(message);
             console.log('buenas', json);
             if (typeof json == "object") {
+                let loader = `
+                <div class="loader-view-container" id="loader1">
+                    <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                    `;
                 switch (json.type) {
+
                     case "claro-header":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-header').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-programacion":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-edi-claro').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-title":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-promo":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-promo').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel1":
+                        $("body").append(loader);
+                        $('#modal-edi-carrusel-1').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel2":
+                        $("body").append(loader);
+                        $('#modal-edi-carrusel-2').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title":
+                        $("body").append(loader);
+                        $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title2":
+                        $("body").append(loader);
+                        $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                 }
             }
@@ -3108,19 +3136,79 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     // Canal Claro
 
+    let loader = `
+    <div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+    </div>
+        `;
+
     $('#btn-test').click(function () {
-        console.log('funciona');
-        // $("#modal-banner").modal("show");
-        $("#modal-promo").modal("show");
+        $("body").append(loader);
+        $("#modal-edi-carrusel-1").modal("show");
+        $('.loader-view-container').remove();
     })
-    $('#modal-promo').change(function () {
+    $('#url-encabezado').click(function () {
+        $("body").append(loader);
+        $("#modal-url").modal("show");
+        $('.loader-view-container').remove();
+    })
+    $('#url-promo').click(function () {
+        $("body").append(loader);
+        $("#modal-url").modal("show");
+        $('.loader-view-container').remove();
+    })
+    $('#banner-claro').change(function () {
         File(this)
     })
     function File(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    $('#header-claro').change(function () {
+        FileHeader(this)
+    })
+    function FileHeader(objFileInput) {
+        $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
                 $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    $('#promo-claro').change(function () {
+        FilePromoImg(this)
+    })
+    function FilePromoImg(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+            $('.loader-view-container').remove();
+        }
+    }
+    $('#promo-claro-video').change(function () {
+        FilePromoVideo(this)
+    })
+    function FilePromoVideo(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#back-promo-claro").html('<video controls class="img-back-promo" src="' + e.target.result + '" /></video>');
+                $('.loader-view-container').remove();
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }

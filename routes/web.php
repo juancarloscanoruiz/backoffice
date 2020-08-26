@@ -116,5 +116,6 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
 // MODALES
 Route::get('/test', function () {
     return view('partials.adm-CN.modals-claro.index');
+    // return view('partials.adm-CN.modals-claro.carrusel');
     // return view('modal.index');
 });

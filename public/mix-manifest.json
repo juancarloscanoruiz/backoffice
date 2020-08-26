@@ -1,6 +1,6 @@
 {
-    "/js/admin.js": "/js/admin.js?id=37c1e674668ea4aa8677",
-    "/js/main.js": "/js/main.js?id=89fe26a3ae5c4bfbb497",
-    "/css/app.css": "/css/app.css?id=bec9e2c1c00d61f25e98",
-    "/js/operaciones_grilla.js": "/js/operaciones_grilla.js?id=fe7515e39b34bde4e12f"
+    "/js/admin.js": "/js/admin.js",
+    "/js/main.js": "/js/main.js",
+    "/css/app.css": "/css/app.css",
+    "/js/operaciones_grilla.js": "/js/operaciones_grilla.js"
 }
