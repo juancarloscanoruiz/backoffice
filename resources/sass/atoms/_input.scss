@@ -710,10 +710,30 @@ div .bootstrap-select>.dropdown-toggle:focus {
     color:$bright-cyan;
 }
 .hoy-en::placeholder{
-    font-family: $MontserratBold;
+    font-family: $MontserratBlack;
     color: $white;
 }
 .concert-input-title::placeholder{
     font-family: $MontserratBlack;
     color:$bright-cyan;
+}
+
+.hoy-en-cinema::placeholder{
+    font-family: $MontserratBlack;
+    color: black;
+}
+.cinema-input-title::placeholder{
+    font-family: $MontserratBlack;
+    color:$selecred;
+}
+.cinema-title-input::placeholder{
+    font-family:$MontserratBlack;
+    color: $off-yellow-two;
+}
+.cinema-title-carrusel1-input::placeholder{
+    font-family:$MontserratBlack;
+    color: $turquoise-blue;
+}
+.input-title-cinema{
+    background-color:$black-two;
 }

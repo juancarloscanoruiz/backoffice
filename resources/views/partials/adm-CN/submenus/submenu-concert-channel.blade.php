@@ -38,7 +38,7 @@
                             <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro"
                         navbar-index=" 3" rel="navbar-prev-concert-channel">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="py-2 px-3 mb-0 a-text-bold-two">CONCERT CHANNEL</p>

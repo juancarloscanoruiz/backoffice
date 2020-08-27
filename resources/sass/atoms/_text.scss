@@ -32,6 +32,19 @@
     font-family: $MontserratBlack;
     color: white;
 }
+.a-text-black-Black {
+    font-family: $MontserratBlack;
+    color: black;
+}
+.a-text-black-yellow-two{
+    font-family:$MontserratBlack;
+  color: $off-yellow-two;
+
+}
+.a-text-black-turquiose{
+    font-family: $MontserratBlack;
+    color:$turquoise-blue;
+}
 
 .a-text-bold-light {
     font-family: $MontserratBold;
@@ -60,6 +73,10 @@
 
 .a-text-bold-tomato {
     font-family: $MontserratBold;
+    color: $selecred;
+}
+.a-text-black-tomato {
+    font-family: $MontserratBlack;
     color: $selecred;
 }
 

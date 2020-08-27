@@ -1,21 +1,7 @@
 <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
 
 
-<script>
-    new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php",
-        container: "navbar-prev-claro-cinema",
-        onMessage: function(message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
 
-        }
-    });
-
-</script>
 <script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
@@ -54,10 +40,10 @@
                             <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
-                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro pointer-none"
+                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro "
                         navbar-index="3" rel="navbar-prev-claro-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="py-2 px-3 mb-0 a-text-bold-light">CLARO CINEMA</p>
+                            <p class="py-2 px-3 mb-0 a-text-bold-two">CLARO CINEMA</p>
 
                         </div>
                     </div>
@@ -487,5 +473,10 @@
 
   </div>
 
+@include('partials.adm-CN.modals-cinema.titulo-cinema')
+@include('partials.adm-CN.modals-cinema.promo-cinema')
+@include('partials.adm-CN.modals-cinema.encabezado-cinema')
+@include('partials.adm-CN.modals-cinema.titulo-carrusel1')
+@include('partials.adm-CN.modals-cinema.carrusel1-cinema')
 
     </body>
