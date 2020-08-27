@@ -113,6 +113,145 @@ function eventsGrilla() {
     });
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+          //Landing de concert channel
+     let confLandingClaroCinema = {
+        remote: `${baseURL}claro-cinema-edi.php`,
+        container: document.getElementById(
+            "navbar-prev-claro-cinema"
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+
+                    case "current-programming-concert":
+                        let calendarSlider2 = $(".calendar-slider2");
+                        $("body").append(loader);
+                        $('.modal-programming-landing').modal("show");
+                        $('.loader-view-container').remove();
+                        createCalendarDays(calendarSlider2);
+                        try {
+                            calendarSlider2.slick("unslick");
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        } catch (error) {
+                            createSlickSlider(calendarSlider2, calendarSlick);
+
+                        }
+                        break;
+                    case "header-landing-cinema":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-encabezado-cinema').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "title-cinema":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-title-cinema').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        
+                        break;
+                    case "promo-cinema":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promo-cinema').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "title-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-title-carrusel1').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    
+                    case "carrusel1":
+                      
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.carrusel1-cinema').modal("show");
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "title-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-title-carrusel1').modal("show");
+                           
+                          
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.carrusel1-cinema').modal("show");
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                  
+                    
+                    
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let navbarPrevClaroCinema = document.getElementById("navbar-prev-claro-cinema");
+    if (navbarPrevClaroCinema) {
+
+        $('#navbar-prev-claro-cinema iframe').remove();
+        new easyXDM.Socket(confLandingClaroCinema);
+    }
 
     let confLandingConcertChannel = {
         remote: `${baseURL}concert-channel-edi.php`,
