@@ -322,18 +322,20 @@ class landingController extends Controller
     }
 
     public function editHeaderLanding(Request $request){
-
-
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
+        $logo = "";
+        if($request->file('logo')){
+            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/concert-channel/logos");
+        }
         $response = $client->post(
             $this->url . "section/editBlockProgramingLanding",
             ['body' => json_encode(
                 [
                     "usuario_id" => session('id_user'),
                     "landing" => $request->input('landing'),
-                    "icon_chanel" => "",
+                    "icon_chanel" => $logo,
                     "title_1" => $request->input('title1'),
                     "title_2" => $request->input('title2'),
                     "url_programation" => $request->input("link")
@@ -354,22 +356,33 @@ class landingController extends Controller
     }
 
     public function editElementLanding(Request $request){
-
+        $value = $request->input('value');
+        if($request->file('video-promo')){
+            $value = $this->storeImages("PromoLanding", $request->file('video-promo'), "public/concert-channel/promo");
+        }
         $client = new Client([
-            'headers' => ['Content-Type' => 'application/json']
-        ]);
-        $response = $client->post(
-            $this->url . "section/editElement",
-            ['body' => json_encode(
-                [
-                    "usuario_id" => session('id_user'),
-                    "value" => $request->input('value'),
-                    "key" => $request->input('key'),
-                    "landing" => $request->input('landing'),
-                ]
-            )]
-        );
+                'headers' => ['Content-Type' => 'application/json']
+            ]);
+            $response = $client->post(
+                $this->url . "section/editElement",
+                ['body' => json_encode(
+                    [
+                        "usuario_id" => session('id_user'),
+                        "value" => $value,
+                        "key" => $request->input('key'),
+                        "landing" => $request->input('landing'),
+                    ]
+                )]
+            );
 
-        echo ($response->getBody()->getContents());
-    }
+            echo ($response->getBody()->getContents());
+        }
+
+        public function getProgrammingLanding(){
+            $client = new Client();
+            $response = $client->get(
+                $this->url . "sprogram/actual_programing_programation/gmt&" . date('Y-m-d')
+            );
+            echo ($response->getBody()->getContents());
+        }
 }

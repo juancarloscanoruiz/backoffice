@@ -85,6 +85,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/concertChannel", "landingController@getContentConcertChannel");
     Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
     Route::post("/editElementLanding", "landingController@editElementLanding");
+    Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
 
 });
 

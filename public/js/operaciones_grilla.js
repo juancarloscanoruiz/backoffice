@@ -73150,7 +73150,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //Subir video en modal de promo en concert channel
+  //Previsualizar el video que subió el usuario en el landing de concert channel
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file').change(function () {
     if (this.files && this.files[0]) {
       var file = this.files[0];
@@ -73279,7 +73279,7 @@ function eventsGrilla() {
           case "pencil-video":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -73349,6 +73349,17 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').click(function () {
+    var video = document.getElementById("video-promo-file").files[0];
+    var landing = "Concert Channel";
+    var data = new FormData();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    data.append("video-promo", video);
+    data.append("landing", landing);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLanding"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
     var landing = "Concert Channel";
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
@@ -75426,7 +75437,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75443,10 +75454,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLanding", function() { return editHeaderLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLanding", function() { return editPromoLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 //JQUERY
+
 
 
 
@@ -76395,10 +76409,10 @@ function getConcertChannelPromo() {
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos").modal("show"); //Checamos si existe el vídeo de promoción en concert channel
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
         if (json.data.block_3_video_url) {
-          console.log("El reus");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-concert').html("<source src=\"".concat(json.data.block_3_video_url, "\" type=\"video/mp4\">")).css("display", "block");
         }
       }
@@ -76420,6 +76434,7 @@ function editHeaderLanding(data) {
     },
     url: "landing/editHeaderLanding",
     success: function success(result) {
+      console.log("video", result);
       var json = JSON.parse(result);
       console.log(json);
 
@@ -76442,6 +76457,29 @@ function editElementLanding(data) {
     url: "landing/editElementLanding",
     success: function success(result) {
       console.log(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  });
+}
+
+function editPromoLanding(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editElementLanding",
+    success: function success(result) {
+      console.log(result);
+      var json = JSON.parse(result);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
+      }
+
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
