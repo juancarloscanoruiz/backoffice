@@ -1,7 +1,6 @@
+
 @extends('layaout.app')
-
-
-<div class="modal modal-encabezado-cinema p-0 m-0" tabindex="-1" role="dialog" style=" display:contents;">
+<div class="modal modal-encabezado-cinema p-0 m-0" tabindex="-1" role="dialog" >
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width:1000px;     transform: translate(-50px);">
     <div class="modal-content align-item-center centro w-100" >
      
@@ -31,12 +30,12 @@
                                     </div>
                  
                  <input type="text" name="links" id="hoy-channel"
-                                            class="url-input container-promotitle-cinema text-normal ml-3 a-text-bold-white hoy-en text-uppercase" placeholder=" HOY EN" >
+                                            class="url-input container-promotitle-cinema text-normal ml-3 a-text-black-black hoy-en-cinema text-uppercase" placeholder=" HOY EN" >
 
                  <input type="text" name="links" id="concert-link"
-                                            class="url-input container-promotitle-cinema text-normal a-text-bold-bright-cyan ml-3 concert-input mr-3 text-uppercase" placeholder=" CLARO CINEMA" >
+                                            class="url-input container-promotitle-cinema text-normal a-text-black-tomato ml-3 cinema-input-title mr-3 text-uppercase" placeholder=" CLARO CINEMA" >
                                         <div>
-                                        <input type="text"  class="a-btn-basic-medium a-btn-pink  pl-3 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn" value="" placeholder="VER PROGRAMACIÓN">
+                                        <input type="text"  class="a-btn-basic-medium a-btn-teal  pl-3 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn text-uppercase" value="" placeholder="VER PROGRAMACIÓN">
                                   
                                             <div class="d-flex mt-5 position-absolute mr-4"style="right:0">
                                             <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link"
