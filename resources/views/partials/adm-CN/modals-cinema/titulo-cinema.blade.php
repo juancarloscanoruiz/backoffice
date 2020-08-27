@@ -1,8 +1,8 @@
 
-@extends('layaout.app')
-<div class="modal modal-title-cinema p-0 m-0" tabindex="-1" role="dialog" id="modaltitles" >
+
+<div class="modal modal-title-cinema p-0 m-0" tabindex="-1" role="dialog" id="modaltitles"  >
   <div class="modal-dialog modal-lg modal-dialog-centered " role="document" >
-    <div class="modal-content align-item-center centro w-100" >
+    <div class="modal-content align-item-center border-radius centro w-100" >
      
       <div class="modal-body">
 
@@ -11,15 +11,15 @@
          <div class="container-title-cinema mt-4 m-5">
              <div class="d-flex justify-content-around">
              <input type="text" name="links" id="hoy-channel"
-                                            class="url-input p-4 pt-5 pb-5 h3 m-2  input-title-cinema  a-text-MBlack hoy-en text-uppercase" placeholder=" LAS" style="width:317px;" >
+                                            class="url-input p-4 pt-4 pb-4 h3 m-2  input-border input-title-cinema  a-text-MBlack hoy-en text-uppercase" placeholder=" LAS" style="width:317px;" >
                                             <input type="text" name="links" id="LAS"
-                                            class="url-input p-4 pt-5 pb-5 h3 m-2  input-title-cinema a-text-black-yellow-two cinema-title-input text-uppercase" placeholder=" TÍTULO" style="width:317px;">
+                                            class="url-input p-4 pt-4 pb-4 h3 m-2 input-border  input-title-cinema a-text-black-yellow-two cinema-title-input text-uppercase" placeholder=" TÍTULO" style="width:317px;">
             
              </div>
              <div>
 
              <input type="text" name="links" id="hoy-channel"
-                                            class="url-input p-3 container-width m-2 input-title-cinema text-normal a-text-MBlack  pl-4 hoy-en text-uppercase" placeholder=" SUBTITULO" >
+                                            class="url-input p-3 container-width m-2  input-border input-title-cinema text-normal a-text-MBlack  pl-4 hoy-en text-uppercase" placeholder=" SUBTITULO" >
             </div>
 
          </div>
