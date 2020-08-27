@@ -1,6 +1,6 @@
-<!-- <script>
+{{-- <script>
     new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
         container: "navbar-prev-canal-claro",
         onMessage: function(message, origin) {
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -9,8 +9,8 @@
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     });
-</script> -->
-<!-- <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script> -->
+
+</script> --}}
 
 <script>
     new easyXDM.Socket({
@@ -25,6 +25,7 @@
 
         }
     });
+
 </script>
 
 
@@ -34,27 +35,29 @@
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-programacion   navbar-progra-active navbar-prev-programacion" navbar-index="1" rel="navbar-prev-programacion">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-programacion   navbar-progra-active navbar-prev-programacion"
+                        navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
                     </div>
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2" rel="navbar-prev-sinopsis">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none"
+                        navbar-index="2" rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
 
-                    <!--inicio de claro canal-->
-
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro" navbar-index="3" rel="navbar-prev-canal-claro">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro" navbar-index="3"
+                        rel="navbar-prev-canal-claro">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="py-2 px-3 mb-0 a-text-bold-two">CANAL CLARO</p>
                         </div>
                     </div>
                     <!--fin de claro canal-->
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4" rel="navbar-prev-home">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
+                        rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class=" a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
@@ -106,13 +109,15 @@
             </div>
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right mb-5">
-                <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px" /></div>
+                <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img
+                        src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px" /></div>
             </div>
             <div class="clearfix"></div>
             <!--colocacion de ifram de programacion-->
             <div class="centro ">
                 <div class="load-view pointer-none" id="loader-view"> </div>
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion " onload='preloader()' id="navbar-prev-programacion" style="display:none;">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion " onload='preloader()'
+                    id="navbar-prev-programacion" style="display:none;">
                 </div>
             </div>
 
@@ -144,7 +149,8 @@
                             <span class="a-text-medium-black text-normal ">Canal Claro</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi" onClick="watchsinopsis()">
+                            <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi"
+                                onClick="watchsinopsis()">
                         </div>
                         <div class="contenedor-columna centro ">
                             <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
@@ -238,5 +244,7 @@
     </main>
 
     @include('partials.adm-CN.modals-claro.index')
+    @include('partials.adm-CN.modals-claro.carrusel')
+    @include('partials.adm-CN.modals-claro.carrusel2')
 
 </body>

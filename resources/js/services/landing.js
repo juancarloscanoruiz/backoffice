@@ -113,7 +113,6 @@ function updateLogosOfLanding(data) {
         },
         url: "landing/updateLandingLogo",
         success: function (result) {
-            console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".loader-container").remove();
@@ -160,9 +159,6 @@ function getChapterInfo(data) {
         success: function (result) {
 
             let data = JSON.parse(result);
-            console.log(data);
-
-
             $('.loader-view-container').remove();
             $('.loader-container').remove();
             let date = new Date();
@@ -433,7 +429,6 @@ function getChapterInfo(data) {
                     $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
                     keyValue = $(this).val();
                 }
-                console.log(keyValue);
                 editAttributeProgram(chapter_id, key, keyValue);
             });
 
@@ -479,7 +474,6 @@ function getChapterInfo(data) {
                         editProgramLandingGenres += `${selected[index]},`;
                     }
                 }
-                console.log("Géneros agregados: " + editProgramLandingGenres);
             });
             $("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
             //Evento para cuando cerramos el selectpicker
@@ -680,8 +674,6 @@ function newProgram(landing, schedule) {
         url: "landing/newProgram",
         success: function (result) {
             $('.loader-view-container').remove();
-            console.log('se creo el registro:');
-            console.log(result);
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
         }
@@ -706,10 +698,8 @@ function getProgramming(date, section, time) {
         },
         url: "landing/getProgramming",
         success: function (result) {
-
             $('.loader-view-container').remove();
             let data = JSON.parse(result);
-            //console.log(data);
 
             if (data.id_status >= 1) {
 
@@ -794,7 +784,7 @@ function getProgramming(date, section, time) {
                         $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
                         keyValue = $(this).val();
                     }
-                    //console.log(keyValue);
+
                     editAttributeProgram(chapter_id, key, keyValue);
                 });
                 //Genres
@@ -830,7 +820,6 @@ function getProgramming(date, section, time) {
                             break;
                     }
                     let schedule = $(this).attr("schedule");
-                    console.log(time + " " + schedule);
                     newProgram(channel, schedule);
                     // getProgramming(date, section, schedule)
                 });
@@ -938,8 +927,6 @@ function getProgramming(date, section, time) {
                     $('.edit-audio5-yes').prop("checked", true);
                 }
             } else {
-
-                console.log('dia sin informacion ' + section + date + time);
                 newProgramByDate(section, date, time);
                 //getProgramming(date, section, time);
             }
@@ -966,17 +953,198 @@ function newProgramByDate(section, date, time) {
         url: "landing/newProgramByDate",
         success: function (result) {
             $('.loader-view-container').remove();
-            console.log('se creo el registro:');
-            console.log(result);
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
         }
     });
 }
+
+
+//Landing concert channel
+function getContentConcertChannelHeader() {
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                //Título en header de concert channel color blanco
+                let headerTitle1 = $('.modal-header-concert-channel .modal-header-title-1');
+                //Título en header de concert channel color azul
+                let headerTitle2 = $('.modal-header-concert-channel .modal-header-title-2');
+                headerTitle1.val(data.data.block_2_title_1);
+                headerTitle2.val(data.data.block_2_title_2);
+                $('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
+                $('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
+                $('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
+                if (data.data.block_2_icon_channel) {
+                    $(".label-no-image").remove();
+                }
+                $('#icon_canal_claro_edit').attr("src", data.data.block_2_icon_channel);
+                //Mostramos el modal
+                $('.modal-header-concert-channel').modal("show");
+                //Eliminamos
+                $('.loader-view-container').remove();
+
+            }
+
+        }
+    })
+}
+
+function getContentConcertChannelBlockHeader3() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            if (data.code == 200) {
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_3_title");
+                landingSubtitle.attr("key", "block_3_subtitle");
+                landingTitle.val(data.data.block_3_title);
+                landingSubtitle.val(data.data.block_3_subtitle);
+                $('.modal-titles').modal("show");
+
+                $('.loader-view-container').remove();
+            }
+        }
+    })
+}
+
+function getContentConcertChannelBlock4One() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            if (data.code == 200) {
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_4_carrusel_1_title");
+                landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
+                landingTitle.val(data.data.block_4_carrusel_1_title);
+                landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
+                $('.modal-titles').modal("show");
+
+                $('.loader-view-container').remove();
+            }
+        }
+    })
+}
+
+function getContentConcertChannelBlock4OTwo() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            if (data.code == 200) {
+                let landingTitle = $('.modal-titles .section-landing-title');
+                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                landingTitle.attr("key", "block_4_carrusel_2_title");
+                landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
+                landingTitle.val(data.data.block_4_carrusel_2_title);
+                landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
+                $('.modal-titles').modal("show");
+                $('.loader-view-container').remove();
+            }
+        }
+    })
+}
+
+function editHeaderLanding(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editHeaderLanding",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('.modal-header-concert-channel').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+function editElementLanding(data) {
+
+    $.ajax({
+        type: "POST",
+        data: data,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editElementLanding",
+        success: function (result) {
+            console.log(result);
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
     updateImageProgramOfLanding,
-    getProgramming
+    getProgramming,
+    getContentConcertChannelHeader,
+    getContentConcertChannelBlockHeader3,
+    getContentConcertChannelBlock4One,
+    getContentConcertChannelBlock4OTwo,
+    editHeaderLanding,
+    editElementLanding
 };

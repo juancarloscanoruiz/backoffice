@@ -24,7 +24,13 @@ import {
     updateLogosOfLanding,
     getChapterInfo,
     updateImageProgramOfLanding,
-    getProgramming
+    getProgramming,
+    getContentConcertChannelHeader,
+    getContentConcertChannelBlockHeader3,
+    getContentConcertChannelBlock4One,
+    getContentConcertChannelBlock4OTwo,
+    editHeaderLanding,
+    editElementLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -58,8 +64,45 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
-    
-   
+
+    $('#edit-header-landing-concert').click(function () {
+        let landing = "Concert Channel";
+        let title1 = $('.modal-header-concert-channel .modal-header-title-1').val() || "";
+        let title2 = $('.modal-header-concert-channel .modal-header-title-2').val() || "";
+        let logo = document.getElementById('header-lading-concert-logo').files[0] || "";
+        let link = ""
+        console.log(title1, title2, logo);
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link)
+        editHeaderLanding(data);
+    });
+
+    $('#edit-titles-landing-concert').click(function () {
+
+        //Title
+        let value = $(".modal-concert-title").val();
+        let key = $(".modal-concert-title").attr("key");
+        let landing = "Concert Channel";
+        editElementLanding({
+            value: value,
+            key: key,
+            landing: landing
+        });
+
+        //Subtitle
+        let valueSub = $(".modal-concert-subtitle").val();
+        let keySub = $(".modal-concert-subtitle").attr("key");
+        editElementLanding({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+    })
+
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
     $(".carrusel2-slider").on("afterChange", function (
@@ -82,27 +125,25 @@ function eventsGrilla() {
 
 
     $('.btn-prueba').click(function () {
-        console.log("nlksdnvlksndv");
+        getHeaderLanding()
     })
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
 
+    //Landing de concert channel
     let confLandingConcertChannel = {
         remote: `${baseURL}concert-channel-edi.php`,
-        // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-        // remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
         container: document.getElementById(
             "navbar-prev-concert-channel"
         ),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
-            console.log(this.remote);
-            console.log('Hola', json);
             if (typeof json == "object") {
                 let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
+
                 switch (json.type) {
 
                     case "current-programming-concert":
@@ -119,102 +160,163 @@ function eventsGrilla() {
 
                         }
                         break;
-                        case "header-landing-concert": 
+                    case "header-landing-concert":
+                        getContentConcertChannelHeader();
+                        break;
+                    case "pencil-header":
+                        getContentConcertChannelBlockHeader3();
+                        break;
+                    case "pencil-video":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-encabezados').modal("show");
+                            $('.modal-promos').modal("show");
                             $("#loader1").remove();
                         }, 3000);
-          
                         break;
-                        case "pencil-header":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-titles').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                   
-                           
-                            break;
-                            case "pencil-video":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-promos').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                            
-                                break;
-                                case "pencil-header1":
-                                      $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                                    
-                                    break;
-                                    case "header2":
-                                        $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-titles').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                   
-                   
-                                        
-                                        break;
-                                        case "pencil-carrusel1":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                
-//slider para carrusel concert-channel
-$(".carrusel1-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: $(".carrusel1-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
+                    case "pencil-header1":
+                        getContentConcertChannelBlock4One();
+
+                        break;
+                    case "header2":
+                        getContentConcertChannelBlock4OTwo();
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel').modal("show");
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel2').modal("show");
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
 
 
-    customPaging: function (slider, i) {
-        var thumb = $(slider.$slides[i]).data();
-        return (
-            "<p class='a-text-bold-teal slider-pagination-item'>" +
-            (i + 1) +
-            "</p>"
-        );
-    }
-});
-                                                $('.modal-edit-program-carrusel').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
 
-                                        case "pencil-carrusel2":
-                                            $("body").append(loader);
-                                            setTimeout(function () {
-                                                 //slider para carrusel concert-channel
-$(".carrusel2-slider").slick({
-    slidesToShow: 1,
-    dots: true,
-    appendDots: $(".carrusel2-slider-dots1"),
-    initialSlide: 0,
-    infinite: false,
+                        break;
+                    case "pencil-header":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
 
 
-    customPaging: function (slider, i) {
-        var thumb = $(slider.$slides[i]).data();
-        return (
-            "<p class='a-text-bold-teal slider-pagination-item'>" +
-            (i + 1) +
-            "</p>"
-        );
-    }
-});
-                                                $('.modal-edit-program-carrusel2').modal("show");
-                                                $("#loader1").remove();
-                                            }, 3000);
-                                        break;
+                        break;
+                    case "pencil-video":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promos').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "pencil-header1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+                        break;
+                    case "header2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-titles').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $('.modal-edit-program-carrusel').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            //slider para carrusel concert-channel
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $('.modal-edit-program-carrusel2').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
                     default:
                         break;
                 }
@@ -227,12 +329,10 @@ $(".carrusel2-slider").slick({
     };
     let navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
     if (navbarPrevConcertChannel) {
-        console.log('Entro if Concer');
+
         $('#navbar-prev-concert-channel iframe').remove();
         new easyXDM.Socket(confLandingConcertChannel);
     }
-
-
 
 
     //loader, antes de subir un archivo
@@ -255,8 +355,7 @@ $(".carrusel2-slider").slick({
         $(this).addClass("programming-item-active");
         let date = $(this).attr("date");
         let section = $(this).attr("section_id");
-        let time = $(".current").attr("schedule");
-        console.log(date, section, time);
+        let time = $(".current").attr("schedule");;
         getProgramming(date, section, time);
     });
 
@@ -298,7 +397,7 @@ $(".carrusel2-slider").slick({
                         value = `${$(this).val()} ${$(
                             ".edit-home-time-begin"
                         ).val()}`;
-                        console.log(value);
+
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     } else if (
@@ -325,7 +424,7 @@ $(".carrusel2-slider").slick({
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
                             ".edit-home-time-expiration"
                         ).val()}`;
-                        console.log(value);
+
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     } else if (
@@ -352,7 +451,7 @@ $(".carrusel2-slider").slick({
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
                             ".edit-landing-time-begin"
                         ).val()}`;
-                        console.log("in_landing_begin" + date);
+
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     } else if (
@@ -363,7 +462,7 @@ $(".carrusel2-slider").slick({
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                        console.log(value);
+
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     }
@@ -380,8 +479,6 @@ $(".carrusel2-slider").slick({
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
                             ".edit-landing-time-end"
                         ).val()}`;
-                        console.log($(".edit-landing-time-end").val());
-                        console.log("landing_expiration con tiempo: " + value);
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     } else if (
@@ -392,7 +489,7 @@ $(".carrusel2-slider").slick({
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                        console.log("landing_expiration sin tiempo: " + value);
+
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     }
@@ -422,7 +519,7 @@ $(".carrusel2-slider").slick({
                     value = `${$(this).val()} ${$(
                         ".edit-home-time-begin"
                     ).val()}`;
-                    console.log(value);
+
                     editAttributeProgram(chapter_id, key, value);
                 } else if (
                     $(".edit-home-date-begin").val() &&
@@ -447,7 +544,7 @@ $(".carrusel2-slider").slick({
                     value = `${date[2]}-${date[1]}-${date[0]} ${$(
                         ".edit-home-time-expiration"
                     ).val()}`;
-                    console.log(value);
+
                     editAttributeProgram(chapter_id, key, value);
                 } else if (
                     $(".edit-home-date-expiration").val() &&
@@ -506,7 +603,7 @@ $(".carrusel2-slider").slick({
                         .val()
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                    console.log("landing_expiration sin tiempo: " + value);
+
                     editAttributeProgram(chapter_id, key, value);
                 }
 
@@ -562,10 +659,10 @@ $(".carrusel2-slider").slick({
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
-        console.log("si lo agrega");
+
         setTimeout(function () {
             $(".loader-view-container").remove();
-            console.log("si lo borra");
+
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -575,10 +672,10 @@ $(".carrusel2-slider").slick({
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
-        console.log("si lo agrega");
+
         setTimeout(function () {
             $(".loader-view-container").remove();
-            console.log("si lo borra");
+
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -590,7 +687,7 @@ $(".carrusel2-slider").slick({
         );
         setTimeout(function () {
             $(".loader-view-container").remove();
-            console.log("si lo borra");
+
         }, 3000);
     });
 
@@ -604,11 +701,11 @@ $(".carrusel2-slider").slick({
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -669,7 +766,7 @@ $(".carrusel2-slider").slick({
         updateImagesOfProgrammingSlider(data);
     });
 
-    
+
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -696,11 +793,11 @@ $(".carrusel2-slider").slick({
     });
 
 
-//para agregar un slider más en carrusel2-concert
-$(".add-programming-image").click(function(){
-    let sliderIndex = $(".load-programming-carousel").length + 1;
-    $(".carrusel2-slider").slick(
-        "slickAdd",  `
+    //para agregar un slider más en carrusel2-concert
+    $(".add-programming-image").click(function () {
+        let sliderIndex = $(".load-programming-carousel").length + 1;
+        $(".carrusel2-slider").slick(
+            "slickAdd", `
         <!--otro slider-->
 <div>
 
@@ -762,12 +859,12 @@ $(".add-programming-image").click(function(){
                 </div>
                 <!--Inputs radio-->
                 <div class="d-flex align-items-center mb-3">
-                    
+
                     <span
                         class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                         2</span>
-                   
-                  
+
+
                 </div>
                 <div>
                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha
@@ -862,7 +959,7 @@ $(".add-programming-image").click(function(){
                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                 class="mr-3">
                         <span class="a-text-bold-warm mt-3">
-                          
+
                             <input key="" type=" text"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
                                 placeholder="00-00-0000"></span>
@@ -1134,10 +1231,10 @@ $(".add-programming-image").click(function(){
 </div>
 </div>
 
-       <!--fin del otro slider-->          
+       <!--fin del otro slider-->
 `
-    );
-});
+        );
+    });
     //para agregar un slider más en carrusel1-concert
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -1208,11 +1305,11 @@ $(".add-programming-image").click(function(){
                             </div>
                             <!--Inputs radio-->
                             <div class="d-flex align-items-center mb-3">
-                               
+
                                 <span
                                     class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
                                     1</span>
-                               
+
                             </div>
                             <div>
                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha
@@ -1307,7 +1404,7 @@ $(".add-programming-image").click(function(){
                                     <img src="{{ asset('images/calendario.svg') }}" alt=""
                                             class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                       
+
                                         <input key="" type=" text"
                                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
                                             placeholder="00-00-0000"></span>
@@ -1821,6 +1918,7 @@ $(".add-programming-image").click(function(){
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
+
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $("#prev").click(function () {
@@ -1833,8 +1931,8 @@ $(".add-programming-image").click(function(){
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -1848,7 +1946,7 @@ $(".add-programming-image").click(function(){
     }
 
     $(".input-image-program").change(function () {
-        console.log("Imges");
+
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -1903,7 +2001,7 @@ $(".add-programming-image").click(function(){
         //Obtenemos los géneros que pudo haber seleccionado el usuario
         let keyValue = genres;
         //Hacemos la petición
-        console.log(keyValue);
+
         editAttributeProgram(chapterId, key, keyValue);
     });
 
@@ -2111,7 +2209,7 @@ $(".add-programming-image").click(function(){
                 //   Fecha final del datepicker
 
                 let landing = $("#date-start-input").attr("landing");
-                //console.log("El landing es: "+landing);
+
                 let endDate = fullDate[1];
                 filterDates(startDate, endDate, landing);
                 let endDateSplit = endDate.split("-");
@@ -2123,6 +2221,8 @@ $(".add-programming-image").click(function(){
             singleMode: false
         });
     }
+
+
 
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"
@@ -2173,7 +2273,7 @@ $(".add-programming-image").click(function(){
         });
     }
     $("#close_modals").click(function () {
-        console.log("cerrar_modals");
+
         $(".modal-programming-carousel").modal("hide");
         $(".modal-delete-user").modal("hide");
         $(".modal-edit-icons").modal("hide");
@@ -2205,14 +2305,14 @@ $(".add-programming-image").click(function(){
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -2230,7 +2330,7 @@ $(".add-programming-image").click(function(){
                         //Re hacemos la fecha
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-                        console.log(day, hours);
+
                         //En caso de tener ambos valores, hacemos al petición
                         if (day != "" && hours != "") {
                             keyValue = `${day} ${hours}`;
@@ -2254,7 +2354,7 @@ $(".add-programming-image").click(function(){
                             .val(); //Obtenemos hora
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         //En caso de tener ambos valores, hacemos la petición
-                        console.log(day, hours);
+
                         if (date != "" && hours != "") {
                             let day = `${date[2]}-${date[1]}-${date[0]}`;
                             keyValue = `${day} ${hours}`;
@@ -2365,7 +2465,7 @@ $(".add-programming-image").click(function(){
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -2383,7 +2483,7 @@ $(".add-programming-image").click(function(){
                     //Re hacemos la fecha
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-                    console.log(day, hours);
+
                     //En caso de tener ambos valores, hacemos al petición
                     if (day != "" && hours != "") {
                         keyValue = `${day} ${hours}`;
@@ -2405,7 +2505,7 @@ $(".add-programming-image").click(function(){
                     let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     //En caso de tener ambos valores, hacemos la petición
-                    console.log(day, hours);
+
                     if (date != "" && hours != "") {
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         keyValue = `${day} ${hours}`;
@@ -2455,7 +2555,7 @@ $(".add-programming-image").click(function(){
                     let day = `${date[2]}-${date[1]}-${date[0]}`;
                     //Obtenemos la hora
                     let hours = parentHome.find(".home-expiration-hours").val();
-                    console.log(day, hours);
+
                     //Si ambos no están vacíos, hacemos la petición
                     if (date != "" && hours != "") {
                         day = `${date[2]}-${date[1]}-${date[0]}`;
@@ -2538,8 +2638,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -2738,7 +2838,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //EDITAR CONCERT
     $(".edi-concert").click(function () {
-        console.log("editar");
+
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -2780,7 +2880,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //PREV CONCERT
     $(".prev-concert").click(function () {
-        console.log("prev concert channel");
+
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -3066,30 +3166,58 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     // Canal Claro
 
     let landingCanalClaro = {
-        // remote: `${baseURL}concert-channel-edi.php`,
-        // remote: `http://localhost/MaquetaCNetworks/concert-channel-edi.php`,
-        remote: `http://localhost/MaquetaCNetworks/claro-canal-edi.php`,
+        remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             console.log('buenas', json);
             if (typeof json == "object") {
+                let loader = `
+                <div class="loader-view-container" id="loader1">
+                    <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                    `;
                 switch (json.type) {
+
                     case "claro-header":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-header').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-programacion":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-edi-claro').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-title":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                     case "claro-promo":
-                        console.log('header funciona ok');
+                        $("body").append(loader);
                         $('#modal-promo').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel1":
+                        $("body").append(loader);
+                        $('#modal-edi-carrusel-1').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel2":
+                        $("body").append(loader);
+                        $('#modal-edi-carrusel-2').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title":
+                        $("body").append(loader);
+                        $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title2":
+                        $("body").append(loader);
+                        $('#modal-title').modal("show");
+                        $('.loader-view-container').remove();
                         break;
                 }
             }
@@ -3108,36 +3236,86 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     // Canal Claro
 
+    let loader = `
+    <div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+    </div>
+        `;
+
     $('#btn-test').click(function () {
-        console.log('funciona');
-        $("#modaledi-claro").modal("show");
+        $("body").append(loader);
+        $("#modal-edi-carrusel-1").modal("show");
+        $('.loader-view-container').remove();
     })
+    $('#url-encabezado').click(function () {
+        $("body").append(loader);
+        $("#modal-url").modal("show");
+        $('.loader-view-container').remove();
+    })
+    $('#url-promo').click(function () {
+        $("body").append(loader);
+        $("#modal-url").modal("show");
+        $('.loader-view-container').remove();
+    })
+    $('#banner-claro').change(function () {
+        File(this)
+    })
+
+    function File(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    $('#header-claro').change(function () {
+        FileHeader(this)
+    })
+    function FileHeader(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    $('#promo-claro').change(function () {
+        FilePromoImg(this)
+    })
+    function FilePromoImg(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+            $('.loader-view-container').remove();
+        }
+    }
+    $('#promo-claro-video').change(function () {
+        FilePromoVideo(this)
+    })
+    function FilePromoVideo(objFileInput) {
+        $("body").append(loader);
+        if (objFileInput.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#back-promo-claro").html('<video controls class="img-back-promo" src="' + e.target.result + '" /></video>');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
 }
 
 export {
     eventsGrilla
 };
-
-function eveClaroCanal() {
-    // Modal
-
-
-    $('#promo-claro').change(function () {
-        File(this)
-    })
-
-    $('#header-claro').change(function () {
-        File(this)
-    })
-
-    function File(objFileInput) {
-        if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-            }
-            fileReader.readAsDataURL(objFileInput.files[0]);
-        }
-    }
-    // Modal
-}

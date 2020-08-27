@@ -82,6 +82,9 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/newProgramByDate", "landingController@newProgramByDate");
     Route::post("/getSection/{section}", "landingController@getSection")->name('getSection');
     Route::post("/getProgramming", "landingController@getProgramming");
+    Route::post("/concertChannel", "landingController@getContentConcertChannel");
+    Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
+    Route::post("/editElementLanding", "landingController@editElementLanding");
 
 });
 
@@ -116,5 +119,4 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
 // MODALES
 Route::get('/test', function () {
     return view('partials.adm-CN.modals-claro.index');
-    // return view('modal.index');
 });

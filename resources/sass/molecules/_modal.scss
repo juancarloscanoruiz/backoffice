@@ -1,6 +1,7 @@
 a:hover {
     text-decoration: none !important;
 }
+
 .modal-edit-usersfront-content {
     width: 567px;
     margin: auto;
@@ -45,18 +46,16 @@ a:hover {
 
 .modal-promo-claro {
     width: 952px;
-    height: 826px;
+    height: 800px;
     background-color: $white;
     margin: 75px auto 0 auto;
-    padding-top: 24px;
+    padding: 24px 49px 28px 49px;
     text-align: center;
 }
 
 .modal-promo-claro p {
     color: $black;
-    margin-left: 49px;
-    font-weight: 600;
-    // font-family: $MontserratBold;
+    font-weight: bold;
     text-align: left;
 }
 
@@ -64,37 +63,71 @@ a:hover {
     color: $greyishBrownTwo;
     font-weight: 800;
     display: block;
-    margin: 9px 0 22px;
+    margin: 8px 0 22px;
     font-weight: bold;
-    // font-family: $MontserratBlack;
 }
 
-.hr-promo {
-    width: 89%;
-    height: 2px;
+.hr {
+    width: 100%;
     border: solid 2px $lightpink;
 }
 
-.img-content{
+.img-content {
     width: 775px;
     height: 442px;
 }
 
-#img-promo-claro img {
-    border: 28px solid $selecred;
-    border-radius: 10px;
-    top: 12px;
+.img-content-promo {
+    width: 824px;
+    height: 450px;
+    margin: 50px auto 0 auto;
+}
+
+.img-promo-claro {
+    width: 824px;
+    height: 496px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+}
+
+#back-promo-claro{
+    position:relative;
+  }
+
+.add-file {
+    // width: 32%;
+    width: 266px;
+    height: 174px;
+    z-index: 9999;
+}
+
+.add-file img {
+    width: 20%;
+}
+
+.add-file span {
+    background: #fff;
+    margin: 0 15px;
+    border-radius: 25px;
+}
+
+ .img-back-promo {
+     border: 28px solid $selecred;
+     border-radius: 10px;
+     width: 100%;
+     top: 10px;
     object-fit: cover;
     position: absolute;
     left: 0;
-} 
+}
 
 #img-header-claro img {
     top: 0;
     object-fit: cover;
     position: absolute;
     left: 0;
-} 
+}
 
 .btn-content button {
     color: $waterblue;
@@ -109,20 +142,20 @@ a:hover {
 }
 
 /** ** ** */
-
 .modal-header-claro {
     width: 1200px;
     height: 383px;
     background: $white;
     margin: 75px auto 0 auto;
     padding-top: 23px;
+    padding-left: 47px;
+    padding-right: 47px;
 }
 
 .p-text-bold-black {
     font-size: 18px;
     color: $black;
     font-weight: 600;
-    margin-left: 47px;
     margin-bottom: 0;
 }
 
@@ -137,7 +170,6 @@ a:hover {
 .content {
     display: flex;
     align-items: center;
-    margin-left: 45px;
     margin-top: 30px;
 }
 
@@ -157,39 +189,46 @@ a:hover {
     display: inline-block;
     box-shadow: 1px 1px 5px #a4a4a4;
     margin-left: 30px;
-    padding-right: 40px;
 }
 
-.txt-content p {
+.inp-text-modal-1 {
     font-size: 32px;
     color: $greyishBrownTwo;
     margin-bottom: 0;
-    font-weight: 800;
-    padding: 5px 8px;
+    font-weight: bold;
+    padding: 5px 0px 5px 8px;
+    border: none;
+    width: 169px;
 }
 
-.txt-content span {
+.inp-text-modal-2 {
     font-size: 32px;
     color: $selecred;
     margin-bottom: 0;
-    font-weight: 800;
-    padding: 5px 8px;
-    display: block;
+    font-weight: bold;
+    padding: 5px 0px 5px 8px;
+    border: none;
+    width: 287px;
 }
 
-.programacion-content {
-    border: 2px solid $selecred;
+.inp-text-modal-3 {
+    font-size: 18px;
+    color: $white;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    width: 259px;
+    border-radius: 50px;
     background: $selecred;
     margin-left: 38px;
     padding: 13px 0;
-    border-radius: 50px;
 }
 
 .url-content {
     display: block;
     float: right;
     width: 250px;
-    margin-right: 44px;
     margin-top: 28px;
 }
 
@@ -234,25 +273,26 @@ a:hover {
     display: block;
 }
 
-.btn-tomato, .btn-tomato:hover {
+.btn-tomato,
+.btn-tomato:hover {
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 16px 35px;
 }
 
-.btn-content button{
+.btn-content button {
     color: $teal;
     font-weight: bold;
-}	
+}
 
 /** ** URL ** **/
 
 .modal-url {
     width: 949px;
-    height: 446px; 
+    height: 446px;
     background: $white;
-    margin: auto;
+    margin: 10% auto 0;
 }
 
 .modal-url p {
@@ -266,14 +306,14 @@ a:hover {
 /** ** TITULO ** **/
 .modal-title {
     width: 952px;
-    height: 328px; 
+    height: 328px;
     background: $white;
     margin: 75px auto 0 auto;
     text-align: center;
     padding-top: 24px;
 }
 
-.modal-title p{
+.modal-title p {
     color: #4a4a4a;
     font-weight: 600;
     font-weight: bold;
@@ -314,15 +354,14 @@ a:hover {
 /** ** BANNER ** **/
 .modal-banner-claro {
     width: 1344px;
-    height: 708px; 
+    height: 708px;
     background: $white;
     margin: 75px auto 0 auto;
-    padding-top: 19px;
+    padding: 19px 77px 0 77px;
 }
 
-.modal-banner-p {
+.text-banner-p {
     color: $black;
-    margin-left: 77px;
     font-weight: 600;
     text-align: left;
 }
@@ -336,37 +375,65 @@ a:hover {
     text-align: center;
 }
 
-.hr-banner {
-    width: 88%;
-    height: 2px;
-    border: solid 2px $lightpink;
-}
-
 .content-calendario {
-    margin-left: 77px;
-    margin-right: 77px;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding-top: 5px;
 }
 
 .img-content-banner {
     width: 1191px;
     height: 359px;
-    margin-left: 77px;
 }
 
-.img-content-banner img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-#img-banner-claro img {
+.img-claro-back {
     top: 12px;
     object-fit: cover;
     position: absolute;
     left: 0;
+    width: 100%;
+    height: 100%;
 } 
+
+.img-add-photo {
+    top: 34%;
+    object-fit: cover;
+    position: absolute;
+    left: 47%;
+    cursor: pointer;
+    width: 8%;
+}
+
+.text-add-photo {
+    top: 64%;
+    position: absolute;
+    left: 45%;
+    color: #fff;
+    background: #fff;
+    padding: 5px 15px;
+    border-radius: 25px;
+}
+
+.arrow-modal-right {
+    position: absolute;
+    left: -5%;
+    width: 40px;
+    top: 40%;
+    cursor: pointer;
+    transform: rotate(-180deg);
+}
+
+.arrow-modal-left {
+    position: absolute;
+    right: -5%;
+    width: 40px;
+    top: 40%;
+    cursor: pointer;
+}
+
+.btn-modal-progra {
+    bottom: 0;
+}
 
 .day-style {
     display: flex;
@@ -377,8 +444,9 @@ a:hover {
     width: 62px;
     height: 76px;
 }
-.div-promo{
+
+.div-promo {
     height: 50%;
-     align-items: center; 
-     width:90%;
+    align-items: center;
+    width: 90%;
 }

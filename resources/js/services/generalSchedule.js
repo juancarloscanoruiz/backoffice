@@ -255,52 +255,90 @@ function filterDates(startDate, lastDate, landing) {
                         </div>
                         `;
                     } else {
+
+                        let inputsBegin = `
+                        <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
+                            <div>
+                                <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
+                                <input type="text" id="programar-landing" class="landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="" placeholder="00-00-0000">
+                            </div>
+                            <div>
+                                <input type="text" id="programar-landing" class="landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="" placeholder="00:00:00">
+                            </div>
+                        </div>
+                        `;
+
+                        let inputsExpiration = `
+                        <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
+                            <div>
+                                <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                <input type="text" id="programar-landing-end-date" class="landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="" placeholder="00-00-0000">
+                            </div>
+                            <div>
+                                <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="" placeholder="00:00:00">
+                            </div>
+                        </div>
+                        `
+
                         //Obtenemos la fecha y hora de inicio
-                        let scheduleBegin = program.in_landing_begin.split(" ");
-                        //Obtenemos la fecha de inicio
-                        let dateBegin = scheduleBegin[0].split("-");
-                        //Obtenemos el año, el mes y el día por separado
-                        let dateBeginYear = dateBegin[0];
-                        let dateBeginMonth = dateBegin[1];
-                        let dateBeginDay = dateBegin[2];
-                        //Obtenemos la hora de inicio
-                        let timeBegin = scheduleBegin[1];
-                        //Obtenemos la fecha y hora final
-                        let scheduleExpiration = program.in_landing_expiration.split(
-                            " "
-                        );
-                        //Obtenemos la fecha final
-                        let dateExpiration = scheduleExpiration[0].split("-");
-
-                        //Obtenemos el año, mes y día por separado
-                        let dateExpirationYear = dateExpiration[0];
-                        let dateExpirationMonth = dateExpiration[1];
-                        let dateExpirationDay = dateExpiration[2];
-                        //Verificamos si existe la hora, en todo caso que no, la variable es null
-                        let timeExpiration = scheduleExpiration[1] ?
-                            scheduleExpiration[1] :
-                            "00:00:0000";
-
-                        inLandingExpiration = `
-                        <div class="programar-content">
+                        if (program.in_landing_begin) {
+                            var scheduleBegin = program.in_landing_begin.split(" ");
+                            //Obtenemos la fecha de inicio
+                            var dateBegin = scheduleBegin[0].split("-");
+                            //Obtenemos el año, el mes y el día por separado
+                            var dateBeginYear = dateBegin[0];
+                            var dateBeginMonth = dateBegin[1];
+                            var dateBeginDay = dateBegin[2];
+                            //Obtenemos la hora de inicio
+                            var timeBegin = scheduleBegin[1];
+                            inputsBegin = `
                             <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                                 <div>
                                     <label for="programar-landing" class="a-text-bold-brownish text-normal">Inicio: </label>
-                                    <input type="text" id="programar-landing" class="landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="${dateBeginDay}-${dateBeginMonth}-${dateBeginYear}" placeholder="00-00-0000">
+                                    <input type="text" id="programar-landing" class="landing-start-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="" placeholder="00-00-0000">
                                 </div>
                                 <div>
-                                    <input type="text" id="programar-landing" class="landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeBegin}" placeholder="00:00:00">
+                                    <input type="text" id="programar-landing" class="landing-start-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="" placeholder="00:00:00">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
-                                <div>
-                                    <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
-                                    <input type="text" id="programar-landing-end-date" class="landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="${dateExpirationDay}-${dateExpirationMonth}-${dateExpirationYear}" placeholder="00-00-0000">
+                            `;
+                        }
+
+                        if (program.in_landing_expiration) {
+                            //Obtenemos la fecha y hora final
+                            let scheduleExpiration = program.in_landing_expiration.split(
+                                " "
+                            );
+                            //Obtenemos la fecha final
+                            let dateExpiration = scheduleExpiration[0].split("-");
+
+                            //Obtenemos el año, mes y día por separado
+                            let dateExpirationYear = dateExpiration[0];
+                            let dateExpirationMonth = dateExpiration[1];
+                            let dateExpirationDay = dateExpiration[2];
+                            //Verificamos si existe la hora, en todo caso que no, la variable es null
+                            let timeExpiration = scheduleExpiration[1] ?
+                                scheduleExpiration[1] :
+                                "00:00:0000";
+                            inputsExpiration = `
+                                <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
+                                    <div>
+                                        <label for="programar-landing-end-date" class="a-text-bold-brownish text-normal">Fin: </label>
+                                        <input type="text" id="programar-landing-end-date" class="landing-expiration-day editable-attribute schedule-date-input a-text-medium-brownish table-input" value="${dateExpirationDay}-${dateExpirationMonth}-${dateExpirationYear}" placeholder="00-00-0000">
+                                    </div>
+                                    <div>
+                                        <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeExpiration}" placeholder="00:00:00">
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeExpiration}" placeholder="00:00:00">
-                                </div>
-                            </div>
+                                `
+
+                        }
+
+
+                        inLandingExpiration = `
+                        <div class="programar-content">
+                            ${inputsBegin}
+                            ${inputsExpiration}
                         </div>
                         `;
                     }
