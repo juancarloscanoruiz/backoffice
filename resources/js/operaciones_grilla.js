@@ -30,7 +30,8 @@ import {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
-    editElementLanding
+    editElementLanding,
+    getConcertChannelPromo
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -45,7 +46,6 @@ import {
 import {
     calendarSlick
 } from "./config/slick.js";
-
 
 //Métodos para mostrar las vistas de "Landing" o "Grilla"
 import {
@@ -65,24 +65,260 @@ import {
 
 function eventsGrilla() {
 
-    $('#edit-header-landing-concert').click(function () {
+    //Subir video en modal de promo en concert channel
+    $('#video-promo-file').change(function () {
+        if (this.files && this.files[0]) {
+            let file = this.files[0]
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function (e) {
+                // The file reader gives us an ArrayBuffer:
+                let buffer = e.target.result;
+
+                // We have to convert the buffer to a blob:
+                let videoBlob = new Blob([new Uint8Array(buffer)], {
+                    type: 'video/mp4'
+                });
+
+                // The blob gives us a URL to the video file:
+                let url = window.URL.createObjectURL(videoBlob);
+                $('#concert-promo-container video').remove();
+                $('#concert-promo-container').append(
+                    `
+                    <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
+                        <source src="${url}" type="video/mp4">
+                    </video>
+                    `
+                )
+            };
+
+        }
+    })
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+    $(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
+        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+
+    $(".btn-prueba").click(function () {
+        getHeaderLanding();
+    });
+    const baseURL =
+        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+
+    let confLandingConcertChannel = {
+        remote: `${baseURL}concert-channel-edi.php`,
+        container: document.getElementById("navbar-prev-concert-channel"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                                `;
+
+                switch (json.type) {
+                    case "current-programming-concert":
+                        let calendarSlider2 = $(".calendar-slider2");
+                        $("body").append(loader);
+                        $(".modal-programming-landing").modal("show");
+                        $(".loader-view-container").remove();
+                        createCalendarDays(calendarSlider2);
+                        try {
+                            calendarSlider2.slick("unslick");
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        } catch (error) {
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        }
+                        break;
+                    case "header-landing-concert":
+                        getContentConcertChannelHeader();
+                        break;
+                    case "pencil-header":
+                        getContentConcertChannelBlockHeader3();
+                        break;
+                    case "pencil-video":
+                        getConcertChannelPromo();
+                        break;
+                    case "pencil-header1":
+                        getContentConcertChannelBlock4One();
+
+                        break;
+                    case "header2":
+                        getContentConcertChannelBlock4OTwo();
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-edit-program-carrusel").modal("show");
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-edit-program-carrusel2").modal("show");
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "pencil-header":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-titles").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "pencil-video":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-promos").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "pencil-header1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-titles").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "header2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $(".modal-titles").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $(".modal-edit-program-carrusel").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            //slider para carrusel concert-channel
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $(".modal-edit-program-carrusel2").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    $("#edit-header-landing-concert").click(function () {
         let landing = "Concert Channel";
-        let title1 = $('.modal-header-concert-channel .modal-header-title-1').val() || "";
-        let title2 = $('.modal-header-concert-channel .modal-header-title-2').val() || "";
-        let logo = document.getElementById('header-lading-concert-logo').files[0] || "";
-        let link = ""
+        let title1 =
+            $(".modal-header-concert-channel .modal-header-title-1").val() ||
+            "";
+        let title2 =
+            $(".modal-header-concert-channel .modal-header-title-2").val() ||
+            "";
+        let logo =
+            document.getElementById("header-lading-concert-logo").files[0] ||
+            "";
+        let link = "";
         console.log(title1, title2, logo);
         let data = new FormData();
         data.append("landing", landing);
         data.append("title1", title1);
         data.append("title2", title2);
         data.append("logo", logo);
-        data.append("link", link)
+        data.append("link", link);
         editHeaderLanding(data);
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
     });
 
-    $('#edit-titles-landing-concert').click(function () {
-
+    $("#edit-titles-landing-concert").click(function () {
         //Title
         let value = $(".modal-concert-title").val();
         let key = $(".modal-concert-title").attr("key");
@@ -101,239 +337,20 @@ function eventsGrilla() {
             key: keySub,
             landing: landing
         });
-    })
-
-
-    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".carrusel2-slider").on("afterChange", function (
-        slick,
-        currentSlide
-    ) {
-        $(".current-slide-number").text(currentSlide.currentSlide + 1);
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
     });
-
-
-    //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".carrusel1-slider").on("afterChange", function (
-        slick,
-        currentSlide
-    ) {
-        $(".current-slide-number").text(currentSlide.currentSlide + 1);
-    });
-
-
-
-
-    $('.btn-prueba').click(function () {
-        getHeaderLanding()
-    })
-    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
-
     //Landing de concert channel
-    let confLandingConcertChannel = {
-        remote: `${baseURL}concert-channel-edi.php`,
-        container: document.getElementById(
-            "navbar-prev-concert-channel"
-        ),
-        onMessage: function (message, origin) {
-            let json = JSON.parse(message);
-            if (typeof json == "object") {
-                let loader = `
-                        <div class="loader-view-container" id="loader1">
-                            <img src="./images/loader.gif" class="loader" alt="">
-                        </div>
-                            `;
 
-                switch (json.type) {
-
-                    case "current-programming-concert":
-                        let calendarSlider2 = $(".calendar-slider2");
-                        $("body").append(loader);
-                        $('.modal-programming-landing').modal("show");
-                        $('.loader-view-container').remove();
-                        createCalendarDays(calendarSlider2);
-                        try {
-                            calendarSlider2.slick("unslick");
-                            createSlickSlider(calendarSlider2, calendarSlick);
-                        } catch (error) {
-                            createSlickSlider(calendarSlider2, calendarSlick);
-
-                        }
-                        break;
-                    case "header-landing-concert":
-                        getContentConcertChannelHeader();
-                        break;
-                    case "pencil-header":
-                        getContentConcertChannelBlockHeader3();
-                        break;
-                    case "pencil-video":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-promos').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    case "pencil-header1":
-                        getContentConcertChannelBlock4One();
-
-                        break;
-                    case "header2":
-                        getContentConcertChannelBlock4OTwo();
-                        break;
-                    case "pencil-carrusel1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-edit-program-carrusel').modal("show");
-                            //slider para carrusel concert-channel
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel1-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-
-                    case "pencil-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-edit-program-carrusel2').modal("show");
-                            $(".carrusel2-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel2-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-
-
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-header":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-
-                        break;
-                    case "pencil-video":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-promos').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-header1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-
-                        break;
-                    case "header2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-titles').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-
-
-                        break;
-                    case "pencil-carrusel1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-
-                            //slider para carrusel concert-channel
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel1-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-
-
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $('.modal-edit-program-carrusel').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-
-                    case "pencil-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            //slider para carrusel concert-channel
-                            $(".carrusel2-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel2-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-
-
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $('.modal-edit-program-carrusel2').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-    };
-    let navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
+    let navbarPrevConcertChannel = document.getElementById(
+        "navbar-prev-concert-channel"
+    );
     if (navbarPrevConcertChannel) {
-
-        $('#navbar-prev-concert-channel iframe').remove();
+        $("#navbar-prev-concert-channel iframe").remove();
         new easyXDM.Socket(confLandingConcertChannel);
     }
-
 
     //loader, antes de subir un archivo
     $(".upload-files").on("click", function () {
@@ -355,7 +372,7 @@ function eventsGrilla() {
         $(this).addClass("programming-item-active");
         let date = $(this).attr("date");
         let section = $(this).attr("section_id");
-        let time = $(".current").attr("schedule");;
+        let time = $(".current").attr("schedule");
         getProgramming(date, section, time);
     });
 
@@ -363,7 +380,6 @@ function eventsGrilla() {
         let chapter_id = $(this).attr("chapter_id");
         getChapterInfo(chapter_id);
     });
-
 
     $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
@@ -662,7 +678,6 @@ function eventsGrilla() {
 
         setTimeout(function () {
             $(".loader-view-container").remove();
-
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -675,7 +690,6 @@ function eventsGrilla() {
 
         setTimeout(function () {
             $(".loader-view-container").remove();
-
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -687,7 +701,6 @@ function eventsGrilla() {
         );
         setTimeout(function () {
             $(".loader-view-container").remove();
-
         }, 3000);
     });
 
@@ -766,7 +779,6 @@ function eventsGrilla() {
         updateImagesOfProgrammingSlider(data);
     });
 
-
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
@@ -792,12 +804,12 @@ function eventsGrilla() {
         );
     });
 
-
     //para agregar un slider más en carrusel2-concert
     $(".add-programming-image").click(function () {
         let sliderIndex = $(".load-programming-carousel").length + 1;
         $(".carrusel2-slider").slick(
-            "slickAdd", `
+            "slickAdd",
+            `
         <!--otro slider-->
 <div>
 
@@ -1714,7 +1726,6 @@ function eventsGrilla() {
     }
     window.onload = preloader;*/
 
-
     //Landing de programación de claro cinema
     let navbarPrograContainerCinema = document.getElementById(
         "navbar-prev-programacion-cinema"
@@ -1781,19 +1792,22 @@ function eventsGrilla() {
     }
 
     $(".modal-program-claro-cinema").click(function () {
-        resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+        resetIframe(
+            $("#navbar-prev-programacion-cinema iframe"),
+            confProgramacionClaroCinema
+        );
     });
 
     //Landing de programacion de concert channel
     let navbarPrograContainerConcert = document.getElementById(
         "navbar-prev-programacion-concert"
     );
-    let iframeProgramacionConcert = $("#navbar-prev-programacion-concert iframe");
+    let iframeProgramacionConcert = $(
+        "#navbar-prev-programacion-concert iframe"
+    );
     let confProgramacionConcertChannel = {
         remote: `${baseURL}programacion-edi-concert.php`,
-        container: document.getElementById(
-            "navbar-prev-programacion-concert"
-        ),
+        container: document.getElementById("navbar-prev-programacion-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
@@ -1849,9 +1863,11 @@ function eventsGrilla() {
     }
 
     $(".modal-program-concert-channel").click(function () {
-        resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+        resetIframe(
+            $("#navbar-prev-programacion-concert iframe"),
+            confProgramacionConcertChannel
+        );
     });
-
 
     //Landing de programación de claro canal
     //Canal claro
@@ -1918,7 +1934,6 @@ function eventsGrilla() {
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
-
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $("#prev").click(function () {
@@ -1946,7 +1961,6 @@ function eventsGrilla() {
     }
 
     $(".input-image-program").change(function () {
-
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -1958,6 +1972,7 @@ function eventsGrilla() {
                     .addClass("h-100 w-100")
                     .css("z-index", "2");
             };
+
             reader.readAsDataURL(this.files[0]);
         }
     });
@@ -2222,8 +2237,6 @@ function eventsGrilla() {
         });
     }
 
-
-
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"
     );
@@ -2273,7 +2286,6 @@ function eventsGrilla() {
         });
     }
     $("#close_modals").click(function () {
-
         $(".modal-programming-carousel").modal("hide");
         $(".modal-delete-user").modal("hide");
         $(".modal-edit-icons").modal("hide");
@@ -2838,7 +2850,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //EDITAR CONCERT
     $(".edi-concert").click(function () {
-
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -2880,7 +2891,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //PREV CONCERT
     $(".prev-concert").click(function () {
-
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -3170,7 +3180,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
-            console.log('buenas', json);
+            console.log("buenas", json);
             if (typeof json == "object") {
                 let loader = `
                 <div class="loader-view-container" id="loader1">
@@ -3178,46 +3188,45 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 </div>
                     `;
                 switch (json.type) {
-
                     case "claro-header":
                         $("body").append(loader);
-                        $('#modal-header').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-header").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-programacion":
                         $("body").append(loader);
-                        $('#modal-edi-claro').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-edi-claro").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-title":
                         $("body").append(loader);
-                        $('#modal-title').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-title").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-promo":
                         $("body").append(loader);
-                        $('#modal-promo').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-promo").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel1":
                         $("body").append(loader);
-                        $('#modal-edi-carrusel-1').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-edi-carrusel-1").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel2":
                         $("body").append(loader);
-                        $('#modal-edi-carrusel-2').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-edi-carrusel-2").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title":
                         $("body").append(loader);
-                        $('#modal-title').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-title").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title2":
                         $("body").append(loader);
-                        $('#modal-title').modal("show");
-                        $('.loader-view-container').remove();
+                        $("#modal-title").modal("show");
+                        $(".loader-view-container").remove();
                         break;
                 }
             }
@@ -3226,11 +3235,11 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-    }
+    };
     let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
     if (menuClaroCanal) {
-        $('#navbar-prev-canal-claro iframe').remove();
-        console.log('enviando....');
+        $("#navbar-prev-canal-claro iframe").remove();
+        console.log("enviando....");
         new easyXDM.Socket(landingCanalClaro);
     }
 
@@ -3242,75 +3251,92 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     </div>
         `;
 
-    $('#btn-test').click(function () {
+    $("#btn-test").click(function () {
         $("body").append(loader);
         $("#modal-edi-carrusel-1").modal("show");
-        $('.loader-view-container').remove();
-    })
-    $('#url-encabezado').click(function () {
+        $(".loader-view-container").remove();
+    });
+    $("#url-encabezado").click(function () {
         $("body").append(loader);
         $("#modal-url").modal("show");
-        $('.loader-view-container').remove();
-    })
-    $('#url-promo').click(function () {
+        $(".loader-view-container").remove();
+    });
+    $("#url-promo").click(function () {
         $("body").append(loader);
         $("#modal-url").modal("show");
-        $('.loader-view-container').remove();
-    })
-    $('#banner-claro').change(function () {
-        File(this)
-    })
+        $(".loader-view-container").remove();
+    });
+    $("#banner-claro").change(function () {
+        File(this);
+    });
 
     function File(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-                $('.loader-view-container').remove();
-            }
+                $("#" + objFileInput.name).html(
+                    '<img class="img-claro-back" src="' +
+                    e.target.result +
+                    '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
+                );
+                $(".loader-view-container").remove();
+            };
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
-    $('#header-claro').change(function () {
-        FileHeader(this)
-    })
+    $("#header-claro").change(function () {
+        FileHeader(this);
+    });
+
     function FileHeader(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-                $('.loader-view-container').remove();
-            }
+                $("#" + objFileInput.name).html(
+                    '<img src="' + e.target.result + '" />'
+                );
+                $(".loader-view-container").remove();
+            };
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
-    $('#promo-claro').change(function () {
-        FilePromoImg(this)
-    })
+    $("#promo-claro").change(function () {
+        FilePromoImg(this);
+    });
+
     function FilePromoImg(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
-            }
+                $("#back-promo-claro").html(
+                    '<img class="img-back-promo" src="' +
+                    e.target.result +
+                    '" />'
+                );
+            };
             fileReader.readAsDataURL(objFileInput.files[0]);
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
     }
-    $('#promo-claro-video').change(function () {
-        FilePromoVideo(this)
-    })
+    $("#promo-claro-video").change(function () {
+        FilePromoVideo(this);
+    });
+
     function FilePromoVideo(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#back-promo-claro").html('<video controls class="img-back-promo" src="' + e.target.result + '" /></video>');
-                $('.loader-view-container').remove();
-            }
+                $("#back-promo-claro").html(
+                    '<video controls class="img-back-promo" src="' +
+                    e.target.result +
+                    '" /></video>'
+                );
+                $(".loader-view-container").remove();
+            };
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }

@@ -1088,6 +1088,33 @@ function getContentConcertChannelBlock4OTwo() {
     })
 }
 
+//Obtenemos el video promocional en el landing de concert channel
+function getConcertChannelPromo() {
+    $.ajax({
+        type: "POST",
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let json = JSON.parse(result);
+            if (json.code == 200) {
+                $(".modal-promos").modal("show");
+                //Checamos si existe el vídeo de promoción en concert channel
+                if (json.data.block_3_video_url) {
+                    console.log("El reus");
+                    $('#video-promo-concert').html(`<source src="${json.data.block_3_video_url}" type="video/mp4">`).css("display", "block");
+                }
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
 function editHeaderLanding(data) {
     $.ajax({
         type: "POST",
@@ -1146,5 +1173,6 @@ export {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
-    editElementLanding
+    editElementLanding,
+    getConcertChannelPromo
 };
