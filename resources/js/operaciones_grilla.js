@@ -31,7 +31,8 @@ import {
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
     editElementLanding,
-    getConcertChannelPromo
+    getConcertChannelPromo,
+    editPromoLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -65,7 +66,9 @@ import {
 
 function eventsGrilla() {
 
-    //Subir video en modal de promo en concert channel
+
+
+    //Previsualizar el video que subió el usuario en el landing de concert channel
     $('#video-promo-file').change(function () {
         if (this.files && this.files[0]) {
             let file = this.files[0]
@@ -145,6 +148,7 @@ function eventsGrilla() {
                         break;
                     case "pencil-video":
                         getConcertChannelPromo();
+
                         break;
                     case "pencil-header1":
                         getContentConcertChannelBlock4One();
@@ -211,7 +215,7 @@ function eventsGrilla() {
                     case "pencil-video":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $(".modal-promos").modal("show");
+                            $(".modal-promos-concert").modal("show");
                             $("#loader1").remove();
                         }, 3000);
 
@@ -292,6 +296,20 @@ function eventsGrilla() {
         }
     };
 
+    $('#upload-concert-promo-button').click(function () {
+        let video = document.getElementById("video-promo-file").files[0];
+        let landing = "Concert Channel";
+        let data = new FormData();
+        let key = $(this).attr("key")
+        data.append("video-promo", video);
+        data.append("landing", landing);
+        data.append("key", key);
+        editPromoLanding(data);
+        resetIframe($("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel);
+    })
+
+    //Concert Channel Header
     $("#edit-header-landing-concert").click(function () {
         let landing = "Concert Channel";
         let title1 =
@@ -622,7 +640,6 @@ function eventsGrilla() {
 
                     editAttributeProgram(chapter_id, key, value);
                 }
-
                 break;
             default:
                 editAttributeProgram(chapter_id, key, value);

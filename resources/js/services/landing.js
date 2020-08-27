@@ -6,6 +6,10 @@ import {
 
 } from "./generalSchedule.js";
 
+import {
+    resetIframe
+} from "../vendor/easyXDM.js";
+
 function getMonth(idMonth) {
     let date = new Date();
     let month = date.getUTCMonth() + idMonth;
@@ -1103,10 +1107,10 @@ function getConcertChannelPromo() {
         success: function (result) {
             let json = JSON.parse(result);
             if (json.code == 200) {
-                $(".modal-promos").modal("show");
+                $(".modal-promos-concert").modal("show");
+                $('#upload-concert-promo-button').attr("key", "block_3_video_url");
                 //Checamos si existe el vídeo de promoción en concert channel
                 if (json.data.block_3_video_url) {
-                    console.log("El reus");
                     $('#video-promo-concert').html(`<source src="${json.data.block_3_video_url}" type="video/mp4">`).css("display", "block");
                 }
             }
@@ -1142,7 +1146,6 @@ function editHeaderLanding(data) {
 }
 
 function editElementLanding(data) {
-
     $.ajax({
         type: "POST",
         data: data,
@@ -1161,6 +1164,51 @@ function editElementLanding(data) {
     })
 }
 
+function editPromoLanding(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editElementLanding",
+        success: function (result) {
+            console.log(result);
+            let json = JSON.parse(result)
+            if (json.code == 200) {
+                $(".modal-promos-concert").modal("hide");
+
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+
+function getProgrammingLanding() {
+    $.ajax({
+        type: "POST",
+        data: data,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/getProgrammingLanding",
+        success: function (result) {
+            console.log(result);
+            $('.loader-view-container').remove();
+        }
+    })
+}
 
 export {
     getChapterInfo,
@@ -1174,5 +1222,7 @@ export {
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
     editElementLanding,
-    getConcertChannelPromo
+    getConcertChannelPromo,
+    editPromoLanding,
+    getProgrammingLanding
 };

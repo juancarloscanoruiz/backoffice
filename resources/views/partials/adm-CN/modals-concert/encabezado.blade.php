@@ -1,6 +1,5 @@
 <div class="modal modal-encabezados modal-header-concert-channel p-0 m-0" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg modal-dialog-centered " role="document"
-        style="max-width:1000px; transform: translate(-50px);">
+    <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width:1000px;">
         <div class="modal-content align-item-center centro w-100">
             <div class="modal-body">
                 <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO

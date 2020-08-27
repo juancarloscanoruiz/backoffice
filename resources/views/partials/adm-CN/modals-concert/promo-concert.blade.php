@@ -1,4 +1,4 @@
-<div class="modal modal-promos p-0 m-0" tabindex="-1" role="dialog" id="modalpromos">
+<div class="modal modal-promos-concert p-0 m-0" tabindex="-1" role="dialog" id="modalpromos">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
         <div class="modal-content  align-item-center centro w-100">
             <div class="modal-body ">
@@ -35,9 +35,7 @@
                                     class="add-photo cursor-pointer promo-icon" /></a>
                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow mt-3">Utiliza un enlace
                                 o URL </span>
-
                         </label>
-
                     </div>
 
                     <div class="position-relative" id="concert-promo-container">
@@ -56,15 +54,11 @@
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
                     <button
                         class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                        id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
+                        id="upload-concert-promo-button">ACEPTAR</button>
                     <a href="#delete-info-promos" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
-
+                        data-dismiss="modal">CANCELAR</a>
                 </div>
-
-
-
             </div>
         </div>
     </div>
