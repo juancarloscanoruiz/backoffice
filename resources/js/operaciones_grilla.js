@@ -32,7 +32,8 @@ import {
     editHeaderLanding,
     editElementLanding,
     getConcertChannelPromo,
-    editPromoLanding
+    editPromoLanding,
+    getProgrammingLanding
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -65,9 +66,6 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
-
-
-
     //Previsualizar el video que subió el usuario en el landing de concert channel
     $('#video-promo-file').change(function () {
         if (this.files && this.files[0]) {
@@ -139,6 +137,7 @@ function eventsGrilla() {
                         } catch (error) {
                             createSlickSlider(calendarSlider2, calendarSlick);
                         }
+                        getProgrammingLanding();
                         break;
                     case "header-landing-concert":
                         getContentConcertChannelHeader();
@@ -148,7 +147,6 @@ function eventsGrilla() {
                         break;
                     case "pencil-video":
                         getConcertChannelPromo();
-
                         break;
                     case "pencil-header1":
                         getContentConcertChannelBlock4One();

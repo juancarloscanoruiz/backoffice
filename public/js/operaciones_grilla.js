@@ -73194,6 +73194,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "current-programming-concert":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])();
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
@@ -73359,7 +73360,8 @@ function eventsGrilla() {
     data.append("key", key);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLanding"])(data);
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-  });
+  }); //Concert Channel Header
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
     var landing = "Concert Channel";
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
@@ -75437,7 +75439,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75455,6 +75457,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLanding", function() { return editPromoLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgrammingLanding", function() { return getProgrammingLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -76434,7 +76437,6 @@ function editHeaderLanding(data) {
     },
     url: "landing/editHeaderLanding",
     success: function success(result) {
-      console.log("video", result);
       var json = JSON.parse(result);
       console.log(json);
 
@@ -76480,6 +76482,21 @@ function editPromoLanding(data) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
       }
 
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  });
+}
+
+function getProgrammingLanding() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/getProgrammingLanding",
+    success: function success(result) {
+      console.log(result);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
