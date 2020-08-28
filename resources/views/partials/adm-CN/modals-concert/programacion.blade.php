@@ -1,7 +1,7 @@
 
 <div class="modal pr-0 fade modal-edit-program" id="modaledi" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; ">
-        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
+        <div class="modal-dialog modal-dialog-centered border-radius m-0" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body pt-0">
                     <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-3">PROGRAMACIÓN

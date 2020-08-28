@@ -201,13 +201,10 @@ function eventsGrilla() {
                     case "title-carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-title-carrusel1').modal("show");
-                           
-                          
+                            $('.modal-title-cinema').modal("show");
                             $("#loader1").remove();
                         }, 3000);
                         break;
-
                     case "carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {

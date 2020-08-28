@@ -1,12 +1,12 @@
 <div class="modal modal-encabezados modal-header-concert-channel p-0 m-0" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width:1000px;">
-        <div class="modal-content align-item-center centro w-100">
+        <div class="modal-content align-item-center centro border-radius w-100">
             <div class="modal-body">
                 <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO
                     PNG</p>
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">ENCABEZADO </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                <div class="container-promo mt-4">
+                <div class="container-promo border-radius mt-4">
                     <div class="justify-content-around">
                         <div class="d-flex p-4 position-relative logo-lading-container mb-3">
                             <div class="bor mx-auto position-relative thumbnail-image-program"
@@ -82,7 +82,7 @@
 
             <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
                 <button
-                    class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
+                    class="d-flex m-0  mr-3 opacity btn-landing  a-btn-basic-small text-uppercase a-text-MBlack text-plus"
                     id="" data-dismiss="modal">ACEPTAR</button>
                 <a href="#delete-info-encabezado" role="button"
                     class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
