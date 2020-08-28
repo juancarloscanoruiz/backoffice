@@ -975,7 +975,7 @@ function newProgramByDate(section, date, time) {
 }
 
 // CLARO CANAL
-function getHeader(type) {
+function getModalsCanalClaro(type) {
     $.ajax({
         type: "GET",
         url: "landing/header",
@@ -1030,5 +1030,5 @@ export {
     updateImageProgramOfLanding,
     getProgramming,
 
-    getHeader
+    getModalsCanalClaro
 };

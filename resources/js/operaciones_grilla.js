@@ -32,7 +32,7 @@ import {
     editHeaderLanding,
     editElementLanding,
 
-    getHeader
+    getModalsCanalClaro
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -3182,49 +3182,49 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     case "claro-header":
                         $("body").append(LOADER);
                         $('#modal-header').modal("show");
-                        getHeader('claro-header');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-programacion":
                         $("body").append(LOADER);
                         $('#modal-edi-claro').modal("show");
-                        getHeader('claro-programacion');
+                        getModalsCanalClaro('claro-programacion');
                         $('.loader-view-container').remove();
                         break;
                     case "claro-title":
                         $("body").append(LOADER);
                         $('#modal-title').modal("show");
-                        getHeader('claro-title');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-promo":
                         $("body").append(LOADER);
                         $('#modal-promo').modal("show");
-                        getHeader('claro-promo');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-carrusel1":
                         $("body").append(LOADER);
                         $('#modal-edi-carrusel-1').modal("show");
-                        getHeader('claro-carrusel1');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-carrusel2":
                         $("body").append(LOADER);
                         $('#modal-edi-carrusel-2').modal("show");
-                        getHeader('claro-carrusel2');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-carrusel-title":
                         $("body").append(LOADER);
                         $('#modal-title').modal("show");
-                        getHeader('claro-carrusel-title');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                     case "claro-carrusel-title2":
                         $("body").append(LOADER);
                         $('#modal-title').modal("show");
-                        getHeader('claro-carrusel-title2');
+                        getModalsCanalClaro(json.type);
                         $('.loader-view-container').remove();
                         break;
                 }
@@ -3244,7 +3244,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     $('#btn-test').click(function () {
         $("#modal-promo").modal("show");
-        getHeader('claro-promo');
+        getModalsCanalClaro('claro-promo');
     })
     $('#url-encabezado').click(function () {
         $("#modal-url").modal("show");

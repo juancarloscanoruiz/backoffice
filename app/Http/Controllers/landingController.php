@@ -322,7 +322,8 @@ class landingController extends Controller
         echo (json_encode($respuesta->data));
     }
 
-    public function editHeaderLanding(Request $request)
+    // CANAL CLARO
+    public function getModalsCanalClaro()
     {
         $client = new Client();
         $response = $client->get(
@@ -331,4 +332,5 @@ class landingController extends Controller
         $respuesta =  $response->getBody();
         echo ($respuesta);
     }
+    // CANAL CLARO
 }
