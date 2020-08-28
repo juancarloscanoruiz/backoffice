@@ -33,6 +33,8 @@ import {
     editElementLanding,
     getConcertChannelPromo,
     editPromoLanding
+
+    getModalsCanalClaro
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -66,6 +68,43 @@ import {
 
 function eventsGrilla() {
 
+    $('#edit-header-landing-concert').click(function () {
+        let landing = "Concert Channel";
+        let title1 = $('.modal-header-concert-channel .modal-header-title-1').val() || "";
+        let title2 = $('.modal-header-concert-channel .modal-header-title-2').val() || "";
+        let logo = document.getElementById('header-lading-concert-logo').files[0] || "";
+        let link = ""
+        console.log(title1, title2, logo);
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link)
+        editHeaderLanding(data);
+    });
+
+    $('#edit-titles-landing-concert').click(function () {
+
+        //Title
+        let value = $(".modal-concert-title").val();
+        let key = $(".modal-concert-title").attr("key");
+        let landing = "Concert Channel";
+        editElementLanding({
+            value: value,
+            key: key,
+            landing: landing
+        });
+
+        //Subtitle
+        let valueSub = $(".modal-concert-subtitle").val();
+        let keySub = $(".modal-concert-subtitle").attr("key");
+        editElementLanding({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+    })
 
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
@@ -116,6 +155,17 @@ function eventsGrilla() {
           //Landing de concert channel
      let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
+
+
+
+    $('.btn-prueba').click(function () {
+        getHeaderLanding()
+    })
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+
+    //Landing de concert channel
+    let confLandingConcertChannel = {
+        remote: `${baseURL}concert-channel-edi.php`,
         container: document.getElementById(
             "navbar-prev-claro-cinema"
         ),
@@ -155,6 +205,71 @@ function eventsGrilla() {
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-title-cinema').modal("show");
+                    case "header-landing-concert":
+                        getContentConcertChannelHeader();
+                        break;
+                    case "pencil-header":
+                        getContentConcertChannelBlockHeader3();
+                        break;
+                    case "pencil-video":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promos').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "pencil-header1":
+                        getContentConcertChannelBlock4One();
+
+                        break;
+                    case "header2":
+                        getContentConcertChannelBlock4OTwo();
+                        break;
+                    case "pencil-carrusel1":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel').modal("show");
+                            //slider para carrusel concert-channel
+                            $(".carrusel1-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel1-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "pencil-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-program-carrusel2').modal("show");
+                            $(".carrusel2-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".carrusel2-slider-dots1"),
+                                initialSlide: 0,
+                                infinite: false,
+
+
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
                             $("#loader1").remove();
                         }, 3000);
                         
@@ -431,6 +546,12 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+    let navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
+    if (navbarPrevConcertChannel) {
+
+        $('#navbar-prev-concert-channel iframe').remove();
+        new easyXDM.Socket(confLandingConcertChannel);
+    }
 
     $('#upload-concert-promo-button').click(function () {
         let video = document.getElementById("video-promo-file").files[0];
@@ -527,6 +648,7 @@ function eventsGrilla() {
         let date = $(this).attr("date");
         let section = $(this).attr("section_id");
         let time = $(".current").attr("schedule");
+        let time = $(".current").attr("schedule");;
         getProgramming(date, section, time);
     });
 
@@ -831,6 +953,7 @@ function eventsGrilla() {
 
         setTimeout(function () {
             $(".loader-view-container").remove();
+
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -843,6 +966,7 @@ function eventsGrilla() {
 
         setTimeout(function () {
             $(".loader-view-container").remove();
+
         }, 3000);
     });
     //loader, antes de subir un archivo
@@ -854,6 +978,7 @@ function eventsGrilla() {
         );
         setTimeout(function () {
             $(".loader-view-container").remove();
+
         }, 3000);
     });
 
@@ -2087,6 +2212,7 @@ function eventsGrilla() {
 
     //Verificamos si existe el contenedor para insertar el iframe
     if (navbarPrograContainer) {
+
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $("#prev").click(function () {
@@ -2114,6 +2240,7 @@ function eventsGrilla() {
     }
 
     $(".input-image-program").change(function () {
+
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -2390,6 +2517,8 @@ function eventsGrilla() {
         });
     }
 
+
+
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"
     );
@@ -2439,6 +2568,7 @@ function eventsGrilla() {
         });
     }
     $("#close_modals").click(function () {
+
         $(".modal-programming-carousel").modal("hide");
         $(".modal-delete-user").modal("hide");
         $(".modal-edit-icons").modal("hide");
@@ -3003,6 +3133,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //EDITAR CONCERT
     $(".edi-concert").click(function () {
+
         if ($('input[id="edit"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -3044,6 +3175,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
     //PREV CONCERT
     $(".prev-concert").click(function () {
+
         if ($('input[id="prev"]').is(":checked")) {
             $("#navbar-prev-concert-channel").html(` <script>
             new easyXDM.Socket({
@@ -3327,6 +3459,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     // Canal Claro
+    const LOADER = `<div class="loader-view-container" id="loader1">
+    <img src="./images/loader.gif" class="loader" alt="">
+    </div>`;
 
     let landingCanalClaro = {
         remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
@@ -3380,6 +3515,55 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                         $("body").append(loader);
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
+
+                switch (json.type) {
+                    case "claro-header":
+                        $("body").append(LOADER);
+                        $('#modal-header').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-programacion":
+                        $("body").append(LOADER);
+                        $('#modal-edi-claro').modal("show");
+                        getModalsCanalClaro('claro-programacion');
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-title":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-promo":
+                        $("body").append(LOADER);
+                        $('#modal-promo').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel1":
+                        $("body").append(LOADER);
+                        $('#modal-edi-carrusel-1').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel2":
+                        $("body").append(LOADER);
+                        $('#modal-edi-carrusel-2').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title2":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
                         break;
                 }
             }
@@ -3422,9 +3606,22 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     $("#banner-claro").change(function () {
         File(this);
     });
+    $('#btn-test').click(function () {
+        $("#modal-promo").modal("show");
+        getModalsCanalClaro('claro-promo');
+    })
+    $('#url-encabezado').click(function () {
+        $("#modal-url").modal("show");
+    })
+    $('#url-promo').click(function () {
+        $("#modal-url").modal("show");
+    })
+    $('#banner-claro').change(function () {
+        File(this)
+    })
 
     function File(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
@@ -3442,8 +3639,11 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         FileHeader(this);
     });
 
+    $('#img-header').change(function () {
+        FileHeader(this)
+    })
     function FileHeader(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
@@ -3459,8 +3659,11 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         FilePromoImg(this);
     });
 
+    $('#promo-claro-img').change(function () {
+        FilePromoImg(this)
+    })
     function FilePromoImg(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
@@ -3470,6 +3673,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     '" />'
                 );
             };
+                $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+            }
             fileReader.readAsDataURL(objFileInput.files[0]);
             $(".loader-view-container").remove();
         }
@@ -3479,7 +3684,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     });
 
     function FilePromoVideo(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
@@ -3490,9 +3695,13 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 );
                 $(".loader-view-container").remove();
             };
+                $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+                $('.loader-view-container').remove();
+            }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
+    // Canal Claro
 }
 
 export {

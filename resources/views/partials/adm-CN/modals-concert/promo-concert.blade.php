@@ -60,6 +60,24 @@
                         data-dismiss="modal">CANCELAR</a>
                 </div>
             </div>
+            <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100">
+         </div>
+         <div class="ml-3 mt-3"style="text-align:initial;">
+         <span class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.jpg</span><br>
+         <span class="a-text-bold-brown-two text-normal ">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
+         </div>
+         <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
+                            <button
+                                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                                id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
+                            <a href="#delete-info-promos" role="button"
+                                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                                data-toggle="modal">CANCELAR</a>
+
+                        </div>
+
+            
+        
         </div>
     </div>
 </div>

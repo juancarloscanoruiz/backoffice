@@ -87,6 +87,10 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/editElementLanding", "landingController@editElementLanding");
     Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
 
+    // MODAL
+    Route::get('/header', "landingController@getModalsCanalClaro");
+    // MODAL
+
 });
 
 //Rutas para la edición de un programa en el sitio
