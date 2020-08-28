@@ -30,7 +30,7 @@
             </label>
            
             </div>
-            <img src="./images/synopsis/background-promo1.svg" alt="" class="d-flex w-100">
+            <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100">
          </div>
          <div class="ml-3 mt-3"style="text-align:initial;">
          <span class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.jpg</span><br>

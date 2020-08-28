@@ -83,6 +83,10 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/getSection/{section}", "landingController@getSection")->name('getSection');
     Route::post("/getProgramming", "landingController@getProgramming");
 
+    // MODAL
+    Route::get('/header', "landingController@editHeaderLanding");
+    // MODAL
+
 });
 
 //Rutas para la edición de un programa en el sitio

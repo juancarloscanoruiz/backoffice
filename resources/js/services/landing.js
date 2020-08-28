@@ -973,10 +973,62 @@ function newProgramByDate(section, date, time) {
         }
     });
 }
+
+// CLARO CANAL
+function getHeader(type) {
+    $.ajax({
+        type: "GET",
+        url: "landing/header",
+        success: function (result) {
+            let obj = JSON.parse(result);
+            switch (type) {
+                // GET HEADER
+                case "claro-header":
+                    $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
+                    $('.inp-text-modal-1').val(obj.data.block_2_title_1)
+                    $('.inp-text-modal-2').val(obj.data.block_2_title_2)
+                    $('.inp-text-modal-3').val(obj.data.block_2_button_title)
+                    break
+                // GET HEADER
+
+                // GET TITLE
+                case "claro-title":
+                    $('.inp-title-modal').val(obj.data.block_3_title)
+                    $('.inp-sub-title-modal').val(obj.data.block_3_subtitle)
+                    break
+                // GET TITLE
+
+                // GET PROMO
+                case "claro-promo":
+                    $('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>')
+                    break
+                // GET PROMO
+
+                // GET TITLE CARRUSEL 1
+                case "claro-carrusel-title":
+                    $('.inp-title-modal').val(obj.data.block_4_carrusel_1_title)
+                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle)
+                    break
+                // GET TITLE CARRUSEL 1
+
+                // GET TITLE CARRUSEL 1
+                case "claro-carrusel-title2":
+                    $('.inp-title-modal').val(obj.data.block_4_carrusel_2_title)
+                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_2_subtitle)
+                    break
+                // GET TITLE CARRUSEL 1
+            }
+        }
+    })
+}
+// CLARO CANAL
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,
     updateImageProgramOfLanding,
-    getProgramming
+    getProgramming,
+
+    getHeader
 };
