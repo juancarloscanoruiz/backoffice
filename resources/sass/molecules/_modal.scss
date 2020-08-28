@@ -41,212 +41,93 @@ a:hover {
         padding: 48px;
     }
 }
-.modal-backdrop.show {
-    opacity: 0.2 !important;
-  }
 
-// MODAL
+/** ** ** */
 
-// ** HEADER **
-.modal-header-claro {
-    width: 1000px;
-    padding: 20px 25px;
-    background: $white;
-    margin: auto;
-}
-.p-text-modal-sub {
-    color: $black;
-    margin-bottom: 0;
-    font-size: 17px;
-}
-.p-title-modal {
-    color: $greyishBrownTwo;
+.modal-promo-claro {
+    width: 952px;
+    height: 800px;
+    background-color: $white;
+    margin: 75px auto 0 auto;
+    padding: 24px 49px 28px 49px;
     text-align: center;
-    font-weight: 600;
-    margin-top: 5px;
 }
+
+.modal-promo-claro p {
+    color: $black;
+    font-weight: bold;
+    text-align: left;
+}
+
+.modal-promo-claro span {
+    color: $greyishBrownTwo;
+    font-weight: 800;
+    display: block;
+    margin: 8px 0 22px;
+    font-weight: bold;
+}
+
 .hr {
     width: 100%;
     border: solid 2px $lightpink;
 }
-.content-item-center {
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-}
-.img-content-header {
-    width: 250px;
-    height: 60px;
-    display: inline-block;
-}
-.img-content-header img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    top: 0;
-    position: absolute;
-    left: 0;
-}
-.content-img-modal {
-    position: relative;
-    height: 100%;
-}
-.inp-content {
-    display: inline-block;
-    box-shadow: 1px 1px 5px #a4a4a4;
-    margin-left: 25px;
-}
-.inp-text-modal-1 {
-    font-size: 30px;
-    color: $greyishBrownTwo;
-    margin-bottom: 0;
-    font-weight: bold;
-    padding: 5px;
-    border: none;
-    width: 155px;
-}
-.inp-text-modal-2 {
-    font-size: 30px;
-    color: $selecred;
-    margin-bottom: 0;
-    font-weight: bold;
-    padding: 5px;
-    border: none;
-    width: 250px;
-}
-.inp-text-modal-3 {
-    color: $white;
-    margin-bottom: 0;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    width: 220px;
-    border-radius: 50px;
-    background: $selecred;
-    margin-left: 25px;
-    padding: 14px 0;
-}
-.content {
-    width: 100%;
-    display: inline-block;
-}
-.input-url {
-    width: 165px;
-    padding: 8px;
-    color: #444;
-    border: 1px solid $white;
-    box-shadow: 1px 2px 4px #a4a4a4;
-    font-weight: bold;
-    margin-left: 5px;
-}
-/* ** HEADER ** */
-/* ** TITULO ** */
-.modal-title-claro {
-    padding: 3% 5%;
-    border-radius: 0 !important;
+
+.img-content {
+    width: 775px;
+    height: 442px;
 }
 
-.title-modal-content {
-    width: 550px;
-    height: 115px;
-    margin: 15px auto;
-    background: $selecred;
-    padding: 11px 12px;
-}
-
-.inp-title-modal {
-    background: #c06760;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    color: $white;
-    height: 54px;
-    font-weight: 800;
-    padding: 0 0 0 12px;
-    font-size: 36px;
-}
-
-.inp-sub-title-modal {
-    background: #c06760;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    color: $white;
-    height: 30px;
-    font-weight: 600;
-    padding: 0 0 0 12px;
-    margin-top: 11px;
-}
-/* ** TITULO ** */
-/* ** PROMO ** */
-.modal-promo-claro {
-    padding: 24px;
-    border-radius: 0 !important;
-}
-.img-back-modal {
-    object-fit: cover;
-    position: absolute;
-    top: 10px;
-    
-}
-.img-promo {
-    border: 20px solid $selecred;
-    border-radius: 10px;
-    width: 96%;
-    left: 2%;
-}
-.img-promo-claro {
-    width: 85%;
+.img-content-promo {
+    width: 824px;
     height: 450px;
+    margin: 50px auto 0 auto;
+}
+
+.img-promo-claro {
+    width: 824px;
+    height: 496px;
     justify-content: space-around;
     display: flex;
     align-items: center;
-    margin: auto;
-    text-align: center;
 }
+
+#back-promo-claro{
+    position:relative;
+  }
+
 .add-file {
-    width: 220px;
-    z-index: 1;
+    // width: 32%;
+    width: 266px;
+    height: 174px;
+    z-index: 9999;
 }
+
 .add-file img {
-    width: 22%;
+    width: 20%;
 }
+
 .add-file span {
     background: #fff;
     margin: 0 15px;
-    border-radius: 15px;
-    display: block;
-    padding: 3px;
-    font-weight: 600;
+    border-radius: 25px;
 }
-/* ** PROMO ** */
-/* ** LINK ** */
-.modal-link-claro {
-    padding: 5% 7%;
-    border-radius: 0 !important;
-}
-.modal-link-claro p {
-    font-size: 24px;
-    color: $warm-grey-three;
-    margin-bottom: 0;
-}
-.modal-link-claro input {
-    width: 100%;
-    padding: 8px;
-    color: #333;
-    border: 1px solid $white;
-    box-shadow: 1px 2px 4px #a4a4a4;
-    font-weight: 600;
-    font-size: 18px;
-    display: flex;
-    float: right;
-}
-/* ** LINK ** */
 
-// MODAL
+ .img-back-promo {
+     border: 28px solid $selecred;
+     border-radius: 10px;
+     width: 100%;
+     top: 10px;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+}
 
-
-/** ** ** */
+#img-header-claro img {
+    top: 0;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+}
 
 .btn-content button {
     color: $waterblue;
@@ -260,18 +141,214 @@ a:hover {
     margin-top: 17%;
 }
 
-
-
-
-
-
 /** ** ** */
+.modal-header-claro {
+    width: 1200px;
+    height: 383px;
+    background: $white;
+    margin: 75px auto 0 auto;
+    padding-top: 23px;
+    padding-left: 47px;
+    padding-right: 47px;
+}
+
+.p-text-bold-black {
+    font-size: 18px;
+    color: $black;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.p-title-black {
+    font-size: 24px;
+    color: $greyishBrownTwo;
+    text-align: center;
+    font-weight: 800;
+    margin-top: 5px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.img-content-header {
+    width: 290px;
+    height: 70px;
+    display: inline-block;
+}
+
+.img-content-header img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.txt-content {
+    display: inline-block;
+    box-shadow: 1px 1px 5px #a4a4a4;
+    margin-left: 30px;
+}
+
+.inp-text-modal-1 {
+    font-size: 32px;
+    color: $greyishBrownTwo;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding: 5px 0px 5px 8px;
+    border: none;
+    width: 169px;
+}
+
+.inp-text-modal-2 {
+    font-size: 32px;
+    color: $selecred;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding: 5px 0px 5px 8px;
+    border: none;
+    width: 287px;
+}
+
+.inp-text-modal-3 {
+    font-size: 18px;
+    color: $white;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    width: 259px;
+    border-radius: 50px;
+    background: $selecred;
+    margin-left: 38px;
+    padding: 13px 0;
+}
+
+.url-content {
+    display: block;
+    float: right;
+    width: 250px;
+    margin-top: 28px;
+}
+
+.url-modal-content {
+    width: 774px;
+    margin-left: 89px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.input-url {
+    width: 200px;
+    padding: 8px;
+    color: #444;
+    border: 1px solid $white;
+    box-shadow: 1px 2px 4px #a4a4a4;
+    font-weight: bold;
+    float: right;
+}
+
+.input-url-modal {
+    width: 686px;
+    padding: 11px;
+    color: #444;
+    border: 1px solid $white;
+    box-shadow: 1px 2px 4px #a4a4a4;
+    font-weight: bold;
+    float: right;
+    font-size: 21px;
+}
+
+.modal-footer {
+    width: 100%;
+    border-top: 0 !important;
+}
+
+.error {
+    color: #ff0007;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
 .btn-tomato,
 .btn-tomato:hover {
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     padding: 16px 35px;
+}
+
+.btn-content button {
+    color: $teal;
+    font-weight: bold;
+}
+
+/** ** URL ** **/
+
+.modal-url {
+    width: 949px;
+    height: 446px;
+    background: $white;
+    margin: 10% auto 0;
+}
+
+.modal-url p {
+    font-size: 36px;
+    color: $warm-grey-three;
+    margin-left: 89px;
+    margin-bottom: 0;
+    padding-top: 87px;
+}
+
+/** ** TITULO ** **/
+.modal-title {
+    width: 952px;
+    height: 328px;
+    background: $white;
+    margin: 75px auto 0 auto;
+    text-align: center;
+    padding-top: 24px;
+}
+
+.modal-title p {
+    color: #4a4a4a;
+    font-weight: 600;
+    font-weight: bold;
+}
+
+.title-modal-content {
+    width: 634px;
+    height: 111px;
+    margin: 29px auto 17px;
+    background: $selecred;
+    padding: 11px 12px;
+}
+
+.input-title {
+    background: #c06760;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    color: $white;
+    height: 54px;
+    font-weight: 800;
+    padding: 0 0 0 12px;
+    font-size: 36px;
+}
+
+.input-sub-title {
+    background: #c06760;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    color: $white;
+    height: 26px;
+    font-weight: 600;
+    padding: 0 0 0 12px;
+    margin-top: 11px;
 }
 
 /** ** BANNER ** **/
