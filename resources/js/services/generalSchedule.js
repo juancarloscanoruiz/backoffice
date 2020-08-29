@@ -44,7 +44,7 @@ function filterDates(startDate, lastDate, landing) {
         },
         success: function (result) {
             let json = JSON.parse(result);
-            console.log(json);
+
             let grills = json.data.grilla;
             //Géneros
             let genres = json.data.genres;
@@ -735,7 +735,6 @@ function addImagesModalIcons() {
         cache: false,
         success: function (result) {
             result = JSON.parse(result);
-            console.log(result);
             $('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
             $('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
             $('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);

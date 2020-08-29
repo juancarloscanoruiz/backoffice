@@ -144,8 +144,6 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-
-
                     case "carrusel1":
                         $("body").append(loader);
                         setTimeout(function () {
@@ -199,28 +197,28 @@ function eventsGrilla() {
                         }, 3000);
                         break;
                         break;
-                        case "slider-pagination":
-                    $("body").append(loader);
-                    setTimeout(function () {
-                        $('.modal-programming-carousel-concert').modal("show");
-                        $(".programming-slider").slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(".programming-slider-dots"),
-                            initialSlide: 0,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                var thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                        $("#loader1").remove();
-                    }, 3000);
-                    break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-programming-carousel-concert').modal("show");
+                            $(".programming-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
                     case "slider-pagination":
                         $("body").append(loader);
                         setTimeout(function () {
@@ -242,7 +240,7 @@ function eventsGrilla() {
                             });
                             $("#loader1").remove();
                         }, 3000);
-    
+
                         break;
                     default:
                         break;
@@ -297,6 +295,8 @@ function eventsGrilla() {
                         getContentConcertChannelBlock4OTwo();
                         break;
                     case "pencil-carrusel1":
+                        let id = json.id;
+                        console.log(id);
                         $("body").append(loader);
                         setTimeout(function () {
                             $(".modal-edit-program-carrusel").modal("show");
@@ -398,7 +398,6 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-
                     case "pencil-carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
