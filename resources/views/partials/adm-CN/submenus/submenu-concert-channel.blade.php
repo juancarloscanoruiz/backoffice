@@ -387,6 +387,7 @@
 
     @include('partials.adm-CN.modals-concert.titulo')
     @include('partials.adm-CN.modals-concert.promo-concert')
+    @include('partials.adm-CN.modals-concert.banner-concert')
     @include('partials.adm-CN.modals-concert.encabezado')
     @include('partials.adm-CN.modals-concert.carrusel')
     @include('partials.adm-CN.modals-concert.carrusel2')
