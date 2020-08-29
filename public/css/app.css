@@ -363,6 +363,10 @@ body {
   text-decoration: none;
 }
 
+.border-radius {
+  border-radius: 0em !important;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -1512,6 +1516,10 @@ body {
 
 .text-none:hover {
   text-decoration: none;
+}
+
+.border-radius {
+  border-radius: 0em !important;
 }
 
 /* BOTONES REUTILIZABLES */
@@ -3866,6 +3874,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .input-title-cinema {
   background-color: #2d2926;
+}
+
+.input-border {
+  border-radius: 8px !important;
 }
 
 .line {
@@ -6834,6 +6846,26 @@ iframe {
 
 .container-width {
   width: -webkit-fill-available;
+}
+
+.input-promo-container {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: 90%;
+  z-index: 1;
+}
+
+#concert-promo-container {
+  padding-bottom: 70%;
+}
+
+#concert-promo-container img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 @font-face {

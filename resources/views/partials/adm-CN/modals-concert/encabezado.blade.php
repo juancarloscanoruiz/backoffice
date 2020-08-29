@@ -40,11 +40,12 @@
                                     class="modal-header-button-title a-btn-basic-medium a-btn-pink  pl-3 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn"
                                     value="" placeholder="VER PROGRAMACIÓN">
                                 <div class="d-flex mt-5 position-absolute mr-4" style="right:0">
-                                    <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                    <a href="#url-encabezado" role="button" data-toggle="modal">
-                                        <input type="text" name="links" id="link-logo-canal-claro"
-                                            class="modal-header-button-link urls a-text-bold-warm text-normal "
-                                            placeholder="Enlace o URL"></a>
+                                    <a href="#url-encabezado-concert" role="button" data-toggle="modal">
+                                        <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link"
+                                            class="mr-3"></a>
+                                    <input type="text" name="links" id="link-logo-canal-claro"
+                                        class="modal-header-button-link urls a-text-bold-warm text-normal "
+                                        placeholder="Enlace o URL">
                                 </div>
                             </div>
                         </div>
@@ -64,26 +65,24 @@
     </div>
 </div>
 <!--Vinculo para url-->
-<div class=" modal url-encabezado" data-backdrop-limit="1" id="url-header-concert" tabindex="-1" role="dialog"
-    data-modal-parent="#url-encabezado">
+<div class=" modal url-encabezado" data-backdrop-limit="1" id="url-encabezado-concert" tabindex="-1" role="dialog"
+    data-modal-parent="#url-encabezado-concert">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content  ">
-            <div class="modal-body pl-5 ml-3 ">
-
+        <div class="modal-content">
+            <div class="modal-body pl-5 ml-3">
                 <p class="a-text-medium-warm-grey-three h3 mt-5 d-flex centro">Vínculo a una página Web existente.
                 </p>
                 <div class="mt-5 d-flex ">
                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                    <input type="text" name="links" id="link-logo-canal-claro"
+                    <input type="text" name="links" id="link-button-concert-channel"
                         class="urls a-text-bold-warm text-normal url-container" placeholder=" Enlace o URL">
-
                 </div>
             </div>
 
             <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
                 <button
                     class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                    id="" data-dismiss="modal">ACEPTAR</button>
+                    id="url-concert-button" data-dismiss="modal">ACEPTAR</button>
                 <a href="#delete-info-encabezado" role="button"
                     class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                     data-toggle="modal">CANCELAR</a>
@@ -97,8 +96,8 @@
 <div class=" modal  delete-info-encabezado" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1"
     role="dialog" data-modal-parent="#modalbanner">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content  ">
-            <div class="modal-body ">
+        <div class="modal-content">
+            <div class="modal-body">
                 <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
                 <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
                 <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>

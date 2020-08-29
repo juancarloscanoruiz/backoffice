@@ -1,12 +1,10 @@
-@extends('layaout.app')
-<div class="modal pr-0  carrusel1-cinema " id="modaledicarrusel" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto;  ">
-    <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
-        <div class="modal-content">
-            <div class="modal-body ">
-                <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL -
-                    CARRUSEL 1</h2>
-                <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
+
+<div class="modal pr-0  carrusel1-cinema " id="modaledicarrusel" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; ">
+        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
+            <div class="modal-content">
+                <div class="modal-body ">
+                    <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN   PRINCIPAL - CARRUSEL 1</h2>
+                         <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                 <div class="col-11 mx-auto">
                     <div class="float-right">

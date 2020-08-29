@@ -1,13 +1,14 @@
-<div class="modal modal-promo-cinema p-0 m-0" tabindex="-1" role="dialog" id="modalpromos">
+
+<div class="modal modal-promo-cinema p-0 m-0" tabindex="-1" role="dialog" id="modalpromos" >
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
-        <div class="modal-content  align-item-center centro w-100">
+        <div class="modal-content  align-item-center centro  border-radius w-100">
             <div class="modal-body ">
 
-                <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO
+                <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3 mb-2">CARGAR IMÁGENES EN FORMATO
                     JPG O VIDEOS MP4</p>
-                <h2 class="h2 text-center a-text-black-brown-two pt-3">PROMO </h2>
+                <h2 class="h2 text-center a-text-black-brown-two ">PROMO </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                <div class="container-promo-cinema p-3  mt-4">
+                <div class="container-promo-cinema p-3 m-4  mt-4">
 
                     <div class="justify-content-around position-absolute d-flex p-5  div-promo">
                         <input type="file" name="" id="image-promo" class="d-none">
@@ -40,12 +41,12 @@
                         </label>
 
                     </div>
-                    <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100">
+                    <img src="./images/synopsis/background-promo1.svg" alt="" class="d-flex w-100">
                 </div>
-                <div class="ml-3 mt-3" style="text-align:initial;">
-                    <span
-                        class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.jpg</span><br>
-                    <span class="a-text-bold-brown-two text-normal ">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
+                <div class="ml-4 mt-3" style="text-align:initial;">
+                    <p
+                        class="a-text-bold-brown-two text-normal">Nombre_Promoción_ClaroCinema_20200709.jpg</p>
+                    <p class="a-text-bold-brown-two text-normal ">Nombre_Promoción_ClaroCinema_20200709.mp4</p>
                 </div>
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
                     <button

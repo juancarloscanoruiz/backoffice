@@ -6,9 +6,16 @@ import {
 
 } from "./generalSchedule.js";
 
+
+//Configraciones para la librería de Cleave JS
 import {
-    resetIframe
-} from "../vendor/easyXDM.js";
+    calendarSlick
+} from "../config/slick.js";
+
+import {
+    createSlickSlider,
+    createCalendarDays
+} from "../vendor/slick.js";
 
 function getMonth(idMonth) {
     let date = new Date();
@@ -161,12 +168,10 @@ function getChapterInfo(data) {
         },
 
         success: function (result) {
-
             let data = JSON.parse(result);
             $('.loader-view-container').remove();
             $('.loader-container').remove();
             let date = new Date();
-
             /* Número de días del mes actual */
             let currentMonthDays = getDays(1);
 
@@ -190,6 +195,9 @@ function getChapterInfo(data) {
             let monthUTC = "";
             //Año en horario central
             let yearUTC = dateUTC.getUTCFullYear();
+
+            //Siguiente mes
+            let nextMonth = ("0" + (dateUTC.getUTCMonth() + 2)).slice(-2)
 
             if (dateUTC.getUTCMonth() < 10) {
                 monthUTC = `0${dateUTC.getUTCMonth() + 1}`
@@ -265,7 +273,7 @@ function getChapterInfo(data) {
                 for (let i = 1; i <= getDays(2); i++) {
                     if (i < 10) {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${dateUTC.getUTCMonth + 2}-0${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${data.program.section_id}">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -274,7 +282,7 @@ function getChapterInfo(data) {
                         `;
                     } else {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${dateUTC.getUTCMonth + 2}-${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${data.program.section_id}">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -344,8 +352,6 @@ function getChapterInfo(data) {
 
             $('.calendar-slider').html(daysSlider);
             //End caledario
-
-
             let modaTitle = $('.edit-program-modal-title');
             $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
             $('.edit-program-data-container').attr("section", data.program.section_id);
@@ -452,7 +458,6 @@ function getChapterInfo(data) {
                     <option value="${genre.title}">${genre.title}</option>
                     `
             });
-
             $('.list1').append(optionGenre);
             $(".list1").selectpicker('destroy');
             $(".list1").selectpicker({
@@ -1111,7 +1116,27 @@ function getConcertChannelPromo() {
                 $('#upload-concert-promo-button').attr("key", "block_3_video_url");
                 //Checamos si existe el vídeo de promoción en concert channel
                 if (json.data.block_3_video_url) {
-                    $('#video-promo-concert').html(`<source src="${json.data.block_3_video_url}" type="video/mp4">`).css("display", "block");
+                    let promoContainer = $('#concert-promo-container');
+                    //Verificamos si la url es de una imagen
+                    if (json.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                        promoContainer.html(`
+                        <img src="${json.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
+                        `);
+                    } else {
+                        //La url es de un video
+                        promoContainer.html(`
+                        <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
+                        <source src="${json.data.block_3_video_url}" type="video/mp4">
+                         </video>
+                        `);
+
+                    }
+
+                } else {
+                    promoContainer.html(`
+                    <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
+                    `);
+
                 }
             }
             $('.loader-view-container').remove();
@@ -1190,11 +1215,10 @@ function editPromoLanding(data) {
     })
 }
 
-
-function getProgrammingLanding() {
+//Conseguir la programación de un landing por primera vez, abriendo el modal con programas
+function getProgrammingLanding(date) {
     $.ajax({
         type: "POST",
-        data: data,
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -1202,9 +1226,162 @@ function getProgrammingLanding() {
                 </div>`
             );
         },
+        data: {
+            date
+
+        },
         url: "landing/getProgrammingLanding",
         success: function (result) {
-            console.log(result);
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                let concertChannelProgramming = json.data[0].programing[0].programs;
+                if (concertChannelProgramming.length > 0) {
+                    let programConcert = ""
+                    for (const program of concertChannelProgramming) {
+                        programConcert += `
+                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
+                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
+                            chapter_id="${program.chapter_id}">
+                        <div class="schedule-container col-12 p-5 mx-auto mt-0">
+                            <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
+                                ${program.Program_Title} - ${program.chapter_title}
+                            </p>
+                            <div class="schedule-item-body">
+                                <div class="schedule-poster">
+                                    <div class="poster">
+                                        <div class="thumbnail-edit" _id="${program.chapter_id}">
+                                            <img src="${program.image}"
+                                                class="w-100" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="schedule-details">
+                                    <div class="schedule-details-header">
+                                        <div>
+                                            <p class="schedule a-text-semi-brown-two">
+                                                ${program.time} hrs.
+                                            </p>
+                                            <p class="rating a-text-semibold-warm-grey-five">
+                                                Clasificación: A
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <button title="Agregar a mi lista"
+                                                class="button-none add-favorites programing-button" type="button" _id="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44"
+                                                    viewBox="0 0 48 44">
+                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd"
+                                                        stroke="#7A7777" stroke-width="3"
+                                                        d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="schedule-description a-text-regular-warm-grey-five s1"
+                                            id="synopsis-edi">${program.sinopsis}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `
+                    }
+                    $('.concert-programming-contanier').html(programConcert);
+                }
+                $(".modal-programming-landing").modal("show");
+                let calendarSlider2 = $(".calendar-slider2");
+                createCalendarDays(calendarSlider2, "programming-concert-landing");
+                try {
+                    calendarSlider2.slick("unslick");
+                    createSlickSlider(calendarSlider2, calendarSlick);
+                } catch (error) {
+                    createSlickSlider(calendarSlider2, calendarSlick);
+                }
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+
+//Conseguir únicamente programas de un landing, sin mostrar el modal
+function getProgramsLanding(date) {
+    $.ajax({
+        type: "POST",
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        data: {
+            date
+
+        },
+        url: "landing/getProgrammingLanding",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                let concertChannelProgramming = json.data[0].programing[0].programs;
+                if (concertChannelProgramming.length > 0) {
+                    let programConcert = "";
+                    for (const program of concertChannelProgramming) {
+                        programConcert += `
+                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
+                        <img src="./images/pencil.svg" alt="" class="pencil pencil-edit"
+                            chapter_id="${program.chapter_id}">
+                        <div class="schedule-container col-12 p-5 mx-auto mt-0">
+                            <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
+                                ${program.Program_Title} - ${program.chapter_title}
+                            </p>
+                            <div class="schedule-item-body">
+                                <div class="schedule-poster">
+                                    <div class="poster">
+                                        <div class="thumbnail-edit" _id="${program.chapter_id}">
+                                            <img src="${program.image}"
+                                                class="w-100" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="schedule-details">
+                                    <div class="schedule-details-header">
+                                        <div>
+                                            <p class="schedule a-text-semi-brown-two">
+                                                ${program.time} hrs.
+                                            </p>
+                                            <p class="rating a-text-semibold-warm-grey-five">
+                                                Clasificación: A
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <button title="Agregar a mi lista"
+                                                class="button-none add-favorites programing-button" type="button" _id="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44"
+                                                    viewBox="0 0 48 44">
+                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd"
+                                                        stroke="#7A7777" stroke-width="3"
+                                                        d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="schedule-description a-text-regular-warm-grey-five s1"
+                                            id="synopsis-edi">${program.sinopsis}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `
+                    }
+                    $('.concert-programming-contanier').html(programConcert);
+                }
+            }
             $('.loader-view-container').remove();
         }
     })
@@ -1224,5 +1401,6 @@ export {
     editElementLanding,
     getConcertChannelPromo,
     editPromoLanding,
-    getProgrammingLanding
+    getProgrammingLanding,
+    getProgramsLanding
 };

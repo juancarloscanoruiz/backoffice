@@ -384,34 +384,59 @@ iframe {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.container-promo{
+
+.container-promo {
 
     border-radius: 12px;
-    background-color:$cobait;
+    background-color: $cobait;
 }
-.container-promo-cinema{
+
+.container-promo-cinema {
 
     border-radius: 12px;
-    background-color:$off-yellow;
+    background-color: $off-yellow;
 }
 
-.container-promotitle-cinema{
-    background-color:$light-gold;
+.container-promotitle-cinema {
+    background-color: $light-gold;
     border: $light-gold;
     box-shadow: 0 2px 4px 0 $black-two;
 
 }
-.container-promotitle{
-    background-color:$cobait;
+
+.container-promotitle {
+    background-color: $cobait;
 
 }
-.container-title{
+
+.container-title {
     background-color: $dark-indigo;
 }
-.container-title-cinema{
+
+.container-title-cinema {
     background-color: black;
 }
 
-.container-width{
-        width: -webkit-fill-available;
+.container-width {
+    width: -webkit-fill-available;
+}
+
+.input-promo-container {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 90%;
+    z-index: 1;
+}
+
+
+#concert-promo-container {
+    padding-bottom: 70%;
+
+    img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
 }

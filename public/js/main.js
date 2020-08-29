@@ -88877,28 +88877,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //Previsualizar el video que subió el usuario en el landing de concert channel
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file').change(function () {
-    if (this.files && this.files[0]) {
-      var file = this.files[0];
-      var reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-
-      reader.onload = function (e) {
-        // The file reader gives us an ArrayBuffer:
-        var buffer = e.target.result; // We have to convert the buffer to a blob:
-
-        var videoBlob = new Blob([new Uint8Array(buffer)], {
-          type: 'video/mp4'
-        }); // The blob gives us a URL to the video file:
-
-        var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container video').remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
-      };
-    }
-  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-
+  //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
   }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
@@ -88910,22 +88889,21 @@ function eventsGrilla() {
     getHeaderLanding();
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  var confLandingConcertChannel = {
-    remote: "".concat(baseURL, "concert-channel-edi.php"),
-    container: document.getElementById("navbar-prev-concert-channel"),
+  var confLandingClaroCinema = {
+    remote: "".concat(baseURL, "claro-cinema-edi.php"),
+    container: document.getElementById("navbar-prev-claro-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
+        var _loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "current-programming-concert":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])();
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarSlider2);
 
             try {
@@ -88935,6 +88913,122 @@ function eventsGrilla() {
               Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
             }
 
+            break;
+
+          case "header-landing-cinema":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-encabezado-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "title-cinema":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "promo-cinema":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promo-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "title-carrusel1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "carrusel1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel1-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "title-carrusel2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "carrusel2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel1-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarPrevClaroCinema = document.getElementById("navbar-prev-claro-cinema");
+
+  if (navbarPrevClaroCinema) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-claro-cinema iframe').remove();
+    new easyXDM.Socket(confLandingClaroCinema);
+  }
+
+  var confLandingConcertChannel = {
+    remote: "".concat(baseURL, "concert-channel-edi.php"),
+    container: document.getElementById("navbar-prev-concert-channel"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var _loader2 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
+
+        switch (json.type) {
+          case "current-programming-concert":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year = date.getUTCFullYear();
+
+            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])(_currentDate);
             break;
 
           case "header-landing-concert":
@@ -88958,7 +89052,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //slider para carrusel concert-channel
 
@@ -88978,7 +89072,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel2").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
@@ -88997,7 +89091,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89005,7 +89099,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-video":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89013,7 +89107,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89021,7 +89115,7 @@ function eventsGrilla() {
             break;
 
           case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89029,7 +89123,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               //slider para carrusel concert-channel
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
@@ -89049,7 +89143,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
             setTimeout(function () {
               //slider para carrusel concert-channel
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
@@ -89077,12 +89171,42 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider2').on("click", ".programming-concert-landing", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+  }); //Pencil
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').on("click", ".programming-pencil-concert", function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("hide");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapterId);
+  }); //Modal de link para botón
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado-concert').on('show.bs.modal', function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-button-concert-channel').val(link);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado-concert').on('hidden.bs.modal', function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-button-concert-channel').val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val(link);
+  }); //Concert channel promo
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').click(function () {
-    var video = document.getElementById("video-promo-file").files[0];
+    var file = "";
+
+    if (document.getElementById("video-promo-file-concert").files[0]) {
+      file = document.getElementById("video-promo-file-concert").files[0];
+    } else if (document.getElementById('image-promo-concert').files[0]) {
+      file = document.getElementById('image-promo-concert').files[0];
+    } else {
+      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-promo-concert').val();
+    }
+
     var landing = "Concert Channel";
     var data = new FormData();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    data.append("video-promo", video);
+    data.append("promo", file);
     data.append("landing", landing);
     data.append("key", key);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLanding"])(data);
@@ -89094,8 +89218,7 @@ function eventsGrilla() {
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
     var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2").val() || "";
     var logo = document.getElementById("header-lading-concert-logo").files[0] || "";
-    var link = "";
-    console.log(title1, title2, logo);
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val();
     var data = new FormData();
     data.append("landing", landing);
     data.append("title1", title1);
@@ -89124,6 +89247,69 @@ function eventsGrilla() {
       landing: landing
     });
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+
+  function checkURL(url) {
+    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  } //Previsualizar el video que subió el usuario en el landing de concert channel
+
+
+  var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert').change(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert').val("");
+
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: 'video/mp4'
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
+      };
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert').change(function () {
+    videoPromoInput.val("");
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
+      };
+    }
+
+    reader.readAsDataURL(this.files[0]);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-promos-concert').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-promo-concert').val("");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo-concert-button').on('click', function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+    var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container');
+    var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert');
+    var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert');
+
+    if (checkURL(link)) {
+      //Insertamos una nueva imagen con el link
+      prevContainer.html("\n            <img src=\"".concat(link, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n            ")); //Limpiamos los input
+
+      videoInput.val("");
+      imageInput.val("");
+    } else {
+      prevContainer.html("\n                <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(link, "\" type=\"video/mp4\">\n                </video>\n                ")); //Limpiamos input
+
+      videoInput.val("");
+      imageInput.val("");
+    }
   }); //Landing de concert channel
 
   var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
@@ -89438,14 +89624,14 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
     var sliderIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1;
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick("slickAdd", "\n        <!--otro slider-->\n<div>\n\n<section class=\"edit-program-image\">\n    <select\n        class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n        title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n        data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n        name=\"thumbnail-header1\" key=\"title\">\n    </select>\n    <!--Imagen del programa--->\n    <div class=\"edit-thumbnail position-relative\">\n\n        <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n            class=\"input-image-program d-none \">\n        <label for=\"edit-image-horizontal\"\n            class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n            <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                alt=\"heart-icon\" />\n            <div class=\"edit-program-camera text-center\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                    class=\"edit-program-icon-image\" alt=\"camera\" />\n                <p\n                    class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                    472\n                    x 245px</p>\n            </div>\n\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n        </label>\n    </div>\n    <!--Nombre de la imagen-->\n    <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n</section>\n<!--Establecer en landing, home, schedule item date time-->\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Landing-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en landing\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center mb-3\">\n                    <input type=\"radio\"  id=\"yes-landing-carrusel\" value=\"3\"\n                        class=\"edit-switch-landing edit-landing-yes\" key=\"in_landing\" />\n                    <label for=\"yes-landing-carrusel\" id=\"siestado-landing\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-landing-carrusel\" value=\"0\"\n                        class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                         checked/>\n                    <label for=\"no-landing-carrusel\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <!--Inputs radio-->\n                <div class=\"d-flex align-items-center mb-3\">\n\n                    <span\n                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                        2</span>\n\n\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                            key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <!--Home-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en home\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center edit-switches-home-container\">\n                    <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                        class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                        checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p\n                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Schedule Item Date time\n                </p>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                        style=\"margin-bottom: 81px\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                class=\"mr-3\">\n                        <span class=\"a-text-bold-warm mt-3\">\n\n                            <input key=\"\" type=\" text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                </p>\n                <div\n                    class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                    <img\n                            src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                    <span class=\"a-text-bold-warm mt-3\"><input\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\xA0\n    </div>\n</section>\n<!--Sinopsis-->\n<section class=\"mb-5 edit-program-data-container\">\n    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n    <!--Textarea-->\n    <textarea key=\"synopsis\"\n        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n        id=\"prog_sinopsis\"></textarea>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program episode season-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    season\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"season\"\n                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"00\">\n                </div>\n            </div>\n        </div>\n        <!--Program episode number-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    number\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_episode_number\"\n                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"000\">\n                </div>\n            </div>\n        </div>\n        <!--Program year produced-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                    produced\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_year_produced\"\n                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                        placeholder=\"YYYY\">\n                </div>\n            </div>\n        </div>\xA0\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program title alternate-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                    alternate\n                </p>\n                <div class=\"mb-3 edit-rectangle-container p-3\">\n                    <input type=\"text\" key=\"subtitle\"\n                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                        placeholder=\"Program Title Alternate\">\n                </div>\n            </div>\n        </div>\n        <!--Program genre list-->\n        <div class=\"col-4 edit-program-data-container position-relative\"\n            id=\"edit-genre-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                    list\n                </p>\n                <div class=\"mb-3 edit-rectangle-container \">\n                    <select\n                        class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                        id=\"edit-program-genres\" title=\"Genere list\" multiple\n                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                    </select>\n                </div>\n            </div>\n        </div>\n        <!---->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                    rating\n                    code\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"rating\"\n                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                        placeholder=\"PG-00\">\n                </div>\n            </div>\n        </div>\xA0\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                    date\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                    \">Fecha\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"day\"\n                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"DD:MM:YY\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                    item log\n                    time (gmt)\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"programing\"\n                            class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                    schedule item duration\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"duration\"\n                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\xA0\n    </div>\n</section>\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    subbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                        key=\"subbed\" />\n                    <label for=\"yes-subbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                        key=\"subbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    dubbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                        key=\"dubbed\" />\n                    <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                        key=\"dubbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                    available\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                        key=\"audio5\" />\n                    <label for=\"yes-audio5\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                        key=\"audio5\" />\n                    <label for=\"no-audio5\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<div class=\" d-flex justify-content-center\">\n<section class=\"text-center mb-3 d-flex justify-content-center\">\n<button\n    class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n    data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n</section>\n\n</div>\n</div>\n\n       <!--fin del otro slider-->\n");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick("slickAdd", "\n        <!--otro slider-->\n<div>\n\n<section class=\"edit-program-image\">\n    <select\n        class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n        title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n        data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n        name=\"thumbnail-header1\" key=\"title\">\n    </select>\n    <!--Imagen del programa--->\n    <div class=\"edit-thumbnail position-relative\">\n\n        <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n            class=\"input-image-program d-none \">\n        <label for=\"edit-image-horizontal\"\n            class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n            <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                alt=\"heart-icon\" />\n            <div class=\"edit-program-camera text-center\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                    class=\"edit-program-icon-image\" alt=\"camera\" />\n                <p\n                    class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                    472\n                    x 245px</p>\n            </div>\n\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n        </label>\n    </div>\n    <!--Nombre de la imagen-->\n    <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n</section>\n<!--Establecer en landing, home, schedule item date time-->\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Landing-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en landing\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center mb-3\">\n                    <input type=\"radio\"  id=\"yes-landing-carrusel\" value=\"3\"\n                        class=\"edit-switch-landing edit-landing-yes\" key=\"in_landing\" />\n                    <label for=\"yes-landing-carrusel\" id=\"siestado-landing\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-landing-carrusel\" value=\"0\"\n                        class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                         checked/>\n                    <label for=\"no-landing-carrusel\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <!--Inputs radio-->\n                <div class=\"d-flex align-items-center mb-3\">\n\n                    <span\n                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                        2</span>\n\n\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                            key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <!--Home-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en home\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center edit-switches-home-container\">\n                    <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                        class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                        checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p\n                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Schedule Item Date time\n                </p>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                        style=\"margin-bottom: 81px\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                class=\"mr-3\">\n                        <span class=\"a-text-bold-warm mt-3\">\n\n                            <input key=\"\" type=\" text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                </p>\n                <div\n                    class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                    <img\n                            src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                    <span class=\"a-text-bold-warm mt-3\"><input\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Sinopsis-->\n<section class=\"mb-5 edit-program-data-container\">\n    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n    <!--Textarea-->\n    <textarea key=\"synopsis\"\n        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n        id=\"prog_sinopsis\"></textarea>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program episode season-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    season\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"season\"\n                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"00\">\n                </div>\n            </div>\n        </div>\n        <!--Program episode number-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    number\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_episode_number\"\n                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"000\">\n                </div>\n            </div>\n        </div>\n        <!--Program year produced-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                    produced\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_year_produced\"\n                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                        placeholder=\"YYYY\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program title alternate-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                    alternate\n                </p>\n                <div class=\"mb-3 edit-rectangle-container p-3\">\n                    <input type=\"text\" key=\"subtitle\"\n                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                        placeholder=\"Program Title Alternate\">\n                </div>\n            </div>\n        </div>\n        <!--Program genre list-->\n        <div class=\"col-4 edit-program-data-container position-relative\"\n            id=\"edit-genre-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                    list\n                </p>\n                <div class=\"mb-3 edit-rectangle-container \">\n                    <select\n                        class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                        id=\"edit-program-genres\" title=\"Genere list\" multiple\n                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                    </select>\n                </div>\n            </div>\n        </div>\n        <!---->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                    rating\n                    code\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"rating\"\n                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                        placeholder=\"PG-00\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                    date\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                    \">Fecha\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"day\"\n                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"DD:MM:YY\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                    item log\n                    time (gmt)\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"programing\"\n                            class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                    schedule item duration\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"duration\"\n                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    subbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                        key=\"subbed\" />\n                    <label for=\"yes-subbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                        key=\"subbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    dubbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                        key=\"dubbed\" />\n                    <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                        key=\"dubbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                    available\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                        key=\"audio5\" />\n                    <label for=\"yes-audio5\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                        key=\"audio5\" />\n                    <label for=\"no-audio5\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<div class=\" d-flex justify-content-center\">\n<section class=\"text-center mb-3 d-flex justify-content-center\">\n<button\n    class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n    data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n</section>\n\n</div>\n</div>\n\n       <!--fin del otro slider-->\n");
   }); //para agregar un slider más en carrusel1-concert
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n\n                <section class=\"edit-program-image\">\n                <select\n                    class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                    title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                    data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                    name=\"thumbnail-header1\" key=\"title\">\n                </select>\n                <!--Imagen del programa--->\n                <div class=\"edit-thumbnail position-relative\">\n\n                    <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n                        class=\"input-image-program d-none \">\n                    <label for=\"edit-image-horizontal\"\n                        class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                        <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                            alt=\"heart-icon\" />\n                        <div class=\"edit-program-camera text-center\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                                class=\"edit-program-icon-image\" alt=\"camera\" />\n                            <p\n                                class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                472\n                                x 245px</p>\n                        </div>\n\n                        <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                            class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n                    </label>\n                </div>\n                <!--Nombre de la imagen-->\n                <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n            </section>\n            <!--Establecer en landing, home, schedule item date time-->\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Landing-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en landing\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center mb-3\">\n                                <input type=\"radio\"  id=\"yes-landing-carrusel1\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\"  />\n                                <label for=\"yes-landing-carrusel1\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing-carrusel1\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                                    checked />\n                                <label for=\"no-landing-carrusel1\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <!--Inputs radio-->\n                            <div class=\"d-flex align-items-center mb-3\">\n\n                                <span\n                                    class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                    1</span>\n\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                            placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                            key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                                        key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                        key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <!--Home-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en home\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center edit-switches-home-container\">\n                                <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                                    class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                                    checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                            type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin:\n                                        <input type=\"text\" key=\"in_home_expiration\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p\n                                class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Schedule Item Date time\n                            </p>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                                    style=\"margin-bottom: 81px\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                            class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\">\n\n                                        <input key=\"\" type=\" text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                            </p>\n                            <div\n                                class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                                <img\n                                        src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\"><input\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\xA0\n                </div>\n            </section>\n            <!--Sinopsis-->\n            <section class=\"mb-5 edit-program-data-container\">\n                <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                <!--Textarea-->\n                <textarea key=\"synopsis\"\n                    class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                    id=\"prog_sinopsis\"></textarea>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program episode season-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                season\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"season\"\n                                    class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"00\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program episode number-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                number\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_episode_number\"\n                                    class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"000\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program year produced-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                                produced\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_year_produced\"\n                                    class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                    placeholder=\"YYYY\">\n                            </div>\n                        </div>\n                    </div>\xA0\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program title alternate-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                                alternate\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container p-3\">\n                                <input type=\"text\" key=\"subtitle\"\n                                    class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                    placeholder=\"Program Title Alternate\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program genre list-->\n                    <div class=\"col-4 edit-program-data-container position-relative\"\n                        id=\"edit-genre-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                                list\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container \">\n                                <select\n                                    class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                    id=\"edit-program-genres\" title=\"Genere list\" multiple\n                                    data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                    data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                    <!---->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                rating\n                                code\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"rating\"\n                                    class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                    placeholder=\"PG-00\">\n                            </div>\n                        </div>\n                    </div>\xA0\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                                date\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                \">Fecha\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"day\"\n                                        class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                item log\n                                time (gmt)\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"programing\"\n                                        class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                schedule item duration\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"duration\"\n                                        class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\xA0\n                </div>\n            </section>\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                subbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                                    key=\"subbed\" />\n                                <label for=\"yes-subbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                                    key=\"subbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                dubbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                                    key=\"dubbed\" />\n                                <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                                    key=\"dubbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                                available\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                                    key=\"audio5\" />\n                                <label for=\"yes-audio5\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                                    key=\"audio5\" />\n                                <label for=\"no-audio5\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <div class=\" d-flex justify-content-center\">\n        <section class=\"text-center mb-3 d-flex justify-content-center\">\n            <button\n                class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n        </section>\n\n    </div>\n\n            </div>\n            ");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n\n                <section class=\"edit-program-image\">\n                <select\n                    class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                    title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                    data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                    name=\"thumbnail-header1\" key=\"title\">\n                </select>\n                <!--Imagen del programa--->\n                <div class=\"edit-thumbnail position-relative\">\n\n                    <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n                        class=\"input-image-program d-none \">\n                    <label for=\"edit-image-horizontal\"\n                        class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                        <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                            alt=\"heart-icon\" />\n                        <div class=\"edit-program-camera text-center\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                                class=\"edit-program-icon-image\" alt=\"camera\" />\n                            <p\n                                class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                472\n                                x 245px</p>\n                        </div>\n\n                        <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                            class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n                    </label>\n                </div>\n                <!--Nombre de la imagen-->\n                <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n            </section>\n            <!--Establecer en landing, home, schedule item date time-->\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Landing-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en landing\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center mb-3\">\n                                <input type=\"radio\"  id=\"yes-landing-carrusel1\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\"  />\n                                <label for=\"yes-landing-carrusel1\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing-carrusel1\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                                    checked />\n                                <label for=\"no-landing-carrusel1\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <!--Inputs radio-->\n                            <div class=\"d-flex align-items-center mb-3\">\n\n                                <span\n                                    class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                    1</span>\n\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                            placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                            key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                                        key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                        key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <!--Home-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en home\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center edit-switches-home-container\">\n                                <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                                    class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                                    checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                            type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin:\n                                        <input type=\"text\" key=\"in_home_expiration\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p\n                                class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Schedule Item Date time\n                            </p>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                                    style=\"margin-bottom: 81px\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                            class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\">\n\n                                        <input key=\"\" type=\" text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                            </p>\n                            <div\n                                class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                                <img\n                                        src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\"><input\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <!--Sinopsis-->\n            <section class=\"mb-5 edit-program-data-container\">\n                <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                <!--Textarea-->\n                <textarea key=\"synopsis\"\n                    class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                    id=\"prog_sinopsis\"></textarea>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program episode season-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                season\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"season\"\n                                    class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"00\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program episode number-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                number\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_episode_number\"\n                                    class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"000\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program year produced-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                                produced\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_year_produced\"\n                                    class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                    placeholder=\"YYYY\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program title alternate-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                                alternate\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container p-3\">\n                                <input type=\"text\" key=\"subtitle\"\n                                    class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                    placeholder=\"Program Title Alternate\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program genre list-->\n                    <div class=\"col-4 edit-program-data-container position-relative\"\n                        id=\"edit-genre-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                                list\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container \">\n                                <select\n                                    class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                    id=\"edit-program-genres\" title=\"Genere list\" multiple\n                                    data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                    data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                    <!---->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                rating\n                                code\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"rating\"\n                                    class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                    placeholder=\"PG-00\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                                date\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                \">Fecha\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"day\"\n                                        class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                item log\n                                time (gmt)\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"programing\"\n                                        class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                schedule item duration\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"duration\"\n                                        class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                subbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                                    key=\"subbed\" />\n                                <label for=\"yes-subbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                                    key=\"subbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                dubbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                                    key=\"dubbed\" />\n                                <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                                    key=\"dubbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                                available\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                                    key=\"audio5\" />\n                                <label for=\"yes-audio5\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                                    key=\"audio5\" />\n                                <label for=\"no-audio5\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <div class=\" d-flex justify-content-center\">\n        <section class=\"text-center mb-3 d-flex justify-content-center\">\n            <button\n                class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n        </section>\n\n    </div>\n\n            </div>\n            ");
   }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
   //Añadimos un slide al slider de imágenes de programación
 
@@ -89468,65 +89654,6 @@ function eventsGrilla() {
   var confProgramacionClaroCinema = {
     remote: "".concat(baseURL, "programacion-edi-cinema.php"),
     container: document.getElementById("navbar-prev-programacion-cinema"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var _loader2 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "program":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
-            break;
-
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
-            }, 3000);
-            break;
-
-          case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", _loader2);
-            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-            break;
-
-          case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var iframeProgramacionCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe");
-
-  if (navbarPrograContainerCinema) {
-    iframeProgramacionCinema.remove();
-    new easyXDM.Socket(confProgramacionClaroCinema);
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
-  }); //Landing de programacion de concert channel
-
-  var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
-  var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
-  var confProgramacionConcertChannel = {
-    remote: "".concat(baseURL, "programacion-edi-concert.php"),
-    container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
 
@@ -89570,21 +89697,22 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
+  var iframeProgramacionCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe");
 
-  if (navbarPrograContainerConcert) {
-    iframeProgramacionConcert.remove();
-    new easyXDM.Socket(confProgramacionConcertChannel);
+  if (navbarPrograContainerCinema) {
+    iframeProgramacionCinema.remove();
+    new easyXDM.Socket(confProgramacionClaroCinema);
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
-  }); //Landing de programación de claro canal
-  //Canal claro
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+  }); //Landing de programacion de concert channel
 
-  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
-  var confIframe = {
-    remote: "".concat(baseURL, "programacion-edi.php"),
-    container: document.getElementById("navbar-prev-programacion"),
+  var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
+  var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
+  var confProgramacionConcertChannel = {
+    remote: "".concat(baseURL, "programacion-edi-concert.php"),
+    container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
 
@@ -89612,6 +89740,64 @@ function eventsGrilla() {
 
           case "menu-logos":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader4);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+
+  if (navbarPrograContainerConcert) {
+    iframeProgramacionConcert.remove();
+    new easyXDM.Socket(confProgramacionConcertChannel);
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+  }); //Landing de programación de claro canal
+  //Canal claro
+
+  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+  var confIframe = {
+    remote: "".concat(baseURL, "programacion-edi.php"),
+    container: document.getElementById("navbar-prev-programacion"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var _loader5 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", _loader5);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -90603,53 +90789,53 @@ function eventsGrilla() {
       console.log("buenas", json);
 
       if (_typeof(json) == "object") {
-        var _loader5 = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                    <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                    ";
+        var _loader6 = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                    <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                    ";
 
         switch (json.type) {
           case "claro-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-programacion":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-claro").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-promo":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-1").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-2").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel-title2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
@@ -91166,7 +91352,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91185,11 +91371,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLanding", function() { return editPromoLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgrammingLanding", function() { return getProgrammingLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramsLanding", function() { return getProgramsLanding; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
-/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
+/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //JQUERY
+
+ //Configraciones para la librería de Cleave JS
 
 
 
@@ -91340,7 +91536,9 @@ function getChapterInfo(data) {
 
       var monthUTC = ""; //Año en horario central
 
-      var yearUTC = dateUTC.getUTCFullYear();
+      var yearUTC = dateUTC.getUTCFullYear(); //Siguiente mes
+
+      var nextMonth = ("0" + (dateUTC.getUTCMonth() + 2)).slice(-2);
 
       if (dateUTC.getUTCMonth() < 10) {
         monthUTC = "0".concat(dateUTC.getUTCMonth() + 1);
@@ -91379,9 +91577,9 @@ function getChapterInfo(data) {
 
         for (var _i = 1; _i <= getDays(2); _i++) {
           if (_i < 10) {
-            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-0").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(nextMonth, "-0").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
           } else {
-            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+            daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(nextMonth, "-").concat(_i, "\" section_id=\"").concat(data.program.section_id, "\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
           }
         }
       } else {
@@ -92143,7 +92341,17 @@ function getConcertChannelPromo() {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
         if (json.data.block_3_video_url) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-concert').html("<source src=\"".concat(json.data.block_3_video_url, "\" type=\"video/mp4\">")).css("display", "block");
+          var _promoContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container'); //Verificamos si la url es de una imagen
+
+
+          if (json.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+            _promoContainer.html("\n                        <img src=\"".concat(json.data.block_3_video_url, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                        "));
+          } else {
+            //La url es de un video
+            _promoContainer.html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(json.data.block_3_video_url, "\" type=\"video/mp4\">\n                         </video>\n                        "));
+          }
+        } else {
+          promoContainer.html("\n                    <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                    ");
         }
       }
 
@@ -92212,18 +92420,102 @@ function editPromoLanding(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
-}
+} //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 
-function getProgrammingLanding() {
+
+function getProgrammingLanding(date) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
-    data: data,
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
+    data: {
+      date: date
+    },
     url: "landing/getProgrammingLanding",
     success: function success(result) {
-      console.log(result);
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        var concertChannelProgramming = json.data[0].programing[0].programs;
+
+        if (concertChannelProgramming.length > 0) {
+          var programConcert = "";
+
+          var _iterator = _createForOfIteratorHelper(concertChannelProgramming),
+              _step;
+
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var program = _step.value;
+              programConcert += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-concert\"\n                            chapter_id=\"".concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.concert-programming-contanier').html(programConcert);
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
+        var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
+        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_3__["createCalendarDays"])(calendarSlider2, "programming-concert-landing");
+
+        try {
+          calendarSlider2.slick("unslick");
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_3__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_2__["calendarSlick"]);
+        } catch (error) {
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_3__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_2__["calendarSlick"]);
+        }
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  });
+} //Conseguir únicamente programas de un landing, sin mostrar el modal
+
+
+function getProgramsLanding(date) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    data: {
+      date: date
+    },
+    url: "landing/getProgrammingLanding",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        var concertChannelProgramming = json.data[0].programing[0].programs;
+
+        if (concertChannelProgramming.length > 0) {
+          var programConcert = "";
+
+          var _iterator2 = _createForOfIteratorHelper(concertChannelProgramming),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var program = _step2.value;
+              programConcert += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil pencil-edit\"\n                            chapter_id=\"".concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.concert-programming-contanier').html(programConcert);
+        }
+      }
+
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
@@ -93127,6 +93419,7 @@ function getMonthAndYear(month) {
 
 
 function createCalendarDays(container) {
+  var calendarClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   var date = new Date();
   /* Número de días del mes actual */
 
@@ -93169,17 +93462,17 @@ function createCalendarDays(container) {
       //Día actual
       if (i == getDay()) {
         if (i < 10) {
-          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
         } else {
-          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
         }
       } else {
         if (i < 10) {
           //Días restantes
-          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
         } else {
           //Días restantes
-          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
         }
       }
     } //Días del mes siguiente
@@ -93187,9 +93480,9 @@ function createCalendarDays(container) {
 
     for (var _i = 1; _i <= getDays(2); _i++) {
       if (_i < 10) {
-        daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-0").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+        daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(dateUTC.getUTCMonth() + 2, "-0").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
       } else {
-        daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(dateUTC.getUTCMonth + 2, "-").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+        daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(dateUTC.getUTCMonth() + 2, "-").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
       }
     }
   } else {
@@ -93200,18 +93493,18 @@ function createCalendarDays(container) {
       if (_i2 == getDay()) {
         if (_i2 < 10) {
           //Día actual activo
-          daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
         } else {
           //Día actual activo
-          daysSlider += "\n                                <li class=\"programming-item programming-item-active\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
         }
       } else {
         if (_i2 < 10) {
           //Días siguientes
-          daysSlider += "\n                            <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
         } else {
           //Días siguientes
-          daysSlider += "\n                                    <li class=\"programming-item\" date=\"".concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
+          daysSlider += "\n                                    <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
         }
       }
     }

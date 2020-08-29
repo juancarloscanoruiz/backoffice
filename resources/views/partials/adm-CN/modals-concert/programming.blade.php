@@ -65,12 +65,15 @@
 
                         </li>
                         <li class="programming-item py-2">
+
                             <p class="mb-0">MIER</p>
                             <p class="mb-0">01</p>
+
                         </li>
                         <li class="programming-item py-2">
                             <p class="mb-0">MIER</p>
                             <p class="mb-0">01</p>
+
                         </li>
                     </div>
                 </section>

@@ -304,29 +304,31 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "section/".$section
+            $this->url . "section/" . $section
         );
 
         $respuesta =  json_decode($response->getBody());
         echo (json_encode($respuesta->data));
     }
 
-    public function getProgramming(Request $request){
+    public function getProgramming(Request $request)
+    {
 
         $client = new Client();
         $response = $client->get(
-            $this->url . "programation/getChapterByDate/".$request->input('date')."&".$request->input('time')."&". $request->input('section')
+            $this->url . "programation/getChapterByDate/" . $request->input('date') . "&" . $request->input('time') . "&" . $request->input('section')
         );
         $respuesta =  json_decode($response->getBody());
         echo (json_encode($respuesta->data));
     }
 
-    public function editHeaderLanding(Request $request){
+    public function editHeaderLanding(Request $request)
+    {
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $logo = "";
-        if($request->file('logo')){
+        if ($request->file('logo')) {
             $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/concert-channel/logos");
         }
         $response = $client->post(
@@ -346,7 +348,8 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    public function getContentConcertChannel(Request $request){
+    public function getContentConcertChannel(Request $request)
+    {
         $client = new Client();
         $response = $client->get(
             $this->url . "section/concert_channel"
@@ -355,34 +358,40 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    public function editElementLanding(Request $request){
+    public function editElementLanding(Request $request)
+    {
         $value = $request->input('value');
-        if($request->file('video-promo')){
-            $value = $this->storeImages("PromoLanding", $request->file('video-promo'), "public/concert-channel/promo");
+        if ($request->file('promo')) {
+            $value = $this->storeImages("PromoLanding", $request->file('promo'), "public/concert-channel/promo");
         }
+        if ($request->input('promo')) {
+            $value = $request->input('promo');
+        }
+
         $client = new Client([
-                'headers' => ['Content-Type' => 'application/json']
-            ]);
-            $response = $client->post(
-                $this->url . "section/editElement",
-                ['body' => json_encode(
-                    [
-                        "usuario_id" => session('id_user'),
-                        "value" => $value,
-                        "key" => $request->input('key'),
-                        "landing" => $request->input('landing'),
-                    ]
-                )]
-            );
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $value,
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
+        );
 
-            echo ($response->getBody()->getContents());
-        }
+        echo ($response->getBody()->getContents());
+    }
 
-        public function getProgrammingLanding(){
-            $client = new Client();
-            $response = $client->get(
-                $this->url . "sprogram/actual_programing_programation/gmt&" . date('Y-m-d')
-            );
-            echo ($response->getBody()->getContents());
-        }
+    public function getProgrammingLanding(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/actual_programing_programation/gmt&" . $request->input('date')
+        );
+        echo ($response->getBody()->getContents());
+    }
 }

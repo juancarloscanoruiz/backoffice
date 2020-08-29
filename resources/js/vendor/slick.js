@@ -41,7 +41,7 @@ function getMonthAndYear(month) {
 }
 
 //Creamos los días del slider de calendario
-function createCalendarDays(container) {
+function createCalendarDays(container, calendarClass = "") {
     let date = new Date();
 
     /* Número de días del mes actual */
@@ -90,7 +90,7 @@ function createCalendarDays(container) {
                     daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
+                            )}" class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -101,7 +101,7 @@ function createCalendarDays(container) {
                     daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                            )}" class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -114,7 +114,7 @@ function createCalendarDays(container) {
                 if (i < 10) {
                     //Días restantes
                     daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
                             <div class="day">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
@@ -125,7 +125,7 @@ function createCalendarDays(container) {
                 } else {
                     //Días restantes
                     daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
                             <div class="day">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
@@ -142,7 +142,7 @@ function createCalendarDays(container) {
         for (let i = 1; i <= getDays(2); i++) {
             if (i < 10) {
                 daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${dateUTC.getUTCMonth + 2}-0${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${dateUTC.getUTCMonth() + 2}-0${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -151,7 +151,7 @@ function createCalendarDays(container) {
                         `;
             } else {
                 daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${dateUTC.getUTCMonth + 2}-${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${dateUTC.getUTCMonth() + 2}-${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -170,7 +170,7 @@ function createCalendarDays(container) {
                 if (i < 10) {
                     //Día actual activo
                     daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
+                                <li class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -180,7 +180,7 @@ function createCalendarDays(container) {
                 } else {
                     //Día actual activo
                     daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                                <li class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -194,7 +194,7 @@ function createCalendarDays(container) {
                 if (i < 10) {
                     //Días siguientes
                     daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
                             <div class="day">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
@@ -204,7 +204,7 @@ function createCalendarDays(container) {
                 } else {
                     //Días siguientes
                     daysSlider += `
-                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                                    <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
                                     <div class="day">
                                         <p class="day-text">${getDayName(currentMonth, i)}</p>
                                         <p class="day-number">${i}</p>
