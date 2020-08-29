@@ -1484,6 +1484,49 @@ function getProgramsLanding(date) {
             fileReader.onload = function (e) {
                 $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
                 $('.loader-view-container').remove();
+// CLARO CANAL
+function getModalsCanalClaro(type) {
+    $.ajax({
+        type: "GET", url: "landing/header",
+        success: function (result) {
+            let obj = JSON.parse(result); switch (type) {
+                // GET HEADER                
+                case "claro-header":
+                    $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
+                    $('.inp-text-modal-1').val(obj.data.block_2_title_1)
+                    $('.inp-text-modal-2').val(obj.data.block_2_title_2)
+                    $('.inp-text-modal-3').val(obj.data.block_2_button_title)
+                    break
+                // GET HEADER                
+                // GET TITLE               
+                case "claro-title":
+                    $('.inp-title-modal').val(obj.data.block_3_title)
+                    $(".inp-title-modal").attr("key","block_3_title");
+                    $('.inp-sub-title-modal').val(obj.data.block_3_subtitle)
+                    $('.inp-sub-title-modal').attr("block_3_subtitle")
+                    break
+                // GET TITLE
+                // GET PROMO                
+                case "claro-promo":
+                    $('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>')
+                    break
+                // GET PROMO         
+                // GET TITLE CARRUSEL 1     
+                case "claro-carrusel-title":
+                    $('.inp-title-modal').val(obj.data.block_4_carrusel_1_title)
+                    $('.inp-title-modal').attr("block_4_carrusel_1_title")
+                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle)
+                    $('.inp-sub-title-modal').attr("block_4_carrusel_1_subtitle")
+                    break
+                // GET TITLE CARRUSEL 1       
+                // GET TITLE CARRUSEL 1    
+                case "claro-carrusel-title2":
+                    $('.inp-title-modal').val(obj.data.block_4_carrusel_2_title)
+                    $('.inp-title-modal').attr("block_4_carrusel_2_title")
+                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_2_subtitle)
+                    $('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle")
+                    break
+                // GET TITLE CARRUSEL 1     
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
@@ -1533,6 +1576,57 @@ function getProgramsLanding(date) {
     // Canal Claro
 }
 
+function editHeaderLandingClaro(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editHeaderLandingClaro",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('#modal-header').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+function editElementLandingClaro(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editElementLandingClaro",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('#modal-title').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
+// CLARO CANAL
+
 export {
     getChapterInfo,
     updateImagesOfProgrammingSlider,
@@ -1549,4 +1643,8 @@ export {
     editPromoLanding,
     getProgrammingLanding,
     getProgramsLanding
+
+    getModalsCanalClaro,
+    editHeaderLandingClaro,
+    editElementLandingClaro
 };

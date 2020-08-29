@@ -35,6 +35,10 @@ import {
     editPromoLanding,
     getProgrammingLanding,
     getProgramsLanding
+
+    getModalsCanalClaro,
+    editHeaderLandingClaro,
+    editElementLandingClaro
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -69,6 +73,37 @@ import {
 function eventsGrilla() {
 
 
+
+    //Previsualizar el video que subió el usuario en el landing de concert channel
+    $('#video-promo-file').change(function () {
+        if (this.files && this.files[0]) {
+            let file = this.files[0]
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function (e) {
+                // The file reader gives us an ArrayBuffer:
+                let buffer = e.target.result;
+
+                // We have to convert the buffer to a blob:
+                let videoBlob = new Blob([new Uint8Array(buffer)], {
+                    type: 'video/mp4'
+                });
+
+                // The blob gives us a URL to the video file:
+                let url = window.URL.createObjectURL(videoBlob);
+                $('#concert-promo-container video').remove();
+                $('#concert-promo-container').append(
+                    `
+                    <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
+                        <source src="${url}" type="video/mp4">
+                    </video>
+                    `
+                )
+            };
+
+        }
+    })
+
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
     $(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
@@ -85,6 +120,7 @@ function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
+    //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
         container: document.getElementById(
@@ -169,6 +205,18 @@ function eventsGrilla() {
                         }, 3000);
                         break;
                     case "title-carrusel2":
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "promo-cinema":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-promo-cinema').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "title-carrusel1":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-title-carrusel1').modal("show");
@@ -177,6 +225,9 @@ function eventsGrilla() {
                         break;
 
                     case "carrusel2":
+
+                    case "carrusel1":
+
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.carrusel1-cinema').modal("show");
@@ -222,6 +273,17 @@ function eventsGrilla() {
                     }, 3000);
                     break;
                     case "slider-pagination":
+                    case "title-carrusel2":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-title-carrusel1').modal("show");
+
+
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
+                    case "carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-programming-carousel-cinema').modal("show");
@@ -244,6 +306,9 @@ function eventsGrilla() {
                         }, 3000);
     
                         break;
+
+
+
                     default:
                         break;
                 }
@@ -506,6 +571,7 @@ function eventsGrilla() {
 
     $("#edit-titles-landing-concert").click(function () {
         //Title
+        debugger
         let value = $(".modal-concert-title").val();
         let key = $(".modal-concert-title").attr("key");
         let landing = "Concert Channel";
@@ -981,11 +1047,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-            .find(".slider-pagination")
-            .addClass("a-text-bold-white") &
+                .find(".slider-pagination")
+                .addClass("a-text-bold-white") &
             $(this)
-            .find(".slider-pagination")
-            .removeClass("a-text-bold-teal");
+                .find(".slider-pagination")
+                .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -2213,8 +2279,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -2584,14 +2650,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo que estamos editando es el año de producción
+                //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo editable, es el de programar publicación para Landing
+                //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -2744,7 +2810,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -2917,8 +2983,8 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                .text()
-                .substr(0, 200) + "...";
+                    .text()
+                    .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -3442,12 +3508,17 @@ Permite a todos los input con la clase year-input tener el formato YYYY
 
     // Canal Claro
 
+    // CANAL CLARO
+    const LOADER = `<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`;
+
     let landingCanalClaro = {
         remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
-            console.log("buenas", json);
+            console.log('buenas', json);
             if (typeof json == "object") {
                 let loader = `
                 <div class="loader-view-container" id="loader1">
@@ -3494,6 +3565,55 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                         $("body").append(loader);
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
+
+                switch (json.type) {
+                    case "claro-header":
+                        $("body").append(LOADER);
+                        $('#modal-header').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-programacion":
+                        $("body").append(LOADER);
+                        $('#modal-edi-claro').modal("show");
+                        getModalsCanalClaro('claro-programacion');
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-title":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-promo":
+                        $("body").append(LOADER);
+                        $('#modal-promo').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel1":
+                        $("body").append(LOADER);
+                        $('#modal-edi-carrusel-1').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel2":
+                        $("body").append(LOADER);
+                        $('#modal-edi-carrusel-2').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
+                        break;
+                    case "claro-carrusel-title2":
+                        $("body").append(LOADER);
+                        $('#modal-title').modal("show");
+                        getModalsCanalClaro(json.type);
+                        $('.loader-view-container').remove();
                         break;
                 }
             }
@@ -3502,11 +3622,10 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-    };
+    }
     let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
     if (menuClaroCanal) {
-        $("#navbar-prev-canal-claro iframe").remove();
-        console.log("enviando....");
+        $('#navbar-prev-canal-claro iframe').remove();
         new easyXDM.Socket(landingCanalClaro);
     }
 
@@ -3536,19 +3655,33 @@ Permite a todos los input con la clase year-input tener el formato YYYY
     $("#banner-claro").change(function () {
         File(this);
     });
+    // BTN MODAL TEST
+    $('#btn-test').click(function () {
+        $("#modal-title").modal("show");
+        $(".inp-title-modal").attr("key","block_3_title");
+        getModalsCanalClaro('claro-title');
+    })
+    // BTN MODAL URL ENCABEZADO
+    $('#url-encabezado').click(function () {
+        $("#modal-url").modal("show");
+    })
+    // BTN MODAL URL PROMO
+    $('#url-promo').click(function () {
+        $("#modal-url").modal("show");
+    })
+    // BTN BANNER
+    $('#banner-claro').change(function () {
+        File(this)
+    })
 
     function File(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html(
-                    '<img class="img-claro-back" src="' +
-                    e.target.result +
-                    '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
-                );
-                $(".loader-view-container").remove();
-            };
+                $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+                $('.loader-view-container').remove();
+            }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
@@ -3556,16 +3689,17 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         FileHeader(this);
     });
 
+    $('#img-header').change(function () {
+        FileHeader(this)
+    })
     function FileHeader(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
             var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html(
-                    '<img src="' + e.target.result + '" />'
-                );
-                $(".loader-view-container").remove();
-            };
+                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+                $('.loader-view-container').remove();
+            }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
@@ -3573,6 +3707,9 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         FilePromoImg(this);
     });
 
+    $('#promo-claro-img').change(function () {
+        FilePromoImg(this)
+    })
     function FilePromoImg(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
@@ -3584,14 +3721,15 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     '" />'
                 );
             };
+                $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+            }
             fileReader.readAsDataURL(objFileInput.files[0]);
-            $(".loader-view-container").remove();
+            $('.loader-view-container').remove();
         }
     }
-    $("#promo-claro-video").change(function () {
-        FilePromoVideo(this);
-    });
-
+    $('#promo-claro-video').change(function () {
+        FilePromoVideo(this)
+    })
     function FilePromoVideo(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
@@ -3607,6 +3745,56 @@ Permite a todos los input con la clase year-input tener el formato YYYY
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
+                $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+                $('.loader-view-container').remove();
+            }
+            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+
+    //CLARO CANAL POST HEADER
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-header").click(function () {
+        let landing = "Canal Claro";
+        let title1 = $(".inp-text-modal-1").val() || "";
+        let title2 = $(".inp-text-modal-2").val() || "";
+        let logo = document.getElementById("img-header").files[0] || "";
+        let link = "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        editHeaderLandingClaro(data);
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
+    // HEADER EDIT CANAL CLARO
+    // TITLE EDIT CANAL CLARO
+    $("#btn-acepta-modal-title").click(function () {
+        // TITULO
+        let value = $(".inp-title-modal").val();
+        let key = $(".inp-title-modal").attr("key");
+        let landing = "Canal Claro";
+        editElementLandingClaro({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        // SUB TITULO
+        let valueSub = $(".inp-sub-title-modal").val();
+        // let keySub = "block_3_subtitle";
+        let keySub = $(".inp-sub-title-modal").attr("key");
+        editElementLandingClaro({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
+    // TITLE EDIT CANAL CLARO
+   
+    // CANAL CLARO
 }
 
 export {
