@@ -322,12 +322,13 @@ class landingController extends Controller
         echo (json_encode($respuesta->data));
     }
 
-    public function editHeaderLanding(Request $request){
+    public function editHeaderLanding(Request $request)
+    {
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $logo = "";
-        if($request->file('logo')){
+        if ($request->file('logo')) {
             $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/concert-channel/logos");
         }
         $response = $client->post(
@@ -347,7 +348,8 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    public function getContentConcertChannel(Request $request){
+    public function getContentConcertChannel(Request $request)
+    {
         $client = new Client();
         $response = $client->get(
             $this->url . "section/concert_channel"
@@ -356,36 +358,38 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    public function editElementLanding(Request $request){
+    public function editElementLanding(Request $request)
+    {
         $value = $request->input('value');
-        if($request->file('video-promo')){
+        if ($request->file('video-promo')) {
             $value = $this->storeImages("PromoLanding", $request->file('video-promo'), "public/concert-channel/promo");
         }
         $client = new Client([
-                'headers' => ['Content-Type' => 'application/json']
-            ]);
-            $response = $client->post(
-                $this->url . "section/editElement",
-                ['body' => json_encode(
-                    [
-                        "usuario_id" => session('id_user'),
-                        "value" => $value,
-                        "key" => $request->input('key'),
-                        "landing" => $request->input('landing'),
-                    ]
-                )]
-            );
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $value,
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
+        );
 
-            echo ($response->getBody()->getContents());
-        }
+        echo ($response->getBody()->getContents());
+    }
 
-        public function getProgrammingLanding(){
-            $client = new Client();
-            $response = $client->get(
-                $this->url . "sprogram/actual_programing_programation/gmt&" . date('Y-m-d')
-            );
-            echo ($response->getBody()->getContents());
-        }
+    public function °()
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "sprogram/actual_programing_programation/gmt&" . date('Y-m-d')
+        );
+        echo ($response->getBody()->getContents());
+    }
     // CANAL CLARO
     public function getModalsCanalClaro()
     {
@@ -395,6 +399,54 @@ class landingController extends Controller
         );
         $respuesta =  $response->getBody();
         echo ($respuesta);
+    }
+
+    // HEADER
+    public function editHeaderLandingClaro(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $logo = "";
+        if ($request->file('logo')) {
+            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/canal-claro/logos");
+        }
+        $response = $client->post(
+            $this->url . "section/editBlockProgramingLanding",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "landing" => $request->input('landing'),
+                    "icon_chanel" => $logo,
+                    "title_1" => $request->input('title1'),
+                    "title_2" => $request->input('title2'),
+                    "url_programation" => $request->input("link")
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
+    // TITULO
+    public function editElementLandingClaro(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $request->input('value'),
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
     }
     // CANAL CLARO
 }

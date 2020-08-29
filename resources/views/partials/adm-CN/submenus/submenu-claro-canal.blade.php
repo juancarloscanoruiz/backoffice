@@ -1,4 +1,4 @@
-{{-- <script>
+<!-- <script>
     new easyXDM.Socket({
         remote: "http://localhost:8888/MaquetaCNetworks/claro-canal-edi.php",
         container: "navbar-prev-canal-claro",
@@ -10,7 +10,9 @@
         }
     });
 
-</script> --}}
+</script> -->
+
+<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
 
 <script>
     new easyXDM.Socket({

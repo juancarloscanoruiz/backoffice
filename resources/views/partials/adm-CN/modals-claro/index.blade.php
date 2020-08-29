@@ -41,7 +41,7 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-acepta-modal-header" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                         <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
@@ -59,13 +59,13 @@
                 <hr class="hr">
                 <!-- TITULO Y SUBTITULO -->
                 <div class="title-modal-content">
-                    <input class="inp-title-modal" type="text">
-                    <input class="inp-sub-title-modal" type="text">
+                    <input id="inp-title-modal" class="inp-title-modal" type="text">
+                    <input id="inp-sub-title-modal" class="inp-sub-title-modal" type="text">
                 </div>
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                         <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
