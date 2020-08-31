@@ -38,7 +38,8 @@ import {
 
     getModalsCanalClaro,
     editHeaderLandingClaro,
-    editElementLandingClaro
+    editElementLandingClaro,
+    editPromoLandingClaro
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -3586,11 +3587,12 @@ function eventsGrilla() {
     $('#banner-claro').change(function () {
         File(this)
     })
+    // FILE PARA BANNER
 
+    var fileReader = new FileReader();
     function File(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
             fileReader.onload = function (e) {
                 $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
                 $('.loader-view-container').remove();
@@ -3598,17 +3600,14 @@ function eventsGrilla() {
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
+    // CARGAR IMG HEADER
     $("#header-claro").change(function () {
         FileHeader(this);
     });
-
-    $('#img-header').change(function () {
-        FileHeader(this)
-    })
+    // FILE HEADER
     function FileHeader(objFileInput) {
         $("body").append(loader);
         if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
             fileReader.onload = function (e) {
                 $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
                 $('.loader-view-container').remove();
@@ -3616,41 +3615,32 @@ function eventsGrilla() {
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
-    $("#promo-claro").change(function () {
-        FilePromoImg(this);
-    });
-
+    // IMG DE PROMO
     $('#promo-claro-img').change(function () {
         FilePromoImg(this)
     })
+    // IMG DE PROMO CARGAR
     function FilePromoImg(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
             fileReader.onload = function (e) {
-                $("#back-promo-claro").html(
-                    '<img class="img-back-promo" src="' +
-                    e.target.result +
-                    '" />'
-                );
+                $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
             };
-            $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
         }
         fileReader.readAsDataURL(objFileInput.files[0]);
         $('.loader-view-container').remove();
     }
+    // VIDEO DE PROMO
     $('#promo-claro-video').change(function () {
         FilePromoVideo(this)
     })
+    // VIDEO DE PROMO CARGAR
     function FilePromoVideo(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
             fileReader.onload = function (e) {
                 $("#back-promo-claro").html(
-                    '<video controls class="img-back-promo" src="' +
-                    e.target.result +
-                    '" /></video>'
+                    '<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>'
                 );
                 $(".loader-view-container").remove();
             };
@@ -3699,6 +3689,21 @@ function eventsGrilla() {
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
     // TITLE EDIT CANAL CLARO
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-promo").click(function () {
+        let landing = "Canal Claro";
+        let img = document.getElementById("promo-claro-img").files[0] || "";
+        let video = document.getElementById("promo-claro-video").files[0] || "";
+        let key = "block_3_video_url";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("img", img);
+        data.append("video", video);
+        data.append("key", key);
+        editPromoLandingClaro(data);
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
+    // HEADER EDIT CANAL CLARO
 
     // CANAL CLARO
 }

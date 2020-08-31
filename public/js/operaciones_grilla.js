@@ -75225,14 +75225,14 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#banner-claro').change(function () {
     File(this);
-  });
+  }); // FILE PARA BANNER
+
+  var fileReader = new FileReader();
 
   function File(objFileInput) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
 
     if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
       fileReader.onload = function (e) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
@@ -75240,21 +75240,17 @@ function eventsGrilla() {
 
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  }
+  } // CARGAR IMG HEADER
+
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#header-claro").change(function () {
     FileHeader(this);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header').change(function () {
-    FileHeader(this);
-  });
+  }); // FILE HEADER
 
   function FileHeader(objFileInput) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
 
     if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
       fileReader.onload = function (e) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
@@ -75262,44 +75258,37 @@ function eventsGrilla() {
 
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  }
+  } // IMG DE PROMO
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro").change(function () {
-    FilePromoImg(this);
-  });
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-img').change(function () {
     FilePromoImg(this);
-  });
+  }); // IMG DE PROMO CARGAR
 
   function FilePromoImg(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
       fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
       };
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
     }
 
     fileReader.readAsDataURL(objFileInput.files[0]);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-  }
+  } // VIDEO DE PROMO
+
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-video').change(function () {
     FilePromoVideo(this);
-  });
+  }); // VIDEO DE PROMO CARGAR
 
   function FilePromoVideo(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
       fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video controls class="img-back-promo" src="' + e.target.result + '" /></video>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       };
 
@@ -75347,6 +75336,21 @@ function eventsGrilla() {
     });
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // TITLE EDIT CANAL CLARO
+  // HEADER EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-promo").click(function () {
+    var landing = "Canal Claro";
+    var img = document.getElementById("promo-claro-img").files[0] || "";
+    var video = document.getElementById("promo-claro-video").files[0] || "";
+    var key = "block_3_video_url";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("img", img);
+    data.append("video", video);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // HEADER EDIT CANAL CLARO
   // CANAL CLARO
 }
 
@@ -75754,7 +75758,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, editPromoLandingClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75777,6 +75781,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalsCanalClaro", function() { return getModalsCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLandingClaro", function() { return editHeaderLandingClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLandingClaro", function() { return editElementLandingClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingClaro", function() { return editPromoLandingClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
@@ -77021,6 +77026,30 @@ function editElementLandingClaro(data) {
 
       if (json.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    }
+  });
+}
+
+function editPromoLandingClaro(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editPromoLandingClaro",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("hide");
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();

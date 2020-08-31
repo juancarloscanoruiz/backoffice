@@ -1485,6 +1485,32 @@ function editElementLandingClaro(data) {
     })
 }
 
+function editPromoLandingClaro(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editPromoLandingClaro",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('#modal-promo').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
 // CLARO CANAL
 
 export {
@@ -1505,5 +1531,6 @@ export {
     getProgramsLanding,
     getModalsCanalClaro,
     editHeaderLandingClaro,
-    editElementLandingClaro
+    editElementLandingClaro,
+    editPromoLandingClaro
 };
