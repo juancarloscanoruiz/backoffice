@@ -1553,12 +1553,113 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
             for (const chapter of data.data.chapters) {
                 console.log(chapter);
 
+                //Variables a evaluar
+
+                //Imagen del programa
+                let image = chapter.chapter.thumbnail_list_horizontal || "./images/synopsis/image-synopsis-carrusel.jpg"
+                let inLandingSwitch = ""
+                let inLandingDates = "";
+                let inLandingTimes = "";
+                //Validaciones de si el programa se encuentra en algún landing
+                if (chapter.chapter.in_landing == 1) {
+                    //Switch de landing
+                    inLandingSwitch = `
+                    <!--Switch-->
+                    <div class="d-flex align-items-center mb-3">
+                        <input type="radio" id="yes-landing-carrusel" value="1"
+                            class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
+                        <label for="yes-landing-carrusel" id="siestado-landing"
+                            class="mb-0 si-estilo cursor-pointer switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-landing-carrusel" value="0"
+                            class="edit-switch-landing switch-table-edit edit-landing-no"
+                            checked />
+                        <label for="no-landing-carrusel" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+
+                    //Fechas
+                    var dateExpiration = "00-00-0000"
+                    var timeExpiration = "00:00:00"
+                    if (chapter.chapter.in_landing_expiration) {
+                        var dateTimeExpiration = chapter.chapter.in_landing_expiration.split(" ");
+                        var dateExpiration = dateTimeExpiration[0].split("-");
+                        var timeExpiration = dateTimeExpiration[1];
+                    }
+                    var dateBegin = "00-00-0000"
+                    var timeBegin = "00:00:00"
+                    if (chapter.chapter.in_landing_begin) {
+                        var dateTimeBegin = chapter.chapter.in_landing_expiration.split(" ");
+                        var dateBegin = dateTimeBegin[0].split("-");
+                        var timeBegin = dateTimeBegin[1];
+                    }
+
+                    inLandingDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Inicio: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
+                                placeholder="00-00-0000" key="in_landing_begin" value="${dateBegin[2]-dateBegin[1]-dateBegin[0]}" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
+                                key="in_landing_expiration" placeholder="00-00-0000" value="${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}"></span>
+                    </div>
+                    `
+
+                    inLandingTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input type="text"
+                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
+                            key="in_landing_begin" value="" placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
+                                key="in_landing_expiration" value="" placeholder="00:00:00"></span>
+                    </div>
+                    `;
+
+                } else {
+                    inLandingSwitch = `
+                    <!--Switch-->
+                    <div class="d-flex align-items-center mb-3">
+                        <input type="radio" id="yes-landing-carrusel" value="3"
+                            class="edit-switch-landing edit-landing-yes" key="in_landing" />
+                        <label for="yes-landing-carrusel" id="siestado-landing"
+                            class="mb-0 si-estilo cursor-pointer switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-landing-carrusel" value="0"
+                            class="edit-switch-landing switch-table-edit edit-landing-no"
+                            checked />
+                        <label for="no-landing-carrusel" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                    inLandingTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input type="text"
+                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
+                            key="in_landing_begin" value="" placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
+                                key="in_landing_expiration" value="" placeholder="00:00:00"></span>
+                    </div>
+                    `;
+                }
+
+
                 program += `
                 <div>
                 <section class="edit-program-image">
                     <select
                         class="carrusel-concert-select thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
-                        title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true"
+                        title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
                         data-live-search-placeholder="Agregar título de nuevo programa"
                         name="thumbnail-header1" key="title">
                     </select>
@@ -1571,7 +1672,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                             <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
                                 alt="heart-icon" />
                             <div class="edit-program-camera text-center">
-                                <img src="{{ asset('/images/synopsis/camara.svg') }}"
+                                <img src="./images/synopsis/camara.svg"
                                     class="edit-program-icon-image" alt="camera" />
                                 <p
                                     class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
@@ -1579,7 +1680,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     x 245px</p>
                             </div>
 
-                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
+                            <img src="${image}" alt=""
                                 class="thumbnail-image-prev edit-image-program prev-image-program" />
                         </label>
                     </div>
@@ -1596,20 +1697,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     Establecer
                                     en landing
                                 </p>
-                                <!--Switch-->
-                                <div class="d-flex align-items-center mb-3">
-                                    <input type="radio" id="yes-landing-carrusel" value="3"
-                                        class="edit-switch-landing edit-landing-yes" key="in_landing" />
-                                    <label for="yes-landing-carrusel" id="siestado-landing"
-                                        class="mb-0 si-estilo cursor-pointer switch-label">
-                                        Sí</label>
-                                    <input type="radio" id="no-landing-carrusel" value="0"
-                                        class="edit-switch-landing switch-table-edit edit-landing-no"
-                                        checked />
-                                    <label for="no-landing-carrusel" id="noestado-landing"
-                                        class="mb-0 no-estilo cursor-pointer switch-label">
-                                        No</label>
-                                </div>
+                                    ${inLandingSwitch}
                                 <!--Inputs radio-->
                                 <div class="d-flex align-items-center mb-3">
 
@@ -1622,28 +1710,10 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                         Fecha
                                     </p>
-                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                        <span class="a-text-bold-warm">Inicio: <input type="text"
-                                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
-                                                placeholder="00-00-0000" key="in_landing_begin" /></span>
-                                    </div>
-                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
-                                        <span class="a-text-bold-warm">Fin: <input type="text"
-                                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
-                                                key="in_landing_expiration" placeholder="00-00-0000"></span>
-                                    </div>
+                                    ${inLandingDates}
                                 </div>
                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <span class="a-text-bold-warm">Inicio: <input type="text"
-                                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
-                                            key="in_landing_begin" placeholder="00:00:00"></span>
-                                </div>
-                                <div class="text-center edit-rectangle-small-container py-3">
-                                    <span class="a-text-bold-warm">Fin: <input type="text"
-                                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
-                                            key="in_landing_expiration" placeholder="00:00:00"></span>
-                                </div>
+                                ${inLandingTimes}
                             </div>
                         </div>
                         <!--Home-->
@@ -1739,7 +1809,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                     <!--Textarea-->
                     <textarea key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
-                        id="prog_sinopsis"></textarea>
+                        id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
                 </section>
                 <section class="mb-3">
                     <div class="row">
@@ -2143,6 +2213,32 @@ function getContentClaroCinemaHeader() {
     })
 }
 
+function editPromoLandingClaro(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editPromoLandingClaro",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $('#modal-promo').modal("hide");
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
 // CLARO CANAL
 
 export {
@@ -2165,5 +2261,6 @@ export {
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
-    getContentClaroCinemaHeader
+    getContentClaroCinemaHeader,
+    editPromoLandingClaro
 };

@@ -58,12 +58,14 @@ a:hover {
     color: $black;
     margin-bottom: 0;
     font-size: 17px;
+    font-family: $MontserratRegular;
 }
 .p-title-modal {
     color: $greyishBrownTwo;
     text-align: center;
     font-weight: 600;
     margin-top: 5px;
+    font-family: $MontserratRegular;
 }
 .hr {
     width: 100%;
@@ -95,6 +97,7 @@ a:hover {
     display: inline-block;
     box-shadow: 1px 1px 5px #a4a4a4;
     margin-left: 25px;
+    font-family: $MontserratRegular;
 }
 .inp-text-modal-1 {
     font-size: 30px;
@@ -104,6 +107,7 @@ a:hover {
     padding: 5px;
     border: none;
     width: 155px;
+    font-family: $MontserratRegular;
 }
 .inp-text-modal-2 {
     font-size: 30px;
@@ -113,6 +117,7 @@ a:hover {
     padding: 5px;
     border: none;
     width: 250px;
+    font-family: $MontserratRegular;
 }
 .inp-text-modal-3 {
     color: $white;
@@ -125,6 +130,7 @@ a:hover {
     background: $selecred;
     margin-left: 25px;
     padding: 14px 0;
+    font-family: $MontserratRegular;
 }
 .content {
     width: 100%;
@@ -138,6 +144,7 @@ a:hover {
     box-shadow: 1px 2px 4px #a4a4a4;
     font-weight: bold;
     margin-left: 5px;
+    font-family: $MontserratRegular;
 }
 /* ** HEADER ** */
 /* ** TITULO ** */
@@ -152,6 +159,7 @@ a:hover {
     margin: 15px auto;
     background: $selecred;
     padding: 11px 12px;
+    font-family: $MontserratRegular;
 }
 
 .inp-title-modal {
@@ -164,6 +172,7 @@ a:hover {
     font-weight: 800;
     padding: 0 0 0 12px;
     font-size: 36px;
+    font-family: $MontserratRegular;
 }
 
 .inp-sub-title-modal {
@@ -176,6 +185,7 @@ a:hover {
     font-weight: 600;
     padding: 0 0 0 12px;
     margin-top: 11px;
+    font-family: $MontserratRegular;
 }
 /* ** TITULO ** */
 /* ** PROMO ** */
@@ -187,13 +197,13 @@ a:hover {
     object-fit: cover;
     position: absolute;
     top: 10px;
-    
 }
 .img-promo {
     border: 20px solid $selecred;
     border-radius: 10px;
     width: 96%;
     left: 2%;
+    height: 422px;
 }
 .img-promo-claro {
     width: 85%;
@@ -229,6 +239,7 @@ a:hover {
     font-size: 24px;
     color: $warm-grey-three;
     margin-bottom: 0;
+    font-family: $MontserratRegular;
 }
 .modal-link-claro input {
     width: 100%;
@@ -240,6 +251,7 @@ a:hover {
     font-size: 18px;
     display: flex;
     float: right;
+    font-family: $MontserratRegular;
 }
 /* ** LINK ** */
 

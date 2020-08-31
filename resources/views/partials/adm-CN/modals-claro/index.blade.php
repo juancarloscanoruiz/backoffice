@@ -36,7 +36,7 @@
                     <div class="float-right mt-3">
                         <img class="cursor-pointer" id="url-encabezado" src="./images/basic-icons/link.svg"
                             style="width: 40px;">
-                        <input class="input-url" placeholder="Enlace o URL" type="text">
+                        <input id="inp-text-modal-3" class="input-url" placeholder="Enlace o URL" type="text">
                     </div>
                 </div>
                 <!-- BOTONES -->
@@ -119,7 +119,8 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center">
-                        <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-acepta-modal-promo"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                         <button data-dismiss="modal"
                             class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>

@@ -470,4 +470,49 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
+    // PROMO
+    public function editPromoLandingClaro(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $img = "";
+        $video = "";
+        if ($request->file('img')) {
+            $img = $this->storeImages("promoClaroCanal", $request->file('img'), "public/canal-claro/promo");
+        }
+        if ($request->file('video')) {
+            $video = $this->storeImages("promoVideoClaroCanal", $request->file('video'), "public/canal-claro/promo");
+        }
+        var_dump($video);
+        if ($img != "") {
+            $response = $client->post(
+                $this->url . "section/editElement",
+                ['body' => json_encode(
+                    [
+                        "usuario_id" => session('id_user'),
+                        "value" => $img,
+                        "key" => $request->input('key'),
+                        "landing" => $request->input('landing'),
+                    ]
+                )]
+            );
+        }
+        if ($video != "") {
+            $response = $client->post(
+                $this->url . "section/editElement",
+                ['body' => json_encode(
+                    [
+                        "usuario_id" => session('id_user'),
+                        "value" => $video,
+                        "key" => $request->input('key'),
+                        "landing" => $request->input('landing'),
+                    ]
+                )]
+            );
+        }
+
+        echo ($response->getBody()->getContents());
+    }
+    // CANAL CLARO
 }

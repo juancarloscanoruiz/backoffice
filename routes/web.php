@@ -92,6 +92,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
+    Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
     // MODAL CLARO
 });
 
