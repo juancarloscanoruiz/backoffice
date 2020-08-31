@@ -89018,7 +89018,7 @@ function eventsGrilla() {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-concert').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,
                 dots: true,
@@ -89034,7 +89034,6 @@ function eventsGrilla() {
             }, 3000);
             break;
 
-          case "slider-pagination":
           case "title-carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
@@ -89120,76 +89119,79 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlock4OTwo"])();
             break;
 
-          case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //slider para carrusel concert-channel
-
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel2").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-video":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
+          /* case "pencil-carrusel1":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-edit-program-carrusel").modal("show");
+                   //slider para carrusel concert-channel
+                   $(".carrusel1-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".carrusel1-slider-dots1"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+               break;
+           case "pencil-carrusel2":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-edit-program-carrusel2").modal("show");
+                   $(".carrusel2-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".carrusel2-slider-dots1"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+                 break;
+           case "pencil-header":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                 break;
+           case "pencil-video":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-promos-concert").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                 break;
+           case "pencil-header1":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                 break;
+           case "header2":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                 break;*/
 
           case "pencil-carrusel1":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
@@ -89230,6 +89232,29 @@ function eventsGrilla() {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
+
+          /* case "slider-pagination":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $('.modal-programming-carousel-concert').modal("show");
+                   $(".programming-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".programming-slider-dots"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+               break;*/
 
           default:
             break;

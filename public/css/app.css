@@ -6971,6 +6971,14 @@ header {
   z-index: 9;
 }
 
+.header-background {
+  background-color: #0097a9;
+}
+
+.header-background-blue {
+  background-color: #0068ff;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
