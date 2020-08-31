@@ -73150,7 +73150,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 function eventsGrilla() {
-  //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+  //Previsualizar el video que subió el usuario en el landing de concert channel
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file').change(function () {
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: 'video/mp4'
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container video').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
+      };
+    }
+  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
   }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
@@ -73161,7 +73182,8 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-prueba").click(function () {
     getHeaderLanding();
   });
-  var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+  var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
+
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),
     container: document.getElementById("navbar-prev-claro-cinema"),
@@ -73265,6 +73287,24 @@ function eventsGrilla() {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-concert').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
             break;
 
           case "slider-pagination":
@@ -73287,6 +73327,15 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
+          case "title-carrusel2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
@@ -73528,6 +73577,7 @@ function eventsGrilla() {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
     //Title
+    debugger;
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
     var landing = "Concert Channel";
@@ -75077,14 +75127,15 @@ function eventsGrilla() {
     var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
     console.log(programas);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-  }); // Canal Claro
+  }); // CANAL CLARO
 
+  var LOADER = "<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>";
   var landingCanalClaro = {
     remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
     container: document.getElementById("navbar-prev-canal-claro"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
-      console.log("buenas", json);
+      console.log('buenas', json);
 
       if (_typeof(json) == "object") {
         var _loader6 = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                    <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                    ";
@@ -75136,40 +75187,95 @@ function eventsGrilla() {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader6);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-            break;
-        }
-      }
 
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+            switch (json.type) {
+              case "claro-header":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-programacion":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-claro').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])('claro-programacion');
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-title":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-promo":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-carrusel1":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-1').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-carrusel2":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-2').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-carrusel-title":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+
+              case "claro-carrusel-title2":
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+                break;
+            }
+
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
     }
   };
   var menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
 
   if (menuClaroCanal) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-    console.log("enviando....");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-canal-claro iframe').remove();
     new easyXDM.Socket(landingCanalClaro);
-  } // Canal Claro
+  } // BTN MODAL TEST
 
 
-  var loader = "\n    <div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n    </div>\n        ";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-test").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-1").modal("show");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])('claro-title');
+  }); // BTN MODAL URL ENCABEZADO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado').click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+  }); // BTN MODAL URL PROMO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo').click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-claro").change(function () {
+  }); // BTN BANNER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#banner-claro').change(function () {
     File(this);
   });
 
@@ -75181,7 +75287,7 @@ function eventsGrilla() {
 
       fileReader.onload = function (e) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       };
 
       fileReader.readAsDataURL(objFileInput.files[0]);
@@ -75189,6 +75295,9 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#header-claro").change(function () {
+    FileHeader(this);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header').change(function () {
     FileHeader(this);
   });
 
@@ -75200,7 +75309,7 @@ function eventsGrilla() {
 
       fileReader.onload = function (e) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       };
 
       fileReader.readAsDataURL(objFileInput.files[0]);
@@ -75208,6 +75317,9 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro").change(function () {
+    FilePromoImg(this);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-img').change(function () {
     FilePromoImg(this);
   });
 
@@ -75221,12 +75333,14 @@ function eventsGrilla() {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-promo" src="' + e.target.result + '" />');
       };
 
-      fileReader.readAsDataURL(objFileInput.files[0]);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
     }
+
+    fileReader.readAsDataURL(objFileInput.files[0]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-video").change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-video').change(function () {
     FilePromoVideo(this);
   });
 
@@ -75243,7 +75357,49 @@ function eventsGrilla() {
 
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  }
+  } //CLARO CANAL POST HEADER
+  // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header").click(function () {
+    var landing = "Canal Claro";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
+    var logo = document.getElementById("img-header").files[0] || "";
+    var link = "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // HEADER EDIT CANAL CLARO
+  // TITLE EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-title").click(function () {
+    // TITULO
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
+    var landing = "Canal Claro";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLandingClaro"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); // SUB TITULO
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(); // let keySub = "block_3_subtitle";
+
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLandingClaro"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // TITLE EDIT CANAL CLARO
+  // CANAL CLARO
 }
 
 
@@ -75648,7 +75804,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel */
+/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75669,13 +75825,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgrammingLanding", function() { return getProgrammingLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramsLanding", function() { return getProgramsLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPromotionalsProgramsCarousel", function() { return getPromotionalsProgramsCarousel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalsCanalClaro", function() { return getModalsCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLandingClaro", function() { return editHeaderLandingClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLandingClaro", function() { return editElementLandingClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -76817,174 +76974,149 @@ function getProgramsLanding(date) {
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
-  }); // Canal Claro
+  });
+} // CLARO CANAL
 
-  var LOADER = "<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>";
-  var landingCanalClaro = {
-    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
-    container: document.getElementById("navbar-prev-canal-claro"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-      console.log('buenas', json);
 
-      if (_typeof(json) == "object") {
-        switch (json.type) {
-          case "claro-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
+function getModalsCanalClaro(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "GET",
+    url: "landing/header",
+    success: function success(result) {
+      var obj = JSON.parse(result);
 
-          case "claro-programacion":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-claro').modal("show");
-            getModalsCanalClaro('claro-programacion');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
+      switch (type) {
+        // GET HEADER
+        case "claro-header":
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-1').val(obj.data.block_2_title_1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-2').val(obj.data.block_2_title_2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-3').val(obj.data.block_2_button_title);
+          break;
+        // GET HEADER
+        // GET TITLE
 
-          case "claro-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
+        case "claro-title":
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_3_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_3_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_3_subtitle");
+          break;
+        // GET TITLE
+        // GET PROMO
 
-          case "claro-promo":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
+        case "claro-promo":
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
+          break;
+        // GET PROMO
+        // GET TITLE CARRUSEL 1
 
-          case "claro-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-1').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
+        case "claro-carrusel-title":
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_4_carrusel_1_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').attr("block_4_carrusel_1_title");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_1_subtitle");
+          break;
+        // GET TITLE CARRUSEL 1
+        // GET TITLE CARRUSEL 1
 
-          case "claro-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-edi-carrusel-2').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
-
-          case "claro-carrusel-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
-
-          case "claro-carrusel-title2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("show");
-            getModalsCanalClaro(json.type);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-            break;
-        }
+        case "claro-carrusel-title2":
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_4_carrusel_2_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').attr("block_4_carrusel_2_title");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_4_carrusel_2_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle");
+          break;
+        // GET TITLE CARRUSEL 1
       }
 
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
-
-  if (menuClaroCanal) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-canal-claro iframe').remove();
-    console.log('enviando....');
-    new easyXDM.Socket(landingCanalClaro);
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
-    getModalsCanalClaro('claro-promo');
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#banner-claro').change(function () {
-    File(this);
-  });
-
-  function File(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-    if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
-      fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      };
-
       fileReader.readAsDataURL(objFileInput.files[0]);
     }
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header').change(function () {
-    FileHeader(this);
   });
+}
 
-  function FileHeader(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+function FileHeader(objFileInput) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
-    if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
+  if (objFileInput.files[0]) {
+    var fileReader = new FileReader();
 
-      fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      };
-
-      fileReader.readAsDataURL(objFileInput.files[0]);
-    }
+    fileReader.onload = function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    };
   }
+}
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-img').change(function () {
-    FilePromoImg(this);
-  });
+function editHeaderLandingClaro(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editHeaderLandingClaro",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
 
-  function FilePromoImg(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("hide");
+      }
 
-    if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
-
-      fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
-      };
-
-      fileReader.readAsDataURL(objFileInput.files[0]);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-video').change(function () {
-    FilePromoVideo(this);
   });
+}
 
-  function FilePromoVideo(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+function FilePromoImg(objFileInput) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
-    if (objFileInput.files[0]) {
-      var fileReader = new FileReader();
+  if (objFileInput.files[0]) {
+    var fileReader = new FileReader();
 
-      fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      };
+    fileReader.onload = function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+    };
+  }
+}
 
-      fileReader.readAsDataURL(objFileInput.files[0]);
+function editElementLandingClaro(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editElementLandingClaro",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
-  } // Canal Claro
+  }); // Canal Claro
+}
 
+function FilePromoVideo(objFileInput) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+  if (objFileInput.files[0]) {
+    var fileReader = new FileReader();
+
+    fileReader.onload = function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    };
+
+    fileReader.readAsDataURL(objFileInput.files[0]);
+  }
 } //Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
 
 
@@ -77017,7 +77149,8 @@ function getPromotionalsProgramsCarousel(id) {
                   }); */
     }
   });
-}
+} // CLARO CANAL
+
 
 
 
