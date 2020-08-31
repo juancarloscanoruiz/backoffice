@@ -3507,110 +3507,56 @@ function eventsGrilla() {
             let json = JSON.parse(message);
             console.log('buenas', json);
             if (typeof json == "object") {
-                let loader = `
-                <div class="loader-view-container" id="loader1">
-                    <img src="./images/loader.gif" class="loader" alt="">
-                </div>
-                    `;
                 switch (json.type) {
                     case "claro-header":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-header").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-programacion":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-edi-claro").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-title":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-promo":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-promo").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel1":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-edi-carrusel-1").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel2":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-edi-carrusel-2").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title2":
-                        $("body").append(loader);
+                        $("body").append(LOADER);
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
-
-                        switch (json.type) {
-                            case "claro-header":
-                                $("body").append(LOADER);
-                                $('#modal-header').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-programacion":
-                                $("body").append(LOADER);
-                                $('#modal-edi-claro').modal("show");
-                                getModalsCanalClaro('claro-programacion');
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-title":
-                                $("body").append(LOADER);
-                                $('#modal-title').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-promo":
-                                $("body").append(LOADER);
-                                $('#modal-promo').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-carrusel1":
-                                $("body").append(LOADER);
-                                $('#modal-edi-carrusel-1').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-carrusel2":
-                                $("body").append(LOADER);
-                                $('#modal-edi-carrusel-2').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-carrusel-title":
-                                $("body").append(LOADER);
-                                $('#modal-title').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                            case "claro-carrusel-title2":
-                                $("body").append(LOADER);
-                                $('#modal-title').modal("show");
-                                getModalsCanalClaro(json.type);
-                                $('.loader-view-container').remove();
-                                break;
-                        }
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     }
+
     let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
     if (menuClaroCanal) {
         $('#navbar-prev-canal-claro iframe').remove();
