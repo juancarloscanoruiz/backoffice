@@ -34,7 +34,8 @@ import {
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
-    getProgramsLanding
+    getProgramsLanding,
+    getPromotionalsProgramsCarousel
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -259,7 +260,8 @@ function eventsGrilla() {
         new easyXDM.Socket(confLandingClaroCinema);
     }
     let confLandingConcertChannel = {
-        remote: `${baseURL}concert-channel-edi.php`,
+        //remote: `${baseURL}concert-channel-edi.php`,
+        remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
         container: document.getElementById("navbar-prev-concert-channel"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -296,28 +298,7 @@ function eventsGrilla() {
                         break;
                     case "pencil-carrusel1":
                         let id = json.id;
-                        console.log(id);
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-edit-program-carrusel").modal("show");
-                            //slider para carrusel concert-channel
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel1-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                        getPromotionalsProgramsCarousel(id);
                         break;
                     case "pencil-carrusel2":
                         $("body").append(loader);

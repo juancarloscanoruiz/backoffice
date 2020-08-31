@@ -1491,6 +1491,7 @@ function getProgramsLanding(date) {
     $('#img-header').change(function () {
         FileHeader(this)
     })
+
     function FileHeader(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
@@ -1505,6 +1506,7 @@ function getProgramsLanding(date) {
     $('#promo-claro-img').change(function () {
         FilePromoImg(this)
     })
+
     function FilePromoImg(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
@@ -1519,6 +1521,7 @@ function getProgramsLanding(date) {
     $('#promo-claro-video').change(function () {
         FilePromoVideo(this)
     })
+
     function FilePromoVideo(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
@@ -1531,6 +1534,44 @@ function getProgramsLanding(date) {
         }
     }
     // Canal Claro
+}
+
+//Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
+function getPromotionalsProgramsCarousel(id) {
+    $.ajax({
+        type: "GET",
+        url: "landing/get-chapter-info/" + id,
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        sucess: function (result) {
+
+            let json = JSON.parse(result);
+            console.log(json)
+            /*             $(".modal-edit-program-carrusel").modal("show");
+                        $(".carrusel1-slider").slick({
+                            slidesToShow: 1,
+                            dots: true,
+                            appendDots: $(".carrusel1-slider-dots1"),
+                            initialSlide: 0,
+                            infinite: false,
+                            customPaging: function (slider, i) {
+                                var thumb = $(slider.$slides[i]).data();
+                                return (
+                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                    (i + 1) +
+                                    "</p>"
+                                );
+                            }
+                        }); */
+
+        }
+    })
 }
 
 export {
@@ -1548,5 +1589,6 @@ export {
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
-    getProgramsLanding
+    getProgramsLanding,
+    getPromotionalsProgramsCarousel
 };
