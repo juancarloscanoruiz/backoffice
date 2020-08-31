@@ -3507,41 +3507,49 @@ function eventsGrilla() {
                     case "claro-header":
                         $("body").append(LOADER);
                         $("#modal-header").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-programacion":
                         $("body").append(LOADER);
                         $("#modal-edi-claro").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-title":
                         $("body").append(LOADER);
                         $("#modal-title").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-promo":
                         $("body").append(LOADER);
                         $("#modal-promo").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel1":
                         $("body").append(LOADER);
                         $("#modal-edi-carrusel-1").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel2":
                         $("body").append(LOADER);
                         $("#modal-edi-carrusel-2").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title":
                         $("body").append(LOADER);
                         $("#modal-title").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel-title2":
                         $("body").append(LOADER);
                         $("#modal-title").modal("show");
+                        getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
                 }

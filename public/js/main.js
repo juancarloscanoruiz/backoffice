@@ -90865,48 +90865,56 @@ function eventsGrilla() {
           case "claro-header":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-programacion":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-claro").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-title":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-promo":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel1":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-1").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-2").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel-title":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
 
           case "claro-carrusel-title2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
         }
