@@ -51604,7 +51604,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\Zaid\\\\claro\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\Zaid\\\\claro\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -88694,7 +88694,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
           let data = new FormData();
           data.append("file", file);
           data.append("datos", data_for_api);
-            //Realizamos el ajax
+           //Realizamos el ajax
           $.ajax({
               type: "POST",
               data: data,
@@ -88733,7 +88733,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
           console.log("Se remplaza la programacion");
           let data = JSON.parse($("#programas_procesados_por_el_excel").val());
           console.log(data);
-            $.ajax({
+           $.ajax({
               type: "POST",
               data: data,
               url: "general-program/changePrograming",
@@ -88753,7 +88753,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
               console.log(e);
           });
       });
-        $("#acccion-programacion-agrega").click(function () {
+       $("#acccion-programacion-agrega").click(function () {
           console.log("Se agrega la programacion");
           let data = JSON.parse($("#programas_procesados_por_el_excel").val());
           console.log(data);
@@ -89018,7 +89018,7 @@ function eventsGrilla() {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-concert').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,
                 dots: true,
@@ -89034,7 +89034,6 @@ function eventsGrilla() {
             }, 3000);
             break;
 
-          case "slider-pagination":
           case "title-carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
             setTimeout(function () {
@@ -89120,76 +89119,79 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelBlock4OTwo"])();
             break;
 
-          case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //slider para carrusel concert-channel
-
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel2").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-video":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
+          /* case "pencil-carrusel1":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-edit-program-carrusel").modal("show");
+                   //slider para carrusel concert-channel
+                   $(".carrusel1-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".carrusel1-slider-dots1"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+               break;
+           case "pencil-carrusel2":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-edit-program-carrusel2").modal("show");
+                   $(".carrusel2-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".carrusel2-slider-dots1"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+                break;
+           case "pencil-header":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                break;
+           case "pencil-video":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-promos-concert").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                break;
+           case "pencil-header1":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                break;
+           case "header2":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $(".modal-titles").modal("show");
+                   $("#loader1").remove();
+               }, 3000);
+                break;*/
 
           case "pencil-carrusel1":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
@@ -89230,6 +89232,29 @@ function eventsGrilla() {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
+
+          /* case "slider-pagination":
+               $("body").append(loader);
+               setTimeout(function () {
+                   $('.modal-programming-carousel-concert').modal("show");
+                   $(".programming-slider").slick({
+                       slidesToShow: 1,
+                       dots: true,
+                       appendDots: $(".programming-slider-dots"),
+                       initialSlide: 0,
+                       infinite: false,
+                       customPaging: function (slider, i) {
+                           var thumb = $(slider.$slides[i]).data();
+                           return (
+                               "<p class='a-text-bold-teal slider-pagination-item'>" +
+                               (i + 1) +
+                               "</p>"
+                           );
+                       }
+                   });
+                   $("#loader1").remove();
+               }, 3000);
+               break;*/
 
           default:
             break;
@@ -93020,8 +93045,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-          <div class="w3-card-4 bg-white d-flex">
-              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+         <div class="w3-card-4 bg-white d-flex">
+             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -93034,15 +93059,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                      </input>
-                      <p class="mt-4 ml-2">Rol de usuario</p>
+                     </input>
+                     <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-          </div>
+         </div>
         </div>
         </div>
         `);
@@ -93077,7 +93102,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-          showDescriptions();*/
+         showDescriptions();*/
       }
     }
   });
@@ -93775,8 +93800,8 @@ function createSlickSlider(container, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Zaid\claro\backoffice\resources\js\main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! C:\Zaid\claro\backoffice\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -47,7 +47,7 @@
 
                             <section class="edit-program-image">
                                 <select
-                                    class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                                    class="thumbnail-header1 thumbnail-header header-background-blue thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                                     title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true"
                                     data-live-search-placeholder="Agregar título de nuevo programa"
                                     name="thumbnail-header1" key="title">
