@@ -461,4 +461,13 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
+    function getPromotionalsProgramsCarousel(Request $request){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/getCarrusel/".$request->input("landing")."&".$request->input('idCarousel')
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
 }

@@ -42,7 +42,7 @@
                         <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
                     </div>
                     <!--sliderparacarrusel-->
-                    <div class="carrusel1-slider">
+                    <div class="carrusel1-slider-concert">
                         <div>
                             <section class="edit-program-image">
                                 <select
@@ -220,7 +220,7 @@
                                                         placeholder="00:00:00"></span>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <!--Sinopsis-->
@@ -274,7 +274,7 @@
                                                     placeholder="YYYY">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -325,7 +325,7 @@
                                                     placeholder="PG-00">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -393,7 +393,7 @@
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-5">
@@ -658,7 +658,7 @@
                                                         placeholder="00:00:00"></span>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <!--Sinopsis-->
@@ -712,7 +712,7 @@
                                                     placeholder="YYYY">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -763,7 +763,7 @@
                                                     placeholder="PG-00">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -831,7 +831,7 @@
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-5">
@@ -1097,7 +1097,7 @@
                                                         placeholder="00:00:00"></span>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <!--Sinopsis-->
@@ -1151,7 +1151,7 @@
                                                     placeholder="YYYY">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -1202,7 +1202,7 @@
                                                     placeholder="PG-00">
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-3">
@@ -1270,7 +1270,7 @@
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
                             <section class="mb-5">

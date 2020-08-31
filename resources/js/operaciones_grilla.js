@@ -367,7 +367,9 @@ function eventsGrilla() {
                         getContentConcertChannelBlock4OTwo();
                         break;
                     case "pencil-carrusel1":
-                        getPromotionalsProgramsCarousel(json.id);
+                        let landing = "Concert Channel"
+                        let id = 1;
+                        getPromotionalsProgramsCarousel(id, landing);
                         break;
                     case "pencil-carrusel2":
                         $("body").append(loader);
