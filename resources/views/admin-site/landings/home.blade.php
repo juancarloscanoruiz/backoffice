@@ -1,4 +1,4 @@
-@extends('layaout.app')
+<!-- @extends('layaout.app') -->
 
 @section('scripts')
     <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>

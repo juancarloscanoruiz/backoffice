@@ -1,7 +1,5 @@
-@extends('layaout.app')
-
 <body class="bg-dark">
-    <button id="btn-test">Modal</button>
+    <!-- <button id="btn-test">Modal</button> -->
 
     <!-- MODAL HEADER - ENCABEZADO LANDING CANAL CLARO 1 -->
     <div id="modal-header" class="modal">
