@@ -387,7 +387,6 @@ class landingController extends Controller
     }
 
     public function getProgrammingLanding(Request $request)
-    public function °()
     {
         $client = new Client();
         $response = $client->get(
@@ -400,9 +399,10 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/actual_programing_programation/gmt&" . $request->input('date')
+            $this->url . "section/canal_claro"
         );
-        echo ($response->getBody()->getContents());
+        $respuesta =  $response->getBody();
+        echo ($respuesta);
     }
 
     // HEADER

@@ -1385,105 +1385,8 @@ function getProgramsLanding(date) {
             $('.loader-view-container').remove();
         }
     })
+}
 
-    // Canal Claro
-    const LOADER = `<div class="loader-view-container" id="loader1">
-        <img src="./images/loader.gif" class="loader" alt="">
-        </div>`;
-
-    let landingCanalClaro = {
-        remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
-        container: document.getElementById("navbar-prev-canal-claro"),
-        onMessage: function (message, origin) {
-            let json = JSON.parse(message);
-            console.log('buenas', json);
-            if (typeof json == "object") {
-
-                switch (json.type) {
-                    case "claro-header":
-                        $("body").append(LOADER);
-                        $('#modal-header').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-programacion":
-                        $("body").append(LOADER);
-                        $('#modal-edi-claro').modal("show");
-                        getModalsCanalClaro('claro-programacion');
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-title":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-promo":
-                        $("body").append(LOADER);
-                        $('#modal-promo').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel1":
-                        $("body").append(LOADER);
-                        $('#modal-edi-carrusel-1').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel2":
-                        $("body").append(LOADER);
-                        $('#modal-edi-carrusel-2').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel-title":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel-title2":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-    }
-    let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
-    if (menuClaroCanal) {
-        $('#navbar-prev-canal-claro iframe').remove();
-        console.log('enviando....');
-        new easyXDM.Socket(landingCanalClaro);
-    }
-
-    $('#btn-test').click(function () {
-        $("#modal-promo").modal("show");
-        getModalsCanalClaro('claro-promo');
-    })
-    $('#url-encabezado').click(function () {
-        $("#modal-url").modal("show");
-    })
-    $('#url-promo').click(function () {
-        $("#modal-url").modal("show");
-    })
-    $('#banner-claro').change(function () {
-        File(this)
-    })
-
-    function File(objFileInput) {
-        $("body").append(LOADER);
-        if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-                $('.loader-view-container').remove();
 // CLARO CANAL
 function getModalsCanalClaro(type) {
     $.ajax({
@@ -1501,7 +1404,7 @@ function getModalsCanalClaro(type) {
                 // GET TITLE               
                 case "claro-title":
                     $('.inp-title-modal').val(obj.data.block_3_title)
-                    $(".inp-title-modal").attr("key","block_3_title");
+                    $(".inp-title-modal").attr("key", "block_3_title");
                     $('.inp-sub-title-modal').val(obj.data.block_3_subtitle)
                     $('.inp-sub-title-modal').attr("block_3_subtitle")
                     break
@@ -1530,50 +1433,7 @@ function getModalsCanalClaro(type) {
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
-    }
-    $('#img-header').change(function () {
-        FileHeader(this)
     })
-    function FileHeader(objFileInput) {
-        $("body").append(LOADER);
-        if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-                $('.loader-view-container').remove();
-            }
-            fileReader.readAsDataURL(objFileInput.files[0]);
-        }
-    }
-    $('#promo-claro-img').change(function () {
-        FilePromoImg(this)
-    })
-    function FilePromoImg(objFileInput) {
-        $("body").append(LOADER);
-        if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
-            }
-            fileReader.readAsDataURL(objFileInput.files[0]);
-            $('.loader-view-container').remove();
-        }
-    }
-    $('#promo-claro-video').change(function () {
-        FilePromoVideo(this)
-    })
-    function FilePromoVideo(objFileInput) {
-        $("body").append(LOADER);
-        if (objFileInput.files[0]) {
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-                $('.loader-view-container').remove();
-            }
-            fileReader.readAsDataURL(objFileInput.files[0]);
-        }
-    }
-    // Canal Claro
 }
 
 function editHeaderLandingClaro(data) {
@@ -1642,8 +1502,7 @@ export {
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
-    getProgramsLanding
-
+    getProgramsLanding,
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro

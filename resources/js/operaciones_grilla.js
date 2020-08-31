@@ -34,7 +34,7 @@ import {
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
-    getProgramsLanding
+    getProgramsLanding,
 
     getModalsCanalClaro,
     editHeaderLandingClaro,
@@ -205,28 +205,16 @@ function eventsGrilla() {
                         }, 3000);
                         break;
                     case "title-carrusel2":
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "promo-cinema":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-promo-cinema').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    case "title-carrusel1":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-title-carrusel1').modal("show");
+
+
                             $("#loader1").remove();
                         }, 3000);
                         break;
 
                     case "carrusel2":
-
-                    case "carrusel1":
 
                         $("body").append(loader);
                         setTimeout(function () {
@@ -249,29 +237,28 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
+                    case "slider-pagination":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-programming-carousel-concert').modal("show");
+                            $(".programming-slider").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
                         break;
-                        case "slider-pagination":
-                    $("body").append(loader);
-                    setTimeout(function () {
-                        $('.modal-programming-carousel-concert').modal("show");
-                        $(".programming-slider").slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(".programming-slider-dots"),
-                            initialSlide: 0,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                var thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                        $("#loader1").remove();
-                    }, 3000);
-                    break;
                     case "slider-pagination":
                     case "title-carrusel2":
                         $("body").append(loader);
@@ -304,7 +291,7 @@ function eventsGrilla() {
                             });
                             $("#loader1").remove();
                         }, 3000);
-    
+
                         break;
 
 
@@ -2953,16 +2940,16 @@ function eventsGrilla() {
             new Cleave(scheduleTime, scheduleTimeConfig);
         });
     /*
-Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
-*/
+    Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
+    */
     $(".schedule-date-input")
         .toArray()
         .forEach(scheduleDate => {
             new Cleave(scheduleDate, cleaveConfig);
         });
     /*
-Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
-*/
+    Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+    */
     $(".time-seconds-input")
         .toArray()
         .forEach(timeInput => {
@@ -2970,8 +2957,8 @@ Permite a todos los input con la clase time-seconds-input el formato de tiempo h
         });
 
     /*
-Permite a todos los input con la clase year-input tener el formato YYYY
-*/
+    Permite a todos los input con la clase year-input tener el formato YYYY
+    */
     $(".year-input")
         .toArray()
         .forEach(yearInput => {
@@ -3011,7 +2998,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         $("#edit").click(function () {
             if ($('input[id="edit"]').is(":checked")) {
                 $("#navbar-prev-canal-claro").html(`
-
+    
                 <script>
                 new easyXDM.Socket({
                     remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
@@ -3021,7 +3008,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                         this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                         this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
+    
                     }
                 });
                 </script>`);
@@ -3051,7 +3038,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 </script>`);
             }
         });
-
+    
         //PREV CLARO CANAL
         $("#prev").click(function () {
             if ($('input[id="prev"]').is(":checked")) {
@@ -3069,7 +3056,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     });
                 </script>
                 `);
-
+    
                 $("#navbar-prev-programacion").html(` <script>
                 new easyXDM.Socket({
                 remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
@@ -3275,7 +3262,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                         this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                         this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
+    
                     }
                 });
                 </script>`);
@@ -3506,8 +3493,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         $(".modal-information").modal("hide");
     });
 
-    // Canal Claro
-
     // CANAL CLARO
     const LOADER = `<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
@@ -3566,61 +3551,62 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                         $("#modal-title").modal("show");
                         $(".loader-view-container").remove();
 
-                switch (json.type) {
-                    case "claro-header":
-                        $("body").append(LOADER);
-                        $('#modal-header').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-programacion":
-                        $("body").append(LOADER);
-                        $('#modal-edi-claro').modal("show");
-                        getModalsCanalClaro('claro-programacion');
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-title":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-promo":
-                        $("body").append(LOADER);
-                        $('#modal-promo').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel1":
-                        $("body").append(LOADER);
-                        $('#modal-edi-carrusel-1').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel2":
-                        $("body").append(LOADER);
-                        $('#modal-edi-carrusel-2').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel-title":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
-                    case "claro-carrusel-title2":
-                        $("body").append(LOADER);
-                        $('#modal-title').modal("show");
-                        getModalsCanalClaro(json.type);
-                        $('.loader-view-container').remove();
-                        break;
+                        switch (json.type) {
+                            case "claro-header":
+                                $("body").append(LOADER);
+                                $('#modal-header').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-programacion":
+                                $("body").append(LOADER);
+                                $('#modal-edi-claro').modal("show");
+                                getModalsCanalClaro('claro-programacion');
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-title":
+                                $("body").append(LOADER);
+                                $('#modal-title').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-promo":
+                                $("body").append(LOADER);
+                                $('#modal-promo').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-carrusel1":
+                                $("body").append(LOADER);
+                                $('#modal-edi-carrusel-1').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-carrusel2":
+                                $("body").append(LOADER);
+                                $('#modal-edi-carrusel-2').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-carrusel-title":
+                                $("body").append(LOADER);
+                                $('#modal-title').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                            case "claro-carrusel-title2":
+                                $("body").append(LOADER);
+                                $('#modal-title').modal("show");
+                                getModalsCanalClaro(json.type);
+                                $('.loader-view-container').remove();
+                                break;
+                        }
                 }
+                this.container.getElementsByTagName("iframe")[0].style.height =
+                    message + "px";
+                this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     }
     let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
@@ -3628,37 +3614,10 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         $('#navbar-prev-canal-claro iframe').remove();
         new easyXDM.Socket(landingCanalClaro);
     }
-
-    // Canal Claro
-
-    let loader = `
-    <div class="loader-view-container" id="loader1">
-        <img src="./images/loader.gif" class="loader" alt="">
-    </div>
-        `;
-
-    $("#btn-test").click(function () {
-        $("body").append(loader);
-        $("#modal-edi-carrusel-1").modal("show");
-        $(".loader-view-container").remove();
-    });
-    $("#url-encabezado").click(function () {
-        $("body").append(loader);
-        $("#modal-url").modal("show");
-        $(".loader-view-container").remove();
-    });
-    $("#url-promo").click(function () {
-        $("body").append(loader);
-        $("#modal-url").modal("show");
-        $(".loader-view-container").remove();
-    });
-    $("#banner-claro").change(function () {
-        File(this);
-    });
     // BTN MODAL TEST
     $('#btn-test').click(function () {
         $("#modal-title").modal("show");
-        $(".inp-title-modal").attr("key","block_3_title");
+        $(".inp-title-modal").attr("key", "block_3_title");
         getModalsCanalClaro('claro-title');
     })
     // BTN MODAL URL ENCABEZADO
@@ -3721,11 +3680,10 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                     '" />'
                 );
             };
-                $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
-            }
-            fileReader.readAsDataURL(objFileInput.files[0]);
-            $('.loader-view-container').remove();
+            $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
         }
+        fileReader.readAsDataURL(objFileInput.files[0]);
+        $('.loader-view-container').remove();
     }
     $('#promo-claro-video').change(function () {
         FilePromoVideo(this)
@@ -3742,12 +3700,6 @@ Permite a todos los input con la clase year-input tener el formato YYYY
                 );
                 $(".loader-view-container").remove();
             };
-            fileReader.readAsDataURL(objFileInput.files[0]);
-        }
-    }
-                $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-                $('.loader-view-container').remove();
-            }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
     }
@@ -3793,7 +3745,7 @@ Permite a todos los input con la clase year-input tener el formato YYYY
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
     // TITLE EDIT CANAL CLARO
-   
+
     // CANAL CLARO
 }
 
