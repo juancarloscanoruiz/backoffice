@@ -12,7 +12,7 @@
 
 </script> -->
 
-<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
+<!-- <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script> -->
 
 <script>
     new easyXDM.Socket({
