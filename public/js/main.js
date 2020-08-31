@@ -88918,12 +88918,12 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "current-programming-concert":
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
             Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarSlider2);
@@ -88938,7 +88938,7 @@ function eventsGrilla() {
             break;
 
           case "header-landing-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-encabezado-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -88946,7 +88946,7 @@ function eventsGrilla() {
             break;
 
           case "title-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -88954,7 +88954,7 @@ function eventsGrilla() {
             break;
 
           case "promo-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-promo-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -88962,7 +88962,7 @@ function eventsGrilla() {
             break;
 
           case "title-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -88970,7 +88970,7 @@ function eventsGrilla() {
             break;
 
           case "carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel1-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
@@ -88989,7 +88989,7 @@ function eventsGrilla() {
             break;
 
           case "title-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -88997,7 +88997,7 @@ function eventsGrilla() {
             break;
 
           case "carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel1-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
@@ -89016,7 +89016,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-concert').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
@@ -89036,7 +89036,7 @@ function eventsGrilla() {
 
           case "slider-pagination":
           case "title-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89044,7 +89044,7 @@ function eventsGrilla() {
             break;
 
           case "carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
@@ -89085,7 +89085,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader2 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
 
         switch (json.type) {
           case "current-programming-concert":
@@ -89121,7 +89121,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //slider para carrusel concert-channel
 
@@ -89141,7 +89141,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel2").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
@@ -89160,7 +89160,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89168,7 +89168,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-video":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89176,7 +89176,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89184,7 +89184,7 @@ function eventsGrilla() {
             break;
 
           case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89192,7 +89192,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               //slider para carrusel concert-channel
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
@@ -89212,7 +89212,7 @@ function eventsGrilla() {
             break;
 
           case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               //slider para carrusel concert-channel
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
@@ -89728,7 +89728,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader3 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -89736,7 +89736,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader3);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89745,12 +89745,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", _loader3);
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader3);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -89787,7 +89787,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader4 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -89795,7 +89795,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader4);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89804,12 +89804,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", _loader4);
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader4);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -89845,7 +89845,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var _loader5 = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
           case "program":
@@ -89853,7 +89853,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
@@ -89862,12 +89862,12 @@ function eventsGrilla() {
             break;
 
           case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", _loader5);
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
             window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
             break;
 
           case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(_loader5);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_3__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
@@ -90921,6 +90921,10 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             break;
+
+          case "btn-redirect-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
+            break;
         }
       }
 
@@ -90934,17 +90938,17 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-canal-claro iframe').remove();
     new easyXDM.Socket(landingCanalClaro);
   } // BTN MODAL TEST
+  // $('#btn-test').click(function () {
+  //     $("#modal-title").modal("show");
+  //     $(".inp-title-modal").attr("key", "block_3_title");
+  //     getModalsCanalClaro('claro-title');
+  // })
+  // BTN MODAL URL ENCABEZADO
+  // $('#url-encabezado').click(function () {
+  //     $("#modal-url").modal("show");
+  // })
+  // BTN MODAL URL PROMO
 
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])('claro-title');
-  }); // BTN MODAL URL ENCABEZADO
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-  }); // BTN MODAL URL PROMO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo').click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
@@ -90957,7 +90961,7 @@ function eventsGrilla() {
   var fileReader = new FileReader();
 
   function File(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
       fileReader.onload = function (e) {
@@ -90970,16 +90974,16 @@ function eventsGrilla() {
   } // CARGAR IMG HEADER
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#header-claro").change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
     FileHeader(this);
   }); // FILE HEADER
 
   function FileHeader(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
       fileReader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + e.target.result + '" />');
         jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
       };
 
@@ -91030,7 +91034,7 @@ function eventsGrilla() {
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
     var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
     var logo = document.getElementById("img-header").files[0] || "";
-    var link = "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
     var data = new FormData();
     data.append("landing", landing);
     data.append("title1", title1);
@@ -92708,6 +92712,12 @@ function getModalsCanalClaro(type) {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle");
           break;
         // GET TITLE CARRUSEL 1     
+        // BTN REDIRECT   
+
+        case "btn-redirect-header":
+          window.location.href = obj.data.block_2_button_url;
+          break;
+        // BTN REDIRECT    
       }
 
       fileReader.readAsDataURL(objFileInput.files[0]);

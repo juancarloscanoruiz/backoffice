@@ -1430,6 +1430,11 @@ function getModalsCanalClaro(type) {
                     $('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle")
                     break
                 // GET TITLE CARRUSEL 1     
+                // BTN REDIRECT   
+                case "btn-redirect-header":
+                    window.location.href = obj.data.block_2_button_url;
+                    break
+                // BTN REDIRECT    
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
         }
