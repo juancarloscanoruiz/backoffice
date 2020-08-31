@@ -44,7 +44,6 @@
                     <!--sliderparacarrusel-->
                     <div class="carrusel1-slider">
                         <div>
-
                             <section class="edit-program-image">
                                 <select
                                     class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
@@ -482,7 +481,6 @@
                         </div>
                         <!--otro slider-->
                         <div>
-
                             <section class="edit-program-image">
                                 <select
                                     class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
@@ -919,7 +917,6 @@
 
                             </div>
                         </div>
-
                         <!--fin del otro slider-->
                         <!--otro slider-->
                         <div>

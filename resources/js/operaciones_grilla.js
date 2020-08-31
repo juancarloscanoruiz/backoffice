@@ -36,10 +36,10 @@ import {
     getProgrammingLanding,
     getProgramsLanding,
     getPromotionalsProgramsCarousel,
-
     getModalsCanalClaro,
     editHeaderLandingClaro,
-    editElementLandingClaro
+    editElementLandingClaro,
+    getContentClaroCinemaHeader
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -137,7 +137,6 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
-
                     case "current-programming-concert":
                         let calendarSlider2 = $(".calendar-slider2");
                         $("body").append(loader);
@@ -149,15 +148,12 @@ function eventsGrilla() {
                             createSlickSlider(calendarSlider2, calendarSlick);
                         } catch (error) {
                             createSlickSlider(calendarSlider2, calendarSlick);
-
                         }
                         break;
                     case "header-landing-cinema":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-encabezado-cinema').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+                        getContentClaroCinemaHeader();
+
+
                         break;
                     case "title-cinema":
                         $("body").append(loader);
@@ -371,8 +367,7 @@ function eventsGrilla() {
                         getContentConcertChannelBlock4OTwo();
                         break;
                     case "pencil-carrusel1":
-                        let id = json.id;
-                        getPromotionalsProgramsCarousel(id);
+                        getPromotionalsProgramsCarousel(json.id);
                         break;
                     case "pencil-carrusel2":
                         $("body").append(loader);
@@ -430,6 +425,7 @@ function eventsGrilla() {
 
                         break;
                     case "pencil-carrusel1":
+                        getContentConcertChannelHeader();
                         $("body").append(loader);
                         setTimeout(function () {
                             //slider para carrusel concert-channel

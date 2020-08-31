@@ -313,7 +313,6 @@ class landingController extends Controller
 
     public function getProgramming(Request $request)
     {
-
         $client = new Client();
         $response = $client->get(
             $this->url . "programation/getChapterByDate/" . $request->input('date') . "&" . $request->input('time') . "&" . $request->input('section')
@@ -452,5 +451,14 @@ class landingController extends Controller
 
         echo ($response->getBody()->getContents());
     }
-    // CANAL CLARO
+
+    function getContentClaroCinema(){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/claro_cinema"
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
 }

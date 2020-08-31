@@ -1,5 +1,3 @@
-@extends('layaout.app')
-
 <body class="bg-dark">
     <button id="btn-test">Modal</button>
 
@@ -16,7 +14,9 @@
                     <div class="img-content-header">
                         <div class="content-img-modal">
                             <label for="img-header">
-                                <div id="img-header-claro"><!-- IMG --></div>
+                                <div id="img-header-claro">
+                                    <!-- IMG -->
+                                </div>
                                 <input required class="d-none" id="img-header" name="img-header-claro" type="file">
                             </label>
                         </div>
@@ -34,15 +34,18 @@
                 </div>
                 <div class="content">
                     <div class="float-right mt-3">
-                        <img class="cursor-pointer" id="url-encabezado" src="./images/basic-icons/link.svg" style="width: 40px;">
+                        <img class="cursor-pointer" id="url-encabezado" src="./images/basic-icons/link.svg"
+                            style="width: 40px;">
                         <input class="input-url" placeholder="Enlace o URL" type="text">
                     </div>
                 </div>
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="btn-acepta-modal-header" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button id="btn-acepta-modal-header"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -65,8 +68,10 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button id="btn-acepta-modal-title"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -101,7 +106,8 @@
                         <span>Añade tu archivo mp4 1280px X 720px</span>
                     </label>
                     <label class="add-file">
-                        <img id="url-promo" class="cursor-pointer mb-2" src="images/basic-icons/link.svg" alt="add-link" />
+                        <img id="url-promo" class="cursor-pointer mb-2" src="images/basic-icons/link.svg"
+                            alt="add-link" />
                         <span class="py-3">Utiliza un enlace o URL</span>
                     </label>
                 </div>
@@ -114,7 +120,8 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -138,7 +145,8 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -223,7 +231,8 @@
     <!-- BANNER LANDING CANAL CLARO 4 -->
 
     <!-- SLAIDER -->
-    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body">

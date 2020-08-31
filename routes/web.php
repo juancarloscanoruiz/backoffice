@@ -83,16 +83,15 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/getSection/{section}", "landingController@getSection")->name('getSection');
     Route::post("/getProgramming", "landingController@getProgramming");
     Route::post("/concertChannel", "landingController@getContentConcertChannel");
+    Route::post("/claroCinema", "landingController@getContentClaroCinema");
     Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
     Route::post("/editElementLanding", "landingController@editElementLanding");
     Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
-
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
     // MODAL CLARO
-
 });
 
 //Rutas para la edición de un programa en el sitio
