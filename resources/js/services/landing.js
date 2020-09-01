@@ -1913,7 +1913,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                             class="input-image-program d-none ">
                         <label for="edit-image-horizontal"
                             class="load-modal-programming load-photo d-inline" id="imagenes">
-                            <img src="{{ asset('/images/heart-icon.svg') }}" class="thumbnail-heart-icon"
+                            <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
                                 alt="heart-icon" />
                             <div class="edit-program-camera text-center">
                                 <img src="./images/synopsis/camara.svg"

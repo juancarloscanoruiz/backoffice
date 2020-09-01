@@ -331,8 +331,8 @@ function eventsGrilla() {
         new easyXDM.Socket(confLandingClaroCinema);
     }
     let confLandingConcertChannel = {
-        //remote: `${baseURL}concert-channel-edi.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
+        remote: `${baseURL}concert-channel-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
         container: document.getElementById("navbar-prev-concert-channel"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -342,7 +342,6 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                                 `;
-
                 switch (json.type) {
                     case "current-programming-concert":
                         let date = new Date();
