@@ -34,10 +34,10 @@
 
                     </div>
 
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis pointer-none" navbar-index="2"
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis " navbar-index="2"
                         rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class=" a-text-bold-light py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-two py-2 px-3 mb-0">SINÓPSIS</p>
                         </div>
                     </div>
                     <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro "
@@ -98,110 +98,190 @@
                 </div>
             </div>
            <!--landing de sinopsis-->
-            <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
+           <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <div id="prev-sinopsis">
-                    <div class="mx-auto shadow mt-5  mb-5 content-table">
+                    <div class="mx-auto shadow mt-5 col-9 p-0 mb-5 content-table">
                         <div class="contenedor-fila">
-                            <div class="contenedor-columna centro program titletable">
-                                <span class="a-text-white-regular a-text-prev">Programa</span>
+                            <div class="contenedor-columna centro synop titletable">
+                                <span class="a-text-MBlack a-text-prev">Programa</span>
                             </div>
-                            <div class="contenedor-columna centro channel titletable">
-                                <span class="a-text-white-regular a-text-prev">Canal</span>
+                            <div class="contenedor-columna centro  landins titletable">
+                                <span class="a-text-MBlack a-text-prev">Caracteres</span>
                             </div>
-                            <div class="contenedor-columna centro channel titletable">
-                                <span class="a-text-white-regular a-text-prev">Acciones</span>
+                            <div class="contenedor-columna centro landins titletable">
+                                <span class="a-text-MBlack a-text-prev">Imágenes</span>
                             </div>
-                            <div class="contenedor-columna centro channel  titletable">
-                                <span class="a-text-white-regular a-text-prev">Revisión</span>
+                            <div class="contenedor-columna centro landins titletable">
+                                <span class="a-text-MBlack a-text-prev">Acciones</span>
                             </div>
-                        </div>
-                        <div class="contenedor-fila">
-                            <div class="contenedor-columna">
-                                <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
+                            <div class="contenedor-columna centro landins titletable">
+                                <span class="a-text-MBlack a-text-prev">Landing</span>
                             </div>
-                            <div class="contenedor-columna centro">
-                                <span class="a-text-medium-black text-normal ">Canal Claro</span>
-                            </div>
-                            <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi"
-                                    onClick="watchsinopsis()" />
-                            </div>
-                            <div class="contenedor-columna centro ">
-                                <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
-                                    <input type="checkbox">
-                                    <span class="checkmark1"></span>
-                                </label>
-                            </div>
-                        </div>
+                        </div> <!--fin de titulos-->
                         <div class="contenedor-fila">
                             <div class="contenedor-columna">
                                 <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <span class="a-text-medium-black  text-normal ">Canal Claro</span>
+                                <span class="a-text-semibold-tomato text-normal ">0</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi" />
+                                <span class="a-text-semibold-tomato text-normal ">0/8</span>
+                            </div>
+                            <div class="contenedor-columna centro">
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3"
+                                    />
+                                    <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi"
+                                    />
                             </div>
                             <div class="contenedor-columna centro ">
-                                <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
-                                    <input type="checkbox">
-                                    <span class="checkmark1"></span>
-                                </label>
+                            <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                            <input type="radio" id="yes-landing" value="3"
+                                                class="edit-switch-landing edit-landing-yes" />
+                                            <label for="yes-landing" id="siestado-landing"
+                                                class="mb-0 si-estilo cursor-pointer switch-label">
+                                                Sí</label>
+                                            <input type="radio"  id="no-landing" value="0"
+                                                class="edit-switch-landing switch-table-edit edit-landing-no"
+                                              checked/>
+                                            <label for="no-landing" id="noestado-landing"
+                                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                                No</label>
+                                        </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contenedor-fila">
+                            <div class="contenedor-columna">
+                                <span class="a-text-medium-black text-normal pd-5">Dress Code</span>
+                            </div>
+                            <div class="contenedor-columna centro ">
+                                <span class="a-text-semibold-orange text-normal ">143</span>
+                            </div>
+                            <div class="contenedor-columna centro ">
+                                <span class="a-text-semibold-orange text-normal ">5/8</span>
+                            </div>
+                            <div class="contenedor-columna centro">
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3"
+                                    />
+                                    <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi"
+                                    />
+                            </div>
+                            <div class="contenedor-columna centro ">
+                            <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                            <input type="radio" id="yes-landing" value="3"
+                                                class="edit-switch-landing edit-landing-yes" />
+                                            <label for="yes-landing" id="siestado-landing"
+                                                class="mb-0 si-estilo cursor-pointer switch-label">
+                                                Sí</label>
+                                            <input type="radio"  id="no-landing" value="0"
+                                                class="edit-switch-landing switch-table-edit edit-landing-no"
+                                              checked/>
+                                            <label for="no-landing" id="noestado-landing"
+                                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                                No</label>
+                                        </div>
                             </div>
                         </div>
                         <div class="contenedor-fila">
                             <div class="contenedor-columna">
-                                <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
+                                <span class="a-text-medium-black text-normal pd-5">Gran Hotel</span>
                             </div>
                             <div class="contenedor-columna centro ">
-                                <span class="a-text-medium-black text-normal ">Canal Claro</span>
+                                <span class="a-text-semibold-greyish-brown-two  text-normal ">144</span>
                             </div>
                             <div class="contenedor-columna centro ">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi" />
+                                <span class="a-text-semibold-greyish-brown-two text-normal ">8/8</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
-                                    <input type="checkbox">
-                                    <span class="checkmark1"></span>
-                                </label>
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3"
+                                    />
+                                    <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi"
+                                    />
+                            </div>
+                            <div class="contenedor-columna centro ">
+                            <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                            <input type="radio" id="yes-landing" value="3"
+                                                class="edit-switch-landing edit-landing-yes"  checked/>
+                                            <label for="yes-landing" id="siestado-landing"
+                                                class="mb-0 si-estilo cursor-pointer switch-label">
+                                                Sí</label>
+                                            <input type="radio"  id="no-landing" value="0"
+                                                class="edit-switch-landing switch-table-edit edit-landing-no"
+                                             />
+                                            <label for="no-landing" id="noestado-landing"
+                                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                                No</label>
+                                        </div>
                             </div>
                         </div>
                         <div class="contenedor-fila">
                             <div class="contenedor-columna">
-                                <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
+                                <span class="a-text-medium-black text-normal pd-5">Planeta Tierra</span>
                             </div>
                             <div class="contenedor-columna centro ">
-                                <span class="a-text-medium-black text-normal ">Canal Claro</span>
+                                <span class="a-text-semibold-tomato text-normal ">20</span>
                             </div>
+                            <div class="contenedor-columna centro ">
+                            <span class="a-text-semibold-tomato text-normal ">4/8</span>
+</div>
+
                             <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi" />
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3"
+                                    />
+                                    <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi"
+                                    />
                             </div>
-                            <div class="contenedor-columna centro">
-                                <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
-                                    <input type="checkbox">
-                                    <span class="checkmark1"></span>
-                                </label>
+                            <div class="contenedor-columna centro ">
+                            <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                            <input type="radio" id="yes-landing" value="3"
+                                                class="edit-switch-landing edit-landing-yes" />
+                                            <label for="yes-landing" id="siestado-landing"
+                                                class="mb-0 si-estilo cursor-pointer switch-label">
+                                                Sí</label>
+                                            <input type="radio"  id="no-landing" value="0"
+                                                class="edit-switch-landing switch-table-edit edit-landing-no"
+                                              checked/>
+                                            <label for="no-landing" id="noestado-landing"
+                                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                                No</label>
+                                        </div>
                             </div>
                         </div>
-                        <div class="contenedor-fila">
+                    
+                    <div class="contenedor-fila">
                             <div class="contenedor-columna">
-                                <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
+                                <span class="a-text-medium-black text-normal pd-5">La Caja de Pandora</span>
                             </div>
                             <div class="contenedor-columna centro ">
-                                <span class="a-text-medium-black text-normal ">Canal Claro</span>
+                                <span class="a-text-semibold-orange text-normal ">143</span>
+                            </div>
+                            <div class="contenedor-columna centro ">
+                                <span class="a-text-semibold-orange text-normal ">5/8</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi" />
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3"
+                                    />
+                                    <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi"
+                                    />
                             </div>
-                            <div class="contenedor-columna centro">
-                                <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare">
-                                    <input type="checkbox">
-                                    <span class="checkmark1"></span>
-                                </label>
+                            <div class="contenedor-columna centro ">
+                                        <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                            <input type="radio" id="yes-landing" value="3"
+                                                class="edit-switch-landing edit-landing-yes" />
+                                            <label for="yes-landing" id="siestado-landing"
+                                                class="mb-0 si-estilo cursor-pointer switch-label">
+                                                Sí</label>
+                                            <input type="radio"  id="no-landing" value="0"
+                                                class="edit-switch-landing switch-table-edit edit-landing-no"
+                                              checked/>
+                                            <label for="no-landing" id="noestado-landing"
+                                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                                No</label>
+                                        </div>
+                             </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
             </div>

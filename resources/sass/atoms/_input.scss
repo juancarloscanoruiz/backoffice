@@ -601,7 +601,13 @@ div .bootstrap-select>.dropdown-toggle:focus {
     background-color: transparent !important;
     border-color: transparent !important;
 }
-
+.btn-light {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder{
+    color:white !important;
+}
 .btn.focus,
 .btn:focus {
     outline: 0 !important;

@@ -629,9 +629,24 @@ body {
   color: #666262;
 }
 
+.a-text-semibold-orange {
+  font-family: "Montserrat-SemiBold";
+  color: #ff8200;
+}
+
+.a-text-semibold-tomato {
+  font-family: "Montserrat-SemiBold";
+  color: #da291c;
+}
+
 .a-text-semibold-warmgrey {
   font-family: "Montserrat-SemiBold";
   color: #9b9b9b;
+}
+
+.a-text-semibold-greyish-brown-two {
+  font-family: "Montserrat-SemiBold";
+  color: #4a4a4a;
 }
 
 .a-text-semibold-warm-grey-three {
@@ -3637,6 +3652,15 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border-color: transparent !important;
 }
 
+.btn-light {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.bootstrap-select > .dropdown-toggle.bs-placeholder {
+  color: white !important;
+}
+
 .btn.focus,
 .btn:focus {
   outline: 0 !important;
@@ -4591,9 +4615,24 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #666262;
 }
 
+.a-text-semibold-orange {
+  font-family: "Montserrat-SemiBold";
+  color: #ff8200;
+}
+
+.a-text-semibold-tomato {
+  font-family: "Montserrat-SemiBold";
+  color: #da291c;
+}
+
 .a-text-semibold-warmgrey {
   font-family: "Montserrat-SemiBold";
   color: #9b9b9b;
+}
+
+.a-text-semibold-greyish-brown-two {
+  font-family: "Montserrat-SemiBold";
+  color: #4a4a4a;
 }
 
 .a-text-semibold-warm-grey-three {
@@ -6521,6 +6560,14 @@ a:hover {
 
 .channel {
   width: 20%;
+}
+
+.synop {
+  width: 19%;
+}
+
+.landins {
+  width: 10%;
 }
 
 .cl {
