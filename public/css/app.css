@@ -71,7 +71,7 @@ body {
   display: none;
 }
 
-[dir="rtl"] .slick-slide {
+[dir=rtl] .slick-slide {
   float: right;
 }
 
@@ -177,7 +177,7 @@ body {
   left: -25px;
 }
 
-[dir="rtl"] .slick-prev {
+[dir=rtl] .slick-prev {
   left: auto;
   right: -25px;
 }
@@ -186,7 +186,7 @@ body {
   content: "\2190";
 }
 
-[dir="rtl"] .slick-prev:before {
+[dir=rtl] .slick-prev:before {
   content: "\2192";
 }
 
@@ -194,7 +194,7 @@ body {
   right: -25px;
 }
 
-[dir="rtl"] .slick-next {
+[dir=rtl] .slick-next {
   left: -25px;
   right: auto;
 }
@@ -203,7 +203,7 @@ body {
   content: "\2192";
 }
 
-[dir="rtl"] .slick-next:before {
+[dir=rtl] .slick-next:before {
   content: "\2190";
 }
 
@@ -662,6 +662,11 @@ body {
 .a-text-semibold-brownish-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #5f5c5c;
+}
+
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
 }
 
 .a-text-semibold-white {
@@ -1714,7 +1719,7 @@ body {
 .btn-apro {
   width: 181px;
   height: 46px;
-  border-radius: 7px;
+  border-radius: 16px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -1737,7 +1742,7 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  border-radius: 7px;
+  border-radius: 16px;
   background-color: #da291c;
   outline: none !important;
   outline-width: 0 !important;
@@ -3116,23 +3121,23 @@ body {
   letter-spacing: normal;
 }
 
-input[type="radio"]:checked + .a-btn-check:before {
+input[type=radio]:checked + .a-btn-check:before {
   content: "\2713";
   font-size: 30px;
   color: #009245;
 }
 
-input[type="radio"]:checked + .hombre-estilo {
+input[type=radio]:checked + .hombre-estilo {
   background: #03ad50;
   color: #ffffff;
   border: none;
 }
 
-input[type="checkbox"] {
+input[type=checkbox] {
   display: none;
 }
 
-input[type="radio"] {
+input[type=radio] {
   display: none;
 }
 
@@ -3169,13 +3174,13 @@ option:checked + .roles {
   border: none;
 }
 
-input[type="radio"]:checked + .mujer-estilo {
+input[type=radio]:checked + .mujer-estilo {
   background: #03ad50;
   color: #ffffff;
   border: none;
 }
 
-input[type="radio"]:checked + .mujer-estilo1 {
+input[type=radio]:checked + .mujer-estilo1 {
   background: #03ad50;
   color: #ffffff;
   border: none;
@@ -3192,7 +3197,7 @@ input[type="radio"]:checked + .no-estilo {
     border: none;
 }*/
 
-input[type="radio"]:checked + .switch-label {
+input[type=radio]:checked + .switch-label {
   background-color: #0097a9;
   color: #ffffff;
   border: none;
@@ -3203,13 +3208,13 @@ input[type="radio"]:checked + .switch-label {
   font-family: "Montserrat-SemiBold";
 }
 
-input[type="radio"]:checked + .si-estilo1 {
+input[type=radio]:checked + .si-estilo1 {
   background-color: #4c4b4b;
   color: #ffffff;
   border: none;
 }
 
-input[type="radio"]:checked + .no-estilo1 {
+input[type=radio]:checked + .no-estilo1 {
   background-color: #4c4b4b;
   color: #ffffff;
   border: none;
@@ -3631,7 +3636,7 @@ input[type="radio"]:checked + .no-estilo1 {
   cursor: pointer;
 }
 
-.list1:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+.list1:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: 100% !important;
 }
 
@@ -3730,7 +3735,7 @@ div .bootstrap-select > .dropdown-toggle:focus {
   box-sizing: border-box;
 }
 
-.listcinema:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+.listcinema:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: 100% !important;
 }
 
@@ -4159,8 +4164,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .veri {
   /*display: none;
-    position: absolute;
-    top: -172px;*/
+  position: absolute;
+  top: -172px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -4176,8 +4181,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .edita {
   /*display: none;
-    position: absolute;
-    top: 32px;*/
+  position: absolute;
+  top: 32px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -4193,8 +4198,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .borra {
   /*display: none;
-    position: absolute;
-    top: 66px;*/
+  position: absolute;
+  top: 66px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -4648,6 +4653,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-semibold-brownish-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #5f5c5c;
+}
+
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
 }
 
 .a-text-semibold-white {
@@ -6856,6 +6866,10 @@ iframe {
   left: 50%;
   width: 90%;
   z-index: 1;
+}
+
+.width-program {
+  width: 120px !important;
 }
 
 #concert-promo-container {

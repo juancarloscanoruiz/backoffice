@@ -4,7 +4,7 @@
     <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
     <script>
         new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-backoffice.php",
+            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php",
             container: "claro-cinema-container",
             onMessage: function(message, origin) {
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";

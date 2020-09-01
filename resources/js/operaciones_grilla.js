@@ -74,6 +74,24 @@ import {
 
 function eventsGrilla() {
 
+ //calendario de sinopsis
+ let calendarsinopsis = $(".calendar-sinopsis-slider");
+
+ $(".calendar-sinopsis-slider").slick({
+     slidesToShow: 11,
+     slidesToScroll: 11,
+     infinite: true,
+     dots: false,
+     centerMode: false,
+     arrows: true,
+     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+ });
+
+ calendarsinopsis.slick("unslick");
+ createCalendarDays(calendarsinopsis);
+
+ createSlickSlider(calendarsinopsis, calendarSlick);
 
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
@@ -119,6 +137,8 @@ function eventsGrilla() {
     $(".btn-prueba").click(function () {
         getHeaderLanding();
     });
+   
+   
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
