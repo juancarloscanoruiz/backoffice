@@ -39,7 +39,7 @@ import {
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
-    getContentClaroCinemaHeader,
+    getContentClaroCinema,
     editPromoLandingClaro
 } from "./services/landing.js";
 
@@ -158,100 +158,39 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
-                    case "current-programming-concert":
-                        let calendarSlider2 = $(".calendar-slider2");
-                        $("body").append(loader);
-                        $('.modal-programming-landing').modal("show");
-                        $('.loader-view-container').remove();
-                        createCalendarDays(calendarSlider2);
-                        try {
-                            calendarSlider2.slick("unslick");
-                            createSlickSlider(calendarSlider2, calendarSlick);
-                        } catch (error) {
-                            createSlickSlider(calendarSlider2, calendarSlick);
-                        }
+                    case "current-programming-cinema":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "claro-cinema");;
                         break;
                     case "header-landing-cinema":
-                        getContentClaroCinemaHeader();
-
-
+                        getContentClaroCinema("header-landing-cinema");
                         break;
                     case "title-cinema":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-title-cinema').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
+                        getContentClaroCinema("title-cinema");
                         break;
                     case "promo-cinema":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-promo-cinema').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+                        getContentClaroCinema("promo-cinema");
                         break;
                     case "title-carrusel1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-title-carrusel1').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+                        getContentClaroCinema("title-carrusel1");
                         break;
                     case "carrusel1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.carrusel1-cinema').modal("show");
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel1-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                        let landing = "Claro Cinema"
+                        let id = 1;
+                        getPromotionalsProgramsCarousel(id, landing, "header-background");
                         break;
                     case "title-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-title-carrusel1').modal("show");
-
-
-                            $("#loader1").remove();
-                        }, 3000);
+                        getContentClaroCinema("title-carrusel2");
                         break;
 
                     case "carrusel2":
-
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.carrusel1-cinema').modal("show");
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel2-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                        landing = "Claro Cinema"
+                        id = 2;
+                        getPromotionalsProgramsCarousel(id, landing, "header-background");
                         break;
                     case "slider-pagination":
                         $("body").append(loader);
@@ -297,17 +236,6 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-                    case "slider-pagination":
-                    case "title-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-title-carrusel1').modal("show");
-
-
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-
                     case "carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
@@ -369,7 +297,7 @@ function eventsGrilla() {
                         let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
-                        getProgrammingLanding(currentDate);
+                        getProgrammingLanding(currentDate, "concert-channel");
                         break;
                     case "header-landing-concert":
                         getContentConcertChannelHeader();
@@ -389,12 +317,12 @@ function eventsGrilla() {
                     case "pencil-carrusel1":
                         let landing = "Concert Channel"
                         let id = 1;
-                        getPromotionalsProgramsCarousel(id, landing);
+                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue");
                         break;
                     case "pencil-carrusel2":
                         landing = "Concert Channel"
                         id = 2;
-                        getPromotionalsProgramsCarousel(id, landing);
+                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue");
                         break;
 
                     case "pencil-header":
@@ -1161,7 +1089,7 @@ function eventsGrilla() {
 
 <section class="edit-program-image">
     <select
-        class="thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+        class=".header-background1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
         title="TÍTULO DEL PROGRAMA" id="prog_titulo_programa" data-live-search="true"
         data-live-search-placeholder="Agregar título de nuevo programa"
         name="thumbnail-header1" key="title">
@@ -3749,7 +3677,7 @@ function eventsGrilla() {
 
     // CANAL CLARO
 
-    
+
 }
 
 export {

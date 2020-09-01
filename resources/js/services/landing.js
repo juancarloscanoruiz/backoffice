@@ -1216,7 +1216,7 @@ function editPromoLanding(data) {
 }
 
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
-function getProgrammingLanding(date) {
+function getProgrammingLanding(date, landing) {
     $.ajax({
         type: "POST",
         beforeSend: function () {
@@ -1228,18 +1228,31 @@ function getProgrammingLanding(date) {
         },
         data: {
             date
-
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                let concertChannelProgramming = json.data[0].programing[0].programs;
-                if (concertChannelProgramming.length > 0) {
-                    let programConcert = ""
-                    for (const program of concertChannelProgramming) {
-                        programConcert += `
+                let programming = "";
+                switch (landing) {
+                    case "canal-claro":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    case "concert-channel":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    case "claro-cinema":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (programming.length > 0) {
+                    let chapter = ""
+                    for (const program of programming) {
+                        chapter += `
                         <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
                         <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
                             chapter_id="${program.chapter_id}">
@@ -1288,7 +1301,8 @@ function getProgrammingLanding(date) {
                     </div>
                         `
                     }
-                    $('.concert-programming-contanier').html(programConcert);
+                    console.log(chapter);
+                    $('.modal-programming-contanier').html(chapter);
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
@@ -1524,7 +1538,7 @@ function FilePromoVideo(objFileInput) {
 }
 
 //Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
-function getPromotionalsProgramsCarousel(idCarousel, landing) {
+function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "thumbnail-header") {
 
     $.ajax({
         type: "POST",
@@ -1902,7 +1916,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                 <div>
                 <section class="edit-program-image">
                     <select
-                        class="carrusel-concert-select thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                        class="carrusel-concert-select ${landingClass}  w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                         title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
                         data-live-search-placeholder="Agregar título de nuevo programa"
                         name="thumbnail-header1" key="title">
@@ -2360,7 +2374,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
 
 //Landing concert channel
-function getContentClaroCinemaHeader() {
+function getContentClaroCinema(type) {
 
     $.ajax({
         type: "POST",
@@ -2377,9 +2391,86 @@ function getContentClaroCinemaHeader() {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
-                $('.modal-encabezado-cinema').modal("show");
-                $('.loader-view-container').remove();
+                switch (type) {
+                    case "header-landing-cinema":
+                        $('.cinema-header-input-title1').val(data.data.block_2_title_1);
+                        $('.cinema-header-input-title2').val(data.data.block_2_title_2);
+                        $('.btn-header-claro-cinema').val(data.data.block_2_button_title);
+                        $('.link-button-header-cinema').val(data.data.block_2_button_url);
+                        let logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png"
+                        /*                         if (data.data.block_2_icon_channel) {
+                                                    $(".label-no-image").remove();
+                                                } */
+                        $('.logo-header-claro-cinema').attr("src", logo);
+                        $('.modal-encabezado-cinema').modal("show");
+                        break;
+                    case "title-cinema":
+                        $('.modal-title-claro-cinema').text("título");
+                        $('.modal-input-title1-cinema').val(data.data.block_3_title_1);
+                        $('.modal-input-title2-cinema').val(data.data.block_3_title_2);
+                        $('.modal-input-subtitle-cinema').val(data.data.block_3_subtitle);
+                        $('.modal-title-cinema').modal("show");
+                        break;
 
+                    case "promo-cinema":
+                        $(".modal-promo-cinema").modal("show");
+                        $('.upload-promo-button').attr("key", "block_3_video_url");
+                        //Checamos si existe el vídeo de promoción en concert channel
+                        if (data.data.block_3_video_url) {
+                            let promoContainer = $('#cinema-promo-container');
+                            //Verificamos si la url es de una imagen
+                            if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                                promoContainer.html(`
+                                <img src="${data.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
+                                `);
+                            } else {
+                                //La url es de un video
+                                promoContainer.html(`
+                                <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
+                                <source src="${data.data.block_3_video_url}" type="video/mp4">
+                                 </video>
+                                `);
+
+                            }
+
+                        } else {
+                            promoContainer.html(`
+                            <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
+                            `);
+
+                        }
+                        break;
+                    case "title-carrusel1":
+                        $('.input-carrusel1-title1-cinema').val(data.data.block_4_carrusel_1_title_1)
+                        $('.input-carrusel1-title2-cinema').val(data.data.block_4_carrusel_1_title_2)
+                        $('.input-carrusel1-subtitle-cinema').val(data.data.block_4_carrusel_1_subtitle)
+                        $('.modal-title-carrusel1').modal("show");
+                        break;
+                    case "title-carrusel2":
+                        $('.modal-title-claro-cinema').text("carrusel 2");
+                        $('.modal-input-title1-cinema').val(data.data.block_4_carrusel_2_title_2);
+                        $('.modal-input-title2-cinema').val(data.data.block_4_carrusel_2_title_2);
+                        $('.modal-input-subtitle-cinema').val(data.data.block_4_carrusel_2_subtitle);
+                        $('.modal-title-cinema').modal("show");
+                        break;
+
+                    case "current-programming-cinema":
+                        let calendarSlider2 = $(".calendar-slider2");
+                        $('.modal-programming-landing').modal("show");
+                        createCalendarDays(calendarSlider2);
+                        try {
+                            calendarSlider2.slick("unslick");
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        } catch (error) {
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                $('.loader-view-container').remove();
             }
 
         }
@@ -2434,6 +2525,6 @@ export {
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
-    getContentClaroCinemaHeader,
+    getContentClaroCinema,
     editPromoLandingClaro
 };

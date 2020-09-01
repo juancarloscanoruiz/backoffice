@@ -25,9 +25,15 @@ header {
     background-color: $selecred;
     z-index: 9;
 }
-.header-background{
+
+.header-background {
     background-color: $teal;
+    height: 100px;
+    z-index: 9;
 }
-.header-background-blue{
-    background-color:$bright-blue;
+
+.header-background-blue {
+    background-color: $bright-blue;
+    height: 100px;
+    z-index: 9;
 }

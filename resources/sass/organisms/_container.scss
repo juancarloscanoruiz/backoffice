@@ -134,6 +134,7 @@
 .channel {
     width: 20%;
 }
+
 .synop {
     width: 19%;
 }
@@ -141,6 +142,7 @@
 .landins {
     width: 10%;
 }
+
 .cl {
     width: 925px;
 }
@@ -439,6 +441,17 @@ iframe {
 }
 
 #concert-promo-container {
+    padding-bottom: 70%;
+
+    img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#cinema-promo-container {
     padding-bottom: 70%;
 
     img {
