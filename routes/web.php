@@ -83,10 +83,11 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/getSection/{section}", "landingController@getSection")->name('getSection');
     Route::post("/getProgramming", "landingController@getProgramming");
     Route::post("/concertChannel", "landingController@getContentConcertChannel");
+    Route::post("/claroCinema", "landingController@getContentClaroCinema");
     Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
     Route::post("/editElementLanding", "landingController@editElementLanding");
     Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
-
+    Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
@@ -95,7 +96,6 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
 
     // MODAL CLARO
-
 });
 
 //Rutas para la edición de un programa en el sitio
@@ -120,7 +120,7 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('partials.adm-CN.modals-cinema.encabezado');
+    return view('partials.adm-CN.sinopsis');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {

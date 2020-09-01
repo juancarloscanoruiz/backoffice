@@ -313,7 +313,6 @@ class landingController extends Controller
 
     public function getProgramming(Request $request)
     {
-
         $client = new Client();
         $response = $client->get(
             $this->url . "programation/getChapterByDate/" . $request->input('date') . "&" . $request->input('time') . "&" . $request->input('section')
@@ -390,7 +389,7 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "sprogram/actual_programing_programation/gmt&" . date('Y-m-d')
+            $this->url . "program/actual_programing_programation/gmt&" . date('Y-m-d')
         );
         echo ($response->getBody()->getContents());
     }
@@ -461,6 +460,24 @@ class landingController extends Controller
                     "landing" => $request->input('landing'),
                 ]
             )]
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
+    function getContentClaroCinema(){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/claro_cinema"
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
+    function getPromotionalsProgramsCarousel(Request $request){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/getCarrusel/".$request->input("landing")."&".$request->input('idCarousel')
         );
 
         echo ($response->getBody()->getContents());

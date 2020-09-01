@@ -43,8 +43,10 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="btn-acepta-modal-header" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button id="btn-acepta-modal-header"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -67,8 +69,10 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button id="btn-acepta-modal-title"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +107,8 @@
                         <span>Añade tu archivo mp4 1280px X 720px</span>
                     </label>
                     <label class="add-file">
-                        <img id="url-promo" class="cursor-pointer mb-2" src="images/basic-icons/link.svg" alt="add-link" />
+                        <img id="url-promo" class="cursor-pointer mb-2" src="images/basic-icons/link.svg"
+                            alt="add-link" />
                         <span class="py-3">Utiliza un enlace o URL</span>
                     </label>
                 </div>
@@ -115,8 +120,10 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center">
-                        <button id="btn-acepta-modal-promo" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button id="btn-acepta-modal-promo"
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -140,7 +147,8 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal" class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <button data-dismiss="modal"
+                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
                     </div>
                 </div>
             </div>
@@ -216,22 +224,103 @@
                         <span class="a-text-bold-brown-two mt-3 py-2 text-plus">472 x 245px</span>
                     </label>
                 </div>
-                <!-- NOMBRE DE LA IMAGEN -->
-                <p class="a-text-bold-brown-two text-plus my-5">NombreDeLaImagen</p>
+            </div>
 
-                <!-- CARDS -->
-                <section class="mb-5">
-                    <div class="row">
-                        <!-- ESTABLECER EN LANDING -->
-                        <div class="col-4 edit-program-data-container edit-data-container-large">
-                            <div class="edit-data-container h-100">
-                                <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">Estableceren landing</p>
-                                <!-- SWITCH -->
-                                <div class="d-flex align-items-center mb-3">
-                                    <input type="radio" id="yes-landing-carrusel1" value="3" class="edit-switch-landing edit-landing-yes" />
-                                    <label for="yes-landing-carrusel1" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
-                                    <input type="radio" id="no-landing-carrusel1" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                    <label for="no-landing-carrusel1" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+            <br><br>
+            <div class="d-flex justify-content-center btn-modal-progra">
+                <button class="a-btn-basic-small btn-grilla a-text-MBlack mr-3">ACEPTAR</button>
+                <button data-dismiss="modal" class="ml-3  a-btn-basic-small btn-landing a-text-bold-teal">CANCELAR</button>
+            </div>
+        </div>
+    </div> -->
+    <!-- BANNER LANDING CANAL CLARO 4 -->
+
+    <!-- SLAIDER -->
+    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="images/modals/tv-1.svg" class="modal-programming-landing-logo">
+                    <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
+                    <!--Slider de calendario-->
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
+                        id="slider-calendar-current-date">Octubre 2020</h3>
+                    <img src="/images/modals/arrow-right.svg" class="float-left" alt="">
+                    <img src="/images/modals/arrow-left.svg" class="float-right" alt="">
+                    <section class="col-10 mx-auto">
+                        <div class="mb-5 calendar-slider2 day-style">
+                            <li class="programming-item programming-item-active py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+
+                            </li>
+                            <li class="programming-item py-2">
+
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+
+                            </li>
+                        </div>
+                    </section>
+                    <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit"
+                            chapter_id="${program.chapter_id}">
+                        <div class="schedule-container col-12 p-5 mx-auto mt-0">
+                            <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
+                                Lorem ipsum
+                            </p>
+                            <div class="schedule-item-body">
+                                <div class="schedule-poster">
+                                    <div class="poster">
+                                        <div class="thumbnail-edit" _id="${program.chapter_id}">
+                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
+                                                class="w-100" alt="">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-3">
                                     <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel 1</span>

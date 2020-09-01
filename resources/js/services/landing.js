@@ -1217,7 +1217,7 @@ function editPromoLanding(data) {
 }
 
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
-function getProgrammingLanding(date) {
+function getProgrammingLanding(date, landing) {
     $.ajax({
         type: "POST",
         beforeSend: function () {
@@ -1229,18 +1229,31 @@ function getProgrammingLanding(date) {
         },
         data: {
             date
-
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                let concertChannelProgramming = json.data[0].programing[0].programs;
-                if (concertChannelProgramming.length > 0) {
-                    let programConcert = ""
-                    for (const program of concertChannelProgramming) {
-                        programConcert += `
+                let programming = "";
+                switch (landing) {
+                    case "canal-claro":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    case "concert-channel":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    case "claro-cinema":
+                        programming = json.data[0].programing[0].programs;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (programming.length > 0) {
+                    let chapter = ""
+                    for (const program of programming) {
+                        chapter += `
                         <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
                         <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
                             chapter_id="${program.chapter_id}">
@@ -1289,7 +1302,8 @@ function getProgrammingLanding(date) {
                     </div>
                         `
                     }
-                    $('.concert-programming-contanier').html(programConcert);
+                    console.log(chapter);
+                    $('.modal-programming-contanier').html(chapter);
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
@@ -1398,35 +1412,36 @@ function getModalsCanalClaro(type) {
             let obj = JSON.parse(result);
             switch (type) {
                 // GET HEADER                
+                // GET HEADER
                 case "claro-header":
                     $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
                     $('.inp-text-modal-1').val(obj.data.block_2_title_1)
                     $('.inp-text-modal-2').val(obj.data.block_2_title_2)
                     $('.inp-text-modal-3').val(obj.data.block_2_button_title)
                     break
-                // GET HEADER                
-                // GET TITLE               
+                    // GET HEADER
+                    // GET TITLE
                 case "claro-title":
                     $('.inp-title-modal').val(obj.data.block_3_title)
                     $(".inp-title-modal").attr("key", "block_3_title");
                     $('.inp-sub-title-modal').val(obj.data.block_3_subtitle)
                     $('.inp-sub-title-modal').attr("block_3_subtitle")
                     break
-                // GET TITLE
-                // GET PROMO                
+                    // GET TITLE
+                    // GET PROMO
                 case "claro-promo":
                     $('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>')
                     break
-                // GET PROMO         
-                // GET TITLE CARRUSEL 1     
+                    // GET PROMO
+                    // GET TITLE CARRUSEL 1
                 case "claro-carrusel-title":
                     $('.inp-title-modal').val(obj.data.block_4_carrusel_1_title)
                     $('.inp-title-modal').attr("block_4_carrusel_1_title")
                     $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle)
                     $('.inp-sub-title-modal').attr("block_4_carrusel_1_subtitle")
                     break
-                // GET TITLE CARRUSEL 1       
-                // GET TITLE CARRUSEL 1    
+                    // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
                 case "claro-carrusel-title2":
                     $('.inp-title-modal').val(obj.data.block_4_carrusel_2_title)
                     $('.inp-title-modal').attr("block_4_carrusel_2_title")
@@ -1438,6 +1453,7 @@ function getModalsCanalClaro(type) {
                 case "btn-redirect-header":
                     window.location.href = obj.data.block_2_button_url;
                     break
+                    // GET TITLE CARRUSEL 1
             }
         }
     })
@@ -1530,6 +1546,17 @@ function getModalCarrusel1(type) {
     })
 }
 
+function FileHeader(objFileInput) {
+    $("body").append(LOADER);
+    if (objFileInput.files[0]) {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+            $('.loader-view-container').remove();
+        }
+    }
+}
+
 function editHeaderLandingClaro(data) {
     $.ajax({
         type: "POST",
@@ -1556,6 +1583,16 @@ function editHeaderLandingClaro(data) {
     })
 }
 
+function FilePromoImg(objFileInput) {
+    $("body").append(LOADER);
+    if (objFileInput.files[0]) {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+        }
+    }
+}
+
 function editElementLandingClaro(data) {
     $.ajax({
         type: "POST",
@@ -1575,6 +1612,961 @@ function editElementLandingClaro(data) {
                 $('#modal-title').modal("hide");
             }
             $('.loader-view-container').remove();
+        }
+    })
+
+
+    // Canal Claro
+}
+
+function FilePromoVideo(objFileInput) {
+    $("body").append(LOADER);
+    if (objFileInput.files[0]) {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+            $('.loader-view-container').remove();
+        }
+        fileReader.readAsDataURL(objFileInput.files[0]);
+    }
+}
+
+//Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
+function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "thumbnail-header") {
+
+    $.ajax({
+        type: "POST",
+        url: "landing/getPromotionalsProgramsCarousel",
+        data: {
+            idCarousel,
+            landing
+        },
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+
+        },
+
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            $('.loader-view-container').remove();
+            let program = "";
+            let titles = "";
+            //Capítulos que se encuentran en el carrusel
+            for (const chapter of data.data.chapters) {
+                //Variables a evaluar
+                //Imagen del programa
+                titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
+                let image = chapter.chapter.thumbnail_list_horizontal || "./images/synopsis/image-synopsis-carrusel.jpg"
+                let inLandingSwitch = ""
+                let inLandingDates = "";
+                let inLandingTimes = "";
+                //Validaciones de si el programa se encuentra en algún landing
+                if (chapter.chapter.in_landing == 1) {
+                    //Switch de landing
+                    inLandingSwitch = `
+                    <!--Switch-->
+                    <div class="d-flex align-items-center mb-3">
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
+                            class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
+                        <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
+                            class="mb-0 si-estilo cursor-pointer switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
+                            class="edit-switch-landing switch-table-edit edit-landing-no"
+                             name="yes-landing-carrusel-${chapter.chapter.id}" />
+                        <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+
+                    //Fechas
+                    var dateExpirationLanding = ""
+                    var timeExpiration = ""
+                    if (chapter.chapter.in_landing_expiration) {
+                        var dateTimeExpiration = chapter.chapter.in_landing_expiration.split(" ");
+                        let dateExpiration = dateTimeExpiration[0].split("-");
+                        dateExpirationLanding = `${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}`;
+                        timeExpiration = dateTimeExpiration[1];
+                    }
+                    var dateBeginLanding = ""
+                    var timeBegin = ""
+
+                    //Revisamos si
+                    if (chapter.chapter.in_landing_begin) {
+                        var dateTimeBegin = chapter.chapter.in_landing_begin.split(" ");
+                        let dateBegin = dateTimeBegin[0].split("-");
+                        dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
+                        timeBegin = dateTimeBegin[1];
+                    }
+                    console.log(dateBeginLanding);
+                    inLandingDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Inicio: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
+                                placeholder="00-00-0000" key="in_landing_begin" value="${dateBeginLanding}" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
+                                key="in_landing_expiration" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
+                    </div>
+                    `
+
+                    inLandingTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input type="text"
+                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
+                            key="in_landing_begin" value="${timeBegin}" placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
+                                key="in_landing_expiration" value="${timeExpiration}" placeholder="00:00:00"></span>
+                    </div>
+                    `;
+
+                } else {
+                    inLandingSwitch = `
+                    <!--Switch-->
+                    <div class="d-flex align-items-center mb-3">
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
+                            class="edit-switch-landing edit-landing-yes" key="in_landing" />
+                        <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
+                            class="mb-0 si-estilo cursor-pointer switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
+                            class="edit-switch-landing switch-table-edit edit-landing-no"
+                            checked name="yes-landing-carrusel-${chapter.chapter.id}" />
+                        <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                    inLandingTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input type="text"
+                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
+                            key="in_landing_begin" value="" placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
+                                key="in_landing_expiration" value="" placeholder="00:00:00"></span>
+                    </div>
+                    `;
+                    inLandingDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Inicio: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
+                                placeholder="00-00-0000" key="in_landing_begin" value="" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
+                                key="in_landing_expiration" placeholder="00-00-0000" value=""></span>
+                    </div>`;
+                }
+
+                //HOME
+                let inHomeSwitch = ""
+                let inHomeDates = "";
+                let inHomeTimes = "";
+                //Verificamos si el programa se encuentra en el home
+                if (chapter.chapter.in_home == 1) {
+                    inHomeSwitch = `
+                    <div class="d-flex align-items-center edit-switches-home-container">
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                            class="edit-switch-home edit-program-switch edit-in-home-yes"
+                            key="in_home" checked/>
+                        <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                            class="edit-switch-home edit-program-switch edit-in-home-no"
+                            key="in_home" />
+                        <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+
+                    //Fechas
+                    let dateHomeExpiration = ""
+                    let timeHomeExpiration = ""
+                    let dateTimeHomeExpiration = ""
+                    if (chapter.chapter.in_home_expiration) {
+                        dateTimeHomeExpiration = chapter.chapter.in_home_expiration.split(" ");
+                        let dateHome = dateTimeHomeExpiration[0].split("-");
+                        dateHomeExpiration = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`
+                        timeHomeExpiration = dateTimeHomeExpiration[1];
+                    }
+
+                    //
+                    let dateHomeBegin = ""
+                    let timeHomeBegin = ""
+                    let dateHomeTimeBegin = "";
+                    //Revisamos si
+                    if (chapter.chapter.in_home_begin) {
+                        dateHomeTimeBegin = chapter.chapter.in_home_begin.split(" ");
+                        let dateHome = dateHomeTimeBegin[0].split("-");
+                        dateHomeBegin = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
+                        timeHomeBegin = dateHomeTimeBegin[1];
+                    }
+
+
+
+                    inHomeDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value="${dateHomeBegin}"
+                            class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
+                            placeholder="00-00-0000" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin:
+                            <input type="text" key="in_home_expiration"
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value="${dateHomeExpiration}"
+                                placeholder="00-00-0000"></span>
+                    </div>
+                    `
+                    inHomeTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value="${timeHomeBegin}"
+                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
+                                placeholder="00:00:00"></span>
+                    </div>
+                    `
+
+                } else {
+                    inHomeSwitch = `
+                    <div class="d-flex align-items-center edit-switches-home-container">
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                            class="edit-switch-home edit-program-switch edit-in-home-yes"
+                            key="in_home" />
+                        <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                            class="edit-switch-home edit-program-switch edit-in-home-no"
+                            key="in_home" checked/>
+                        <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                    inHomeDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value=""
+                            class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
+                            placeholder="00-00-0000" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin:
+                            <input type="text" key="in_home_expiration"
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value=""
+                                placeholder="00-00-0000"></span>
+                    </div>
+                    `
+                    inHomeTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value=""
+                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
+                                placeholder="00:00:00"></span>
+                    </div>
+                    `
+                }
+                let scheduleDate = chapter.chapter.day.split("-")
+                let subbed = "";
+                if (chapter.chapter.subbed == 0) {
+                    subbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-subbed-yes"
+                            key="subbed" />
+                        <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
+                            key="subbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    subbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" checked value="1"
+                            class="edit-program-switch switch-landing edit-subbed-yes"
+                            key="subbed" />
+                        <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
+                            key="subbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
+                let dubbed = "";
+                if (chapter.chapter.dubbed == 0) {
+                    dubbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-dubbed" value="1"
+                            class="edit-program-switch switch-landing edit-dubbed-yes"
+                            key="dubbed" />
+                        <label for="yes-dubbed" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                            key="dubbed" />
+                        <label for="no-dubbed" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    dubbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-dubbed-${chapter.chapter.id}" value="1" checked
+                            class="edit-program-switch switch-landing edit-dubbed-yes"
+                            key="dubbed" />
+                        <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                            key="dubbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
+
+                let audio5 = "";
+                if (chapter.chapter.audio5 == 0) {
+                    audio5 = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-audio5-yes"
+                            key="audio5" />
+                        <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                            key="audio5" />
+                        <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    audio5 = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-audio5-yes" checked
+                            key="audio5" />
+                        <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                            key="audio5" />
+                        <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
+
+                program += `
+                <div>
+                <section class="edit-program-image">
+                    <select
+                        class="carrusel-concert-select ${landingClass}  w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                        title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
+                        data-live-search-placeholder="Agregar título de nuevo programa"
+                        name="thumbnail-header1" key="title">
+                    </select>
+                    <!--Imagen del programa--->
+                    <div class="edit-thumbnail position-relative">
+                        <input type="file" name="image-horizontal" id="edit-image-horizontal"
+                            class="input-image-program d-none ">
+                        <label for="edit-image-horizontal"
+                            class="load-modal-programming load-photo d-inline" id="imagenes">
+                            <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
+                                alt="heart-icon" />
+                            <div class="edit-program-camera text-center">
+                                <img src="./images/synopsis/camara.svg"
+                                    class="edit-program-icon-image" alt="camera" />
+                                <p
+                                    class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
+                                    472
+                                    x 245px</p>
+                            </div>
+
+                            <img src="${image}" alt=""
+                                class="thumbnail-image-prev edit-image-program prev-image-program" />
+                        </label>
+                    </div>
+                    <!--Nombre de la imagen-->
+                    <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
+                </section>
+                <!--Establecer en landing, home, schedule item date time-->
+                <section class="mb-5">
+                    <div class="row">
+                        <!--Landing-->
+                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                            <div class="edit-data-container h-100">
+                                <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
+                                    Establecer
+                                    en landing
+                                </p>
+                                    ${inLandingSwitch}
+                                <!--Inputs radio-->
+                                <div class="d-flex align-items-center mb-3">
+
+                                    <span
+                                        class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel
+                                        1</span>
+
+                                </div>
+                                <div>
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
+                                        Fecha
+                                    </p>
+                                    ${inLandingDates}
+                                </div>
+                                <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                ${inLandingTimes}
+                            </div>
+                        </div>
+                        <!--Home-->
+                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                            <div class="edit-data-container h-100">
+                                <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
+                                    Establecer
+                                    en home
+                                </p>
+                                <!--Switch-->
+                                ${inHomeSwitch}
+                                <div>
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
+                                        Fecha
+                                    </p>
+                                    ${inHomeDates}
+                                </div>
+                                <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                ${inHomeTimes}
+                            </div>
+                        </div>
+                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                            <div class="edit-data-container h-100">
+                                <p
+                                    class="edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray">
+                                    Schedule Item Date time
+                                </p>
+                                <div>
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
+                                        Fecha
+                                    </p>
+                                    <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center"
+                                        style="margin-bottom: 81px">
+                                        <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
+                                        <span class="a-text-bold-warm mt-3">
+
+                                            <input key="" type=" text"
+                                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
+                                                placeholder="00-00-0000" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"></span>
+                                    </div>
+                                </div>
+                                <p class="mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase">
+                                    Hora
+                                </p>
+                                <div
+                                    class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3"><input type="text"
+                                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
+                                            placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </section>
+                <!--Sinopsis-->
+                <section class="mb-5 edit-program-data-container">
+                    <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
+                    <!--Textarea-->
+                    <textarea key="synopsis"
+                        class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
+                        id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
+                </section>
+                <section class="mb-3">
+                    <div class="row">
+                        <!--Program episode season-->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
+                                    episode
+                                    season
+                                </p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input type="text" key="season" value="${chapter.chapter.season}"
+                                        class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
+                                        placeholder="00">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program episode number-->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
+                                    episode
+                                    number
+                                </p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input type="text" key="program_episode_number" value="${chapter.chapter.program_episode_number}"
+                                        class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
+                                        placeholder="000">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program year produced-->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
+                                    year
+                                    produced
+                                </p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input type="text" key="program_year_produced" ${chapter.chapter.program.year}
+                                        class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
+                                        placeholder="YYYY">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </section>
+                <section class="mb-3">
+                    <div class="row">
+                        <!--Program title alternate-->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
+                                    title
+                                    alternate
+                                </p>
+                                <div class="mb-3 edit-rectangle-container p-3">
+                                    <input type="text" key="subtitle" value="${chapter.chapter.subtitle}"
+                                        class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
+                                        placeholder="Program Title Alternate">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program genre list-->
+                        <div class="col-4 edit-program-data-container position-relative"
+                            id="edit-genre-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
+                                    genre
+                                    list
+                                </p>
+                                <div class="mb-3 edit-rectangle-container ">
+                                    <select
+                                        class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
+                                        id="edit-program-genres" title="Genere list" multiple
+                                        data-live-search="true" data-live-search-placeholder="Buscar"
+                                        data-header="Program List" data-dropup-auto="false" key="genre">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
+                                    item
+                                    rating
+                                    code
+                                </p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input type="text" key="rating" value="${chapter.chapter.program.rating}"
+                                        class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
+                                        placeholder="PG-00">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </section>
+                <section class="mb-3">
+                    <div class="row">
+                        <!--Schedule item log date-->
+                        <div class="col-4 edit-program-data-container">
+                            <div
+                                class="edit-data-container d-flex flex-column justify-content-between h-100">
+                                <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item
+                                    log
+                                    date
+                                </p>
+                                <div>
+                                    <p class="a-text-medium-brown-two text-plus text-uppercase
+                                    ">Fecha
+                                    </p>
+                                    <div
+                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
+                                        <input type="text" key="day" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"
+                                            class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            placeholder="DD:MM:YY">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-4 edit-program-data-container">
+                            <div
+                                class="edit-data-container h-100 d-flex flex-column justify-content-between">
+                                <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule
+                                    item log
+                                    time (gmt)
+                                </p>
+                                <div>
+                                    <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
+                                    </p>
+                                    <div
+                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                        <input type="text" key="programing" value="${chapter.chapter.hour}"
+                                            class="edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            placeholder="00:00:00">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-4 edit-program-data-container">
+                            <div
+                                class="edit-data-container d-flex flex-column justify-content-between h-100">
+                                <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated
+                                    schedule item duration
+                                </p>
+                                <div>
+                                    <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
+                                    </p>
+                                    <div
+                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                        <input type="text" key="duration" value="${chapter.chapter.duration}"
+                                            class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                            placeholder="00:00:00">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> 
+                    </div>
+                </section>
+                <section class="mb-5">
+                    <div class="row">
+                        <!--Schedule item log date-->
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container d-flex justify-content-between">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
+                                    version
+                                    subbed
+                                </p>
+                                ${subbed}
+                            </div>
+                        </div>
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container d-flex justify-content-between">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
+                                    version
+                                    dubbed
+                                </p>
+                                ${dubbed}
+                            </div>
+                        </div>
+                        <div class="col-4 edit-program-data-container">
+                            <div class="edit-data-container d-flex justify-content-between">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Audio
+                                    5.1<br>
+                                    available
+                                </p>
+                                ${audio5}
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class=" d-flex justify-content-center">
+                    <section class="text-center mb-3 d-flex justify-content-center">
+                        <button
+                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                            data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
+                    </section>
+
+                </div>
+            </div>
+                `;
+            }
+            $(".carrusel1-slider-concert").html(program);
+            //Genres
+            let optionGenre = ""
+            data.data.genres.forEach(genre => {
+                optionGenre += `
+                             <option value="${genre.title}">${genre.title}</option>
+                             `
+            });
+            //Géneros
+            $('.list1').append(optionGenre);
+            $(".list1").selectpicker('destroy');
+            $(".list1").selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+            //Títulos
+
+            $('.carrusel-concert-select').append(titles);
+            $('.carrusel-concert-select').selectpicker('destroy');
+            $('.carrusel-concert-select').selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+            const dropdownTitles = $("#prog_titulo_programa")
+            dropdownTitles.selectpicker('destroy');
+            dropdownTitles.selectpicker();
+
+            let selectheader = $(".thumbnail-header1");
+            selectheader.on("hide.bs.select", function () {
+                let keyValue = "";
+                let key = $("#prog_titulo_programa").attr("key");
+                let chapter_id = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                if ($(this).val()) {
+                    keyValue = $(this).val();
+                } else {
+                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    keyValue = $(this).val();
+                }
+                editAttributeProgram(chapter_id, key, keyValue);
+            });
+
+            let imageTriangle = `
+            <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
+        `;
+            $('.edit-program-image .bootstrap-select').append(imageTriangle);
+            $('.dropimg').click(function () {
+                dropdownTitles.selectpicker('toggle');
+            })
+
+
+
+            let editProgramLandingGenres = "";
+            let selectGenres = $("#edit-program-genres");
+            //Verificamos si el usuario ha seleccionado un género o categoría
+            selectGenres.on("change", function () {
+                //Obtenemos los valores del selectpicker
+                let selected = $(this).val();
+                //Obtenemos el número de valores que hemos obtenido del arreglo
+                let selectedLength = selected.length;
+                editProgramLandingGenres = "";
+                for (let index = 0; index < selectedLength; index++) {
+                    //Si es la primera palabra o la última, no agregamos una coma
+                    if (selectedLength - 1 == index) {
+                        editProgramLandingGenres += `${selected[index]}`;
+                    } else {
+                        editProgramLandingGenres += `${selected[index]},`;
+                    }
+                }
+            });
+            //Evento para cuando cerramos el selectpicker
+            selectGenres.on("hide.bs.select", function () {
+                let chapterId = $(".edit-program-data-container").attr(
+                    "chapter_id"
+                );
+                //Obtenemos la key
+                let key = $("#edit-program-genres").attr("key");
+                //Obtenemos los géneros que pudo haber seleccionado el usuario
+                let keyValue = editProgramLandingGenres;
+                //Hacemos la petición
+
+                editAttributeProgram(chapterId, key, keyValue);
+            });
+            $(".modal-edit-program-carrusel").modal("show");
+            setTimeout(() => {
+                try {
+                    $(".carrusel1-slider-concert").slick("unslick");
+                    $(".carrusel1-slider-concert").slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(".carrusel1-slider-dots1"),
+                        initialSlide: 0,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
+                    });
+                } catch (error) {
+                    $(".carrusel1-slider-concert").slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(".carrusel1-slider-dots1"),
+                        initialSlide: 0,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
+                    });
+                }
+
+
+            }, 250);
+
+        }
+    });
+}
+
+
+//Landing concert channel
+function getContentClaroCinema(type) {
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/claroCinema",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                switch (type) {
+                    case "header-landing-cinema":
+                        $('.cinema-header-input-title1').val(data.data.block_2_title_1);
+                        $('.cinema-header-input-title2').val(data.data.block_2_title_2);
+                        $('.btn-header-claro-cinema').val(data.data.block_2_button_title);
+                        $('.link-button-header-cinema').val(data.data.block_2_button_url);
+                        let logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png"
+                        /*                         if (data.data.block_2_icon_channel) {
+                                                    $(".label-no-image").remove();
+                                                } */
+                        $('.logo-header-claro-cinema').attr("src", logo);
+                        $('.modal-encabezado-cinema').modal("show");
+                        break;
+                    case "title-cinema":
+                        $('.modal-title-claro-cinema').text("título");
+                        $('.modal-input-title1-cinema').val(data.data.block_3_title_1);
+                        $('.modal-input-title2-cinema').val(data.data.block_3_title_2);
+                        $('.modal-input-subtitle-cinema').val(data.data.block_3_subtitle);
+                        $('.modal-title-cinema').modal("show");
+                        break;
+
+                    case "promo-cinema":
+                        $(".modal-promo-cinema").modal("show");
+                        $('.upload-promo-button').attr("key", "block_3_video_url");
+                        //Checamos si existe el vídeo de promoción en concert channel
+                        if (data.data.block_3_video_url) {
+                            let promoContainer = $('#cinema-promo-container');
+                            //Verificamos si la url es de una imagen
+                            if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                                promoContainer.html(`
+                                <img src="${data.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
+                                `);
+                            } else {
+                                //La url es de un video
+                                promoContainer.html(`
+                                <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
+                                <source src="${data.data.block_3_video_url}" type="video/mp4">
+                                 </video>
+                                `);
+
+                            }
+
+                        } else {
+                            promoContainer.html(`
+                            <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
+                            `);
+
+                        }
+                        break;
+                    case "title-carrusel1":
+                        $('.input-carrusel1-title1-cinema').val(data.data.block_4_carrusel_1_title_1)
+                        $('.input-carrusel1-title2-cinema').val(data.data.block_4_carrusel_1_title_2)
+                        $('.input-carrusel1-subtitle-cinema').val(data.data.block_4_carrusel_1_subtitle)
+                        $('.modal-title-carrusel1').modal("show");
+                        break;
+                    case "title-carrusel2":
+                        $('.modal-title-claro-cinema').text("carrusel 2");
+                        $('.modal-input-title1-cinema').val(data.data.block_4_carrusel_2_title_2);
+                        $('.modal-input-title2-cinema').val(data.data.block_4_carrusel_2_title_2);
+                        $('.modal-input-subtitle-cinema').val(data.data.block_4_carrusel_2_subtitle);
+                        $('.modal-title-cinema').modal("show");
+                        break;
+
+                    case "current-programming-cinema":
+                        let calendarSlider2 = $(".calendar-slider2");
+                        $('.modal-programming-landing').modal("show");
+                        createCalendarDays(calendarSlider2);
+                        try {
+                            calendarSlider2.slick("unslick");
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        } catch (error) {
+                            createSlickSlider(calendarSlider2, calendarSlick);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                $('.loader-view-container').remove();
+            }
+
         }
     })
 }
@@ -1623,9 +2615,12 @@ export {
     editPromoLanding,
     getProgrammingLanding,
     getProgramsLanding,
+    getPromotionalsProgramsCarousel,
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
     editPromoLandingClaro,
     getModalCarrusel1
+    getContentClaroCinema,
+    editPromoLandingClaro
 };

@@ -444,7 +444,7 @@ body {
   color: white;
 }
 
-.a-text-black-Black {
+.a-text-black-black {
   font-family: "Montserrat-Black";
   color: black;
 }
@@ -629,9 +629,24 @@ body {
   color: #666262;
 }
 
+.a-text-semibold-orange {
+  font-family: "Montserrat-SemiBold";
+  color: #ff8200;
+}
+
+.a-text-semibold-tomato {
+  font-family: "Montserrat-SemiBold";
+  color: #da291c;
+}
+
 .a-text-semibold-warmgrey {
   font-family: "Montserrat-SemiBold";
   color: #9b9b9b;
+}
+
+.a-text-semibold-greyish-brown-two {
+  font-family: "Montserrat-SemiBold";
+  color: #4a4a4a;
 }
 
 .a-text-semibold-warm-grey-three {
@@ -647,6 +662,11 @@ body {
 .a-text-semibold-brownish-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #5f5c5c;
+}
+
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
 }
 
 .a-text-semibold-white {
@@ -1699,7 +1719,7 @@ body {
 .btn-apro {
   width: 181px;
   height: 46px;
-  border-radius: 7px;
+  border-radius: 16px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -1722,7 +1742,7 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  border-radius: 7px;
+  border-radius: 16px;
   background-color: #da291c;
   outline: none !important;
   outline-width: 0 !important;
@@ -3637,6 +3657,15 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border-color: transparent !important;
 }
 
+.btn-light {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.bootstrap-select > .dropdown-toggle.bs-placeholder {
+  color: white !important;
+}
+
 .btn.focus,
 .btn:focus {
   outline: 0 !important;
@@ -4406,7 +4435,7 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: white;
 }
 
-.a-text-black-Black {
+.a-text-black-black {
   font-family: "Montserrat-Black";
   color: black;
 }
@@ -4591,9 +4620,24 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #666262;
 }
 
+.a-text-semibold-orange {
+  font-family: "Montserrat-SemiBold";
+  color: #ff8200;
+}
+
+.a-text-semibold-tomato {
+  font-family: "Montserrat-SemiBold";
+  color: #da291c;
+}
+
 .a-text-semibold-warmgrey {
   font-family: "Montserrat-SemiBold";
   color: #9b9b9b;
+}
+
+.a-text-semibold-greyish-brown-two {
+  font-family: "Montserrat-SemiBold";
+  color: #4a4a4a;
 }
 
 .a-text-semibold-warm-grey-three {
@@ -4609,6 +4653,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-semibold-brownish-grey-three {
   font-family: "Montserrat-SemiBold";
   color: #5f5c5c;
+}
+
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
 }
 
 .a-text-semibold-white {
@@ -6570,6 +6619,14 @@ a:hover {
   width: 20%;
 }
 
+.synop {
+  width: 19%;
+}
+
+.landins {
+  width: 10%;
+}
+
 .cl {
   width: 925px;
 }
@@ -6858,11 +6915,27 @@ iframe {
   z-index: 1;
 }
 
+.width-program {
+  width: 120px !important;
+}
+
 #concert-promo-container {
   padding-bottom: 70%;
 }
 
 #concert-promo-container img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#cinema-promo-container {
+  padding-bottom: 70%;
+}
+
+#cinema-promo-container img {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
@@ -7020,10 +7093,14 @@ header {
 
 .header-background {
   background-color: #0097a9;
+  height: 100px;
+  z-index: 9;
 }
 
 .header-background-blue {
   background-color: #0068ff;
+  height: 100px;
+  z-index: 9;
 }
 
 @font-face {
