@@ -32,8 +32,8 @@
                 </div>
                 <div class="content">
                     <div class="float-right mt-3">
-                        <img class="cursor-pointer" id="url-encabezado" src="./images/basic-icons/link.svg" style="width: 40px;">
-                        <input id="inp-text-modal-3" class="input-url" placeholder="Enlace o URL" type="text">
+                        <img id="url-encabezado" src="./images/basic-icons/link.svg" style="width: 40px;">
+                        <input id="inp-text-modal-4" class="input-url" placeholder="Enlace o URL" type="text">
                     </div>
                 </div>
                 <!-- BOTONES -->

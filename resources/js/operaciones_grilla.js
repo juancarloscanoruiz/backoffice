@@ -3586,6 +3586,9 @@ function eventsGrilla() {
                         getModalsCanalClaro(json.type)
                         $(".loader-view-container").remove();
                         break;
+                    case "btn-redirect-header":
+                        getModalsCanalClaro(json.type)
+                        break;
                 }
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
@@ -3601,15 +3604,15 @@ function eventsGrilla() {
         new easyXDM.Socket(landingCanalClaro);
     }
     // BTN MODAL TEST
-    $('#btn-test').click(function () {
-        $("#modal-title").modal("show");
-        $(".inp-title-modal").attr("key", "block_3_title");
-        getModalsCanalClaro('claro-title');
-    })
+    // $('#btn-test').click(function () {
+    //     $("#modal-title").modal("show");
+    //     $(".inp-title-modal").attr("key", "block_3_title");
+    //     getModalsCanalClaro('claro-title');
+    // })
     // BTN MODAL URL ENCABEZADO
-    $('#url-encabezado').click(function () {
-        $("#modal-url").modal("show");
-    })
+    // $('#url-encabezado').click(function () {
+    //     $("#modal-url").modal("show");
+    // })
     // BTN MODAL URL PROMO
     $('#url-promo').click(function () {
         $("#modal-url").modal("show");
@@ -3622,7 +3625,7 @@ function eventsGrilla() {
 
     var fileReader = new FileReader();
     function File(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileReader.onload = function (e) {
                 $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
@@ -3632,15 +3635,15 @@ function eventsGrilla() {
         }
     }
     // CARGAR IMG HEADER
-    $("#header-claro").change(function () {
+    $("#img-header").change(function () {
         FileHeader(this);
     });
     // FILE HEADER
     function FileHeader(objFileInput) {
-        $("body").append(loader);
+        $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileReader.onload = function (e) {
-                $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+                $("#img-header-claro").html('<img src="' + e.target.result + '" />');
                 $('.loader-view-container').remove();
             }
             fileReader.readAsDataURL(objFileInput.files[0]);
@@ -3686,7 +3689,7 @@ function eventsGrilla() {
         let title1 = $(".inp-text-modal-1").val() || "";
         let title2 = $(".inp-text-modal-2").val() || "";
         let logo = document.getElementById("img-header").files[0] || "";
-        let link = "";
+        let link = $("#inp-text-modal-4").val() || "";
         let data = new FormData();
         data.append("landing", landing);
         data.append("title1", title1);
