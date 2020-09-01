@@ -89934,7 +89934,13 @@ function eventsGrilla() {
 
       reader.readAsDataURL(this.files[0]);
     }
-  }); //selectpicker para el campo de género en un programa
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select-carrusel").selectpicker({
+    filter: true,
+    multipleSeparator: ", "
+  });
+  var imageTriangle = "\n    <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n";
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-image .bootstrap-select').append(imageTriangle); //selectpicker para el campo de género en un programa
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
     filter: true,

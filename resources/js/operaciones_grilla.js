@@ -2303,6 +2303,14 @@ function eventsGrilla() {
         }
     });
 
+    $(".select-carrusel").selectpicker({
+        filter: true,
+        multipleSeparator: ", "
+    });
+    let imageTriangle = `
+    <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
+`;
+    $('.edit-program-image .bootstrap-select').append(imageTriangle);
     //selectpicker para el campo de género en un programa
     $(".selectpicker").selectpicker({
         filter: true,
@@ -3720,6 +3728,8 @@ function eventsGrilla() {
     // HEADER EDIT CANAL CLARO
 
     // CANAL CLARO
+
+    
 }
 
 export {
