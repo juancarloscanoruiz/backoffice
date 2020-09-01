@@ -6235,7 +6235,6 @@ a:hover {
   border-radius: 15px;
   display: block;
   padding: 3px;
-  font-weight: 600;
 }
 
 /* ** PROMO ** */
@@ -6268,6 +6267,54 @@ a:hover {
 }
 
 /* ** LINK ** */
+
+/* ** CARRUSEL ** */
+
+.modal-carrusel-claro {
+  padding: 4%;
+}
+
+.contet-carrusel-modal {
+  padding: 0 2%;
+}
+
+.slt-carrusel1-modal {
+  width: 100%;
+  margin: 40px auto 0;
+  background: #da291c;
+  height: 90px;
+  color: #ffffff;
+  font-size: 2rem;
+  font-family: "Montserrat-Regular";
+}
+
+.img-carrusel {
+  width: 100%;
+  left: 0;
+  height: 550px;
+}
+
+.img-carrusel-claro {
+  width: 100%;
+  height: 550px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.heart-icon-carrusel {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 10px;
+  background-color: #9b9b9b;
+  padding: 16px;
+  width: 110px;
+  cursor: pointer;
+}
+
+/* ** CARRUSEL ** */
 
 /** ** ** */
 

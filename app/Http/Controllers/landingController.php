@@ -395,11 +395,24 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
     // CANAL CLARO
+
+    // GET MODAL HEADER, TITLE PROMO
     public function getModalsCanalClaro()
     {
         $client = new Client();
         $response = $client->get(
             $this->url . "section/canal_claro"
+        );
+        $respuesta =  $response->getBody();
+        echo ($respuesta);
+    }
+
+    // GET CARRUSEL 1
+    public function getCarrusel1()
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/getCarrusel/Canal Claro&1"
         );
         $respuesta =  $response->getBody();
         echo ($respuesta);
@@ -467,7 +480,6 @@ class landingController extends Controller
         if ($request->file('video')) {
             $video = $this->storeImages("promoVideoClaroCanal", $request->file('video'), "public/canal-claro/promo");
         }
-        var_dump($video);
         if ($img != "") {
             $response = $client->post(
                 $this->url . "section/editElement",

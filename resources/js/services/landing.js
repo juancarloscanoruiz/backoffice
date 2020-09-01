@@ -16,6 +16,7 @@ import {
     createSlickSlider,
     createCalendarDays
 } from "../vendor/slick.js";
+import { forEach } from "lodash";
 
 function getMonth(idMonth) {
     let date = new Date();
@@ -1388,11 +1389,14 @@ function getProgramsLanding(date) {
 }
 
 // CLARO CANAL
+// GET MODAL HEADER, PROMO, TITLE
 function getModalsCanalClaro(type) {
     $.ajax({
-        type: "GET", url: "landing/header",
+        type: "GET",
+        url: "landing/header",
         success: function (result) {
-            let obj = JSON.parse(result); switch (type) {
+            let obj = JSON.parse(result);
+            switch (type) {
                 // GET HEADER                
                 case "claro-header":
                     $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
@@ -1434,9 +1438,94 @@ function getModalsCanalClaro(type) {
                 case "btn-redirect-header":
                     window.location.href = obj.data.block_2_button_url;
                     break
-                // BTN REDIRECT    
             }
-            fileReader.readAsDataURL(objFileInput.files[0]);
+        }
+    })
+}
+
+// GET MODAL Headers, PROMO, TITLE
+function getModalCarrusel1(type) {
+    $.ajax({
+        type: "GET",
+        url: "landing/getCarrusel1",
+        success: function (result) {
+            let obj = JSON.parse(result);
+            // ESTATUS
+            let status = `
+                 <div class="col-5"> 
+                     <h3 class="a-text-semibold-warmgrey mb-3">ESTADO</h3>
+                     <div class="state-container py-2 d-flex align-items-center justify-content-center">
+                         <img src="images/basic-icons/pencil-edit-teal.svg" alt="">
+                             <p class="mb-0 ml-3 a-text-bold-teal">` + obj.data.chapters[0].status + `</p>
+                     </div >
+                 </div >
+                 <div class="col-5 offset-2">
+                     <h3 class="a-text-semibold-warmgrey mb-3">ALERTA</h3>
+                     <div class="py-2 alert-container d-flex align-items-center justify-content-center">
+                         <img src="images/basic-icons/warning-orange-icon.svg" alt="">
+                             <p class="mb-0 ml-3 a-text-bold-orange">` + obj.data.chapters[0].alert + `</p>
+                     </div>
+                 </div>
+                     ` ;
+            $('#status-carrusel1').prepend(status);
+            // TITULO
+            let titulo = `
+                <option value="">`+ obj.data.chapters[0].chapter.title + `</option>
+                     ` ;
+            $('#carrusel1-titulo-programa').prepend(titulo);
+            // IMG
+            $('#back-carrusel1-claro').html('<img class="img-back-modal img-carrusel" src="' + obj.data.chapters[0].image_program + '"> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />')
+            // HORA INICIO Y FIN DE PROGRAMA LANDING
+            $('#inicio-programing-landing').attr('value', obj.data.chapters[0].chapter.in_landing_begin)
+            $('#fin-programing-landing').attr('value', obj.data.chapters[0].chapter.in_landing_expiration)
+            // HORA INICIO Y FIN DE PROGRAMA HOME
+            $('#inicio-programing-home').attr('value', obj.data.chapters[0].chapter.in_home_begin)
+            $('#fin-programing-home').attr('value', obj.data.chapters[0].chapter.in_home_expiration)
+            // SINOPSIS
+            let sinopsis = `
+                <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
+                    <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3">` + obj.data.chapters[0].chapter.synopsis + `</textarea>`
+            $('#prog_sinopsis').prepend(sinopsis)
+            // SEASON
+            $('#season-input').attr('value', obj.data.chapters[0].chapter.season)
+            // EPISODE
+            $('#episode-input').attr('value', obj.data.chapters[0].chapter.episode_number)
+            // YEAR
+            $('#year-input').attr('value', obj.data.chapters[0].chapter.program.year)
+            // SUB TITULO
+            $('#sub-titulo-input').attr('value', obj.data.chapters[0].chapter.subtitle)
+            // GENERO
+            let genero = `
+                <option value="">`+ obj.data.chapters[0].chapter.program.genre + `</option>
+                        ` ;
+            $('#edit-program-genres').prepend(genero);
+            // RATING
+            $('#rating-input').attr('value', obj.data.chapters[0].chapter.program.rating)
+            // DURACION
+            $('#duracion-input').attr('value', obj.data.chapters[0].chapter.program.duration)
+
+
+
+            // let contObj = 0;
+            // for (contObj; contObj < obj.data.chapters.length; contObj++) {
+            //     let status = `
+            //     <div class="col-5"> 
+            //         <h3 class="a-text-semibold-warmgrey mb-3">ESTADO</h3>
+            //         <div class="state-container py-2 d-flex align-items-center justify-content-center">
+            //             <img src="images/basic-icons/pencil-edit-teal.svg" alt="">
+            //                 <p class="mb-0 ml-3 a-text-bold-teal">` + obj.data.chapters[contObj].status + `</p>
+            //         </div >
+            //     </div >
+            //     <div class="col-5 offset-2">
+            //         <h3 class="a-text-semibold-warmgrey mb-3">ALERTA</h3>
+            //         <div class="py-2 alert-container d-flex align-items-center justify-content-center">
+            //             <img src="images/basic-icons/warning-orange-icon.svg" alt="">
+            //                 <p class="mb-0 ml-3 a-text-bold-orange">` + obj.data.chapters[contObj].alert + `</p>
+            //         </div>
+            //     </div>
+            //         ` ;
+            //     $('#status-carrusel').prepend(status);
+            // }
         }
     })
 }
@@ -1450,9 +1539,9 @@ function editHeaderLandingClaro(data) {
         contentType: false,
         beforeSend: function () {
             $("body").append(
-                `<div class="loader-view-container pointer-none">
-                    <img src="./images/loader.gif" class="loader"/>
-                </div>`
+                `< div class="loader-view-container pointer-none" >
+                    <img src="./images/loader.gif" class="loader" />
+                </div > `
             );
         },
         url: "landing/editHeaderLandingClaro",
@@ -1473,9 +1562,9 @@ function editElementLandingClaro(data) {
         data: data,
         beforeSend: function () {
             $("body").append(
-                `<div class="loader-view-container pointer-none">
-                    <img src="./images/loader.gif" class="loader"/>
-                </div>`
+                `< div class="loader-view-container pointer-none" >
+                    <img src="./images/loader.gif" class="loader" />
+                </div > `
             );
         },
         url: "landing/editElementLandingClaro",
@@ -1499,9 +1588,9 @@ function editPromoLandingClaro(data) {
         contentType: false,
         beforeSend: function () {
             $("body").append(
-                `<div class="loader-view-container pointer-none">
-                    <img src="./images/loader.gif" class="loader"/>
-                </div>`
+                `< div class="loader-view-container pointer-none" >
+                    <img src="./images/loader.gif" class="loader" />
+                </div > `
             );
         },
         url: "landing/editPromoLandingClaro",
@@ -1537,5 +1626,6 @@ export {
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
-    editPromoLandingClaro
+    editPromoLandingClaro,
+    getModalCarrusel1
 };

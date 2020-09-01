@@ -227,7 +227,7 @@ a:hover {
     border-radius: 15px;
     display: block;
     padding: 3px;
-    font-weight: 600;
+    // font-weight: 600;
 }
 /* ** PROMO ** */
 /* ** LINK ** */
@@ -254,6 +254,46 @@ a:hover {
     font-family: $MontserratRegular;
 }
 /* ** LINK ** */
+/* ** CARRUSEL ** */
+.modal-carrusel-claro {
+    padding: 4%;
+}
+.contet-carrusel-modal {
+    padding: 0 2%;
+}
+.slt-carrusel1-modal {
+    width: 100%;
+    margin: 40px auto 0;
+    background: $selecred;
+    height: 90px;
+    color: $white;
+    font-size: 2rem;
+    font-family: $MontserratRegular;
+}
+.img-carrusel {
+    width: 100%;
+    left: 0;
+    height: 550px;
+}
+.img-carrusel-claro {
+    width: 100%;
+    height: 550px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.heart-icon-carrusel {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 10px;
+    background-color: $warmGrey;
+    padding: 16px;
+    width: 110px;
+    cursor: pointer;
+}
+/* ** CARRUSEL ** */
 
 // MODAL
 

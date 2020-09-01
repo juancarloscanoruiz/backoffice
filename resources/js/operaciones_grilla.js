@@ -39,7 +39,8 @@ import {
     getModalsCanalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
-    editPromoLandingClaro
+    editPromoLandingClaro,
+    getModalCarrusel1
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -260,7 +261,7 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-                   
+
                     case "title-carrusel2":
                         $("body").append(loader);
                         setTimeout(function () {
@@ -349,84 +350,84 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                   /* case "pencil-carrusel1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-edit-program-carrusel").modal("show");
-                            //slider para carrusel concert-channel
-                            $(".carrusel1-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel1-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    case "pencil-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-edit-program-carrusel2").modal("show");
-                            $(".carrusel2-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".carrusel2-slider-dots1"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-header":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-titles").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-video":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-promos-concert").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-header1":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-titles").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "header2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-titles").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;*/
+                    /* case "pencil-carrusel1":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-edit-program-carrusel").modal("show");
+                             //slider para carrusel concert-channel
+                             $(".carrusel1-slider").slick({
+                                 slidesToShow: 1,
+                                 dots: true,
+                                 appendDots: $(".carrusel1-slider-dots1"),
+                                 initialSlide: 0,
+                                 infinite: false,
+                                 customPaging: function (slider, i) {
+                                     var thumb = $(slider.$slides[i]).data();
+                                     return (
+                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                         (i + 1) +
+                                         "</p>"
+                                     );
+                                 }
+                             });
+                             $("#loader1").remove();
+                         }, 3000);
+                         break;
+                     case "pencil-carrusel2":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-edit-program-carrusel2").modal("show");
+                             $(".carrusel2-slider").slick({
+                                 slidesToShow: 1,
+                                 dots: true,
+                                 appendDots: $(".carrusel2-slider-dots1"),
+                                 initialSlide: 0,
+                                 infinite: false,
+                                 customPaging: function (slider, i) {
+                                     var thumb = $(slider.$slides[i]).data();
+                                     return (
+                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                         (i + 1) +
+                                         "</p>"
+                                     );
+                                 }
+                             });
+                             $("#loader1").remove();
+                         }, 3000);
+ 
+                         break;
+                     case "pencil-header":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-titles").modal("show");
+                             $("#loader1").remove();
+                         }, 3000);
+ 
+                         break;
+                     case "pencil-video":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-promos-concert").modal("show");
+                             $("#loader1").remove();
+                         }, 3000);
+ 
+                         break;
+                     case "pencil-header1":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-titles").modal("show");
+                             $("#loader1").remove();
+                         }, 3000);
+ 
+                         break;
+                     case "header2":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $(".modal-titles").modal("show");
+                             $("#loader1").remove();
+                         }, 3000);
+ 
+                         break;*/
                     case "pencil-carrusel1":
                         $("body").append(loader);
                         setTimeout(function () {
@@ -476,29 +477,29 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-                       /* case "slider-pagination":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-programming-carousel-concert').modal("show");
-                                $(".programming-slider").slick({
-                                    slidesToShow: 1,
-                                    dots: true,
-                                    appendDots: $(".programming-slider-dots"),
-                                    initialSlide: 0,
-                                    infinite: false,
-                                    customPaging: function (slider, i) {
-                                        var thumb = $(slider.$slides[i]).data();
-                                        return (
-                                            "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                            (i + 1) +
-                                            "</p>"
-                                        );
-                                    }
-                                });
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;*/
-                       
+                    /* case "slider-pagination":
+                         $("body").append(loader);
+                         setTimeout(function () {
+                             $('.modal-programming-carousel-concert').modal("show");
+                             $(".programming-slider").slick({
+                                 slidesToShow: 1,
+                                 dots: true,
+                                 appendDots: $(".programming-slider-dots"),
+                                 initialSlide: 0,
+                                 infinite: false,
+                                 customPaging: function (slider, i) {
+                                     var thumb = $(slider.$slides[i]).data();
+                                     return (
+                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                         (i + 1) +
+                                         "</p>"
+                                     );
+                                 }
+                             });
+                             $("#loader1").remove();
+                         }, 3000);
+                         break;*/
+
                     default:
                         break;
                 }
@@ -3556,8 +3557,8 @@ function eventsGrilla() {
                         break;
                     case "claro-carrusel1":
                         $("body").append(LOADER);
-                        $("#modal-edi-carrusel-1").modal("show");
-                        getModalsCanalClaro(json.type)
+                        $("#modal-carrusel1").modal("show");
+                        getModalCarrusel1(json.type)
                         $(".loader-view-container").remove();
                         break;
                     case "claro-carrusel2":
@@ -3596,11 +3597,11 @@ function eventsGrilla() {
         new easyXDM.Socket(landingCanalClaro);
     }
     // BTN MODAL TEST
-    // $('#btn-test').click(function () {
-    //     $("#modal-title").modal("show");
-    //     $(".inp-title-modal").attr("key", "block_3_title");
-    //     getModalsCanalClaro('claro-title');
-    // })
+    $('#btn-test').click(function () {
+        $("#modal-carrusel1").modal("show");
+        // getModalCarrusel1(json.type)
+        getModalCarrusel1('claro-carrusel1')
+    })
     // BTN MODAL URL ENCABEZADO
     // $('#url-encabezado').click(function () {
     //     $("#modal-url").modal("show");
@@ -3614,16 +3615,16 @@ function eventsGrilla() {
         File(this)
     })
     // FILE PARA BANNER
+    var fileSrt = new FileReader();
 
-    var fileReader = new FileReader();
     function File(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileReader.onload = function (e) {
+            fileSrt.onload = function (e) {
                 $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
                 $('.loader-view-container').remove();
             }
-            fileReader.readAsDataURL(objFileInput.files[0]);
+            fileSrt.readAsDataURL(objFileInput.files[0]);
         }
     }
     // CARGAR IMG HEADER
@@ -3634,11 +3635,11 @@ function eventsGrilla() {
     function FileHeader(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileReader.onload = function (e) {
+            fileSrt.onload = function (e) {
                 $("#img-header-claro").html('<img src="' + e.target.result + '" />');
                 $('.loader-view-container').remove();
             }
-            fileReader.readAsDataURL(objFileInput.files[0]);
+            fileSrt.readAsDataURL(objFileInput.files[0]);
         }
     }
     // IMG DE PROMO
@@ -3649,11 +3650,11 @@ function eventsGrilla() {
     function FilePromoImg(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileReader.onload = function (e) {
+            fileSrt.onload = function (e) {
                 $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
             };
         }
-        fileReader.readAsDataURL(objFileInput.files[0]);
+        fileSrt.readAsDataURL(objFileInput.files[0]);
         $('.loader-view-container').remove();
     }
     // VIDEO DE PROMO
@@ -3664,14 +3665,29 @@ function eventsGrilla() {
     function FilePromoVideo(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileReader.onload = function (e) {
+            fileSrt.onload = function (e) {
                 $("#back-promo-claro").html(
                     '<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>'
                 );
                 $(".loader-view-container").remove();
             };
-            fileReader.readAsDataURL(objFileInput.files[0]);
+            fileSrt.readAsDataURL(objFileInput.files[0]);
         }
+    }
+    // IMG DE CARRUSEL 1
+    $('#carrusel1-claro-img').change(function () {
+        FileCarrusel1Img(this)
+    })
+    // IMG DE CARRUSEL 1 CARGAR
+    function FileCarrusel1Img(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $("#back-carrusel1-claro").html('<img class="img-back-modal img-carrusel" src="' + e.target.result + '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />');
+            };
+        }
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+        $('.loader-view-container').remove();
     }
 
     //CLARO CANAL POST HEADER

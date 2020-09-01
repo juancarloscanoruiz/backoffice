@@ -89,9 +89,11 @@ Route::group(['prefix' => 'landing'], function () {
 
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
+    Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
+
     // MODAL CLARO
 
 });
@@ -125,6 +127,7 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
 // MODALES
-Route::get('/test', function () {
+Route::get('/test',  function () {
     return view('partials.adm-CN.modals-claro.index');
 });
+
