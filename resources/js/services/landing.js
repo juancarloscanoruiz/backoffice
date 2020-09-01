@@ -1545,17 +1545,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
         success: function (result) {
             let data = JSON.parse(result);
-
+            console.log(data);
             $('.loader-view-container').remove();
             let program = "";
-
+            let titles = "";
             //Capítulos que se encuentran en el carrusel
             for (const chapter of data.data.chapters) {
-                console.log(chapter);
-
                 //Variables a evaluar
-
                 //Imagen del programa
+                titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
                 let image = chapter.chapter.thumbnail_list_horizontal || "./images/synopsis/image-synopsis-carrusel.jpg"
                 let inLandingSwitch = ""
                 let inLandingDates = "";
@@ -1566,46 +1564,50 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input type="radio" id="yes-landing-carrusel" value="1"
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
                             class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
-                        <label for="yes-landing-carrusel" id="siestado-landing"
+                        <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
-                        <input type="radio" id="no-landing-carrusel" value="0"
+                        <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no"
-                            checked />
-                        <label for="no-landing-carrusel" id="noestado-landing"
+                             name="yes-landing-carrusel-${chapter.chapter.id}" />
+                        <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
                     </div>
                     `;
 
                     //Fechas
-                    var dateExpiration = "00-00-0000"
-                    var timeExpiration = "00:00:00"
+                    var dateExpirationLanding = ""
+                    var timeExpiration = ""
                     if (chapter.chapter.in_landing_expiration) {
                         var dateTimeExpiration = chapter.chapter.in_landing_expiration.split(" ");
-                        var dateExpiration = dateTimeExpiration[0].split("-");
-                        var timeExpiration = dateTimeExpiration[1];
+                        let dateExpiration = dateTimeExpiration[0].split("-");
+                        dateExpirationLanding = `${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}`;
+                        timeExpiration = dateTimeExpiration[1];
                     }
-                    var dateBegin = "00-00-0000"
-                    var timeBegin = "00:00:00"
-                    if (chapter.chapter.in_landing_begin) {
-                        var dateTimeBegin = chapter.chapter.in_landing_expiration.split(" ");
-                        var dateBegin = dateTimeBegin[0].split("-");
-                        var timeBegin = dateTimeBegin[1];
-                    }
+                    var dateBeginLanding = ""
+                    var timeBegin = ""
 
+                    //Revisamos si
+                    if (chapter.chapter.in_landing_begin) {
+                        var dateTimeBegin = chapter.chapter.in_landing_begin.split(" ");
+                        let dateBegin = dateTimeBegin[0].split("-");
+                        dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
+                        timeBegin = dateTimeBegin[1];
+                    }
+                    console.log(dateBeginLanding);
                     inLandingDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
-                                placeholder="00-00-0000" key="in_landing_begin" value="${dateBegin[2]-dateBegin[1]-dateBegin[0]}" /></span>
+                                placeholder="00-00-0000" key="in_landing_begin" value="${dateBeginLanding}" /></span>
                     </div>
                     <div class="mb-4 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
-                                key="in_landing_expiration" placeholder="00-00-0000" value="${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}"></span>
+                                key="in_landing_expiration" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
                     </div>
                     `
 
@@ -1613,12 +1615,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
-                            key="in_landing_begin" value="" placeholder="00:00:00"></span>
+                            key="in_landing_begin" value="${timeBegin}" placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
-                                key="in_landing_expiration" value="" placeholder="00:00:00"></span>
+                                key="in_landing_expiration" value="${timeExpiration}" placeholder="00:00:00"></span>
                     </div>
                     `;
 
@@ -1626,15 +1628,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input type="radio" id="yes-landing-carrusel" value="3"
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
                             class="edit-switch-landing edit-landing-yes" key="in_landing" />
-                        <label for="yes-landing-carrusel" id="siestado-landing"
+                        <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
-                        <input type="radio" id="no-landing-carrusel" value="0"
+                        <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no"
-                            checked />
-                        <label for="no-landing-carrusel" id="noestado-landing"
+                            checked name="yes-landing-carrusel-${chapter.chapter.id}" />
+                        <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
                     </div>
@@ -1651,8 +1653,250 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                 key="in_landing_expiration" value="" placeholder="00:00:00"></span>
                     </div>
                     `;
+                    inLandingDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Inicio: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
+                                placeholder="00-00-0000" key="in_landing_begin" value="" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
+                                key="in_landing_expiration" placeholder="00-00-0000" value=""></span>
+                    </div>`;
                 }
 
+                //HOME
+                let inHomeSwitch = ""
+                let inHomeDates = "";
+                let inHomeTimes = "";
+                //Verificamos si el programa se encuentra en el home
+                if (chapter.chapter.in_home == 1) {
+                    inHomeSwitch = `
+                    <div class="d-flex align-items-center edit-switches-home-container">
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                            class="edit-switch-home edit-program-switch edit-in-home-yes"
+                            key="in_home" checked/>
+                        <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                            class="edit-switch-home edit-program-switch edit-in-home-no"
+                            key="in_home" />
+                        <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+
+                    //Fechas
+                    let dateHomeExpiration = ""
+                    let timeHomeExpiration = ""
+                    let dateTimeHomeExpiration = ""
+                    if (chapter.chapter.in_home_expiration) {
+                        dateTimeHomeExpiration = chapter.chapter.in_home_expiration.split(" ");
+                        let dateHome = dateTimeHomeExpiration[0].split("-");
+                        dateHomeExpiration = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`
+                        timeHomeExpiration = dateTimeHomeExpiration[1];
+                    }
+
+                    //
+                    let dateHomeBegin = ""
+                    let timeHomeBegin = ""
+                    let dateHomeTimeBegin = "";
+                    //Revisamos si
+                    if (chapter.chapter.in_home_begin) {
+                        dateHomeTimeBegin = chapter.chapter.in_home_begin.split(" ");
+                        let dateHome = dateHomeTimeBegin[0].split("-");
+                        dateHomeBegin = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
+                        timeHomeBegin = dateHomeTimeBegin[1];
+                    }
+
+
+
+                    inHomeDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value="${dateHomeBegin}"
+                            class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
+                            placeholder="00-00-0000" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin:
+                            <input type="text" key="in_home_expiration"
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value="${dateHomeExpiration}"
+                                placeholder="00-00-0000"></span>
+                    </div>
+                    `
+                    inHomeTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value="${timeHomeBegin}"
+                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
+                                placeholder="00:00:00"></span>
+                    </div>
+                    `
+
+                } else {
+                    inHomeSwitch = `
+                    <div class="d-flex align-items-center edit-switches-home-container">
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                            class="edit-switch-home edit-program-switch edit-in-home-yes"
+                            key="in_home" />
+                        <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                            class="edit-switch-home edit-program-switch edit-in-home-no"
+                            key="in_home" checked/>
+                        <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                    inHomeDates = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value=""
+                            class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
+                            placeholder="00-00-0000" /></span>
+                    </div>
+                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin:
+                            <input type="text" key="in_home_expiration"
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value=""
+                                placeholder="00-00-0000"></span>
+                    </div>
+                    `
+                    inHomeTimes = `
+                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
+                            type="text" value=""
+                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            placeholder="00:00:00"></span>
+                    </div>
+                    <div class="text-center edit-rectangle-small-container py-3">
+                        <span class="a-text-bold-warm">Fin: <input type="text"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
+                                placeholder="00:00:00"></span>
+                    </div>
+                    `
+                }
+                let scheduleDate = chapter.chapter.day.split("-")
+                let subbed = "";
+                if (chapter.chapter.subbed == 0) {
+                    subbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-subbed-yes"
+                            key="subbed" />
+                        <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
+                            key="subbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    subbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" checked value="1"
+                            class="edit-program-switch switch-landing edit-subbed-yes"
+                            key="subbed" />
+                        <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
+                            key="subbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
+                let dubbed = "";
+                if (chapter.chapter.dubbed == 0) {
+                    dubbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-dubbed" value="1"
+                            class="edit-program-switch switch-landing edit-dubbed-yes"
+                            key="dubbed" />
+                        <label for="yes-dubbed" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                            key="dubbed" />
+                        <label for="no-dubbed" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    dubbed = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-dubbed-${chapter.chapter.id}" value="1" checked
+                            class="edit-program-switch switch-landing edit-dubbed-yes"
+                            key="dubbed" />
+                        <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                            key="dubbed" />
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
+
+                let audio5 = "";
+                if (chapter.chapter.audio5 == 0) {
+                    audio5 = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-audio5-yes"
+                            key="audio5" />
+                        <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0" checked
+                            class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                            key="audio5" />
+                        <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                } else {
+                    audio5 = `
+                    <div class="d-flex">
+                        <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                            class="edit-program-switch switch-landing edit-audio5-yes" checked
+                            key="audio5" />
+                        <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                            class="si-estilo cursor-pointer mb-0 switch-label">
+                            Sí</label>
+                        <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0"
+                            class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                            key="audio5" />
+                        <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                            class="mb-0 no-estilo cursor-pointer switch-label">
+                            No</label>
+                    </div>
+                    `;
+                }
 
                 program += `
                 <div>
@@ -1724,49 +1968,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     en home
                                 </p>
                                 <!--Switch-->
-                                <div class="d-flex align-items-center edit-switches-home-container">
-                                    <input type="radio" id="edit-in-home-yes" value="1"
-                                        class="edit-switch-home edit-program-switch edit-in-home-yes"
-                                        key="in_home" />
-                                    <label for="edit-in-home-yes" id="siestado-landing"
-                                        class="si-estilo cursor-pointer mb-0 switch-label">
-                                        Sí</label>
-                                    <input type="radio" id="edit-in-home-no" value="0" checked
-                                        class="edit-switch-home edit-program-switch edit-in-home-no"
-                                        key="in_home" />
-                                    <label for="edit-in-home-no" id="noestado-landing"
-                                        class="mb-0 no-estilo cursor-pointer switch-label">
-                                        No</label>
-                                </div>
+                                ${inHomeSwitch}
                                 <div>
                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                         Fecha
                                     </p>
-                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                        <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
-                                                type="text"
-                                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
-                                                placeholder="00-00-0000" /></span>
-                                    </div>
-                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
-                                        <span class="a-text-bold-warm">Fin:
-                                            <input type="text" key="in_home_expiration"
-                                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
-                                                placeholder="00-00-0000"></span>
-                                    </div>
+                                    ${inHomeDates}
                                 </div>
                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
-                                            type="text"
-                                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
-                                            placeholder="00:00:00"></span>
-                                </div>
-                                <div class="text-center edit-rectangle-small-container py-3">
-                                    <span class="a-text-bold-warm">Fin: <input type="text"
-                                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
-                                            placeholder="00:00:00"></span>
-                                </div>
+                                ${inHomeTimes}
                             </div>
                         </div>
                         <div class="col-4 edit-program-data-container edit-data-container-large">
@@ -1786,7 +1996,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
                                             <input key="" type=" text"
                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
-                                                placeholder="00-00-0000"></span>
+                                                placeholder="00-00-0000" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"></span>
                                     </div>
                                 </div>
                                 <p class="mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase">
@@ -1797,7 +2007,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3"><input type="text"
                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
-                                            placeholder="00:00:00"></span>
+                                            placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
                                 </div>
                             </div>
                         </div> 
@@ -1821,7 +2031,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     season
                                 </p>
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <input type="text" key="season"
+                                    <input type="text" key="season" value="${chapter.chapter.season}"
                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                         placeholder="00">
                                 </div>
@@ -1835,7 +2045,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     number
                                 </p>
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <input type="text" key="program_episode_number"
+                                    <input type="text" key="program_episode_number" value="${chapter.chapter.program_episode_number}"
                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                         placeholder="000">
                                 </div>
@@ -1849,7 +2059,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     produced
                                 </p>
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <input type="text" key="program_year_produced"
+                                    <input type="text" key="program_year_produced" ${chapter.chapter.program.year}
                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                         placeholder="YYYY">
                                 </div>
@@ -1867,7 +2077,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     alternate
                                 </p>
                                 <div class="mb-3 edit-rectangle-container p-3">
-                                    <input type="text" key="subtitle"
+                                    <input type="text" key="subtitle" value="${chapter.chapter.subtitle}"
                                         class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
                                         placeholder="Program Title Alternate">
                                 </div>
@@ -1900,7 +2110,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     code
                                 </p>
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                                    <input type="text" key="rating"
+                                    <input type="text" key="rating" value="${chapter.chapter.program.rating}"
                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                         placeholder="PG-00">
                                 </div>
@@ -1925,7 +2135,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     <div
                                         class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
-                                        <input type="text" key="day"
+                                        <input type="text" key="day" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"
                                             class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="DD:MM:YY">
                                     </div>
@@ -1946,8 +2156,8 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     <div
                                         class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
-                                        <input type="text" key="programing"
-                                            class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
+                                        <input type="text" key="programing" value="${chapter.chapter.hour}"
+                                            class="edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="00:00:00">
                                     </div>
                                 </div>
@@ -1966,7 +2176,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     <div
                                         class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
-                                        <input type="text" key="duration"
+                                        <input type="text" key="duration" value="${chapter.chapter.duration}"
                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="00:00:00">
                                     </div>
@@ -1985,21 +2195,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     version
                                     subbed
                                 </p>
-                                <div class="d-flex">
-                                    <input type="radio" id="yes-subbed" value="1"
-                                        class="edit-program-switch switch-landing edit-subbed-yes"
-                                        key="subbed" />
-                                    <label for="yes-subbed" id="siestado-landing"
-                                        class="si-estilo cursor-pointer mb-0 switch-label">
-                                        Sí</label>
-                                    <input type="radio" id="no-dubbed" value="0" checked
-                                        class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
-                                        key="subbed" />
-                                    <label for="no-dubbed" id="noestado-landing"
-                                        class="mb-0 no-estilo cursor-pointer switch-label">
-                                        No</label>
-                                </div>
-
+                                ${subbed}
                             </div>
                         </div>
                         <div class="col-4 edit-program-data-container">
@@ -2008,21 +2204,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     version
                                     dubbed
                                 </p>
-                                <div class="d-flex">
-                                    <input type="radio" id="yes-dubbed" value="1"
-                                        class="edit-program-switch switch-landing edit-dubbed-yes"
-                                        key="dubbed" />
-                                    <label for="yes-dubbed" id="siestado-landing"
-                                        class="si-estilo cursor-pointer mb-0 switch-label">
-                                        Sí</label>
-                                    <input type="radio" id="no-dubbed" value="0" checked
-                                        class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
-                                        key="dubbed" />
-                                    <label for="no-dubbed" id="noestado-landing"
-                                        class="mb-0 no-estilo cursor-pointer switch-label">
-                                        No</label>
-                                </div>
-
+                                ${dubbed}
                             </div>
                         </div>
                         <div class="col-4 edit-program-data-container">
@@ -2031,20 +2213,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                                     5.1<br>
                                     available
                                 </p>
-                                <div class="d-flex">
-                                    <input type="radio" id="yes-audio5" value="1"
-                                        class="edit-program-switch switch-landing edit-audio5-yes"
-                                        key="audio5" />
-                                    <label for="yes-audio5" id="siestado-landing"
-                                        class="si-estilo cursor-pointer mb-0 switch-label">
-                                        Sí</label>
-                                    <input type="radio" id="no-audio5" value="0" checked
-                                        class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
-                                        key="audio5" />
-                                    <label for="no-audio5" id="noestado-landing"
-                                        class="mb-0 no-estilo cursor-pointer switch-label">
-                                        No</label>
-                                </div>
+                                ${audio5}
 
                             </div>
                         </div>
@@ -2062,6 +2231,23 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                 `;
             }
             $(".carrusel1-slider-concert").html(program);
+            //Genres
+            let optionGenre = ""
+            data.data.genres.forEach(genre => {
+                optionGenre += `
+                             <option value="${genre.title}">${genre.title}</option>
+                             `
+            });
+            //Géneros
+            $('.list1').append(optionGenre);
+            $(".list1").selectpicker('destroy');
+            $(".list1").selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+            //Títulos
+
+            $('.carrusel-concert-select').append(titles);
             $('.carrusel-concert-select').selectpicker('destroy');
             $('.carrusel-concert-select').selectpicker({
                 filter: true,
@@ -2095,19 +2281,6 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
                 dropdownTitles.selectpicker('toggle');
             })
 
-            //Genres
-            /*             let optionGenre = ""
-                        data.genres.forEach(genre => {
-                            optionGenre += `
-                                <option value="${genre.title}">${genre.title}</option>
-                                `
-                        });
-                        $('.list1').append(optionGenre);
-                        $(".list1").selectpicker('destroy');
-                        $(".list1").selectpicker({
-                            filter: true,
-                            multipleSeparator: ", "
-                        }); */
 
 
             let editProgramLandingGenres = "";
