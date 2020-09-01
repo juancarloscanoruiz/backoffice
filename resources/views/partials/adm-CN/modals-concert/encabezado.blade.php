@@ -75,7 +75,7 @@
                 <div class="mt-5 d-flex ">
                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
                     <input type="text" name="links" id="link-button-concert-channel"
-                        class="urls a-text-bold-warm text-normal url-container" placeholder=" Enlace o URL">
+                        class="urls a-text-bold-warm text-normal url-container" placeholder="Enlace o URL">
                 </div>
             </div>
 
