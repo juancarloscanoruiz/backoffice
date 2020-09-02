@@ -93,9 +93,9 @@
             </div>
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
-                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha text-grilla lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
                 <!-- <div>
@@ -110,7 +110,7 @@
                 </div>-->
             </div>
             <div class="clearfix"></div>
-            <div class=" mr-5 d-flex float-right mb-5">
+            <div class=" mr-5 d-flex float-right">
                 <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img
                         src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px" /></div>
             </div>
@@ -118,15 +118,87 @@
             <!--colocacion de ifram de programacion-->
             <div class="centro ">
                 <div class="load-view pointer-none" id="loader-view"> </div>
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion " onload='preloader()'
+                <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()'
                     id="navbar-prev-programacion" style="display:none;">
                 </div>
             </div>
 
             <!--colocacion de iframde sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
+            <section class="col-8 mx-auto">
+                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
+                                id="slider-calendar-current-date">Octubre 2020</h3>
+                            <div class="mb-5 calendar-sinopsis-slider">
+                                <li class="programming-item programming-item-active">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+                                </li>
+                                <li class="programming-item">
+
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+
+                                </li>
+                                <li class="programming-item">
+
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+
+                                </li>
+                                <li class="programming-item">
+
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+
+                                </li>
+                                <li class="programming-item">
+                                    <p class="mb-0">MIER</p>
+                                    <p class="mb-0">01</p>
+
+                                </li>
+                            </div>
+                        </section> 
+            
                 <div id="prev-sinopsis">
-                    <div class="mx-auto shadow mt-5 col-9 p-0 mb-5 content-table">
+                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table">
                         <div class="contenedor-fila">
                             <div class="contenedor-columna centro synop titletable">
                                 <span class="a-text-MBlack a-text-prev">Programa</span>
@@ -149,7 +221,7 @@
                                 <span class="a-text-medium-black text-normal pd-5">Mad Men</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <span class="a-text-semibold-tomato text-normal ">0</span>
+                                <span class="a-text-semibold-tomato text-normal pl-3 ">0</span>
                             </div>
                             <div class="contenedor-columna centro">
                                 <span class="a-text-semibold-tomato text-normal ">0/8</span>
@@ -246,7 +318,7 @@
                                 <span class="a-text-medium-black text-normal pd-5">Planeta Tierra</span>
                             </div>
                             <div class="contenedor-columna centro ">
-                                <span class="a-text-semibold-tomato text-normal ">20</span>
+                                <span class="a-text-semibold-tomato text-normal pl-2">20</span>
                             </div>
                             <div class="contenedor-columna centro ">
                             <span class="a-text-semibold-tomato text-normal ">4/8</span>
@@ -313,19 +385,20 @@
             </div>
             <!--iframe de canal claro-->
             <div class="centro">
-                <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
+                <div class="navbar-progra-content navbar-prev-canal-claro mb-5 mt-5" id="navbar-prev-canal-claro">
                 </div>
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>
     </main>
-
+    @include('partials.adm-CN.modals-claro.banner-claro')
     @include('partials.adm-CN.modals-claro.index')
     @include('partials.adm-CN.modals-claro.carrusel')
     @include('partials.adm-CN.modals-claro.carrusel2')
+  
 
 </body>

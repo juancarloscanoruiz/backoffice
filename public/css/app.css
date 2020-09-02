@@ -664,6 +664,11 @@ body {
   color: #5f5c5c;
 }
 
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
+}
+
 .a-text-semibold-white {
   font-family: "Montserrat-SemiBold";
   color: #ffffff;
@@ -1756,7 +1761,7 @@ body {
 .btn-apro {
   width: 181px;
   height: 46px;
-  border-radius: 7px;
+  border-radius: 16px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -1779,7 +1784,7 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-  border-radius: 7px;
+  border-radius: 16px;
   background-color: #da291c;
   outline: none !important;
   outline-width: 0 !important;
@@ -4731,6 +4736,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #5f5c5c;
 }
 
+.a-text-semibold-black {
+  font-family: "Montserrat-SemiBold";
+  color: #161515;
+}
+
 .a-text-semibold-white {
   font-family: "Montserrat-SemiBold";
   color: #ffffff;
@@ -6253,31 +6263,18 @@ a:hover {
 }
 
 .inp-text-modal-1 {
-  font-size: 30px;
-  color: #4a4a4a;
-  margin-bottom: 0;
-  font-weight: bold;
   padding: 5px;
   border: none;
   width: 155px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-text-modal-2 {
-  font-size: 30px;
-  color: #da291c;
-  margin-bottom: 0;
-  font-weight: bold;
   padding: 5px;
   border: none;
   width: 250px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-text-modal-3 {
-  color: #ffffff;
-  margin-bottom: 0;
-  font-weight: bold;
   text-align: center;
   border: none;
   width: 220px;
@@ -6285,7 +6282,6 @@ a:hover {
   background: #da291c;
   margin-left: 25px;
   padding: 14px 0;
-  font-family: "Montserrat-Regular";
 }
 
 .content {
@@ -6296,12 +6292,9 @@ a:hover {
 .input-url {
   width: 165px;
   padding: 8px;
-  color: #444;
   border: 1px solid #ffffff;
   box-shadow: 1px 2px 4px #a4a4a4;
-  font-weight: bold;
   margin-left: 5px;
-  font-family: "Montserrat-Regular";
 }
 
 /* ** HEADER ** */
@@ -6327,12 +6320,8 @@ a:hover {
   border: none;
   border-radius: 5px;
   width: 100%;
-  color: #ffffff;
   height: 54px;
-  font-weight: 800;
   padding: 0 0 0 12px;
-  font-size: 36px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-sub-title-modal {
@@ -6340,12 +6329,8 @@ a:hover {
   border: none;
   border-radius: 5px;
   width: 100%;
-  color: #ffffff;
   height: 30px;
-  font-weight: 600;
   padding: 0 0 0 12px;
-  margin-top: 11px;
-  font-family: "Montserrat-Regular";
 }
 
 /* ** TITULO ** */
@@ -6397,7 +6382,6 @@ a:hover {
   border-radius: 15px;
   display: block;
   padding: 3px;
-  font-weight: 600;
 }
 
 /* ** PROMO ** */
@@ -6430,6 +6414,54 @@ a:hover {
 }
 
 /* ** LINK ** */
+
+/* ** CARRUSEL ** */
+
+.modal-carrusel-claro {
+  padding: 4%;
+}
+
+.contet-carrusel-modal {
+  padding: 0 2%;
+}
+
+.slt-carrusel1-modal {
+  width: 100%;
+  margin: 40px auto 0;
+  background: #da291c;
+  height: 90px;
+  color: #ffffff;
+  font-size: 2rem;
+  font-family: "Montserrat-Regular";
+}
+
+.img-carrusel {
+  width: 100%;
+  left: 0;
+  height: 550px;
+}
+
+.img-carrusel-claro {
+  width: 100%;
+  height: 550px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.heart-icon-carrusel {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 10px;
+  background-color: #9b9b9b;
+  padding: 16px;
+  width: 110px;
+  cursor: pointer;
+}
+
+/* ** CARRUSEL ** */
 
 /** ** ** */
 
@@ -6979,6 +7011,10 @@ iframe {
   left: 50%;
   width: 90%;
   z-index: 1;
+}
+
+.width-program {
+  width: 120px !important;
 }
 
 #concert-promo-container {
