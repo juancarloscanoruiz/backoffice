@@ -98,7 +98,7 @@
             <!--iframe de programación-->
             <div class="centro ">
                 <div class="load-view pointer-none" id="loader-view"></div>
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" onload='preloader()'
+                <div class="navbar-progra-content mb-5 mt-5 navbar-prev-programacion" onload='preloader()'
                     id="navbar-prev-programacion-concert" style="display:none;">
                 </div>
             </div>
@@ -365,13 +365,13 @@
             </div>
             <!--iframe de concert-channel-->
             <div class="centro">
-                <div class="navbar-progra-content navbar-prev-concert-channel mb-5" id="navbar-prev-concert-channel">
+                <div class="navbar-progra-content navbar-prev-concert-channel mb-5 mt-5" id="navbar-prev-concert-channel">
                 </div>
             </div>
 
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>

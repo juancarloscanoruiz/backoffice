@@ -40,9 +40,8 @@ import {
     editHeaderLandingClaro,
     editElementLandingClaro,
     editPromoLandingClaro,
-    getModalCarrusel1
-    getContentClaroCinema,
-    editPromoLandingClaro
+    getModalCarrusel1,
+    getContentClaroCinema
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -216,62 +215,12 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-                    case "slider-pagination":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-programming-carousel-concert').modal("show");
-                            $(".programming-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
+                   
 
-                    case "title-carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-title-carrusel1').modal("show");
+                 
 
+                    
 
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-
-                    case "carrusel2":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-programming-carousel-cinema').modal("show");
-                            $(".programming-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
 
 
 
@@ -3570,68 +3519,111 @@ function eventsGrilla() {
 
     // CANAL CLARO
     const LOADER = `<div class="loader-view-container" id="loader1">
-        <img src="./images/loader.gif" class="loader" alt="">
-        </div>`;
+            <img src="./images/loader.gif" class="loader" alt="">
+            </div>`;
 
     let landingCanalClaro = {
         remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
-            console.log('buenas', json);
+          
             if (typeof json == "object") {
                 switch (json.type) {
+                   
                     case "claro-header":
                         $("body").append(LOADER);
-                        $("#modal-header").modal("show");
+                        setTimeout(function () {
+                            $("#modal-header").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                        }, 3000);        
                         break;
                     case "claro-programacion":
                         $("body").append(LOADER);
-                        $("#modal-edi-claro").modal("show");
-                        getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
-                        break;
+                        setTimeout(function () {
+                            let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "claro-canal");
+                        $("#loader1").remove();
+                        }, 3000);
+                         break;
                     case "claro-title":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-title").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "claro-promo":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-promo").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "claro-carrusel1":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-carrusel1").modal("show");
                         getModalCarrusel1(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "claro-carrusel2":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-edi-carrusel-2").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "claro-carrusel-title":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-title").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "claro-carrusel-title2":
                         $("body").append(LOADER);
+                        setTimeout(function () {
                         $("#modal-title").modal("show");
                         getModalsCanalClaro(json.type)
-                        $(".loader-view-container").remove();
+                        $("#loader1").remove();
+                    }, 3000);
                         break;
                     case "btn-redirect-header":
                         getModalsCanalClaro(json.type)
                         break;
+                        case "slider-pagination":
+                         $("body").append(LOADER);
+                         setTimeout(function () {
+                             $('.modal-programming-carousel-claro').modal("show");
+                             $(".programming-slider").slick({
+                                 slidesToShow: 1,
+                                 dots: true,
+                                 appendDots: $(".programming-slider-dots"),
+                                 initialSlide: 0,
+                                 infinite: false,
+                                 customPaging: function (slider, i) {
+                                     var thumb = $(slider.$slides[i]).data();
+                                     return (
+                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                         (i + 1) +
+                                         "</p>"
+                                     );
+                                 }
+                             });
+                             $("#loader1").remove();
+                         }, 3000);
+                         break;
                 }
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
@@ -3674,10 +3666,11 @@ function eventsGrilla() {
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
                 $("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-                $('.loader-view-container').remove();
+              
             }
             fileSrt.readAsDataURL(objFileInput.files[0]);
         }
+        $('#loader1').remove();
     }
     // CARGAR IMG HEADER
     $("#img-header").change(function () {
@@ -3694,10 +3687,12 @@ function eventsGrilla() {
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
                 $("#img-header-claro").html('<img src="' + e.target.result + '" />');
-                $('.loader-view-container').remove();
+               
             }
             fileSrt.readAsDataURL(objFileInput.files[0]);
+            $('#loader1').remove();
         }
+       
     }
     // IMG DE PROMO
     $('#promo-claro-img').change(function () {

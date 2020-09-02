@@ -100,29 +100,19 @@ a:hover {
     font-family: $MontserratRegular;
 }
 .inp-text-modal-1 {
-    font-size: 30px;
-    color: $greyishBrownTwo;
-    margin-bottom: 0;
-    font-weight: bold;
+
     padding: 5px;
     border: none;
     width: 155px;
-    font-family: $MontserratRegular;
 }
 .inp-text-modal-2 {
-    font-size: 30px;
-    color: $selecred;
-    margin-bottom: 0;
-    font-weight: bold;
     padding: 5px;
     border: none;
     width: 250px;
-    font-family: $MontserratRegular;
+
 }
 .inp-text-modal-3 {
-    color: $white;
-    margin-bottom: 0;
-    font-weight: bold;
+  
     text-align: center;
     border: none;
     width: 220px;
@@ -130,7 +120,7 @@ a:hover {
     background: $selecred;
     margin-left: 25px;
     padding: 14px 0;
-    font-family: $MontserratRegular;
+   
 }
 .content {
     width: 100%;
@@ -139,12 +129,10 @@ a:hover {
 .input-url {
     width: 165px;
     padding: 8px;
-    color: #444;
     border: 1px solid $white;
     box-shadow: 1px 2px 4px #a4a4a4;
-    font-weight: bold;
     margin-left: 5px;
-    font-family: $MontserratRegular;
+ 
 }
 /* ** HEADER ** */
 /* ** TITULO ** */
@@ -166,26 +154,20 @@ a:hover {
     background: #c06760;
     border: none;
     border-radius: 5px;
-    width: 100%;
-    color: $white;
-    height: 54px;
-    font-weight: 800;
+    width: 100%;  
+    height: 54px; 
     padding: 0 0 0 12px;
-    font-size: 36px;
-    font-family: $MontserratRegular;
 }
 
 .inp-sub-title-modal {
     background: #c06760;
     border: none;
     border-radius: 5px;
-    width: 100%;
-    color: $white;
+    width: 100%;  
     height: 30px;
-    font-weight: 600;
     padding: 0 0 0 12px;
     margin-top: 11px;
-    font-family: $MontserratRegular;
+    
 }
 /* ** TITULO ** */
 /* ** PROMO ** */

@@ -118,7 +118,7 @@
             <!--colocacion de ifram de programacion-->
             <div class="centro ">
                 <div class="load-view pointer-none" id="loader-view"> </div>
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion " onload='preloader()'
+                <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()'
                     id="navbar-prev-programacion" style="display:none;">
                 </div>
             </div>
@@ -385,19 +385,20 @@
             </div>
             <!--iframe de canal claro-->
             <div class="centro">
-                <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
+                <div class="navbar-progra-content navbar-prev-canal-claro mb-5 mt-5" id="navbar-prev-canal-claro">
                 </div>
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>
     </main>
-
+    @include('partials.adm-CN.modals-claro.banner-claro')
     @include('partials.adm-CN.modals-claro.index')
     @include('partials.adm-CN.modals-claro.carrusel')
     @include('partials.adm-CN.modals-claro.carrusel2')
+  
 
 </body>

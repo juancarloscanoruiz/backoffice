@@ -8,9 +8,9 @@
         <div class="modal-dialog-centered">
             <div class="modal-header-claro">
                 <!-- TEXTO -->
-                <p class="p-text-modal-sub">CARGAR IMAGENES EN FORMATO PNG</p>
-                <h3 class="p-title-modal">ENCABEZADO</h3>
-                <hr class="hr">
+                <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMAGENES EN FORMATO PNG</p>
+                <h3 class="h2 text-center a-text-black-brown-two pt-3">ENCABEZADO</h3>
+                <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <div class="content-item-center">
                     <!-- IMG -->
                     <div class="img-content-header">
@@ -24,20 +24,21 @@
                         </div>
                     </div>
                     <!-- HOY EN  -->
-                    <div class="inp-content">
-                        <input class="inp-text-modal-1" type="text">
+                    <div class="inp-content ">
+                        <input class="inp-text-modal-1 h2 ml-3 a-text-black-brown-two  hoy-en-cinema text-uppercase" type="text" placeholder="HOY EN">
                     </div>
                     <!-- CANAL CLARO -->
-                    <div class="inp-content">
-                        <input class="inp-text-modal-2" type="text">
+                    <div class="inp-content ">
+                        <input class="inp-text-modal-2 h2 a-text-black-tomato ml-3 cinema-input-title mr-3 text-uppercase" type="text" placeholder="CANAL CLARO">
                     </div>
                     <!-- VER PROGRAMACIÓN -->
-                    <input class="inp-text-modal-3" type="text">
+                    <input class="inp-text-modal-3 pl-2 a-text-MBlack text-normal  hoy-en  text-uppercase" type="text">
                 </div>
                 <div class="content">
                     <div class="float-right mt-3">
                         <img id="url-encabezado" src="./images/basic-icons/link.svg" style="width: 40px;">
-                        <input id="inp-text-modal-4" class="input-url" placeholder="Enlace o URL" type="text">
+                        
+                        <input id="inp-text-modal-4" class="input-url a-text-bold-warm text-normal " placeholder="Enlace o URL" type="text">
                     </div>
                 </div>
                 <!-- BOTONES -->
@@ -51,20 +52,21 @@
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- MODAL HEADER - ENCABEZADO LANDING CANAL CLARO 1 -->
-
+    
     <!-- MODAL TITULO - TEXTO-PROMO LANDING CANAL CLARO 1 -->
     <div id="modal-title" class="modal">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-title-claro modal-content">
                 <!-- TEXTO -->
-                <h2 class="p-title-modal">TÍTULO</h2>
-                <hr class="hr">
+                <h2 class="h2 text-center a-text-black-brown-two pt-3">TÍTULO </h2>
+                <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!-- TITULO Y SUBTITULO -->
                 <div class="title-modal-content">
-                    <input id="inp-title-modal" class="inp-title-modal" type="text">
-                    <input id="inp-sub-title-modal" class="inp-sub-title-modal" type="text">
+                    <input id="inp-title-modal" class="inp-title-modal text-uppercase a-text-MBlack h2" type="text">
+                    <input id="inp-sub-title-modal" class="inp-sub-title-modal text-uppercase a-text-bold-white  text-normal" type="text">
                 </div>
                 <!-- BOTONES -->
                 <div class="content">
@@ -85,9 +87,10 @@
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-promo-claro modal-content">
                 <!-- TEXTO -->
-                <p class="p-text-modal-sub">CARGAR IMÁGENES EN FORMATO JPG O VIDEOS MP4</p>
-                <h3 class="p-title-modal mt-3">PROMO</h3>
-                <hr class="hr">
+                <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO
+                    JPG O VIDEOS MP4</p>
+                <h2 class="h2 text-center a-text-black-brown-two pt-3">PROMO </h2>
+                <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!-- IMG -->
                 <div class="position-relative text-center" id="back-promo-claro">
                     <img class="img-back-modal img-promo" src="images/modals/img-back-promo.png">
@@ -100,22 +103,23 @@
                     <!-- LABEL -->
                     <label for="promo-claro-img" class="add-file">
                         <img class="cursor-pointer mb-2" src="images/modals/camara.svg" alt="add-photo" />
-                        <span>Añade tu archivo jpg 472px X 295px</span>
+                        <span class="a-text-bold-warm text-plus">Añade tu archivo jpg 472px X 295px</span>
                     </label>
                     <label for="promo-claro-video" class="add-file">
                         <img class="cursor-pointer mb-2" src="images/basic-icons/video.svg" alt="add-video" />
-                        <span>Añade tu archivo mp4 1280px X 720px</span>
+                        <span class="a-text-bold-warm text-plus">Añade tu archivo mp4 1280px X 720px</span>
                     </label>
                     <label class="add-file">
                         <img id="url-promo" class="cursor-pointer mb-2" src="images/basic-icons/link.svg"
                             alt="add-link" />
-                        <span class="py-3">Utiliza un enlace o URL</span>
+                        <span class="py-3 a-text-bold-warm text-plus">Utiliza un enlace o URL</span>
                     </label>
                 </div>
                 <!-- NOMBRES DE IMG Ó VIDEO -->
-                <div class="content ml-3 mt-3 mb-2 text-bold" style="font-weight: 600;">
-                    <p>Nombre_Prómocion_CanalClaro_20200709.jpg</p>
-                    <p>Nombre_Prómocion_CanalClaro_20200709.jpg</p>
+                <div class="ml-3 mt-3 mb-3" style="text-align:initial;">
+                <span  class="a-text-bold-brown-two text-normal">Nombre_Prómocion_CanalClaro_20200709.jpg</span><br>
+                    <span class="a-text-bold-brown-two text-normal ">Nombre_Prómocion_CanalClaro_20200709.mp4</span>
+                   
                 </div>
                 <!-- BOTONES -->
                 <div class="content">
@@ -232,7 +236,7 @@
                 <button data-dismiss="modal" class="ml-3  a-btn-basic-small btn-landing a-text-bold-teal">CANCELAR</button>
             </div>
         </div>
-    </div> -->
+    </div> 
     <!-- BANNER LANDING CANAL CLARO 4 -->
 
     <!-- SLAIDER -->
@@ -307,7 +311,7 @@
                         </div>
                     </section>
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit"
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit "
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1222,7 +1226,7 @@
                         </div>
                     </div>
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit" chapter_id="${program.chapter_id}">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit " chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                                 Lorem ipsum
@@ -1263,7 +1267,7 @@
                         </div>
                     </div>
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit" chapter_id="${program.chapter_id}">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit " chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                                 Lorem ipsum
@@ -1646,3 +1650,4 @@
     <!-- **************************************************************************************************** -->
 
 </body>
+ <!--Vinculo para url-->

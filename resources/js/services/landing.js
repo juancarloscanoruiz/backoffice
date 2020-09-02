@@ -1255,7 +1255,7 @@ function getProgrammingLanding(date, landing) {
                     for (const program of programming) {
                         chapter += `
                         <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
+                        <img src="./images/pencil.svg" alt="" class="pencil-edit cursor-pointer programming-pencil-concert"
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1566,9 +1566,9 @@ function editHeaderLandingClaro(data) {
         contentType: false,
         beforeSend: function () {
             $("body").append(
-                `< div class="loader-view-container pointer-none" >
-                    <img src="./images/loader.gif" class="loader" />
-                </div > `
+                `<div class="loader-view-container pointer-none" id="loader1">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
             );
         },
         url: "landing/editHeaderLandingClaro",
@@ -1576,9 +1576,11 @@ function editHeaderLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
+                $('#loader1').remove();
                 $('#modal-header').modal("hide");
+               
             }
-            $('.loader-view-container').remove();
+           
         }
     })
 }
@@ -1599,7 +1601,7 @@ function editElementLandingClaro(data) {
         data: data,
         beforeSend: function () {
             $("body").append(
-                `< div class="loader-view-container pointer-none" >
+                `< div class="loader-view-container pointer-none" id="loader1" >
                     <img src="./images/loader.gif" class="loader" />
                 </div > `
             );
@@ -1609,9 +1611,11 @@ function editElementLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
+                $('#loader1').remove();
                 $('#modal-title').modal("hide");
+              
             }
-            $('.loader-view-container').remove();
+            
         }
     })
 
@@ -2580,7 +2584,7 @@ function editPromoLandingClaro(data) {
         contentType: false,
         beforeSend: function () {
             $("body").append(
-                `< div class="loader-view-container pointer-none" >
+                `< div class="loader-view-container pointer-none" id="loader1">
                     <img src="./images/loader.gif" class="loader" />
                 </div > `
             );
@@ -2590,9 +2594,10 @@ function editPromoLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
+                $('#loader1').remove();
                 $('#modal-promo').modal("hide");
             }
-            $('.loader-view-container').remove();
+           
         }
     })
 }
@@ -2620,7 +2625,6 @@ export {
     editHeaderLandingClaro,
     editElementLandingClaro,
     editPromoLandingClaro,
-    getModalCarrusel1
-    getContentClaroCinema,
-    editPromoLandingClaro
+    getModalCarrusel1,
+    getContentClaroCinema
 };

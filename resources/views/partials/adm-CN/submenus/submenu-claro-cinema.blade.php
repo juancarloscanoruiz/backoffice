@@ -96,7 +96,7 @@
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion" id="navbar-prev-programacion-cinema">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5" id="navbar-prev-programacion-cinema">
                 </div>
             </div>
            <!--landing de sinopsis-->
@@ -347,12 +347,12 @@
             </div>
             <!--iframe de claro cinema-->
             <div class="centro">
-                <div class="navbar-progra-content navbar-prev-claro-cinema mb-5" id="navbar-prev-claro-cinema">
+                <div class="navbar-progra-content navbar-prev-claro-cinema mb-5 mt-5" id="navbar-prev-claro-cinema">
                 </div>
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>

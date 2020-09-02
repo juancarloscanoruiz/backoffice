@@ -6140,31 +6140,18 @@ a:hover {
 }
 
 .inp-text-modal-1 {
-  font-size: 30px;
-  color: #4a4a4a;
-  margin-bottom: 0;
-  font-weight: bold;
   padding: 5px;
   border: none;
   width: 155px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-text-modal-2 {
-  font-size: 30px;
-  color: #da291c;
-  margin-bottom: 0;
-  font-weight: bold;
   padding: 5px;
   border: none;
   width: 250px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-text-modal-3 {
-  color: #ffffff;
-  margin-bottom: 0;
-  font-weight: bold;
   text-align: center;
   border: none;
   width: 220px;
@@ -6172,7 +6159,6 @@ a:hover {
   background: #da291c;
   margin-left: 25px;
   padding: 14px 0;
-  font-family: "Montserrat-Regular";
 }
 
 .content {
@@ -6183,12 +6169,9 @@ a:hover {
 .input-url {
   width: 165px;
   padding: 8px;
-  color: #444;
   border: 1px solid #ffffff;
   box-shadow: 1px 2px 4px #a4a4a4;
-  font-weight: bold;
   margin-left: 5px;
-  font-family: "Montserrat-Regular";
 }
 
 /* ** HEADER ** */
@@ -6214,12 +6197,8 @@ a:hover {
   border: none;
   border-radius: 5px;
   width: 100%;
-  color: #ffffff;
   height: 54px;
-  font-weight: 800;
   padding: 0 0 0 12px;
-  font-size: 36px;
-  font-family: "Montserrat-Regular";
 }
 
 .inp-sub-title-modal {
@@ -6227,12 +6206,9 @@ a:hover {
   border: none;
   border-radius: 5px;
   width: 100%;
-  color: #ffffff;
   height: 30px;
-  font-weight: 600;
   padding: 0 0 0 12px;
   margin-top: 11px;
-  font-family: "Montserrat-Regular";
 }
 
 /* ** TITULO ** */
