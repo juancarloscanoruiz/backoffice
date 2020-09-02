@@ -25,6 +25,7 @@ import {
     getChapterInfo,
     updateImageProgramOfLanding,
     getProgramming,
+    getContentConcertChannel,
     getContentConcertChannelHeader,
     getContentConcertChannelBlockHeader3,
     getContentConcertChannelBlock4One,
@@ -51,7 +52,6 @@ import {
     year
 } from "./config/config.js";
 
-//Configraciones para la librería de Cleave JS
 import {
     calendarSlick
 } from "./config/slick.js";
@@ -161,7 +161,7 @@ function eventsGrilla() {
                     case "carrusel1":
                         let landing = "Claro Cinema"
                         let id = 1;
-                        getPromotionalsProgramsCarousel(id, landing, "header-background");
+                        getPromotionalsProgramsCarousel(id, landing, "header-background thumbnail-header-cinema");
                         break;
                     case "title-carrusel2":
                         getContentClaroCinema("title-carrusel2");
@@ -170,7 +170,7 @@ function eventsGrilla() {
                     case "carrusel2":
                         landing = "Claro Cinema"
                         id = 2;
-                        getPromotionalsProgramsCarousel(id, landing, "header-background");
+                        getPromotionalsProgramsCarousel(id, landing, "header-background thumbnail-header-cinema");
                         break;
                     case "slider-pagination":
                         $("body").append(loader);
@@ -297,29 +297,15 @@ function eventsGrilla() {
                     case "pencil-carrusel1":
                         let landing = "Concert Channel"
                         let id = 1;
-                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue");
+                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue thumbnail-header-concert");
                         break;
                     case "pencil-carrusel2":
                         landing = "Concert Channel"
                         id = 2;
-                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue");
+                        getPromotionalsProgramsCarousel(id, landing, "header-background-blue thumbnail-header-concert");
                         break;
-
-                    case "pencil-header":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-titles").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
-                        break;
-                    case "pencil-video":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-promos-concert").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
+                    case "slider-pagination":
+                        getContentConcertChannel("slider-pagination")
                         break;
                     case "pencil-header1":
                         $("body").append(loader);
@@ -386,28 +372,7 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
-                        /* case "slider-pagination":
-                             $("body").append(loader);
-                             setTimeout(function () {
-                                 $('.modal-programming-carousel-concert').modal("show");
-                                 $(".programming-slider").slick({
-                                     slidesToShow: 1,
-                                     dots: true,
-                                     appendDots: $(".programming-slider-dots"),
-                                     initialSlide: 0,
-                                     infinite: false,
-                                     customPaging: function (slider, i) {
-                                         var thumb = $(slider.$slides[i]).data();
-                                         return (
-                                             "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                             (i + 1) +
-                                             "</p>"
-                                         );
-                                     }
-                                 });
-                                 $("#loader1").remove();
-                             }, 3000);
-                             break;*/
+
 
                     default:
                         break;
@@ -419,6 +384,10 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+
+    $(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
+        resetIframe($('#navbar-prev-concert-channel iframe'), confLandingConcertChannel);
+    })
 
     $('.calendar-slider2').on("click", ".programming-concert-landing", function () {
         $(".programming-concert-landing").removeClass("programming-item-active");
@@ -636,6 +605,21 @@ function eventsGrilla() {
         getChapterInfo(chapter_id);
     });
 
+    $(".modal-edit-program-carrusel").on("change", ".edit-image-carrusel", function () {
+        let image = this.files[0];
+        let name = $(this).attr("program");
+        let landing = $(this).attr("landing");
+        let chapter_id = $(this).attr("chapter_id");
+        console.log(landing, name, chapter_id);
+        let data = new FormData();
+
+        data.append("image-horizontal", image);
+        data.append("landing", landing);
+        data.append("chapter_id", chapter_id);
+        data.append("name", name);
+        updateImageProgramOfLanding(data);
+    });
+
     $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
         let editProgramDataContainer = $(".edit-program-data-container");
@@ -658,6 +642,7 @@ function eventsGrilla() {
             let chapter_id = $(".edit-program-data-container").attr(
                 "chapter_id"
             );
+            console.log($(".edit-program-data-container-s").attr("chapter_id"));
             let value = $(this).val();
             switch (key) {
                 case "in_home_begin":
@@ -757,6 +742,152 @@ function eventsGrilla() {
                         !$(".edit-landing-time-end").val()
                     ) {
                         let date = $(".edit-landing-date-end")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                default:
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                    break;
+            }
+
+            //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+            //$("#navbar-prev-programacion iframe").attr("src", iframe);
+        }
+    });
+
+    $(".modal-edit-program-carrusel").on("change", ".input-image-program", function () {
+        let currentInput = $(this);
+
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                currentInput
+                    .next()
+                    .children(".prev-image-program")
+                    .attr("src", e.target.result)
+                    .addClass("h-100 w-100")
+                    .css("z-index", "2");
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    //Editar datos de un programa de un carrusel en el landing
+    $(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
+        if (e.which === 13 && !e.shiftKey) {
+            let key = $(this).attr("key");
+            let chapter_id = $(this).attr(
+                "chapter_id"
+            );
+            let value = $(this).val();
+
+            switch (key) {
+                case "in_home_begin":
+                    if (
+                        $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                        $(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                    ) {
+                        value = `${$(this).val()} ${$(
+                            "modal-edit-program-carrusel .edit-home-time-begin"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                        !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                    ) {
+                        let date = $(this)
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_home_expiration":
+                    if (
+                        $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
+                        $(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                    ) {
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".modal-edit-program-carrusel .edit-home-time-expiration"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
+                        !$(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                    ) {
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_landing_begin":
+                    if (
+                        $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                        $(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                    ) {
+                        let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".modal-edit-program-carrusel .edit-landing-time-begin"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                        !$(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                    ) {
+                        let date = $(".edit-landing-date-begin")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_landing_expiration":
+                    //Si se escribió la hora y la fecha
+                    if (
+                        $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                        $(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                    ) {
+                        let date = $(".modal-edit-program-carrusel  .edit-landing-date-end")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".modal-edit-program-carrusel  .edit-landing-time-end"
+                        ).val()}`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                        !$(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                    ) {
+                        let date = $(".modal-edit-program-carrusel .edit-landing-date-end")
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -886,11 +1017,126 @@ function eventsGrilla() {
         //let iframe = $("#navbar-prev-programacion iframe").attr("src");
         //$("#navbar-prev-programacion iframe").attr("src", iframe);
     });
+    $(".modal-edit-program-carrusel .edit-program-attribute-text").on("blur", "edit-program-attribute-text", function (e) {
+        let key = $(this).attr("key");
+        let chapter_id = $(this).attr("chapter_id");
+        let value = $(this).val();
+        switch (key) {
+            case "in_home_begin":
+                if (
+                    $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                    $(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                ) {
+                    value = `${$(this).val()} ${$(
+                        ".modal-edit-program-carrusel .edit-home-time-begin"
+                    ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                    !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                ) {
+                    let date = $(this)
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                }
+
+                break;
+            case "in_home_expiration":
+                if (
+                    $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
+                    $(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".modal-edit-program-carrusel .edit-home-time-expiration"
+                    ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
+                    !$(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                }
+
+                break;
+            case "in_landing_begin":
+                if (
+                    $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                    $(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".modal-edit-program-carrusel .edit-landing-time-begin"
+                    ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                    !$(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
+                }
+
+                break;
+            case "in_landing_expiration":
+                if (
+                    $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                    $(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-landing-date-end")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".modal-edit-program-carrusel .edit-landing-time-end"
+                    ).val()}`;
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                    !$(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                ) {
+                    let date = $(".modal-edit-program-carrusel .edit-landing-date-end")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                }
+                break;
+            default:
+                editAttributeProgram(chapter_id, key, value);
+                break;
+        }
+
+        //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
+    });
 
     $(".edit-program-switch").click(function () {
         let value = $(this).val();
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        editAttributeProgram(chapter_id, key, value);
+    });
+    $(".modal-edit-program-carrusel").on("click", ".edit-program-switch", function () {
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        let chapter_id = $(this).attr("chapter_id");
         editAttributeProgram(chapter_id, key, value);
     });
 
@@ -902,9 +1148,37 @@ function eventsGrilla() {
             $(".edit-home-time-begin").val("");
         }
     });
+    $(".modal-edit-program-carrusel").on("click", ".edit-switch-home", function () {
+        if ($(this).val() == 0) {
+            $(".edit-home-date-end").val("");
+            $(".edit-home-date-begin").val("");
+            $(".edit-home-time-end").val("");
+            $(".edit-home-time-begin").val("");
+        }
+    });
 
     $(".edit-switch-landing").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        if ($(this).val() == 0) {
+            $(".edit-landing-date-end").val("");
+            $(".edit-landing-date-begin").val("");
+            $(".edit-landing-time-end").val("");
+            $(".edit-landing-time-begin").val("");
+            $("#landing-section-1").prop("checked", false);
+            $("#landing-section-1").attr("disabled", true);
+            $("#landing-section-2").prop("checked", false);
+            $("#landing-section-2").attr("disabled", true);
+            editAttributeProgram(chapter_id, key, value);
+        } else {
+            $("#landing-section-1").attr("disabled", false);
+            $("#landing-section-2").attr("disabled", false);
+        }
+    });
+    //
+    $(".modal-edit-program-carrusel").on("click", ".edit-switch-landing", function () {
+        let chapter_id = $(".modal-edit-program-carrusel .edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");
         if ($(this).val() == 0) {

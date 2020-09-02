@@ -56,6 +56,7 @@ class landingController extends Controller
 
     public function updateImageProgramOfLanding(Request $request)
     {
+
         $name = str_replace(" ", "", $request->input('name'));
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
@@ -77,7 +78,7 @@ class landingController extends Controller
                 break;
         }
 
-        var_dump($pathImageHorizontal);
+
 
         $response = $client->post(
             $this->url . "program/CaptureImagesForChapter",

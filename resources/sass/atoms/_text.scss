@@ -4,7 +4,7 @@
 /* TEXT BASE */
 
 .h2 {
-    font-size: 32px;
+    font-size: 32px !important;
 }
 
 .h3 {
@@ -1001,4 +1001,52 @@
 
 .edit-date-time-title1 {
     margin-bottom: 114px;
+}
+
+.thumbnail-header-claro {
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        font-size: 32px;
+    }
+}
+
+.thumbnail-header-concert {
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        font-size: 32px;
+    }
+}
+
+.thumbnail-header-cinema {
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        font-size: 32px;
+    }
 }

@@ -415,7 +415,7 @@ body {
 /* TEXT BASE */
 
 .h2 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 .h3 {
@@ -1403,6 +1403,48 @@ body {
 
 .edit-date-time-title1 {
   margin-bottom: 114px;
+}
+
+.thumbnail-header-claro .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
+}
+
+.thumbnail-header-concert .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
+}
+
+.thumbnail-header-cinema .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
 }
 
 @font-face {
@@ -3506,6 +3548,19 @@ input[type="radio"]:checked + .no-estilo1 {
   text-transform: uppercase;
 }
 
+.thumbnail-header-claro .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
 .thumbnail-header-concert .filter-option {
   border: 2px solid #0068ff;
   background: #0068ff;
@@ -3516,6 +3571,19 @@ input[type="radio"]:checked + .no-estilo1 {
   text-transform: uppercase;
 }
 
+.thumbnail-header-concert .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
 .thumbnail-header-cinema .filter-option {
   border: 2px solid #0097a9;
   background: #0097a9;
@@ -3524,6 +3592,19 @@ input[type="radio"]:checked + .no-estilo1 {
   display: flex;
   align-items: center;
   text-transform: uppercase;
+}
+
+.thumbnail-header-cinema .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
 }
 
 .thumbnail-header1 > .dropdown-toggle {
@@ -4401,7 +4482,7 @@ div .bootstrap-select > .dropdown-toggle:focus {
 /* TEXT BASE */
 
 .h2 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 .h3 {
@@ -5389,6 +5470,48 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .edit-date-time-title1 {
   margin-bottom: 114px;
+}
+
+.thumbnail-header-claro .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
+}
+
+.thumbnail-header-concert .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
+}
+
+.thumbnail-header-cinema .dropdown-item {
+  display: inline-block;
+  width: 100%;
+  padding: 0 !important;
+  clear: both;
+  font-weight: 400;
+  color: #9b9b9b;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  font-size: 32px;
 }
 
 #video-promo-concert {

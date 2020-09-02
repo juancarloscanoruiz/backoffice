@@ -1348,7 +1348,7 @@
                             <div class=" d-flex justify-content-center">
                                 <section class="text-center mb-3 d-flex justify-content-center">
                                     <button
-                                        class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                                        class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus edit-landing-modal-button"
                                         data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
                                 </section>
 

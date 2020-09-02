@@ -433,15 +433,32 @@ input[type="radio"]:checked+.no-estilo1 {
     width: 100%;
 }
 
-.thumbnail-header-claro .filter-option {
-    border: 2px solid $selecred;
-    background: $selecred;
-    color: white;
-    font-size: 32px;
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
+.thumbnail-header-claro {
+    .filter-option {
+        border: 2px solid $selecred;
+        background: $selecred;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0
+    }
 }
+
+
 
 .thumbnail-header-concert {
     .filter-option {
@@ -452,6 +469,19 @@ input[type="radio"]:checked+.no-estilo1 {
         display: flex;
         align-items: center;
         text-transform: uppercase;
+    }
+
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0
     }
 }
 
@@ -464,6 +494,19 @@ input[type="radio"]:checked+.no-estilo1 {
         display: flex;
         align-items: center;
         text-transform: uppercase;
+    }
+
+    .dropdown-item {
+        display: inline-block;
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        font-weight: 400;
+        color: #9b9b9b;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0
     }
 }
 
@@ -601,13 +644,16 @@ div .bootstrap-select>.dropdown-toggle:focus {
     background-color: transparent !important;
     border-color: transparent !important;
 }
+
 .btn-light {
     background-color: transparent !important;
     border-color: transparent !important;
 }
-.bootstrap-select > .dropdown-toggle.bs-placeholder{
-    color:white !important;
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder {
+    color: white !important;
 }
+
 .btn.focus,
 .btn:focus {
     outline: 0 !important;
@@ -690,59 +736,69 @@ div .bootstrap-select>.dropdown-toggle:focus {
 .listcinema:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 100% !important;
 }
-.url-container{
+
+.url-container {
     width: 83%;
 }
-.url-input{
+
+.url-input {
     border-radius: 0px !important;
     width: 246px;
     height: 43px;
     -o-object-fit: contain;
     object-fit: contain;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0,0 );
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
 }
-.input-title{
+
+.input-title {
     width: 634px;
     height: 111px;
     border-radius: 0px !important;
     -o-object-fit: contain;
     object-fit: contain;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0,0 );
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
 
 }
 
-.concert-input::placeholder{
+.concert-input::placeholder {
     font-family: $MontserratBold;
-    color:$bright-cyan;
+    color: $bright-cyan;
 }
-.hoy-en::placeholder{
+
+.hoy-en::placeholder {
     font-family: $MontserratBlack;
     color: $white;
 }
-.concert-input-title::placeholder{
+
+.concert-input-title::placeholder {
     font-family: $MontserratBlack;
-    color:$bright-cyan;
+    color: $bright-cyan;
 }
 
-.hoy-en-cinema::placeholder{
+.hoy-en-cinema::placeholder {
     font-family: $MontserratBlack;
     color: black;
 }
-.cinema-input-title::placeholder{
+
+.cinema-input-title::placeholder {
     font-family: $MontserratBlack;
-    color:$selecred;
+    color: $selecred;
 }
-.cinema-title-input::placeholder{
-    font-family:$MontserratBlack;
+
+.cinema-title-input::placeholder {
+    font-family: $MontserratBlack;
     color: $off-yellow-two;
 }
-.cinema-title-carrusel1-input::placeholder{
-    font-family:$MontserratBlack;
+
+.cinema-title-carrusel1-input::placeholder {
+    font-family: $MontserratBlack;
     color: $turquoise-blue;
 }
-.input-title-cinema{
-    background-color:$black-two;
+
+.input-title-cinema {
+    background-color: $black-two;
 }
-.input-border{
+
+.input-border {
     border-radius: 8px !important;
 }

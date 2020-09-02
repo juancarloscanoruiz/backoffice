@@ -6,8 +6,15 @@ import {
 
 } from "./generalSchedule.js";
 
-
 //Configraciones para la librería de Cleave JS
+import {
+    cleaveConfig,
+    scheduleTimeConfig,
+    timeWithSeconds,
+    year
+} from "../config/config.js";
+
+
 import {
     calendarSlick
 } from "../config/slick.js";
@@ -16,6 +23,8 @@ import {
     createSlickSlider,
     createCalendarDays
 } from "../vendor/slick.js";
+
+
 
 function getMonth(idMonth) {
     let date = new Date();
@@ -1097,15 +1106,115 @@ function getContentConcertChannelBlock4OTwo() {
     })
 }
 
+function getContentConcertChannel(type) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/concertChannel",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                switch (type) {
+                    case "slider-pagination":
+
+                        let programmingSlider = $(".programming-slider");
+                        let counter = 1;
+                        let image = "";
+                        while (true) {
+                            try {
+                                if (data.data[`block_1_image_slider_${counter}`]) {
+                                    image += `
+                                    <div class="bor thumbnail-image-program position-relative h-100">
+                                        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+                                        <label for="image_programming_1"
+                                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                            <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                                class=" cursor-pointer add-photo " />
+                                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                            <img src="${data.data["block_1_image_slider_" + counter]}"
+                                                class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                        </label>
+                                    </div>
+                                    `;
+
+                                    counter++;
+                                } else {
+                                    break;
+
+                                }
+                            } catch (error) {
+                                break;
+
+                            }
+                        }
+
+                        $('.programming-slider').html(image);
+                        $('.modal-programming-carousel-concert').modal("show");
+                        try {
+                            programmingSlider.slick("unslick")
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        } catch (error) {
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            $('.loader-view-container').remove();
+        }
+    })
+}
+
 //Obtenemos el video promocional en el landing de concert channel
 function getConcertChannelPromo() {
     $.ajax({
         type: "POST",
         beforeSend: function () {
             $("body").append(
-                `<div class="loader-view-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
+                ` < div class = "loader-view-container pointer-none" >
+                                                    <
+                                                    img src = "./images/loader.gif"
+                                                class = "loader" / >
+                                                    <
+                                                    /div>`
             );
         },
         url: "landing/concertChannel",
@@ -1563,8 +1672,31 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
             $('.loader-view-container').remove();
             let program = "";
             let titles = "";
+            let idLanding = "";
+            let classButton = "" //Nos sirve para distinguir a qué modal y en qué landing damos click
+            //Limpiamos input en donde se encuentran las imágenes
+            $('.edit-image-carrusel').val("");
+            //Verificamos cuál landing es y de ahí asignamos un id
+            switch (landing) {
+                case "Canal Claro":
+                    idLanding = 1;
+                    break;
+                case "Concert Channel":
+                    idLanding = 2;
+                    classButton = "modal-button-landing-concert";
+                    break;
+                case "Claro Cinema":
+                    idLanding = 3;
+                    break;
+
+                default:
+                    break;
+            }
             //Capítulos que se encuentran en el carrusel
+            $(".carrusel1-slider-concert").html("");
+
             for (const chapter of data.data.chapters) {
+
                 //Variables a evaluar
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
@@ -1578,14 +1710,14 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
                             class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no"
-                             name="yes-landing-carrusel-${chapter.chapter.id}" />
+                             name="yes-landing-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}"/>
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -1611,30 +1743,30 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                         dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
                         timeBegin = dateTimeBegin[1];
                     }
-                    console.log(dateBeginLanding);
+
                     inLandingDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
-                                placeholder="00-00-0000" key="in_landing_begin" value="${dateBeginLanding}" /></span>
+                                placeholder="00-00-0000" key="in_landing_begin" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}" /></span>
                     </div>
                     <div class="mb-4 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
-                                key="in_landing_expiration" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
+                                key="in_landing_expiration" chapter_id="${chapter.chapter.id}" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
                     </div>
                     `
 
                     inLandingTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
-                    <span class="a-text-bold-warm">Inicio: <input type="text"
+                    <span class="a-text-bold-warm">Inicio: <input chapter_id="${chapter.chapter.id}" type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="${timeBegin}" placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
-                                key="in_landing_expiration" value="${timeExpiration}" placeholder="00:00:00"></span>
+                                key="in_landing_expiration" chapter_id="${chapter.chapter.id}" value="${timeExpiration}" placeholder="00:00:00"></span>
                     </div>
                     `;
 
@@ -1642,13 +1774,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1"
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
                             class="edit-switch-landing edit-landing-yes" key="in_landing" />
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
-                            class="edit-switch-landing switch-table-edit edit-landing-no"
+                            class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id}"
                             checked name="yes-landing-carrusel-${chapter.chapter.id}" />
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
@@ -1658,12 +1790,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     inLandingTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input type="text"
-                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
+                            class="time-seconds-input input-basic edit-program-input edit-program-attribute-text chapter_id="${chapter.chapter.id}" a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="" placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
-                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
+                                class="time-seconds-input input-basic edit-program-input edit-program-attribute-text  a-text-bold-warm text-uppercase edit-landing-time-end" chapter_id="${chapter.chapter.id}"
                                 key="in_landing_expiration" value="" placeholder="00:00:00"></span>
                     </div>
                     `;
@@ -1671,12 +1803,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
-                                placeholder="00-00-0000" key="in_landing_begin" value="" /></span>
+                                placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="" /></span>
                     </div>
                     <div class="mb-4 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
-                                key="in_landing_expiration" placeholder="00-00-0000" value=""></span>
+                                key="in_landing_expiration" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                     </div>`;
                 }
 
@@ -1688,13 +1820,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 if (chapter.chapter.in_home == 1) {
                     inHomeSwitch = `
                     <div class="d-flex align-items-center edit-switches-home-container">
-                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
                             class="edit-switch-home edit-program-switch edit-in-home-yes"
                             key="in_home" checked/>
                         <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0" chapter_id="${chapter.chapter.id}"
                             class="edit-switch-home edit-program-switch edit-in-home-no"
                             key="in_home" />
                         <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
@@ -1733,12 +1865,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value="${dateHomeBegin}"
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
-                            placeholder="00-00-0000" /></span>
+                            placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
                     <div class="mb-4 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin:
                             <input type="text" key="in_home_expiration"
-                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value="${dateHomeExpiration}"
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"
                                 placeholder="00-00-0000"></span>
                     </div>
                     `
@@ -1759,13 +1891,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 } else {
                     inHomeSwitch = `
                     <div class="d-flex align-items-center edit-switches-home-container">
-                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" id="edit-in-home-yes-${chapter.chapter.id}" value="1"
                             class="edit-switch-home edit-program-switch edit-in-home-yes"
                             key="in_home" />
                         <label for="edit-in-home-yes-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}"  id="edit-in-home-no-${chapter.chapter.id}" value="0"
+                        <input type="radio" name="switch-home-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" id="edit-in-home-no-${chapter.chapter.id}" value="0"
                             class="edit-switch-home edit-program-switch edit-in-home-no"
                             key="in_home" checked/>
                         <label for="edit-in-home-no-${chapter.chapter.id}" id="noestado-landing"
@@ -1778,12 +1910,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
-                            placeholder="00-00-0000" /></span>
+                            placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
                     <div class="mb-4 text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin:
                             <input type="text" key="in_home_expiration"
-                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" value=""
+                                class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value=""
                                 placeholder="00-00-0000"></span>
                     </div>
                     `
@@ -1791,13 +1923,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
-                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
                             placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
-                                placeholder="00:00:00"></span>
+                                placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
                     </div>
                     `
                 }
@@ -1806,16 +1938,16 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 if (chapter.chapter.subbed == 0) {
                     subbed = `
                     <div class="d-flex">
-                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" value="1"
+                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" name="subbed-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
                             class="edit-program-switch switch-landing edit-subbed-yes"
                             key="subbed" />
                         <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0" checked
+                        <input type="radio" name="subbed-${chapter.chapter.id}" id="no-subbed-${chapter.chapter.id}" value="0" checked chapter_id="${chapter.chapter.id}"
                             class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
                             key="subbed" />
-                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                        <label for="no-subbed-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
                     </div>
@@ -1823,16 +1955,16 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 } else {
                     subbed = `
                     <div class="d-flex">
-                        <input type="radio" id="yes-subbed-${chapter.chapter.id}" checked value="1"
+                        <input type="radio" name="subbed-${chapter.chapter.id}" id="yes-subbed-${chapter.chapter.id}" checked value="1" chapter_id="${chapter.chapter.id}"
                             class="edit-program-switch switch-landing edit-subbed-yes"
                             key="subbed" />
                         <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                        <input type="radio" name="subbed-${chapter.chapter.id}" id="no-subbed-${chapter.chapter.id}" value="0" chapter_id="${chapter.chapter.id}"
                             class="edit-program-switch switch-landing switch-table-edit edit-subbed-no"
                             key="subbed" />
-                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                        <label for="no-subbed-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
                     </div>
@@ -1842,16 +1974,16 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 if (chapter.chapter.dubbed == 0) {
                     dubbed = `
                     <div class="d-flex">
-                        <input type="radio" id="yes-dubbed" value="1"
+                        <input type="radio" id="yes-dubbed-${chapter.chapter.id}" value="1" name="dubbed-${chapter.chapter.id}"
                             class="edit-program-switch switch-landing edit-dubbed-yes"
-                            key="dubbed" />
-                        <label for="yes-dubbed" id="siestado-landing"
+                            key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                        <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" id="no-dubbed" value="0" checked
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0" checked name="dubbed-${chapter.chapter.id}"
                             class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
-                            key="dubbed" />
-                        <label for="no-dubbed" id="noestado-landing"
+                            key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                        <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
                     </div>
@@ -1859,15 +1991,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 } else {
                     dubbed = `
                     <div class="d-flex">
-                        <input type="radio" id="yes-dubbed-${chapter.chapter.id}" value="1" checked
+                        <input type="radio" id="yes-dubbed-${chapter.chapter.id}" name="dubbed-${chapter.chapter.id}" value="1" checked
                             class="edit-program-switch switch-landing edit-dubbed-yes"
-                            key="dubbed" />
+                            key="dubbed" chapter_id="${chapter.chapter.id}"/>
                         <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
-                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0"
+                        <input type="radio" id="no-dubbed-${chapter.chapter.id}" name="dubbed-${chapter.chapter.id}" value="0"
                             class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
-                            key="dubbed" />
+                            key="dubbed" chapter_id="${chapter.chapter.id}"/>
                         <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -1881,13 +2013,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <div class="d-flex">
                         <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
                             class="edit-program-switch switch-landing edit-audio5-yes"
-                            key="audio5" />
+                            key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
                         <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
                         <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0" checked
                             class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
-                            key="audio5" />
+                            key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
                         <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -1898,13 +2030,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <div class="d-flex">
                         <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
                             class="edit-program-switch switch-landing edit-audio5-yes" checked
-                            key="audio5" />
+                            key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
                         <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
                             class="si-estilo cursor-pointer mb-0 switch-label">
                             Sí</label>
                         <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0"
                             class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
-                            key="audio5" />
+                            key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
                         <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -1916,16 +2048,16 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <div>
                 <section class="edit-program-image">
                     <select
-                        class="carrusel-concert-select ${landingClass}  w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                        class="carrusel-concert-select ${landingClass} w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
                         title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
                         data-live-search-placeholder="Agregar título de nuevo programa"
-                        name="thumbnail-header1" key="title">
+                        name="thumbnail-header1" key="title" chapter_id="${chapter.chapter.id}">
                     </select>
                     <!--Imagen del programa--->
                     <div class="edit-thumbnail position-relative">
-                        <input type="file" name="image-horizontal" id="edit-image-horizontal"
-                            class="input-image-program d-none ">
-                        <label for="edit-image-horizontal"
+                        <input type="file" name="image-horizontal"
+                            class="input-image-program d-none edit-image-carrusel" id="edit-image-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" landing="${idLanding}" program="${chapter.chapter.program.title}">
+                        <label for="edit-image-carrusel-${chapter.chapter.id}"
                             class="load-modal-programming load-photo d-inline" id="imagenes">
                             <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
                                 alt="heart-icon" />
@@ -1949,7 +2081,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <section class="mb-5">
                     <div class="row">
                         <!--Landing-->
-                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                        <div class="col-4 edit-program-data-container edit-data-container-large" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container h-100">
                                 <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                     Establecer
@@ -1975,7 +2107,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                             </div>
                         </div>
                         <!--Home-->
-                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                        <div class="col-4 edit-program-data-container edit-data-container-large" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container h-100">
                                 <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray">
                                     Establecer
@@ -1993,7 +2125,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 ${inHomeTimes}
                             </div>
                         </div>
-                        <div class="col-4 edit-program-data-container edit-data-container-large">
+                        <div class="col-4 edit-program-data-container edit-data-container-large" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container h-100">
                                 <p
                                     class="edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray">
@@ -2028,17 +2160,17 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     </div>
                 </section>
                 <!--Sinopsis-->
-                <section class="mb-5 edit-program-data-container">
+                <section class="mb-5 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                     <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                     <!--Textarea-->
-                    <textarea key="synopsis"
+                    <textarea chapter_id="${chapter.chapter.id}" key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                         id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
                 </section>
                 <section class="mb-3">
                     <div class="row">
                         <!--Program episode season-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
                                     episode
@@ -2047,12 +2179,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                     <input type="text" key="season" value="${chapter.chapter.season}"
                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
-                                        placeholder="00">
+                                        placeholder="00" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
                         </div>
                         <!--Program episode number-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
                                     episode
@@ -2061,12 +2193,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                     <input type="text" key="program_episode_number" value="${chapter.chapter.program_episode_number}"
                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
-                                        placeholder="000">
+                                        placeholder="000" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
                         </div>
                         <!--Program year produced-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
                                     year
@@ -2075,7 +2207,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                     <input type="text" key="program_year_produced" ${chapter.chapter.program.year}
                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
-                                        placeholder="YYYY">
+                                        placeholder="YYYY" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
                         </div> 
@@ -2084,7 +2216,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <section class="mb-3">
                     <div class="row">
                         <!--Program title alternate-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
                                     title
@@ -2093,13 +2225,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 <div class="mb-3 edit-rectangle-container p-3">
                                     <input type="text" key="subtitle" value="${chapter.chapter.subtitle}"
                                         class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
-                                        placeholder="Program Title Alternate">
+                                        placeholder="Program Title Alternate" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
                         </div>
                         <!--Program genre list-->
                         <div class="col-4 edit-program-data-container position-relative"
-                            id="edit-genre-container">
+                            id="edit-genre-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program
                                     genre
@@ -2107,16 +2239,16 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 </p>
                                 <div class="mb-3 edit-rectangle-container ">
                                     <select
-                                        class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
-                                        id="edit-program-genres" title="Genere list" multiple
+                                        class="list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
+                                         title="Genere list" multiple
                                         data-live-search="true" data-live-search-placeholder="Buscar"
-                                        data-header="Program List" data-dropup-auto="false" key="genre">
+                                        data-header="Program List" data-dropup-auto="false" key="genre" chapter_id="${chapter.chapter.id}">
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <!---->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
                                     item
@@ -2126,7 +2258,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 <div class="mb-3 text-center edit-rectangle-small-container py-3">
                                     <input type="text" key="rating" value="${chapter.chapter.program.rating}"
                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
-                                        placeholder="PG-00">
+                                        placeholder="PG-00" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
                         </div> 
@@ -2135,7 +2267,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <section class="mb-3">
                     <div class="row">
                         <!--Schedule item log date-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div
                                 class="edit-data-container d-flex flex-column justify-content-between h-100">
                                 <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item
@@ -2151,13 +2283,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                         <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="day" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"
                                             class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
-                                            placeholder="DD:MM:YY">
+                                            placeholder="DD:MM:YY" chapter_id="${chapter.chapter.id}">
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div
                                 class="edit-data-container h-100 d-flex flex-column justify-content-between">
                                 <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule
@@ -2172,13 +2304,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="programing" value="${chapter.chapter.hour}"
                                             class="edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
-                                            placeholder="00:00:00">
+                                            placeholder="00:00:00" chapter_id="${chapter.chapter.id}">
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div
                                 class="edit-data-container d-flex flex-column justify-content-between h-100">
                                 <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated
@@ -2192,7 +2324,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="duration" value="${chapter.chapter.duration}"
                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
-                                            placeholder="00:00:00">
+                                            placeholder="00:00:00" chapter_id="${chapter.chapter.id}">
                                     </div>
                                 </div>
 
@@ -2203,7 +2335,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <section class="mb-5">
                     <div class="row">
                         <!--Schedule item log date-->
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container d-flex justify-content-between">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
                                     version
@@ -2212,7 +2344,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 ${subbed}
                             </div>
                         </div>
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container d-flex justify-content-between">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule
                                     version
@@ -2221,7 +2353,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 ${dubbed}
                             </div>
                         </div>
-                        <div class="col-4 edit-program-data-container">
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container d-flex justify-content-between">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Audio
                                     5.1<br>
@@ -2236,7 +2368,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 <div class=" d-flex justify-content-center">
                     <section class="text-center mb-3 d-flex justify-content-center">
                         <button
-                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                            class="d-flex ${classButton} mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                             data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
                     </section>
 
@@ -2244,13 +2376,52 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
             </div>
                 `;
             }
-            $(".carrusel1-slider-concert").html(program);
+
+            //Mostramos el modal
+            $(".modal-edit-program-carrusel").modal("show");
+            //Volvemos a crear el slider
+            try {
+                $(".carrusel1-slider-concert").slick("unslick");
+                $(".carrusel1-slider-concert").html(program);
+                $(".carrusel1-slider-concert").slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".carrusel1-slider-dots1"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function (slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            } catch (error) {
+                $(".carrusel1-slider-concert").html(program);
+                $(".carrusel1-slider-concert").slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".carrusel1-slider-dots1"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function (slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            }
             //Genres
             let optionGenre = ""
             data.data.genres.forEach(genre => {
                 optionGenre += `
-                             <option value="${genre.title}">${genre.title}</option>
-                             `
+                                         <option value="${genre.title}">${genre.title}</option>
+                                         `
             });
             //Géneros
             $('.list1').append(optionGenre);
@@ -2259,50 +2430,13 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 filter: true,
                 multipleSeparator: ", "
             });
-            //Títulos
-
-            $('.carrusel-concert-select').append(titles);
-            $('.carrusel-concert-select').selectpicker('destroy');
-            $('.carrusel-concert-select').selectpicker({
-                filter: true,
-                multipleSeparator: ", "
-            });
-            const dropdownTitles = $("#prog_titulo_programa")
-            dropdownTitles.selectpicker('destroy');
-            dropdownTitles.selectpicker();
-
-            let selectheader = $(".thumbnail-header1");
-            selectheader.on("hide.bs.select", function () {
-                let keyValue = "";
-                let key = $("#prog_titulo_programa").attr("key");
-                let chapter_id = $(".edit-program-data-container").attr(
-                    "chapter_id"
-                );
-                if ($(this).val()) {
-                    keyValue = $(this).val();
-                } else {
-                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
-                    keyValue = $(this).val();
-                }
-                editAttributeProgram(chapter_id, key, keyValue);
-            });
-
-            let imageTriangle = `
-            <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
-        `;
-            $('.edit-program-image .bootstrap-select').append(imageTriangle);
-            $('.dropimg').click(function () {
-                dropdownTitles.selectpicker('toggle');
-            })
-
-
-
             let editProgramLandingGenres = "";
-            let selectGenres = $("#edit-program-genres");
+            let selectGenres = $(".modal-edit-program-carrusel .edit-program-genres").children(".list1");
             //Verificamos si el usuario ha seleccionado un género o categoría
-            selectGenres.on("change", function () {
+            selectGenres.on("changed.bs.select", function () {
                 //Obtenemos los valores del selectpicker
                 let selected = $(this).val();
+
                 //Obtenemos el número de valores que hemos obtenido del arreglo
                 let selectedLength = selected.length;
                 editProgramLandingGenres = "";
@@ -2314,61 +2448,87 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                         editProgramLandingGenres += `${selected[index]},`;
                     }
                 }
+                console.log(editProgramLandingGenres);
             });
             //Evento para cuando cerramos el selectpicker
             selectGenres.on("hide.bs.select", function () {
-                let chapterId = $(".edit-program-data-container").attr(
+                let chapterId = $(this).attr(
                     "chapter_id"
                 );
+
+
                 //Obtenemos la key
-                let key = $("#edit-program-genres").attr("key");
+                let key = $(this).attr("key");
                 //Obtenemos los géneros que pudo haber seleccionado el usuario
                 let keyValue = editProgramLandingGenres;
                 //Hacemos la petición
-
+                console.log(chapterId, key, keyValue);
                 editAttributeProgram(chapterId, key, keyValue);
             });
-            $(".modal-edit-program-carrusel").modal("show");
-            setTimeout(() => {
-                try {
-                    $(".carrusel1-slider-concert").slick("unslick");
-                    $(".carrusel1-slider-concert").slick({
-                        slidesToShow: 1,
-                        dots: true,
-                        appendDots: $(".carrusel1-slider-dots1"),
-                        initialSlide: 0,
-                        infinite: false,
-                        customPaging: function (slider, i) {
-                            var thumb = $(slider.$slides[i]).data();
-                            return (
-                                "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                (i + 1) +
-                                "</p>"
-                            );
-                        }
-                    });
-                } catch (error) {
-                    $(".carrusel1-slider-concert").slick({
-                        slidesToShow: 1,
-                        dots: true,
-                        appendDots: $(".carrusel1-slider-dots1"),
-                        initialSlide: 0,
-                        infinite: false,
-                        customPaging: function (slider, i) {
-                            var thumb = $(slider.$slides[i]).data();
-                            return (
-                                "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                (i + 1) +
-                                "</p>"
-                            );
-                        }
-                    });
+            $('.carrusel-concert-select').append(titles);
+            $('.carrusel-concert-select').selectpicker('destroy');
+            $('.carrusel-concert-select').selectpicker({
+                filter: true,
+                multipleSeparator: ", "
+            });
+            let selectheader = $(".modal-edit-program-carrusel .carrusel-concert-select").children(".carrusel-concert-select");
+            selectheader.on("hide.bs.select", function () {
+                let keyValue = "";
+                let key = $(this).attr("key");
+                let chapter_id = $(this).attr(
+                    "chapter_id"
+                );
+                if ($(this).val()) {
+                    keyValue = $(this).val();
+                } else {
+                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    keyValue = $(this).val();
                 }
-
-
-            }, 250);
+                editAttributeProgram(chapter_id, key, keyValue);
+            });
+            /*
+            Permite a todos los campos de Schedule item log time tener el formato
+            tiempo en hh:mm
+            */
+            $(".schedule-time-input")
+                .toArray()
+                .forEach(scheduleTime => {
+                    new Cleave(scheduleTime, scheduleTimeConfig);
+                });
+            /*
+            Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
+            */
+            $(".schedule-date-input")
+                .toArray()
+                .forEach(scheduleDate => {
+                    new Cleave(scheduleDate, cleaveConfig);
+                });
+            /*
+            Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+            */
+            $(".time-seconds-input")
+                .toArray()
+                .forEach(timeInput => {
+                    new Cleave(timeInput, timeWithSeconds);
+                });
+            /*
+            Permite a todos los input con la clase year-input tener el formato YYYY
+            */
+            $(".year-input")
+                .toArray()
+                .forEach(yearInput => {
+                    new Cleave(yearInput, year);
+                });
+            let imageTriangle = `
+                <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
+            `;
+            $('.modal-edit-program-carrusel .edit-program-image .bootstrap-select').append(imageTriangle);
+            $('.dropimg').click(function () {
+                $('.carrusel-concert-select').selectpicker('toggle');
+            })
 
         }
+
     });
 }
 
@@ -2526,5 +2686,6 @@ export {
     editHeaderLandingClaro,
     editElementLandingClaro,
     getContentClaroCinema,
-    editPromoLandingClaro
+    editPromoLandingClaro,
+    getContentConcertChannel
 };
