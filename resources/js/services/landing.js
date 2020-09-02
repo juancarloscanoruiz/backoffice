@@ -1219,7 +1219,7 @@ function editPromoLanding(data) {
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 function getProgrammingLanding(date, landing) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -1244,7 +1244,7 @@ function getProgrammingLanding(date, landing) {
                         programming = json.data[0].programing[0].programs;
                         break;
                     case "claro-cinema":
-                        programming = json.data[0].programing[0].programs;
+                        programming = json.data[2].programing[0].programs;
                         break;
                     default:
                         break;
@@ -1255,7 +1255,7 @@ function getProgrammingLanding(date, landing) {
                     for (const program of programming) {
                         chapter += `
                         <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="./images/pencil.svg" alt="" class="pencil-edit cursor-pointer programming-pencil-concert"
+                        <img src="./images/pencil.svg" alt="" class="pencil-edit cursor-pointer programming-pencil-${landing}"
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1338,6 +1338,7 @@ function getProgramsLanding(date) {
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
+            debuger
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {

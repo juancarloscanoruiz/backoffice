@@ -507,8 +507,14 @@ function eventsGrilla() {
         $(this).addClass("programming-item-active");
         getProgramsLanding($(this).attr("date"));
     });
-    //Pencil
-    $('.modal-programming-landing').on("click", ".programming-pencil-concert", function () {
+    //Pencil Chanel
+    $('.modal-programming-landing').on("click", ".programming-pencil-canal-claro", function () {
+        let chapterId = $(this).attr("chapter_id");
+        $('.modal-programming-landing').modal("hide");
+        getChapterInfo(chapterId);
+    });
+    //Pencil Canal
+    $('.modal-programming-landing').on("click", ".programming-pencil-concert-channel", function () {
         let chapterId = $(this).attr("chapter_id");
         $('.modal-programming-landing').modal("hide");
         getChapterInfo(chapterId);
@@ -3542,12 +3548,13 @@ function eventsGrilla() {
                     case "claro-programacion":
                         $("body").append(LOADER);
                         setTimeout(function () {
-                            let date = new Date();
+                        let date = new Date();
+                        debugger
                         let day = ("0" + date.getUTCDate()).slice(-2);
                         let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
-                        getProgrammingLanding(currentDate, "claro-canal");
+                        getProgrammingLanding(currentDate, "canal-claro");
                         $("#loader1").remove();
                         }, 3000);
                          break;
