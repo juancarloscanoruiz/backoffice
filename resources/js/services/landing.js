@@ -1805,7 +1805,7 @@ function getModalsCanalClaro(type) {
                         // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
-                            '<video autoplay controls class="img-back-modal img-promo" src="' +
+                            '<video autoplay muted controls class="img-back-modal img-promo" src="' +
                             obj.data.block_3_video_url +
                             '" /></video>'
                         );

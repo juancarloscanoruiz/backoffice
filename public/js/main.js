@@ -93158,7 +93158,7 @@ function getModalsCanalClaro(type) {
           // GET PROMO
 
           case "claro-promo":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
             break;
           // GET PROMO
