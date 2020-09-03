@@ -3883,11 +3883,31 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     }
-
     let menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
     if (menuClaroCanal) {
-        $('#navbar-prev-canal-claro iframe').remove();
         new easyXDM.Socket(landingCanalClaro);
+        $("#prev").click(function () {
+        $('#navbar-prev-canal-claro iframe').remove();
+        new easyXDM.Socket({
+            remote: `${baseURL}claro-canal.php`,
+            container: document.getElementById("navbar-prev-canal-claro"),
+            onMessage: function (message, origin) {
+                this.container.getElementsByTagName(
+                    "iframe"
+                )[0].style.height = message + "px";
+                this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
+                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            });
+        });
+
+        $("#editar").click(function () {
+            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            $("#navbar-prev-canal-claro iframe").remove();
+            new easyXDM.Socket(landingCanalClaro);
+        });
     }
     // BTN MODAL TEST
     $('#btn-test').click(function () {

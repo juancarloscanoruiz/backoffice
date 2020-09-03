@@ -1,7 +1,7 @@
 @extends('layaout.app')
 
 @section('scripts')
-    <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+ <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
     <script>
         new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/sinopsis-edi.php",
@@ -14,13 +14,11 @@
             }
         });
     </script>
-   
-@endsection
-@section('content')
-    <body>
-
-    @include('partials.headers.headerPrograGeneral')
-    <div id="title" class="mt-3">
+<div class="modal modal-landing-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important; display:contents;" >
+        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
+          <div class="modal-content" >
+            <div class="modal-body">
+       <div id="title" class="mt-3">
         <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
         <div class="d-flex  ">
                     <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
@@ -58,12 +56,12 @@
         <div class="mr-5 float-right">
         <div class="d-flex  align-items-center justify-content-center mb-2 mt-2">
             <span class="a-text-semibold-black text-normal mr-3">Establecer sinópsis como:</span>
-                                            <input type="radio" id="yes-landing" value="3"
+                                            <input type="radio" id="yes-landing" name="landing"value="3"
                                                 class="edit-switch-landing edit-landing-yes" />
                                             <label for="yes-landing" id="siestado-landing"
                                                 class="mb-0 si-estilo cursor-pointer switch-label width-program">
                                             Programa</label>
-                                            <input type="radio"  id="no-landing" value="0"
+                                            <input type="radio"  id="no-landing" name="landing"value="0"
                                                 class="edit-switch-landing switch-table-edit edit-landing-no "
                                               checked/>
                                             <label for="no-landing" id="noestado-landing"
@@ -81,5 +79,17 @@
             <div class="navbar-progra-content  mb-5" id="sinopsis-container">
             </div>
         </div>
-    </body>
-@endsection
+ <!--Buttons-->
+ <div class="text-center mb-3 d-flex justify-content-center">
+                  <button
+                      class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro" data-dismiss="modal">aceptar</button>
+                      <a href="#delete-info-encabezado" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+
+                     <!-- <button
+                      class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
+              </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
