@@ -77635,6 +77635,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
 
       var _iterator3 = _createForOfIteratorHelper(data.data.chapters),
           _step3;
@@ -77757,7 +77758,6 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         _iterator3.f();
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".filter-option-inner-inner").html("hola");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //Volvemos a crear el slider
 
       try {
@@ -77887,10 +77887,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-image .bootstrap-select").append(imageTriangle);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("toggle");
-      }); // $("#edit-genre-container").append(
-      //     '<p>' + data.data.chapters[0].chapter.program.genre + '</p>'
-      // );
-      // console.log(data.data.chapters[0].chapter.program.genre);
+      });
     }
   });
   reload(idCarousel, landing);
@@ -77908,7 +77905,7 @@ function reload(idCarousel, landing) {
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dropdown-toggle').removeClass('bs-placeholder');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder');
 
       var _iterator4 = _createForOfIteratorHelper(data.data.chapters),
           _step4;
@@ -77916,7 +77913,7 @@ function reload(idCarousel, landing) {
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
           var chapter = _step4.value;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>');
         }
       } catch (err) {
         _iterator4.e(err);
