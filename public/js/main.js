@@ -89220,7 +89220,13 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider2').on("click", ".programming-concert-landing", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "concert-channel");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider2').on("click", ".programming-canal-landing", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-canal-landing").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "canal-claro");
   }); //Pencil Chanel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').on("click", ".programming-pencil-canal-claro", function () {
@@ -92901,18 +92907,22 @@ function getProgrammingLanding(date, landing) {
 
       if (json.code == 200) {
         var programming = "";
+        var landingClass = "";
 
         switch (landing) {
           case "canal-claro":
             programming = json.data[0].programing[0].programs;
+            landingClass = "programming-canal-landing";
             break;
 
           case "concert-channel":
-            programming = json.data[0].programing[0].programs;
+            programming = json.data[1].programing[0].programs;
+            landingClass = "programming-concert-landing";
             break;
 
           case "claro-cinema":
-            programming = json.data[0].programing[0].programs;
+            programming = json.data[2].programing[0].programs;
+            landingClass = "programming-cinema-landing";
             break;
 
           default:
@@ -92936,13 +92946,12 @@ function getProgrammingLanding(date, landing) {
             _iterator.f();
           }
 
-          console.log(chapter);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-contanier").html(chapter);
         }
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
         var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2, "programming-concert-landing");
+        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2, landingClass);
 
         try {
           calendarSlider2.slick("unslick");
@@ -92959,8 +92968,9 @@ function getProgrammingLanding(date, landing) {
 
 
 function getProgramsLanding(date) {
+  var landing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "POST",
+    type: "GET",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -92973,18 +92983,36 @@ function getProgramsLanding(date) {
       console.log(json);
 
       if (json.code == 200) {
-        var concertChannelProgramming = json.data[0].programing[0].programs;
+        var programming = "";
+        var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-contanier');
 
-        if (concertChannelProgramming.length > 0) {
-          var programConcert = "";
+        switch (landing) {
+          case "canal-claro":
+            programming = json.data[0].programing[0].programs;
+            break;
 
-          var _iterator2 = _createForOfIteratorHelper(concertChannelProgramming),
+          case "concert-channel":
+            programming = json.data[1].programing[0].programs;
+            break;
+
+          case "claro-cinema":
+            programming = json.data[2].programing[0].programs;
+            break;
+
+          default:
+            break;
+        }
+
+        if (programming.length > 0) {
+          var chapter = "";
+
+          var _iterator2 = _createForOfIteratorHelper(programming),
               _step2;
 
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
               var program = _step2.value;
-              programConcert += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil pencil-edit\"\n                            chapter_id=\"".concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
+              chapter += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil pencil-edit programming-pencil-".concat(landing, "\"\n                            chapter_id=\"").concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
             }
           } catch (err) {
             _iterator2.e(err);
@@ -92992,7 +93020,7 @@ function getProgramsLanding(date) {
             _iterator2.f();
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".concert-programming-contanier").html(programConcert);
+          container.html(chapter);
         }
       }
 
@@ -94663,15 +94691,15 @@ function createCalendarDays(container) {
           daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
         } else {
           //Día actual activo
-          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
         }
       } else {
         if (_i2 < 10) {
           //Días siguientes
-          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
         } else {
           //Días siguientes
-          daysSlider += "\n                                    <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(_i2, "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
+          daysSlider += "\n                                    <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
         }
       }
     }

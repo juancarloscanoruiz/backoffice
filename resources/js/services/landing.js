@@ -1469,15 +1469,19 @@ function getProgrammingLanding(date, landing) {
             console.log(json);
             if (json.code == 200) {
                 let programming = "";
+                let landingClass = "";
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
+                        landingClass = "programming-canal-landing"
                         break;
                     case "concert-channel":
-                        programming = json.data[0].programing[0].programs;
+                        programming = json.data[1].programing[0].programs;
+                        landingClass = "programming-concert-landing"
                         break;
                     case "claro-cinema":
-                        programming = json.data[0].programing[0].programs;
+                        programming = json.data[2].programing[0].programs;
+                        landingClass = "programming-cinema-landing"
                         break;
                     default:
                         break;
@@ -1535,14 +1539,14 @@ function getProgrammingLanding(date, landing) {
                     </div>
                         `;
                     }
-                    console.log(chapter);
+
                     $(".modal-programming-contanier").html(chapter);
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
                 createCalendarDays(
                     calendarSlider2,
-                    "programming-concert-landing"
+                    landingClass
                 );
                 try {
                     calendarSlider2.slick("unslick");
@@ -1557,9 +1561,9 @@ function getProgrammingLanding(date, landing) {
 }
 
 //Conseguir únicamente programas de un landing, sin mostrar el modal
-function getProgramsLanding(date) {
+function getProgramsLanding(date, landing = "") {
     $.ajax({
-        type: "POST",
+        type: "GET",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -1575,14 +1579,29 @@ function getProgramsLanding(date) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                let concertChannelProgramming =
-                    json.data[0].programing[0].programs;
-                if (concertChannelProgramming.length > 0) {
-                    let programConcert = "";
-                    for (const program of concertChannelProgramming) {
-                        programConcert += `
+                let programming = "";
+                let container = $('.modal-programming-contanier');
+                switch (landing) {
+                    case "canal-claro":
+                        programming = json.data[0].programing[0].programs;
+
+                        break;
+                    case "concert-channel":
+                        programming = json.data[1].programing[0].programs;
+                        break;
+                    case "claro-cinema":
+                        programming = json.data[2].programing[0].programs;
+                        break;
+
+                    default:
+                        break;
+                }
+                if (programming.length > 0) {
+                    let chapter = "";
+                    for (const program of programming) {
+                        chapter += `
                         <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="./images/pencil.svg" alt="" class="pencil pencil-edit"
+                        <img src="./images/pencil.svg" alt="" class="pencil pencil-edit programming-pencil-${landing}"
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1629,7 +1648,7 @@ function getProgramsLanding(date) {
                     </div>
                         `;
                     }
-                    $(".concert-programming-contanier").html(programConcert);
+                    container.html(chapter);
                 }
             }
             $(".loader-view-container").remove();

@@ -390,7 +390,7 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/actual_programing_programation/gmt&" . date('Y-m-d')
+            $this->url . "program/actual_programing_programation/gmt&" . $request->input("date")
         );
         echo ($response->getBody()->getContents());
     }

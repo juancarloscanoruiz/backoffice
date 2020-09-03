@@ -451,7 +451,13 @@ function eventsGrilla() {
     $('.calendar-slider2').on("click", ".programming-concert-landing", function () {
         $(".programming-concert-landing").removeClass("programming-item-active");
         $(this).addClass("programming-item-active");
-        getProgramsLanding($(this).attr("date"));
+        getProgramsLanding($(this).attr("date"), "concert-channel");
+    });
+    $('.calendar-slider2').on("click", ".programming-canal-landing", function () {
+        $(".programming-canal-landing").removeClass("programming-item-active");
+        $(this).addClass("programming-item-active");
+        console.log($(this).attr("date"));
+        getProgramsLanding($(this).attr("date"), "canal-claro");
     });
     //Pencil Chanel
     $('.modal-programming-landing').on("click", ".programming-pencil-canal-claro", function () {

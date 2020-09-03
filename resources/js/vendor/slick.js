@@ -180,7 +180,7 @@ function createCalendarDays(container, calendarClass = "") {
                 } else {
                     //Día actual activo
                     daysSlider += `
-                                <li class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                                <li class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${("0" + i).slice(-2)}" section_id="">
                                 <div class="day">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
@@ -194,7 +194,7 @@ function createCalendarDays(container, calendarClass = "") {
                 if (i < 10) {
                     //Días siguientes
                     daysSlider += `
-                            <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                            <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${("0" + i).slice(-2)}" section_id="">
                             <div class="day">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
@@ -204,7 +204,7 @@ function createCalendarDays(container, calendarClass = "") {
                 } else {
                     //Días siguientes
                     daysSlider += `
-                                    <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
+                                    <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${("0" + i).slice(-2)}" section_id="">
                                     <div class="day">
                                         <p class="day-text">${getDayName(currentMonth, i)}</p>
                                         <p class="day-number">${i}</p>
