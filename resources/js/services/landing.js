@@ -2035,8 +2035,9 @@ function getPromotionalsProgramsCarousel(
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
                 let image =
-                    chapter.chapter.thumbnail_list_horizontal ||
-                    "./images/synopsis/image-synopsis-carrusel.jpg";
+                    chapter.chapter.program.thumbnail_list_horizontal
+                    || "./images/synopsis/image-synopsis-carrusel.jpg"
+                    ;
                 let inLandingSwitch = "";
                 let inLandingDates = "";
                 let inLandingTimes = "";
@@ -2384,39 +2385,83 @@ function getPromotionalsProgramsCarousel(
                     `;
                 }
 
+                let carruselImg = '';
+
+                if (image) {
+                    carruselImg = `
+                    <section class="edit-program-image">
+                        <select
+                            class="carrusel-concert-select ${landingClass} w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                            title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
+                            data-live-search-placeholder="Agregar título de nuevo programa"
+                            name="thumbnail-header1" key="title" chapter_id="${chapter.chapter.id}">
+                        </select>
+                        <!--Imagen del programa--->
+                        <div class="edit-thumbnail position-relative">
+                            <input type="file" name="image-horizontal"
+                                class="input-image-program d-none edit-image-carrusel" id="edit-image-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" landing="${idLanding}" program="${chapter.chapter.program.title}">
+                            <label for="edit-image-carrusel-${chapter.chapter.id}"
+                                class="load-modal-programming load-photo d-inline" id="imagenes">
+                                <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
+                                    alt="heart-icon" />
+                                <div class="edit-program-camera text-center">
+                                    <img src="./images/synopsis/camara.svg"
+                                        class="edit-program-icon-image" alt="camera" />
+                                    <p
+                                        class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
+                                        472
+                                        x 245px</p>
+                                </div>
+                                <img src="${image}" alt=""
+    class="thumbnail-image-prev edit-image-program prev-image-program" />
+    
+                    
+                            </label>
+                        </div>
+                        <!--Nombre de la imagen-->
+                        <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
+                    </section>
+                    `
+                } else {
+                    carruselImg = `
+                    <section class="edit-program-image">
+                        <select
+                            class="carrusel-concert-select ${landingClass} w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
+                            title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
+                            data-live-search-placeholder="Agregar título de nuevo programa"
+                            name="thumbnail-header1" key="title" chapter_id="${chapter.chapter.id}">
+                        </select>
+                        <!--Imagen del programa--->
+                        <div class="edit-thumbnail position-relative">
+                            <input type="file" name="image-horizontal"
+                                class="input-image-program d-none edit-image-carrusel" id="edit-image-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" landing="${idLanding}" program="${chapter.chapter.program.title}">
+                            <label for="edit-image-carrusel-${chapter.chapter.id}"
+                                class="load-modal-programming load-photo d-inline" id="imagenes">
+                                <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
+                                    alt="heart-icon" />
+                                <div class="edit-program-camera text-center">
+                                    <img src="./images/synopsis/camara.svg"
+                                        class="edit-program-icon-image" alt="camera" />
+                                    <p
+                                        class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
+                                        472
+                                        x 245px</p>
+                                </div>
+                                <img src="${chapter.image_program}" alt=""
+    class="thumbnail-image-prev edit-image-program prev-image-program" />
+    
+                    
+                            </label>
+                        </div>
+                        <!--Nombre de la imagen-->
+                        <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
+                    </section>
+                    `
+                }
+
                 program += `
                 <div>
-                <section class="edit-program-image">
-                    <select
-                        class="carrusel-concert-select ${landingClass} w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue"
-                        title="${chapter.chapter.title}" id="prog_titulo_programa" data-live-search="true"
-                        data-live-search-placeholder="Agregar título de nuevo programa"
-                        name="thumbnail-header1" key="title" chapter_id="${chapter.chapter.id}">
-                    </select>
-                    <!--Imagen del programa--->
-                    <div class="edit-thumbnail position-relative">
-                        <input type="file" name="image-horizontal"
-                            class="input-image-program d-none edit-image-carrusel" id="edit-image-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}" landing="${idLanding}" program="${chapter.chapter.program.title}">
-                        <label for="edit-image-carrusel-${chapter.chapter.id}"
-                            class="load-modal-programming load-photo d-inline" id="imagenes">
-                            <img src="./images/heart-icon.svg" class="thumbnail-heart-icon"
-                                alt="heart-icon" />
-                            <div class="edit-program-camera text-center">
-                                <img src="./images/synopsis/camara.svg"
-                                    class="edit-program-icon-image" alt="camera" />
-                                <p
-                                    class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                    472
-                                    x 245px</p>
-                            </div>
-
-                            <img src="${image}" alt=""
-                                class="thumbnail-image-prev edit-image-program prev-image-program" />
-                        </label>
-                    </div>
-                    <!--Nombre de la imagen-->
-                    <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
-                </section>
+${carruselImg}
                 <!--Establecer en landing, home, schedule item date time-->
                 <section class="mb-5">
                     <div class="row">
