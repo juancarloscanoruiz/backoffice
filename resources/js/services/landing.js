@@ -117,6 +117,7 @@ function updateImagesOfProgrammingSlider(data) {
     });;
 }
 
+
 function updateLogosOfLanding(data) {
     $.ajax({
         type: "POST",
@@ -1510,6 +1511,7 @@ function getProgramsLanding(date) {
     })
 }
 
+
 // CLARO CANAL
 function getModalsCanalClaro(type) {
     $.ajax({
@@ -1517,8 +1519,120 @@ function getModalsCanalClaro(type) {
         url: "landing/header",
         success: function (result) {
             let obj = JSON.parse(result);
+            console.log(obj)
             switch (type) {
                 // GET HEADER
+                case "slider-pagination":
+                    let counter = 1;
+                    let image = "";
+
+                    let programmingSlider = $('.modal-programming-carousel-claro .programming-slider');
+                    while (true) {
+                        if (obj.data[`block_1_image_slider_${counter}`]) {
+                            image += `
+                            <div class="bor thumbnail-image-program position-relative h-100">
+                                <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                <label for="image_programming_${counter}"
+                                    class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                        class=" cursor-pointer add-photo " />
+                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                    <img src="${obj.data["block_1_image_slider_" + counter]}"
+                                        class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                </label>
+                            </div>
+                            `;
+                            counter++;
+
+                        } else {
+                            break;
+
+                        }
+                    }
+
+                    programmingSlider.html(image);
+                    $('.modal-programming-carousel-claro').modal("show");
+                    try {
+                        programmingSlider.slick("unslick")
+                        programmingSlider.slick({
+                            slidesToShow: 1,
+                            dots: true,
+                            appendDots: $(".modal-programming-carousel-claro .programming-slider-dots"),
+                            initialSlide: 0,
+                            infinite: false,
+                            customPaging: function (slider, i) {
+                                var thumb = $(slider.$slides[i]).data();
+                                return (
+                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                    (i + 1) +
+                                    "</p>"
+                                );
+                            }
+                        });
+                    } catch (error) {
+                        programmingSlider.slick({
+                            slidesToShow: 1,
+                            dots: true,
+                            appendDots: $(".modal-programming-carousel-claro .programming-slider-dots"),
+                            initialSlide: 0,
+                            infinite: false,
+                            customPaging: function (slider, i) {
+                                var thumb = $(slider.$slides[i]).data();
+                                return (
+                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                    (i + 1) +
+                                    "</p>"
+                                );
+                            }
+                        });
+                    }
+                    $(".input-image-program").change(function () {
+                        let currentInput = $(this);
+                        if (this.files && this.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                currentInput
+                                    .next()
+                                    .children(".prev-image-program")
+                                    .attr("src", e.target.result)
+                                    .addClass("h-100 w-100")
+                                    .css("z-index", "2");
+                            };
+
+                            reader.readAsDataURL(this.files[0]);
+                        }
+                    });
+                    $(".banner-slider-button").click(function () {
+                        /*
+                            Arreglo para saber la posición de las imágenes que cargo el usuario
+                            es decir, saber si subió la 1 y 3, o 2,3 etc.
+                        */
+                        let imagesPositions = [];
+                        //Arreglo para guardar imágenes de los usuarios
+                        let imagesProgramming = [];
+                        //Recorremos cada input para obtener las imágenes
+                        $(".image_programming").each(function () {
+                            if (this.files[0]) {
+                                imagesPositions.push($(this).attr("data-index"));
+                            }
+                            imagesProgramming.push(this.files[0]);
+                        });
+
+                        let data = new FormData();
+                        //Hacemos un for para mandar file1, file2, etc. en el form data
+                        for (let index = 0; index < imagesProgramming.length; index++) {
+                            let file = "file" + (index + 1).toString();
+                            file = file.toString();
+                            data.append(file, imagesProgramming[index]);
+                        }
+                        //Posiciones de las imágenes
+                        data.append("positions", imagesPositions);
+                        //Hora inicio y fin
+                        data.append("date", $("#date-start-input").val());
+                        data.append("landing", "Canal Claro");
+                        setImageSliderBanner(data);
+                    });
+                    break;
                 case "claro-header":
                     $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
                     $('.inp-text-modal-1').val(obj.data.block_2_title_1)
@@ -1556,9 +1670,43 @@ function getModalsCanalClaro(type) {
                     break
                     // GET TITLE CARRUSEL 1
             }
-            fileReader.readAsDataURL(objFileInput.files[0]);
+            //fileReader.readAsDataURL(objFileInput.files[0]);
         }
     })
+}
+
+function setImageSliderBanner(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        cache: false,
+        url: "landing/setImageSliderBanner",
+        beforeSend: function () {
+            $(".modal-programming-carousel .modal-content").append(
+                `<div class="loader-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        success: function (result) {
+
+            $(".loader-container").remove();
+            let json = JSON.parse(result);
+            if (json.code == 200) {
+                $(".modal-programming-carousel").modal("hide");
+            } else {
+                $(".loader-container").remove();
+                $(".modal-programming-carousel").modal("hide");
+
+            }
+        }
+    }).fail(function (e) {
+        $(".loader-container").remove();
+        $(".modal-programming-carousel").modal("hide");
+        console.log(e);
+    });;
 }
 
 function FileHeader(objFileInput) {

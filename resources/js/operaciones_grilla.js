@@ -2555,6 +2555,7 @@ function eventsGrilla() {
 
     $(".input-image-program").change(function () {
         let currentInput = $(this);
+        console.log(currentInput);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -3861,26 +3862,8 @@ function eventsGrilla() {
                         getModalsCanalClaro(json.type)
                         break;
                     case "slider-pagination":
-                        $("body").append(LOADER);
-                        setTimeout(function () {
-                            $('.modal-programming-carousel-claro').modal("show");
-                            $(".programming-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                        getModalsCanalClaro("slider-pagination")
+
                         break;
                 }
             }

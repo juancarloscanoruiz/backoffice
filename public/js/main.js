@@ -90109,6 +90109,7 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    console.log(currentInput);
 
     if (this.files && this.files[0]) {
       var reader = new FileReader();
@@ -91145,22 +91146,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-claro').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])("slider-pagination");
             break;
         }
       }
@@ -93024,9 +93010,100 @@ function getModalsCanalClaro(type) {
     url: "landing/header",
     success: function success(result) {
       var obj = JSON.parse(result);
+      console.log(obj);
 
       switch (type) {
         // GET HEADER
+        case "slider-pagination":
+          var counter = 1;
+          var image = "";
+          var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-claro .programming-slider');
+
+          while (true) {
+            if (obj.data["block_1_image_slider_".concat(counter)]) {
+              image += "\n                            <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\"\n                                    class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                        class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                    <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                        class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                </label>\n                            </div>\n                            ");
+              counter++;
+            } else {
+              break;
+            }
+          }
+
+          programmingSlider.html(image);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-claro').modal("show");
+
+          try {
+            programmingSlider.slick("unslick");
+            programmingSlider.slick({
+              slidesToShow: 1,
+              dots: true,
+              appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+              initialSlide: 0,
+              infinite: false,
+              customPaging: function customPaging(slider, i) {
+                var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+              }
+            });
+          } catch (error) {
+            programmingSlider.slick({
+              slidesToShow: 1,
+              dots: true,
+              appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+              initialSlide: 0,
+              infinite: false,
+              customPaging: function customPaging(slider, i) {
+                var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+              }
+            });
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+            var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+            if (this.files && this.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+              };
+
+              reader.readAsDataURL(this.files[0]);
+            }
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+            /*
+                Arreglo para saber la posición de las imágenes que cargo el usuario
+                es decir, saber si subió la 1 y 3, o 2,3 etc.
+            */
+            var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+            var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+              if (this.files[0]) {
+                imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+              }
+
+              imagesProgramming.push(this.files[0]);
+            });
+            var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+            for (var index = 0; index < imagesProgramming.length; index++) {
+              var file = "file" + (index + 1).toString();
+              file = file.toString();
+              data.append(file, imagesProgramming[index]);
+            } //Posiciones de las imágenes
+
+
+            data.append("positions", imagesPositions); //Hora inicio y fin
+
+            data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+            data.append("landing", "Canal Claro");
+            setImageSliderBanner(data);
+          });
+          break;
+
         case "claro-header":
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">');
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-1').val(obj.data.block_2_title_1);
@@ -93067,11 +93144,42 @@ function getModalsCanalClaro(type) {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle");
           break;
         // GET TITLE CARRUSEL 1
-      }
+      } //fileReader.readAsDataURL(objFileInput.files[0]);
 
-      fileReader.readAsDataURL(objFileInput.files[0]);
     }
   });
+}
+
+function setImageSliderBanner(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImageSliderBanner",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    success: function success(result) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      var json = JSON.parse(result);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+      }
+    }
+  }).fail(function (e) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+    console.log(e);
+  });
+  ;
 }
 
 function FileHeader(objFileInput) {

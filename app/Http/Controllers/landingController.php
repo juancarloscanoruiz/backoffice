@@ -528,4 +528,57 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
     // CANAL CLARO
+
+    function setImageSliderBanner(Request $request){
+        $folderLanding = "";
+        switch ($request->input("landing")) {
+            case 'Canal Claro':
+                $folderLanding = "canal-claro";
+                break;
+            case 'Concert Channel':
+                $folderLanding = "concert-channel";
+                break;
+            case 'Claro Cinema':
+                $folderLanding = "claro-cinema";
+                break;
+
+            default:
+                # code...
+                break;
+        }
+        //Imágene que subió el usuario
+        $files = $request->file();
+        //POsiciones de las imágenes
+        $positions = explode(",", $request->input("positions"));
+        $dates = ["00-00-0000", "00-00-0000"];
+        if ($request->input("dates")) {
+            $dates = explode(",", $request->input("date"));
+        }
+        $counter = 0;
+        $images = [];
+        foreach ($files as $file) {
+            $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/".$folderLanding."/banner");
+            $counter++;
+            array_push($images, $newFile);
+        }
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "section/setImageSlider",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'landing' => $request->input("landing"),
+                    'positions' => $positions,
+                    'value' => $images,
+
+                ]
+            )]
+        );
+        $respuesta =  $response->getBody()->getContents();
+        echo ($respuesta);
+    }
 }
