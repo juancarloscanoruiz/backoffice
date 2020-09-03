@@ -3862,8 +3862,8 @@ function eventsGrilla() {
 
                         break;
                     case "claro-carrusel2":
-                        let id = 2;
-                        let landing = "Canal Claro"
+                        id = 2;
+                        landing = "Canal Claro"
                         getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro ");
                         break;
                     case "claro-carrusel-title":
@@ -3919,9 +3919,9 @@ function eventsGrilla() {
         getModalCarrusel1('claro-carrusel1')
     })
     // BTN MODAL URL ENCABEZADO
-    // $('#url-encabezado').click(function () {
-    //     $("#modal-url").modal("show");
-    // })
+    $('#url-encabezado').click(function () {
+        $("#modal-url").modal("show");
+    })
     // BTN MODAL URL PROMO
     $('#url-promo').click(function () {
         $("#modal-url").modal("show");
@@ -3929,6 +3929,12 @@ function eventsGrilla() {
     // BTN BANNER
     $('#banner-claro').change(function () {
         File(this)
+    })
+    // BTN BANNER
+    $('#btn-acepta-url').click(function () {
+        $("#modal-url").modal("hide");
+        let url = $(".input-url-modal").val() || "";
+        $('#inp-text-modal-4').val(url);
     })
     // FILE PARA BANNER
     var fileSrt = new FileReader();
