@@ -2716,7 +2716,9 @@ function getPromotionalsProgramsCarousel(
             </div>
                 `;
             }
-
+            $('.add-program-carrusel').click(function () {
+                console.log("add program");
+            })
             //Mostramos el modal
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
