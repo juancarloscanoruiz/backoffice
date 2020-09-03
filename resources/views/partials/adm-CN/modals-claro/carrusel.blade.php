@@ -11,8 +11,7 @@
                     <div class="float-right">
                         <div class="d-flex pl-5 ">
                             <div class=" position-relative carrusel1-slider-dots1 mt-4 mb-4"> </div>
-                            <img src="{{ asset('images/add-icon.svg') }}"
-                                class="add-programming-image mb-3  cursor-pointer">
+                            <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image mb-3  cursor-pointer">
                         </div>
                     </div>
                     <div class="clearfix"></div>

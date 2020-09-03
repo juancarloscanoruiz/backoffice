@@ -1,6 +1,4 @@
 <body class="bg-dark">
-    <button id="btn-test">Modal</button>
-
     <!-- MODAL HEADER - ENCABEZADO LANDING CANAL CLARO 1 -->
     <div id="modal-header" class="modal">
         <div class="modal-dialog-centered">
@@ -69,73 +67,71 @@
                     <img src="images/modals/tv-1.svg" class="modal-programming-landing-logo">
                     <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
                     <!--Slider de calendario-->
-                    <<<<<<< HEAD <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
-                        id="slider-calendar-current-date">Octubre 2020</h3>
-                        =======
-                        <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
-                            id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
-                        >>>>>>> df81408297e9c93c500529393a069ccc18b31d8f
-                        <section class="col-10 mx-auto">
-                            <div class="mb-5 calendar-slider2 day-style">
-                                <li class="programming-item programming-item-active py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
 
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
+                        id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
 
-                                </li>
-                                <li class="programming-item py-2">
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
-                                </li>
-                                <li class="programming-item py-2">
+                    <section class="col-10 mx-auto">
+                        <div class="mb-5 calendar-slider2 day-style">
+                            <li class="programming-item programming-item-active py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
 
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
 
-                                </li>
-                                <li class="programming-item py-2">
+                            </li>
+                            <li class="programming-item py-2">
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+                            </li>
+                            <li class="programming-item py-2">
 
-                                    <p class="mb-0">MIE</p>
-                                    <p class="mb-0">01</p>
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
 
-                                </li>
-                            </div>
-                        </section>
-                        <div class="modal-programming-contanier">
+                            </li>
+                            <li class="programming-item py-2">
 
+                                <p class="mb-0">MIE</p>
+                                <p class="mb-0">01</p>
+
+                            </li>
                         </div>
+                    </section>
+                    <div class="modal-programming-contanier">
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -2288,6 +2288,29 @@ function eventsGrilla() {
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
     //Añadimos un slide al slider de imágenes de programación
+    $(".add-banner-image").click(function () {
+        //Cada vez que se haga click, el contador incrementa
+        let slideIndex = $(".load-programming-carousel").length + 1;
+
+        //Agregamos un slide al slider de programación
+        $(".modal-edit-program-carrusel .programming-slider").slick(
+            "slickAdd",
+            `
+            <div class="slick-slide">
+                <div>
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                    <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                        <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                            <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            `
+        );
+    });
     $(".add-programming-image").click(function () {
         //Cada vez que se haga click, el contador incrementa
         let slideIndex = $(".load-programming-carousel").length + 1;
