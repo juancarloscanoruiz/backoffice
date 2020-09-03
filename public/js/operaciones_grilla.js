@@ -73774,6 +73774,19 @@ function eventsGrilla() {
 
     }
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").on("change", ".input-image-program", function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".input-image-program", function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
@@ -74177,10 +74190,11 @@ function eventsGrilla() {
   //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image").click(function () {
-    //Cada vez que se haga click, el contador incrementa
+    console.log("otro"); //Cada vez que se haga click, el contador incrementa
+
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
     //Cada vez que se haga click, el contador incrementa
@@ -77279,7 +77293,7 @@ function getModalsCanalClaro(type) {
           case "slider-pagination":
             var counter = 1;
             var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider");
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro");
 
             while (true) {
               if (obj.data["block_1_image_slider_".concat(counter)]) {
@@ -77295,10 +77309,10 @@ function getModalsCanalClaro(type) {
 
             try {
               programmingSlider.slick("unslick");
-              programmingSlider.slick({
+              programmingSlider.not('.slick-initialized').slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -77307,10 +77321,10 @@ function getModalsCanalClaro(type) {
                 }
               });
             } catch (error) {
-              programmingSlider.slick({
+              programmingSlider.not('.slick-initialized').slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -77320,19 +77334,6 @@ function getModalsCanalClaro(type) {
               });
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
-              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-              if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                };
-
-                reader.readAsDataURL(this.files[0]);
-              }
-            });
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
               /*
                   Arreglo para saber la posición de las imágenes que cargo el usuario

@@ -1660,7 +1660,7 @@ function getModalsCanalClaro(type) {
                         let image = "";
 
                         let programmingSlider = $(
-                            ".modal-programming-carousel-claro .programming-slider"
+                            ".programming-slider-canal-claro"
                         );
                         while (true) {
                             if (obj.data[`block_1_image_slider_${counter}`]) {
@@ -1691,11 +1691,11 @@ function getModalsCanalClaro(type) {
                         $(".modal-programming-carousel-claro").modal("show");
                         try {
                             programmingSlider.slick("unslick");
-                            programmingSlider.slick({
+                            programmingSlider.not('.slick-initialized').slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
-                                    ".modal-programming-carousel-claro .programming-slider-dots"
+                                    ".programming-slider-dots-canal-claro"
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
@@ -1709,11 +1709,11 @@ function getModalsCanalClaro(type) {
                                 }
                             });
                         } catch (error) {
-                            programmingSlider.slick({
+                            programmingSlider.not('.slick-initialized').slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
-                                    ".modal-programming-carousel-claro .programming-slider-dots"
+                                    ".programming-slider-dots-canal-claro"
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
@@ -1727,22 +1727,7 @@ function getModalsCanalClaro(type) {
                                 }
                             });
                         }
-                        $(".input-image-program").change(function () {
-                            let currentInput = $(this);
-                            if (this.files && this.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                    currentInput
-                                        .next()
-                                        .children(".prev-image-program")
-                                        .attr("src", e.target.result)
-                                        .addClass("h-100 w-100")
-                                        .css("z-index", "2");
-                                };
 
-                                reader.readAsDataURL(this.files[0]);
-                            }
-                        });
                         $(".banner-slider-button").click(function () {
                             /*
                                 Arreglo para saber la posición de las imágenes que cargo el usuario

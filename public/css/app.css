@@ -6000,6 +6000,23 @@ ul {
   margin-bottom: 16px;
 }
 
+.programming-slider-dots-canal-claro .slick-dots {
+  position: static;
+  text-align: left;
+  bottom: auto;
+}
+
+.programming-slider-dots-canal-claro .presentation {
+  margin-right: 24px;
+}
+
+.programming-slider-dots-canal-claro .slick-dots li {
+  height: 37px;
+  width: 37px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
 .programming-slider-dots1 .slick-dots {
   position: static;
   text-align: left;
@@ -7439,7 +7456,8 @@ select:focus {
 }
 
 .synopsis-image-slider,
-.programming-slider {
+.programming-slider,
+.programming-slider-canal-claro {
   width: 1000px !important;
 }
 
@@ -7448,6 +7466,14 @@ select:focus {
 }
 
 .programming-slider-dots .slick-dots .slick-active p {
+  color: #ffffff !important;
+}
+
+.programming-slider-dots-canal-claro .slick-dots .slick-active {
+  background-color: #0097a9;
+}
+
+.programming-slider-dots-canal-claro .slick-dots .slick-active p {
   color: #ffffff !important;
 }
 
@@ -7494,6 +7520,14 @@ select:focus {
 }
 
 .programming-slider .slick-slide div {
+  height: 100% !important;
+}
+
+.programming-slider-canal-claro .slick-slide {
+  height: 342px !important;
+}
+
+.programming-slider-canal-claro .slick-slide div {
   height: 100% !important;
 }
 

@@ -9,9 +9,9 @@
                 <div class="dots-container mx-auto d-flex justify-content-between">
                     <div class="d-flex">
                         <!--dots-->
-                        <div class="programming-slider-dots mt-5 mb-5"></div>
+                        <div class="programming-slider-dots-canal-claro mt-5 mb-5"></div>
                         <!--add slide-->
-                        <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image cursor-pointer mb-3">
+                        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
                     </div>
                     <!--Calendar-->
                     <div class="d-flex align-items-center">
@@ -43,7 +43,7 @@
                 </div>
 
                 <!--Slider-->
-                <div class="programming-slider mx-auto">
+                <div class="programming-slider-canal-claro mx-auto">
 
                     <div class="bor thumbnail-image-program position-relative h-100">
                         <input type="file" name="image_programming[]" id="image_programming_1"
