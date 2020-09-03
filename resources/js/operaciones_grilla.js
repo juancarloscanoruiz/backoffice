@@ -3856,18 +3856,15 @@ function eventsGrilla() {
                         getModalsCanalClaro(json.type)
                         break;
                     case "claro-carrusel1":
-                        setTimeout(function () {
-                            let id = 1;
-                            let landing = "Canal Claro"
-                            getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro");
-                        }, 3000);
+                        let id = 1;
+                        let landing = "Canal Claro"
+                        getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro");
+
                         break;
                     case "claro-carrusel2":
-                        setTimeout(function () {
-                            let id = 2;
-                            let landing = "Canal Claro"
-                            getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro ");
-                        }, 3000);
+                        let id = 2;
+                        let landing = "Canal Claro"
+                        getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro ");
                         break;
                     case "claro-carrusel-title":
                         getModalsCanalClaro(json.type)
@@ -3893,18 +3890,18 @@ function eventsGrilla() {
     if (menuClaroCanal) {
         new easyXDM.Socket(landingCanalClaro);
         $("#prev").click(function () {
-        $('#navbar-prev-canal-claro iframe').remove();
-        new easyXDM.Socket({
-            remote: `${baseURL}claro-canal.php`,
-            container: document.getElementById("navbar-prev-canal-claro"),
-            onMessage: function (message, origin) {
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.height = message + "px";
-                this.container.getElementsByTagName(
+            $('#navbar-prev-canal-claro iframe').remove();
+            new easyXDM.Socket({
+                remote: `${baseURL}claro-canal.php`,
+                container: document.getElementById("navbar-prev-canal-claro"),
+                onMessage: function (message, origin) {
+                    this.container.getElementsByTagName(
                         "iframe"
-                    )[0].style.boxShadow =
-                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                    )[0].style.height = message + "px";
+                    this.container.getElementsByTagName(
+                            "iframe"
+                        )[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
         });

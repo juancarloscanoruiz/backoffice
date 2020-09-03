@@ -1,8 +1,5 @@
 @extends('layaout.app')
 
-@section('scripts')
-
-@endsection
 
 @section('content')
 
@@ -54,3 +51,7 @@
             </div>
     </body>
 @endsection
+
+@include('partials.adm-CN.modals-claro.banner-claro')
+@include('partials.adm-CN.modals-claro.index')
+@include('partials.adm-CN.modals-concert.carrusel');
