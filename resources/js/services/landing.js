@@ -2027,6 +2027,8 @@ function getPromotionalsProgramsCarousel(
             //Capítulos que se encuentran en el carrusel
             $(".carrusel1-slider-concert").html("");
 
+            $('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
+
             for (const chapter of data.data.chapters) {
 
                 //Variables a evaluar
@@ -2716,7 +2718,6 @@ function getPromotionalsProgramsCarousel(
             }
 
             //Mostramos el modal
-            $(".filter-option-inner-inner").html("hola");
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
             try {
@@ -2870,10 +2871,6 @@ function getPromotionalsProgramsCarousel(
             $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
-            // $("#edit-genre-container").append(
-            //     '<p>' + data.data.chapters[0].chapter.program.genre + '</p>'
-            // );
-            // console.log(data.data.chapters[0].chapter.program.genre);
         }
     });
     reload(idCarousel, landing)
@@ -2894,9 +2891,9 @@ function reload(
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $('.dropdown-toggle').removeClass('bs-placeholder')
+            $('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder')
             for (const chapter of data.data.chapters) {
-                $('.filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
+                $('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
             }
         }
     });
