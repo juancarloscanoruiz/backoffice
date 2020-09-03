@@ -231,12 +231,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -247,12 +247,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -264,7 +264,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -280,7 +280,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -301,12 +301,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
                             data.program.section_id
-                        }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth + 1,
-                                        i
-                                    )}</p>
+                                currentMonth + 1,
+                                i
+                            )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -315,12 +315,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
                             data.program.section_id
-                        }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth + 1,
-                                        i
-                                    )}</p>
+                                currentMonth + 1,
+                                i
+                            )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -337,12 +337,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -352,12 +352,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -369,7 +369,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -384,12 +384,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                     <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                            }">
+                                }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
-                                            currentMonth,
-                                            i
-                                        )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
@@ -547,9 +547,7 @@ function getChapterInfo(data) {
                     }
                 }
             });
-            $("#edit-genre-container .filter-option-inner-inner").text(
-                data.program.program.genre
-            );
+
             //Evento para cuando cerramos el selectpicker
             selectGenres.on("hide.bs.select", function () {
                 let chapterId = $(".edit-program-data-container").attr(
@@ -671,7 +669,7 @@ function getChapterInfo(data) {
             let scheduleItemDate = data.program.day.split("-");
             $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                 scheduleItemDate[1]
-            }-${scheduleItemDate[0]}
+                }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
             $(".edit-program-textarea").val(data.program.synopsis);
@@ -1013,7 +1011,7 @@ function getProgramming(date, section, time) {
                 let scheduleItemDate = data.program.day.split("-");
                 $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                     scheduleItemDate[1]
-                }-${scheduleItemDate[0]}
+                    }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
@@ -1260,11 +1258,11 @@ function getContentConcertChannel(type) {
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                                             <img src="${
-                                                data.data[
-                                                    "block_1_image_slider_" +
-                                                        counter
-                                                ]
-                                            }"
+                                        data.data[
+                                        "block_1_image_slider_" +
+                                        counter
+                                        ]
+                                        }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
                                     </div>
@@ -1692,10 +1690,10 @@ function getModalsCanalClaro(type) {
                                             class=" cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
-                                            obj.data[
-                                                "block_1_image_slider_" + counter
-                                            ]
-                                        }"
+                                    obj.data[
+                                    "block_1_image_slider_" + counter
+                                    ]
+                                    }"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
                                 </div>
@@ -1792,8 +1790,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-text-modal-3").val(obj.data.block_2_button_title);
                         $("#modal-header").modal("show");
                         break;
-                        // GET HEADER
-                        // GET TITLE
+                    // GET HEADER
+                    // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
@@ -1801,8 +1799,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE
-                        // GET PROMO
+                    // GET TITLE
+                    // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay controls class="img-back-modal img-promo" src="' +
@@ -1811,8 +1809,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-promo").modal("show");
                         break;
-                        // GET PROMO
-                        // GET TITLE CARRUSEL 1
+                    // GET PROMO
+                    // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -1826,8 +1824,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE CARRUSEL 1
-                        // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -1841,7 +1839,7 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
                 }
             }
 
@@ -2577,7 +2575,7 @@ function getPromotionalsProgramsCarousel(
                                     genre
                                     list
                                 </p>
-                                <div class="mb-3 edit-rectangle-container ">
+                                <div class="mb-3 edit-rectangle-container">
                                     <select
                                         class="list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
                                          title="Genere list" multiple
@@ -2718,6 +2716,7 @@ function getPromotionalsProgramsCarousel(
             }
 
             //Mostramos el modal
+            $(".filter-option-inner-inner").html("hola");
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
             try {
@@ -2871,6 +2870,34 @@ function getPromotionalsProgramsCarousel(
             $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
+            // $("#edit-genre-container").append(
+            //     '<p>' + data.data.chapters[0].chapter.program.genre + '</p>'
+            // );
+            // console.log(data.data.chapters[0].chapter.program.genre);
+        }
+    });
+    reload(idCarousel, landing)
+}
+
+function reload(
+    idCarousel,
+    landing,
+) {
+    $.ajax({
+        type: "POST",
+        url: "landing/getPromotionalsProgramsCarousel",
+        data: {
+            idCarousel,
+            landing
+        },
+        cache: false,
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            $('.dropdown-toggle').removeClass('bs-placeholder')
+            for (const chapter of data.data.chapters) {
+                $('.filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
+            }
         }
     });
 }
