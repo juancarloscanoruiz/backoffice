@@ -88060,7 +88060,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   cache: false
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  //loader, images
+  //cerrar los dos modales
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+  }); //loader, images
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-picture").on("click", function () {
     var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"../images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
@@ -88078,15 +88082,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
       console.log("si lo borra");
     }, 3000);
-  }); //para mostrar un modal encima del otro
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-info").on("show.bs.modal", function () {
-    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css("opacity", 0);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-info").on("hidden.bs.modal", function () {
-    var modalParent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-modal-parent");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(modalParent).css("opacity", 1);
   }); //para mostrar un modal de url-promo encima del otro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".url-promo").on("show.bs.modal", function () {
@@ -90397,10 +90392,13 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-user").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
+    //$(".modal-edit-icons").modal("hide");
+    // $(".modal-edit-program").modal("hide");
+  }); //cerrar los dos modales
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
   });
   /* Al dar "enter" cancelamos el salto de línea,
       conseguimos el valor del campo de la grilla

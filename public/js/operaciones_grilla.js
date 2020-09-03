@@ -74670,10 +74670,13 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-delete-user").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
+    //$(".modal-edit-icons").modal("hide");
+    // $(".modal-edit-program").modal("hide");
+  }); //cerrar los dos modales
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
   });
   /* Al dar "enter" cancelamos el salto de línea,
       conseguimos el valor del campo de la grilla
