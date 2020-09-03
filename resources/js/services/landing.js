@@ -2,8 +2,7 @@
 import $ from "jquery";
 
 import {
-    editAttributeProgram,
-
+    editAttributeProgram
 } from "./generalSchedule.js";
 
 //Configraciones para la librería de Cleave JS
@@ -14,7 +13,6 @@ import {
     year
 } from "../config/config.js";
 
-
 import {
     calendarSlick
 } from "../config/slick.js";
@@ -24,8 +22,6 @@ import {
     createCalendarDays
 } from "../vendor/slick.js";
 
-
-
 function getMonth(idMonth) {
     let date = new Date();
     let month = date.getUTCMonth() + idMonth;
@@ -34,12 +30,20 @@ function getMonth(idMonth) {
 
 function getNextMonth(month) {
     let date = new Date();
-    return new Date(date.getUTCFullYear(), date.getUTCMonth() + month, getUTCDate());
+    return new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth() + month,
+        getUTCDate()
+    );
 }
 
 function getDays(month) {
     let date = new Date();
-    return new Date(date.getUTCFullYear(), date.getUTCMonth() + month, 0).getUTCDate();
+    return new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth() + month,
+        0
+    ).getUTCDate();
 }
 
 function getDay() {
@@ -82,7 +86,6 @@ function getMonthAndYear(month) {
     return `${months[month]} ${year}`;
 }
 
-
 function updateImagesOfProgrammingSlider(data) {
     $.ajax({
         type: "POST",
@@ -99,7 +102,6 @@ function updateImagesOfProgrammingSlider(data) {
             );
         },
         success: function (result) {
-
             $(".loader-container").remove();
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -107,16 +109,14 @@ function updateImagesOfProgrammingSlider(data) {
             } else {
                 $(".loader-container").remove();
                 $(".modal-programming-carousel").modal("hide");
-
             }
         }
     }).fail(function (e) {
         $(".loader-container").remove();
         $(".modal-programming-carousel").modal("hide");
         console.log(e);
-    });;
+    });
 }
-
 
 function updateLogosOfLanding(data) {
     $.ajax({
@@ -142,8 +142,6 @@ function updateLogosOfLanding(data) {
         }
     });
 }
-
-
 
 function updateImageProgramOfLanding(data) {
     $.ajax({
@@ -179,15 +177,14 @@ function getChapterInfo(data) {
 
         success: function (result) {
             let data = JSON.parse(result);
-            $('.loader-view-container').remove();
-            $('.loader-container').remove();
+            $(".loader-view-container").remove();
+            $(".loader-container").remove();
             let date = new Date();
             /* Número de días del mes actual */
             let currentMonthDays = getDays(1);
 
             /* Número de mes actual*/
             let currentMonth = date.getUTCMonth();
-
 
             /* Número de días restantes del mes actual */
             let numberLastDays = getDays(1) - getDay();
@@ -196,7 +193,9 @@ function getChapterInfo(data) {
 
             var daysSlider = "";
             //Pegamos el nombre del mes y el año
-            $("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
+            $("#slider-calendar-current-date").html(
+                getMonthAndYear(date.getMonth())
+            );
             //Obtenemos la hora GMT
             let dateUTC = new Date();
             //Día en horario central
@@ -207,15 +206,15 @@ function getChapterInfo(data) {
             let yearUTC = dateUTC.getUTCFullYear();
 
             //Siguiente mes
-            let nextMonth = ("0" + (dateUTC.getUTCMonth() + 2)).slice(-2)
+            let nextMonth = ("0" + (dateUTC.getUTCMonth() + 2)).slice(-2);
 
             if (dateUTC.getUTCMonth() < 10) {
-                monthUTC = `0${dateUTC.getUTCMonth() + 1}`
+                monthUTC = `0${dateUTC.getUTCMonth() + 1}`;
             } else {
                 monthUTC = dateUTC.getUTCMonth() + 1;
             }
             if (dateUTC.getUTCDate() < 10) {
-                dayUTC = `0${dateUTC.getUTCDate()}`
+                dayUTC = `0${dateUTC.getUTCDate()}`;
             } else {
                 dayUTC = dateUTC.getUTCDate();
             }
@@ -224,16 +223,20 @@ function getChapterInfo(data) {
                 totalDaysSlider = getDays(2) + (getDays(1) - getDay());
                 //Días del primer mes
                 for (let i = getDay(); i <= getDays(1); i++) {
-
                     //Día actual
                     if (i == getDay()) {
                         if (i < 10) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id}">
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
+                                data.program.section_id
+                            }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -242,22 +245,31 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id}">
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
+                                data.program.section_id
+                            }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
                             `;
                         }
-
                     } else {
                         if (i < 10) {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
+                                data.program.section_id
+                            }">
                             <div class="day">
-                                <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                <p class="day-text">${getDayName(
+                                    currentMonth,
+                                    i
+                                )}</p>
                                 <p class="day-number">${i}</p>
                             </div>
                             </li>
@@ -266,16 +278,20 @@ function getChapterInfo(data) {
                         } else {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
+                                data.program.section_id
+                            }">
                             <div class="day">
-                                <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                <p class="day-text">${getDayName(
+                                    currentMonth,
+                                    i
+                                )}</p>
                                 <p class="day-number">${i}</p>
                             </div>
                             </li>
 
                              `;
                         }
-
                     }
                 }
 
@@ -283,27 +299,35 @@ function getChapterInfo(data) {
                 for (let i = 1; i <= getDays(2); i++) {
                     if (i < 10) {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
+                            data.program.section_id
+                        }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
                         `;
                     } else {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
+                            data.program.section_id
+                        }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
                         `;
                     }
-
                 }
             } else {
-
                 //En caso de que al mes le falten más de 15 días para terminar
                 totalDaysSlider = currentMonthDays;
                 for (let i = getDay(); i <= totalDaysSlider; i++) {
@@ -311,9 +335,14 @@ function getChapterInfo(data) {
                         if (i < 10) {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id}">
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
+                                data.program.section_id
+                            }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -321,23 +350,31 @@ function getChapterInfo(data) {
                         } else {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id}">
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
+                                data.program.section_id
+                            }">
                                 <div class="day">
-                                    <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                    <p class="day-text">${getDayName(
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
                             `;
                         }
-
-
                     } else {
                         if (i < 10) {
                             //Días siguientes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id}">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
+                                data.program.section_id
+                            }">
                             <div class="day">
-                                <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                <p class="day-text">${getDayName(
+                                    currentMonth,
+                                    i
+                                )}</p>
                                 <p class="day-number">${i}</p>
                             </div>
                             </li>
@@ -345,38 +382,49 @@ function getChapterInfo(data) {
                         } else {
                             //Días siguientes
                             daysSlider += `
-                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id}">
+                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
+                                data.program.section_id
+                            }">
                                     <div class="day">
-                                        <p class="day-text">${getDayName(currentMonth, i)}</p>
+                                        <p class="day-text">${getDayName(
+                                            currentMonth,
+                                            i
+                                        )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
                                     `;
                         }
-
-
                     }
                 }
-
             }
 
-            $('.calendar-slider').html(daysSlider);
+            $(".calendar-slider").html(daysSlider);
             //End caledario
-            let modaTitle = $('.edit-program-modal-title');
-            $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-            $('.edit-program-data-container').attr("section", data.program.section_id);
-            $('.edit-program-data-container').attr("program", data.program.program.title);
-            modaTitle.attr("chapter_id", data.program.chapter_id)
-            modaTitle.attr("section", data.program.section_id)
-            modaTitle.attr("program", data.program.program.title)
-            $('.thumbnail-header1').attr("title", data.program.title)
+            let modaTitle = $(".edit-program-modal-title");
+            $(".edit-program-data-container").attr(
+                "chapter_id",
+                data.program.chapter_id
+            );
+            $(".edit-program-data-container").attr(
+                "section",
+                data.program.section_id
+            );
+            $(".edit-program-data-container").attr(
+                "program",
+                data.program.program.title
+            );
+            modaTitle.attr("chapter_id", data.program.chapter_id);
+            modaTitle.attr("section", data.program.section_id);
+            modaTitle.attr("program", data.program.program.title);
+            $(".thumbnail-header1").attr("title", data.program.title);
             //thermometer
             let thermometer = data.thermometer;
             //Container completo que representa una hora en el termometro
             let itemThermometer = "";
             //Container que representa media hora en el termómetro
             let itemHalfThermometer = "";
-            let index = 1
+            let index = 1;
             //Recorremos el terommétro
             for (const key in thermometer) {
                 let status = thermometer[key].status;
@@ -408,32 +456,33 @@ function getChapterInfo(data) {
             }
 
             //Insertamos el contenido en el termómetro
-            $('.thermometer-schedule-list').html(itemThermometer);
+            $(".thermometer-schedule-list").html(itemThermometer);
 
             //Insertamos la imagen del capítulo
             if (data.image_program) {
-                $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
-                    width: "80px",
-                    "margin-bottom": "16px"
-                });
+                $(".edit-program-icon-image")
+                    .attr("src", "./images/basic-icons/pencil-edit-teal.svg")
+                    .css({
+                        width: "80px",
+                        "margin-bottom": "16px"
+                    });
             }
 
-            $('.edit-image-program').attr("src", data.image_program);
+            $(".edit-image-program").attr("src", data.image_program);
             //Catalogo de programas
             let options = "";
             data.program_catalogue.forEach(program => {
                 options += `
                     <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                     value="${program.title}">${program.title}</option>
-                    `
+                    `;
             });
 
-
-            $('.programs-catalogue').append(options);
+            $(".programs-catalogue").append(options);
             //selectpicker pra ls titulos de los programas
             //selectpicker pra ls titulos de los programas
-            const dropdownTitles = $("#prog_titulo_programa")
-            dropdownTitles.selectpicker('destroy');
+            const dropdownTitles = $("#prog_titulo_programa");
+            dropdownTitles.selectpicker("destroy");
             dropdownTitles.selectpicker();
 
             let selectheader = $(".thumbnail-header1");
@@ -446,7 +495,11 @@ function getChapterInfo(data) {
                 if ($(this).val()) {
                     keyValue = $(this).val();
                 } else {
-                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    $(this).val(
+                        $(
+                            "#prog_titulo_programa .filter-option-inner-inner"
+                        ).text()
+                    );
                     keyValue = $(this).val();
                 }
                 editAttributeProgram(chapter_id, key, keyValue);
@@ -455,21 +508,21 @@ function getChapterInfo(data) {
             let imageTriangle = `
             <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
         `;
-            $('.edit-program-image .bootstrap-select').append(imageTriangle);
-            $('.dropimg').click(function () {
-                dropdownTitles.selectpicker('toggle');
-            })
+            $(".edit-program-image .bootstrap-select").append(imageTriangle);
+            $(".dropimg").click(function () {
+                dropdownTitles.selectpicker("toggle");
+            });
 
-            data
+            data;
             //Genres
-            let optionGenre = ""
+            let optionGenre = "";
             data.genres.forEach(genre => {
                 optionGenre += `
                     <option value="${genre.title}">${genre.title}</option>
-                    `
+                    `;
             });
-            $('.list1').append(optionGenre);
-            $(".list1").selectpicker('destroy');
+            $(".list1").append(optionGenre);
+            $(".list1").selectpicker("destroy");
             $(".list1").selectpicker({
                 filter: true,
                 multipleSeparator: ", "
@@ -494,7 +547,9 @@ function getChapterInfo(data) {
                     }
                 }
             });
-            $("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
+            $("#edit-genre-container .filter-option-inner-inner").text(
+                data.program.program.genre
+            );
             //Evento para cuando cerramos el selectpicker
             selectGenres.on("hide.bs.select", function () {
                 let chapterId = $(".edit-program-data-container").attr(
@@ -509,7 +564,7 @@ function getChapterInfo(data) {
                 editAttributeProgram(chapterId, key, keyValue);
             });
 
-            $('.available').click(function () {
+            $(".available").click(function () {
                 let section = $(this).attr("section");
                 switch (section) {
                     case "1":
@@ -532,110 +587,125 @@ function getChapterInfo(data) {
             //Verificamos si el programa está en algunas de las secciones del landing
             switch (data.program.in_landing) {
                 case 0:
-                    $('.edit-landing-no').prop("checked", true);
-                    $('.edit-carrusel-1').prop("checked", false);
-                    $('.edit-carrusel-2').prop("checked", false);
+                    $(".edit-landing-no").prop("checked", true);
+                    $(".edit-carrusel-1").prop("checked", false);
+                    $(".edit-carrusel-2").prop("checked", false);
                     break;
                 case 1:
-                    $('.edit-landing-yes').prop("checked", true);
-                    $('.edit-carrusel-1').prop("checked", true);
+                    $(".edit-landing-yes").prop("checked", true);
+                    $(".edit-carrusel-1").prop("checked", true);
                     break;
                 case 2:
-                    $('.edit-landing-yes').prop("checked", true);
-                    $('.edit-carrusel-2').prop("checked", true);
+                    $(".edit-landing-yes").prop("checked", true);
+                    $(".edit-carrusel-2").prop("checked", true);
                 default:
                     break;
             }
 
             if (data.program.in_landing_begin) {
-                let landingBeginDateTime = data.program.in_landing_begin.split(" ");
-                let fullDate = landingBeginDateTime[0].split("-")
-                $('.edit-landing-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                let landingBeginDateTime = data.program.in_landing_begin.split(
+                    " "
+                );
+                let fullDate = landingBeginDateTime[0].split("-");
+                $(".edit-landing-date-begin").val(
+                    `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                );
                 if (landingBeginDateTime[1] == "00:00:00") {
-                    $('.edit-landing-time-begin').val("");
+                    $(".edit-landing-time-begin").val("");
                 } else {
-                    $('.edit-landing-time-begin').val(landingBeginDateTime[1])
+                    $(".edit-landing-time-begin").val(landingBeginDateTime[1]);
                 }
-
-
             }
             if (data.program.in_landing_expiration) {
-                let landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
-                let fullDate = landingExpirationDateTime[0].split("-")
-                $('.edit-landing-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                let landingExpirationDateTime = data.program.in_landing_expiration.split(
+                    " "
+                );
+                let fullDate = landingExpirationDateTime[0].split("-");
+                $(".edit-landing-date-end").val(
+                    `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                );
                 if (landingExpirationDateTime[1] == "00:00:00") {
-                    $('.edit-landing-time-end').val("");
+                    $(".edit-landing-time-end").val("");
                 } else {
-                    $('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+                    $(".edit-landing-time-end").val(
+                        landingExpirationDateTime[1]
+                    );
                 }
-
             }
             //Verficar si el programa se encuentra en el home
             if (data.program.in_home == 0) {
-                $('.edit-in-home-no').prop("checked", true)
+                $(".edit-in-home-no").prop("checked", true);
             } else {
-                $('.edit-in-home-yes').prop("checked", true)
+                $(".edit-in-home-yes").prop("checked", true);
             }
 
             if (data.program.in_home_begin) {
                 let homeBeginDateTime = data.program.in_home_begin.split(" ");
-                let fullDate = homeBeginDateTime[0].split("-")
-                $('.edit-home-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                let fullDate = homeBeginDateTime[0].split("-");
+                $(".edit-home-date-begin").val(
+                    `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                );
                 if (homeBeginDateTime[1] == "00:00:00") {
-                    $('.edit-home-time-begin').val("");
+                    $(".edit-home-time-begin").val("");
                 } else {
-                    $('.edit-home-time-begin').val(homeBeginDateTime[1]);
+                    $(".edit-home-time-begin").val(homeBeginDateTime[1]);
                 }
             }
 
             if (data.program.in_home_expiration) {
-                let homeExpirationDateTime = data.program.in_home_expiration.split(" ");
-                let fullDate = homeExpirationDateTime[0].split("-")
-                $('.edit-home-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                let homeExpirationDateTime = data.program.in_home_expiration.split(
+                    " "
+                );
+                let fullDate = homeExpirationDateTime[0].split("-");
+                $(".edit-home-date-end").val(
+                    `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                );
                 if (homeExpirationDateTime[1] == "00:00:00") {
-                    $('.edit-home-time-end').val("");
+                    $(".edit-home-time-end").val("");
                 } else {
-                    $('.edit-home-time-end').val(homeExpirationDateTime[1])
+                    $(".edit-home-time-end").val(homeExpirationDateTime[1]);
                 }
             }
 
             //Schedule Item Date Time
             let scheduleItemDate = data.program.day.split("-");
-            $('.edit-schedule-date').val(`${scheduleItemDate[2]}-${scheduleItemDate[1]}-${scheduleItemDate[0]}
-                ${$('.edit-schedule-item-time').val(data.program.hour)}`);
+            $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
+                scheduleItemDate[1]
+            }-${scheduleItemDate[0]}
+                ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
-            $('.edit-program-textarea').val(data.program.synopsis);
+            $(".edit-program-textarea").val(data.program.synopsis);
             //Season
-            $('.edit-program-season').val(data.program.season);
+            $(".edit-program-season").val(data.program.season);
             //Program episode number
-            $('.edit-episode-number').val(data.program.episode_number);
+            $(".edit-episode-number").val(data.program.episode_number);
             //Year
-            $('.edit-year-produced').val(data.program.program.year);
+            $(".edit-year-produced").val(data.program.program.year);
             //Subtitle
-            $('.edit-program-subtitle').val(data.program.subtitle);
+            $(".edit-program-subtitle").val(data.program.subtitle);
 
             //Rating
-            $('.edit-rating-code').val(data.program.program.rating);
+            $(".edit-rating-code").val(data.program.program.rating);
             //Duration
-            $('.edit-program-duration').val(data.program.duration);
+            $(".edit-program-duration").val(data.program.duration);
             //Subbed
             if (data.program.subbed == 0) {
-                $('.edit-subbed-no').prop("checked", true);
+                $(".edit-subbed-no").prop("checked", true);
             } else {
-                $('.edit-subbed-yes').prop("checked", true);
+                $(".edit-subbed-yes").prop("checked", true);
             }
             //Dubbed
             if (data.program.dubbed == 0) {
-                $('.edit-dubbed-no').prop("checked", true);
+                $(".edit-dubbed-no").prop("checked", true);
             } else {
-                $('.edit-dubbed-yes').prop("checked", true);
+                $(".edit-dubbed-yes").prop("checked", true);
             }
 
             //Audio 5.0
             if (data.program.audio5 == 0) {
-                $('.edit-audio5-no').prop("checked", true);
+                $(".edit-audio5-no").prop("checked", true);
             } else {
-                $('.edit-audio5-yes').prop("checked", true);
+                $(".edit-audio5-yes").prop("checked", true);
             }
 
             $(".modal-edit-program").modal("show");
@@ -664,12 +734,7 @@ function getChapterInfo(data) {
                         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
                     });
                 }
-
-
             }, 250);
-
-
-
         }
     });
 }
@@ -692,7 +757,7 @@ function newProgram(landing, schedule) {
         },
         url: "landing/newProgram",
         success: function (result) {
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
         }
@@ -717,26 +782,34 @@ function getProgramming(date, section, time) {
         },
         url: "landing/getProgramming",
         success: function (result) {
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
             let data = JSON.parse(result);
 
             if (data.id_status >= 1) {
-
-                let modaTitle = $('.edit-program-modal-title');
-                $('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-                $('.edit-program-data-container').attr("section", data.program.section_id);
-                $('.edit-program-data-container').attr("program", data.program.program.title);
-                modaTitle.attr("chapter_id", data.program.chapter_id)
-                modaTitle.attr("section", data.program.section_id)
-                modaTitle.attr("program", data.program.program.title)
-                $('.thumbnail-header1').attr("title", data.program.title)
+                let modaTitle = $(".edit-program-modal-title");
+                $(".edit-program-data-container").attr(
+                    "chapter_id",
+                    data.program.chapter_id
+                );
+                $(".edit-program-data-container").attr(
+                    "section",
+                    data.program.section_id
+                );
+                $(".edit-program-data-container").attr(
+                    "program",
+                    data.program.program.title
+                );
+                modaTitle.attr("chapter_id", data.program.chapter_id);
+                modaTitle.attr("section", data.program.section_id);
+                modaTitle.attr("program", data.program.program.title);
+                $(".thumbnail-header1").attr("title", data.program.title);
                 //thermometer
                 let thermometer = data.thermometer;
                 //Container completo que representa una hora en el termometro
                 let itemThermometer = "";
                 //Container que representa media hora en el termómetro
                 let itemHalfThermometer = "";
-                let index = 1
+                let index = 1;
                 //Recorremos el terommétro
                 for (const key in thermometer) {
                     let status = thermometer[key].status;
@@ -767,28 +840,33 @@ function getProgramming(date, section, time) {
                     index++;
                 }
                 //Insertamos el contenido en el termómetro
-                $('.thermometer-schedule-list').html(itemThermometer);
+                $(".thermometer-schedule-list").html(itemThermometer);
 
                 if (data.image_program) {
-                    $('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
-                        width: "80px",
-                        "margin-bottom": "16px"
-                    });
+                    $(".edit-program-icon-image")
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        )
+                        .css({
+                            width: "80px",
+                            "margin-bottom": "16px"
+                        });
                 }
 
-                $('.edit-image-program').attr("src", data.image_program);
+                $(".edit-image-program").attr("src", data.image_program);
                 //Catalogo de programas
                 let options = "";
                 data.program_catalogue.forEach(program => {
                     options += `
                     <option class="edit-program-input text-uppercase a-text-black-warmrey  backwhite h2"
                     value="${program.title}">${program.title}</option>
-                    `
+                    `;
                 });
-                $('.programs-catalogue').append(options);
+                $(".programs-catalogue").append(options);
                 //selectpicker pra ls titulos de los programas
                 //selectpicker pra ls titulos de los programas
-                $("#prog_titulo_programa").selectpicker('destroy');
+                $("#prog_titulo_programa").selectpicker("destroy");
                 $("#prog_titulo_programa").selectpicker();
                 let selectheader = $(".thumbnail-header1");
                 selectheader.on("hide.bs.select", function () {
@@ -800,29 +878,35 @@ function getProgramming(date, section, time) {
                     if ($(this).val()) {
                         keyValue = $(this).val();
                     } else {
-                        $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                        $(this).val(
+                            $(
+                                "#prog_titulo_programa .filter-option-inner-inner"
+                            ).text()
+                        );
                         keyValue = $(this).val();
                     }
 
                     editAttributeProgram(chapter_id, key, keyValue);
                 });
                 //Genres
-                let optionGenre = ""
+                let optionGenre = "";
                 data.genres.forEach(genre => {
                     optionGenre += `
                 <option value="${genre.title}">${genre.title}</option>
-                `
+                `;
                 });
-                $('.list1').append(optionGenre);
-                $(".list1").selectpicker('destroy');
+                $(".list1").append(optionGenre);
+                $(".list1").selectpicker("destroy");
                 $(".list1").selectpicker({
                     filter: true,
                     multipleSeparator: ", "
                 });
 
-                $("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
+                $("#edit-genre-container .filter-option-inner-inner").text(
+                    data.program.program.genre
+                );
 
-                $('.available').click(function () {
+                $(".available").click(function () {
                     let channel = $(this).attr("section");
                     switch (channel) {
                         case "1":
@@ -845,112 +929,131 @@ function getProgramming(date, section, time) {
                 //Verificamos si el programa está en algunas de las secciones del landing
                 switch (data.program.in_landing) {
                     case 0:
-                        $('.edit-landing-no').prop("checked", true);
-                        $('.edit-carrusel-1').prop("checked", false);
-                        $('.edit-carrusel-2').prop("checked", false);
+                        $(".edit-landing-no").prop("checked", true);
+                        $(".edit-carrusel-1").prop("checked", false);
+                        $(".edit-carrusel-2").prop("checked", false);
                         break;
                     case 1:
-                        $('.edit-landing-yes').prop("checked", true);
-                        $('.edit-carrusel-1').prop("checked", true);
+                        $(".edit-landing-yes").prop("checked", true);
+                        $(".edit-carrusel-1").prop("checked", true);
                         break;
                     case 2:
-                        $('.edit-landing-yes').prop("checked", true);
-                        $('.edit-carrusel-2').prop("checked", true);
+                        $(".edit-landing-yes").prop("checked", true);
+                        $(".edit-carrusel-2").prop("checked", true);
                     default:
                         break;
                 }
                 if (data.program.in_landing_begin) {
-                    let landingBeginDateTime = data.program.in_landing_begin.split(" ");
-                    let fullDate = landingBeginDateTime[0].split("-")
-                    $('.edit-landing-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                    let landingBeginDateTime = data.program.in_landing_begin.split(
+                        " "
+                    );
+                    let fullDate = landingBeginDateTime[0].split("-");
+                    $(".edit-landing-date-begin").val(
+                        `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                    );
                     if (landingBeginDateTime[1] == "00:00:00") {
-                        $('.edit-landing-time-begin').val("");
+                        $(".edit-landing-time-begin").val("");
                     } else {
-                        $('.edit-landing-time-begin').val(landingBeginDateTime[1])
+                        $(".edit-landing-time-begin").val(
+                            landingBeginDateTime[1]
+                        );
                     }
-
-
                 }
                 if (data.program.in_landing_expiration) {
-                    let landingExpirationDateTime = data.program.in_landing_expiration.split(" ");
-                    let fullDate = landingExpirationDateTime[0].split("-")
-                    $('.edit-landing-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                    let landingExpirationDateTime = data.program.in_landing_expiration.split(
+                        " "
+                    );
+                    let fullDate = landingExpirationDateTime[0].split("-");
+                    $(".edit-landing-date-end").val(
+                        `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                    );
                     if (landingExpirationDateTime[1] == "00:00:00") {
-                        $('.edit-landing-time-end').val("");
+                        $(".edit-landing-time-end").val("");
                     } else {
-                        $('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+                        $(".edit-landing-time-end").val(
+                            landingExpirationDateTime[1]
+                        );
                     }
-
                 }
                 //Verficar si el programa se encuentra en el home
                 if (data.program.in_home == 0) {
-                    $('.edit-in-home-no').prop("checked", true)
+                    $(".edit-in-home-no").prop("checked", true);
                 } else {
-                    $('.edit-in-home-yes').prop("checked", true)
+                    $(".edit-in-home-yes").prop("checked", true);
                 }
                 if (data.program.in_home_begin) {
-                    let homeBeginDateTime = data.program.in_home_begin.split(" ");
-                    let fullDate = homeBeginDateTime[0].split("-")
-                    $('.edit-home-date-begin').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`)
+                    let homeBeginDateTime = data.program.in_home_begin.split(
+                        " "
+                    );
+                    let fullDate = homeBeginDateTime[0].split("-");
+                    $(".edit-home-date-begin").val(
+                        `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                    );
                     if (homeBeginDateTime[1] == "00:00:00") {
-                        $('.edit-home-time-begin').val("");
+                        $(".edit-home-time-begin").val("");
                     } else {
-                        $('.edit-home-time-begin').val(homeBeginDateTime[1]);
+                        $(".edit-home-time-begin").val(homeBeginDateTime[1]);
                     }
                 }
                 if (data.program.in_home_expiration) {
-                    let homeExpirationDateTime = data.program.in_home_expiration.split(" ");
-                    let fullDate = homeExpirationDateTime[0].split("-")
-                    $('.edit-home-date-end').val(`${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`);
+                    let homeExpirationDateTime = data.program.in_home_expiration.split(
+                        " "
+                    );
+                    let fullDate = homeExpirationDateTime[0].split("-");
+                    $(".edit-home-date-end").val(
+                        `${fullDate[2]}-${fullDate[1]}-${fullDate[0]}`
+                    );
                     if (homeExpirationDateTime[1] == "00:00:00") {
-                        $('.edit-home-time-end').val("");
+                        $(".edit-home-time-end").val("");
                     } else {
-                        $('.edit-home-time-end').val(homeExpirationDateTime[1])
+                        $(".edit-home-time-end").val(homeExpirationDateTime[1]);
                     }
                 }
                 //Schedule Item Date Time
                 let scheduleItemDate = data.program.day.split("-");
-                $('.edit-schedule-date').val(`${scheduleItemDate[2]}-${scheduleItemDate[1]}-${scheduleItemDate[0]}
-                ${$('.edit-schedule-item-time').val(data.program.hour)}`);
+                $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
+                    scheduleItemDate[1]
+                }-${scheduleItemDate[0]}
+                ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
-                $('.edit-program-textarea').val(data.program.synopsis);
+                $(".edit-program-textarea").val(data.program.synopsis);
                 //Season
-                $('.edit-program-season').val(data.program.season);
+                $(".edit-program-season").val(data.program.season);
                 //Program episode number
-                $('.edit-episode-number').val(data.program.episode_number);
+                $(".edit-episode-number").val(data.program.episode_number);
                 //Year
-                $('.edit-year-produced').val(data.program.program.year);
+                $(".edit-year-produced").val(data.program.program.year);
                 //Subtitle
-                $('.edit-program-subtitle').val(data.program.subtitle);
+                $(".edit-program-subtitle").val(data.program.subtitle);
                 //Rating
-                $('.edit-rating-code').val(data.program.program.rating);
+                $(".edit-rating-code").val(data.program.program.rating);
                 //Duration
-                $('.edit-program-duration').val(data.program.duration);
+                $(".edit-program-duration").val(data.program.duration);
                 //Subbed
                 if (data.program.subbed == 0) {
-                    $('.edit-subbed-no').prop("checked", true);
+                    $(".edit-subbed-no").prop("checked", true);
                 } else {
-                    $('.edit-subbed-yes').prop("checked", true);
+                    $(".edit-subbed-yes").prop("checked", true);
                 }
                 //Dubbed
                 if (data.program.dubbed == 0) {
-                    $('.edit-dubbed-no').prop("checked", true);
+                    $(".edit-dubbed-no").prop("checked", true);
                 } else {
-                    $('.edit-dubbed-yes').prop("checked", true);
+                    $(".edit-dubbed-yes").prop("checked", true);
                 }
                 //Audio 5.0
                 if (data.program.audio5 == 0) {
-                    $('.edit-audio5-no').prop("checked", true);
+                    $(".edit-audio5-no").prop("checked", true);
                 } else {
-                    $('.edit-audio5-yes').prop("checked", true);
+                    $(".edit-audio5-yes").prop("checked", true);
                 }
             } else {
                 newProgramByDate(section, date, time);
                 //getProgramming(date, section, time);
             }
         }
-    })
+    });
 }
 
 function newProgramByDate(section, date, time) {
@@ -971,17 +1074,15 @@ function newProgramByDate(section, date, time) {
         },
         url: "landing/newProgramByDate",
         success: function (result) {
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
         }
     });
 }
 
-
 //Landing concert channel
 function getContentConcertChannelHeader() {
-
     $.ajax({
         type: "POST",
         cache: false,
@@ -998,27 +1099,38 @@ function getContentConcertChannelHeader() {
             console.log(data);
             if (data.code == 200) {
                 //Título en header de concert channel color blanco
-                let headerTitle1 = $('.modal-header-concert-channel .modal-header-title-1');
+                let headerTitle1 = $(
+                    ".modal-header-concert-channel .modal-header-title-1"
+                );
                 //Título en header de concert channel color azul
-                let headerTitle2 = $('.modal-header-concert-channel .modal-header-title-2');
+                let headerTitle2 = $(
+                    ".modal-header-concert-channel .modal-header-title-2"
+                );
                 headerTitle1.val(data.data.block_2_title_1);
                 headerTitle2.val(data.data.block_2_title_2);
-                $('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
-                $('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
-                $('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
+                $(
+                    ".modal-header-concert-channel .modal-header-button-title"
+                ).val(data.data.block_2_button_title);
+                $(
+                    ".modal-header-concert-channel .modal-header-button-title"
+                ).text(data.data.block_2_button_title);
+                $(
+                    ".modal-header-concert-channel .modal-header-button-link"
+                ).val(data.data.block_2_button_url);
                 if (data.data.block_2_icon_channel) {
                     $(".label-no-image").remove();
                 }
-                $('#icon_canal_claro_edit').attr("src", data.data.block_2_icon_channel);
+                $("#icon_canal_claro_edit").attr(
+                    "src",
+                    data.data.block_2_icon_channel
+                );
                 //Mostramos el modal
-                $('.modal-header-concert-channel').modal("show");
+                $(".modal-header-concert-channel").modal("show");
                 //Eliminamos
-                $('.loader-view-container').remove();
-
+                $(".loader-view-container").remove();
             }
-
         }
-    })
+    });
 }
 
 function getContentConcertChannelBlockHeader3() {
@@ -1036,18 +1148,20 @@ function getContentConcertChannelBlockHeader3() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-                let landingTitle = $('.modal-titles .section-landing-title');
-                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                let landingTitle = $(".modal-titles .section-landing-title");
+                let landingSubtitle = $(
+                    ".modal-titles .section-landing-subtitle"
+                );
                 landingTitle.attr("key", "block_3_title");
                 landingSubtitle.attr("key", "block_3_subtitle");
                 landingTitle.val(data.data.block_3_title);
                 landingSubtitle.val(data.data.block_3_subtitle);
-                $('.modal-titles').modal("show");
+                $(".modal-titles").modal("show");
 
-                $('.loader-view-container').remove();
+                $(".loader-view-container").remove();
             }
         }
-    })
+    });
 }
 
 function getContentConcertChannelBlock4One() {
@@ -1065,18 +1179,20 @@ function getContentConcertChannelBlock4One() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-                let landingTitle = $('.modal-titles .section-landing-title');
-                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                let landingTitle = $(".modal-titles .section-landing-title");
+                let landingSubtitle = $(
+                    ".modal-titles .section-landing-subtitle"
+                );
                 landingTitle.attr("key", "block_4_carrusel_1_title");
                 landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
                 landingTitle.val(data.data.block_4_carrusel_1_title);
                 landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
-                $('.modal-titles').modal("show");
+                $(".modal-titles").modal("show");
 
-                $('.loader-view-container').remove();
+                $(".loader-view-container").remove();
             }
         }
-    })
+    });
 }
 
 function getContentConcertChannelBlock4OTwo() {
@@ -1094,17 +1210,19 @@ function getContentConcertChannelBlock4OTwo() {
         success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
-                let landingTitle = $('.modal-titles .section-landing-title');
-                let landingSubtitle = $('.modal-titles .section-landing-subtitle');
+                let landingTitle = $(".modal-titles .section-landing-title");
+                let landingSubtitle = $(
+                    ".modal-titles .section-landing-subtitle"
+                );
                 landingTitle.attr("key", "block_4_carrusel_2_title");
                 landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
                 landingTitle.val(data.data.block_4_carrusel_2_title);
                 landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
-                $('.modal-titles').modal("show");
-                $('.loader-view-container').remove();
+                $(".modal-titles").modal("show");
+                $(".loader-view-container").remove();
             }
         }
-    })
+    });
 }
 
 function getContentConcertChannel(type) {
@@ -1125,13 +1243,14 @@ function getContentConcertChannel(type) {
             if (data.code == 200) {
                 switch (type) {
                     case "slider-pagination":
-
                         let programmingSlider = $(".programming-slider");
                         let counter = 1;
                         let image = "";
                         while (true) {
                             try {
-                                if (data.data[`block_1_image_slider_${counter}`]) {
+                                if (
+                                    data.data[`block_1_image_slider_${counter}`]
+                                ) {
                                     image += `
                                     <div class="bor thumbnail-image-program position-relative h-100">
                                         <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
@@ -1140,7 +1259,12 @@ function getContentConcertChannel(type) {
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                                            <img src="${data.data["block_1_image_slider_" + counter]}"
+                                            <img src="${
+                                                data.data[
+                                                    "block_1_image_slider_" +
+                                                        counter
+                                                ]
+                                            }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
                                     </div>
@@ -1149,18 +1273,16 @@ function getContentConcertChannel(type) {
                                     counter++;
                                 } else {
                                     break;
-
                                 }
                             } catch (error) {
                                 break;
-
                             }
                         }
 
-                        $('.programming-slider').html(image);
-                        $('.modal-programming-carousel-concert').modal("show");
+                        $(".programming-slider").html(image);
+                        $(".modal-programming-carousel-concert").modal("show");
                         try {
-                            programmingSlider.slick("unslick")
+                            programmingSlider.slick("unslick");
                             programmingSlider.slick({
                                 slidesToShow: 1,
                                 dots: true,
@@ -1197,11 +1319,10 @@ function getContentConcertChannel(type) {
                     default:
                         break;
                 }
-
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 //Obtenemos el video promocional en el landing de concert channel
@@ -1223,12 +1344,19 @@ function getConcertChannelPromo() {
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".modal-promos-concert").modal("show");
-                $('#upload-concert-promo-button').attr("key", "block_3_video_url");
+                $("#upload-concert-promo-button").attr(
+                    "key",
+                    "block_3_video_url"
+                );
                 //Checamos si existe el vídeo de promoción en concert channel
                 if (json.data.block_3_video_url) {
-                    let promoContainer = $('#concert-promo-container');
+                    let promoContainer = $("#concert-promo-container");
                     //Verificamos si la url es de una imagen
-                    if (json.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                    if (
+                        json.data.block_3_video_url.match(
+                            /\.(jpeg|jpg|gif|png)$/
+                        ) != null
+                    ) {
                         promoContainer.html(`
                         <img src="${json.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
                         `);
@@ -1239,19 +1367,16 @@ function getConcertChannelPromo() {
                         <source src="${json.data.block_3_video_url}" type="video/mp4">
                          </video>
                         `);
-
                     }
-
                 } else {
                     promoContainer.html(`
                     <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
                     `);
-
                 }
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 function editHeaderLanding(data) {
@@ -1273,11 +1398,11 @@ function editHeaderLanding(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                $('.modal-header-concert-channel').modal("hide");
+                $(".modal-header-concert-channel").modal("hide");
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 function editElementLanding(data) {
@@ -1294,9 +1419,9 @@ function editElementLanding(data) {
         url: "landing/editElementLanding",
         success: function (result) {
             console.log(result);
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 function editPromoLanding(data) {
@@ -1315,20 +1440,19 @@ function editPromoLanding(data) {
         url: "landing/editElementLanding",
         success: function (result) {
             console.log(result);
-            let json = JSON.parse(result)
+            let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".modal-promos-concert").modal("hide");
-
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 function getProgrammingLanding(date, landing) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -1360,11 +1484,11 @@ function getProgrammingLanding(date, landing) {
                 }
 
                 if (programming.length > 0) {
-                    let chapter = ""
+                    let chapter = "";
                     for (const program of programming) {
                         chapter += `
-                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
+                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer">
+                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-${landing}"
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1409,14 +1533,17 @@ function getProgrammingLanding(date, landing) {
                             </div>
                         </div>
                     </div>
-                        `
+                        `;
                     }
                     console.log(chapter);
-                    $('.modal-programming-contanier').html(chapter);
+                    $(".modal-programming-contanier").html(chapter);
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
-                createCalendarDays(calendarSlider2, "programming-concert-landing");
+                createCalendarDays(
+                    calendarSlider2,
+                    "programming-concert-landing"
+                );
                 try {
                     calendarSlider2.slick("unslick");
                     createSlickSlider(calendarSlider2, calendarSlick);
@@ -1424,11 +1551,10 @@ function getProgrammingLanding(date, landing) {
                     createSlickSlider(calendarSlider2, calendarSlick);
                 }
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
-
 
 //Conseguir únicamente programas de un landing, sin mostrar el modal
 function getProgramsLanding(date) {
@@ -1443,14 +1569,14 @@ function getProgramsLanding(date) {
         },
         data: {
             date
-
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                let concertChannelProgramming = json.data[0].programing[0].programs;
+                let concertChannelProgramming =
+                    json.data[0].programing[0].programs;
                 if (concertChannelProgramming.length > 0) {
                     let programConcert = "";
                     for (const program of concertChannelProgramming) {
@@ -1501,178 +1627,223 @@ function getProgramsLanding(date) {
                             </div>
                         </div>
                     </div>
-                        `
+                        `;
                     }
-                    $('.concert-programming-contanier').html(programConcert);
+                    $(".concert-programming-contanier").html(programConcert);
                 }
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
-
 
 // CLARO CANAL
 function getModalsCanalClaro(type) {
     $.ajax({
         type: "GET",
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
         url: "landing/header",
         success: function (result) {
             let obj = JSON.parse(result);
-            console.log(obj)
-            switch (type) {
-                // GET HEADER
-                case "slider-pagination":
-                    let counter = 1;
-                    let image = "";
-
-                    let programmingSlider = $('.modal-programming-carousel-claro .programming-slider');
-                    while (true) {
-                        if (obj.data[`block_1_image_slider_${counter}`]) {
-                            image += `
-                            <div class="bor thumbnail-image-program position-relative h-100">
-                                <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
-                                <label for="image_programming_${counter}"
-                                    class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                                    <img src="./images/synopsis/camara.svg" alt="add-photo"
-                                        class=" cursor-pointer add-photo " />
-                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
-                                    <img src="${obj.data["block_1_image_slider_" + counter]}"
-                                        class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                </label>
-                            </div>
-                            `;
-                            counter++;
-
-                        } else {
-                            break;
-
-                        }
-                    }
-
-                    programmingSlider.html(image);
-                    $('.modal-programming-carousel-claro').modal("show");
-                    try {
-                        programmingSlider.slick("unslick")
-                        programmingSlider.slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(".modal-programming-carousel-claro .programming-slider-dots"),
-                            initialSlide: 0,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                var thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                    } catch (error) {
-                        programmingSlider.slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(".modal-programming-carousel-claro .programming-slider-dots"),
-                            initialSlide: 0,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                var thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                    }
-                    $(".input-image-program").change(function () {
-                        let currentInput = $(this);
-                        if (this.files && this.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                currentInput
-                                    .next()
-                                    .children(".prev-image-program")
-                                    .attr("src", e.target.result)
-                                    .addClass("h-100 w-100")
-                                    .css("z-index", "2");
-                            };
-
-                            reader.readAsDataURL(this.files[0]);
-                        }
-                    });
-                    $(".banner-slider-button").click(function () {
-                        /*
-                            Arreglo para saber la posición de las imágenes que cargo el usuario
-                            es decir, saber si subió la 1 y 3, o 2,3 etc.
-                        */
-                        let imagesPositions = [];
-                        //Arreglo para guardar imágenes de los usuarios
-                        let imagesProgramming = [];
-                        //Recorremos cada input para obtener las imágenes
-                        $(".image_programming").each(function () {
-                            if (this.files[0]) {
-                                imagesPositions.push($(this).attr("data-index"));
-                            }
-                            imagesProgramming.push(this.files[0]);
-                        });
-
-                        let data = new FormData();
-                        //Hacemos un for para mandar file1, file2, etc. en el form data
-                        for (let index = 0; index < imagesProgramming.length; index++) {
-                            let file = "file" + (index + 1).toString();
-                            file = file.toString();
-                            data.append(file, imagesProgramming[index]);
-                        }
-                        //Posiciones de las imágenes
-                        data.append("positions", imagesPositions);
-                        //Hora inicio y fin
-                        data.append("date", $("#date-start-input").val());
-                        data.append("landing", "Canal Claro");
-                        setImageSliderBanner(data);
-                    });
-                    break;
-                case "claro-header":
-                    $('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">')
-                    $('.inp-text-modal-1').val(obj.data.block_2_title_1)
-                    $('.inp-text-modal-2').val(obj.data.block_2_title_2)
-                    $('.inp-text-modal-3').val(obj.data.block_2_button_title)
-                    break
+            if (obj.code == 200) {
+                console.log(obj);
+                switch (type) {
                     // GET HEADER
-                    // GET TITLE
-                case "claro-title":
-                    $('.inp-title-modal').val(obj.data.block_3_title)
-                    $(".inp-title-modal").attr("key", "block_3_title");
-                    $('.inp-sub-title-modal').val(obj.data.block_3_subtitle)
-                    $('.inp-sub-title-modal').attr("block_3_subtitle")
-                    break
-                    // GET TITLE
-                    // GET PROMO
-                case "claro-promo":
-                    $('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>')
-                    break
-                    // GET PROMO
-                    // GET TITLE CARRUSEL 1
-                case "claro-carrusel-title":
-                    $('.inp-title-modal').val(obj.data.block_4_carrusel_1_title)
-                    $('.inp-title-modal').attr("block_4_carrusel_1_title")
-                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle)
-                    $('.inp-sub-title-modal').attr("block_4_carrusel_1_subtitle")
-                    break
-                    // GET TITLE CARRUSEL 1
-                    // GET TITLE CARRUSEL 1
-                case "claro-carrusel-title2":
-                    $('.inp-title-modal').val(obj.data.block_4_carrusel_2_title)
-                    $('.inp-title-modal').attr("block_4_carrusel_2_title")
-                    $('.inp-sub-title-modal').val(obj.data.block_4_carrusel_2_subtitle)
-                    $('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle")
-                    break
-                    // GET TITLE CARRUSEL 1
+                    case "slider-pagination":
+                        let counter = 1;
+                        let image = "";
+
+                        let programmingSlider = $(
+                            ".modal-programming-carousel-claro .programming-slider"
+                        );
+                        while (true) {
+                            if (obj.data[`block_1_image_slider_${counter}`]) {
+                                image += `
+                                <div class="bor thumbnail-image-program position-relative h-100">
+                                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                    <label for="image_programming_${counter}"
+                                        class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                        <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                            class=" cursor-pointer add-photo " />
+                                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                        <img src="${
+                                            obj.data[
+                                                "block_1_image_slider_" + counter
+                                            ]
+                                        }"
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                    </label>
+                                </div>
+                                `;
+                                counter++;
+                            } else {
+                                break;
+                            }
+                        }
+
+                        programmingSlider.html(image);
+                        $(".modal-programming-carousel-claro").modal("show");
+                        try {
+                            programmingSlider.slick("unslick");
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".modal-programming-carousel-claro .programming-slider-dots"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        } catch (error) {
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".modal-programming-carousel-claro .programming-slider-dots"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        }
+                        $(".input-image-program").change(function () {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+
+                                reader.readAsDataURL(this.files[0]);
+                            }
+                        });
+                        $(".banner-slider-button").click(function () {
+                            /*
+                                Arreglo para saber la posición de las imágenes que cargo el usuario
+                                es decir, saber si subió la 1 y 3, o 2,3 etc.
+                            */
+                            let imagesPositions = [];
+                            //Arreglo para guardar imágenes de los usuarios
+                            let imagesProgramming = [];
+                            //Recorremos cada input para obtener las imágenes
+                            $(".image_programming").each(function () {
+                                if (this.files[0]) {
+                                    imagesPositions.push(
+                                        $(this).attr("data-index")
+                                    );
+                                }
+                                imagesProgramming.push(this.files[0]);
+                            });
+
+                            let data = new FormData();
+                            //Hacemos un for para mandar file1, file2, etc. en el form data
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
+                                let file = "file" + (index + 1).toString();
+                                file = file.toString();
+                                data.append(file, imagesProgramming[index]);
+                            }
+                            //Posiciones de las imágenes
+                            data.append("positions", imagesPositions);
+                            //Hora inicio y fin
+                            data.append("date", $("#date-start-input").val());
+                            data.append("landing", "Canal Claro");
+                            setImageSliderBanner(data);
+                        });
+
+                        break;
+                    case "claro-header":
+                        $("#img-header-claro").html(
+                            '<img src="' + obj.data.block_2_icon_channel + '">'
+                        );
+                        $(".inp-text-modal-1").val(obj.data.block_2_title_1);
+                        $(".inp-text-modal-2").val(obj.data.block_2_title_2);
+                        $(".inp-text-modal-3").val(obj.data.block_2_button_title);
+                        $("#modal-header").modal("show");
+                        break;
+                        // GET HEADER
+                        // GET TITLE
+                    case "claro-title":
+                        $(".inp-title-modal").val(obj.data.block_3_title);
+                        $(".inp-title-modal").attr("key", "block_3_title");
+                        $(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
+                        $(".inp-sub-title-modal").attr("block_3_subtitle");
+                        $("#modal-title").modal("show");
+                        break;
+                        // GET TITLE
+                        // GET PROMO
+                    case "claro-promo":
+                        $("#back-promo-claro").html(
+                            '<video autoplay controls class="img-back-modal img-promo" src="' +
+                            obj.data.block_3_video_url +
+                            '" /></video>'
+                        );
+                        $("#modal-promo").modal("show");
+                        break;
+                        // GET PROMO
+                        // GET TITLE CARRUSEL 1
+                    case "claro-carrusel-title":
+                        $(".inp-title-modal").val(
+                            obj.data.block_4_carrusel_1_title
+                        );
+                        $(".inp-title-modal").attr("block_4_carrusel_1_title");
+                        $(".inp-sub-title-modal").val(
+                            obj.data.block_4_carrusel_1_subtitle
+                        );
+                        $(".inp-sub-title-modal").attr(
+                            "block_4_carrusel_1_subtitle"
+                        );
+                        $("#modal-title").modal("show");
+                        break;
+                        // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
+                    case "claro-carrusel-title2":
+                        $(".inp-title-modal").val(
+                            obj.data.block_4_carrusel_2_title
+                        );
+                        $(".inp-title-modal").attr("block_4_carrusel_2_title");
+                        $(".inp-sub-title-modal").val(
+                            obj.data.block_4_carrusel_2_subtitle
+                        );
+                        $(".inp-sub-title-modal").attr(
+                            "block_4_carrusel_2_subtitle"
+                        );
+                        $("#modal-title").modal("show");
+                        break;
+                        // GET TITLE CARRUSEL 1
+                }
             }
-            //fileReader.readAsDataURL(objFileInput.files[0]);
+
+            $('.loader-view-container').remove();
         }
-    })
+    });
 }
 
 function setImageSliderBanner(data) {
@@ -1684,29 +1855,28 @@ function setImageSliderBanner(data) {
         cache: false,
         url: "landing/setImageSliderBanner",
         beforeSend: function () {
-            $(".modal-programming-carousel .modal-content").append(
-                `<div class="loader-container pointer-none">
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
         success: function (result) {
-
-            $(".loader-container").remove();
+            console.log(result);
+            $(".loader-view-container").remove();
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".modal-programming-carousel").modal("hide");
             } else {
                 $(".loader-container").remove();
                 $(".modal-programming-carousel").modal("hide");
-
             }
         }
     }).fail(function (e) {
         $(".loader-container").remove();
         $(".modal-programming-carousel").modal("hide");
         console.log(e);
-    });;
+    });
 }
 
 function FileHeader(objFileInput) {
@@ -1714,9 +1884,11 @@ function FileHeader(objFileInput) {
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
-            $("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-            $('.loader-view-container').remove();
-        }
+            $("#" + objFileInput.name).html(
+                '<img src="' + e.target.result + '" />'
+            );
+            $(".loader-view-container").remove();
+        };
     }
 }
 
@@ -1739,11 +1911,11 @@ function editHeaderLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                $('#modal-header').modal("hide");
+                $("#modal-header").modal("hide");
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 function FilePromoImg(objFileInput) {
@@ -1751,8 +1923,12 @@ function FilePromoImg(objFileInput) {
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
-            $("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
-        }
+            $("#back-promo-claro").html(
+                '<img class="img-back-modal img-promo" src="' +
+                e.target.result +
+                '" />'
+            );
+        };
     }
 }
 
@@ -1772,12 +1948,11 @@ function editElementLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                $('#modal-title').modal("hide");
+                $("#modal-title").modal("hide");
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
-
+    });
 
     // Canal Claro
 }
@@ -1787,16 +1962,23 @@ function FilePromoVideo(objFileInput) {
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
-            $("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-            $('.loader-view-container').remove();
-        }
+            $("#back-promo-claro").html(
+                '<video autoplay controls class="img-back-modal img-promo" src="' +
+                e.target.result +
+                '" /></video>'
+            );
+            $(".loader-view-container").remove();
+        };
         fileReader.readAsDataURL(objFileInput.files[0]);
     }
 }
 
 //Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
-function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "thumbnail-header") {
-
+function getPromotionalsProgramsCarousel(
+    idCarousel,
+    landing,
+    landingClass = "thumbnail-header"
+) {
     $.ajax({
         type: "POST",
         url: "landing/getPromotionalsProgramsCarousel",
@@ -1811,23 +1993,23 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
-
         },
 
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
             let program = "";
             let titles = "";
             let idLanding = "";
-            let classButton = "" //Nos sirve para distinguir a qué modal y en qué landing damos click
+            let classButton = ""; //Nos sirve para distinguir a qué modal y en qué landing damos click
             //Limpiamos input en donde se encuentran las imágenes
-            $('.edit-image-carrusel').val("");
+            $(".edit-image-carrusel").val("");
             //Verificamos cuál landing es y de ahí asignamos un id
             switch (landing) {
                 case "Canal Claro":
                     idLanding = 1;
+                    classButton = "button-modal-canal-claro";
                     break;
                 case "Concert Channel":
                     idLanding = 2;
@@ -1848,8 +2030,10 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 //Variables a evaluar
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
-                let image = chapter.chapter.thumbnail_list_horizontal || "./images/synopsis/image-synopsis-carrusel.jpg"
-                let inLandingSwitch = ""
+                let image =
+                    chapter.chapter.thumbnail_list_horizontal ||
+                    "./images/synopsis/image-synopsis-carrusel.jpg";
+                let inLandingSwitch = "";
                 let inLandingDates = "";
                 let inLandingTimes = "";
                 //Validaciones de si el programa se encuentra en algún landing
@@ -1873,20 +2057,24 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     `;
 
                     //Fechas
-                    var dateExpirationLanding = ""
-                    var timeExpiration = ""
+                    var dateExpirationLanding = "";
+                    var timeExpiration = "";
                     if (chapter.chapter.in_landing_expiration) {
-                        var dateTimeExpiration = chapter.chapter.in_landing_expiration.split(" ");
+                        var dateTimeExpiration = chapter.chapter.in_landing_expiration.split(
+                            " "
+                        );
                         let dateExpiration = dateTimeExpiration[0].split("-");
                         dateExpirationLanding = `${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}`;
                         timeExpiration = dateTimeExpiration[1];
                     }
-                    var dateBeginLanding = ""
-                    var timeBegin = ""
+                    var dateBeginLanding = "";
+                    var timeBegin = "";
 
                     //Revisamos si
                     if (chapter.chapter.in_landing_begin) {
-                        var dateTimeBegin = chapter.chapter.in_landing_begin.split(" ");
+                        var dateTimeBegin = chapter.chapter.in_landing_begin.split(
+                            " "
+                        );
                         let dateBegin = dateTimeBegin[0].split("-");
                         dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
                         timeBegin = dateTimeBegin[1];
@@ -1903,7 +2091,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
                     </div>
-                    `
+                    `;
 
                     inLandingTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
@@ -1917,7 +2105,6 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" value="${timeExpiration}" placeholder="00:00:00"></span>
                     </div>
                     `;
-
                 } else {
                     inLandingSwitch = `
                     <!--Switch-->
@@ -1961,7 +2148,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 }
 
                 //HOME
-                let inHomeSwitch = ""
+                let inHomeSwitch = "";
                 let inHomeDates = "";
                 let inHomeTimes = "";
                 //Verificamos si el programa se encuentra en el home
@@ -1984,29 +2171,31 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                     `;
 
                     //Fechas
-                    let dateHomeExpiration = ""
-                    let timeHomeExpiration = ""
-                    let dateTimeHomeExpiration = ""
+                    let dateHomeExpiration = "";
+                    let timeHomeExpiration = "";
+                    let dateTimeHomeExpiration = "";
                     if (chapter.chapter.in_home_expiration) {
-                        dateTimeHomeExpiration = chapter.chapter.in_home_expiration.split(" ");
+                        dateTimeHomeExpiration = chapter.chapter.in_home_expiration.split(
+                            " "
+                        );
                         let dateHome = dateTimeHomeExpiration[0].split("-");
-                        dateHomeExpiration = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`
+                        dateHomeExpiration = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
                         timeHomeExpiration = dateTimeHomeExpiration[1];
                     }
 
                     //
-                    let dateHomeBegin = ""
-                    let timeHomeBegin = ""
+                    let dateHomeBegin = "";
+                    let timeHomeBegin = "";
                     let dateHomeTimeBegin = "";
                     //Revisamos si
                     if (chapter.chapter.in_home_begin) {
-                        dateHomeTimeBegin = chapter.chapter.in_home_begin.split(" ");
+                        dateHomeTimeBegin = chapter.chapter.in_home_begin.split(
+                            " "
+                        );
                         let dateHome = dateHomeTimeBegin[0].split("-");
                         dateHomeBegin = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
                         timeHomeBegin = dateHomeTimeBegin[1];
                     }
-
-
 
                     inHomeDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
@@ -2021,7 +2210,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"
                                 placeholder="00-00-0000"></span>
                     </div>
-                    `
+                    `;
                     inHomeTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
@@ -2034,8 +2223,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
                                 placeholder="00:00:00"></span>
                     </div>
-                    `
-
+                    `;
                 } else {
                     inHomeSwitch = `
                     <div class="d-flex align-items-center edit-switches-home-container">
@@ -2066,7 +2254,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value=""
                                 placeholder="00-00-0000"></span>
                     </div>
-                    `
+                    `;
                     inHomeTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
@@ -2079,9 +2267,9 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                                 class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
                                 placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
                     </div>
-                    `
+                    `;
                 }
-                let scheduleDate = chapter.chapter.day.split("-")
+                let scheduleDate = chapter.chapter.day.split("-");
                 let subbed = "";
                 if (chapter.chapter.subbed == 0) {
                     subbed = `
@@ -2565,21 +2753,23 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 });
             }
             //Genres
-            let optionGenre = ""
+            let optionGenre = "";
             data.data.genres.forEach(genre => {
                 optionGenre += `
                                          <option value="${genre.title}">${genre.title}</option>
-                                         `
+                                         `;
             });
             //Géneros
-            $('.list1').append(optionGenre);
-            $(".list1").selectpicker('destroy');
+            $(".list1").append(optionGenre);
+            $(".list1").selectpicker("destroy");
             $(".list1").selectpicker({
                 filter: true,
                 multipleSeparator: ", "
             });
             let editProgramLandingGenres = "";
-            let selectGenres = $(".modal-edit-program-carrusel .edit-program-genres").children(".list1");
+            let selectGenres = $(
+                ".modal-edit-program-carrusel .edit-program-genres"
+            ).children(".list1");
             //Verificamos si el usuario ha seleccionado un género o categoría
             selectGenres.on("changed.bs.select", function () {
                 //Obtenemos los valores del selectpicker
@@ -2600,10 +2790,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
             });
             //Evento para cuando cerramos el selectpicker
             selectGenres.on("hide.bs.select", function () {
-                let chapterId = $(this).attr(
-                    "chapter_id"
-                );
-
+                let chapterId = $(this).attr("chapter_id");
 
                 //Obtenemos la key
                 let key = $(this).attr("key");
@@ -2613,23 +2800,27 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
                 console.log(chapterId, key, keyValue);
                 editAttributeProgram(chapterId, key, keyValue);
             });
-            $('.carrusel-concert-select').append(titles);
-            $('.carrusel-concert-select').selectpicker('destroy');
-            $('.carrusel-concert-select').selectpicker({
+            $(".carrusel-concert-select").append(titles);
+            $(".carrusel-concert-select").selectpicker("destroy");
+            $(".carrusel-concert-select").selectpicker({
                 filter: true,
                 multipleSeparator: ", "
             });
-            let selectheader = $(".modal-edit-program-carrusel .carrusel-concert-select").children(".carrusel-concert-select");
+            let selectheader = $(
+                ".modal-edit-program-carrusel .carrusel-concert-select"
+            ).children(".carrusel-concert-select");
             selectheader.on("hide.bs.select", function () {
                 let keyValue = "";
                 let key = $(this).attr("key");
-                let chapter_id = $(this).attr(
-                    "chapter_id"
-                );
+                let chapter_id = $(this).attr("chapter_id");
                 if ($(this).val()) {
                     keyValue = $(this).val();
                 } else {
-                    $(this).val($('#prog_titulo_programa .filter-option-inner-inner').text());
+                    $(this).val(
+                        $(
+                            "#prog_titulo_programa .filter-option-inner-inner"
+                        ).text()
+                    );
                     keyValue = $(this).val();
                 }
                 editAttributeProgram(chapter_id, key, keyValue);
@@ -2670,20 +2861,18 @@ function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "th
             let imageTriangle = `
                 <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
             `;
-            $('.modal-edit-program-carrusel .edit-program-image .bootstrap-select').append(imageTriangle);
-            $('.dropimg').click(function () {
-                $('.carrusel-concert-select').selectpicker('toggle');
-            })
-
+            $(
+                ".modal-edit-program-carrusel .edit-program-image .bootstrap-select"
+            ).append(imageTriangle);
+            $(".dropimg").click(function () {
+                $(".carrusel-concert-select").selectpicker("toggle");
+            });
         }
-
     });
 }
 
-
 //Landing concert channel
 function getContentClaroCinema(type) {
-
     $.ajax({
         type: "POST",
         cache: false,
@@ -2701,33 +2890,56 @@ function getContentClaroCinema(type) {
             if (data.code == 200) {
                 switch (type) {
                     case "header-landing-cinema":
-                        $('.cinema-header-input-title1').val(data.data.block_2_title_1);
-                        $('.cinema-header-input-title2').val(data.data.block_2_title_2);
-                        $('.btn-header-claro-cinema').val(data.data.block_2_button_title);
-                        $('.link-button-header-cinema').val(data.data.block_2_button_url);
-                        let logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png"
+                        $(".cinema-header-input-title1").val(
+                            data.data.block_2_title_1
+                        );
+                        $(".cinema-header-input-title2").val(
+                            data.data.block_2_title_2
+                        );
+                        $(".btn-header-claro-cinema").val(
+                            data.data.block_2_button_title
+                        );
+                        $(".link-button-header-cinema").val(
+                            data.data.block_2_button_url
+                        );
+                        let logo =
+                            data.data.block_2_icon_channel ||
+                            "./images/synopsis/image-synopsis-horizontal.png";
                         /*                         if (data.data.block_2_icon_channel) {
                                                     $(".label-no-image").remove();
                                                 } */
-                        $('.logo-header-claro-cinema').attr("src", logo);
-                        $('.modal-encabezado-cinema').modal("show");
+                        $(".logo-header-claro-cinema").attr("src", logo);
+                        $(".modal-encabezado-cinema").modal("show");
                         break;
                     case "title-cinema":
-                        $('.modal-title-claro-cinema').text("título");
-                        $('.modal-input-title1-cinema').val(data.data.block_3_title_1);
-                        $('.modal-input-title2-cinema').val(data.data.block_3_title_2);
-                        $('.modal-input-subtitle-cinema').val(data.data.block_3_subtitle);
-                        $('.modal-title-cinema').modal("show");
+                        $(".modal-title-claro-cinema").text("título");
+                        $(".modal-input-title1-cinema").val(
+                            data.data.block_3_title_1
+                        );
+                        $(".modal-input-title2-cinema").val(
+                            data.data.block_3_title_2
+                        );
+                        $(".modal-input-subtitle-cinema").val(
+                            data.data.block_3_subtitle
+                        );
+                        $(".modal-title-cinema").modal("show");
                         break;
 
                     case "promo-cinema":
                         $(".modal-promo-cinema").modal("show");
-                        $('.upload-promo-button').attr("key", "block_3_video_url");
+                        $(".upload-promo-button").attr(
+                            "key",
+                            "block_3_video_url"
+                        );
                         //Checamos si existe el vídeo de promoción en concert channel
                         if (data.data.block_3_video_url) {
-                            let promoContainer = $('#cinema-promo-container');
+                            let promoContainer = $("#cinema-promo-container");
                             //Verificamos si la url es de una imagen
-                            if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                            if (
+                                data.data.block_3_video_url.match(
+                                    /\.(jpeg|jpg|gif|png)$/
+                                ) != null
+                            ) {
                                 promoContainer.html(`
                                 <img src="${data.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
                                 `);
@@ -2738,33 +2950,42 @@ function getContentClaroCinema(type) {
                                 <source src="${data.data.block_3_video_url}" type="video/mp4">
                                  </video>
                                 `);
-
                             }
-
                         } else {
                             promoContainer.html(`
                             <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
                             `);
-
                         }
                         break;
                     case "title-carrusel1":
-                        $('.input-carrusel1-title1-cinema').val(data.data.block_4_carrusel_1_title_1)
-                        $('.input-carrusel1-title2-cinema').val(data.data.block_4_carrusel_1_title_2)
-                        $('.input-carrusel1-subtitle-cinema').val(data.data.block_4_carrusel_1_subtitle)
-                        $('.modal-title-carrusel1').modal("show");
+                        $(".input-carrusel1-title1-cinema").val(
+                            data.data.block_4_carrusel_1_title_1
+                        );
+                        $(".input-carrusel1-title2-cinema").val(
+                            data.data.block_4_carrusel_1_title_2
+                        );
+                        $(".input-carrusel1-subtitle-cinema").val(
+                            data.data.block_4_carrusel_1_subtitle
+                        );
+                        $(".modal-title-carrusel1").modal("show");
                         break;
                     case "title-carrusel2":
-                        $('.modal-title-claro-cinema').text("carrusel 2");
-                        $('.modal-input-title1-cinema').val(data.data.block_4_carrusel_2_title_2);
-                        $('.modal-input-title2-cinema').val(data.data.block_4_carrusel_2_title_2);
-                        $('.modal-input-subtitle-cinema').val(data.data.block_4_carrusel_2_subtitle);
-                        $('.modal-title-cinema').modal("show");
+                        $(".modal-title-claro-cinema").text("carrusel 2");
+                        $(".modal-input-title1-cinema").val(
+                            data.data.block_4_carrusel_2_title_2
+                        );
+                        $(".modal-input-title2-cinema").val(
+                            data.data.block_4_carrusel_2_title_2
+                        );
+                        $(".modal-input-subtitle-cinema").val(
+                            data.data.block_4_carrusel_2_subtitle
+                        );
+                        $(".modal-title-cinema").modal("show");
                         break;
 
                     case "current-programming-cinema":
                         let calendarSlider2 = $(".calendar-slider2");
-                        $('.modal-programming-landing').modal("show");
+                        $(".modal-programming-landing").modal("show");
                         createCalendarDays(calendarSlider2);
                         try {
                             calendarSlider2.slick("unslick");
@@ -2778,11 +2999,10 @@ function getContentClaroCinema(type) {
                         break;
                 }
 
-                $('.loader-view-container').remove();
+                $(".loader-view-container").remove();
             }
-
         }
-    })
+    });
 }
 
 function editPromoLandingClaro(data) {
@@ -2804,11 +3024,11 @@ function editPromoLandingClaro(data) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
-                $('#modal-promo').modal("hide");
+                $("#modal-promo").modal("hide");
             }
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
-    })
+    });
 }
 
 // CLARO CANAL

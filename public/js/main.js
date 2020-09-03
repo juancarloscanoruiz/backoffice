@@ -89059,78 +89059,78 @@ function eventsGrilla() {
             break;
 
           /* case "pencil-carrusel1":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-edit-program-carrusel").modal("show");
-               //slider para carrusel concert-channel
-               $(".carrusel1-slider").slick({
-                   slidesToShow: 1,
-                   dots: true,
-                   appendDots: $(".carrusel1-slider-dots1"),
-                   initialSlide: 0,
-                   infinite: false,
-                   customPaging: function (slider, i) {
-                       var thumb = $(slider.$slides[i]).data();
-                       return (
-                           "<p class='a-text-bold-teal slider-pagination-item'>" +
-                           (i + 1) +
-                           "</p>"
-                       );
-                   }
-               });
-               $("#loader1").remove();
-           }, 3000);
-           break;
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-edit-program-carrusel").modal("show");
+           //slider para carrusel concert-channel
+           $(".carrusel1-slider").slick({
+               slidesToShow: 1,
+               dots: true,
+               appendDots: $(".carrusel1-slider-dots1"),
+               initialSlide: 0,
+               infinite: false,
+               customPaging: function (slider, i) {
+                   var thumb = $(slider.$slides[i]).data();
+                   return (
+                       "<p class='a-text-bold-teal slider-pagination-item'>" +
+                       (i + 1) +
+                       "</p>"
+                   );
+               }
+           });
+           $("#loader1").remove();
+          }, 3000);
+          break;
           case "pencil-carrusel2":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-edit-program-carrusel2").modal("show");
-               $(".carrusel2-slider").slick({
-                   slidesToShow: 1,
-                   dots: true,
-                   appendDots: $(".carrusel2-slider-dots1"),
-                   initialSlide: 0,
-                   infinite: false,
-                   customPaging: function (slider, i) {
-                       var thumb = $(slider.$slides[i]).data();
-                       return (
-                           "<p class='a-text-bold-teal slider-pagination-item'>" +
-                           (i + 1) +
-                           "</p>"
-                       );
-                   }
-               });
-               $("#loader1").remove();
-           }, 3000);
-            break;
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-edit-program-carrusel2").modal("show");
+           $(".carrusel2-slider").slick({
+               slidesToShow: 1,
+               dots: true,
+               appendDots: $(".carrusel2-slider-dots1"),
+               initialSlide: 0,
+               infinite: false,
+               customPaging: function (slider, i) {
+                   var thumb = $(slider.$slides[i]).data();
+                   return (
+                       "<p class='a-text-bold-teal slider-pagination-item'>" +
+                       (i + 1) +
+                       "</p>"
+                   );
+               }
+           });
+           $("#loader1").remove();
+          }, 3000);
+          break;
           case "pencil-header":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-titles").modal("show");
-               $("#loader1").remove();
-           }, 3000);
-            break;
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-titles").modal("show");
+           $("#loader1").remove();
+          }, 3000);
+          break;
           case "pencil-video":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-promos-concert").modal("show");
-               $("#loader1").remove();
-           }, 3000);
-            break;
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-promos-concert").modal("show");
+           $("#loader1").remove();
+          }, 3000);
+          break;
           case "pencil-header1":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-titles").modal("show");
-               $("#loader1").remove();
-           }, 3000);
-            break;
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-titles").modal("show");
+           $("#loader1").remove();
+          }, 3000);
+          break;
           case "header2":
-           $("body").append(loader);
-           setTimeout(function () {
-               $(".modal-titles").modal("show");
-               $("#loader1").remove();
-           }, 3000);
-            break;*/
+          $("body").append(loader);
+          setTimeout(function () {
+           $(".modal-titles").modal("show");
+           $("#loader1").remove();
+          }, 3000);
+          break;*/
 
           case "pencil-carrusel1":
             var landing = "Concert Channel";
@@ -89904,8 +89904,8 @@ function eventsGrilla() {
   //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
-    //Agregamos un slide al slider de programación
+    //Cada vez que se haga click, el contador incrementa
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
@@ -91066,19 +91066,13 @@ function eventsGrilla() {
       if (_typeof(json) == "object") {
         switch (json.type) {
           case "claro-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             break;
 
           case "claro-programacion":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             setTimeout(function () {
               var date = new Date();
-              debugger;
               var day = ("0" + date.getUTCDate()).slice(-2);
               var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
               var year = date.getUTCFullYear();
@@ -91089,56 +91083,35 @@ function eventsGrilla() {
             break;
 
           case "claro-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             break;
 
           case "claro-promo":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             break;
 
           case "claro-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel1").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              var id = 1;
+              var landing = "Canal Claro";
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro");
             }, 3000);
             break;
 
           case "claro-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-edi-carrusel-2").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              var id = 2;
+              var landing = "Canal Claro";
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro ");
             }, 3000);
             break;
 
           case "claro-carrusel-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             break;
 
           case "claro-carrusel-title2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getModalsCanalClaro"])(json.type);
             break;
 
           case "btn-redirect-header":
@@ -91288,6 +91261,12 @@ function eventsGrilla() {
     data.append("logo", logo);
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.button-modal-canal-claro').click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').on("click", ".button-modal-canal-claro", function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // TITLE EDIT CANAL CLARO
@@ -91849,7 +91828,6 @@ function updateImagesOfProgrammingSlider(data) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
     console.log(e);
   });
-  ;
 }
 
 function updateLogosOfLanding(data) {
@@ -91903,8 +91881,8 @@ function getChapterInfo(data) {
     },
     success: function success(result) {
       var data = JSON.parse(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
       var date = new Date();
       /* Número de días del mes actual */
 
@@ -91997,16 +91975,16 @@ function getChapterInfo(data) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider').html(daysSlider); //End caledario
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").html(daysSlider); //End caledario
 
-      var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
+      var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-modal-title");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("section", data.program.section_id);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("program", data.program.program.title);
       modaTitle.attr("chapter_id", data.program.chapter_id);
       modaTitle.attr("section", data.program.section_id);
       modaTitle.attr("program", data.program.program.title);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
 
       var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
 
@@ -92044,26 +92022,26 @@ function getChapterInfo(data) {
       } //Insertamos el contenido en el termómetro
 
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer); //Insertamos la imagen del capítulo
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").html(itemThermometer); //Insertamos la imagen del capítulo
 
       if (data.image_program) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
           width: "80px",
           "margin-bottom": "16px"
         });
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
 
       var options = "";
       data.program_catalogue.forEach(function (program) {
         options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
       //selectpicker pra ls titulos de los programas
 
       var dropdownTitles = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa");
-      dropdownTitles.selectpicker('destroy');
+      dropdownTitles.selectpicker("destroy");
       dropdownTitles.selectpicker();
       var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
       selectheader.on("hide.bs.select", function () {
@@ -92074,16 +92052,16 @@ function getChapterInfo(data) {
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
           keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
           keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         }
 
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
       var imageTriangle = "\n            <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n        ";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-image .bootstrap-select').append(imageTriangle);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dropimg').click(function () {
-        dropdownTitles.selectpicker('toggle');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
+        dropdownTitles.selectpicker("toggle");
       });
       data; //Genres
 
@@ -92091,8 +92069,8 @@ function getChapterInfo(data) {
       data.genres.forEach(function (genre) {
         optionGenre += "\n                    <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                    ");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
         filter: true,
         multipleSeparator: ", "
@@ -92128,7 +92106,7 @@ function getChapterInfo(data) {
 
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".available").click(function () {
         var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
 
         switch (section) {
@@ -92154,19 +92132,19 @@ function getChapterInfo(data) {
 
       switch (data.program.in_landing) {
         case 0:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", false);
           break;
 
         case 1:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", true);
           break;
 
         case 2:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", true);
 
         default:
           break;
@@ -92175,12 +92153,12 @@ function getChapterInfo(data) {
       if (data.program.in_landing_begin) {
         var landingBeginDateTime = data.program.in_landing_begin.split(" ");
         var fullDate = landingBeginDateTime[0].split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
 
         if (landingBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
         }
       }
 
@@ -92189,20 +92167,20 @@ function getChapterInfo(data) {
 
         var _fullDate = landingExpirationDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
 
         if (landingExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
         }
       } //Verficar si el programa se encuentra en el home
 
 
       if (data.program.in_home == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-yes").prop("checked", true);
       }
 
       if (data.program.in_home_begin) {
@@ -92210,12 +92188,12 @@ function getChapterInfo(data) {
 
         var _fullDate2 = homeBeginDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
 
         if (homeBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
         }
       }
 
@@ -92224,51 +92202,51 @@ function getChapterInfo(data) {
 
         var _fullDate3 = homeExpirationDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
 
         if (homeExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
         }
       } //Schedule Item Date Time
 
 
       var scheduleItemDate = data.program.day.split("-");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-textarea").val(data.program.synopsis); //Season
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-season").val(data.program.season); //Program episode number
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-episode-number").val(data.program.episode_number); //Year
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-rating-code").val(data.program.program.rating); //Duration
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-duration").val(data.program.duration); //Subbed
 
       if (data.program.subbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-yes").prop("checked", true);
       } //Dubbed
 
 
       if (data.program.dubbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-yes").prop("checked", true);
       } //Audio 5.0
 
 
       if (data.program.audio5 == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-yes").prop("checked", true);
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
@@ -92315,7 +92293,7 @@ function newProgram(landing, schedule) {
     },
     url: "landing/newProgram",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -92336,18 +92314,18 @@ function getProgramming(date, section, time) {
     },
     url: "landing/getProgramming",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
 
       if (data.id_status >= 1) {
-        var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-modal-title');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("chapter_id", data.program.chapter_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("section", data.program.section_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-data-container').attr("program", data.program.program.title);
+        var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-modal-title");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("section", data.program.section_id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("program", data.program.program.title);
         modaTitle.attr("chapter_id", data.program.chapter_id);
         modaTitle.attr("section", data.program.section_id);
         modaTitle.attr("program", data.program.program.title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-header1').attr("title", data.program.title); //thermometer
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
 
         var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
 
@@ -92385,25 +92363,25 @@ function getProgramming(date, section, time) {
         } //Insertamos el contenido en el termómetro
 
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thermometer-schedule-list').html(itemThermometer);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").html(itemThermometer);
 
         if (data.image_program) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-icon-image').attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
             width: "80px",
             "margin-bottom": "16px"
           });
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-program').attr("src", data.image_program); //Catalogo de programas
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
 
         var options = "";
         data.program_catalogue.forEach(function (program) {
           options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programs-catalogue').append(options); //selectpicker pra ls titulos de los programas
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
         //selectpicker pra ls titulos de los programas
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker('destroy');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker("destroy");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
         var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
         selectheader.on("hide.bs.select", function () {
@@ -92414,7 +92392,7 @@ function getProgramming(date, section, time) {
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
             keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
             keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
           }
 
@@ -92425,14 +92403,14 @@ function getProgramming(date, section, time) {
         data.genres.forEach(function (genre) {
           optionGenre += "\n                <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
           filter: true,
           multipleSeparator: ", "
         });
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.available').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".available").click(function () {
           var channel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
 
           switch (channel) {
@@ -92458,19 +92436,19 @@ function getProgramming(date, section, time) {
 
         switch (data.program.in_landing) {
           case 0:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-no').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", false);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", false);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-no").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", false);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", false);
             break;
 
           case 1:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-1').prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", true);
             break;
 
           case 2:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-yes').prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-carrusel-2').prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", true);
 
           default:
             break;
@@ -92479,12 +92457,12 @@ function getProgramming(date, section, time) {
         if (data.program.in_landing_begin) {
           var landingBeginDateTime = data.program.in_landing_begin.split(" ");
           var fullDate = landingBeginDateTime[0].split("-");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-begin').val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
 
           if (landingBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val("");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-begin').val(landingBeginDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
           }
         }
 
@@ -92493,20 +92471,20 @@ function getProgramming(date, section, time) {
 
           var _fullDate4 = landingExpirationDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-date-end').val("".concat(_fullDate4[2], "-").concat(_fullDate4[1], "-").concat(_fullDate4[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("".concat(_fullDate4[2], "-").concat(_fullDate4[1], "-").concat(_fullDate4[0]));
 
           if (landingExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val("");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-time-end').val(landingExpirationDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
           }
         } //Verficar si el programa se encuentra en el home
 
 
         if (data.program.in_home == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-in-home-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-yes").prop("checked", true);
         }
 
         if (data.program.in_home_begin) {
@@ -92514,12 +92492,12 @@ function getProgramming(date, section, time) {
 
           var _fullDate5 = homeBeginDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-begin').val("".concat(_fullDate5[2], "-").concat(_fullDate5[1], "-").concat(_fullDate5[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("".concat(_fullDate5[2], "-").concat(_fullDate5[1], "-").concat(_fullDate5[0]));
 
           if (homeBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val("");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-begin').val(homeBeginDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
           }
         }
 
@@ -92528,51 +92506,51 @@ function getProgramming(date, section, time) {
 
           var _fullDate6 = homeExpirationDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-date-end').val("".concat(_fullDate6[2], "-").concat(_fullDate6[1], "-").concat(_fullDate6[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("".concat(_fullDate6[2], "-").concat(_fullDate6[1], "-").concat(_fullDate6[0]));
 
           if (homeExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val("");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-home-time-end').val(homeExpirationDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
           }
         } //Schedule Item Date Time
 
 
         var scheduleItemDate = data.program.day.split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-date').val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-schedule-item-time').val(data.program.hour))); //Synopsis
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-textarea').val(data.program.synopsis); //Season
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-textarea").val(data.program.synopsis); //Season
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-season').val(data.program.season); //Program episode number
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-season").val(data.program.season); //Program episode number
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-episode-number').val(data.program.episode_number); //Year
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-episode-number").val(data.program.episode_number); //Year
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-year-produced').val(data.program.program.year); //Subtitle
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-subtitle').val(data.program.subtitle); //Rating
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-rating-code').val(data.program.program.rating); //Duration
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-rating-code").val(data.program.program.rating); //Duration
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-duration').val(data.program.duration); //Subbed
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-duration").val(data.program.duration); //Subbed
 
         if (data.program.subbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-subbed-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-yes").prop("checked", true);
         } //Dubbed
 
 
         if (data.program.dubbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-dubbed-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-yes").prop("checked", true);
         } //Audio 5.0
 
 
         if (data.program.audio5 == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-no').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-audio5-yes').prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-yes").prop("checked", true);
         }
       } else {
         newProgramByDate(section, date, time); //getProgramming(date, section, time);
@@ -92595,7 +92573,7 @@ function newProgramByDate(section, date, time) {
     },
     url: "landing/newProgramByDate",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -92617,24 +92595,24 @@ function getContentConcertChannelHeader() {
 
       if (data.code == 200) {
         //Título en header de concert channel color blanco
-        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-1'); //Título en header de concert channel color azul
+        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1"); //Título en header de concert channel color azul
 
-        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-title-2');
+        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2");
         headerTitle1.val(data.data.block_2_title_1);
         headerTitle2.val(data.data.block_2_title_2);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-title').val(data.data.block_2_button_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-title').text(data.data.block_2_button_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val(data.data.block_2_button_url);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-title").val(data.data.block_2_button_title);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-title").text(data.data.block_2_button_title);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(data.data.block_2_button_url);
 
         if (data.data.block_2_icon_channel) {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".label-no-image").remove();
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr("src", data.data.block_2_icon_channel); //Mostramos el modal
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#icon_canal_claro_edit").attr("src", data.data.block_2_icon_channel); //Mostramos el modal
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("show"); //Eliminamos
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel").modal("show"); //Eliminamos
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     }
   });
@@ -92652,14 +92630,14 @@ function getContentConcertChannelBlockHeader3() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_3_title");
         landingSubtitle.attr("key", "block_3_subtitle");
         landingTitle.val(data.data.block_3_title);
         landingSubtitle.val(data.data.block_3_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     }
   });
@@ -92677,14 +92655,14 @@ function getContentConcertChannelBlock4One() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_4_carrusel_1_title");
         landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
         landingTitle.val(data.data.block_4_carrusel_1_title);
         landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     }
   });
@@ -92702,14 +92680,14 @@ function getContentConcertChannelBlock4OTwo() {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-title');
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles .section-landing-subtitle');
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_4_carrusel_2_title");
         landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
         landingTitle.val(data.data.block_4_carrusel_2_title);
         landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-titles').modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     }
   });
@@ -92747,8 +92725,8 @@ function getContentConcertChannel(type) {
               }
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider').html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-concert').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").html(image);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").modal("show");
 
             try {
               programmingSlider.slick("unslick");
@@ -92784,7 +92762,7 @@ function getContentConcertChannel(type) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 } //Obtenemos el video promocional en el landing de concert channel
@@ -92802,10 +92780,10 @@ function getConcertChannelPromo() {
 
       if (json.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
         if (json.data.block_3_video_url) {
-          var _promoContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container'); //Verificamos si la url es de una imagen
+          var _promoContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container"); //Verificamos si la url es de una imagen
 
 
           if (json.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -92819,7 +92797,7 @@ function getConcertChannelPromo() {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -92840,10 +92818,10 @@ function editHeaderLanding(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel').modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -92858,7 +92836,7 @@ function editElementLanding(data) {
     url: "landing/editElementLanding",
     success: function success(result) {
       console.log(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -92881,7 +92859,7 @@ function editPromoLanding(data) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 } //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
@@ -92889,7 +92867,7 @@ function editPromoLanding(data) {
 
 function getProgrammingLanding(date, landing) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "POST",
+    type: "GET",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -92930,7 +92908,7 @@ function getProgrammingLanding(date, landing) {
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
               var program = _step.value;
-              chapter += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-concert\"\n                            chapter_id=\"".concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
+              chapter += "\n                        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n                        <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(landing, "\"\n                            chapter_id=\"").concat(program.chapter_id, "\">\n                        <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                            <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                                ").concat(program.Program_Title, " - ").concat(program.chapter_title, "\n                            </p>\n                            <div class=\"schedule-item-body\">\n                                <div class=\"schedule-poster\">\n                                    <div class=\"poster\">\n                                        <div class=\"thumbnail-edit\" _id=\"").concat(program.chapter_id, "\">\n                                            <img src=\"").concat(program.image, "\"\n                                                class=\"w-100\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"schedule-details\">\n                                    <div class=\"schedule-details-header\">\n                                        <div>\n                                            <p class=\"schedule a-text-semi-brown-two\">\n                                                ").concat(program.time, " hrs.\n                                            </p>\n                                            <p class=\"rating a-text-semibold-warm-grey-five\">\n                                                Clasificaci\xF3n: A\n                                            </p>\n                                        </div>\n                                        <div>\n                                            <button title=\"Agregar a mi lista\"\n                                                class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\"\n                                                    viewBox=\"0 0 48 44\">\n                                                    <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\"\n                                                        stroke=\"#7A7777\" stroke-width=\"3\"\n                                                        d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                                </svg>\n                                            </button>\n                                        </div>\n                                    </div>\n                                    <div>\n                                        <span class=\"schedule-description a-text-regular-warm-grey-five s1\"\n                                            id=\"synopsis-edi\">").concat(program.sinopsis, "</span>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                        ");
             }
           } catch (err) {
             _iterator.e(err);
@@ -92939,7 +92917,7 @@ function getProgrammingLanding(date, landing) {
           }
 
           console.log(chapter);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-contanier').html(chapter);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-contanier").html(chapter);
         }
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
@@ -92954,7 +92932,7 @@ function getProgrammingLanding(date, landing) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 } //Conseguir únicamente programas de un landing, sin mostrar el modal
@@ -92994,11 +92972,11 @@ function getProgramsLanding(date) {
             _iterator2.f();
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.concert-programming-contanier').html(programConcert);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".concert-programming-contanier").html(programConcert);
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 } // CLARO CANAL
@@ -93007,145 +92985,157 @@ function getProgramsLanding(date) {
 function getModalsCanalClaro(type) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
     url: "landing/header",
     success: function success(result) {
       var obj = JSON.parse(result);
-      console.log(obj);
 
-      switch (type) {
-        // GET HEADER
-        case "slider-pagination":
-          var counter = 1;
-          var image = "";
-          var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-claro .programming-slider');
+      if (obj.code == 200) {
+        console.log(obj);
 
-          while (true) {
-            if (obj.data["block_1_image_slider_".concat(counter)]) {
-              image += "\n                            <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\"\n                                    class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                        class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                    <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                        class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                </label>\n                            </div>\n                            ");
-              counter++;
-            } else {
-              break;
+        switch (type) {
+          // GET HEADER
+          case "slider-pagination":
+            var counter = 1;
+            var image = "";
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider");
+
+            while (true) {
+              if (obj.data["block_1_image_slider_".concat(counter)]) {
+                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                    </label>\n                                </div>\n                                ");
+                counter++;
+              } else {
+                break;
+              }
             }
-          }
 
-          programmingSlider.html(image);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-claro').modal("show");
+            programmingSlider.html(image);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").modal("show");
 
-          try {
-            programmingSlider.slick("unslick");
-            programmingSlider.slick({
-              slidesToShow: 1,
-              dots: true,
-              appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
-              initialSlide: 0,
-              infinite: false,
-              customPaging: function customPaging(slider, i) {
-                var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-              }
-            });
-          } catch (error) {
-            programmingSlider.slick({
-              slidesToShow: 1,
-              dots: true,
-              appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
-              initialSlide: 0,
-              infinite: false,
-              customPaging: function customPaging(slider, i) {
-                var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-              }
-            });
-          }
-
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
-            var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-            if (this.files && this.files[0]) {
-              var reader = new FileReader();
-
-              reader.onload = function (e) {
-                currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-              };
-
-              reader.readAsDataURL(this.files[0]);
+            try {
+              programmingSlider.slick("unslick");
+              programmingSlider.slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+            } catch (error) {
+              programmingSlider.slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider-dots"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
             }
-          });
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
-            /*
-                Arreglo para saber la posición de las imágenes que cargo el usuario
-                es decir, saber si subió la 1 y 3, o 2,3 etc.
-            */
-            var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
 
-            var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
-              if (this.files[0]) {
-                imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
               }
-
-              imagesProgramming.push(this.files[0]);
             });
-            var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+              /*
+                  Arreglo para saber la posición de las imágenes que cargo el usuario
+                  es decir, saber si subió la 1 y 3, o 2,3 etc.
+              */
+              var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
 
-            for (var index = 0; index < imagesProgramming.length; index++) {
-              var file = "file" + (index + 1).toString();
-              file = file.toString();
-              data.append(file, imagesProgramming[index]);
-            } //Posiciones de las imágenes
+              var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+                if (this.files[0]) {
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                }
+
+                imagesProgramming.push(this.files[0]);
+              });
+              var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+              for (var index = 0; index < imagesProgramming.length; index++) {
+                var file = "file" + (index + 1).toString();
+                file = file.toString();
+                data.append(file, imagesProgramming[index]);
+              } //Posiciones de las imágenes
 
 
-            data.append("positions", imagesPositions); //Hora inicio y fin
+              data.append("positions", imagesPositions); //Hora inicio y fin
 
-            data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
-            data.append("landing", "Canal Claro");
-            setImageSliderBanner(data);
-          });
-          break;
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("landing", "Canal Claro");
+              setImageSliderBanner(data);
+            });
+            break;
 
-        case "claro-header":
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header-claro').html('<img src="' + obj.data.block_2_icon_channel + '">');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-1').val(obj.data.block_2_title_1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-2').val(obj.data.block_2_title_2);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-text-modal-3').val(obj.data.block_2_button_title);
-          break;
-        // GET HEADER
-        // GET TITLE
+          case "claro-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val(obj.data.block_2_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val(obj.data.block_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-3").val(obj.data.block_2_button_title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("show");
+            break;
+          // GET HEADER
+          // GET TITLE
 
-        case "claro-title":
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_3_title);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_3_subtitle);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_3_subtitle");
-          break;
-        // GET TITLE
-        // GET PROMO
+          case "claro-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_3_title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_3_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            break;
+          // GET TITLE
+          // GET PROMO
 
-        case "claro-promo":
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#back-promo-claro').html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
-          break;
-        // GET PROMO
-        // GET TITLE CARRUSEL 1
+          case "claro-promo":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
+            break;
+          // GET PROMO
+          // GET TITLE CARRUSEL 1
 
-        case "claro-carrusel-title":
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_4_carrusel_1_title);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').attr("block_4_carrusel_1_title");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_4_carrusel_1_subtitle);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_1_subtitle");
-          break;
-        // GET TITLE CARRUSEL 1
-        // GET TITLE CARRUSEL 1
+          case "claro-carrusel-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_4_carrusel_1_title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("block_4_carrusel_1_title");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_1_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_4_carrusel_1_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            break;
+          // GET TITLE CARRUSEL 1
+          // GET TITLE CARRUSEL 1
 
-        case "claro-carrusel-title2":
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').val(obj.data.block_4_carrusel_2_title);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-title-modal').attr("block_4_carrusel_2_title");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').val(obj.data.block_4_carrusel_2_subtitle);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp-sub-title-modal').attr("block_4_carrusel_2_subtitle");
-          break;
-        // GET TITLE CARRUSEL 1
-      } //fileReader.readAsDataURL(objFileInput.files[0]);
+          case "claro-carrusel-title2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_4_carrusel_2_title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("block_4_carrusel_2_title");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_2_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_4_carrusel_2_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            break;
+          // GET TITLE CARRUSEL 1
+        }
+      }
 
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
     }
   });
 }
@@ -93161,10 +93151,11 @@ function setImageSliderBanner(data) {
     cache: false,
     url: "landing/setImageSliderBanner",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      console.log(result);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       var json = JSON.parse(result);
 
       if (json.code == 200) {
@@ -93179,7 +93170,6 @@ function setImageSliderBanner(data) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
     console.log(e);
   });
-  ;
 }
 
 function FileHeader(objFileInput) {
@@ -93190,7 +93180,7 @@ function FileHeader(objFileInput) {
 
     fileReader.onload = function (e) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     };
   }
 }
@@ -93211,10 +93201,10 @@ function editHeaderLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -93244,10 +93234,10 @@ function editElementLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   }); // Canal Claro
 }
@@ -93260,7 +93250,7 @@ function FilePromoVideo(objFileInput) {
 
     fileReader.onload = function (e) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     };
 
     fileReader.readAsDataURL(objFileInput.files[0]);
@@ -93284,18 +93274,19 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       var program = "";
       var titles = "";
       var idLanding = "";
       var classButton = ""; //Nos sirve para distinguir a qué modal y en qué landing damos click
       //Limpiamos input en donde se encuentran las imágenes
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-image-carrusel').val(""); //Verificamos cuál landing es y de ahí asignamos un id
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-carrusel").val(""); //Verificamos cuál landing es y de ahí asignamos un id
 
       switch (landing) {
         case "Canal Claro":
           idLanding = 1;
+          classButton = "button-modal-canal-claro";
           break;
 
         case "Concert Channel":
@@ -93472,8 +93463,8 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         optionGenre += "\n                                         <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                                         ");
       }); //Géneros
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list1').append(optionGenre);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker('destroy');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
         filter: true,
         multipleSeparator: ", "
@@ -93510,9 +93501,9 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         console.log(chapterId, key, keyValue);
         Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel-concert-select').append(titles);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel-concert-select').selectpicker('destroy');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel-concert-select').selectpicker({
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").append(titles);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("destroy");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker({
         filter: true,
         multipleSeparator: ", "
       });
@@ -93525,7 +93516,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
           keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prog_titulo_programa .filter-option-inner-inner').text());
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
           keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         }
 
@@ -93561,9 +93552,9 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["year"]);
       });
       var imageTriangle = "\n                <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n            ";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel .edit-program-image .bootstrap-select').append(imageTriangle);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dropimg').click(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carrusel-concert-select').selectpicker('toggle');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-image .bootstrap-select").append(imageTriangle);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("toggle");
       });
     }
   });
@@ -93585,33 +93576,33 @@ function getContentClaroCinema(type) {
       if (data.code == 200) {
         switch (type) {
           case "header-landing-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.cinema-header-input-title1').val(data.data.block_2_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.cinema-header-input-title2').val(data.data.block_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.btn-header-claro-cinema').val(data.data.block_2_button_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.link-button-header-cinema').val(data.data.block_2_button_url);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title1").val(data.data.block_2_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-header-claro-cinema").val(data.data.block_2_button_title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".link-button-header-cinema").val(data.data.block_2_button_url);
             var logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png";
             /*                         if (data.data.block_2_icon_channel) {
                                         $(".label-no-image").remove();
                                     } */
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.logo-header-claro-cinema').attr("src", logo);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-encabezado-cinema').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", logo);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-encabezado-cinema").modal("show");
             break;
 
           case "title-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-claro-cinema').text("título");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-title1-cinema').val(data.data.block_3_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-title2-cinema').val(data.data.block_3_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-subtitle-cinema').val(data.data.block_3_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-cinema').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("título");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_3_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_3_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
             break;
 
           case "promo-cinema":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("show");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.upload-promo-button').attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
             if (data.data.block_3_video_url) {
-              var _promoContainer2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#cinema-promo-container'); //Verificamos si la url es de una imagen
+              var _promoContainer2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container"); //Verificamos si la url es de una imagen
 
 
               if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -93627,23 +93618,23 @@ function getContentClaroCinema(type) {
             break;
 
           case "title-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-carrusel1-title1-cinema').val(data.data.block_4_carrusel_1_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-carrusel1-title2-cinema').val(data.data.block_4_carrusel_1_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-carrusel1-subtitle-cinema').val(data.data.block_4_carrusel_1_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-carrusel1').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-carrusel1").modal("show");
             break;
 
           case "title-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-claro-cinema').text("carrusel 2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-title1-cinema').val(data.data.block_4_carrusel_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-title2-cinema').val(data.data.block_4_carrusel_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-input-subtitle-cinema').val(data.data.block_4_carrusel_2_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-title-cinema').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 2");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_2_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
             break;
 
           case "current-programming-cinema":
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
             Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2);
 
             try {
@@ -93659,7 +93650,7 @@ function getContentClaroCinema(type) {
             break;
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       }
     }
   });
@@ -93681,10 +93672,10 @@ function editPromoLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-promo').modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 } // CLARO CANAL

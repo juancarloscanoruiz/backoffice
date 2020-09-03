@@ -407,17 +407,6 @@ class landingController extends Controller
         echo ($respuesta);
     }
 
-    // GET CARRUSEL 1
-    public function getCarrusel1()
-    {
-        $client = new Client();
-        $response = $client->get(
-            $this->url . "section/getCarrusel/Canal Claro&1"
-        );
-        $respuesta =  $response->getBody();
-        echo ($respuesta);
-    }
-
     // HEADER
     public function editHeaderLandingClaro(Request $request)
     {
@@ -466,7 +455,8 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    function getContentClaroCinema(){
+    function getContentClaroCinema()
+    {
         $client = new Client();
         $response = $client->get(
             $this->url . "section/claro_cinema"
@@ -475,10 +465,11 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    function getPromotionalsProgramsCarousel(Request $request){
+    function getPromotionalsProgramsCarousel(Request $request)
+    {
         $client = new Client();
         $response = $client->get(
-            $this->url . "section/getCarrusel/".$request->input("landing")."&".$request->input('idCarousel')
+            $this->url . "section/getCarrusel/" . $request->input("landing") . "&" . $request->input('idCarousel')
         );
 
         echo ($response->getBody()->getContents());
@@ -529,7 +520,9 @@ class landingController extends Controller
     }
     // CANAL CLARO
 
-    function setImageSliderBanner(Request $request){
+    function setImageSliderBanner(Request $request)
+    {
+
         $folderLanding = "";
         switch ($request->input("landing")) {
             case 'Canal Claro':
@@ -557,7 +550,7 @@ class landingController extends Controller
         $counter = 0;
         $images = [];
         foreach ($files as $file) {
-            $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/".$folderLanding."/banner");
+            $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/" . $folderLanding . "/banner");
             $counter++;
             array_push($images, $newFile);
         }

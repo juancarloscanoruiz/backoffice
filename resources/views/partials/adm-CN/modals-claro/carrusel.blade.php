@@ -1,4 +1,4 @@
-<div class="modal pr-0  modal-edit-program-carrusel " id="modal-edi-carrusel-1" tabindex="-1" role="dialog"
+<div class="modal pr-0 modal-edit-program-carrusel" id="modal-edi-carrusel-1" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto; ">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
         <div class="modal-content">
@@ -479,8 +479,8 @@
                                 <div class=" d-flex justify-content-center">
                                     <section class="text-center mb-3 d-flex justify-content-center">
                                         <button
-                                            class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                                            data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
+                                            class="button-modal-canal-claro d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                                            id="edit-program-modal-button">ACEPTAR</button>
                                     </section>
 
                                 </div>
