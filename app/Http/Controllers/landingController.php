@@ -482,10 +482,10 @@ class landingController extends Controller
         $img = "";
         $video = "";
         if ($request->file('img')) {
-            $img = $this->storeImages("promoClaroCanal", $request->file('img'), "public/canal-claro/promo");
+            $img = $this->storeImages("canal-claro-promo", $request->file('img'), "/public/canal-claro/promo");
         }
         if ($request->file('video')) {
-            $video = $this->storeImages("promoVideoClaroCanal", $request->file('video'), "public/canal-claro/promo");
+            $video = $this->storeImages("canal-claro-promo", $request->file('video'), 'public/canal-claro/promo');
         }
         if ($img != "") {
             $response = $client->post(
