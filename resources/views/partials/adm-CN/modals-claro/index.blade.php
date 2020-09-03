@@ -1,4 +1,4 @@
-<body class="bg-dark">
+<body class="">
     <!-- MODAL HEADER - ENCABEZADO LANDING CANAL CLARO 1 -->
     <div id="modal-header" class="modal">
         <div class="modal-dialog-centered">

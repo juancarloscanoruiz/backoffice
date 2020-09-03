@@ -1,20 +1,5 @@
 @extends('layaout.app')
 
-@section('scripts')
-    <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
-    <script>
-        new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php",
-            container: "claro-cinema-container",
-            onMessage: function(message, origin) {
-                this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        });
-    </script>
-@endsection
-@section('content')
     <body>
         @include('partials.headers.headerPrograGeneral')
         <div id="title" class="mt-3">
@@ -51,9 +36,15 @@
             <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg" class="Icon_paises1" style="width:32px"/></button>
         </div>
             <div class="clearfix"></div>
-        <div class="centro">
-            <div class="navbar-progra-content  mb-5" id="claro-cinema-container">
+            <div class="centro">
+                <div class="navbar-progra-content navbar-prev-claro-cinema mb-5 mt-5" id="navbar-prev-claro-cinema">
+                </div>
             </div>
-        </div>
     </body>
-@endsection
+    @include('partials.adm-CN.modals-cinema.titulo-cinema')
+    @include('partials.adm-CN.modals-concert.programming');
+    @include('partials.adm-CN.modals-cinema.promo-cinema')
+    @include('partials.adm-CN.modals-cinema.banner-cinema')
+    @include('partials.adm-CN.modals-cinema.encabezado-cinema')
+    @include('partials.adm-CN.modals-cinema.titulo-carrusel1')
+    @include('partials.adm-CN.modals-concert.carrusel');

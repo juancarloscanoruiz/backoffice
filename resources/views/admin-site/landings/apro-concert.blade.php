@@ -1,20 +1,5 @@
 @extends('layaout.app')
 
-@section('scripts')
-<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
-<script>
-       new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php",
-            container: "navbar-prev-concert-channel",
-            onMessage: function(message, origin) {
-                this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        });
-</script>
-@endsection
-
 @section('content')
 <body>
     @include('partials.headers.headerPrograGeneral')
@@ -61,5 +46,12 @@
 </div>
 
 </body>
-@endsection
+
+@include('partials.adm-CN.modals-concert.titulo')
+    @include('partials.adm-CN.modals-concert.promo-concert')
+    @include('partials.adm-CN.modals-concert.banner-concert')
+    @include('partials.adm-CN.modals-concert.encabezado')
+    @include('partials.adm-CN.modals-concert.carrusel')
+    @include('partials.adm-CN.modals-concert.carrusel2')
+
 
