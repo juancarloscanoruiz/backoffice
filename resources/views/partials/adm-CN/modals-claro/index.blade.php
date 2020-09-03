@@ -132,6 +132,14 @@
                     <div class="modal-programming-contanier">
 
                     </div>
+                    <div class="content">
+                        <div class="d-flex justify-content-center mt-3">
+                            <button id="btn-acepta-modal-title"
+                                class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                            <button data-dismiss="modal"
+                                class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
