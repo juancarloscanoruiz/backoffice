@@ -1,21 +1,6 @@
 @extends('layaout.app')
 
-@section('scripts')
-    <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
-    <script>
-        new easyXDM.Socket({
-            remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
-            container: "programacion-container",
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        });
-    </script>
-   
-@endsection
+
 @section('content')
     <body>
 
@@ -51,12 +36,19 @@
     </div>            
            
             <div class=" mr-5 d-flex float-right ">
-            <button class="btn-zona zona">Zona horaria <img src="./images/paises/chile.svg" class="Icon_paises1" /></button>
+            <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1"style="width:32px" /></button>
         </div>
         <div class="clearfix"></div> 
-        <div class="centro">
-            <div class="navbar-progra-content  mb-5" id="programacion-container">
+        <div class="centro ">
+                <div class="load-view pointer-none" id="loader-view"> </div>
+                <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()'
+                    id="navbar-prev-programacion" style="display:none;">
+                </div>
             </div>
-        </div>
+
+
     </body>
+    @include('partials.adm-CN.modals-claro.banner-claro')
+    @include('partials.adm-CN.modals-claro.index')
+    @include('partials.adm-CN.modals-concert.carrusel');
 @endsection
