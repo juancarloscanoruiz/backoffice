@@ -2932,11 +2932,18 @@ function eventsGrilla() {
             singleMode: false
         });
     }
+ 
     $("#close_modals").click(function () {
-        $(".modal-programming-carousel").modal("hide");
-        $(".modal-delete-user").modal("hide");
-        $(".modal-edit-icons").modal("hide");
-        $(".modal-edit-program").modal("hide");
+     
+        $(".modal").modal("hide");
+       // $(".modal-delete-user").modal("hide");
+        //$(".modal-edit-icons").modal("hide");
+       // $(".modal-edit-program").modal("hide");
+    });
+    //cerrar los dos modales
+    $("#close_modals-claro").click(function () { 
+        $(".modal").modal("hide");
+       
     });
     /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla

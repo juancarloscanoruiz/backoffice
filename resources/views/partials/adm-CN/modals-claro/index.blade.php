@@ -47,8 +47,10 @@
                     <div class="d-flex justify-content-center mt-3">
                         <button id="btn-acepta-modal-header"
                             class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal"
-                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                            <a href="#delete-info-claro" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
+
                     </div>
                 </div>
             </div>
@@ -135,8 +137,9 @@
                         <div class="d-flex justify-content-center mt-3">
                             <button id="btn-acepta-modal-title"
                                 class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                            <button data-dismiss="modal"
-                                class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                                <a href="#delete-info-claro" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
                         </div>
                     </div>
                 </div>
@@ -163,8 +166,9 @@
                     <div class="d-flex justify-content-center mt-3">
                         <button id="btn-acepta-modal-title"
                             class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal"
-                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                            <a href="#delete-info-claro" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
             </div>
@@ -216,8 +220,9 @@
                     <div class="d-flex justify-content-center">
                         <button id="btn-acepta-modal-promo"
                             class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal"
-                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                            <a href="#delete-info-claro" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
             </div>
@@ -241,8 +246,9 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button id="btn-acepta-url" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <button data-dismiss="modal"
-                            class="m-0 btn-landing a-btn-basic-small text-plus a-text-bold-teal">CANCELAR</button>
+                        <a href="#delete-info-claro" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
             </div>
@@ -1701,30 +1707,26 @@
         </div>
     </div>
 
-    <!--modal para perder lo hecho en los landing de edit-->
-    <div class=" modal  delete-info" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
-        data-modal-parent="#modalbanner">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body ">
-                    <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
-                        recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
-                </div>
+<!--modal para perder lo hecho en los landing de edit-->
+<div class=" modal  delete-info-claro" data-backdrop-limit="1" id="delete-info-claro" tabindex="-1"
+    role="dialog" data-modal-parent="#modalbanner">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content  ">
+            <div class="modal-body ">
+                <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
+                <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
+                <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
+            </div>
 
-                <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                    <button type="button"
-                        class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                        data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                        id="close_modals">ACEPTAR</button>
+            <div class="text-center mb-5 mt-4 pt-3 pb-4">
+                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-claro">ACEPTAR</button>
 
-                    <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                        data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-                </div>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
+                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>
-    <!-- **************************************************************************************************** -->
-
+</div>
 </body>
 <!--Vinculo para url-->
