@@ -802,3 +802,15 @@ div .bootstrap-select>.dropdown-toggle:focus {
 .input-border {
     border-radius: 8px !important;
 }
+
+.modal-edit-program-carrusel .edit-program-genres {
+    .filter-option {
+        display: flex;
+        align-items: center;
+    }
+
+    .filter-option-inner-inner {
+        font-family: $MontserratBold;
+        color: $warmGrey;
+    }
+}

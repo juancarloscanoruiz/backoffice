@@ -3996,6 +3996,16 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border-radius: 8px !important;
 }
 
+.modal-edit-program-carrusel .edit-program-genres .filter-option {
+  display: flex;
+  align-items: center;
+}
+
+.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner {
+  font-family: "Montserrat-Bold";
+  color: #9b9b9b;
+}
+
 .line {
   width: 100%;
   height: 1px;

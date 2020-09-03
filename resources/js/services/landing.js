@@ -2716,9 +2716,8 @@ function getPromotionalsProgramsCarousel(
             </div>
                 `;
             }
-            $('.add-program-carrusel').click(function () {
-                console.log("add program");
-            })
+
+
             //Mostramos el modal
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
@@ -2758,6 +2757,11 @@ function getPromotionalsProgramsCarousel(
                     }
                 });
             }
+
+            $(".modal-edit-program-carrusel .carrusel1-slider-concert").on("afterChange", function (slick, currentSlide) {
+                $(".current-slide-number").text(currentSlide.currentSlide + 1);
+            });
+
             //Genres
             let optionGenre = "";
             data.data.genres.forEach(genre => {
@@ -2772,6 +2776,13 @@ function getPromotionalsProgramsCarousel(
                 filter: true,
                 multipleSeparator: ", "
             });
+            //Añadir géneros
+            let index = 0;
+            for (const chapter of data.data.chapters) {
+                $('.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner')[index].innerText = "";
+                $('.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner')[index].innerText = chapter.chapter.program.genre;
+                index++
+            }
             let editProgramLandingGenres = "";
             let selectGenres = $(
                 ".modal-edit-program-carrusel .edit-program-genres"
@@ -2875,7 +2886,7 @@ function getPromotionalsProgramsCarousel(
             });
         }
     });
-    reload(idCarousel, landing)
+    //reload(idCarousel, landing)
 }
 
 function reload(
