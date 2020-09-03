@@ -192,7 +192,7 @@
                     <input class="d-none" id="promo-claro-video" name="video-promo-claro" type="file">
                     <!-- LABEL -->
                     <label for="promo-claro-img" class="add-file">
-                        <img class="cursor-pointer mb-2" src="images/modals/camara.svg" alt="add-photo" />
+                        <img class="cursor-pointer mb-2" src="images/basic-icons/camara.svg" alt="add-photo" />
                         <span class="a-text-bold-warm text-plus">Añade tu archivo jpg 472px X 295px</span>
                     </label>
                     <label for="promo-claro-video" class="add-file">
