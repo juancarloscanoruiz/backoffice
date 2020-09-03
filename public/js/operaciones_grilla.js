@@ -74200,7 +74200,7 @@ function eventsGrilla() {
 
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro .programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
     //Cada vez que se haga click, el contador incrementa
@@ -77341,7 +77341,7 @@ function getModalsCanalClaro(type) {
 
             while (true) {
               if (obj.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                    </label>\n                                </div>\n                                ");
+                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                    </label>\n                                </div>\n                                ");
                 counter++;
               } else {
                 break;
@@ -77628,6 +77628,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
 
       var _iterator3 = _createForOfIteratorHelper(data.data.chapters),
           _step3;
@@ -77753,7 +77754,6 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         console.log("add program");
       }); //Mostramos el modal
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".filter-option-inner-inner").html("hola");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //Volvemos a crear el slider
 
       try {
@@ -77883,10 +77883,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-image .bootstrap-select").append(imageTriangle);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("toggle");
-      }); // $("#edit-genre-container").append(
-      //     '<p>' + data.data.chapters[0].chapter.program.genre + '</p>'
-      // );
-      // console.log(data.data.chapters[0].chapter.program.genre);
+      });
     }
   });
   reload(idCarousel, landing);
@@ -77904,7 +77901,7 @@ function reload(idCarousel, landing) {
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dropdown-toggle').removeClass('bs-placeholder');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder');
 
       var _iterator4 = _createForOfIteratorHelper(data.data.chapters),
           _step4;
@@ -77912,7 +77909,7 @@ function reload(idCarousel, landing) {
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
           var chapter = _step4.value;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>');
         }
       } catch (err) {
         _iterator4.e(err);

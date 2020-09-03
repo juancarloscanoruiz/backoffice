@@ -2,17 +2,17 @@
     aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto;">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%">
         <div class="modal-content">
-            <div class="modal-body ">
-                <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL -
-                    CARRUSEL 1</h2>
+            <div class="modal-body">
+                <div id="numCarrusel">
+                    <!-- <h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL -
+                    CARRUSEL 1</h2> -->
+                </div>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
                 <div class="col-11 mx-auto">
                     <div class="float-right">
                         <div class="d-flex pl-5 ">
                             <div class=" position-relative carrusel1-slider-dots1 mt-4 mb-4"> </div>
-                            <img src="{{ asset('images/add-icon.svg') }}"
-                                class="add-program-carrusel mb-3  cursor-pointer">
                         </div>
                     </div>
                 </div>
@@ -36,11 +36,14 @@
 
                 </section>
 
-                <div class="edit-info-container mt-5">
-                    <!--Imagen de programa en slider-->
-                    <div class="current-slide-container a-text-bold-teal mb-2">
-                        <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
+                <div class="edit-info-container no-gutters mt-4">
+                    <div class="col-11 mx-auto">
+                        <!--Imagen de programa en slider-->
+                        <div class="a-text-bold-teal mb-4">
+                            <p class="mb-0 a-text-bold-teal current-slide-number">1</p>
+                        </div>
                     </div>
+
                     <!--sliderparacarrusel-->
                     <div class="carrusel1-slider-concert">
                         <div>

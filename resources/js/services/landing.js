@@ -1683,7 +1683,7 @@ function getModalsCanalClaro(type) {
                             if (obj.data[`block_1_image_slider_${counter}`]) {
                                 image += `
                                 <div class="bor thumbnail-image-program position-relative h-100">
-                                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="${counter}">
                                     <label for="image_programming_${counter}"
                                         class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
@@ -1790,8 +1790,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-text-modal-3").val(obj.data.block_2_button_title);
                         $("#modal-header").modal("show");
                         break;
-                    // GET HEADER
-                    // GET TITLE
+                        // GET HEADER
+                        // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
@@ -1799,8 +1799,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE
-                    // GET PROMO
+                        // GET TITLE
+                        // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay muted controls class="img-back-modal img-promo" src="' +
@@ -1809,8 +1809,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-promo").modal("show");
                         break;
-                    // GET PROMO
-                    // GET TITLE CARRUSEL 1
+                        // GET PROMO
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -1824,8 +1824,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -1839,7 +1839,7 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                 }
             }
 
@@ -2026,6 +2026,8 @@ function getPromotionalsProgramsCarousel(
             }
             //Capítulos que se encuentran en el carrusel
             $(".carrusel1-slider-concert").html("");
+
+            $('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
 
             for (const chapter of data.data.chapters) {
 
@@ -2718,7 +2720,6 @@ function getPromotionalsProgramsCarousel(
                 console.log("add program");
             })
             //Mostramos el modal
-            $(".filter-option-inner-inner").html("hola");
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
             try {
@@ -2872,10 +2873,6 @@ function getPromotionalsProgramsCarousel(
             $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
-            // $("#edit-genre-container").append(
-            //     '<p>' + data.data.chapters[0].chapter.program.genre + '</p>'
-            // );
-            // console.log(data.data.chapters[0].chapter.program.genre);
         }
     });
     reload(idCarousel, landing)
@@ -2896,9 +2893,9 @@ function reload(
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $('.dropdown-toggle').removeClass('bs-placeholder')
+            $('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder')
             for (const chapter of data.data.chapters) {
-                $('.filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
+                $('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
             }
         }
     });

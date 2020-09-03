@@ -7461,19 +7461,25 @@ select:focus {
   width: 1000px !important;
 }
 
-.programming-slider-dots .slick-dots .slick-active {
+.programming-slider-dots .slick-dots .slick-active,
+.programming-slider-canal-claro .slick-dots .slick-active,
+.carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
-.programming-slider-dots .slick-dots .slick-active p {
+.programming-slider-dots .slick-dots .slick-active p,
+.programming-slider-canal-claro .slick-dots .slick-active p,
+.carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
 }
 
-.programming-slider-dots-canal-claro .slick-dots .slick-active {
+.programming-slider-dots-canal-claro .slick-dots .slick-active,
+.carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
-.programming-slider-dots-canal-claro .slick-dots .slick-active p {
+.programming-slider-dots-canal-claro .slick-dots .slick-active p,
+.carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
 }
 

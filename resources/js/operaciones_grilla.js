@@ -2315,7 +2315,7 @@ function eventsGrilla() {
         let slideIndex = $(".load-programming-carousel").length + 1;
 
         //Agregamos un slide al slider de programación
-        $(".modal-programming-carousel-claro .programming-slider").slick(
+        $(".programming-slider-canal-claro").slick(
             "slickAdd",
             `
             <div class="slick-slide">
