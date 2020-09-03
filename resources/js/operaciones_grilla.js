@@ -276,84 +276,84 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                        /* case "pencil-carrusel1":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-edit-program-carrusel").modal("show");
-                             //slider para carrusel concert-channel
-                             $(".carrusel1-slider").slick({
-                                 slidesToShow: 1,
-                                 dots: true,
-                                 appendDots: $(".carrusel1-slider-dots1"),
-                                 initialSlide: 0,
-                                 infinite: false,
-                                 customPaging: function (slider, i) {
-                                     var thumb = $(slider.$slides[i]).data();
-                                     return (
-                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                         (i + 1) +
-                                         "</p>"
-                                     );
-                                 }
-                             });
-                             $("#loader1").remove();
-                         }, 3000);
-                         break;
-                     case "pencil-carrusel2":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-edit-program-carrusel2").modal("show");
-                             $(".carrusel2-slider").slick({
-                                 slidesToShow: 1,
-                                 dots: true,
-                                 appendDots: $(".carrusel2-slider-dots1"),
-                                 initialSlide: 0,
-                                 infinite: false,
-                                 customPaging: function (slider, i) {
-                                     var thumb = $(slider.$slides[i]).data();
-                                     return (
-                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                         (i + 1) +
-                                         "</p>"
-                                     );
-                                 }
-                             });
-                             $("#loader1").remove();
-                         }, 3000);
+                    /* case "pencil-carrusel1":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-edit-program-carrusel").modal("show");
+                         //slider para carrusel concert-channel
+                         $(".carrusel1-slider").slick({
+                             slidesToShow: 1,
+                             dots: true,
+                             appendDots: $(".carrusel1-slider-dots1"),
+                             initialSlide: 0,
+                             infinite: false,
+                             customPaging: function (slider, i) {
+                                 var thumb = $(slider.$slides[i]).data();
+                                 return (
+                                     "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                     (i + 1) +
+                                     "</p>"
+                                 );
+                             }
+                         });
+                         $("#loader1").remove();
+                     }, 3000);
+                     break;
+                 case "pencil-carrusel2":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-edit-program-carrusel2").modal("show");
+                         $(".carrusel2-slider").slick({
+                             slidesToShow: 1,
+                             dots: true,
+                             appendDots: $(".carrusel2-slider-dots1"),
+                             initialSlide: 0,
+                             infinite: false,
+                             customPaging: function (slider, i) {
+                                 var thumb = $(slider.$slides[i]).data();
+                                 return (
+                                     "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                     (i + 1) +
+                                     "</p>"
+                                 );
+                             }
+                         });
+                         $("#loader1").remove();
+                     }, 3000);
 
-                         break;
-                     case "pencil-header":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-titles").modal("show");
-                             $("#loader1").remove();
-                         }, 3000);
+                     break;
+                 case "pencil-header":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-titles").modal("show");
+                         $("#loader1").remove();
+                     }, 3000);
 
-                         break;
-                     case "pencil-video":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-promos-concert").modal("show");
-                             $("#loader1").remove();
-                         }, 3000);
+                     break;
+                 case "pencil-video":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-promos-concert").modal("show");
+                         $("#loader1").remove();
+                     }, 3000);
 
-                         break;
-                     case "pencil-header1":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-titles").modal("show");
-                             $("#loader1").remove();
-                         }, 3000);
+                     break;
+                 case "pencil-header1":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-titles").modal("show");
+                         $("#loader1").remove();
+                     }, 3000);
 
-                         break;
-                     case "header2":
-                         $("body").append(loader);
-                         setTimeout(function () {
-                             $(".modal-titles").modal("show");
-                             $("#loader1").remove();
-                         }, 3000);
+                     break;
+                 case "header2":
+                     $("body").append(loader);
+                     setTimeout(function () {
+                         $(".modal-titles").modal("show");
+                         $("#loader1").remove();
+                     }, 3000);
 
-                         break;*/
+                     break;*/
                     case "pencil-carrusel1":
                         let landing = "Concert Channel"
                         let id = 1;
@@ -1307,11 +1307,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-            .find(".slider-pagination")
-            .addClass("a-text-bold-white") &
+                .find(".slider-pagination")
+                .addClass("a-text-bold-white") &
             $(this)
-            .find(".slider-pagination")
-            .removeClass("a-text-bold-teal");
+                .find(".slider-pagination")
+                .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -2539,8 +2539,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -2918,14 +2918,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo que estamos editando es el año de producción
+                //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                    //Verificamos si el campo editable, es el de programar publicación para Landing
+                //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -3078,7 +3078,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -3251,8 +3251,8 @@ function eventsGrilla() {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                .text()
-                .substr(0, 200) + "...";
+                    .text()
+                    .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -3800,7 +3800,6 @@ function eventsGrilla() {
                         $("body").append(LOADER);
                         setTimeout(function () {
                             let date = new Date();
-                            debugger
                             let day = ("0" + date.getUTCDate()).slice(-2);
                             let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
                             let year = date.getUTCFullYear();
@@ -3826,19 +3825,17 @@ function eventsGrilla() {
                         }, 3000);
                         break;
                     case "claro-carrusel1":
-                        $("body").append(LOADER);
                         setTimeout(function () {
-                            $("#modal-carrusel1").modal("show");
-
-                            $("#loader1").remove();
+                            let id = 1;
+                            let landing = "Canal Claro"
+                            getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro");
                         }, 3000);
                         break;
                     case "claro-carrusel2":
-                        $("body").append(LOADER);
                         setTimeout(function () {
-                            $("#modal-edi-carrusel-2").modal("show");
-                            getModalsCanalClaro(json.type)
-                            $("#loader1").remove();
+                            let id = 2;
+                            let landing = "Canal Claro"
+                            getPromotionalsProgramsCarousel(id, landing, "thumbnail-header-claro");
                         }, 3000);
                         break;
                     case "claro-carrusel-title":

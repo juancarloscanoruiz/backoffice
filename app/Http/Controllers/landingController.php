@@ -407,17 +407,6 @@ class landingController extends Controller
         echo ($respuesta);
     }
 
-    // GET CARRUSEL 1
-    public function getCarrusel1()
-    {
-        $client = new Client();
-        $response = $client->get(
-            $this->url . "section/getCarrusel/Canal Claro&1"
-        );
-        $respuesta =  $response->getBody();
-        echo ($respuesta);
-    }
-
     // HEADER
     public function editHeaderLandingClaro(Request $request)
     {

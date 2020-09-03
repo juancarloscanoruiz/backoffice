@@ -1327,7 +1327,7 @@ function editPromoLanding(data) {
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 function getProgrammingLanding(date, landing) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -1361,9 +1361,9 @@ function getProgrammingLanding(date, landing) {
                 if (programming.length > 0) {
                     let chapter = ""
                     for (const program of programming) {
-                        chapter += `
-                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-concert"
+                        chapter += ` 
+                        <div class="p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer">
+                        <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-${landing}"
                             chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
@@ -1556,7 +1556,6 @@ function getModalsCanalClaro(type) {
                     break
                     // GET TITLE CARRUSEL 1
             }
-            fileReader.readAsDataURL(objFileInput.files[0]);
         }
     })
 }
@@ -1648,7 +1647,6 @@ function FilePromoVideo(objFileInput) {
 
 //Obtener los programas que se encuentran en los carruseles de hasta abajo en cada landing
 function getPromotionalsProgramsCarousel(idCarousel, landing, landingClass = "thumbnail-header") {
-
     $.ajax({
         type: "POST",
         url: "landing/getPromotionalsProgramsCarousel",

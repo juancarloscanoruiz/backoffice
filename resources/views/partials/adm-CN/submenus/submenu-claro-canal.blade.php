@@ -397,8 +397,7 @@
     </main>
     @include('partials.adm-CN.modals-claro.banner-claro')
     @include('partials.adm-CN.modals-claro.index')
-    @include('partials.adm-CN.modals-claro.carrusel')
-    @include('partials.adm-CN.modals-claro.carrusel2')
+    @include('partials.adm-CN.modals-concert.carrusel');
   
 
 </body>
