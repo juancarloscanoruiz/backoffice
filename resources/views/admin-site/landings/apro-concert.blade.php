@@ -49,7 +49,7 @@
     </div>            
            
             <div class=" mr-5 d-flex float-right ">
-            <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1" /></button>
+            <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1"style="width:32px" /></button>
         </div>
         <div class="clearfix"></div>
 <div>
