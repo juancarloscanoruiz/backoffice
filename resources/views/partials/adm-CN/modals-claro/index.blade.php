@@ -65,7 +65,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
             <div class="modal-content">
                 <div class="modal-body">
-                    <img src="images/modals/tv-1.svg" class="modal-programming-landing-logo">
+                    <img src="./images/home/tv-1.svg" class="modal-programming-landing-logo">
                     <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
                     <!--Slider de calendario-->
 
