@@ -735,6 +735,7 @@ function getChapterInfo(data) {
             }, 250);
         }
     });
+    reload(1, "Canal Claro")
 }
 
 function newProgram(landing, schedule) {
