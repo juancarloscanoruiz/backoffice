@@ -881,8 +881,10 @@ function eventsGrilla() {
                         $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
                         $(".modal-edit-program-carrusel .edit-home-time-begin").val()
                     ) {
-                        value = `${$(this).val()} ${$(
-                            "modal-edit-program-carrusel .edit-home-time-begin"
+
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-")
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".modal-edit-program-carrusel .edit-home-time-begin"
                         ).val()}`;
 
                         editAttributeProgram(chapter_id, key, value);
@@ -891,9 +893,7 @@ function eventsGrilla() {
                         $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
                         !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
                     ) {
-                        let date = $(this)
-                            .val()
-                            .split("-");
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
@@ -902,23 +902,24 @@ function eventsGrilla() {
                     break;
                 case "in_home_expiration":
                     if (
-                        $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
-                        $(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                        $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
+                        $(".modal-edit-program-carrusel .edit-home-time-end").val()
                     ) {
-                        let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-end")
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                            ".modal-edit-program-carrusel .edit-home-time-expiration"
+                            ".modal-edit-program-carrusel .edit-home-time-end"
                         ).val()}`;
 
                         editAttributeProgram(chapter_id, key, value);
                         $(this).blur();
                     } else if (
-                        $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
-                        !$(".modal-edit-program-carrusel .edit-home-time-expiration").val()
+                        $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
+                        !$(".modal-edit-program-carrusel .edit-home-time-end").val()
                     ) {
-                        let date = $(".modal-edit-program-carrusel .edit-home-date-expiration")
+
+                        let date = $(".modal-edit-program-carrusel .edit-home-date-end")
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -935,6 +936,7 @@ function eventsGrilla() {
                         let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
                             .val()
                             .split("-");
+
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
                             ".modal-edit-program-carrusel .edit-landing-time-begin"
                         ).val()}`;
@@ -945,7 +947,7 @@ function eventsGrilla() {
                         $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
                         !$(".modal-edit-program-carrusel .edit-landing-time-begin").val()
                     ) {
-                        let date = $(".edit-landing-date-begin")
+                        let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -995,6 +997,7 @@ function eventsGrilla() {
     });
 
     $(".edit-program-attribute-text").blur(function (e) {
+        console.log("blur");
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
@@ -1103,7 +1106,8 @@ function eventsGrilla() {
         //let iframe = $("#navbar-prev-programacion iframe").attr("src");
         //$("#navbar-prev-programacion iframe").attr("src", iframe);
     });
-    $(".modal-edit-program-carrusel .edit-program-attribute-text").on("blur", "edit-program-attribute-text", function (e) {
+    $(".modal-edit-program-carrusel").on("blur", ".edit-program-attribute-text", function (e) {
+
         let key = $(this).attr("key");
         let chapter_id = $(this).attr("chapter_id");
         let value = $(this).val();
@@ -1113,7 +1117,8 @@ function eventsGrilla() {
                     $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
                     $(".modal-edit-program-carrusel .edit-home-time-begin").val()
                 ) {
-                    value = `${$(this).val()} ${$(
+                    let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val()
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
                         ".modal-edit-program-carrusel .edit-home-time-begin"
                     ).val()}`;
 
@@ -1122,7 +1127,7 @@ function eventsGrilla() {
                     $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
                     !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
                 ) {
-                    let date = $(this)
+                    let date = $(".modal-edit-program-carrusel .edit-home-date-begin")
                         .val()
                         .split("-");
                     value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1141,7 +1146,7 @@ function eventsGrilla() {
                     value = `${date[2]}-${date[1]}-${date[0]} ${$(
                         ".modal-edit-program-carrusel .edit-home-time-expiration"
                     ).val()}`;
-
+                    console.log(date);
                     editAttributeProgram(chapter_id, key, value);
                 } else if (
                     $(".modal-edit-program-carrusel .edit-home-date-expiration").val() &&
@@ -1280,6 +1285,7 @@ function eventsGrilla() {
         } else {
             $("#landing-section-1").attr("disabled", false);
             $("#landing-section-2").attr("disabled", false);
+            editAttributeProgram(chapter_id, key, value);
         }
     });
     //loader, antes de subir un archivo
@@ -2932,18 +2938,18 @@ function eventsGrilla() {
             singleMode: false
         });
     }
- 
+
     $("#close_modals").click(function () {
-     
+
         $(".modal").modal("hide");
-       // $(".modal-delete-user").modal("hide");
+        // $(".modal-delete-user").modal("hide");
         //$(".modal-edit-icons").modal("hide");
-       // $(".modal-edit-program").modal("hide");
+        // $(".modal-edit-program").modal("hide");
     });
     //cerrar los dos modales
-    $("#close_modals-claro").click(function () { 
+    $("#close_modals-claro").click(function () {
         $(".modal").modal("hide");
-       
+
     });
     /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla

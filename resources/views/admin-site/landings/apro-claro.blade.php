@@ -1,13 +1,19 @@
 @extends('layaout.app')
 
-
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+@endsection
+@section('scripts')
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+@endsection
 @section('content')
 
     <body>
         @include('partials.headers.headerPrograGeneral')
         <div id="title" class="mt-3">
             <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
-                <div class="d-flex  ">
+                <div class="d-flex">
                     <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
                     <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
@@ -49,9 +55,8 @@
                 <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
                 </div>
             </div>
+            @include('partials.adm-CN.modals-claro.banner-claro')
+            @include('partials.adm-CN.modals-claro.index')
+            @include('partials.adm-CN.modals-concert.carrusel');
     </body>
 @endsection
-
-@include('partials.adm-CN.modals-claro.banner-claro')
-@include('partials.adm-CN.modals-claro.index')
-@include('partials.adm-CN.modals-concert.carrusel');

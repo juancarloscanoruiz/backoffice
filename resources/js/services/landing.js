@@ -231,12 +231,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -247,12 +247,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -264,7 +264,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -280,7 +280,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -301,12 +301,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -315,12 +315,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -337,12 +337,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -352,12 +352,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -369,7 +369,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -384,12 +384,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                     <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                            currentMonth,
+                                            i
+                                        )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
@@ -669,7 +669,7 @@ function getChapterInfo(data) {
             let scheduleItemDate = data.program.day.split("-");
             $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                 scheduleItemDate[1]
-                }-${scheduleItemDate[0]}
+            }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
             $(".edit-program-textarea").val(data.program.synopsis);
@@ -1011,7 +1011,7 @@ function getProgramming(date, section, time) {
                 let scheduleItemDate = data.program.day.split("-");
                 $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                     scheduleItemDate[1]
-                    }-${scheduleItemDate[0]}
+                }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
@@ -1258,11 +1258,11 @@ function getContentConcertChannel(type) {
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                                             <img src="${
-                                        data.data[
-                                        "block_1_image_slider_" +
-                                        counter
-                                        ]
-                                        }"
+                                                data.data[
+                                                    "block_1_image_slider_" +
+                                                        counter
+                                                ]
+                                            }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
                                     </div>
@@ -1471,15 +1471,15 @@ function getProgrammingLanding(date, landing) {
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
-                        landingClass = "programming-canal-landing"
+                        landingClass = "programming-canal-landing";
                         break;
                     case "concert-channel":
                         programming = json.data[1].programing[0].programs;
-                        landingClass = "programming-concert-landing"
+                        landingClass = "programming-concert-landing";
                         break;
                     case "claro-cinema":
                         programming = json.data[2].programing[0].programs;
-                        landingClass = "programming-cinema-landing"
+                        landingClass = "programming-cinema-landing";
                         break;
                     default:
                         break;
@@ -1542,10 +1542,7 @@ function getProgrammingLanding(date, landing) {
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
-                createCalendarDays(
-                    calendarSlider2,
-                    landingClass
-                );
+                createCalendarDays(calendarSlider2, landingClass);
                 try {
                     calendarSlider2.slick("unslick");
                     createSlickSlider(calendarSlider2, calendarSlick);
@@ -1578,7 +1575,7 @@ function getProgramsLanding(date, landing = "") {
             console.log(json);
             if (json.code == 200) {
                 let programming = "";
-                let container = $('.modal-programming-contanier');
+                let container = $(".modal-programming-contanier");
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
@@ -1690,10 +1687,11 @@ function getModalsCanalClaro(type) {
                                             class=" cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
-                                    obj.data[
-                                    "block_1_image_slider_" + counter
-                                    ]
-                                    }"
+                                            obj.data[
+                                                "block_1_image_slider_" +
+                                                    counter
+                                            ]
+                                        }"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
                                 </div>
@@ -1708,7 +1706,7 @@ function getModalsCanalClaro(type) {
                         $(".modal-programming-carousel-claro").modal("show");
                         try {
                             programmingSlider.slick("unslick");
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
@@ -1726,7 +1724,7 @@ function getModalsCanalClaro(type) {
                                 }
                             });
                         } catch (error) {
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
@@ -1787,7 +1785,9 @@ function getModalsCanalClaro(type) {
                         );
                         $(".inp-text-modal-1").val(obj.data.block_2_title_1);
                         $(".inp-text-modal-2").val(obj.data.block_2_title_2);
-                        $(".inp-text-modal-3").val(obj.data.block_2_button_title);
+                        $(".inp-text-modal-3").val(
+                            obj.data.block_2_button_title
+                        );
                         $("#modal-header").modal("show");
                         break;
                         // GET HEADER
@@ -1795,7 +1795,9 @@ function getModalsCanalClaro(type) {
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
-                        $(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
+                        $(".inp-sub-title-modal").val(
+                            obj.data.block_3_subtitle
+                        );
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
@@ -1843,7 +1845,7 @@ function getModalsCanalClaro(type) {
                 }
             }
 
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
     });
 }
@@ -2027,7 +2029,11 @@ function getPromotionalsProgramsCarousel(
             //Capítulos que se encuentran en el carrusel
             $(".carrusel1-slider-concert").html("");
 
-            $('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
+            $("#numCarrusel").html(
+                '<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' +
+                idCarousel +
+                "</h2>"
+            );
 
             for (const chapter of data.data.chapters) {
 
@@ -2035,9 +2041,8 @@ function getPromotionalsProgramsCarousel(
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
                 let image =
-                    chapter.chapter.program.thumbnail_list_horizontal
-                    || "./images/synopsis/image-synopsis-carrusel.jpg"
-                    ;
+                    chapter.chapter.program.thumbnail_list_horizontal ||
+                    "./images/synopsis/image-synopsis-carrusel.jpg";
                 let inLandingSwitch = "";
                 let inLandingDates = "";
                 let inLandingTimes = "";
@@ -2047,14 +2052,14 @@ function getPromotionalsProgramsCarousel(
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
-                            class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing_begin value="1" chapter_id="${chapter.chapter.id}"
+                            class="edit-switch-landing edit-landing-yes" checked />
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no"
-                             name="yes-landing-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}"/>
+                             name="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing" chapter_id="${chapter.chapter.id}"/>
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -2084,6 +2089,7 @@ function getPromotionalsProgramsCarousel(
                         dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
                         timeBegin = dateTimeBegin[1];
                     }
+                    console.log(chapter.chapter.in_landing_begin)
 
                     inLandingDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
@@ -2111,17 +2117,17 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                 } else {
+
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
-                            class="edit-switch-landing edit-landing-yes" key="in_landing" />
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}" class="edit-switch-landing switch-table-edit edit-landing-yes" key="in_landing" />
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id}"
-                            checked name="yes-landing-carrusel-${chapter.chapter.id}" />
+                            checked name="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing"/>
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -2219,13 +2225,13 @@ function getPromotionalsProgramsCarousel(
                     inHomeTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
-                            type="text" value="${timeHomeBegin}"
-                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            type="text" value="${timeHomeBegin}" chapter_id="${chapter.chapter.id}"
+                            class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                             placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
-                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
+                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration" chapter_id="${chapter.chapter.id}"
+                                class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
                                 placeholder="00:00:00"></span>
                     </div>
                     `;
@@ -2264,12 +2270,12 @@ function getPromotionalsProgramsCarousel(
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
-                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
+                            class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
                             placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
-                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
+                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end" value=""
                                 placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
                     </div>
                     `;
@@ -2385,7 +2391,7 @@ function getPromotionalsProgramsCarousel(
                     `;
                 }
 
-                let carruselImg = '';
+                let carruselImg = "";
 
                 if (image) {
                     carruselImg = `
@@ -2414,14 +2420,14 @@ function getPromotionalsProgramsCarousel(
                                 </div>
                                 <img src="${image}" alt=""
     class="thumbnail-image-prev edit-image-program prev-image-program" />
-    
-                    
+
+
                             </label>
                         </div>
                         <!--Nombre de la imagen-->
                         <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
                     </section>
-                    `
+                    `;
                 } else {
                     carruselImg = `
                     <section class="edit-program-image">
@@ -2444,24 +2450,24 @@ function getPromotionalsProgramsCarousel(
                                         class="edit-program-icon-image" alt="camera" />
                                     <p
                                         class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                        472
-                                        x 245px</p>
+                                        295
+                                        x 180px</p>
                                 </div>
                                 <img src="${chapter.image_program}" alt=""
     class="thumbnail-image-prev edit-image-program prev-image-program" />
-    
-                    
+
+
                             </label>
                         </div>
                         <!--Nombre de la imagen-->
                         <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
                     </section>
-                    `
+                    `;
                 }
 
                 program += `
                 <div>
-${carruselImg}
+                ${carruselImg}
                 <!--Establecer en landing, home, schedule item date time-->
                 <section class="mb-5">
                     <div class="row">
@@ -2762,7 +2768,6 @@ ${carruselImg}
                 `;
             }
 
-
             //Mostramos el modal
             $(".modal-edit-program-carrusel").modal("show");
             //Volvemos a crear el slider
@@ -2803,9 +2808,14 @@ ${carruselImg}
                 });
             }
 
-            $(".modal-edit-program-carrusel .carrusel1-slider-concert").on("afterChange", function (slick, currentSlide) {
-                $(".current-slide-number").text(currentSlide.currentSlide + 1);
-            });
+            $(".modal-edit-program-carrusel .carrusel1-slider-concert").on(
+                "afterChange",
+                function (slick, currentSlide) {
+                    $(".current-slide-number").text(
+                        currentSlide.currentSlide + 1
+                    );
+                }
+            );
 
             //Genres
             let optionGenre = "";
@@ -2824,9 +2834,13 @@ ${carruselImg}
             //Añadir géneros
             let index = 0;
             for (const chapter of data.data.chapters) {
-                $('.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner')[index].innerText = "";
-                $('.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner')[index].innerText = chapter.chapter.program.genre;
-                index++
+                $(
+                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+                )[index].innerText = "";
+                $(
+                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+                )[index].innerText = chapter.chapter.program.genre;
+                index++;
             }
             let editProgramLandingGenres = "";
             let selectGenres = $(
@@ -2929,15 +2943,142 @@ ${carruselImg}
             $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
+            $(".edit-program-attribute-text").blur(function (e) {
+
+                let key = $(this).attr("key");
+                let chapter_id = $(this).attr(
+                    "chapter_id"
+                );
+                let value = $(this).val();
+
+                switch (key) {
+                    case "in_home_begin":
+                        if (
+                            $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                            $(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                        ) {
+
+                            let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-")
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".modal-edit-program-carrusel .edit-home-time-begin"
+                                ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+
+                        } else if (
+                            $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
+                            !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+
+                        }
+
+                        break;
+                    case "in_home_expiration":
+                        if (
+                            $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
+                            $(".modal-edit-program-carrusel .edit-home-time-end").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel .edit-home-date-end")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".modal-edit-program-carrusel .edit-home-time-end"
+                                ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+
+                        } else if (
+                            $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
+                            !$(".modal-edit-program-carrusel .edit-home-time-end").val()
+                        ) {
+
+                            let date = $(".modal-edit-program-carrusel .edit-home-date-end")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+
+                        }
+
+                        break;
+                    case "in_landing_begin":
+                        if (
+                            $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                            $(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                                .val()
+                                .split("-");
+
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".modal-edit-program-carrusel .edit-landing-time-begin"
+                                ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+
+                        } else if (
+                            $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
+                            !$(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                            editAttributeProgram(chapter_id, key, value);
+
+                        }
+
+                        break;
+                    case "in_landing_expiration":
+                        //Si se escribió la hora y la fecha
+                        if (
+                            $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                            $(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel  .edit-landing-date-end")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                    ".modal-edit-program-carrusel  .edit-landing-time-end"
+                                ).val()}`;
+                            editAttributeProgram(chapter_id, key, value);
+
+                        } else if (
+                            $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
+                            !$(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                        ) {
+                            let date = $(".modal-edit-program-carrusel .edit-landing-date-end")
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                            editAttributeProgram(chapter_id, key, value);
+
+                        }
+
+                        break;
+                    default:
+                        editAttributeProgram(chapter_id, key, value);
+
+                        break;
+                }
+
+                //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+                //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+            });
         }
+
     });
+
     //reload(idCarousel, landing)
 }
 
-function reload(
-    idCarousel,
-    landing,
-) {
+function reload(idCarousel, landing) {
     $.ajax({
         type: "POST",
         url: "landing/getPromotionalsProgramsCarousel",
@@ -2949,9 +3090,15 @@ function reload(
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder')
+            $("#edit-genre-container .dropdown-toggle").removeClass(
+                "bs-placeholder"
+            );
             for (const chapter of data.data.chapters) {
-                $('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
+                $("#edit-genre-container .filter-option-inner").html(
+                    '<div class="filter-option-inner-inner">' +
+                    chapter.chapter.program.genre +
+                    "</div>"
+                );
             }
         }
     });
