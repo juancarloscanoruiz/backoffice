@@ -73254,22 +73254,27 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination'); // $("body").append(loader);
+            // setTimeout(function () {
+            //     $('.modal-programming-carousel-cinema').modal("show");
+            //     $(".programming-slider").slick({
+            //         slidesToShow: 1,
+            //         dots: true,
+            //         appendDots: $(".programming-slider-dots"),
+            //         initialSlide: 0,
+            //         infinite: false,
+            //         customPaging: function (slider, i) {
+            //             var thumb = $(slider.$slides[i]).data();
+            //             return (
+            //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
+            //                 (i + 1) +
+            //                 "</p>"
+            //             );
+            //         }
+            //     });
+            //     $("#loader1").remove();
+            // }, 3000);
+
             break;
 
           default:
@@ -75631,6 +75636,10 @@ function eventsGrilla() {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination');
+  });
 }
 
 
@@ -77948,16 +77957,95 @@ function getContentClaroCinema(type) {
 
       if (data.code == 200) {
         switch (type) {
+          // SLAIDER
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
+            var counter = 1;
+            var image = "";
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider');
+
+            while (true) {
+              if (data.data["block_1_image_slider_".concat(counter)]) {
+                image += "\n                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                    <img src=\"").concat(data.data["block_1_image_slider_" + counter], "\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                </label>\n                        </div>\n                        ");
+                counter++;
+              } else {
+                break;
+              }
+            }
+
+            programmingSlider.html(image);
+            /* *** */
+
+            try {
+              debugger;
+              programmingSlider.slick("unslick");
+              programmingSlider.not('.slick-initialized').slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+            } catch (error) {
+              programmingSlider.not('.slick-initialized').slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+            }
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+              /*
+                  Arreglo para saber la posición de las imágenes que cargo el usuario
+                  es decir, saber si subió la 1 y 3, o 2,3 etc.
+              */
+              var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+              var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+                if (this.files[0]) {
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                }
+
+                imagesProgramming.push(this.files[0]);
+              });
+              var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+              for (var index = 0; index < imagesProgramming.length; index++) {
+                var file = "file" + (index + 1).toString();
+                file = file.toString();
+                data.append(file, imagesProgramming[index]);
+              } //Posiciones de las imágenes
+
+
+              data.append("positions", imagesPositions); //Hora inicio y fin
+
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("landing", "Canal Claro");
+              setImageSliderBanner(data);
+            });
+            /* *** */
+
+            break;
+          // SLAIDER
+
           case "header-landing-cinema":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title1").val(data.data.block_2_title_1);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-header-claro-cinema").val(data.data.block_2_button_title);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".link-button-header-cinema").val(data.data.block_2_button_url);
             var logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png";
-            /*                         if (data.data.block_2_icon_channel) {
-                                        $(".label-no-image").remove();
-                                    } */
-
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", logo);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-encabezado-cinema").modal("show");
             break;
@@ -78006,8 +78094,8 @@ function getContentClaroCinema(type) {
             break;
 
           case "current-programming-cinema":
-            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
+            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2"); // $(".modal-programming-landing").modal("show");
+
             Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2);
 
             try {
