@@ -3220,6 +3220,111 @@ function getContentClaroCinema(type) {
             console.log(data);
             if (data.code == 200) {
                 switch (type) {
+                    // SLAIDER
+                    case "slider-pagination":
+                        $('.modal-programming-carousel-cinema').modal("show");
+                        let counter = 1;
+                        let image = "";
+                        let programmingSlider = $('.programming-slider');
+                        while (true) {
+                            if (data.data[`block_1_image_slider_${counter}`]) {
+                                image += `
+                        <div class="bor thumbnail-image-program position-relative h-100">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
+                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                    <img src="${data.data["block_1_image_slider_" + counter]}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                </label>
+                        </div>
+                        `;
+                                counter++;
+                            } else {
+                                break;
+                            }
+                        }
+                        programmingSlider.html(image);
+
+                        /* *** */
+                        try {
+                            debugger
+                            programmingSlider.slick("unslick");
+                            programmingSlider.not('.slick-initialized').slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".programming-slider"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        } catch (error) {
+                            programmingSlider.not('.slick-initialized').slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".programming-slider-dots-canal-claro"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        }
+
+                        $(".banner-slider-button").click(function () {
+                            /*
+                                Arreglo para saber la posición de las imágenes que cargo el usuario
+                                es decir, saber si subió la 1 y 3, o 2,3 etc.
+                            */
+                            let imagesPositions = [];
+                            //Arreglo para guardar imágenes de los usuarios
+                            let imagesProgramming = [];
+                            //Recorremos cada input para obtener las imágenes
+                            $(".image_programming").each(function () {
+                                if (this.files[0]) {
+                                    imagesPositions.push(
+                                        $(this).attr("data-index")
+                                    );
+                                }
+                                imagesProgramming.push(this.files[0]);
+                            });
+
+                            let data = new FormData();
+                            //Hacemos un for para mandar file1, file2, etc. en el form data
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
+                                let file = "file" + (index + 1).toString();
+                                file = file.toString();
+                                data.append(file, imagesProgramming[index]);
+                            }
+                            //Posiciones de las imágenes
+                            data.append("positions", imagesPositions);
+                            //Hora inicio y fin
+                            data.append("date", $("#date-start-input").val());
+                            data.append("landing", "Canal Claro");
+                            setImageSliderBanner(data);
+                        });
+                        /* *** */
+
+                        break;
+                    // SLAIDER
+
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
                             data.data.block_2_title_1
@@ -3236,9 +3341,6 @@ function getContentClaroCinema(type) {
                         let logo =
                             data.data.block_2_icon_channel ||
                             "./images/synopsis/image-synopsis-horizontal.png";
-                        /*                         if (data.data.block_2_icon_channel) {
-                                                    $(".label-no-image").remove();
-                                                } */
                         $(".logo-header-claro-cinema").attr("src", logo);
                         $(".modal-encabezado-cinema").modal("show");
                         break;
@@ -3316,7 +3418,7 @@ function getContentClaroCinema(type) {
 
                     case "current-programming-cinema":
                         let calendarSlider2 = $(".calendar-slider2");
-                        $(".modal-programming-landing").modal("show");
+                        // $(".modal-programming-landing").modal("show");
                         createCalendarDays(calendarSlider2);
                         try {
                             calendarSlider2.slick("unslick");

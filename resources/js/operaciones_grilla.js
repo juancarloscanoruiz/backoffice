@@ -195,28 +195,27 @@ function eventsGrilla() {
                         );
                         break;
                     case "slider-pagination":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-programming-carousel-cinema").modal(
-                                "show"
-                            );
-                            $(".programming-slider").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                        getContentClaroCinema('slider-pagination')
+                        // $("body").append(loader);
+                        // setTimeout(function () {
+                        //     $('.modal-programming-carousel-cinema').modal("show");
+                        //     $(".programming-slider").slick({
+                        //         slidesToShow: 1,
+                        //         dots: true,
+                        //         appendDots: $(".programming-slider-dots"),
+                        //         initialSlide: 0,
+                        //         infinite: false,
+                        //         customPaging: function (slider, i) {
+                        //             var thumb = $(slider.$slides[i]).data();
+                        //             return (
+                        //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
+                        //                 (i + 1) +
+                        //                 "</p>"
+                        //             );
+                        //         }
+                        //     });
+                        //     $("#loader1").remove();
+                        // }, 3000);
                         break;
 
                     default:
@@ -274,83 +273,83 @@ function eventsGrilla() {
                         getContentConcertChannelBlock4OTwo();
                         break;
                         /* case "pencil-carrusel1":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-edit-program-carrusel").modal("show");
-                         //slider para carrusel concert-channel
-                         $(".carrusel1-slider").slick({
-                             slidesToShow: 1,
-                             dots: true,
-                             appendDots: $(".carrusel1-slider-dots1"),
-                             initialSlide: 0,
-                             infinite: false,
-                             customPaging: function (slider, i) {
-                                 var thumb = $(slider.$slides[i]).data();
-                                 return (
-                                     "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                     (i + 1) +
-                                     "</p>"
-                                 );
-                             }
-                         });
-                         $("#loader1").remove();
-                     }, 3000);
-                     break;
-                 case "pencil-carrusel2":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-edit-program-carrusel2").modal("show");
-                         $(".carrusel2-slider").slick({
-                             slidesToShow: 1,
-                             dots: true,
-                             appendDots: $(".carrusel2-slider-dots1"),
-                             initialSlide: 0,
-                             infinite: false,
-                             customPaging: function (slider, i) {
-                                 var thumb = $(slider.$slides[i]).data();
-                                 return (
-                                     "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                     (i + 1) +
-                                     "</p>"
-                                 );
-                             }
-                         });
-                         $("#loader1").remove();
-                     }, 3000);
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-edit-program-carrusel").modal("show");
+                     //slider para carrusel concert-channel
+                     $(".carrusel1-slider").slick({
+                         slidesToShow: 1,
+                         dots: true,
+                         appendDots: $(".carrusel1-slider-dots1"),
+                         initialSlide: 0,
+                         infinite: false,
+                         customPaging: function (slider, i) {
+                             var thumb = $(slider.$slides[i]).data();
+                             return (
+                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                 (i + 1) +
+                                 "</p>"
+                             );
+                         }
+                     });
+                     $("#loader1").remove();
+                 }, 3000);
+                 break;
+             case "pencil-carrusel2":
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-edit-program-carrusel2").modal("show");
+                     $(".carrusel2-slider").slick({
+                         slidesToShow: 1,
+                         dots: true,
+                         appendDots: $(".carrusel2-slider-dots1"),
+                         initialSlide: 0,
+                         infinite: false,
+                         customPaging: function (slider, i) {
+                             var thumb = $(slider.$slides[i]).data();
+                             return (
+                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                 (i + 1) +
+                                 "</p>"
+                             );
+                         }
+                     });
+                     $("#loader1").remove();
+                 }, 3000);
 
-                     break;
-                 case "pencil-header":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-titles").modal("show");
-                         $("#loader1").remove();
-                     }, 3000);
+                 break;
+             case "pencil-header":
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-titles").modal("show");
+                     $("#loader1").remove();
+                 }, 3000);
 
-                     break;
-                 case "pencil-video":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-promos-concert").modal("show");
-                         $("#loader1").remove();
-                     }, 3000);
+                 break;
+             case "pencil-video":
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-promos-concert").modal("show");
+                     $("#loader1").remove();
+                 }, 3000);
 
-                     break;
-                 case "pencil-header1":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-titles").modal("show");
-                         $("#loader1").remove();
-                     }, 3000);
+                 break;
+             case "pencil-header1":
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-titles").modal("show");
+                     $("#loader1").remove();
+                 }, 3000);
 
-                     break;
-                 case "header2":
-                     $("body").append(loader);
-                     setTimeout(function () {
-                         $(".modal-titles").modal("show");
-                         $("#loader1").remove();
-                     }, 3000);
+                 break;
+             case "header2":
+                 $("body").append(loader);
+                 setTimeout(function () {
+                     $(".modal-titles").modal("show");
+                     $("#loader1").remove();
+                 }, 3000);
 
-                     break;*/
+                 break;*/
                     case "pencil-carrusel1":
                         let landing = "Concert Channel";
                         let id = 1;
@@ -4271,6 +4270,12 @@ function eventsGrilla() {
     // HEADER EDIT CANAL CLARO
 
     // CANAL CLARO
+
+    $('#btn_pruebas').click(function () {
+        getContentClaroCinema('slider-pagination')
+    });
+
+
 }
 
 export {
