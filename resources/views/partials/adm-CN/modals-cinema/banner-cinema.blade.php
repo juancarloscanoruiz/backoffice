@@ -1,4 +1,4 @@
-<div class="modal modal-programming-carousel-cinema pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
+<div class="modal modal-programming-carousel-cinema modal-programming-carousel-claro modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
             <div class="modal-body">
@@ -10,7 +10,7 @@
                 <div class="dots-container mx-auto d-flex justify-content-between">
                     <div class="d-flex">
                         <!--dots-->
-                        <div class="programming-slider-dots mt-5 mb-5"></div>
+                        <div class="programming-slider-dots-cinema mt-5 mb-5"></div>
                         <!--add slide-->
                         <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image cursor-pointer mb-3">
                     </div>
@@ -41,7 +41,7 @@
                 </div>
 
                 <!--Slider-->
-                <div class="programming-slider">
+                <div class="programming-slider-claro-cinema mx-auto">
 
                     <div class="bor thumbnail-image-program position-relative h-100">
                         <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
@@ -73,35 +73,13 @@
                 </div>
                 <!--Buttons-->
                 <div class="text-center mb-3 d-flex justify-content-center">
-                    <button class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro" data-dismiss="modal">aceptar</button>
-                    <a href="#delete-info-encabezado" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
-
-                    <!-- <button
-                      class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
+                    <button class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus banner-slider-button" id="image-programming-button-cinema">aceptar</button>
+                    <a href="#modal-delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
 
+
             </div>
 
         </div>
     </div>
-</div>
-
-<!--modal para perder lo hecho en los landing de edit-->
-<div class=" modal  delete-info-encabezado" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1" role="dialog" data-modal-parent="#modalbanner">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content  ">
-            <div class="modal-body ">
-                <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
-                <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
-            </div>
-
-            <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals">ACEPTAR</button>
-
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-            </div>
-        </div>
-    </div>
-</div>
 </div>

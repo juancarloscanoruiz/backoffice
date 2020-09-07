@@ -33,7 +33,7 @@
                     </div>
                     <!-- VER PROGRAMACIÓN -->
                     <input class="inp-text-modal-3 pl-2 a-text-MBlack text-normal  hoy-en  text-uppercase" type="text"
-                        placeholder="VER PROGRAMACIÓN">
+                        placeholder="VER PROGRAMACIÓN" >
                 </div>
                 <div class="content">
                     <div class="float-right mt-3">

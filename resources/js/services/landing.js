@@ -1688,7 +1688,7 @@ function getModalsCanalClaro(type) {
                                     <label for="image_programming_${counter}"
                                         class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
-                                            class=" cursor-pointer add-photo " />
+                                            class="cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
                                     obj.data[
@@ -2965,10 +2965,9 @@ function getContentClaroCinema(type) {
                 switch (type) {
                     // SLAIDER
                     case "slider-pagination":
-                        $('.modal-programming-carousel-cinema').modal("show");
                         let counter = 1;
                         let image = "";
-                        let programmingSlider = $('.programming-slider');
+                        let programmingSlider = $('.programming-slider-claro-cinema');
                         while (true) {
                             if (data.data[`block_1_image_slider_${counter}`]) {
                                 image += `
@@ -2987,17 +2986,13 @@ function getContentClaroCinema(type) {
                             }
                         }
                         programmingSlider.html(image);
-
-                        /* *** */
+                        $('.modal-programming-carousel-cinema').modal("show");
                         try {
-                            debugger
                             programmingSlider.slick("unslick");
                             programmingSlider.not('.slick-initialized').slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(
-                                    ".programming-slider"
-                                ),
+                                appendDots: $(".programming-slider-dots-cinema"),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -3010,16 +3005,15 @@ function getContentClaroCinema(type) {
                                 }
                             });
                         } catch (error) {
+                            console.log(error);
                             programmingSlider.not('.slick-initialized').slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(
-                                    ".programming-slider-dots-canal-claro"
-                                ),
+                                appendDots: $(".programming-slider-dots-cinema"),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
+                                    let thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
                                         (i + 1) +
@@ -3028,16 +3022,10 @@ function getContentClaroCinema(type) {
                                 }
                             });
                         }
-
-                        $(".banner-slider-button").click(function () {
-                            /*
-                                Arreglo para saber la posición de las imágenes que cargo el usuario
-                                es decir, saber si subió la 1 y 3, o 2,3 etc.
-                            */
+                        $("#image-programming-button-cinema").click(function () {
+                            debugger
                             let imagesPositions = [];
-                            //Arreglo para guardar imágenes de los usuarios
                             let imagesProgramming = [];
-                            //Recorremos cada input para obtener las imágenes
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
@@ -3046,28 +3034,19 @@ function getContentClaroCinema(type) {
                                 }
                                 imagesProgramming.push(this.files[0]);
                             });
-
                             let data = new FormData();
-                            //Hacemos un for para mandar file1, file2, etc. en el form data
-                            for (
-                                let index = 0; index < imagesProgramming.length; index++
-                            ) {
+                            for (let index = 0; index < imagesProgramming.length; index++) {
                                 let file = "file" + (index + 1).toString();
                                 file = file.toString();
                                 data.append(file, imagesProgramming[index]);
                             }
-                            //Posiciones de las imágenes
                             data.append("positions", imagesPositions);
-                            //Hora inicio y fin
                             data.append("date", $("#date-start-input").val());
-                            data.append("landing", "Canal Claro");
+                            data.append("landing", "Claro Cinema");
                             setImageSliderBanner(data);
                         });
-                        /* *** */
-
                         break;
-                    // SLAIDER
-
+                    // HEADER
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
                             data.data.block_2_title_1
@@ -3079,6 +3058,9 @@ function getContentClaroCinema(type) {
                             data.data.block_2_button_title
                         );
                         $(".link-button-header-cinema").val(
+                            data.data.block_2_button_url
+                        );
+                        $(".input-url-modal").val(
                             data.data.block_2_button_url
                         );
                         let logo =

@@ -159,6 +159,10 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
+                    case "slider-pagination":
+                        getContentClaroCinema('slider-pagination')
+                        break;
+
                     case "current-programming-cinema":
                         let date = new Date();
                         let day = ("0" + date.getUTCDate()).slice(-2);
@@ -193,38 +197,6 @@ function eventsGrilla() {
                         id = 2;
                         getPromotionalsProgramsCarousel(id, landing, "header-background thumbnail-header-cinema");
                         break;
-                    case "slider-pagination":
-                        getContentClaroCinema('slider-pagination')
-                        // $("body").append(loader);
-                        // setTimeout(function () {
-                        //     $('.modal-programming-carousel-cinema').modal("show");
-                        //     $(".programming-slider").slick({
-                        //         slidesToShow: 1,
-                        //         dots: true,
-                        //         appendDots: $(".programming-slider-dots"),
-                        //         initialSlide: 0,
-                        //         infinite: false,
-                        //         customPaging: function (slider, i) {
-                        //             var thumb = $(slider.$slides[i]).data();
-                        //             return (
-                        //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
-                        //                 (i + 1) +
-                        //                 "</p>"
-                        //             );
-                        //         }
-                        //     });
-                        //     $("#loader1").remove();
-                        // }, 3000);
-                        break;
-
-
-
-
-
-
-
-
-
                     default:
                         break;
                 }
@@ -533,7 +505,6 @@ function eventsGrilla() {
 
     $("#edit-titles-landing-concert").click(function () {
         //Title
-        debugger
         let value = $(".modal-concert-title").val();
         let key = $(".modal-concert-title").attr("key");
         let landing = "Concert Channel";
@@ -1396,22 +1367,23 @@ function eventsGrilla() {
 
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
+        console.log('pato');
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
         //Agregamos un slide al slider de programación
-        $(".cinema-image-slider").slick(
+        $(".programming-slider-claro-cinema").slick(
             "slickAdd",
             `
             <div class="slick-slide">
                 <div>
-                    <div class="bor thumbnail-image-program position-relative h-100">
-                    <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
-                        <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
-                            <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                            <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
-                        </label>
+                <div class="bor thumbnail-image-program position-relative h-100">
+                <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none image_programming " data-index="${slideIndex}">
+                    <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                        <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
+                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                        <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                    </label>
                     </div>
                 </div>
             </div>
@@ -2322,7 +2294,7 @@ function eventsGrilla() {
             <div class="slick-slide">
                 <div>
                     <div class="bor thumbnail-image-program position-relative h-100">
-                        <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" d-none" tabindex="0">
+                        <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" tabindex="0">
                         <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                             <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                             <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -2935,8 +2907,9 @@ function eventsGrilla() {
     }
 
     $("#close_modals").click(function () {
-
+        console.log('cerreer')
         $(".modal").modal("hide");
+        $("#modaledi").modal("hide");
         // $(".modal-delete-user").modal("hide");
         //$(".modal-edit-icons").modal("hide");
         // $(".modal-edit-program").modal("hide");
@@ -4100,8 +4073,28 @@ function eventsGrilla() {
     // CANAL CLARO
 
     $('#btn_pruebas').click(function () {
+        // getContentClaroCinema('header-landing-cinema')
         getContentClaroCinema('slider-pagination')
     });
+
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-header-cinema").click(function () {
+        debugger
+        let landing = "Claro Cinema";
+        let title1 = $("#hoy-channel").val() || "";
+        let title2 = $("#concert-link").val() || "";
+        let logo = document.getElementById("image-icon1").files[0] || "";
+        let link = $("#inp-text-modal-4").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        editHeaderLandingClaro(data);
+        resetIframe($("#navbar-prev-claro-cinema iframe"), landingCanalClaro);
+    });
+    // HEADER EDIT CANAL CLARO
 
 
 }
