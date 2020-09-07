@@ -1,7 +1,7 @@
-@extends('layaout.app')
+
 
 @section('scripts')
- <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
+ <!--<script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
     <script>
         new easyXDM.Socket({
             remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/sinopsis-edi.php",
@@ -13,8 +13,8 @@
                 this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
         });
-    </script>
-<div class="modal modal-landing-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important; display:contents;" >
+    </script> -->
+<div class="modal modal-landing-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important;" >
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
           <div class="modal-content" >
             <div class="modal-body">
@@ -55,7 +55,7 @@
         <div class="clearfix"></div> 
         <div class="mr-5 float-right">
         <div class="d-flex  align-items-center justify-content-center mb-2 mt-2">
-            <span class="a-text-semibold-black text-normal mr-3">Establecer sinópsis como:</span>
+            <span class="a-text-semibold-black text-normal mr-3">Establecer sinopsis como:</span>
                                             <input type="radio" id="yes-landing" name="landing"value="3"
                                                 class="edit-switch-landing edit-landing-yes" />
                                             <label for="yes-landing" id="siestado-landing"
@@ -71,12 +71,12 @@
         </div>
         <div class="clearfix"></div> 
         <div class=" mx-auto">
-        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-3">SINÓPSIS</h3>
+        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-3">SINOPSIS</h3>
         <hr class="d-flex align-content-center separationhr col-11 mt-4 mb-5">
 
         </div>
         <div class="centro">
-            <div class="navbar-progra-content  mb-5" id="sinopsis-container">
+            <div class="  mb-5" id="sinopsis-container">
             </div>
         </div>
  <!--Buttons-->
@@ -93,3 +93,6 @@
     </div>
   </div>
 </div>
+@include('partials.adm-CN.modals-sinopsis.banner-sinopsis')
+@include('partials.adm-CN.modals-sinopsis.image-synopsis')
+@include('partials.adm-CN.modals-sinopsis.edit-synopsis')

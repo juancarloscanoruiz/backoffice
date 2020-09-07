@@ -37,7 +37,7 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis " navbar-index="2"
                         rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class=" a-text-bold-two py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-two py-2 px-3 mb-0">SINOPSIS</p>
                         </div>
                     </div>
                     <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro " navbar-index="3"

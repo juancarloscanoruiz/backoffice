@@ -569,6 +569,11 @@ body {
   color: #696363;
 }
 
+.a-text-medium-white {
+  font-family: "Montserrat-Medium";
+  color: white;
+}
+
 .a-text-medium-black {
   font-family: "Montserrat-Regular";
   color: #161515;
@@ -4647,6 +4652,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #696363;
 }
 
+.a-text-medium-white {
+  font-family: "Montserrat-Medium";
+  color: white;
+}
+
 .a-text-medium-black {
   font-family: "Montserrat-Regular";
   color: #161515;
@@ -6017,6 +6027,23 @@ ul {
   margin-bottom: 16px;
 }
 
+.programming-slider-dots-sinopsis .slick-dots {
+  position: static;
+  text-align: left;
+  bottom: auto;
+}
+
+.programming-slider-dots-sinopsis .presentation {
+  margin-right: 24px;
+}
+
+.programming-slider-dots-sinopsis .slick-dots li {
+  height: 37px;
+  width: 37px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
 .programming-slider-dots1 .slick-dots {
   position: static;
   text-align: left;
@@ -7007,6 +7034,21 @@ iframe {
   background-color: #1f2887;
 }
 
+.container-image-synopsis {
+  border-radius: 12px;
+  background-color: #000000;
+}
+
+.container-image {
+  width: 597px;
+  height: 356px;
+}
+
+.container-edit-sinopsis {
+  width: 824px;
+  height: 461px;
+}
+
 .container-promo-cinema {
   border-radius: 12px;
   background-color: #f5dd30;
@@ -7475,6 +7517,48 @@ select:focus {
 
 .programming-slider-dots-canal-claro .slick-dots .slick-active p {
   color: #ffffff !important;
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active {
+  background-color: #0097a9;
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active::after {
+  content: "";
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4a4a4a transparent transparent transparent;
+  position: absolute;
+  left: 36%;
+  bottom: -12px;
+  transform: rotate(180deg);
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active::before {
+  content: "";
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4a4a4a transparent transparent transparent;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -95%);
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active p {
+  color: #ffffff !important;
+}
+
+.programming-slider-sinopsis .slick-slide {
+  height: 471px !important;
+}
+
+.programming-slider-sinopsis .slick-slide div {
+  height: 100% !important;
+}
+
+.programming-slider-sinopsis {
+  width: 1191px !important;
 }
 
 .programming-slider-dots1 .slick-dots .slick-active {

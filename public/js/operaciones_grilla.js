@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"C:\\\\Zaid\\\\claro\\\\backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"C:\\\\Zaid\\\\claro\\\\backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73163,7 +73163,10 @@ function eventsGrilla() {
   });
   calendarsinopsis.slick("unslick");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis);
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]); //Previsualizar el video que subió el usuario en el landing de concert channel
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+  }); //Previsualizar el video que subió el usuario en el landing de concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file').change(function () {
     if (this.files && this.files[0]) {
@@ -73197,6 +73200,68 @@ function eventsGrilla() {
     getHeaderLanding();
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
+
+  var LandingSinopsis = {
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    container: document.getElementById("sinopsis-container"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-sinopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-main-image":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-image-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-description-container":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+
+  if (navbarPrevSINOPSIS) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-container iframe').remove();
+    new easyXDM.Socket(LandingSinopsis);
+  } //Landing de concert channel
+
 
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),
@@ -75012,7 +75077,7 @@ function eventsGrilla() {
       $("#edit").click(function () {
           if ($('input[id="edit"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
-                <script>
+               <script>
               new easyXDM.Socket({
                   remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
                   container: "navbar-prev-canal-claro",
@@ -75021,7 +75086,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
+                   }
               });
               </script>`);
               $("#navbar-prev-home").html(` <script>
@@ -75050,7 +75115,7 @@ function eventsGrilla() {
               </script>`);
           }
       });
-        //PREV CLARO CANAL
+       //PREV CLARO CANAL
       $("#prev").click(function () {
           if ($('input[id="prev"]').is(":checked")) {
               $("#navbar-prev-canal-claro").html(`
@@ -75067,7 +75132,7 @@ function eventsGrilla() {
                   });
               </script>
               `);
-                $("#navbar-prev-programacion").html(` <script>
+               $("#navbar-prev-programacion").html(` <script>
               new easyXDM.Socket({
               remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
               container: "navbar-prev-programacion",
@@ -75138,7 +75203,7 @@ function eventsGrilla() {
                       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
                       this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
                       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
+                   }
               });
               </script>`);
               $("#navbar-prev-programacion").html(` <script>
@@ -78318,8 +78383,8 @@ function getUser(id) {
         </div>
         <div class=" col-xl-7 trans10 mx-auto texto-general " id="visual">
         <div class="container shadow tamaño mt-0 mb-2">
-          <div class="w3-card-4 bg-white d-flex">
-              <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
+         <div class="w3-card-4 bg-white d-flex">
+             <div class=" col-xl-12 mx-auto mt-xl-3 mb-xl-2 pl-5 pr-5 ">
                 <form>
                     <div>
                         <p class="insert-data pb-2 pt-2 show-username">${json.data.name}</p>
@@ -78332,15 +78397,15 @@ function getUser(id) {
                     <div>
                         <p class="insert-data input-password mt-4 pt-2 pb-2" type="password" id="login-password" name="login-password" autocomplete="off">***********</p>
                     </div>
-                      </input>
-                      <p class="mt-4 ml-2">Rol de usuario</p>
+                     </input>
+                     <p class="mt-4 ml-2">Rol de usuario</p>
                     <button type="button" class=" btn-succes text-sucess mb-4 show-rol" id="login-button">
                       ${rol}
                     </button>
                 </form>
                 <br>
             </div>
-          </div>
+         </div>
         </div>
         </div>
         `);
@@ -78375,7 +78440,7 @@ function getAllUserFront() {
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])();
         /*showUserFront();
         showModalDeleteUserFront();
-          showDescriptions();*/
+         showDescriptions();*/
       }
     }
   });
@@ -79139,7 +79204,7 @@ function createSlickSlider(container, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Zaid\claro\backoffice\resources\js\operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

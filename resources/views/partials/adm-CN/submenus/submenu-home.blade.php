@@ -87,7 +87,7 @@
 
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis" navbar-index="2" rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">SINOPSIS</p>
                         </div>
                     </div>
 
