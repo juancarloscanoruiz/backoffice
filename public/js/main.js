@@ -88910,7 +88910,10 @@ function eventsGrilla() {
   });
   calendarsinopsis.slick("unslick");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]); //Previsualizar el video que subió el usuario en el landing de concert channel
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+  }); //Previsualizar el video que subió el usuario en el landing de concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
     if (this.files && this.files[0]) {
@@ -88944,6 +88947,68 @@ function eventsGrilla() {
     getHeaderLanding();
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
+
+  var LandingSinopsis = {
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    container: document.getElementById("sinopsis-container"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-sinopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis").slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-main-image":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-image-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-description-container":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+
+  if (navbarPrevSINOPSIS) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-container iframe').remove();
+    new easyXDM.Socket(LandingSinopsis);
+  } //Landing de concert channel
+
 
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),

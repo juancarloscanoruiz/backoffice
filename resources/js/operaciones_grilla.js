@@ -91,6 +91,9 @@ function eventsGrilla() {
     createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
     createSlickSlider(calendarsinopsis, calendarSlick);
+$(".sinopsis").click(function(){
+$(".modal-landing-sinopsis").modal("show");
+});
 
 
 
@@ -141,6 +144,82 @@ function eventsGrilla() {
 
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+         //Landing de concert channel
+    let LandingSinopsis = {
+        remote: `${baseURL}sinopsis-edi.php`,
+        container: document.getElementById(
+            "sinopsis-container",
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-programming-sinopsis').modal("show");
+                            $(".programming-slider-sinopsis").slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".programming-slider-dots-sinopsis"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                            $("#loader1").remove();
+                        }, 3000);
+
+                      
+                        break;
+                        case "synopsis-main-image":
+                            $("body").append(loader);
+                            setTimeout(function () {
+                                $('.modal-image-synopsis').modal("show");
+                                $("#loader1").remove();
+                            }, 3000);
+    
+
+                        break;
+
+                        case "synopsis-description-container":
+                            $("body").append(loader);
+                            setTimeout(function () {
+                                $('.modal-edit-synopsis').modal("show");
+                                $("#loader1").remove();
+                            }, 3000);
+    
+
+                        break;
+                   
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+    if (navbarPrevSINOPSIS) {
+        $('#sinopsis-container iframe').remove();
+        new easyXDM.Socket(LandingSinopsis);
+    }
 
     //Landing de concert channel
     let confLandingClaroCinema = {
