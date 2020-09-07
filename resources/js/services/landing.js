@@ -231,12 +231,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -247,12 +247,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -264,7 +264,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -280,7 +280,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -301,12 +301,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -315,12 +315,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -337,12 +337,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -352,12 +352,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -369,7 +369,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -384,12 +384,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                     <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                            currentMonth,
+                                            i
+                                        )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
@@ -669,7 +669,7 @@ function getChapterInfo(data) {
             let scheduleItemDate = data.program.day.split("-");
             $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                 scheduleItemDate[1]
-                }-${scheduleItemDate[0]}
+            }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
             $(".edit-program-textarea").val(data.program.synopsis);
@@ -735,7 +735,7 @@ function getChapterInfo(data) {
             }, 250);
         }
     });
-    reload(1, "Canal Claro")
+    reload(1, "Canal Claro");
 }
 
 function newProgram(landing, schedule) {
@@ -1012,7 +1012,7 @@ function getProgramming(date, section, time) {
                 let scheduleItemDate = data.program.day.split("-");
                 $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                     scheduleItemDate[1]
-                    }-${scheduleItemDate[0]}
+                }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
@@ -1242,7 +1242,9 @@ function getContentConcertChannel(type) {
             if (data.code == 200) {
                 switch (type) {
                     case "slider-pagination":
-                        let programmingSlider = $(".programming-slider");
+                        let programmingSlider = $(
+                            ".programming-slider-concert-channel"
+                        );
                         let counter = 1;
                         let image = "";
                         while (true) {
@@ -1257,13 +1259,13 @@ function getContentConcertChannel(type) {
                                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
-                                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                            <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
                                             <img src="${
-                                        data.data[
-                                        "block_1_image_slider_" +
-                                        counter
-                                        ]
-                                        }"
+                                                data.data[
+                                                    "block_1_image_slider_" +
+                                                        counter
+                                                ]
+                                            }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
                                     </div>
@@ -1278,14 +1280,16 @@ function getContentConcertChannel(type) {
                             }
                         }
 
-                        $(".programming-slider").html(image);
+                        $(".programming-slider-concert-channel").html(image);
                         $(".modal-programming-carousel-concert").modal("show");
                         try {
                             programmingSlider.slick("unslick");
                             programmingSlider.slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots"),
+                                appendDots: $(
+                                    ".programming-slider-dots-concert-channel"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -1301,7 +1305,9 @@ function getContentConcertChannel(type) {
                             programmingSlider.slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots"),
+                                appendDots: $(
+                                    ".programming-slider-dots-concert-channel"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -1314,6 +1320,65 @@ function getContentConcertChannel(type) {
                                 }
                             });
                         }
+                        $(".add-banner-image-concert").click(function () {
+                            //Cada vez que se haga click, el contador incrementa
+                            let slideIndex =
+                                $(".load-programming-carousel").length + 1;
+
+                            //Agregamos un slide al slider de programación
+                            $(".programming-slider-concert-channel").slick(
+                                "slickAdd",
+                                `
+                                <div class="slick-slide">
+                                    <div>
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                            <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" d-none" tabindex="0">
+                                            <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                                <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                                <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
+                                                <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                            );
+                        });
+                        $(".banner-slider-button").click(function () {
+                            /*
+                                Arreglo para saber la posición de las imágenes que cargo el usuario
+                                es decir, saber si subió la 1 y 3, o 2,3 etc.
+                            */
+                            let imagesPositions = [];
+                            //Arreglo para guardar imágenes de los usuarios
+                            let imagesProgramming = [];
+                            //Recorremos cada input para obtener las imágenes
+                            $(".image_programming").each(function () {
+                                if (this.files[0]) {
+                                    imagesPositions.push(
+                                        $(this).attr("data-index")
+                                    );
+                                }
+                                imagesProgramming.push(this.files[0]);
+                            });
+
+                            let data = new FormData();
+                            //Hacemos un for para mandar file1, file2, etc. en el form data
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
+                                let file = "file" + (index + 1).toString();
+                                file = file.toString();
+                                data.append(file, imagesProgramming[index]);
+                            }
+                            //Posiciones de las imágenes
+                            data.append("positions", imagesPositions);
+                            //Hora inicio y fin
+                            data.append("date", $("#date-start-input").val());
+                            data.append("landing", "Concert Channel");
+                            setImageSliderBanner(data);
+                        });
+
                         break;
                     default:
                         break;
@@ -1330,12 +1395,9 @@ function getConcertChannelPromo() {
         type: "POST",
         beforeSend: function () {
             $("body").append(
-                ` < div class = "loader-view-container pointer-none" >
-                                                    <
-                                                    img src = "./images/loader.gif"
-                                                class = "loader" / >
-                                                    <
-                                                    /div>`
+                ` <div class = "loader-view-container pointer-none">
+                <img src = "./images/loader.gif" class = "loader"/>
+                </div>`
             );
         },
         url: "landing/concertChannel",
@@ -1472,15 +1534,15 @@ function getProgrammingLanding(date, landing) {
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
-                        landingClass = "programming-canal-landing"
+                        landingClass = "programming-canal-landing";
                         break;
                     case "concert-channel":
                         programming = json.data[1].programing[0].programs;
-                        landingClass = "programming-concert-landing"
+                        landingClass = "programming-concert-landing";
                         break;
                     case "claro-cinema":
                         programming = json.data[2].programing[0].programs;
-                        landingClass = "programming-cinema-landing"
+                        landingClass = "programming-cinema-landing";
                         break;
                     default:
                         break;
@@ -1543,10 +1605,7 @@ function getProgrammingLanding(date, landing) {
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");
-                createCalendarDays(
-                    calendarSlider2,
-                    landingClass
-                );
+                createCalendarDays(calendarSlider2, landingClass);
                 try {
                     calendarSlider2.slick("unslick");
                     createSlickSlider(calendarSlider2, calendarSlick);
@@ -1579,7 +1638,7 @@ function getProgramsLanding(date, landing = "") {
             console.log(json);
             if (json.code == 200) {
                 let programming = "";
-                let container = $('.modal-programming-contanier');
+                let container = $(".modal-programming-contanier");
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
@@ -1684,17 +1743,18 @@ function getModalsCanalClaro(type) {
                             if (obj.data[`block_1_image_slider_${counter}`]) {
                                 image += `
                                 <div class="bor thumbnail-image-program position-relative h-100">
-                                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="${counter}">
                                     <label for="image_programming_${counter}"
                                         class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
                                             class=" cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
-                                    obj.data[
-                                    "block_1_image_slider_" + counter
-                                    ]
-                                    }"
+                                            obj.data[
+                                                "block_1_image_slider_" +
+                                                    counter
+                                            ]
+                                        }"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
                                 </div>
@@ -1709,7 +1769,7 @@ function getModalsCanalClaro(type) {
                         $(".modal-programming-carousel-claro").modal("show");
                         try {
                             programmingSlider.slick("unslick");
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
@@ -1727,7 +1787,7 @@ function getModalsCanalClaro(type) {
                                 }
                             });
                         } catch (error) {
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
@@ -1788,30 +1848,34 @@ function getModalsCanalClaro(type) {
                         );
                         $(".inp-text-modal-1").val(obj.data.block_2_title_1);
                         $(".inp-text-modal-2").val(obj.data.block_2_title_2);
-                        $(".inp-text-modal-3").val(obj.data.block_2_button_title);
+                        $(".inp-text-modal-3").val(
+                            obj.data.block_2_button_title
+                        );
                         $("#modal-header").modal("show");
                         break;
-                    // GET HEADER
-                    // GET TITLE
+                        // GET HEADER
+                        // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
-                        $(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
+                        $(".inp-sub-title-modal").val(
+                            obj.data.block_3_subtitle
+                        );
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE
-                    // GET PROMO
+                        // GET TITLE
+                        // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
-                            '<video autoplay controls class="img-back-modal img-promo" src="' +
+                            '<video autoplay muted controls class="img-back-modal img-promo" src="' +
                             obj.data.block_3_video_url +
                             '" /></video>'
                         );
                         $("#modal-promo").modal("show");
                         break;
-                    // GET PROMO
-                    // GET TITLE CARRUSEL 1
+                        // GET PROMO
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -1825,8 +1889,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -1840,11 +1904,11 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                 }
             }
 
-            $('.loader-view-container').remove();
+            $(".loader-view-container").remove();
         }
     });
 }
@@ -2016,7 +2080,7 @@ function getPromotionalsProgramsCarousel(
                     break;
                 case "Concert Channel":
                     idLanding = 2;
-                    classButton = "modal-button-landing-concert";
+                    classButton = "button-modal-concert-channel";
                     break;
                 case "Claro Cinema":
                     idLanding = 3;
@@ -2028,17 +2092,19 @@ function getPromotionalsProgramsCarousel(
             //Capítulos que se encuentran en el carrusel
             $(".carrusel1-slider-concert").html("");
 
-            $('#numCarrusel').html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + '</h2>');
+            $("#numCarrusel").html(
+                '<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' +
+                idCarousel +
+                "</h2>"
+            );
 
             for (const chapter of data.data.chapters) {
-
                 //Variables a evaluar
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
                 let image =
-                    chapter.chapter.program.thumbnail_list_horizontal
-                    || "./images/synopsis/image-synopsis-carrusel.jpg"
-                    ;
+                    chapter.chapter.program.thumbnail_list_horizontal ||
+                    "./images/synopsis/image-synopsis-carrusel.jpg";
                 let inLandingSwitch = "";
                 let inLandingDates = "";
                 let inLandingTimes = "";
@@ -2048,14 +2114,14 @@ function getPromotionalsProgramsCarousel(
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
-                            class="edit-switch-landing edit-landing-yes" key="in_landing" checked/>
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing_begin value="1" chapter_id="${chapter.chapter.id}"
+                            class="edit-switch-landing edit-landing-yes" checked />
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no"
-                             name="yes-landing-carrusel-${chapter.chapter.id}" chapter_id="${chapter.chapter.id}"/>
+                             name="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing" chapter_id="${chapter.chapter.id}"/>
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -2085,6 +2151,7 @@ function getPromotionalsProgramsCarousel(
                         dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
                         timeBegin = dateTimeBegin[1];
                     }
+                    console.log(chapter.chapter.in_landing_begin);
 
                     inLandingDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
@@ -2115,14 +2182,13 @@ function getPromotionalsProgramsCarousel(
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
-                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}"
-                            class="edit-switch-landing edit-landing-yes" key="in_landing" />
+                        <input name="yes-landing-carrusel-${chapter.chapter.id}" type="radio" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}" class="edit-switch-landing switch-table-edit edit-landing-yes" key="in_landing" />
                         <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing"
                             class="mb-0 si-estilo cursor-pointer switch-label">
                             Sí</label>
                         <input type="radio" id="no-landing-carrusel-${chapter.chapter.id}" value="0"
                             class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id}"
-                            checked name="yes-landing-carrusel-${chapter.chapter.id}" />
+                            checked name="yes-landing-carrusel-${chapter.chapter.id}" key="in_landing"/>
                         <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing"
                             class="mb-0 no-estilo cursor-pointer switch-label">
                             No</label>
@@ -2220,13 +2286,13 @@ function getPromotionalsProgramsCarousel(
                     inHomeTimes = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
-                            type="text" value="${timeHomeBegin}"
-                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
+                            type="text" value="${timeHomeBegin}" chapter_id="${chapter.chapter.id}"
+                            class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                             placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
-                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
+                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration" chapter_id="${chapter.chapter.id}"
+                                class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
                                 placeholder="00:00:00"></span>
                     </div>
                     `;
@@ -2265,12 +2331,12 @@ function getPromotionalsProgramsCarousel(
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
-                            class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
+                            class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
                             placeholder="00:00:00"></span>
                     </div>
                     <div class="text-center edit-rectangle-small-container py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
-                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value=""
+                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration"
+                                class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end" value=""
                                 placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
                     </div>
                     `;
@@ -2386,7 +2452,7 @@ function getPromotionalsProgramsCarousel(
                     `;
                 }
 
-                let carruselImg = '';
+                let carruselImg = "";
 
                 if (image) {
                     carruselImg = `
@@ -2410,19 +2476,19 @@ function getPromotionalsProgramsCarousel(
                                         class="edit-program-icon-image" alt="camera" />
                                     <p
                                         class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                        472
-                                        x 245px</p>
+                                        295
+                                        x 180px</p>
                                 </div>
                                 <img src="${image}" alt=""
     class="thumbnail-image-prev edit-image-program prev-image-program" />
-    
-                    
+
+
                             </label>
                         </div>
                         <!--Nombre de la imagen-->
                         <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
                     </section>
-                    `
+                    `;
                 } else {
                     carruselImg = `
                     <section class="edit-program-image">
@@ -2445,24 +2511,24 @@ function getPromotionalsProgramsCarousel(
                                         class="edit-program-icon-image" alt="camera" />
                                     <p
                                         class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                        472
-                                        x 245px</p>
+                                        295
+                                        x 180px</p>
                                 </div>
                                 <img src="${chapter.image_program}" alt=""
     class="thumbnail-image-prev edit-image-program prev-image-program" />
-    
-                    
+
+
                             </label>
                         </div>
                         <!--Nombre de la imagen-->
                         <p class="a-text-bold-brown-two text-plus mt-4 mb-5">NombreDeLaImagen</p>
                     </section>
-                    `
+                    `;
                 }
 
                 program += `
                 <div>
-${carruselImg}
+                ${carruselImg}
                 <!--Establecer en landing, home, schedule item date time-->
                 <section class="mb-5">
                     <div class="row">
@@ -2802,6 +2868,16 @@ ${carruselImg}
                     }
                 });
             }
+
+            $(".modal-edit-program-carrusel .carrusel1-slider-concert").on(
+                "afterChange",
+                function (slick, currentSlide) {
+                    $(".current-slide-number").text(
+                        currentSlide.currentSlide + 1
+                    );
+                }
+            );
+
             //Genres
             let optionGenre = "";
             data.data.genres.forEach(genre => {
@@ -2816,6 +2892,17 @@ ${carruselImg}
                 filter: true,
                 multipleSeparator: ", "
             });
+            //Añadir géneros
+            let index = 0;
+            for (const chapter of data.data.chapters) {
+                $(
+                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+                )[index].innerText = "";
+                $(
+                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+                )[index].innerText = chapter.chapter.program.genre;
+                index++;
+            }
             let editProgramLandingGenres = "";
             let selectGenres = $(
                 ".modal-edit-program-carrusel .edit-program-genres"
@@ -2917,15 +3004,179 @@ ${carruselImg}
             $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
+            $(".edit-program-attribute-text").blur(function (e) {
+                let key = $(this).attr("key");
+                let chapter_id = $(this).attr("chapter_id");
+                let value = $(this).val();
+
+                switch (key) {
+                    case "in_home_begin":
+                        if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                        } else if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+                        }
+
+                        break;
+                    case "in_home_expiration":
+                        if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                        } else if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                            editAttributeProgram(chapter_id, key, value);
+                        }
+
+                        break;
+                    case "in_landing_begin":
+                        if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
+                                .val()
+                                .split("-");
+
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()}`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                        } else if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                        }
+
+                        break;
+                    case "in_landing_expiration":
+                        //Si se escribió la hora y la fecha
+                        if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".modal-edit-program-carrusel  .edit-landing-time-end"
+                            ).val()}`;
+                            editAttributeProgram(chapter_id, key, value);
+                        } else if (
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
+                        ) {
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                            editAttributeProgram(chapter_id, key, value);
+                        }
+
+                        break;
+                    default:
+                        editAttributeProgram(chapter_id, key, value);
+
+                        break;
+                }
+
+                //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+                //$("#navbar-prev-programacion iframe").attr("src", iframe);
+            });
         }
     });
-    reload(idCarousel, landing)
+
+    //reload(idCarousel, landing)
 }
 
-function reload(
-    idCarousel,
-    landing,
-) {
+function reload(idCarousel, landing) {
     $.ajax({
         type: "POST",
         url: "landing/getPromotionalsProgramsCarousel",
@@ -2937,9 +3188,15 @@ function reload(
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $('#edit-genre-container .dropdown-toggle').removeClass('bs-placeholder')
+            $("#edit-genre-container .dropdown-toggle").removeClass(
+                "bs-placeholder"
+            );
             for (const chapter of data.data.chapters) {
-                $('#edit-genre-container .filter-option-inner').html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + '</div>')
+                $("#edit-genre-container .filter-option-inner").html(
+                    '<div class="filter-option-inner-inner">' +
+                    chapter.chapter.program.genre +
+                    "</div>"
+                );
             }
         }
     });
@@ -2963,6 +3220,111 @@ function getContentClaroCinema(type) {
             console.log(data);
             if (data.code == 200) {
                 switch (type) {
+                    // SLAIDER
+                    case "slider-pagination":
+                        $('.modal-programming-carousel-cinema').modal("show");
+                        let counter = 1;
+                        let image = "";
+                        let programmingSlider = $('.programming-slider');
+                        while (true) {
+                            if (data.data[`block_1_image_slider_${counter}`]) {
+                                image += `
+                        <div class="bor thumbnail-image-program position-relative h-100">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
+                                <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
+                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                    <img src="${data.data["block_1_image_slider_" + counter]}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                </label>
+                        </div>
+                        `;
+                                counter++;
+                            } else {
+                                break;
+                            }
+                        }
+                        programmingSlider.html(image);
+
+                        /* *** */
+                        try {
+                            debugger
+                            programmingSlider.slick("unslick");
+                            programmingSlider.not('.slick-initialized').slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".programming-slider"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        } catch (error) {
+                            programmingSlider.not('.slick-initialized').slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(
+                                    ".programming-slider-dots-canal-claro"
+                                ),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        }
+
+                        $(".banner-slider-button").click(function () {
+                            /*
+                                Arreglo para saber la posición de las imágenes que cargo el usuario
+                                es decir, saber si subió la 1 y 3, o 2,3 etc.
+                            */
+                            let imagesPositions = [];
+                            //Arreglo para guardar imágenes de los usuarios
+                            let imagesProgramming = [];
+                            //Recorremos cada input para obtener las imágenes
+                            $(".image_programming").each(function () {
+                                if (this.files[0]) {
+                                    imagesPositions.push(
+                                        $(this).attr("data-index")
+                                    );
+                                }
+                                imagesProgramming.push(this.files[0]);
+                            });
+
+                            let data = new FormData();
+                            //Hacemos un for para mandar file1, file2, etc. en el form data
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
+                                let file = "file" + (index + 1).toString();
+                                file = file.toString();
+                                data.append(file, imagesProgramming[index]);
+                            }
+                            //Posiciones de las imágenes
+                            data.append("positions", imagesPositions);
+                            //Hora inicio y fin
+                            data.append("date", $("#date-start-input").val());
+                            data.append("landing", "Canal Claro");
+                            setImageSliderBanner(data);
+                        });
+                        /* *** */
+
+                        break;
+                    // SLAIDER
+
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
                             data.data.block_2_title_1
@@ -2979,9 +3341,6 @@ function getContentClaroCinema(type) {
                         let logo =
                             data.data.block_2_icon_channel ||
                             "./images/synopsis/image-synopsis-horizontal.png";
-                        /*                         if (data.data.block_2_icon_channel) {
-                                                    $(".label-no-image").remove();
-                                                } */
                         $(".logo-header-claro-cinema").attr("src", logo);
                         $(".modal-encabezado-cinema").modal("show");
                         break;
@@ -3059,7 +3418,7 @@ function getContentClaroCinema(type) {
 
                     case "current-programming-cinema":
                         let calendarSlider2 = $(".calendar-slider2");
-                        $(".modal-programming-landing").modal("show");
+                        // $(".modal-programming-landing").modal("show");
                         createCalendarDays(calendarSlider2);
                         try {
                             calendarSlider2.slick("unslick");

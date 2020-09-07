@@ -51,11 +51,10 @@
                 </div>
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
                     <button
-                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                        class="d-flex m-0  mr-3 button-modal-concert-channel  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                         id="upload-concert-promo-button">ACEPTAR</button>
-                    <a href="#delete-info-promos" role="button"
-                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-dismiss="modal">CANCELAR</a>
+                    <a href="#delete-info-promo" data-toggle="modal" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel">CANCELAR</a>
                 </div>
             </div>
         </div>
@@ -66,11 +65,10 @@
 <!--Vinculo para url-->
 
 <div class=" modal  url-promo" data-backdrop-limit="1" id="url-promo-concert" tabindex="-1" role="dialog"
-    data-modal-parent="#url-promo-concert">
+    data-modal-parent="#delete-info-promos">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body pl-5 ml-3 ">
-
                 <p class="a-text-medium-warm-grey-three h3 mt-5 d-flex centro">Vínculo a una página Web existente.</p>
                 <div class="mt-5 d-flex ">
                     <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
@@ -106,12 +104,12 @@
             </div>
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                    id="close-modal-promos-concert">ACEPTAR</button>
+                <button type="button"
+                    class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal close-modal-concert">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+                <button type="button" data-target="#delete-info-claro"
+                    class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal"
+                    data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>

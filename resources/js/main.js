@@ -64,10 +64,13 @@ $.ajaxSetup({
 $(document).ready(function () {
 
     //cerrar los dos modales
-    $("#close_modals-claro").click(function () { 
-        $(".modal").modal("hide");
-       
-    });
+    /*     $("#close_modals-claro").click(function () {
+            $(".modal").modal("hide");
+        }); */
+    /*     $("#close_modals").click(function () {
+            $(".modal").modal("hide");
+            console.log("noin");
+        }); */
     //loader, images
     $(".load-picture").on("click", function () {
         const loader = `
@@ -97,17 +100,17 @@ $(document).ready(function () {
         }, 3000);
     });
 
-  
-      //para mostrar un modal de url-promo encima del otro
-      $(".url-promo").on("show.bs.modal", function () {
+
+    //para mostrar un modal de url-promo encima del otro
+    $(".url-promo").on("show.bs.modal", function () {
         var modalParent = $(this).attr("data-modal-parent");
     });
 
     $(".url-promo").on("hidden.bs.modal", function () {
         var modalParent = $(this).attr("data-modal-parent");
     });
-     //para mostrar un modal de url-encabezado encima del otro
-     $(".url-encabezado").on("show.bs.modal", function () {
+    //para mostrar un modal de url-encabezado encima del otro
+    $(".url-encabezado").on("show.bs.modal", function () {
         var modalParent = $(this).attr("data-modal-parent");
     });
 
@@ -924,7 +927,7 @@ $(document).ready(function () {
             ' <div class="contenedor-fila"><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div><div class="contenedor-columna"></div></div> ';
         $("#tb1").append(fila);
     }
-   
+
 });
 
 /**para la seleccion de paises */

@@ -1,4 +1,4 @@
-<div class="modal modal-programming-carousel-claro pr-0" id="modaledi" tabindex="-1" role="dialog"
+<div class="modal modal-programming-carousel-claro pr-0" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
@@ -105,8 +105,8 @@
 </div>
 
 <!--modal para perder lo hecho en los landing de edit-->
-<div class=" modal  delete-info-encabezado" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1"
-    role="dialog" data-modal-parent="#modalbanner">
+<div class="modal" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1" role="dialog"
+    data-modal-parent="#modalbanner">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
@@ -117,7 +117,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals">ACEPTAR</button>
+                    id="close_modals">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
