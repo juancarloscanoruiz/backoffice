@@ -5993,17 +5993,20 @@ ul {
   height: 200px;
 }
 
-.programming-slider-dots .slick-dots {
+.programming-slider-dots .slick-dots,
+.programming-slider-dots-concert-channel .slick-dots {
   position: static;
   text-align: left;
   bottom: auto;
 }
 
-.programming-slider-dots .presentation {
+.programming-slider-dots .presentation,
+.programming-slider-dots-concert-channel .presentation {
   margin-right: 24px;
 }
 
-.programming-slider-dots .slick-dots li {
+.programming-slider-dots .slick-dots li,
+.programming-slider-dots-concert-channel .slick-dots li {
   height: 37px;
   width: 37px;
   margin-right: 16px;
@@ -7467,18 +7470,21 @@ select:focus {
 
 .synopsis-image-slider,
 .programming-slider,
-.programming-slider-canal-claro {
+.programming-slider-canal-claro,
+.programming-slider-concert-channel {
   width: 1000px !important;
 }
 
 .programming-slider-dots .slick-dots .slick-active,
 .programming-slider-canal-claro .slick-dots .slick-active,
+.programming-slider-dots-concert-channel .slick-dots .slick-active,
 .carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
 .programming-slider-dots .slick-dots .slick-active p,
 .programming-slider-canal-claro .slick-dots .slick-active p,
+.programming-slider-dots-concert-channel .slick-dots .slick-active p,
 .carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
 }
@@ -7531,11 +7537,13 @@ select:focus {
   height: 100%;
 }
 
-.programming-slider .slick-slide {
+.programming-slider .slick-slide,
+.programming-slider-concert-channel .slick-slide {
   height: 342px !important;
 }
 
-.programming-slider .slick-slide div {
+.programming-slider .slick-slide div,
+.programming-slider-concert-channel .slick-slide div {
   height: 100% !important;
 }
 

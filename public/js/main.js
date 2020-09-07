@@ -88061,10 +88061,16 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   //cerrar los dos modales
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
-  }); //loader, images
 
+  /*     $("#close_modals-claro").click(function () {
+          $(".modal").modal("hide");
+      }); */
+
+  /*     $("#close_modals").click(function () {
+          $(".modal").modal("hide");
+          console.log("noin");
+      }); */
+  //loader, images
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-picture").on("click", function () {
     var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"../images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
@@ -88887,7 +88893,7 @@ function eventsGrilla() {
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis);
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]); //Previsualizar el video que subió el usuario en el landing de concert channel
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
     if (this.files && this.files[0]) {
       var file = this.files[0];
       var reader = new FileReader();
@@ -88898,12 +88904,12 @@ function eventsGrilla() {
         var buffer = e.target.result; // We have to convert the buffer to a blob:
 
         var videoBlob = new Blob([new Uint8Array(buffer)], {
-          type: 'video/mp4'
+          type: "video/mp4"
         }); // The blob gives us a URL to the video file:
 
         var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container video').remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container video").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
       };
     }
   }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
@@ -88940,7 +88946,6 @@ function eventsGrilla() {
             var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
 
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])(_currentDate, "claro-cinema");
-            ;
             break;
 
           case "header-landing-cinema":
@@ -88978,7 +88983,7 @@ function eventsGrilla() {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-cinema").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick({
                 slidesToShow: 1,
                 dots: true,
@@ -89006,7 +89011,7 @@ function eventsGrilla() {
   var navbarPrevClaroCinema = document.getElementById("navbar-prev-claro-cinema");
 
   if (navbarPrevClaroCinema) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-claro-cinema iframe').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe").remove();
     new easyXDM.Socket(confLandingClaroCinema);
   }
 
@@ -89159,47 +89164,6 @@ function eventsGrilla() {
             }, 3000);
             break;
 
-          case "pencil-carrusel1":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentConcertChannelHeader"])();
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              //slider para carrusel concert-channel
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "pencil-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              //slider para carrusel concert-channel
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider-dots1"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel2").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
           default:
             break;
         }
@@ -89209,51 +89173,57 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe'), confLandingConcertChannel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider2').on("click", ".programming-concert-landing", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-concert-channel", function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-concert-landing", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "concert-channel");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calendar-slider2').on("click", ".programming-canal-landing", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-canal-landing", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-canal-landing").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
     console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "canal-claro");
   }); //Pencil Chanel
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').on("click", ".programming-pencil-canal-claro", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-canal-claro", function () {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapterId);
   }); //Pencil Canal
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').on("click", ".programming-pencil-concert-channel", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-landing').modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(chapterId);
   }); //Modal de link para botón
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado-concert').on('show.bs.modal', function () {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-button-concert-channel').val(link);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("show.bs.modal", function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val(link);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado-concert').on('hidden.bs.modal', function () {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-button-concert-channel').val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val(link);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("hidden.bs.modal", function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(link);
   }); //Concert channel promo
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-concert-promo-button').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").click(function () {
     var file = "";
 
     if (document.getElementById("video-promo-file-concert").files[0]) {
       file = document.getElementById("video-promo-file-concert").files[0];
-    } else if (document.getElementById('image-promo-concert').files[0]) {
-      file = document.getElementById('image-promo-concert').files[0];
+    } else if (document.getElementById("image-promo-concert").files[0]) {
+      file = document.getElementById("image-promo-concert").files[0];
     } else {
-      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-promo-concert').val();
+      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
     }
 
     var landing = "Concert Channel";
@@ -89263,7 +89233,6 @@ function eventsGrilla() {
     data.append("landing", landing);
     data.append("key", key);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLanding"])(data);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   }); //Concert Channel Header
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
@@ -89271,7 +89240,7 @@ function eventsGrilla() {
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
     var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2").val() || "";
     var logo = document.getElementById("header-lading-concert-logo").files[0] || "";
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-header-concert-channel .modal-header-button-link').val();
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
     var data = new FormData();
     data.append("landing", landing);
     data.append("title1", title1);
@@ -89279,11 +89248,9 @@ function eventsGrilla() {
     data.append("logo", logo);
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLanding"])(data);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
     //Title
-    debugger;
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
     var landing = "Concert Channel";
@@ -89300,7 +89267,6 @@ function eventsGrilla() {
       key: keySub,
       landing: landing
     });
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
 
   function checkURL(url) {
@@ -89308,9 +89274,9 @@ function eventsGrilla() {
   } //Previsualizar el video que subió el usuario en el landing de concert channel
 
 
-  var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert');
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert').change(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert').val("");
+  var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").val("");
 
     if (this.files && this.files[0]) {
       var file = this.files[0];
@@ -89322,35 +89288,35 @@ function eventsGrilla() {
         var buffer = e.target.result; // We have to convert the buffer to a blob:
 
         var videoBlob = new Blob([new Uint8Array(buffer)], {
-          type: 'video/mp4'
+          type: "video/mp4"
         }); // The blob gives us a URL to the video file:
 
         var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
       };
     }
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
     videoPromoInput.val("");
 
     if (this.files && this.files[0]) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container').html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
       };
     }
 
     reader.readAsDataURL(this.files[0]);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-promos-concert').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#link-promo-concert').val("");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close-modal-promos-concert").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val("");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo-concert-button').on('click', function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo-concert-button").on("click", function () {
     var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
-    var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#concert-promo-container');
-    var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#video-promo-file-concert');
-    var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-promo-concert');
+    var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container");
+    var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+    var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert");
 
     if (checkURL(link)) {
       //Insertamos una nueva imagen con el link
@@ -89503,6 +89469,19 @@ function eventsGrilla() {
     }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").on("change", ".input-image-program", function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").on("change", ".input-image-program", function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
 
     if (this.files && this.files[0]) {
@@ -89925,8 +89904,7 @@ function eventsGrilla() {
   //Añadimos un slide al slider de imágenes de programación
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image").click(function () {
-    console.log("otro"); //Cada vez que se haga click, el contador incrementa
-
+    //Cada vez que se haga click, el contador incrementa
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
@@ -90154,7 +90132,7 @@ function eventsGrilla() {
     multipleSeparator: ", "
   });
   var imageTriangle = "\n    <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-program-image .bootstrap-select').append(imageTriangle); //selectpicker para el campo de género en un programa
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle); //selectpicker para el campo de género en un programa
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
     filter: true,
@@ -90402,6 +90380,9 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
     //$(".modal-edit-icons").modal("hide");
     // $(".modal-edit-program").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.close-modal-concert').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
   }); //cerrar los dos modales
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
@@ -91160,7 +91141,7 @@ function eventsGrilla() {
   if (menuClaroCanal) {
     new easyXDM.Socket(landingCanalClaro);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-canal-claro iframe').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
       new easyXDM.Socket({
         remote: "".concat(baseURL, "claro-canal.php"),
         container: document.getElementById("navbar-prev-canal-claro"),
@@ -91178,28 +91159,28 @@ function eventsGrilla() {
   } // BTN MODAL TEST
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-test').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-test").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel1").modal("show"); // getModalCarrusel1(json.type)
 
-    getModalCarrusel1('claro-carrusel1');
+    getModalCarrusel1("claro-carrusel1");
   }); // BTN MODAL URL ENCABEZADO
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-encabezado').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
   }); // BTN MODAL URL PROMO
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url-promo').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
   }); // BTN BANNER
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#banner-claro').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-claro").change(function () {
     File(this);
   }); // BTN BANNER
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-url').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-url").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("hide");
     var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val() || "";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp-text-modal-4').val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(url);
   }); // FILE PARA BANNER
 
   var fileSrt = new FileReader();
@@ -91216,14 +91197,14 @@ function eventsGrilla() {
       fileSrt.readAsDataURL(objFileInput.files[0]);
     }
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loader1').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
   } // CARGAR IMG HEADER
 
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
     FileHeader(this);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img-header').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
     FileHeader(this);
   }); // FILE HEADER
 
@@ -91236,12 +91217,12 @@ function eventsGrilla() {
       };
 
       fileSrt.readAsDataURL(objFileInput.files[0]);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#loader1').remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
     }
   } // IMG DE PROMO
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-img').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-img").change(function () {
     FilePromoImg(this);
   }); // IMG DE PROMO CARGAR
 
@@ -91255,11 +91236,11 @@ function eventsGrilla() {
     }
 
     fileSrt.readAsDataURL(objFileInput.files[0]);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
   } // VIDEO DE PROMO
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#promo-claro-video').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-video").change(function () {
     FilePromoVideo(this);
   }); // VIDEO DE PROMO CARGAR
 
@@ -91277,7 +91258,7 @@ function eventsGrilla() {
   } // IMG DE CARRUSEL 1
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#carrusel1-claro-img').change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#carrusel1-claro-img").change(function () {
     FileCarrusel1Img(this);
   }); // IMG DE CARRUSEL 1 CARGAR
 
@@ -91291,7 +91272,7 @@ function eventsGrilla() {
     }
 
     fileSrt.readAsDataURL(objFileInput.files[0]);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
   } //CLARO CANAL POST HEADER
   // HEADER EDIT CANAL CLARO
 
@@ -91311,10 +91292,10 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLandingClaro"])(data);
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.button-modal-canal-claro').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-canal-claro").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').on("click", ".button-modal-canal-claro", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // TITLE EDIT CANAL CLARO
@@ -92325,6 +92306,7 @@ function getChapterInfo(data) {
       }, 250);
     }
   });
+  reload(1, "Canal Claro");
 }
 
 function newProgram(landing, schedule) {
@@ -92755,14 +92737,14 @@ function getContentConcertChannel(type) {
       if (data.code == 200) {
         switch (type) {
           case "slider-pagination":
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider");
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel");
             var counter = 1;
             var image = "";
 
             while (true) {
               try {
                 if (data.data["block_1_image_slider_".concat(counter)]) {
-                  image += "\n                                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                        <label for=\"image_programming_1\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                                class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                            <img src=\"".concat(data.data["block_1_image_slider_" + counter], "\"\n                                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                        </label>\n                                    </div>\n                                    ");
+                  image += "\n                                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                        <label for=\"image_programming_1\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                                class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                            <img src=\"".concat(data.data["block_1_image_slider_" + counter], "\"\n                                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                        </label>\n                                    </div>\n                                    ");
                   counter++;
                 } else {
                   break;
@@ -92772,7 +92754,7 @@ function getContentConcertChannel(type) {
               }
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").html(image);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel").html(image);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").modal("show");
 
             try {
@@ -92780,7 +92762,7 @@ function getContentConcertChannel(type) {
               programmingSlider.slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-concert-channel"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -92792,7 +92774,7 @@ function getContentConcertChannel(type) {
               programmingSlider.slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-concert-channel"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -92802,6 +92784,43 @@ function getContentConcertChannel(type) {
               });
             }
 
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image-concert").click(function () {
+              //Cada vez que se haga click, el contador incrementa
+              var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel").slick("slickAdd", "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                "));
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+              /*
+                  Arreglo para saber la posición de las imágenes que cargo el usuario
+                  es decir, saber si subió la 1 y 3, o 2,3 etc.
+              */
+              var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+              var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+                if (this.files[0]) {
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                }
+
+                imagesProgramming.push(this.files[0]);
+              });
+              var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+              for (var index = 0; index < imagesProgramming.length; index++) {
+                var file = "file" + (index + 1).toString();
+                file = file.toString();
+                data.append(file, imagesProgramming[index]);
+              } //Posiciones de las imágenes
+
+
+              data.append("positions", imagesPositions); //Hora inicio y fin
+
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("landing", "Concert Channel");
+              setImageSliderBanner(data);
+            });
             break;
 
           default:
@@ -92819,7 +92838,7 @@ function getConcertChannelPromo() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(" < div class = \"loader-view-container pointer-none\" >\n                                                    <\n                                                    img src = \"./images/loader.gif\"\n                                                class = \"loader\" / >\n                                                    <\n                                                    /div>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(" <div class = \"loader-view-container pointer-none\">\n                <img src = \"./images/loader.gif\" class = \"loader\"/>\n                </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
@@ -93347,7 +93366,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 
         case "Concert Channel":
           idLanding = 2;
-          classButton = "modal-button-landing-concert";
+          classButton = "button-modal-concert-channel";
           break;
 
         case "Claro Cinema":
@@ -93478,7 +93497,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
           var carruselImg = "";
 
           if (image) {
-            carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        472\n                                        x 245px</p>\n                                </div>\n                                <img src=\"").concat(image, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
+            carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        295\n                                        x 180px</p>\n                                </div>\n                                <img src=\"").concat(image, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
           } else {
             carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        295\n                                        x 180px</p>\n                                </div>\n                                <img src=\"").concat(chapter.image_program, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
           }

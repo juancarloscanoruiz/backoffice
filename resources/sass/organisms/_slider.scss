@@ -2,12 +2,14 @@
 
 .synopsis-image-slider,
 .programming-slider,
-.programming-slider-canal-claro {
+.programming-slider-canal-claro,
+.programming-slider-concert-channel {
     width: 1000px !important;
 }
 
 .programming-slider-dots,
 .programming-slider-canal-claro,
+.programming-slider-dots-concert-channel,
 .carrusel1-slider-dots1 {
     .slick-dots {
         .slick-active {
@@ -78,7 +80,8 @@
     }
 }
 
-.programming-slider {
+.programming-slider,
+.programming-slider-concert-channel {
     .slick-slide {
         height: 342px !important;
     }

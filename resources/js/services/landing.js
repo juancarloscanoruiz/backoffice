@@ -735,6 +735,7 @@ function getChapterInfo(data) {
             }, 250);
         }
     });
+    reload(1, "Canal Claro");
 }
 
 function newProgram(landing, schedule) {
@@ -1241,7 +1242,9 @@ function getContentConcertChannel(type) {
             if (data.code == 200) {
                 switch (type) {
                     case "slider-pagination":
-                        let programmingSlider = $(".programming-slider");
+                        let programmingSlider = $(
+                            ".programming-slider-concert-channel"
+                        );
                         let counter = 1;
                         let image = "";
                         while (true) {
@@ -1256,7 +1259,7 @@ function getContentConcertChannel(type) {
                                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
-                                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                            <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
                                             <img src="${
                                                 data.data[
                                                     "block_1_image_slider_" +
@@ -1277,14 +1280,16 @@ function getContentConcertChannel(type) {
                             }
                         }
 
-                        $(".programming-slider").html(image);
+                        $(".programming-slider-concert-channel").html(image);
                         $(".modal-programming-carousel-concert").modal("show");
                         try {
                             programmingSlider.slick("unslick");
                             programmingSlider.slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots"),
+                                appendDots: $(
+                                    ".programming-slider-dots-concert-channel"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -1300,7 +1305,9 @@ function getContentConcertChannel(type) {
                             programmingSlider.slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots"),
+                                appendDots: $(
+                                    ".programming-slider-dots-concert-channel"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -1313,6 +1320,65 @@ function getContentConcertChannel(type) {
                                 }
                             });
                         }
+                        $(".add-banner-image-concert").click(function () {
+                            //Cada vez que se haga click, el contador incrementa
+                            let slideIndex =
+                                $(".load-programming-carousel").length + 1;
+
+                            //Agregamos un slide al slider de programación
+                            $(".programming-slider-concert-channel").slick(
+                                "slickAdd",
+                                `
+                                <div class="slick-slide">
+                                    <div>
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                            <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" d-none" tabindex="0">
+                                            <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                                <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                                <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
+                                                <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                            );
+                        });
+                        $(".banner-slider-button").click(function () {
+                            /*
+                                Arreglo para saber la posición de las imágenes que cargo el usuario
+                                es decir, saber si subió la 1 y 3, o 2,3 etc.
+                            */
+                            let imagesPositions = [];
+                            //Arreglo para guardar imágenes de los usuarios
+                            let imagesProgramming = [];
+                            //Recorremos cada input para obtener las imágenes
+                            $(".image_programming").each(function () {
+                                if (this.files[0]) {
+                                    imagesPositions.push(
+                                        $(this).attr("data-index")
+                                    );
+                                }
+                                imagesProgramming.push(this.files[0]);
+                            });
+
+                            let data = new FormData();
+                            //Hacemos un for para mandar file1, file2, etc. en el form data
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
+                                let file = "file" + (index + 1).toString();
+                                file = file.toString();
+                                data.append(file, imagesProgramming[index]);
+                            }
+                            //Posiciones de las imágenes
+                            data.append("positions", imagesPositions);
+                            //Hora inicio y fin
+                            data.append("date", $("#date-start-input").val());
+                            data.append("landing", "Concert Channel");
+                            setImageSliderBanner(data);
+                        });
+
                         break;
                     default:
                         break;
@@ -1329,12 +1395,9 @@ function getConcertChannelPromo() {
         type: "POST",
         beforeSend: function () {
             $("body").append(
-                ` < div class = "loader-view-container pointer-none" >
-                                                    <
-                                                    img src = "./images/loader.gif"
-                                                class = "loader" / >
-                                                    <
-                                                    /div>`
+                ` <div class = "loader-view-container pointer-none">
+                <img src = "./images/loader.gif" class = "loader"/>
+                </div>`
             );
         },
         url: "landing/concertChannel",
@@ -2017,7 +2080,7 @@ function getPromotionalsProgramsCarousel(
                     break;
                 case "Concert Channel":
                     idLanding = 2;
-                    classButton = "modal-button-landing-concert";
+                    classButton = "button-modal-concert-channel";
                     break;
                 case "Claro Cinema":
                     idLanding = 3;
@@ -2036,7 +2099,6 @@ function getPromotionalsProgramsCarousel(
             );
 
             for (const chapter of data.data.chapters) {
-
                 //Variables a evaluar
                 //Imagen del programa
                 titles += `<option value="${chapter.chapter.title}">${chapter.chapter.title}</option>`;
@@ -2089,7 +2151,7 @@ function getPromotionalsProgramsCarousel(
                         dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
                         timeBegin = dateTimeBegin[1];
                     }
-                    console.log(chapter.chapter.in_landing_begin)
+                    console.log(chapter.chapter.in_landing_begin);
 
                     inLandingDates = `
                     <div class="mb-3 text-center edit-rectangle-small-container py-3">
@@ -2117,7 +2179,6 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                 } else {
-
                     inLandingSwitch = `
                     <!--Switch-->
                     <div class="d-flex align-items-center mb-3">
@@ -2415,8 +2476,8 @@ function getPromotionalsProgramsCarousel(
                                         class="edit-program-icon-image" alt="camera" />
                                     <p
                                         class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                        472
-                                        x 245px</p>
+                                        295
+                                        x 180px</p>
                                 </div>
                                 <img src="${image}" alt=""
     class="thumbnail-image-prev edit-image-program prev-image-program" />
@@ -2944,120 +3005,159 @@ function getPromotionalsProgramsCarousel(
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
             $(".edit-program-attribute-text").blur(function (e) {
-
                 let key = $(this).attr("key");
-                let chapter_id = $(this).attr(
-                    "chapter_id"
-                );
+                let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
 
                 switch (key) {
                     case "in_home_begin":
                         if (
-                            $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
-                            $(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
                         ) {
-
-                            let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
+                                .val()
+                                .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-home-time-begin"
-                                ).val()}`;
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
-
                         } else if (
-                            $(".modal-edit-program-carrusel .edit-home-date-begin").val() &&
-                            !$(".modal-edit-program-carrusel .edit-home-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
+                                .val()
+                                .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-
                         }
 
                         break;
                     case "in_home_expiration":
                         if (
-                            $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
-                            $(".modal-edit-program-carrusel .edit-home-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel .edit-home-date-end")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-home-time-end"
-                                ).val()}`;
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
-
                         } else if (
-                            $(".modal-edit-program-carrusel .edit-home-date-end").val() &&
-                            !$(".modal-edit-program-carrusel .edit-home-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
                         ) {
-
-                            let date = $(".modal-edit-program-carrusel .edit-home-date-end")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
                             editAttributeProgram(chapter_id, key, value);
-
                         }
 
                         break;
                     case "in_landing_begin":
                         if (
-                            $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
-                            $(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-landing-time-begin"
-                                ).val()}`;
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
-
                         } else if (
-                            $(".modal-edit-program-carrusel .edit-landing-date-begin").val() &&
-                            !$(".modal-edit-program-carrusel .edit-landing-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel .edit-landing-date-begin")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
 
                             editAttributeProgram(chapter_id, key, value);
-
                         }
 
                         break;
                     case "in_landing_expiration":
                         //Si se escribió la hora y la fecha
                         if (
-                            $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
-                            $(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel  .edit-landing-date-end")
+                            let date = $(
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel  .edit-landing-time-end"
-                                ).val()}`;
+                                ".modal-edit-program-carrusel  .edit-landing-time-end"
+                            ).val()}`;
                             editAttributeProgram(chapter_id, key, value);
-
                         } else if (
-                            $(".modal-edit-program-carrusel .edit-landing-date-end").val() &&
-                            !$(".modal-edit-program-carrusel .edit-landing-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
                         ) {
-                            let date = $(".modal-edit-program-carrusel .edit-landing-date-end")
+                            let date = $(
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
 
                             editAttributeProgram(chapter_id, key, value);
-
                         }
 
                         break;
@@ -3069,10 +3169,8 @@ function getPromotionalsProgramsCarousel(
 
                 //let iframe = $("#navbar-prev-programacion iframe").attr("src");
                 //$("#navbar-prev-programacion iframe").attr("src", iframe);
-
             });
         }
-
     });
 
     //reload(idCarousel, landing)
