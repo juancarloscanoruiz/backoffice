@@ -16,6 +16,9 @@ import $ from "jquery";
 import {
     eventsGrilla
 } from "../operaciones_grilla";
+import {
+    getProgrammingSynopsis
+} from "../services/landing.js";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -346,9 +349,7 @@ function showlanding() {
         success: function (result) {
             $("#bodymenu").html("");
             $("#bodymenu").html(result);
-            $(window).on("hashchange", function () {
-                console.log("IFRAME HASH CHANGED");
-            });
+
             $(".loader-view-container").remove();
             //Volvemos a llamar la función para hacer que funcione la navbar de landing
             createNavbarProgramacionGeneral();
@@ -361,6 +362,11 @@ function showlanding() {
                 previewPage($(this));
             });
             eventsGrilla();
+            let date = new Date();
+            let day = ('0' + date.getUTCDate()).slice(-2);
+            let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+            let year = date.getUTCFullYear();
+            getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
         }
     });
 }
@@ -393,6 +399,54 @@ function showlanconcert() {
             /* Previsualizar contenido en diferentes tamaños */
             const prevImage = $(".a-prev-image");
             eventsGrilla();
+            let date = new Date();
+            let day = ('0' + date.getUTCDate()).slice(-2);
+            let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+            let year = date.getUTCFullYear();
+            getProgrammingSynopsis("concert-channel", `${year}-${month}-${day}`);
+            prevImage.click(function () {
+                let prevContainer = $("iframe");
+                previewPage($(this));
+            });
+        }
+    });
+}
+
+function showlancinema() {
+    $.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+            view: "lan-cinema"
+        },
+        //Insertamos un loader
+        beforeSend: function () {
+            const loader = `
+                <div class="loader-view-container">
+                  <img src="./images/loader.gif" class="loader" alt="">
+                </div>
+                `;
+            $("body").append(loader);
+        },
+        success: function (result) {
+            //Insertamos la vista que recibimos en la vista actual
+            $("#bodymenu").html("");
+            $("#bodymenu").html(result);
+            //Habilitamos las acciones que se pueden hacer en la grilla
+
+            //Quitamos el loader
+            $(".loader-view-container").remove();
+            //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
+            createNavbarProgramacionGeneral();
+            //para activar el prev de los iconos
+            /* Previsualizar contenido en diferentes tamaños */
+            const prevImage = $(".a-prev-image");
+            eventsGrilla();
+            let date = new Date();
+            let day = ('0' + date.getUTCDate()).slice(-2);
+            let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+            let year = date.getUTCFullYear();
+            getProgrammingSynopsis("claro-cinema", `${year}-${month}-${day}`);
             prevImage.click(function () {
                 let prevContainer = $("iframe");
                 previewPage($(this));
@@ -800,5 +854,6 @@ export {
     showAdminSite,
     changeActiveBlackButton,
     selectRow,
-    selectColumn
+    selectColumn,
+    showlancinema
 };

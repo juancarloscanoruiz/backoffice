@@ -32,7 +32,8 @@ import {
     showAdminSite,
     showFormCreateUser,
     showUserFront,
-    deleteUserUI
+    deleteUserUI,
+    showlancinema
 } from "./UI/UI.js";
 
 //FORM VALIDATIONS
@@ -399,41 +400,7 @@ $(document).ready(function () {
     // Damos click en el botón de "landing" en grilla de claro cinema
     divGrilla.on("click", ".lan-cinema", function (event) {
         //Hacemos una petición ajax para recibir una vista
-        $.ajax({
-            type: "POST",
-            url: "view",
-            data: {
-                view: "lan-cinema"
-            },
-            //Insertamos un loader
-            beforeSend: function () {
-                const loader = `
-                    <div class="loader-view-container">
-                      <img src="./images/loader.gif" class="loader" alt="">
-                    </div>
-                    `;
-                $("body").append(loader);
-            },
-            success: function (result) {
-                //Insertamos la vista que recibimos en la vista actual
-                $("#bodymenu").html("");
-                $("#bodymenu").html(result);
-                //Habilitamos las acciones que se pueden hacer en la grilla
-
-                //Quitamos el loader
-                $(".loader-view-container").remove();
-                //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
-                createNavbarProgramacionGeneral();
-                //para activar el prev de los iconos
-                /* Previsualizar contenido en diferentes tamaños */
-                const prevImage = $(".a-prev-image");
-                eventsGrilla();
-                prevImage.click(function () {
-                    let prevContainer = $("iframe");
-                    previewPage($(this));
-                });
-            }
-        });
+        showlancinema();
     });
 
     //CHANGE TO grilla claro

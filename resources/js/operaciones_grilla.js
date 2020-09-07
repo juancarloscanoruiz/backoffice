@@ -41,7 +41,8 @@ import {
     editHeaderLandingClaro,
     editElementLandingClaro,
     editPromoLandingClaro,
-    getContentClaroCinema
+    getContentClaroCinema,
+    getProgrammingSynopsis
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -75,7 +76,6 @@ import {
 function eventsGrilla() {
     //calendario de sinopsis
     let calendarsinopsis = $(".calendar-sinopsis-slider");
-
     $(".calendar-sinopsis-slider").slick({
         slidesToShow: 11,
         slidesToScroll: 11,
@@ -88,12 +88,16 @@ function eventsGrilla() {
     });
 
     calendarsinopsis.slick("unslick");
-    createCalendarDays(calendarsinopsis);
+    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
     createSlickSlider(calendarsinopsis, calendarSlick);
 $(".sinopsis").click(function(){
 $(".modal-landing-sinopsis").modal("show");
 });
+
+
+
+
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
     $("#video-promo-file").change(function () {
@@ -319,6 +323,8 @@ $(".modal-landing-sinopsis").modal("show");
         $("#navbar-prev-claro-cinema iframe").remove();
         new easyXDM.Socket(confLandingClaroCinema);
     }
+
+    /* Concert channel */
     let confLandingConcertChannel = {
         remote: `${baseURL}concert-channel-edi.php`,
         //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
@@ -482,6 +488,26 @@ $(".modal-landing-sinopsis").modal("show");
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+    let confPrevConcert = {
+        remote: `${baseURL}concert-channel.php`,
+        container: document.getElementById("navbar-prev-concert-channel"),
+        onMessage: function (message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+
+        }
+    }
+    //previsualizar concert channel
+    $("#prev-landing-concert").click(function () {
+
+        //Landing concert channel
+        resetIframe($('#navbar-prev-concert-channel iframe'), confPrevConcert)
+    })
+    $('#edit-landing-concert').click(function () {
+        resetIframe($('#navbar-prev-concert-channel iframe'), confLandingConcertChannel)
+    })
     $(".button-modal-concert-channel").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
@@ -2801,22 +2827,7 @@ $(".modal-landing-sinopsis").modal("show");
     if (navbarPrograContainer) {
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-        $("#prev").click(function () {
-            $("#navbar-prev-programacion iframe").remove();
-            new easyXDM.Socket({
-                remote: `${baseURL}programacion.php`,
-                container: document.getElementById("navbar-prev-programacion"),
-                onMessage: function (message, origin) {
-                    this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.height = message + "px";
-                    this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                }
-            });
-        });
+
 
         $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
@@ -2824,6 +2835,22 @@ $(".modal-landing-sinopsis").modal("show");
             new easyXDM.Socket(confIframe);
         });
     }
+    $("#prev").click(function () {
+        $("#navbar-prev-programacion iframe").remove();
+        new easyXDM.Socket({
+            remote: `${baseURL}programacion.php`,
+            container: document.getElementById("navbar-prev-programacion"),
+            onMessage: function (message, origin) {
+                this.container.getElementsByTagName(
+                    "iframe"
+                )[0].style.height = message + "px";
+                this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
+                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+            }
+        });
+    });
 
     $(".input-image-program").change(function () {
         let currentInput = $(this);

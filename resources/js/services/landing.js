@@ -3304,6 +3304,8 @@ function getContentClaroCinema(type) {
                         });
                         break;
                     // HEADER
+                        // SLAIDER
+
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
                             data.data.block_2_title_1
@@ -3446,9 +3448,108 @@ function editPromoLandingClaro(data) {
     });
 }
 
+function getProgrammingSynopsis(landing, date) {
+
+    $.ajax({
+        type: "GET",
+        data: {
+            date
+        },
+        url: "landing/getProgrammingLanding",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                let programming = "";
+                let container = "";
+                let header = `
+                    <div class="contenedor-fila">
+                        <div class="contenedor-columna centro synop titletable">
+                            <span class="a-text-MBlack a-text-prev">Programa</span>
+                        </div>
+                        <div class="contenedor-columna centro  landins titletable">
+                            <span class="a-text-MBlack a-text-prev">Caracteres</span>
+                        </div>
+                        <div class="contenedor-columna centro landins titletable">
+                            <span class="a-text-MBlack a-text-prev">Imágenes</span>
+                        </div>
+                        <div class="contenedor-columna centro landins titletable">
+                            <span class="a-text-MBlack a-text-prev">Acciones</span>
+                        </div>
+                        <div class="contenedor-columna centro landins titletable">
+                            <span class="a-text-MBlack a-text-prev">Landing</span>
+                        </div>
+                    </div>
+                    `
+                switch (landing) {
+
+                    case "canal-claro":
+                        programming = json.data[0].programing[0].programs;
+                        container = $('#synopsis-table-canal-claro');
+                        break;
+                    case "concert-channel":
+                        programming = json.data[1].programing[0].programs;
+                        container = $('#synopsis-table-concert-channel');
+                        break;
+                    case "claro-cinema":
+                        programming = json.data[2].programing[0].programs;
+                        container = $('#synopsis-table-claro-cinema');
+                        break;
+                    default:
+                        break;
+
+                }
+
+                let row = ""
+                for (const program of programming) {
+                    row += `
+                    <div class="contenedor-fila">
+                        <div class="contenedor-columna">
+                            <span class="a-text-medium-black text-normal pd-5">${program.chapter_title}</span>
+                        </div>
+                        <div class="contenedor-columna centro">
+                            <span class="a-text-semibold-tomato text-normal pl-3 ">0</span>
+                        </div>
+                        <div class="contenedor-columna centro">
+                            <span class="a-text-semibold-tomato text-normal ">0/8</span>
+                        </div>
+                        <div class="contenedor-columna centro">
+                            <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus edi mr-3" />
+                            <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
+                        </div>
+                        <div class="contenedor-columna centro ">
+                            <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                                <input type="radio" id="yes-landing" value="3"
+                                    class="edit-switch-landing edit-landing-yes" />
+                                <label for="yes-landing" id="siestado-landing"
+                                    class="mb-0 si-estilo cursor-pointer switch-label">
+                                    Sí</label>
+                                <input type="radio" id="no-landing" value="0"
+                                    class="edit-switch-landing switch-table-edit edit-landing-no" checked />
+                                <label for="no-landing" id="noestado-landing"
+                                    class="mb-0 no-estilo cursor-pointer switch-label">
+                                    No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    `
+                }
+
+                container.html(`
+                ${header}
+                ${row}
+                `)
+            }
+
+        }
+    });
+}
+
 // CLARO CANAL
 
 export {
+    getProgrammingSynopsis,
     getChapterInfo,
     updateImagesOfProgrammingSlider,
     updateLogosOfLanding,

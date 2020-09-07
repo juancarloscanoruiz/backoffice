@@ -90,13 +90,16 @@
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5" id="navbar-prev-programacion-cinema">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5"
+                    id="navbar-prev-programacion-cinema">
                 </div>
             </div>
             <!--landing de sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
+                        id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -167,7 +170,7 @@
                 </section>
 
                 <div id="prev-sinopsis">
-                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table">
+                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table" id="synopsis-table-claro-cinema">
                         <div class="contenedor-fila">
                             <div class="contenedor-columna centro synop titletable">
                                 <span class="a-text-MBlack a-text-prev">Programa</span>

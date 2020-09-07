@@ -198,7 +198,7 @@
                 </section>
 
                 <div id="prev-sinopsis">
-                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table">
+                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table" id="synopsis-table-canal-claro">
                         <div class="contenedor-fila">
                             <div class="contenedor-columna centro synop titletable">
                                 <span class="a-text-MBlack a-text-prev">Programa</span>
