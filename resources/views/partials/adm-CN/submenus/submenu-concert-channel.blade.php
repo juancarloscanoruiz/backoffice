@@ -35,7 +35,7 @@
                     <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis " navbar-index="2"
                         rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class=" a-text-bold-two py-2 px-3 mb-0">SINÓPSIS</p>
+                            <p class=" a-text-bold-two py-2 px-3 mb-0">SINOPSIS</p>
                         </div>
                     </div>
                     <div class="navbar-progra-item navbar-progra-item-border navbar-canal-claro" navbar-index=" 3"
@@ -500,30 +500,6 @@
     @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-concert',
     "modalButtonClass" => "modal-program-concert-channel"))
     @include('partials.adm-CN.modals-concert.programming')
-    <!--modal para perder lo hecho en los landing de edit-->
-    <div class=" modal  delete-info" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
-        data-modal-parent="#modalbanner">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body ">
-                    <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
-                        recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
-                </div>
-
-                <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                    <button type="button"
-                        class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                        data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                        id="close_modals">ACEPTAR</button>
-
-                    <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                        data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--modal encabezado-->
 
     @include('partials.adm-CN.modals-concert.titulo')
     @include('partials.adm-CN.modals-concert.promo-concert')

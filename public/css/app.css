@@ -569,6 +569,11 @@ body {
   color: #696363;
 }
 
+.a-text-medium-white {
+  font-family: "Montserrat-Medium";
+  color: white;
+}
+
 .a-text-medium-black {
   font-family: "Montserrat-Regular";
   color: #161515;
@@ -3996,6 +4001,16 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border-radius: 8px !important;
 }
 
+.modal-edit-program-carrusel .edit-program-genres .filter-option {
+  display: flex;
+  align-items: center;
+}
+
+.modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner {
+  font-family: "Montserrat-Bold";
+  color: #9b9b9b;
+}
+
 .line {
   width: 100%;
   height: 1px;
@@ -4645,6 +4660,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-medium-brownish {
   font-family: "Montserrat-Medium";
   color: #696363;
+}
+
+.a-text-medium-white {
+  font-family: "Montserrat-Medium";
+  color: white;
 }
 
 .a-text-medium-black {
@@ -5983,17 +6003,20 @@ ul {
   height: 200px;
 }
 
-.programming-slider-dots .slick-dots {
+.programming-slider-dots .slick-dots,
+.programming-slider-dots-concert-channel .slick-dots {
   position: static;
   text-align: left;
   bottom: auto;
 }
 
-.programming-slider-dots .presentation {
+.programming-slider-dots .presentation,
+.programming-slider-dots-concert-channel .presentation {
   margin-right: 24px;
 }
 
-.programming-slider-dots .slick-dots li {
+.programming-slider-dots .slick-dots li,
+.programming-slider-dots-concert-channel .slick-dots li {
   height: 37px;
   width: 37px;
   margin-right: 16px;
@@ -6014,6 +6037,23 @@ ul {
 
 .programming-slider-dots-canal-claro .slick-dots li,
 .programming-slider-dots-cinema .slick-dots li {
+  height: 37px;
+  width: 37px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.programming-slider-dots-sinopsis .slick-dots {
+  position: static;
+  text-align: left;
+  bottom: auto;
+}
+
+.programming-slider-dots-sinopsis .presentation {
+  margin-right: 24px;
+}
+
+.programming-slider-dots-sinopsis .slick-dots li {
   height: 37px;
   width: 37px;
   margin-right: 16px;
@@ -7010,6 +7050,21 @@ iframe {
   background-color: #1f2887;
 }
 
+.container-image-synopsis {
+  border-radius: 12px;
+  background-color: #000000;
+}
+
+.container-image {
+  width: 597px;
+  height: 356px;
+}
+
+.container-edit-sinopsis {
+  width: 824px;
+  height: 461px;
+}
+
 .container-promo-cinema {
   border-radius: 12px;
   background-color: #f5dd30;
@@ -7463,25 +7518,76 @@ select:focus {
 .programming-slider,
 .programming-slider-canal-claro,
 .programming-slider-claro-cinema {
+.programming-slider-concert-channel {
   width: 1000px !important;
 }
 
-.programming-slider-dots .slick-dots .slick-active {
+.programming-slider-dots .slick-dots .slick-active,
+.programming-slider-canal-claro .slick-dots .slick-active,
+.programming-slider-dots-concert-channel .slick-dots .slick-active,
+.carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
-.programming-slider-dots .slick-dots .slick-active p {
+.programming-slider-dots .slick-dots .slick-active p,
+.programming-slider-canal-claro .slick-dots .slick-active p,
+.programming-slider-dots-concert-channel .slick-dots .slick-active p,
+.carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
 }
 
 .programming-slider-dots-canal-claro .slick-dots .slick-active,
 .programming-slider-dots-cinema .slick-dots .slick-active {
+.carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
 .programming-slider-dots-canal-claro .slick-dots .slick-active p,
 .programming-slider-dots-cinema .slick-dots .slick-active p {
+.carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active {
+  background-color: #0097a9;
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active::after {
+  content: "";
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4a4a4a transparent transparent transparent;
+  position: absolute;
+  left: 36%;
+  bottom: -12px;
+  transform: rotate(180deg);
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active::before {
+  content: "";
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4a4a4a transparent transparent transparent;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -95%);
+}
+
+.programming-slider-dots-sinopsis .slick-dots .slick-active p {
+  color: #ffffff !important;
+}
+
+.programming-slider-sinopsis .slick-slide {
+  height: 471px !important;
+}
+
+.programming-slider-sinopsis .slick-slide div {
+  height: 100% !important;
+}
+
+.programming-slider-sinopsis {
+  width: 1191px !important;
 }
 
 .programming-slider-dots1 .slick-dots .slick-active {
@@ -7522,11 +7628,13 @@ select:focus {
   height: 100%;
 }
 
-.programming-slider .slick-slide {
+.programming-slider .slick-slide,
+.programming-slider-concert-channel .slick-slide {
   height: 342px !important;
 }
 
-.programming-slider .slick-slide div {
+.programming-slider .slick-slide div,
+.programming-slider-concert-channel .slick-slide div {
   height: 100% !important;
 }
 

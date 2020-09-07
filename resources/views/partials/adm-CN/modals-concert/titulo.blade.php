@@ -1,4 +1,5 @@
-<div class="modal modal-titles modal-titles-concert-channel p-0 m-0" tabindex="-1" role="dialog" id="modaltitles">
+<div class="modal modal-titles modal-titles-concert-channel p-0 m-0" tabindex="-1" role="dialog" id="modaltitles"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
         <div class="modal-content align-item-center centro w-100">
             <div class="modal-body">
@@ -21,39 +22,32 @@
 
                 <div class="text-center  mb-3 d-flex justify-content-center pb-2 mt-4">
                     <button
-                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-titles-modal"
+                        class="d-flex m-0  mr-3 button-modal-concert-channel btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-titles-modal"
                         id="edit-titles-landing-concert" data-dismiss="modal">ACEPTAR</button>
-                    <a href="#delete-info-titles" role="button"
+                    <a href="#delete-info" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-dismiss="modal">CANCELAR</a>
-
+                        data-toggle="modal">CANCELAR</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class=" modal  delete-info-claro" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
+    data-modal-parent="#modalbanner">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content  ">
+            <div class="modal-body ">
+                <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
+                <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
+                <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
+            </div>
 
+            <div class="text-center mb-5 mt-4 pt-3 pb-4">
+                <button type="button"
+                    class="a-btn-basic-small close-modal-concert a-btn-border-tomato mr-3 a-text-bold-tomato text-normal">ACEPTAR</button>
 
-
-    <!--modal para perder lo hecho en los landing de edit-->
-    <div class=" modal  delete-info-title" data-backdrop-limit="1" id="delete-info-title" tabindex="-1" role="dialog"
-        data-modal-parent="#modaltitles">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body ">
-                    <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 centro">¿Deseas abandonar la edición?</p>
-                    <p class="a-text-medium-warm-grey-three h3 mt-4 centro">Perderás los cambios.</p>
-                </div>
-
-                <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                    <button type="button"
-                        class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                        data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                        id="close_modals">ACEPTAR</button>
-
-                    <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                        data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-                </div>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
+                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>

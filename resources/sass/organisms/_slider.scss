@@ -4,10 +4,14 @@
 .programming-slider,
 .programming-slider-canal-claro,
 .programming-slider-claro-cinema {
+.programming-slider-concert-channel {
     width: 1000px !important;
 }
 
-.programming-slider-dots {
+.programming-slider-dots,
+.programming-slider-canal-claro,
+.programming-slider-dots-concert-channel,
+.carrusel1-slider-dots1 {
     .slick-dots {
         .slick-active {
             background-color: $teal;
@@ -20,6 +24,8 @@
 }
 
 .programming-slider-dots-canal-claro, .programming-slider-dots-cinema {
+.programming-slider-dots-canal-claro,
+.carrusel1-slider-dots1 {
     .slick-dots {
         .slick-active {
             background-color: $teal;
@@ -30,7 +36,54 @@
         }
     }
 }
+.programming-slider-dots-sinopsis {
+    .slick-dots {
+        .slick-active {
+            background-color: $teal;
+        }
+        .slick-active::after {
+            content: "";
+            border-width: 6px;
+            border-style: solid;
+            border-color: #4a4a4a transparent transparent transparent;
+            position: absolute;
+            left: 36%;
+            bottom: -12px;
+            transform: rotate(180deg);
+        }
 
+        .slick-active::before {
+            content: "";
+            border-width: 6px;
+            border-style: solid;
+            border-color: $greyishBrownTwo transparent transparent transparent;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            -webkit-transform: translate(-50%, 100%);
+            transform: translate(-50%, -95%);
+        }
+
+
+        .slick-active p {
+            color: $white !important;
+        }
+    }
+}
+.programming-slider-sinopsis {
+    .slick-slide {
+        height: 471px !important;
+    }
+
+    .slick-slide {
+        div {
+            height: 100% !important;
+        }
+    }
+}
+.programming-slider-sinopsis {
+    width: 1191px !important;
+}
 
 .programming-slider-dots1 {
     .slick-dots {
@@ -61,7 +114,6 @@
             transform: translate(-50%, -95%);
         }
 
-
         .slick-active p {
             color: $white !important;
         }
@@ -78,7 +130,8 @@
     }
 }
 
-.programming-slider {
+.programming-slider,
+.programming-slider-concert-channel {
     .slick-slide {
         height: 342px !important;
     }

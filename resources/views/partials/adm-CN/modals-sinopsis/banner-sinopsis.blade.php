@@ -1,17 +1,17 @@
-<div class="modal modal-programming-carousel-claro pr-0" tabindex="-1" role="dialog"
+<div class="modal modal-programming-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
             <div class="modal-body">
-                <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
+                <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER-SINOPSIS </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
                 <div class="dots-container mx-auto d-flex justify-content-between">
                     <div class="d-flex">
                         <!--dots-->
-                        <div class="programming-slider-dots-canal-claro mt-5 mb-5"></div>
+                        <div class="programming-slider-dots-sinopsis mt-5 mb-5"></div>
                         <!--add slide-->
-                        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
+                     
                     </div>
                     <!--Calendar-->
                     <div class="d-flex align-items-center">
@@ -43,7 +43,7 @@
                 </div>
 
                 <!--Slider-->
-                <div class="programming-slider-canal-claro mx-auto">
+                <div class="programming-slider-sinopsis mx-auto">
 
                     <div class="bor thumbnail-image-program position-relative h-100">
                         <input type="file" name="image_programming[]" id="image_programming_1"
@@ -52,7 +52,7 @@
                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo " />
-                            <span class="a-text-bold-warm text-plus mt-3 banner-text">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
@@ -65,7 +65,7 @@
                             class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo " />
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3 pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
@@ -78,7 +78,20 @@
                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo" />
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3 pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
+                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
+                                class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input type="file" name="image_programming[]" id="image_programming_3"
+                            class="input-image-program d-none image_programming" data-index="3">
+                        <label for="image_programming_3"
+                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                                class=" cursor-pointer add-photo" />
+                            <span class="a-text-bold-warm text-plus mt-3 pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
@@ -90,7 +103,7 @@
                     <button
                         class="button-modal-canal-claro edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus banner-slider-button"
                         landing="canal claro" data-dismiss="modal">aceptar</button>
-                    <a href="#delete-info-encabezado" role="button"
+                    <a href="#delete-info-sinopsis" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                         data-toggle="modal">CANCELAR</a>
 
@@ -105,8 +118,8 @@
 </div>
 
 <!--modal para perder lo hecho en los landing de edit-->
-<div class="modal" data-backdrop-limit="1" id="delete-info-encabezado" tabindex="-1" role="dialog"
-    data-modal-parent="#modalbanner">
+<div class=" modal  delete-info-sinopsis" data-backdrop-limit="1" id="delete-info-sinopsis" tabindex="-1"
+    role="dialog" data-modal-parent="#modalbanner">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
@@ -117,7 +130,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    id="close_modals">ACEPTAR</button>
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-claro">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>

@@ -340,7 +340,8 @@ ul {
     height: 200px;
 }
 
-.programming-slider-dots {
+.programming-slider-dots,
+.programming-slider-dots-concert-channel {
     .slick-dots {
         position: static;
         text-align: left;
@@ -360,6 +361,24 @@ ul {
 }
 
 .programming-slider-dots-canal-claro, .programming-slider-dots-cinema {
+    .slick-dots {
+        position: static;
+        text-align: left;
+        bottom: auto;
+    }
+
+    .presentation {
+        margin-right: 24px;
+    }
+
+    .slick-dots li {
+        height: 37px;
+        width: 37px;
+        margin-right: 16px;
+        margin-bottom: 16px;
+    }
+}
+.programming-slider-dots-sinopsis {
     .slick-dots {
         position: static;
         text-align: left;
