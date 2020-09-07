@@ -61,12 +61,14 @@
             <div class="d-flex float-right mb-4 pb-2 mr-5">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                        <input type="radio" name="sexo" id="edit" class="edi-concert" checked />
-                        <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <input type="radio" name="sexo" id="edit-landing-concert" class="edi-concert" checked />
+                        <label for="edit-landing-concert" id="edit-landing-concert"
+                            class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
-                        <input type="radio" name="sexo" id="prev" class="prev-concert" onload="preloader()" />
-                        <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                        <input type="radio" name="sexo" id="prev-landing-concert" class="prev-concert"
+                            onload="preloader()" />
+                        <label for="prev-landing-concert" id="previsualiza" class="hombre-estilo pl-2 pt-3">
                             <p class=" a-prev-title ">PREVISUALIZAR</p>
                         </label>
                     </div>
@@ -110,75 +112,11 @@
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
                         id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
-                        <li class="programming-item programming-item-active">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
 
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-                        </li>
-                        <li class="programming-item">
-
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-
-                        </li>
-                        <li class="programming-item">
-
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-
-                        </li>
-                        <li class="programming-item">
-
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-
-                        </li>
-                        <li class="programming-item">
-                            <p class="mb-0">MIER</p>
-                            <p class="mb-0">01</p>
-
-                        </li>
                     </div>
                 </section>
                 <div id="prev-sinopsis">
-                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table">
+                    <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table" id="synopsis-table-concert-channel">
                         <div class="contenedor-fila">
                             <div class="contenedor-columna centro synop titletable">
                                 <span class="a-text-MBlack a-text-prev">Programa</span>
@@ -208,7 +146,7 @@
                                 <span class="a-text-semibold-tomato text-normal ">0/8</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi mr-3" />
+                                <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus edi mr-3" />
                                 <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
                             </div>
                             <div class="contenedor-columna centro ">

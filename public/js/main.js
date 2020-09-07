@@ -87049,7 +87049,7 @@ module.exports = function(module) {
 /*!*******************************!*\
   !*** ./resources/js/UI/UI.js ***!
   \*******************************/
-/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showlanconcert, showLandingSchedule, showAdminSite, changeActiveBlackButton, selectRow, selectColumn */
+/*! exports provided: showPageUsersBO, showUserFront, showFormCreateUser, changeNameRol, changeImagesRolPermissions, cambiaracti, deleteUserUI, showModalDeleteUserBO, showPageUsersFront, getNameCountry, getNameGender, showModalDeleteUserFront, showDescriptions, createNavbarProgramacionGeneral, showlanding, showlanconcert, showLandingSchedule, showAdminSite, changeActiveBlackButton, selectRow, selectColumn, showlancinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87075,13 +87075,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeActiveBlackButton", function() { return changeActiveBlackButton; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRow", function() { return selectRow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectColumn", function() { return selectColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlancinema", function() { return showlancinema; });
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.js */ "./resources/js/services/user.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../preview/prev.js */ "./resources/js/preview/prev.js");
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../form/form.js */ "./resources/js/form/form.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/landing.js */ "./resources/js/services/landing.js");
 //SERVICES
+
 
 
 
@@ -87375,9 +87378,6 @@ function showlanding() {
     success: function success(result) {
       jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html("");
       jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html(result);
-      jquery__WEBPACK_IMPORTED_MODULE_3___default()(window).on("hashchange", function () {
-        console.log("IFRAME HASH CHANGED");
-      });
       jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove(); //Volvemos a llamar la función para hacer que funcione la navbar de landing
 
       createNavbarProgramacionGeneral(); //para activar el prev de los iconos
@@ -87390,6 +87390,11 @@ function showlanding() {
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
       });
       Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
+      var date = new Date();
+      var day = ('0' + date.getUTCDate()).slice(-2);
+      var month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+      var year = date.getUTCFullYear();
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getProgrammingSynopsis"])("canal-claro", "".concat(year, "-").concat(month, "-").concat(day));
     }
   });
 } //Mandamos traer con ajax la vista de previsualizacion de concert channel
@@ -87420,6 +87425,50 @@ function showlanconcert() {
 
       var prevImage = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".a-prev-image");
       Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
+      var date = new Date();
+      var day = ('0' + date.getUTCDate()).slice(-2);
+      var month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+      var year = date.getUTCFullYear();
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getProgrammingSynopsis"])("concert-channel", "".concat(year, "-").concat(month, "-").concat(day));
+      prevImage.click(function () {
+        var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
+      });
+    }
+  });
+}
+
+function showlancinema() {
+  jquery__WEBPACK_IMPORTED_MODULE_3___default.a.ajax({
+    type: "POST",
+    url: "view",
+    data: {
+      view: "lan-cinema"
+    },
+    //Insertamos un loader
+    beforeSend: function beforeSend() {
+      var loader = "\n                <div class=\"loader-view-container\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("body").append(loader);
+    },
+    success: function success(result) {
+      //Insertamos la vista que recibimos en la vista actual
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()("#bodymenu").html(result); //Habilitamos las acciones que se pueden hacer en la grilla
+      //Quitamos el loader
+
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(".loader-view-container").remove(); //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
+
+      createNavbarProgramacionGeneral(); //para activar el prev de los iconos
+
+      /* Previsualizar contenido en diferentes tamaños */
+
+      var prevImage = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".a-prev-image");
+      Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
+      var date = new Date();
+      var day = ('0' + date.getUTCDate()).slice(-2);
+      var month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+      var year = date.getUTCFullYear();
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getProgrammingSynopsis"])("claro-cinema", "".concat(year, "-").concat(month, "-").concat(day));
       prevImage.click(function () {
         var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
@@ -88331,37 +88380,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
   divGrilla.on("click", ".lan-cinema", function (event) {
     //Hacemos una petición ajax para recibir una vista
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "view",
-      data: {
-        view: "lan-cinema"
-      },
-      //Insertamos un loader
-      beforeSend: function beforeSend() {
-        var loader = "\n                    <div class=\"loader-view-container\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-      },
-      success: function success(result) {
-        //Insertamos la vista que recibimos en la vista actual
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#bodymenu").html(result); //Habilitamos las acciones que se pueden hacer en la grilla
-        //Quitamos el loader
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Mandamos llamar la función para crear de nuevo la navbar para previsualizar los landings
-
-        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["createNavbarProgramacionGeneral"])(); //para activar el prev de los iconos
-
-        /* Previsualizar contenido en diferentes tamaños */
-
-        var prevImage = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image");
-        Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_6__["eventsGrilla"])();
-        prevImage.click(function () {
-          var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("iframe");
-          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_7__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-        });
-      }
-    });
+    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_3__["showlancinema"])();
   }); //CHANGE TO grilla claro
 
   divGrilla.on("click", ".gril-claro", function (event) {
@@ -88890,7 +88909,7 @@ function eventsGrilla() {
     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
   });
   calendarsinopsis.slick("unslick");
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis);
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]); //Previsualizar el video que subió el usuario en el landing de concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
@@ -89019,6 +89038,8 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe").remove();
     new easyXDM.Socket(confLandingClaroCinema);
   }
+  /* Concert channel */
+
 
   var confLandingConcertChannel = {
     remote: "".concat(baseURL, "concert-channel-edi.php"),
@@ -89178,6 +89199,24 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
+  var confPrevConcert = {
+    remote: "".concat(baseURL, "concert-channel.php"),
+    container: document.getElementById("navbar-prev-concert-channel"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  }; //previsualizar concert channel
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+    //Landing concert channel
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe'), confPrevConcert);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-landing-concert').click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe'), confLandingConcertChannel);
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
@@ -90100,17 +90139,6 @@ function eventsGrilla() {
   if (navbarPrograContainer) {
     new easyXDM.Socket(confIframe); //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-      new easyXDM.Socket({
-        remote: "".concat(baseURL, "programacion.php"),
-        container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function onMessage(message, origin) {
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-      });
-    });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
       //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
@@ -90118,6 +90146,17 @@ function eventsGrilla() {
     });
   }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+    new easyXDM.Socket({
+      remote: "".concat(baseURL, "programacion.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    });
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     console.log(currentInput);
@@ -91750,11 +91789,12 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgrammingSynopsis", function() { return getProgrammingSynopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChapterInfo", function() { return getChapterInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesOfProgrammingSlider", function() { return updateImagesOfProgrammingSlider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLogosOfLanding", function() { return updateLogosOfLanding; });
@@ -93975,6 +94015,64 @@ function editPromoLandingClaro(data) {
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function getProgrammingSynopsis(landing, date) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "GET",
+    data: {
+      date: date
+    },
+    url: "landing/getProgrammingLanding",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        var programming = "";
+        var container = "";
+        var header = "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna centro synop titletable\">\n                            <span class=\"a-text-MBlack a-text-prev\">Programa</span>\n                        </div>\n                        <div class=\"contenedor-columna centro  landins titletable\">\n                            <span class=\"a-text-MBlack a-text-prev\">Caracteres</span>\n                        </div>\n                        <div class=\"contenedor-columna centro landins titletable\">\n                            <span class=\"a-text-MBlack a-text-prev\">Im\xE1genes</span>\n                        </div>\n                        <div class=\"contenedor-columna centro landins titletable\">\n                            <span class=\"a-text-MBlack a-text-prev\">Acciones</span>\n                        </div>\n                        <div class=\"contenedor-columna centro landins titletable\">\n                            <span class=\"a-text-MBlack a-text-prev\">Landing</span>\n                        </div>\n                    </div>\n                    ";
+
+        switch (landing) {
+          case "canal-claro":
+            programming = json.data[0].programing[0].programs;
+            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-canal-claro');
+            break;
+
+          case "concert-channel":
+            programming = json.data[1].programing[0].programs;
+            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-concert-channel');
+            break;
+
+          case "claro-cinema":
+            programming = json.data[2].programing[0].programs;
+            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-claro-cinema');
+            break;
+
+          default:
+            break;
+        }
+
+        var row = "";
+
+        var _iterator6 = _createForOfIteratorHelper(programming),
+            _step6;
+
+        try {
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var program = _step6.value;
+            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna\">\n                            <span class=\"a-text-medium-black text-normal pd-5\">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal pl-3 \">0</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal \">0/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                <input type=\"radio\" id=\"yes-landing\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\" />\n                                <label for=\"yes-landing\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\" checked />\n                                <label for=\"no-landing\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
+          }
+        } catch (err) {
+          _iterator6.e(err);
+        } finally {
+          _iterator6.f();
+        }
+
+        container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
+      }
     }
   });
 } // CLARO CANAL
