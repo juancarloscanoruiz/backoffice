@@ -203,6 +203,20 @@ $(".modal-landing-sinopsis").modal("show");
     
 
                         break;
+                        case "synopsis-images-container":
+                            $("body").append(loader);
+                            setTimeout(function () {
+                                $('.modal-synopsis-images-container').modal("show");
+                                $("#loader1").remove();
+                            }, 3000);
+                            break;
+                            case "synopsis-details-container":
+                                $("body").append(loader);
+                                setTimeout(function () {
+                                    $('.modal-info-synopsis').modal("show");
+                                    $("#loader1").remove();
+                                }, 3000);
+                                break;
                    
                     default:
                         break;

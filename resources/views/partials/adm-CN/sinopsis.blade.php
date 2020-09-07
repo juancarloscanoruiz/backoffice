@@ -96,3 +96,6 @@
 @include('partials.adm-CN.modals-sinopsis.banner-sinopsis')
 @include('partials.adm-CN.modals-sinopsis.image-synopsis')
 @include('partials.adm-CN.modals-sinopsis.edit-synopsis')
+@include('partials.adm-CN.modals-sinopsis.images-synopsis')
+@include('partials.adm-CN.modals-sinopsis.info-synopsis')
+
