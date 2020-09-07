@@ -1,14 +1,13 @@
 <div class="modal modal-edit-synopsis p-0 m-0" tabindex="-1" role="dialog" id="modalpromos">
-    <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width: 1000px;">
         <div class="modal-content  align-item-center centro w-100">
             <div class="modal-body ">
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">SINOPSIS</h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <div class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis" >
-                    <div class="container-edit-sinopsis">
+                    <div class="container-edit-sinopsis h-100">
                 <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3"> MAD MEN</h1>
-                <textarea id="synopsis" name="" class="editable-attribute program-original edit-cell container-image-synopsis a-text-medium-white" >
-              
+                <textarea id="synopsis" name="" class="editable-attribute edit-text-synopsis container-image-synopsis a-text-medium-white" >En Nueva York durante los años 60, el dominante líder Don Draper lucha por mantenerse en la cima del grupo en las oficinas de la agencia de publicidad Sterling Cooper, de la avenida Madison, donde existe mucha presión.
                 </textarea>
                 </div>
                     

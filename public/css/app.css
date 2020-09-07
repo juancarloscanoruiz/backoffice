@@ -539,6 +539,11 @@ body {
   font-family: "Montserrat-Bold";
 }
 
+.a-text-bold-greyish-brown-two {
+  font-family: "Montserrat-Bold";
+  color: #4a4a4a;
+}
+
 .a-text-bold-warm-grey-three {
   font-family: "Montserrat-Bold";
   color: #808080;
@@ -2912,6 +2917,11 @@ body {
   height: 472px;
 }
 
+#thumbnail-images-synopsis {
+  width: 366px;
+  height: 208px;
+}
+
 #thumbnail-home-vertical .add-photo {
   width: 126px;
 }
@@ -3844,6 +3854,15 @@ div .bootstrap-select > .dropdown-toggle:focus {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
 }
 
+.input-information {
+  border-radius: 0px !important;
+  width: 140px;
+  height: 22px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
+}
+
 .input-title {
   width: 634px;
   height: 111px;
@@ -4630,6 +4649,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-bold-coolgray {
   color: #a7a8aa;
   font-family: "Montserrat-Bold";
+}
+
+.a-text-bold-greyish-brown-two {
+  font-family: "Montserrat-Bold";
+  color: #4a4a4a;
 }
 
 .a-text-bold-warm-grey-three {
@@ -7060,6 +7084,15 @@ iframe {
 .container-edit-sinopsis {
   width: 824px;
   height: 461px;
+}
+
+.edit-text-synopsis {
+  resize: none;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  height: 85%;
+  outline: none !important;
 }
 
 .container-promo-cinema {
