@@ -3,7 +3,6 @@
         <div class="modal-content">
             <div class="modal-body">
 
-
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
@@ -69,17 +68,13 @@
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
                     </div>
-
                 </div>
                 <!--Buttons-->
                 <div class="text-center mb-3 d-flex justify-content-center">
                     <button class="d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus banner-slider-button" id="image-programming-button-cinema">aceptar</button>
-                    <a href="#modal-delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+                    <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </div>

@@ -21,9 +21,9 @@
                                 </label>
                             </div>
 
-                            <input type=" text" name="links" id="hoy-channel" class="url-input container-promotitle-cinema cinema-header-input-title1 h3 ml-3 a-text-black-black hoy-en-cinema text-uppercase" placeholder="TÍTULO">
+                            <input type=" text" name="links" id="ipt-heade" class="url-input container-promotitle-cinema cinema-header-input-title1 h3 ml-3 a-text-black-black hoy-en-cinema text-uppercase" placeholder="TÍTULO">
 
-                            <input type="text" name="links" id="concert-link" class="url-input container-promotitle-cinema h3 cinema-header-input-title2 a-text-black-tomato ml-3 cinema-input-title mr-3 text-uppercase" placeholder="TÍTULO">
+                            <input type="text" name="links" id="ipt-heade-1" class="url-input container-promotitle-cinema h3 cinema-header-input-title2 a-text-black-tomato ml-3 cinema-input-title mr-3 text-uppercase" placeholder="TÍTULO">
                             <div>
                                 <input style="padding: 24px 0;" type="text" class="text-center a-btn-basic-medium a-btn-teal btn-header-claro-cinema  pl-2 a-text-MBlack text-normal a-text-bold-white hoy-en height-btn text-uppercase" value="" placeholder="VER PROGRAMACIÓN">
 
@@ -38,8 +38,7 @@
                 </div>
                 <div class="text-center  mb-3 d-flex justify-content-center pb-2 mt-4">
                     <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="btn-acepta-modal-header-cinema" data-dismiss="modal">ACEPTAR</button>
-                    <!-- <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a> -->
-                    <button class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" id="delete-info">CANCELAR</button>
+                    <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>
         </div>

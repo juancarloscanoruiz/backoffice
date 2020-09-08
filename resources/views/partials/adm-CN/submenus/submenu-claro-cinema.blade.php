@@ -569,14 +569,14 @@
     </div>
 
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
-    @include('partials.adm-CN.modals-concert.programming');
     @include('partials.adm-CN.modals-cinema.promo-cinema')
     @include('partials.adm-CN.modals-cinema.banner-cinema')
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
     @include('partials.adm-CN.modals-cinema.titulo-carrusel1')
     @include('partials.adm-CN.modals-concert.carrusel');
 
-    @include('partials.adm-CN.modals-cinema.modal-advertencia')
     @include('partials.adm-CN.modals-cinema.modal-url')
+    @include('partials.adm-CN.modals-cinema.modal-advertencia')
+    @include('partials.adm-CN.modals-cinema.programming');
 
 </body>
