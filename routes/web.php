@@ -95,6 +95,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
+    Route::post("/editPromoLandingCinema", "landingController@editPromoLandingCinema");
 
     // MODAL CLARO
 });

@@ -75568,14 +75568,8 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
       new easyXDM.Socket(landingCanalClaro);
     });
-  } // BTN MODAL TEST
+  } // BTN MODAL URL ENCABEZADO
 
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-test").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel1").modal("show"); // getModalCarrusel1(json.type)
-
-    getModalCarrusel1("claro-carrusel1");
-  }); // BTN MODAL URL ENCABEZADO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
@@ -75771,7 +75765,6 @@ function eventsGrilla() {
 
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header-cinema").click(function () {
-    debugger;
     var landing = "Claro Cinema";
     var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade").val() || "";
     var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade-1").val() || "";
@@ -75786,6 +75779,95 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLandingClaro"])(data);
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
   }); // HEADER EDIT CANAL CLARO
+  // TITLE EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titulos-cinema").click(function () {
+    // TITULO
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").attr("key");
+    var landing = "Claro Cinema";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLandingClaro"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); // SUB TITULO
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLandingClaro"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    }); // SUB TITULO 2
+
+    var valueSub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").val();
+    var keySub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editElementLandingClaro"])({
+      value: valueSub2,
+      key: keySub2,
+      landing: landing
+    });
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  }); // TITLE EDIT CANAL CLARO
+  // IMG DE PROMO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
+    FilePromoImg(this);
+  }); // IMG DE PROMO CARGAR
+
+  function FilePromoImg(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">');
+      };
+    }
+
+    fileSrt.readAsDataURL(objFileInput.files[0]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+  } // VIDEO DE PROMO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+    FilePromoVideo(this);
+  }); // VIDEO DE PROMO CARGAR
+
+  function FilePromoVideo(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+    }
+  } // HEADER EDIT CANAL CLARO
+  // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-promo-cinema").click(function () {
+    var file = "";
+
+    if (document.getElementById("video-promo-file-concert").files[0]) {
+      file = document.getElementById("video-promo-file-concert").files[0];
+    } else if (document.getElementById("image-promo-concert").files[0]) {
+      file = document.getElementById("image-promo-concert").files[0];
+    } else {
+      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+    }
+
+    var landing = "Claro Cinema";
+    var data = new FormData();
+    var key = "block_3_video_url";
+    data.append("promo", file);
+    data.append("landing", landing);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editPromoLandingCinema"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  });
 }
 
 
@@ -76190,7 +76272,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76207,6 +76289,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4OTwo", function() { return getContentConcertChannelBlock4OTwo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLanding", function() { return editHeaderLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingCinema", function() { return editPromoLandingCinema; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLanding", function() { return editPromoLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgrammingLanding", function() { return getProgrammingLanding; });
@@ -77373,6 +77456,31 @@ function editPromoLanding(data) {
 
       if (json.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function editPromoLandingCinema(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editPromoLandingCinema",
+    success: function success(result) {
+      console.log(result);
+      var json = JSON.parse(result);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("hide");
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
@@ -77393,7 +77501,6 @@ function getProgrammingLanding(date, landing) {
     url: "landing/getProgrammingLanding",
     success: function success(result) {
       var json = JSON.parse(result);
-      debugger;
       console.log(json);
 
       if (json.code == 200) {
@@ -77723,7 +77830,6 @@ function editHeaderLandingClaro(data) {
     },
     url: "landing/editHeaderLandingClaro",
     success: function success(result) {
-      debugger;
       var json = JSON.parse(result);
       console.log(json);
 
@@ -78331,8 +78437,11 @@ function getContentClaroCinema(type) {
           case "title-cinema":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("título");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_3_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_3_title_1");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_3_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_3_title_2");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_3_subtitle");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
             break;
 
@@ -78357,17 +78466,26 @@ function getContentClaroCinema(type) {
             break;
 
           case "title-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-carrusel1-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-carrusel1").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 1");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_1_title_1");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_1_title_2");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_1_subtitle"); // $(".modal-title-carrusel1").modal("show");
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
             break;
 
           case "title-carrusel2":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_1);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_2_title_2);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_2_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_2_title_1");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_2_title_2");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_2_subtitle"); // $(".modal-title-cinema").modal("show");
+
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
             break;
 

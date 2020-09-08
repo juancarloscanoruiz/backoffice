@@ -32,6 +32,7 @@ import {
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
     editElementLanding,
+    editPromoLandingCinema,
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
@@ -4179,12 +4180,6 @@ function eventsGrilla() {
             new easyXDM.Socket(landingCanalClaro);
         });
     }
-    // BTN MODAL TEST
-    $("#btn-test").click(function () {
-        $("#modal-carrusel1").modal("show");
-        // getModalCarrusel1(json.type)
-        getModalCarrusel1("claro-carrusel1");
-    });
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
         $("#modal-url").modal("show");
@@ -4396,7 +4391,6 @@ function eventsGrilla() {
 
     // HEADER EDIT CANAL CLARO
     $("#btn-acepta-modal-header-cinema").click(function () {
-        debugger
         let landing = "Claro Cinema";
         let title1 = $("#ipt-heade").val() || "";
         let title2 = $("#ipt-heade-1").val() || "";
@@ -4412,6 +4406,92 @@ function eventsGrilla() {
         resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
     });
     // HEADER EDIT CANAL CLARO
+    // TITLE EDIT CANAL CLARO
+    $("#edit-titulos-cinema").click(function () {
+        // TITULO
+        let value = $("#ipt-titulo-cinema-1").val();
+        let key = $("#ipt-titulo-cinema-1").attr("key");
+        let landing = "Claro Cinema";
+        editElementLandingClaro({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        // SUB TITULO
+        let valueSub = $("#ipt-titulo-cinema-2").val();
+        let keySub = $("#ipt-titulo-cinema-2").attr("key");
+        editElementLandingClaro({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+        // SUB TITULO 2
+        let valueSub2 = $("#ipt-titulo-cinema-3").val();
+        let keySub2 = $("#ipt-titulo-cinema-3").attr("key");
+        editElementLandingClaro({
+            value: valueSub2,
+            key: keySub2,
+            landing: landing
+        });
+        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+    });
+    // TITLE EDIT CANAL CLARO
+    // IMG DE PROMO
+    $("#image-promo-concert").change(function () {
+        FilePromoImg(this);
+    });
+    // IMG DE PROMO CARGAR
+    function FilePromoImg(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $("#cinema-promo-container").html(
+                    '<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">'
+                );
+            };
+        }
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+        $(".loader-view-container").remove();
+    }
+    // VIDEO DE PROMO
+    $("#video-promo-file-concert").change(function () {
+        FilePromoVideo(this);
+    });
+    // VIDEO DE PROMO CARGAR
+    function FilePromoVideo(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $("#cinema-promo-container").html(
+                    '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>'
+                );
+                $(".loader-view-container").remove();
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    // HEADER EDIT CANAL CLARO
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-promo-cinema").click(function () {
+        let file = "";
+        if (document.getElementById("video-promo-file-concert").files[0]) {
+            file = document.getElementById("video-promo-file-concert").files[0];
+        } else if (document.getElementById("image-promo-concert").files[0]) {
+            file = document.getElementById("image-promo-concert").files[0];
+        } else {
+            file = $("#link-promo-concert").val();
+        }
+
+        let landing = "Claro Cinema";
+        let data = new FormData();
+        let key = "block_3_video_url";
+        data.append("promo", file);
+        data.append("landing", landing);
+        data.append("key", key);
+        editPromoLandingCinema(data);
+        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+    });
+
 
 }
 
