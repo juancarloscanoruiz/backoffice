@@ -3476,11 +3476,19 @@ function getProgrammingSynopsis(landing, date) {
 
     $.ajax({
         type: "GET",
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },     
         data: {
             date
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
+          
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -3538,7 +3546,7 @@ function getProgrammingSynopsis(landing, date) {
                             <span class="a-text-semibold-tomato text-normal ">0/8</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus edi mr-3" />
+                            <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus sinopsis edi mr-3" />
                             <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
                         </div>
                         <div class="contenedor-columna centro ">
@@ -3563,8 +3571,14 @@ function getProgrammingSynopsis(landing, date) {
                 container.html(`
                 ${header}
                 ${row}
-                `)
+                `);
             }
+            $(".loader-view-container").remove();
+            $(".sinopsis").click(function(){
+                console.log("si");
+                $(".modal-landing-sinopsis").modal("show");
+                });
+        
 
         }
     });

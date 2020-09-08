@@ -19,6 +19,13 @@ import {
 import {
     getProgrammingSynopsis
 } from "../services/landing.js";
+import {
+    createSlickSlider,
+    createCalendarDays
+} from "../vendor/slick.js";
+import {
+    calendarSlick
+} from "../config/slick.js";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -210,8 +217,8 @@ function createNavbarProgramacionGeneral() {
         $(this).addClass("navbar-progra-active");
         if ($(this).hasClass("navbar-canal-claro")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
-        } else if ($(this).hasClass("navbar-sinopsis")) {
-            changeContentProgramacionGeneral($(this).attr("rel"));
+        } else if ($(this).hasClass("navbar-sinopsis")) {            
+            changeContentProgramacionGeneral($(this).attr("rel"));                                
         } else if ($(this).hasClass("navbar-programacion")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
@@ -294,6 +301,35 @@ function createNavbarProgramacionGeneral() {
 function changeContentProgramacionGeneral(nameSection) {
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
+    if(nameSection == "navbar-prev-sinopsis"){
+        try {
+            let calendarsinopsis = $(".calendar-sinopsis-slider");
+            calendarsinopsis.slick("unslick");
+            $(".calendar-sinopsis-slider").slick({
+                slidesToShow: 11,
+                slidesToScroll: 11,
+                infinite: true,
+                dots: false,
+                centerMode: false,
+                arrows: true,
+                prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+            });
+            
+            
+        } catch (error) {
+            $(".calendar-sinopsis-slider").slick({
+                slidesToShow: 11,
+                slidesToScroll: 11,
+                infinite: true,
+                dots: false,
+                centerMode: false,
+                arrows: true,
+                prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+            });
+        }
+    }
 }
 
 //Función para mostrar la vista principal de edición de landings y programación general

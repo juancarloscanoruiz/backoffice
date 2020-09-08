@@ -101,7 +101,7 @@
                 <!--Buttons-->
                 <div class="text-center mb-3 d-flex justify-content-center">
                     <button
-                        class="button-modal-canal-claro edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus banner-slider-button"
+                        class="button-modal-canal-claro edit-landing-modal-button d-flex  disabled-btn mr-3 text-uppercase  m-0 btn-landing a-btn-basic-small  text-uppercase text-plus a-text-bold-teal banner-slider-button"
                         landing="canal claro" data-dismiss="modal">aceptar</button>
                     <a href="#delete-info-sinopsis" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
