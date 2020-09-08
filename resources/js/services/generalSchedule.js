@@ -2,6 +2,10 @@ import $ from "jquery";
 import {
     eventsGrilla
 } from "../operaciones_grilla";
+import {
+    createLazyLoad
+} from "../vendor/lozad";
+
 
 $.ajaxSetup({
     headers: {
@@ -688,6 +692,12 @@ function filterDates(startDate, lastDate, landing) {
             `;
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
+            let options = {
+                load: function (el) {
+                    el.classList.add("fade-grilla");
+                },
+            }
+            createLazyLoad(".contenedor-fila", options);
             eventsGrilla();
         }
     });

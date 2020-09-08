@@ -3467,14 +3467,14 @@ function editPromoLandingClaro(data) {
 function getProgrammingSynopsis(landing, date) {
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         data: {
             date
         },
-        url: "landing/getProgrammingLanding",
+        url: "landing/getProgrammingSynopsisTable",
         success: function (result) {
             let json = JSON.parse(result);
-            console.log(json);
+            console.log("Sinopsis", json);
             if (json.code == 200) {
                 let programming = "";
                 let container = "";
@@ -3516,18 +3516,66 @@ function getProgrammingSynopsis(landing, date) {
 
                 }
 
+
+
+
                 let row = ""
+                let colorText = "";
+                let colorTextSynopsis = "";
+                let labelActive = ""
                 for (const program of programming) {
+
+                    if (program.sinopsis_info.sinopsis_len <= 21) {
+                        colorTextSynopsis = "a-text-semibold-tomato"
+                    } else if (program.sinopsis_info.sinopsis_len > 21 && program.sinopsis_info.sinopsis_len < 144) {
+                        colorTextSynopsis = "a-text-semibold-orange";
+
+                    } else {
+                        colorTextSynopsis = "a-text-semibold-greyish-brown-two"
+
+                    }
+
+                    if (program.sinopsis_info.cant_imagenes <= 4) {
+                        colorText = "a-text-semibold-tomato"
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 si-estilo cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo label-active cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    } else if (program.sinopsis_info.cant_imagenes > 4 && program.sinopsis_info.cant_imagenes < 8) {
+                        colorText = "a-text-semibold-orange";
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 si-estilo label-active cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    } else {
+                        colorText = "a-text-semibold-greyish-brown-two"
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 label-active si-estilo cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo  cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    }
                     row += `
                     <div class="contenedor-fila">
                         <div class="contenedor-columna">
                             <span class="a-text-medium-black text-normal pd-5">${program.chapter_title}</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <span class="a-text-semibold-tomato text-normal pl-3 ">0</span>
+                            <span class="${colorTextSynopsis} text-normal pl-3 ">${program.sinopsis_info.sinopsis_len}</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <span class="a-text-semibold-tomato text-normal ">0/8</span>
+                            <span class="${colorText} text-normal ">${program.sinopsis_info.cant_imagenes}/8</span>
                         </div>
                         <div class="contenedor-columna centro">
                             <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus edi mr-3" />
@@ -3535,16 +3583,7 @@ function getProgrammingSynopsis(landing, date) {
                         </div>
                         <div class="contenedor-columna centro ">
                             <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                <input type="radio" id="yes-landing" value="3"
-                                    class="edit-switch-landing edit-landing-yes" />
-                                <label for="yes-landing" id="siestado-landing"
-                                    class="mb-0 si-estilo cursor-pointer switch-label">
-                                    Sí</label>
-                                <input type="radio" id="no-landing" value="0"
-                                    class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                <label for="no-landing" id="noestado-landing"
-                                    class="mb-0 no-estilo cursor-pointer switch-label">
-                                    No</label>
+                                ${labelActive}
                             </div>
                         </div>
                     </div>
@@ -3556,6 +3595,10 @@ function getProgrammingSynopsis(landing, date) {
                 ${header}
                 ${row}
                 `)
+
+                $(".sinopsis").click(function () {
+                    $(".modal-landing-sinopsis").modal("show");
+                });
             }
 
         }

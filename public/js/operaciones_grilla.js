@@ -58843,6 +58843,27 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/lozad/dist/lozad.min.js":
+/*!**********************************************!*\
+  !*** ./node_modules/lozad/dist/lozad.min.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*! lozad.js - v1.16.0 - 2020-09-06
+* https://github.com/ApoorvSaxena/lozad.js
+* Copyright (c) 2020 Apoorv Saxena; Licensed MIT */
+!function(t,e){ true?module.exports=e():undefined}(this,function(){"use strict";
+/**
+   * Detect IE browser
+   * @const {boolean}
+   * @private
+   */var g="undefined"!=typeof document&&document.documentMode,f={rootMargin:"0px",threshold:0,load:function(t){if("picture"===t.nodeName.toLowerCase()){var e=t.querySelector("img"),r=!1;null===e&&(e=document.createElement("img"),r=!0),g&&t.getAttribute("data-iesrc")&&(e.src=t.getAttribute("data-iesrc")),t.getAttribute("data-alt")&&(e.alt=t.getAttribute("data-alt")),r&&t.append(e)}if("video"===t.nodeName.toLowerCase()&&!t.getAttribute("data-src")&&t.children){for(var a=t.children,o=void 0,i=0;i<=a.length-1;i++)(o=a[i].getAttribute("data-src"))&&(a[i].src=o);t.load()}t.getAttribute("data-poster")&&(t.poster=t.getAttribute("data-poster")),t.getAttribute("data-src")&&(t.src=t.getAttribute("data-src")),t.getAttribute("data-srcset")&&t.setAttribute("srcset",t.getAttribute("data-srcset"));var n=",";if(t.getAttribute("data-background-delimiter")&&(n=t.getAttribute("data-background-delimiter")),t.getAttribute("data-background-image"))t.style.backgroundImage="url('"+t.getAttribute("data-background-image").split(n).join("'),url('")+"')";else if(t.getAttribute("data-background-image-set")){var d=t.getAttribute("data-background-image-set").split(n),u=d[0].substr(0,d[0].indexOf(" "))||d[0];// Substring before ... 1x
+u=-1===u.indexOf("url(")?"url("+u+")":u,1===d.length?t.style.backgroundImage=u:t.setAttribute("style",(t.getAttribute("style")||"")+"background-image: "+u+"; background-image: -webkit-image-set("+d+"); background-image: image-set("+d+")")}t.getAttribute("data-toggle-class")&&t.classList.toggle(t.getAttribute("data-toggle-class"))},loaded:function(){}};function A(t){t.setAttribute("data-loaded",!0)}var m=function(t){return"true"===t.getAttribute("data-loaded")},v=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:document;return t instanceof Element?[t]:t instanceof NodeList?t:e.querySelectorAll(t)};return function(){var r,a,o=0<arguments.length&&void 0!==arguments[0]?arguments[0]:".lozad",t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},e=Object.assign({},f,t),i=e.root,n=e.rootMargin,d=e.threshold,u=e.load,g=e.loaded,s=void 0;"undefined"!=typeof window&&window.IntersectionObserver&&(s=new IntersectionObserver((r=u,a=g,function(t,e){t.forEach(function(t){(0<t.intersectionRatio||t.isIntersecting)&&(e.unobserve(t.target),m(t.target)||(r(t.target),A(t.target),a(t.target)))})}),{root:i,rootMargin:n,threshold:d}));for(var c,l=v(o,i),b=0;b<l.length;b++)(c=l[b]).getAttribute("data-placeholder-background")&&(c.style.background=c.getAttribute("data-placeholder-background"));return{observe:function(){for(var t=v(o,i),e=0;e<t.length;e++)m(t[e])||(s?s.observe(t[e]):(u(t[e]),A(t[e]),g(t[e])))},triggerLoad:function(t){m(t)||(u(t),A(t),g(t))},observer:s}}});
+
+
+/***/ }),
+
 /***/ "./node_modules/md5.js/index.js":
 /*!**************************************!*\
   !*** ./node_modules/md5.js/index.js ***!
@@ -73212,10 +73233,7 @@ function eventsGrilla() {
   });
   calendarsinopsis.slick("unslick");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
-  }); //Previsualizar el video que subió el usuario en el landing de concert channel
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]); //Previsualizar el video que subió el usuario en el landing de concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
     if (this.files && this.files[0]) {
@@ -73367,27 +73385,7 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination'); // $("body").append(loader);
-            // setTimeout(function () {
-            //     $('.modal-programming-carousel-cinema').modal("show");
-            //     $(".programming-slider").slick({
-            //         slidesToShow: 1,
-            //         dots: true,
-            //         appendDots: $(".programming-slider-dots"),
-            //         initialSlide: 0,
-            //         infinite: false,
-            //         customPaging: function (slider, i) {
-            //             var thumb = $(slider.$slides[i]).data();
-            //             return (
-            //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
-            //                 (i + 1) +
-            //                 "</p>"
-            //             );
-            //         }
-            //     });
-            //     $("#loader1").remove();
-            // }, 3000);
-
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination');
             break;
 
           default:
@@ -75834,6 +75832,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+/* harmony import */ var _vendor_lozad__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vendor/lozad */ "./resources/js/vendor/lozad.js");
+
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
@@ -76024,6 +76024,12 @@ function filterDates(startDate, lastDate, landing) {
       var newGrill = "\n                ".concat(header, "\n                ").concat(rows, "\n            ");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html(newGrill);
+      var options = {
+        load: function load(el) {
+          el.classList.add("fade-grilla");
+        }
+      };
+      Object(_vendor_lozad__WEBPACK_IMPORTED_MODULE_2__["createLazyLoad"])(".contenedor-fila", options);
       Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__["eventsGrilla"])();
     }
   });
@@ -78388,14 +78394,14 @@ function editPromoLandingClaro(data) {
 
 function getProgrammingSynopsis(landing, date) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "GET",
+    type: "POST",
     data: {
       date: date
     },
-    url: "landing/getProgrammingLanding",
+    url: "landing/getProgrammingSynopsisTable",
     success: function success(result) {
       var json = JSON.parse(result);
-      console.log(json);
+      console.log("Sinopsis", json);
 
       if (json.code == 200) {
         var programming = "";
@@ -78423,6 +78429,9 @@ function getProgrammingSynopsis(landing, date) {
         }
 
         var row = "";
+        var colorText = "";
+        var colorTextSynopsis = "";
+        var labelActive = "";
 
         var _iterator6 = _createForOfIteratorHelper(programming),
             _step6;
@@ -78430,7 +78439,27 @@ function getProgrammingSynopsis(landing, date) {
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
             var program = _step6.value;
-            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna\">\n                            <span class=\"a-text-medium-black text-normal pd-5\">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal pl-3 \">0</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal \">0/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                <input type=\"radio\" id=\"yes-landing\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\" />\n                                <label for=\"yes-landing\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\" checked />\n                                <label for=\"no-landing\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
+
+            if (program.sinopsis_info.sinopsis_len <= 21) {
+              colorTextSynopsis = "a-text-semibold-tomato";
+            } else if (program.sinopsis_info.sinopsis_len > 21 && program.sinopsis_info.sinopsis_len < 144) {
+              colorTextSynopsis = "a-text-semibold-orange";
+            } else {
+              colorTextSynopsis = "a-text-semibold-greyish-brown-two";
+            }
+
+            if (program.sinopsis_info.cant_imagenes <= 4) {
+              colorText = "a-text-semibold-tomato";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            } else if (program.sinopsis_info.cant_imagenes > 4 && program.sinopsis_info.cant_imagenes < 8) {
+              colorText = "a-text-semibold-orange";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 si-estilo label-active cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            } else {
+              colorText = "a-text-semibold-greyish-brown-two";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo  cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            }
+
+            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna\">\n                            <span class=\"a-text-medium-black text-normal pd-5\">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorTextSynopsis, " text-normal pl-3 \">").concat(program.sinopsis_info.sinopsis_len, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorText, " text-normal \">").concat(program.sinopsis_info.cant_imagenes, "/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                ").concat(labelActive, "\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
           _iterator6.e(err);
@@ -78439,6 +78468,9 @@ function getProgrammingSynopsis(landing, date) {
         }
 
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+        });
       }
     }
   });
@@ -79296,6 +79328,29 @@ function resetIframe(iframeToDestroy, confNewIframe) {
   setTimeout(function () {
     new easyXDM.Socket(confNewIframe);
   }, 2000);
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/vendor/lozad.js":
+/*!**************************************!*\
+  !*** ./resources/js/vendor/lozad.js ***!
+  \**************************************/
+/*! exports provided: createLazyLoad */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLazyLoad", function() { return createLazyLoad; });
+/* harmony import */ var lozad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lozad */ "./node_modules/lozad/dist/lozad.min.js");
+/* harmony import */ var lozad__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lozad__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function createLazyLoad(element, options) {
+  var observer = lozad__WEBPACK_IMPORTED_MODULE_0___default()(element, options);
+  observer.observe();
 }
 
 

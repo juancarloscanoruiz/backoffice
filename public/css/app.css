@@ -4011,6 +4011,13 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #9b9b9b;
 }
 
+.label-active {
+  background-color: #0097a9;
+  color: #ffffff;
+  border: none;
+  font-family: "Montserrat-Black";
+}
+
 .line {
   width: 100%;
   height: 1px;
@@ -7682,5 +7689,32 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fade-grilla {
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 

@@ -294,6 +294,7 @@ function createNavbarProgramacionGeneral() {
 function changeContentProgramacionGeneral(nameSection) {
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
+
 }
 
 //Función para mostrar la vista principal de edición de landings y programación general

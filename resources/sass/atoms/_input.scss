@@ -814,3 +814,10 @@ div .bootstrap-select>.dropdown-toggle:focus {
         color: $warmGrey;
     }
 }
+
+.label-active {
+    background-color: $teal;
+    color: $white;
+    border: none;
+    font-family: $MontserratBlack;
+}

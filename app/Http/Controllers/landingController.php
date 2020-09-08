@@ -574,4 +574,12 @@ class landingController extends Controller
         $respuesta =  $response->getBody()->getContents();
         echo ($respuesta);
     }
+
+    function getProgrammingSynopsisTable(Request $request){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSinospsisTable/" . $request->input("date")
+        );
+        echo ($response->getBody()->getContents());
+    }
 }

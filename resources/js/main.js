@@ -54,6 +54,9 @@ import {
     getUser,
     getUserFrontToUpdate
 } from "./services/user.js";
+import {
+    createLazyLoad
+} from "./vendor/lozad.js";
 
 $.ajaxSetup({
     headers: {
@@ -64,6 +67,12 @@ $.ajaxSetup({
 
 $(document).ready(function () {
 
+    let options = {
+        load: function (el) {
+            el.classList.add("fade-grilla");
+        },
+    }
+    createLazyLoad(".contenedor-fila", options);
     //cerrar los dos modales
     /*     $("#close_modals-claro").click(function () {
             $(".modal").modal("hide");

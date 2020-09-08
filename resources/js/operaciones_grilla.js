@@ -91,12 +91,6 @@ function eventsGrilla() {
     createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
     createSlickSlider(calendarsinopsis, calendarSlick);
-$(".sinopsis").click(function(){
-$(".modal-landing-sinopsis").modal("show");
-});
-
-
-
 
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
@@ -144,7 +138,7 @@ $(".modal-landing-sinopsis").modal("show");
 
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-         //Landing de concert channel
+    //Landing de concert channel
     let LandingSinopsis = {
         remote: `${baseURL}sinopsis-edi.php`,
         container: document.getElementById(
@@ -182,28 +176,28 @@ $(".modal-landing-sinopsis").modal("show");
                             $("#loader1").remove();
                         }, 3000);
 
-                      
+
                         break;
-                        case "synopsis-main-image":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-image-synopsis').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-    
+                    case "synopsis-main-image":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-image-synopsis').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
 
                         break;
 
-                        case "synopsis-description-container":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-edit-synopsis').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-    
+                    case "synopsis-description-container":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-synopsis').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
 
                         break;
-                   
+
                     default:
                         break;
                 }
@@ -267,7 +261,6 @@ $(".modal-landing-sinopsis").modal("show");
                     case "title-carrusel2":
                         getContentClaroCinema("title-carrusel2");
                         break;
-
                     case "carrusel2":
                         landing = "Claro Cinema";
                         id = 2;
@@ -279,28 +272,7 @@ $(".modal-landing-sinopsis").modal("show");
                         break;
                     case "slider-pagination":
                         getContentClaroCinema('slider-pagination')
-                        // $("body").append(loader);
-                        // setTimeout(function () {
-                        //     $('.modal-programming-carousel-cinema').modal("show");
-                        //     $(".programming-slider").slick({
-                        //         slidesToShow: 1,
-                        //         dots: true,
-                        //         appendDots: $(".programming-slider-dots"),
-                        //         initialSlide: 0,
-                        //         infinite: false,
-                        //         customPaging: function (slider, i) {
-                        //             var thumb = $(slider.$slides[i]).data();
-                        //             return (
-                        //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
-                        //                 (i + 1) +
-                        //                 "</p>"
-                        //             );
-                        //         }
-                        //     });
-                        //     $("#loader1").remove();
-                        // }, 3000);
                         break;
-
                     default:
                         break;
                 }
@@ -318,6 +290,7 @@ $(".modal-landing-sinopsis").modal("show");
     if (navbarPrevClaroCinema) {
         $("#navbar-prev-claro-cinema iframe").remove();
         new easyXDM.Socket(confLandingClaroCinema);
+
     }
 
     /* Concert channel */

@@ -89,6 +89,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
     Route::post("/setImageSliderBanner", "landingController@setImageSliderBanner");
     Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
+    Route::post("/getProgrammingSynopsisTable", "landingController@getProgrammingSynopsisTable");
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
