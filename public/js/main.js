@@ -87083,7 +87083,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
 //SERVICES
+
+
 
 
 
@@ -87328,6 +87332,34 @@ function createNavbarProgramacionGeneral() {
 function changeContentProgramacionGeneral(nameSection) {
   jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
   jquery__WEBPACK_IMPORTED_MODULE_3___default()("#" + nameSection).show();
+
+  if (nameSection == "navbar-prev-sinopsis") {
+    try {
+      var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".calendar-sinopsis-slider");
+      calendarsinopsis.slick("unslick");
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(".calendar-sinopsis-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+      });
+    } catch (error) {
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()(".calendar-sinopsis-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+      });
+    }
+  }
 } //Función para mostrar la vista principal de edición de landings y programación general
 
 
@@ -88911,8 +88943,11 @@ function eventsGrilla() {
   calendarsinopsis.slick("unslick");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_8__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_6__["calendarSlick"]);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingSynopsis"])("canal-claro", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
   }); //Previsualizar el video que subió el usuario en el landing de concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
@@ -88989,6 +89024,22 @@ function eventsGrilla() {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-images-container":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "synopsis-datails-container":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-info-synopsis').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -94087,6 +94138,9 @@ function editPromoLandingClaro(data) {
 function getProgrammingSynopsis(landing, date) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "GET",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
     data: {
       date: date
     },
@@ -94128,7 +94182,7 @@ function getProgrammingSynopsis(landing, date) {
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
             var program = _step6.value;
-            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna\">\n                            <span class=\"a-text-medium-black text-normal pd-5\">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal pl-3 \">0</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal \">0/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                <input type=\"radio\" id=\"yes-landing\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\" />\n                                <label for=\"yes-landing\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\" checked />\n                                <label for=\"no-landing\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
+            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna\">\n                            <span class=\"a-text-medium-black text-normal pd-5\">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal pl-3 \">0</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal \">0/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus sinopsis edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                <input type=\"radio\" id=\"yes-landing\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\" />\n                                <label for=\"yes-landing\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\" checked />\n                                <label for=\"no-landing\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
           _iterator6.e(err);
@@ -94138,6 +94192,12 @@ function getProgrammingSynopsis(landing, date) {
 
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
       }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
+        console.log("si");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+      });
     }
   });
 } // CLARO CANAL

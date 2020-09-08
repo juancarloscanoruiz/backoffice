@@ -86,18 +86,23 @@ function eventsGrilla() {
         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
     });
-
     calendarsinopsis.slick("unslick");
     createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
     createSlickSlider(calendarsinopsis, calendarSlick);
-$(".sinopsis").click(function(){
-$(".modal-landing-sinopsis").modal("show");
-});
 
-
-
-
+    $(".calendar-sinopsis-slider").on(
+        "click",
+        ".synopsis-calendar-item",
+        function () {
+            $(".synopsis-calendar-item").removeClass(
+                "programming-item-active"
+            );
+            $(this).addClass("programming-item-active");
+            console.log($(this).attr("date"));
+            getProgrammingSynopsis("canal-claro", $(this).attr("date"));
+        }
+    );
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
     $("#video-promo-file").change(function () {
@@ -210,7 +215,7 @@ $(".modal-landing-sinopsis").modal("show");
                                 $("#loader1").remove();
                             }, 3000);
                             break;
-                            case "synopsis-details-container":
+                            case "synopsis-datails-container":
                                 $("body").append(loader);
                                 setTimeout(function () {
                                     $('.modal-info-synopsis').modal("show");
