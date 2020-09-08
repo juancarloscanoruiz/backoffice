@@ -42350,7 +42350,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73373,6 +73373,10 @@ function eventsGrilla() {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
         switch (json.type) {
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination');
+            break;
+
           case "current-programming-cinema":
             var date = new Date();
             var day = ("0" + date.getUTCDate()).slice(-2);
@@ -73380,9 +73384,10 @@ function eventsGrilla() {
 
             var _year = date.getUTCFullYear();
 
-            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
+            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])(_currentDate, "claro-cinema");
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getProgrammingLanding"])(_currentDate, "canal-claro");
             break;
 
           case "header-landing-cinema":
@@ -73415,30 +73420,6 @@ function eventsGrilla() {
             landing = "Claro Cinema";
             id = 2;
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
-            break;
-
-          case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination'); // $("body").append(loader);
-            // setTimeout(function () {
-            //     $('.modal-programming-carousel-cinema').modal("show");
-            //     $(".programming-slider").slick({
-            //         slidesToShow: 1,
-            //         dots: true,
-            //         appendDots: $(".programming-slider-dots"),
-            //         initialSlide: 0,
-            //         infinite: false,
-            //         customPaging: function (slider, i) {
-            //             var thumb = $(slider.$slides[i]).data();
-            //             return (
-            //                 "<p class='a-text-bold-teal slider-pagination-item'>" +
-            //                 (i + 1) +
-            //                 "</p>"
-            //             );
-            //         }
-            //     });
-            //     $("#loader1").remove();
-            // }, 3000);
-
             break;
 
           default:
@@ -74346,10 +74327,11 @@ function eventsGrilla() {
   }); //para agregar un slider más en cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    console.log('pato');
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-image-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
   }); //para agregar un slider más en carrusel2-concert
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
@@ -74369,7 +74351,7 @@ function eventsGrilla() {
     //Cada vez que se haga click, el contador incrementa
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
     //Cada vez que se haga click, el contador incrementa
@@ -74839,6 +74821,9 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
+    console.log('cerrar');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
     //$(".modal-edit-icons").modal("hide");
     // $(".modal-edit-program").modal("hide");
@@ -75665,9 +75650,6 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
     FileHeader(this);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
-    FileHeader(this);
   }); // FILE HEADER
 
   function FileHeader(objFileInput) {
@@ -75801,8 +75783,44 @@ function eventsGrilla() {
   // CANAL CLARO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
+    // getContentClaroCinema('header-landing-cinema')
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination');
-  });
+  }); // CARGAR IMG HEADER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon1").change(function () {
+    FileHeaderCinema(this);
+  }); // FILE HEADER
+
+  function FileHeaderCinema(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", e.target.result);
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }
+  } // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header-cinema").click(function () {
+    debugger;
+    var landing = "Claro Cinema";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade-1").val() || "";
+    var logo = document.getElementById("image-icon1").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editHeaderLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  }); // HEADER EDIT CANAL CLARO
 }
 
 
@@ -77410,6 +77428,7 @@ function getProgrammingLanding(date, landing) {
     url: "landing/getProgrammingLanding",
     success: function success(result) {
       var json = JSON.parse(result);
+      debugger;
       console.log(json);
 
       if (json.code == 200) {
@@ -77559,7 +77578,7 @@ function getModalsCanalClaro(type) {
 
             while (true) {
               if (obj.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                    </label>\n                                </div>\n                                ");
+                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\"cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                    </label>\n                                </div>\n                                ");
                 counter++;
               } else {
                 break;
@@ -77739,6 +77758,7 @@ function editHeaderLandingClaro(data) {
     },
     url: "landing/editHeaderLandingClaro",
     success: function success(result) {
+      debugger;
       var json = JSON.parse(result);
       console.log(json);
 
@@ -78255,10 +78275,9 @@ function getContentClaroCinema(type) {
         switch (type) {
           // SLAIDER
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
             var counter = 1;
             var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider');
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider-claro-cinema');
 
             while (true) {
               if (data.data["block_1_image_slider_".concat(counter)]) {
@@ -78270,15 +78289,14 @@ function getContentClaroCinema(type) {
             }
 
             programmingSlider.html(image);
-            /* *** */
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
 
             try {
-              debugger;
               programmingSlider.slick("unslick");
               programmingSlider.not('.slick-initialized').slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-cinema"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -78287,10 +78305,11 @@ function getContentClaroCinema(type) {
                 }
               });
             } catch (error) {
+              console.log(error);
               programmingSlider.not('.slick-initialized').slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-cinema"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
@@ -78300,15 +78319,9 @@ function getContentClaroCinema(type) {
               });
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
-              /*
-                  Arreglo para saber la posición de las imágenes que cargo el usuario
-                  es decir, saber si subió la 1 y 3, o 2,3 etc.
-              */
-              var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
-
-              var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
-
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button-cinema").click(function () {
+              var imagesPositions = [];
+              var imagesProgramming = [];
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
                 if (this.files[0]) {
                   imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
@@ -78316,24 +78329,27 @@ function getContentClaroCinema(type) {
 
                 imagesProgramming.push(this.files[0]);
               });
-              var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+              var data = new FormData();
 
               for (var index = 0; index < imagesProgramming.length; index++) {
                 var file = "file" + (index + 1).toString();
                 file = file.toString();
                 data.append(file, imagesProgramming[index]);
-              } //Posiciones de las imágenes
+              }
 
-
-              data.append("positions", imagesPositions); //Hora inicio y fin
-
+              data.append("positions", imagesPositions);
               data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
-              data.append("landing", "Canal Claro");
+              data.append("landing", "Claro Cinema");
               setImageSliderBanner(data);
             });
-            /* *** */
-
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
+              console.log('cerreer');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+            });
             break;
+          // HEADER
           // SLAIDER
 
           case "header-landing-cinema":
@@ -78341,6 +78357,7 @@ function getContentClaroCinema(type) {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-header-claro-cinema").val(data.data.block_2_button_title);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".link-button-header-cinema").val(data.data.block_2_button_url);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val(data.data.block_2_button_url);
             var logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png";
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", logo);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-encabezado-cinema").modal("show");
@@ -79590,7 +79607,7 @@ function createSlickSlider(container, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

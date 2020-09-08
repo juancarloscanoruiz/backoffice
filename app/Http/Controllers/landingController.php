@@ -410,12 +410,28 @@ class landingController extends Controller
     // HEADER
     public function editHeaderLandingClaro(Request $request)
     {
+        $folderLanding = "";
+        switch ($request->input("landing")) {
+            case 'Canal Claro':
+                $folderLanding = "canal-claro";
+                break;
+            case 'Concert Channel':
+                $folderLanding = "concert-channel";
+                break;
+            case 'Claro Cinema':
+                $folderLanding = "claro-cinema";
+                break;
+
+            default:
+                # code...
+                break;
+        }
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $logo = "";
         if ($request->file('logo')) {
-            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/canal-claro/logos");
+            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/" . $folderLanding . "/logos");
         }
         $response = $client->post(
             $this->url . "section/editBlockProgramingLanding",

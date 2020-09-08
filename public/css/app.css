@@ -3851,8 +3851,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .url-input {
   border-radius: 0px !important;
-  width: 246px;
-  height: 43px;
+  width: 230px;
+  height: 50px;
   -o-object-fit: contain;
   object-fit: contain;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
@@ -6051,17 +6051,20 @@ ul {
   margin-bottom: 16px;
 }
 
-.programming-slider-dots-canal-claro .slick-dots {
+.programming-slider-dots-canal-claro .slick-dots,
+.programming-slider-dots-cinema .slick-dots {
   position: static;
   text-align: left;
   bottom: auto;
 }
 
-.programming-slider-dots-canal-claro .presentation {
+.programming-slider-dots-canal-claro .presentation,
+.programming-slider-dots-cinema .presentation {
   margin-right: 24px;
 }
 
-.programming-slider-dots-canal-claro .slick-dots li {
+.programming-slider-dots-canal-claro .slick-dots li,
+.programming-slider-dots-cinema .slick-dots li {
   height: 37px;
   width: 37px;
   margin-right: 16px;
@@ -7108,6 +7111,7 @@ iframe {
   background-color: #ffeb5a;
   border: #ffeb5a;
   box-shadow: 0 2px 4px 0 #2d2926;
+  padding-left: 10px;
 }
 
 .container-promotitle {
@@ -7550,6 +7554,7 @@ select:focus {
 .synopsis-image-slider,
 .programming-slider,
 .programming-slider-canal-claro,
+.programming-slider-claro-cinema,
 .programming-slider-concert-channel {
   width: 1000px !important;
 }
@@ -7568,11 +7573,13 @@ select:focus {
   color: #ffffff !important;
 }
 
+.programming-slider-dots-cinema .slick-dots .slick-active,
 .programming-slider-dots-canal-claro .slick-dots .slick-active,
 .carrusel1-slider-dots1 .slick-dots .slick-active {
   background-color: #0097a9;
 }
 
+.programming-slider-dots-cinema .slick-dots .slick-active p,
 .programming-slider-dots-canal-claro .slick-dots .slick-active p,
 .carrusel1-slider-dots1 .slick-dots .slick-active p {
   color: #ffffff !important;
