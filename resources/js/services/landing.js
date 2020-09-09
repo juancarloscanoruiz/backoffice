@@ -3519,8 +3519,8 @@ function getProgrammingSynopsis(landing, date) {
                 for (const program of programming) {
                     row += `
                     <div class="contenedor-fila">
-                        <div class="contenedor-columna">
-                            <span class="a-text-medium-black text-normal pd-5">${program.chapter_title}</span>
+                        <div class="contenedor-columna pl-4">
+                            <span class="a-text-medium-black text-normal ">${program.chapter_title}</span>
                         </div>
                         <div class="contenedor-columna centro">
                             <span class="a-text-semibold-tomato text-normal pl-3 ">0</span>
@@ -3561,7 +3561,7 @@ function getProgrammingSynopsis(landing, date) {
                 console.log("si");
                 $(".modal-landing-sinopsis").modal("show");
                 });
-        
+               
 
         }
     });

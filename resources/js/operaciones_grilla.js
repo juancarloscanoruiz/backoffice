@@ -3200,6 +3200,14 @@ function eventsGrilla() {
     $("#close_modals-claro").click(function () {
         $(".modal").modal("hide");
     });
+    $("#close_modals-sinopsis").click(function () {
+        $("#delete-info-sinopsis").modal("hide");
+        $(".modal-programming-sinopsis").modal("hide");
+        $(".delete-image-sinopsis").modal("hide"); 
+        $(".modal-image-synopsis").modal("hide"); 
+        $(".delete-sinopsis").modal("hide");
+        $(".modal-edit-synopsis").modal("hide");
+    });
 
     /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla

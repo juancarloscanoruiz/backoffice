@@ -84,13 +84,13 @@
 
                         </div>
                         <div class= "d-flex justify-content-around">
-                                     <div class="mt-3 d-flex mr-5">
+                                     <div class="mt-3 d-flex ">
                                      <p class="text-normal a-text-bold-greyish-brown-two">Nombre_Sinópsis_CanalClaro_20200709.jpg</p>
                                     </div>
-                                    <div class="mt-3 d-flex mr-5">
+                                    <div class="mt-3 d-flex ">
                                     <p class="text-normal a-text-bold-greyish-brown-two">Nombre_Sinópsis_CanalClaro_20200709.jpg</p>
                                     </div>
-                                    <div class="mt-3 d-flex mr-5">
+                                    <div class="mt-3 d-flex ">
                                        <p class="text-normal a-text-bold-greyish-brown-two">Nombre_Sinópsis_CanalClaro_20200709.jpg</p>
                                     </div>
 
@@ -129,7 +129,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal">ACEPTAR</button>
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>

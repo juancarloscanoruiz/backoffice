@@ -1,6 +1,6 @@
 {
     "/js/admin.js": "/js/admin.js",
     "/js/main.js": "/js/main.js",
-    "/js/operaciones_grilla.js": "/js/operaciones_grilla.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/operaciones_grilla.js": "/js/operaciones_grilla.js"
 }

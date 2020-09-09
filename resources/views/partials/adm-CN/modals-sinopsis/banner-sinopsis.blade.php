@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
             <div class="modal-body">
-                <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER-SINOPSIS </h2>
+                <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER - SINOPSIS </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
                 <div class="dots-container mx-auto d-flex justify-content-between">
@@ -130,7 +130,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-claro">ACEPTAR</button>
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
