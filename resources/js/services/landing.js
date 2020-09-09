@@ -3402,6 +3402,8 @@ function getContentClaroCinema(type) {
                         }
                         break;
                     case "title-carrusel1":
+                        $("#ipt-titulo-cinema-2").remove("a-text-black-yellow-two");
+                        $("#ipt-titulo-cinema-2").addClass("a-text-bold-teal");
                         $(".modal-title-claro-cinema").text("carrusel 1");
                         $(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
                         $(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);

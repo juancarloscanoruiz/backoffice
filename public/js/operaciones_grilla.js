@@ -78501,6 +78501,8 @@ function getContentClaroCinema(type) {
             break;
 
           case "title-carrusel1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").remove("a-text-black-yellow-two");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").addClass("a-text-bold-teal");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 1");
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);

@@ -4496,8 +4496,6 @@ function eventsGrilla() {
         editPromoLandingCinema(data);
         resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
     });
-
-
 }
 
 export {
