@@ -1527,6 +1527,7 @@ function getProgrammingLanding(date, landing) {
         url: "landing/getProgrammingLanding",
         success: function (result) {
             let json = JSON.parse(result);
+            debugger;
             console.log(json);
             if (json.code == 200) {
                 let programming = "";
@@ -1747,7 +1748,7 @@ function getModalsCanalClaro(type) {
                                     <label for="image_programming_${counter}"
                                         class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
-                                            class=" cursor-pointer add-photo " />
+                                            class="cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
                                             obj.data[
@@ -1975,6 +1976,7 @@ function editHeaderLandingClaro(data) {
         },
         url: "landing/editHeaderLandingClaro",
         success: function (result) {
+            debugger;
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -2608,7 +2610,7 @@ function getPromotionalsProgramsCarousel(
                                             placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <!--Sinopsis-->
@@ -2662,7 +2664,7 @@ function getPromotionalsProgramsCarousel(
                                         placeholder="YYYY" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-3">
@@ -2713,7 +2715,7 @@ function getPromotionalsProgramsCarousel(
                                         placeholder="PG-00" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-3">
@@ -2781,7 +2783,7 @@ function getPromotionalsProgramsCarousel(
                                 </div>
 
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-5">
@@ -3222,10 +3224,11 @@ function getContentClaroCinema(type) {
                 switch (type) {
                     // SLAIDER
                     case "slider-pagination":
-                        $('.modal-programming-carousel-cinema').modal("show");
                         let counter = 1;
                         let image = "";
-                        let programmingSlider = $('.programming-slider');
+                        let programmingSlider = $(
+                            ".programming-slider-claro-cinema"
+                        );
                         while (true) {
                             if (data.data[`block_1_image_slider_${counter}`]) {
                                 image += `
@@ -3234,7 +3237,11 @@ function getContentClaroCinema(type) {
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
                                     <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
-                                    <img src="${data.data["block_1_image_slider_" + counter]}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                    <img src="${
+                                        data.data[
+                                            "block_1_image_slider_" + counter
+                                        ]
+                                    }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                 </label>
                         </div>
                         `;
@@ -3244,16 +3251,14 @@ function getContentClaroCinema(type) {
                             }
                         }
                         programmingSlider.html(image);
-
-                        /* *** */
+                        $(".modal-programming-carousel-cinema").modal("show");
                         try {
-                            debugger
                             programmingSlider.slick("unslick");
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
-                                    ".programming-slider"
+                                    ".programming-slider-dots-cinema"
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
@@ -3267,16 +3272,17 @@ function getContentClaroCinema(type) {
                                 }
                             });
                         } catch (error) {
-                            programmingSlider.not('.slick-initialized').slick({
+                            console.log(error);
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
                                 appendDots: $(
-                                    ".programming-slider-dots-canal-claro"
+                                    ".programming-slider-dots-cinema"
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
+                                    let thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
                                         (i + 1) +
@@ -3285,16 +3291,9 @@ function getContentClaroCinema(type) {
                                 }
                             });
                         }
-
-                        $(".banner-slider-button").click(function () {
-                            /*
-                                Arreglo para saber la posición de las imágenes que cargo el usuario
-                                es decir, saber si subió la 1 y 3, o 2,3 etc.
-                            */
+                        $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
-                            //Arreglo para guardar imágenes de los usuarios
                             let imagesProgramming = [];
-                            //Recorremos cada input para obtener las imágenes
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
@@ -3303,9 +3302,7 @@ function getContentClaroCinema(type) {
                                 }
                                 imagesProgramming.push(this.files[0]);
                             });
-
                             let data = new FormData();
-                            //Hacemos un for para mandar file1, file2, etc. en el form data
                             for (
                                 let index = 0; index < imagesProgramming.length; index++
                             ) {
@@ -3313,16 +3310,19 @@ function getContentClaroCinema(type) {
                                 file = file.toString();
                                 data.append(file, imagesProgramming[index]);
                             }
-                            //Posiciones de las imágenes
                             data.append("positions", imagesPositions);
-                            //Hora inicio y fin
                             data.append("date", $("#date-start-input").val());
-                            data.append("landing", "Canal Claro");
+                            data.append("landing", "Claro Cinema");
                             setImageSliderBanner(data);
                         });
-                        /* *** */
-
+                        $("#close_modals").click(function () {
+                            console.log("cerreer");
+                            $(".modal").modal("hide");
+                            $("#modaledi").modal("hide");
+                            $(".modal").modal("hide");
+                        });
                         break;
+                        // HEADER
                         // SLAIDER
 
                     case "header-landing-cinema":
@@ -3338,6 +3338,7 @@ function getContentClaroCinema(type) {
                         $(".link-button-header-cinema").val(
                             data.data.block_2_button_url
                         );
+                        $(".input-url-modal").val(data.data.block_2_button_url);
                         let logo =
                             data.data.block_2_icon_channel ||
                             "./images/synopsis/image-synopsis-horizontal.png";
@@ -3465,9 +3466,15 @@ function editPromoLandingClaro(data) {
 }
 
 function getProgrammingSynopsis(landing, date) {
-
     $.ajax({
         type: "POST",
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
         data: {
             date
         },
@@ -3496,47 +3503,42 @@ function getProgrammingSynopsis(landing, date) {
                             <span class="a-text-MBlack a-text-prev">Landing</span>
                         </div>
                     </div>
-                    `
+                    `;
                 switch (landing) {
-
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
-                        container = $('#synopsis-table-canal-claro');
+                        container = $("#synopsis-table-canal-claro");
                         break;
                     case "concert-channel":
                         programming = json.data[1].programing[0].programs;
-                        container = $('#synopsis-table-concert-channel');
+                        container = $("#synopsis-table-concert-channel");
                         break;
                     case "claro-cinema":
                         programming = json.data[2].programing[0].programs;
-                        container = $('#synopsis-table-claro-cinema');
+                        container = $("#synopsis-table-claro-cinema");
                         break;
                     default:
                         break;
-
                 }
 
-
-
-
-                let row = ""
+                let row = "";
                 let colorText = "";
                 let colorTextSynopsis = "";
-                let labelActive = ""
+                let labelActive = "";
                 for (const program of programming) {
-
                     if (program.sinopsis_info.sinopsis_len <= 21) {
-                        colorTextSynopsis = "a-text-semibold-tomato"
-                    } else if (program.sinopsis_info.sinopsis_len > 21 && program.sinopsis_info.sinopsis_len < 144) {
+                        colorTextSynopsis = "a-text-semibold-tomato";
+                    } else if (
+                        program.sinopsis_info.sinopsis_len > 21 &&
+                        program.sinopsis_info.sinopsis_len < 144
+                    ) {
                         colorTextSynopsis = "a-text-semibold-orange";
-
                     } else {
-                        colorTextSynopsis = "a-text-semibold-greyish-brown-two"
-
+                        colorTextSynopsis = "a-text-semibold-greyish-brown-two";
                     }
 
                     if (program.sinopsis_info.cant_imagenes <= 4) {
-                        colorText = "a-text-semibold-tomato"
+                        colorText = "a-text-semibold-tomato";
                         labelActive = `
                         <label for="yes-synopsis" id="yes-synopsis"
                         class="mb-0 si-estilo cursor-pointer switch-label">
@@ -3545,7 +3547,10 @@ function getProgrammingSynopsis(landing, date) {
                         class="mb-0 no-estilo label-active cursor-pointer switch-label">
                         No</label>
                         `;
-                    } else if (program.sinopsis_info.cant_imagenes > 4 && program.sinopsis_info.cant_imagenes < 8) {
+                    } else if (
+                        program.sinopsis_info.cant_imagenes > 4 &&
+                        program.sinopsis_info.cant_imagenes < 8
+                    ) {
                         colorText = "a-text-semibold-orange";
                         labelActive = `
                         <label for="yes-synopsis" id="yes-synopsis"
@@ -3556,7 +3561,7 @@ function getProgrammingSynopsis(landing, date) {
                         No</label>
                         `;
                     } else {
-                        colorText = "a-text-semibold-greyish-brown-two"
+                        colorText = "a-text-semibold-greyish-brown-two";
                         labelActive = `
                         <label for="yes-synopsis" id="yes-synopsis"
                         class="mb-0 label-active si-estilo cursor-pointer switch-label">
@@ -3578,7 +3583,7 @@ function getProgrammingSynopsis(landing, date) {
                             <span class="${colorText} text-normal ">${program.sinopsis_info.cant_imagenes}/8</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus edi mr-3" />
+                            <input chapter_id="${program.chapter_id}" type="image" src="./images/lapiz-acti.svg" alt="" class="edit-synopsis-pencil btn-focus sinopsis edi mr-3" />
                             <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
                         </div>
                         <div class="contenedor-columna centro ">
@@ -3588,21 +3593,56 @@ function getProgrammingSynopsis(landing, date) {
                         </div>
                     </div>
 
-                    `
+                    `;
                 }
 
                 container.html(`
                 ${header}
                 ${row}
-                `)
-
-                $(".sinopsis").click(function () {
-                    $(".modal-landing-sinopsis").modal("show");
-                });
+                `);
             }
-
+            $(".loader-view-container").remove();
+            $(".sinopsis").click(function () {
+                console.log("si");
+                $(".modal-landing-sinopsis").modal("show");
+            });
         }
     });
+}
+
+async function getSynopsis(chapter_id) {
+    let options = {
+        method: "POST",
+        body: JSON.stringify({
+            chapter_id
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+        }
+    };
+    let response = await fetch("landing/getSynopsis", options);
+    let data = await response.json();
+
+    return data;
+}
+
+async function editAttributeSynopsis(chapter_id, key, keyValue) {
+    let options = {
+        method: "POST",
+        body: JSON.stringify({
+            chapter_id,
+            key,
+            keyValue
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+        }
+    };
+    let response = await fetch("program/editSynopsis", options);
+    let data = await response.json();
+    return data;
 }
 
 // CLARO CANAL
@@ -3630,5 +3670,7 @@ export {
     editElementLandingClaro,
     getContentClaroCinema,
     editPromoLandingClaro,
-    getContentConcertChannel
+    getContentConcertChannel,
+    getSynopsis,
+    editAttributeSynopsis
 };

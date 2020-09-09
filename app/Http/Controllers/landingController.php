@@ -410,12 +410,28 @@ class landingController extends Controller
     // HEADER
     public function editHeaderLandingClaro(Request $request)
     {
+        $folderLanding = "";
+        switch ($request->input("landing")) {
+            case 'Canal Claro':
+                $folderLanding = "canal-claro";
+                break;
+            case 'Concert Channel':
+                $folderLanding = "concert-channel";
+                break;
+            case 'Claro Cinema':
+                $folderLanding = "claro-cinema";
+                break;
+
+            default:
+                # code...
+                break;
+        }
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $logo = "";
         if ($request->file('logo')) {
-            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/canal-claro/logos");
+            $logo = $this->storeImages("logoLanding", $request->file('logo'), "public/" . $folderLanding . "/logos");
         }
         $response = $client->post(
             $this->url . "section/editBlockProgramingLanding",
@@ -575,11 +591,23 @@ class landingController extends Controller
         echo ($respuesta);
     }
 
-    function getProgrammingSynopsisTable(Request $request){
+    function getProgrammingSynopsisTable(Request $request)
+    {
         $client = new Client();
         $response = $client->get(
             $this->url . "program/getSinospsisTable/" . $request->input("date")
         );
         echo ($response->getBody()->getContents());
+    }
+
+    function getSynopsis(Request $request)
+    {
+
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSynopsis/" . $request->input("chapter_id")
+        );
+
+        return $response->getBody()->getContents();
     }
 }

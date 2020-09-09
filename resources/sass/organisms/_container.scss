@@ -412,7 +412,15 @@ iframe {
     height: 461px;
     
 }
+.edit-text-synopsis{
+    resize: none;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    height: 85%;
+    outline: none !important;
 
+}
 
 .container-promo-cinema {
 
@@ -424,6 +432,7 @@ iframe {
     background-color: $light-gold;
     border: $light-gold;
     box-shadow: 0 2px 4px 0 $black-two;
+    padding-left: 10px;
 
 }
 
