@@ -1504,6 +1504,33 @@ function editPromoLanding(data) {
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".modal-promos-concert").modal("hide");
+                $(".modal-promo-cinema").modal("hide");
+            }
+            $(".loader-view-container").remove();
+        }
+    });
+}
+
+function editPromoLandingCinema(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editPromoLandingCinema",
+        success: function (result) {
+            console.log(result);
+            let json = JSON.parse(result);
+            if (json.code == 200) {
+                $(".modal-promos-concert").modal("hide");
+                $(".modal-promo-cinema").modal("hide");
             }
             $(".loader-view-container").remove();
         }
@@ -1527,7 +1554,6 @@ function getProgrammingLanding(date, landing) {
         url: "landing/getProgrammingLanding",
         success: function (result) {
             let json = JSON.parse(result);
-            debugger
             console.log(json);
             if (json.code == 200) {
                 let programming = "";
@@ -1859,9 +1885,7 @@ function getModalsCanalClaro(type) {
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
-                        $(".inp-sub-title-modal").val(
-                            obj.data.block_3_subtitle
-                        );
+                        $(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
@@ -1976,7 +2000,6 @@ function editHeaderLandingClaro(data) {
         },
         url: "landing/editHeaderLandingClaro",
         success: function (result) {
-            debugger
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -3337,15 +3360,12 @@ function getContentClaroCinema(type) {
                         break;
                     case "title-cinema":
                         $(".modal-title-claro-cinema").text("título");
-                        $(".modal-input-title1-cinema").val(
-                            data.data.block_3_title_1
-                        );
-                        $(".modal-input-title2-cinema").val(
-                            data.data.block_3_title_2
-                        );
-                        $(".modal-input-subtitle-cinema").val(
-                            data.data.block_3_subtitle
-                        );
+                        $(".modal-input-title1-cinema").val(data.data.block_3_title_1);
+                        $(".modal-input-title1-cinema").attr("key", "block_3_title_1");
+                        $(".modal-input-title2-cinema").val(data.data.block_3_title_2);
+                        $(".modal-input-title2-cinema").attr("key", "block_3_title_2");
+                        $(".modal-input-subtitle-cinema").val(data.data.block_3_subtitle);
+                        $(".modal-input-subtitle-cinema").attr("key", "block_3_subtitle");
                         $(".modal-title-cinema").modal("show");
                         break;
 
@@ -3382,28 +3402,27 @@ function getContentClaroCinema(type) {
                         }
                         break;
                     case "title-carrusel1":
-                        $(".input-carrusel1-title1-cinema").val(
-                            data.data.block_4_carrusel_1_title_1
-                        );
-                        $(".input-carrusel1-title2-cinema").val(
-                            data.data.block_4_carrusel_1_title_2
-                        );
-                        $(".input-carrusel1-subtitle-cinema").val(
-                            data.data.block_4_carrusel_1_subtitle
-                        );
-                        $(".modal-title-carrusel1").modal("show");
+                        $("#ipt-titulo-cinema-2").remove("a-text-black-yellow-two");
+                        $("#ipt-titulo-cinema-2").addClass("a-text-bold-teal");
+                        $(".modal-title-claro-cinema").text("carrusel 1");
+                        $(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
+                        $(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
+                        $(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
+                        $(".modal-input-title1-cinema").attr("key", "block_4_carrusel_1_title_1");
+                        $(".modal-input-title2-cinema").attr("key", "block_4_carrusel_1_title_2");
+                        $(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_1_subtitle");
+                        // $(".modal-title-carrusel1").modal("show");
+                        $(".modal-title-cinema").modal("show");
                         break;
                     case "title-carrusel2":
                         $(".modal-title-claro-cinema").text("carrusel 2");
-                        $(".modal-input-title1-cinema").val(
-                            data.data.block_4_carrusel_2_title_2
-                        );
-                        $(".modal-input-title2-cinema").val(
-                            data.data.block_4_carrusel_2_title_2
-                        );
-                        $(".modal-input-subtitle-cinema").val(
-                            data.data.block_4_carrusel_2_subtitle
-                        );
+                        $(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_1);
+                        $(".modal-input-title2-cinema").val(data.data.block_4_carrusel_2_title_2);
+                        $(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_2_subtitle);
+                        $(".modal-input-title1-cinema").attr("key", "block_4_carrusel_2_title_1");
+                        $(".modal-input-title2-cinema").attr("key", "block_4_carrusel_2_title_2");
+                        $(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_2_subtitle");
+                        // $(".modal-title-cinema").modal("show");
                         $(".modal-title-cinema").modal("show");
                         break;
 
@@ -3582,6 +3601,7 @@ export {
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
     editElementLanding,
+    editPromoLandingCinema,
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,

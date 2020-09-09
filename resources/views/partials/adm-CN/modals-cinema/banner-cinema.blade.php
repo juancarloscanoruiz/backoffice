@@ -1,6 +1,6 @@
 <div class="modal modal-programming-carousel-cinema modal-programming-carousel-claro modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
-        <div class="modal-content">
+        <div class="modal-content max-width-modal-xl">
             <div class="modal-body">
 
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
@@ -40,7 +40,7 @@
                 </div>
 
                 <!--Slider-->
-                <div class="programming-slider-claro-cinema mx-auto">
+                <div class="programming-slider-claro-cinema programming-slider-canal-claro mx-auto">
 
                     <div class="bor thumbnail-image-program position-relative h-100">
                         <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">

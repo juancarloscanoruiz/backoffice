@@ -386,6 +386,34 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
+    public function editPromoLandingCinema(Request $request)
+    {
+        $value = $request->input('value');
+        if ($request->file('promo')) {
+            $value = $this->storeImages("PromoLanding", $request->file('promo'), "public/claro-cinema/promo");
+        }
+        if ($request->input('promo')) {
+            $value = $request->input('promo');
+        }
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $value,
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
     public function getProgrammingLanding(Request $request)
     {
         $client = new Client();
@@ -476,6 +504,7 @@ class landingController extends Controller
         $client = new Client();
         $response = $client->get(
             $this->url . "section/claro_cinema"
+            // $this->url . "section/canal_claro"
         );
 
         echo ($response->getBody()->getContents());
@@ -494,16 +523,32 @@ class landingController extends Controller
     // PROMO
     public function editPromoLandingClaro(Request $request)
     {
+        $folderLanding = "";
+        switch ($request->input("landing")) {
+            case 'Canal Claro':
+                $folderLanding = "canal-claro";
+                break;
+            case 'Concert Channel':
+                $folderLanding = "concert-channel";
+                break;
+            case 'Claro Cinema':
+                $folderLanding = "claro-cinema";
+                break;
+
+            default:
+                # code...
+                break;
+        }
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $img = "";
         $video = "";
         if ($request->file('img')) {
-            $img = $this->storeImages("canal-claro-promo", $request->file('img'), "/public/canal-claro/promo");
+            $img = $this->storeImages("canal-claro-promo", $request->file('img'), 'public/' + $folderLanding + '/promo');
         }
         if ($request->file('video')) {
-            $video = $this->storeImages("canal-claro-promo", $request->file('video'), 'public/canal-claro/promo');
+            $video = $this->storeImages("canal-claro-promo", $request->file('video'), 'public/' + $folderLanding + '/promo');
         }
         if ($img != "") {
             $response = $client->post(
