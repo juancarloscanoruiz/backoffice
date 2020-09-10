@@ -110,7 +110,9 @@ $(document).ready(function () {
         }, 3000);
     });
 
-
+    $("#close_modals-claro").click(function () {
+        $(".modal").modal("hide");
+    });
     //para mostrar un modal de url-promo encima del otro
     $(".url-promo").on("show.bs.modal", function () {
         var modalParent = $(this).attr("data-modal-parent");

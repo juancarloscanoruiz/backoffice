@@ -32,6 +32,7 @@ import {
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
     editElementLanding,
+    editPromoLandingCinema,
     getConcertChannelPromo,
     editPromoLanding,
     getProgrammingLanding,
@@ -44,7 +45,8 @@ import {
     getContentClaroCinema,
     getProgrammingSynopsis,
     getSynopsis,
-    editAttributeSynopsis
+    editAttributeSynopsis,
+    updateImagesSynopsis
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -165,36 +167,131 @@ function eventsGrilla() {
 
                 switch (json.type) {
                     case "slider-pagination":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-programming-sinopsis").modal("show");
-                            $(".programming-slider-sinopsis").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(
-                                    ".programming-slider-dots-sinopsis"
-                                ),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        let data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let programminfSliderSynopsis = $(".programming-slider-sinopsis");
+                                let index = 1;
+                                let slide = ""
+                                let image = ""
+                                while (true) {
+                                    if (data.data[`image_background_${index}`] !== undefined) {
+                                        image = data.data[`image_background_${index}`]
+                                        if (data.data[`image_background_${index}`] == null) {
+                                            image = "./images/synopsis/image-synopsis-carrusel.jpg"
+                                        }
+                                        slide += `
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                        <input type="file" id="image_banner_synopsis_${index}"
+                                        class="input-image-program d-none image_programming" data-index="1">
+                                        <label for="image_banner_synopsis_${index}"
+                                        class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                        <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                        class=" cursor-pointer add-photo " />
+                                        <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
+                                        <img src="${image}"
+                                        class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                        </label>
+                                        </div>
+                                        `
+                                        index++
+
+                                    } else {
+                                        break;
+                                    }
                                 }
-                            });
-                            $("#loader1").remove();
-                        }, 3000);
+                                programminfSliderSynopsis.html(slide);
+                                $(".modal-programming-sinopsis input").val("");
+                                $(".modal-programming-sinopsis").modal("show");
+                                try {
+                                    programminfSliderSynopsis.slick("unslick");
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(slider.$slides[i]).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                } catch (error) {
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(slider.$slides[i]).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                }
+                                let buttonSynopsisBannerModal = $("#banner-sinopsis-modal-button")
+                                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id)
+                                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id)
+                                //Previsualizar una imagen en el banner
+                                $(".modal-programming-sinopsis .input-image-program").change(function () {
+                                    let currentInput = $(this);
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+
+                                            currentInput
+                                                .next()
+                                                .children(".prev-image-program")
+                                                .attr("src", e.target.result)
+                                                .addClass("h-100 w-100")
+                                                .css("z-index", "2");
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"])
+                                        buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"])
+                                    }
+                                });
+                            }
+                            $('.loader-view-container').remove();
+                        })
+
+
 
                         break;
                     case "synopsis-main-image":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-image-synopsis").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg"
+                                $(".loader-view-container").remove();
+                                $('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
+                                $('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
+                                $('.image-synopsis-modal').attr("src", image);
+                                $(".modal-image-synopsis").modal("show");
+                            }
+                        });
 
                         break;
 
@@ -204,7 +301,7 @@ function eventsGrilla() {
                                 <img src="./images/loader.gif" class="loader"/>
                             </div>`
                         );
-                        let data = getSynopsis(json.id);
+                        data = getSynopsis(json.id);
                         data.then(data => {
                             if (data.code == 200) {
                                 console.log("titutlo", data.data.subtitle);
@@ -255,6 +352,10 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+
+
+
+    //Editar sinopsis en landing de sinopsis
     $('#edit-synopsis-modal-button').click(function () {
         $("body").append(
             `<div class="loader-view-container pointer-none">
@@ -295,7 +396,37 @@ function eventsGrilla() {
             }
         );
     }
+    //Editar imagen principal en landing de sinopsis
+    $('#upload-image-synopsis').click(function () {
+        let imageSynopsis = document.getElementById('image-synopsis').files[0];
+        let landingId = $(this).attr("landing_id");
+        let chapterId = $(this).attr("chapter_id");
+        let data = new FormData();
+        data.append("image-synopsis", imageSynopsis);
+        data.append("landing_id", landingId)
+        data.append("chapter_id", chapterId)
+        updateImagesSynopsis(data)
+        let response = getSynopsis(chapterId);
+        socketSynopsis.postMessage(response);
+        //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+    })
 
+    $("#banner-sinopsis-modal-button").click(function () {
+        let imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
+        let imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
+        let imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
+        let landingId = $(this).attr("landing_id");
+        let chapterId = $(this).attr("chapter_id");
+        let data = new FormData();
+        data.append("image-synopsis-1", imageSynopsis1);
+        data.append("image-synopsis-2", imageSynopsis2);
+        data.append("image-synopsis-3", imageSynopsis3);
+        data.append("landing_id", landingId)
+        data.append("chapter_id", chapterId)
+        updateImagesSynopsis(data)
+        let response = getSynopsis(chapterId);
+        socketSynopsis.postMessage(response);
+    })
     //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
@@ -2905,10 +3036,10 @@ function eventsGrilla() {
 
     $(".input-image-program").change(function () {
         let currentInput = $(this);
-        console.log(currentInput);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
+
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -3251,6 +3382,14 @@ function eventsGrilla() {
     //cerrar los dos modales
     $("#close_modals-claro").click(function () {
         $(".modal").modal("hide");
+    });
+    $("#close_modals-sinopsis").click(function () {
+        $("#delete-info-sinopsis").modal("hide");
+        $(".modal-programming-sinopsis").modal("hide");
+        $(".delete-image-sinopsis").modal("hide");
+        $(".modal-image-synopsis").modal("hide");
+        $(".delete-sinopsis").modal("hide");
+        $(".modal-edit-synopsis").modal("hide");
     });
 
     /* Al dar "enter" cancelamos el salto de línea,
@@ -4236,12 +4375,6 @@ function eventsGrilla() {
             new easyXDM.Socket(landingCanalClaro);
         });
     }
-    // BTN MODAL TEST
-    $("#btn-test").click(function () {
-        $("#modal-carrusel1").modal("show");
-        // getModalCarrusel1(json.type)
-        getModalCarrusel1("claro-carrusel1");
-    });
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
         $("#modal-url").modal("show");
@@ -4453,7 +4586,7 @@ function eventsGrilla() {
 
     // HEADER EDIT CANAL CLARO
     $("#btn-acepta-modal-header-cinema").click(function () {
-        debugger;
+
         let landing = "Claro Cinema";
         let title1 = $("#ipt-heade").val() || "";
         let title2 = $("#ipt-heade-1").val() || "";
@@ -4472,6 +4605,91 @@ function eventsGrilla() {
         );
     });
     // HEADER EDIT CANAL CLARO
+    // TITLE EDIT CANAL CLARO
+    $("#edit-titulos-cinema").click(function () {
+        // TITULO
+        let value = $("#ipt-titulo-cinema-1").val();
+        let key = $("#ipt-titulo-cinema-1").attr("key");
+        let landing = "Claro Cinema";
+        editElementLandingClaro({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        // SUB TITULO
+        let valueSub = $("#ipt-titulo-cinema-2").val();
+        let keySub = $("#ipt-titulo-cinema-2").attr("key");
+        editElementLandingClaro({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+        // SUB TITULO 2
+        let valueSub2 = $("#ipt-titulo-cinema-3").val();
+        let keySub2 = $("#ipt-titulo-cinema-3").attr("key");
+        editElementLandingClaro({
+            value: valueSub2,
+            key: keySub2,
+            landing: landing
+        });
+        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+    });
+    // TITLE EDIT CANAL CLARO
+    // IMG DE PROMO
+    $("#image-promo-concert").change(function () {
+        FilePromoImg(this);
+    });
+    // IMG DE PROMO CARGAR
+    function FilePromoImg(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $("#cinema-promo-container").html(
+                    '<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">'
+                );
+            };
+        }
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+        $(".loader-view-container").remove();
+    }
+    // VIDEO DE PROMO
+    $("#video-promo-file-concert").change(function () {
+        FilePromoVideo(this);
+    });
+    // VIDEO DE PROMO CARGAR
+    function FilePromoVideo(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $("#cinema-promo-container").html(
+                    '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>'
+                );
+                $(".loader-view-container").remove();
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    // HEADER EDIT CANAL CLARO
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-promo-cinema").click(function () {
+        let file = "";
+        if (document.getElementById("video-promo-file-concert").files[0]) {
+            file = document.getElementById("video-promo-file-concert").files[0];
+        } else if (document.getElementById("image-promo-concert").files[0]) {
+            file = document.getElementById("image-promo-concert").files[0];
+        } else {
+            file = $("#link-promo-concert").val();
+        }
+
+        let landing = "Claro Cinema";
+        let data = new FormData();
+        let key = "block_3_video_url";
+        data.append("promo", file);
+        data.append("landing", landing);
+        data.append("key", key);
+        editPromoLandingCinema(data);
+        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+    });
 }
 
 export {

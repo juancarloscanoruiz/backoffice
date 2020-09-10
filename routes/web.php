@@ -91,12 +91,14 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
     Route::post("/getProgrammingSynopsisTable", "landingController@getProgrammingSynopsisTable");
     Route::post("/getSynopsis", "landingController@getSynopsis");
+    Route::post("/updateImagesSynopsis", "landingController@updateImages");
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
+    Route::post("/editPromoLandingCinema", "landingController@editPromoLandingCinema");
 
     // MODAL CLARO
 });

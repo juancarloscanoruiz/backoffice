@@ -37,12 +37,12 @@
                     </div>
                     </div>
 
-</div>
+                    </div>
                 <div class="text-center  mb-3 d-flex justify-content-center pb-2 mt-4">
                     <button
                         class="d-flex m-0  mr-3 button-modal-concert-channel btn-landing disabled-btn a-btn-basic-small text-uppercase text-plus a-text-bold-teal edit-titles-modal"
                         id="edit-titles-landing-concert" data-dismiss="modal">ACEPTAR</button>
-                    <a href="#delete-info-synopsis" role="button"
+                    <a href="#delete-info-si" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                         data-toggle="modal">CANCELAR</a>
                 </div>
@@ -50,8 +50,9 @@
         </div>
     </div>
 </div>
+
 <!--modal para perder lo hecho en los landing de edit-->
-<div class=" modal  delete-info-synopsis" data-backdrop-limit="1" id="delete-info-synopsis" tabindex="-1" role="dialog"
+<div class=" modal  delete-info-si" data-backdrop-limit="1" id="delete-info-si" tabindex="-1" role="dialog"
     data-modal-parent="#modalpromos">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
@@ -63,7 +64,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis"
                   >ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"

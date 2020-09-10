@@ -7173,6 +7173,11 @@ iframe {
   height: 100%;
 }
 
+.max-width-modal-xl {
+  max-width: 1350px;
+  margin: auto;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
