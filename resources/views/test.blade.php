@@ -51,7 +51,6 @@
     }
 </style>
 
-@include('partials.adm-CN.modals-cinema.banner-cinema')
-@include('partials.adm-CN.modals-cinema.encabezado-cinema')
-@include('partials.adm-CN.modals-cinema.modal-advertencia')
-@include('partials.adm-CN.modals-cinema.modal-url')
+@include('partials.adm-CN.modal-home.logo')
+@include('partials.adm-CN.modal-generic.advertencia')
+@include('partials.adm-CN.modal-generic.url')

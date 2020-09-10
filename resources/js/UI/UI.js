@@ -17,7 +17,8 @@ import {
     eventsGrilla
 } from "../operaciones_grilla";
 import {
-    getProgrammingSynopsis
+    getProgrammingSynopsis,
+    confLandingHome
 } from "../services/landing.js";
 import {
     createSlickSlider,
@@ -217,8 +218,8 @@ function createNavbarProgramacionGeneral() {
         $(this).addClass("navbar-progra-active");
         if ($(this).hasClass("navbar-canal-claro")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
-        } else if ($(this).hasClass("navbar-sinopsis")) {            
-            changeContentProgramacionGeneral($(this).attr("rel"));                                
+        } else if ($(this).hasClass("navbar-sinopsis")) {
+            changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-programacion")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
@@ -301,7 +302,7 @@ function createNavbarProgramacionGeneral() {
 function changeContentProgramacionGeneral(nameSection) {
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
-    if(nameSection == "navbar-prev-sinopsis"){
+    if (nameSection == "navbar-prev-sinopsis") {
         try {
             let calendarsinopsis = $(".calendar-sinopsis-slider");
             calendarsinopsis.slick("unslick");
@@ -315,8 +316,8 @@ function changeContentProgramacionGeneral(nameSection) {
                 prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
                 nextArrow: '<img src="./images/next.png" class="arrow-next" />'
             });
-            
-            
+
+
         } catch (error) {
             $(".calendar-sinopsis-slider").slick({
                 slidesToShow: 11,
@@ -691,6 +692,9 @@ function showLandingSchedule(id) {
                     $("#general-programming")
                         .html(result)
                         .promise();
+                        // let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+                        let baseURL = "https://localhost/MaquetaCNetworks/"
+                        confLandingHome(baseURL);
                 }
             });
             break;
