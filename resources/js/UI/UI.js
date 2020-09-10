@@ -17,7 +17,8 @@ import {
     eventsGrilla
 } from "../operaciones_grilla";
 import {
-    getProgrammingSynopsis
+    getProgrammingSynopsis,
+    confLandingHome
 } from "../services/landing.js";
 import {
     createSlickSlider,
@@ -691,6 +692,9 @@ function showLandingSchedule(id) {
                     $("#general-programming")
                         .html(result)
                         .promise();
+                        // let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+                        let baseURL = "https://localhost/MaquetaCNetworks/"
+                        confLandingHome(baseURL);
                 }
             });
             break;

@@ -3627,6 +3627,7 @@ function getProgrammingSynopsis(landing, date) {
             });
 
 
+
         }
     });
 }
@@ -3687,12 +3688,37 @@ function updateImagesSynopsis(data) {
                 console.log("imágenes subidas correctamente", json)
             }
 
+
             $(".loader-view-container").remove();
         }
     });
 }
 
-// CLARO CANAL
+// HOME
+function confLandingHome(baseURL) {
+    debugger
+    let confLandingHome = {
+        remote: `${baseURL}home-edi.php`,
+        container: document.getElementById("navbar_prev_home_landing"),
+        onMessage: function (message, origin) {
+            debugger
+            let json = JSON.parse(message);
+            console.log(json);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    }
+
+    let navbarPrevHome = document.getElementById("navbar_prev_home_landing");
+    if (navbarPrevHome) {
+        console.log('Llamando iframe')
+        $("#navbar_prev_home_landing iframe").remove();
+        new easyXDM.Socket(confLandingHome);
+    }
+}
+// HOME
+
+
 
 export {
     getProgrammingSynopsis,
@@ -3721,5 +3747,7 @@ export {
     getContentConcertChannel,
     getSynopsis,
     editAttributeSynopsis,
-    updateImagesSynopsis
+    updateImagesSynopsis,
+    confLandingHome
+
 };
