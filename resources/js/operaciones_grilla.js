@@ -43,7 +43,8 @@ import {
     editElementLandingClaro,
     editPromoLandingClaro,
     getContentClaroCinema,
-    getProgrammingSynopsis
+    getProgrammingSynopsis,
+    confLandingHome
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -209,21 +210,21 @@ function eventsGrilla() {
 
 
                         break;
-                        case "synopsis-images-container":
-                            $("body").append(loader);
-                            setTimeout(function () {
-                                $('.modal-synopsis-images-container').modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
-                            case "synopsis-datails-container":
-                                $("body").append(loader);
-                                setTimeout(function () {
-                                    $('.modal-info-synopsis').modal("show");
-                                    $("#loader1").remove();
-                                }, 3000);
-                                break;
-                   
+                    case "synopsis-images-container":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-synopsis-images-container').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "synopsis-datails-container":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-info-synopsis').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+
                     default:
                         break;
                 }
@@ -243,7 +244,7 @@ function eventsGrilla() {
 
     //Landing de concert channel
     let confLandingClaroCinema = {
-        remote: `${baseURL}claro-cinema-edi.php`,
+        remote: `${baseURL}home-edi.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -3204,8 +3205,8 @@ function eventsGrilla() {
     $("#close_modals-sinopsis").click(function () {
         $("#delete-info-sinopsis").modal("hide");
         $(".modal-programming-sinopsis").modal("hide");
-        $(".delete-image-sinopsis").modal("hide"); 
-        $(".modal-image-synopsis").modal("hide"); 
+        $(".delete-image-sinopsis").modal("hide");
+        $(".modal-image-synopsis").modal("hide");
         $(".delete-sinopsis").modal("hide");
         $(".modal-edit-synopsis").modal("hide");
     });
@@ -4381,8 +4382,10 @@ function eventsGrilla() {
     // CANAL CLARO
 
     $('#btn_pruebas').click(function () {
+        console.log('click');
         // getContentClaroCinema('header-landing-cinema')
-        getContentClaroCinema('slider-pagination')
+        // getContentClaroCinema('slider-pagination')
+        $('#modal-logo-home').modal('show');
     });
 
     // CARGAR IMG HEADER
@@ -4504,6 +4507,35 @@ function eventsGrilla() {
         editPromoLandingCinema(data);
         resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
     });
+
+    // HOME
+    $("#logo_home").change(function () {
+        viewImg(this, "#img-logo-home");
+        viewEdit();
+    });
+    function viewImg(objFileInput, container) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+                $(container).attr('src', e.target.result);
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            $("#loader1").remove();
+        }
+    }
+    function viewEdit() {
+        $('#camera').attr('src','./images/lapiz-acti.svg')
+    }
+    $('#modal_url').click(function () {
+        console.log('click');
+        $('#url').modal('show');
+    });
+    $('#inp_url').click(function () {
+        console.log('click');
+        $('#url').modal('show');
+    });
+
+    // HOME
 }
 
 export {

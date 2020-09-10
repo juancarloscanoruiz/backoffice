@@ -3484,13 +3484,13 @@ function getProgrammingSynopsis(landing, date) {
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
-        },     
+        },
         data: {
             date
         },
         url: "landing/getProgrammingLanding",
         success: function (result) {
-          
+
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -3576,17 +3576,41 @@ function getProgrammingSynopsis(landing, date) {
                 `);
             }
             $(".loader-view-container").remove();
-            $(".sinopsis").click(function(){
+            $(".sinopsis").click(function () {
                 console.log("si");
                 $(".modal-landing-sinopsis").modal("show");
-                });
-               
+            });
+
 
         }
     });
 }
 
-// CLARO CANAL
+// HOME
+function confLandingHome(baseURL) {
+    debugger
+    let confLandingHome = {
+        remote: `${baseURL}home-edi.php`,
+        container: document.getElementById("navbar_prev_home_landing"),
+        onMessage: function (message, origin) {
+            debugger
+            let json = JSON.parse(message);
+            console.log(json);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    }
+
+    let navbarPrevHome = document.getElementById("navbar_prev_home_landing");
+    if (navbarPrevHome) {
+        console.log('Llamando iframe')
+        $("#navbar_prev_home_landing iframe").remove();
+        new easyXDM.Socket(confLandingHome);
+    }
+}
+// HOME
+
+
 
 export {
     getProgrammingSynopsis,
@@ -3612,5 +3636,6 @@ export {
     editElementLandingClaro,
     getContentClaroCinema,
     editPromoLandingClaro,
-    getContentConcertChannel
+    getContentConcertChannel,
+    confLandingHome
 };

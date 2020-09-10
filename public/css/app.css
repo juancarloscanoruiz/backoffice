@@ -6390,7 +6390,6 @@ a:hover {
 }
 
 .input-url {
-  width: 165px;
   padding: 8px;
   border: 1px solid #ffffff;
   box-shadow: 1px 2px 4px #a4a4a4;
@@ -6579,14 +6578,6 @@ a:hover {
 
 /** ** ** */
 
-.btn-tomato,
-.btn-tomato:hover {
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 16px 35px;
-}
-
 /** ** BANNER ** **/
 
 .modal-banner-claro {
@@ -6688,6 +6679,57 @@ a:hover {
   height: 50%;
   align-items: center;
   width: 90%;
+}
+
+.modal-logo-home {
+  border-radius: 0;
+  padding: 1% 4%;
+  width: 1000px;
+  margin: auto;
+}
+
+.img-logo-home {
+  width: 350px;
+  left: 0%;
+}
+
+.modal-img-home {
+  top: 10px;
+  width: 350px;
+  height: 200px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.add-file p {
+  background: #fff;
+  border-radius: 7px;
+  padding: 7px 15px;
+  display: inline;
+  opacity: 0.8;
+}
+
+.ipt-home-canales {
+  width: 350px;
+  height: 70px;
+  box-shadow: 1px 2px 4px #a4a4a4;
+  font-family: "Montserrat-Regular";
+  padding-left: 5px;
+}
+
+.btn-red {
+  background: #da291c;
+  color: #ffffff;
+  padding: 11px 50px;
+  font-size: 20px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+}
+
+.width-url {
+  width: 115px;
 }
 
 .dropdown-menu {
