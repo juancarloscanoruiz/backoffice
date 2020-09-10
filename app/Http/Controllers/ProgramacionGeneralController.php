@@ -726,6 +726,25 @@ public function onlyday(Request $request)
         );
         var_dump($response->getBody()->getContents());
     }
+    public function editSynopsis(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/editChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    'key' => $request->input('key'),
+                    'value' => $request->input('keyValue'),
+                ]
+            )]
+        );
+        return $response->getBody()->getContents();
+    }
 
 
     /*

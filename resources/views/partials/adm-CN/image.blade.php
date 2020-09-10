@@ -196,7 +196,7 @@
     ?>
 
     <div class="position-relative">
-        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINÓPSIS - CARRUSEL</h3>
+        <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-5 mb-5"> SINOPSIS - CARRUSEL</h3>
         <div class="counter-images-program">
             <img src="../images/basic-icons/advertencia.svg" alt="signo de admiracion" class="mb-3 pt-1">
             <span class="a-text-bold-tomato h3">{{$countSynopsisSlider}}/3/9</span>

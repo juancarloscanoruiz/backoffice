@@ -635,4 +635,174 @@ class landingController extends Controller
         $respuesta =  $response->getBody()->getContents();
         echo ($respuesta);
     }
+
+    function getProgrammingSynopsisTable(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSinospsisTable/" . $request->input("date")
+        );
+        echo ($response->getBody()->getContents());
+    }
+
+    function getSynopsis(Request $request)
+    {
+
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSynopsis/" . $request->input("chapter_id")
+        );
+
+        return $response->getBody()->getContents();
+    }
+    public function storeImagesSynopsis($id, $landing, $title, $file, $type)
+    {
+
+        $extension = $file->extension();
+        //$path = substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $decrypted . "_" . $type . "" . "." . $extension), 7);
+        $path = url('/storage') . "/" . substr($file->storeAs("public/" . $landing . "/" . $type . "", str_replace(" ", "", $title) . $id . "_" . $type . "" . "." . $extension), 7);
+        return $path;
+    }
+
+    public function updateImages(Request $request)
+    {
+
+        $chapterId = $request->input('chapter_id');
+        $pathSynopsis3 = "";
+        $pathSynopsis2 = "";
+        $pathSynopsis1 = "";
+        $pathSynopsis = "";
+        $pathImageVertical = "";
+        $pathImageHorizontal = "";
+        $pathImageSlider1 = "";
+        $pathImageSlider2 = "";
+        $pathImageSlider3 = "";
+        $landingId = $request->input('landing_id');
+        switch ($landingId) {
+            case 1:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-vertical"), "vertical");
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_1"), "slider1");
+                }
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_2"), "slider2");
+                }
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImagesSynopsis($request->input('id'), "canal-claro", $request->input('title'), $request->file("image_background_3"), "slider3");
+                }
+                break;
+            case 2:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-vertical"), "vertical");
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_1"), "slider1");
+                }
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_2"), "slider2");
+                }
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImagesSynopsis($request->input('id'), "concert-channel", $request->input('title'), $request->file("image_background_3"), "slider3");
+                }
+                break;
+            case 3:
+                if ($request->file('image-vertical')) {
+                    $pathImageVertical = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-vertical"), "vertical");
+                }
+                if ($request->file('image-horizontal')) {
+                    $pathImageHorizontal = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-horizontal"), "horizontal");
+                }
+
+                if ($request->file('image-synopsis')) {
+                    $pathSynopsis = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis"), "sinopsis");
+                }
+
+                if ($request->file('image-synopsis-1')) {
+                    $pathSynopsis1 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-1"), "sinopsis1");
+                }
+                if ($request->file('image-synopsis-2')) {
+                    $pathSynopsis2 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-2"), "sinopsis2");
+                }
+                if ($request->file('image-synopsis-3')) {
+                    $pathSynopsis3 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image-synopsis-3"), "sinopsis3");
+                }
+
+                if ($request->file('image_background_1')) {
+                    $pathImageSlider1 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_1"), "slider1");
+                }
+                if ($request->file('image_background_2')) {
+                    $pathImageSlider2 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_2"), "slider2");
+                }
+                if ($request->file('image_background_3')) {
+                    $pathImageSlider3 = $this->storeImagesSynopsis($request->input('id'), "claro-cinema", $request->input('title'), $request->file("image_background_3"), "slider3");
+                }
+                break;
+
+            default:
+                break;
+        }
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/CaptureImagesForChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $chapterId,
+                    "thumbnail_list_horizontal" => $pathImageHorizontal,
+                    "thumbnail_list_vertical" => $pathImageVertical,
+                    "image_synopsis" => $pathSynopsis,
+                    "image_synopsis_frame_1" => $pathSynopsis1,
+                    "image_synopsis_frame_2" => $pathSynopsis2,
+                    "image_synopsis_frame_3" => $pathSynopsis3,
+                    "image_background_1" => $pathImageSlider1,
+                    "image_background_2" => $pathImageSlider2,
+                    "image_background_3" => $pathImageSlider3
+                ]
+            )]
+        );
+
+
+        return $response->getBody()->getContents();
+    }
 }

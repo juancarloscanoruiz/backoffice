@@ -231,12 +231,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -247,12 +247,12 @@ function getChapterInfo(data) {
                                 0
                             )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -264,7 +264,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -280,7 +280,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -301,12 +301,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -315,12 +315,12 @@ function getChapterInfo(data) {
                         daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
                             data.program.section_id
-                            }">
+                        }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                currentMonth + 1,
-                                i
-                            )}</p>
+                                        currentMonth + 1,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -337,12 +337,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -352,12 +352,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                        currentMonth,
+                                        i
+                                    )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -369,7 +369,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                             <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -384,12 +384,12 @@ function getChapterInfo(data) {
                             daysSlider += `
                                     <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
                                 data.program.section_id
-                                }">
+                            }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
-                                    currentMonth,
-                                    i
-                                )}</p>
+                                            currentMonth,
+                                            i
+                                        )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
@@ -669,7 +669,7 @@ function getChapterInfo(data) {
             let scheduleItemDate = data.program.day.split("-");
             $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                 scheduleItemDate[1]
-                }-${scheduleItemDate[0]}
+            }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
             $(".edit-program-textarea").val(data.program.synopsis);
@@ -1012,7 +1012,7 @@ function getProgramming(date, section, time) {
                 let scheduleItemDate = data.program.day.split("-");
                 $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
                     scheduleItemDate[1]
-                    }-${scheduleItemDate[0]}
+                }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
@@ -1261,11 +1261,11 @@ function getContentConcertChannel(type) {
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
                                             <img src="${
-                                        data.data[
-                                        "block_1_image_slider_" +
-                                        counter
-                                        ]
-                                        }"
+                                                data.data[
+                                                    "block_1_image_slider_" +
+                                                        counter
+                                                ]
+                                            }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
                                     </div>
@@ -1777,11 +1777,11 @@ function getModalsCanalClaro(type) {
                                             class="cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
                                         <img src="${
-                                    obj.data[
-                                    "block_1_image_slider_" +
-                                    counter
-                                    ]
-                                    }"
+                                            obj.data[
+                                                "block_1_image_slider_" +
+                                                    counter
+                                            ]
+                                        }"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                     </label>
                                 </div>
@@ -1880,8 +1880,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-header").modal("show");
                         break;
-                    // GET HEADER
-                    // GET TITLE
+                        // GET HEADER
+                        // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
@@ -1889,8 +1889,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE
-                    // GET PROMO
+                        // GET TITLE
+                        // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay muted controls class="img-back-modal img-promo" src="' +
@@ -1899,8 +1899,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-promo").modal("show");
                         break;
-                    // GET PROMO
-                    // GET TITLE CARRUSEL 1
+                        // GET PROMO
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -1914,8 +1914,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -1929,7 +1929,7 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                 }
             }
 
@@ -2633,7 +2633,7 @@ function getPromotionalsProgramsCarousel(
                                             placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <!--Sinopsis-->
@@ -2687,7 +2687,7 @@ function getPromotionalsProgramsCarousel(
                                         placeholder="YYYY" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-3">
@@ -2738,7 +2738,7 @@ function getPromotionalsProgramsCarousel(
                                         placeholder="PG-00" chapter_id="${chapter.chapter.id}">
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-3">
@@ -2806,7 +2806,7 @@ function getPromotionalsProgramsCarousel(
                                 </div>
 
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </section>
                 <section class="mb-5">
@@ -3045,8 +3045,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3063,8 +3063,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3082,8 +3082,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3100,8 +3100,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3119,8 +3119,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
@@ -3138,8 +3138,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3159,8 +3159,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel  .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3176,8 +3176,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3249,7 +3249,9 @@ function getContentClaroCinema(type) {
                     case "slider-pagination":
                         let counter = 1;
                         let image = "";
-                        let programmingSlider = $('.programming-slider-claro-cinema');
+                        let programmingSlider = $(
+                            ".programming-slider-claro-cinema"
+                        );
                         while (true) {
                             if (data.data[`block_1_image_slider_${counter}`]) {
                                 image += `
@@ -3258,7 +3260,11 @@ function getContentClaroCinema(type) {
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
                                     <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
-                                    <img src="${data.data["block_1_image_slider_" + counter]}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                    <img src="${
+                                        data.data[
+                                            "block_1_image_slider_" + counter
+                                        ]
+                                    }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                 </label>
                         </div>
                         `;
@@ -3268,13 +3274,15 @@ function getContentClaroCinema(type) {
                             }
                         }
                         programmingSlider.html(image);
-                        $('.modal-programming-carousel-cinema').modal("show");
+                        $(".modal-programming-carousel-cinema").modal("show");
                         try {
                             programmingSlider.slick("unslick");
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots-cinema"),
+                                appendDots: $(
+                                    ".programming-slider-dots-cinema"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -3288,10 +3296,12 @@ function getContentClaroCinema(type) {
                             });
                         } catch (error) {
                             console.log(error);
-                            programmingSlider.not('.slick-initialized').slick({
+                            programmingSlider.not(".slick-initialized").slick({
                                 slidesToShow: 1,
                                 dots: true,
-                                appendDots: $(".programming-slider-dots-cinema"),
+                                appendDots: $(
+                                    ".programming-slider-dots-cinema"
+                                ),
                                 initialSlide: 0,
                                 infinite: false,
                                 customPaging: function (slider, i) {
@@ -3316,7 +3326,9 @@ function getContentClaroCinema(type) {
                                 imagesProgramming.push(this.files[0]);
                             });
                             let data = new FormData();
-                            for (let index = 0; index < imagesProgramming.length; index++) {
+                            for (
+                                let index = 0; index < imagesProgramming.length; index++
+                            ) {
                                 let file = "file" + (index + 1).toString();
                                 file = file.toString();
                                 data.append(file, imagesProgramming[index]);
@@ -3327,14 +3339,14 @@ function getContentClaroCinema(type) {
                             setImageSliderBanner(data);
                         });
                         $("#close_modals").click(function () {
-                            console.log('cerreer')
+                            console.log("cerreer");
                             $(".modal").modal("hide");
                             $("#modaledi").modal("hide");
                             $(".modal").modal("hide");
                         });
                         break;
-                    // HEADER
-                    // SLAIDER
+                        // HEADER
+                        // SLAIDER
 
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
@@ -3349,9 +3361,7 @@ function getContentClaroCinema(type) {
                         $(".link-button-header-cinema").val(
                             data.data.block_2_button_url
                         );
-                        $(".input-url-modal").val(
-                            data.data.block_2_button_url
-                        );
+                        $(".input-url-modal").val(data.data.block_2_button_url);
                         let logo =
                             data.data.block_2_icon_channel ||
                             "./images/synopsis/image-synopsis-horizontal.png";
@@ -3475,9 +3485,8 @@ function editPromoLandingClaro(data) {
 }
 
 function getProgrammingSynopsis(landing, date) {
-
     $.ajax({
-        type: "GET",
+        type: "POST",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -3488,11 +3497,10 @@ function getProgrammingSynopsis(landing, date) {
         data: {
             date
         },
-        url: "landing/getProgrammingLanding",
+        url: "landing/getProgrammingSynopsisTable",
         success: function (result) {
-
             let json = JSON.parse(result);
-            console.log(json);
+            console.log("Sinopsis", json);
             if (json.code == 200) {
                 let programming = "";
                 let container = "";
@@ -3514,60 +3522,97 @@ function getProgrammingSynopsis(landing, date) {
                             <span class="a-text-MBlack a-text-prev">Landing</span>
                         </div>
                     </div>
-                    `
+                    `;
                 switch (landing) {
-
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
-                        container = $('#synopsis-table-canal-claro');
+                        container = $("#synopsis-table-canal-claro");
                         break;
                     case "concert-channel":
                         programming = json.data[1].programing[0].programs;
-                        container = $('#synopsis-table-concert-channel');
+                        container = $("#synopsis-table-concert-channel");
                         break;
                     case "claro-cinema":
                         programming = json.data[2].programing[0].programs;
-                        container = $('#synopsis-table-claro-cinema');
+                        container = $("#synopsis-table-claro-cinema");
                         break;
                     default:
                         break;
-
                 }
 
-                let row = ""
+                let row = "";
+                let colorText = "";
+                let colorTextSynopsis = "";
+                let labelActive = "";
                 for (const program of programming) {
+                    if (program.sinopsis_info.sinopsis_len <= 21) {
+                        colorTextSynopsis = "a-text-semibold-tomato";
+                    } else if (
+                        program.sinopsis_info.sinopsis_len > 21 &&
+                        program.sinopsis_info.sinopsis_len < 144
+                    ) {
+                        colorTextSynopsis = "a-text-semibold-orange";
+                    } else {
+                        colorTextSynopsis = "a-text-semibold-greyish-brown-two";
+                    }
+
+                    if (program.sinopsis_info.cant_imagenes <= 4) {
+                        colorText = "a-text-semibold-tomato";
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 si-estilo cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo label-active cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    } else if (
+                        program.sinopsis_info.cant_imagenes > 4 &&
+                        program.sinopsis_info.cant_imagenes < 8
+                    ) {
+                        colorText = "a-text-semibold-orange";
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 si-estilo label-active cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    } else {
+                        colorText = "a-text-semibold-greyish-brown-two";
+                        labelActive = `
+                        <label for="yes-synopsis" id="yes-synopsis"
+                        class="mb-0 label-active si-estilo cursor-pointer switch-label">
+                        Sí</label>
+                        <label for="no-synopsis" id="noestado-landing"
+                        class="mb-0 no-estilo  cursor-pointer switch-label">
+                        No</label>
+                        `;
+                    }
                     row += `
                     <div class="contenedor-fila">
                         <div class="contenedor-columna pl-4">
                             <span class="a-text-medium-black text-normal ">${program.chapter_title}</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <span class="a-text-semibold-tomato text-normal pl-3 ">0</span>
+                            <span class="${colorTextSynopsis} text-normal pl-3 ">${program.sinopsis_info.sinopsis_len}</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <span class="a-text-semibold-tomato text-normal ">0/8</span>
+                            <span class="${colorText} text-normal ">${program.sinopsis_info.cant_imagenes}/8</span>
                         </div>
                         <div class="contenedor-columna centro">
-                            <input type="image" src="./images/lapiz-acti.svg" alt="" class="btn-focus sinopsis edi mr-3" />
+                            <input chapter_id="${program.chapter_id}" type="image" src="./images/lapiz-acti.svg" alt="" class="edit-synopsis-pencil btn-focus sinopsis edi mr-3" />
                             <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
                         </div>
                         <div class="contenedor-columna centro ">
                             <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                <input type="radio" id="yes-landing" value="3"
-                                    class="edit-switch-landing edit-landing-yes" />
-                                <label for="yes-landing" id="siestado-landing"
-                                    class="mb-0 si-estilo cursor-pointer switch-label">
-                                    Sí</label>
-                                <input type="radio" id="no-landing" value="0"
-                                    class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                <label for="no-landing" id="noestado-landing"
-                                    class="mb-0 no-estilo cursor-pointer switch-label">
-                                    No</label>
+                                ${labelActive}
                             </div>
                         </div>
                     </div>
 
-                    `
+                    `;
                 }
 
                 container.html(`
@@ -3582,6 +3627,69 @@ function getProgrammingSynopsis(landing, date) {
             });
 
 
+
+        }
+    });
+}
+
+async function getSynopsis(chapter_id) {
+    let options = {
+        method: "POST",
+        body: JSON.stringify({
+            chapter_id
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+        }
+    };
+    let response = await fetch("landing/getSynopsis", options);
+    let data = await response.json();
+
+    return data;
+}
+
+async function editAttributeSynopsis(chapter_id, key, keyValue) {
+    let options = {
+        method: "POST",
+        body: JSON.stringify({
+            chapter_id,
+            key,
+            keyValue
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+        }
+    };
+    let response = await fetch("program/editSynopsis", options);
+    let data = await response.json();
+    return data;
+}
+
+function updateImagesSynopsis(data) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/updateImagesSynopsis",
+        success: function (result) {
+            let json = JSON.parse(result);
+            if (json.code == 200) {
+                console.log("imágenes subidas correctamente", json)
+            }
+
+
+            $(".loader-view-container").remove();
         }
     });
 }
@@ -3637,5 +3745,9 @@ export {
     getContentClaroCinema,
     editPromoLandingClaro,
     getContentConcertChannel,
+    getSynopsis,
+    editAttributeSynopsis,
+    updateImagesSynopsis,
     confLandingHome
+
 };

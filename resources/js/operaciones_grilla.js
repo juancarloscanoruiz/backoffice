@@ -43,7 +43,11 @@ import {
     editElementLandingClaro,
     editPromoLandingClaro,
     getContentClaroCinema,
-    getProgrammingSynopsis
+    getProgrammingSynopsis,
+    getSynopsis,
+    editAttributeSynopsis,
+    updateImagesSynopsis,
+    confLandingHome
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -96,9 +100,7 @@ function eventsGrilla() {
         "click",
         ".synopsis-calendar-item",
         function () {
-            $(".synopsis-calendar-item").removeClass(
-                "programming-item-active"
-            );
+            $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
             getProgrammingSynopsis("canal-claro", $(this).attr("date"));
@@ -151,10 +153,11 @@ function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
     //Landing de concert channel
-    let LandingSinopsis = {
-        remote: `${baseURL}sinopsis-edi.php`,
+
+    let LandingHomeClaro = {
+        remote: `${baseURL}home-edi-claro.php`,
         container: document.getElementById(
-            "sinopsis-container",
+            "navbar-prev-home",
         ),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -169,28 +172,13 @@ function eventsGrilla() {
                     case "slider-pagination":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-programming-sinopsis').modal("show");
-                            $(".programming-slider-sinopsis").slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".programming-slider-dots-sinopsis"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
+                            $('.modal-home-encabezado').modal("show");
                             $("#loader1").remove();
                         }, 3000);
 
 
                         break;
-                    case "synopsis-main-image":
+                    case "claro-home-header":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-image-synopsis').modal("show");
@@ -200,7 +188,7 @@ function eventsGrilla() {
 
                         break;
 
-                    case "synopsis-description-container":
+                    case "claro-home-slider":
                         $("body").append(loader);
                         setTimeout(function () {
                             $('.modal-edit-synopsis').modal("show");
@@ -209,17 +197,213 @@ function eventsGrilla() {
 
 
                         break;
+
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let NavbarHomeClaro = document.getElementById("navbar-prev-home");
+    if (NavbarHomeClaro) {
+        $('#navbar-prev-homeiframe').remove();
+        new easyXDM.Socket(LandingHomeClaro);
+    }
+
+
+
+    let LandingSinopsis = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        container: document.getElementById("sinopsis-container"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        let data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let programminfSliderSynopsis = $(".programming-slider-sinopsis");
+                                let index = 1;
+                                let slide = ""
+                                let image = ""
+                                while (true) {
+                                    if (data.data[`image_background_${index}`] !== undefined) {
+                                        image = data.data[`image_background_${index}`]
+                                        if (data.data[`image_background_${index}`] == null) {
+                                            image = "./images/synopsis/image-synopsis-carrusel.jpg"
+                                        }
+                                        slide += `
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                            <input type="file" id="image_banner_synopsis_${index}"
+                                            class="input-image-program d-none input-banner-synopsis" data-index="1">
+                                            <label for="image_banner_synopsis_${index}"
+                                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                            <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                            class=" cursor-pointer add-photo " />
+                                            <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
+                                            <img src="${image}"
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            </label>
+                                        </div>
+                                        `
+                                        index++
+
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                programminfSliderSynopsis.html(slide);
+                                $(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                                $(".modal-programming-sinopsis").modal("show");
+                                try {
+                                    programminfSliderSynopsis.slick("unslick");
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(slider.$slides[i]).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                } catch (error) {
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(slider.$slides[i]).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                }
+                                let buttonSynopsisBannerModal = $("#banner-sinopsis-modal-button")
+                                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id)
+                                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id)
+                                //Previsualizar una imagen en el banner
+                                $(".modal-programming-sinopsis .input-image-program").change(function () {
+                                    let currentInput = $(this);
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+
+                                            currentInput
+                                                .next()
+                                                .children(".prev-image-program")
+                                                .attr("src", e.target.result)
+                                                .addClass("h-100 w-100")
+                                                .css("z-index", "2");
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"])
+                                        buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"])
+                                    }
+                                });
+                            }
+                            $('.loader-view-container').remove();
+                        })
+
+
+
+                        break;
+                    case "synopsis-main-image":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg"
+                                $(".loader-view-container").remove();
+                                $('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
+                                $('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
+                                $('.image-synopsis-modal').attr("src", image);
+                                $(".modal-image-synopsis").modal("show");
+                            }
+                        });
+
+                        break;
+
+                    case "synopsis-description-container":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                console.log("titutlo", data.data.subtitle);
+                                let editSynopsisButton = $(
+                                    "#edit-synopsis-modal-button"
+                                );
+
+                                $(".edit-text-synopsis").val(
+                                    data.data.sinopsis
+                                );
+                                editSynopsisButton.attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                editSynopsisButton.attr("key", "synopsis");
+                                $(".synopsis-modal-title").text(
+                                    data.data.subtitle
+                                );
+                                $(".modal-edit-synopsis").modal("show");
+                                $(".loader-view-container").remove();
+
+                            }
+                        });
+
+                        break;
                     case "synopsis-images-container":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-synopsis-images-container').modal("show");
+                            $(".modal-synopsis-images-container").modal("show");
                             $("#loader1").remove();
                         }, 3000);
                         break;
                     case "synopsis-datails-container":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-info-synopsis').modal("show");
+                            $(".modal-info-synopsis").modal("show");
                             $("#loader1").remove();
                         }, 3000);
                         break;
@@ -235,12 +419,80 @@ function eventsGrilla() {
         }
     };
 
+
+
+    //Editar sinopsis en landing de sinopsis
+    $('#edit-synopsis-modal-button').click(function () {
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
+        let chapterId = $(this).attr("chapter_id");
+        let key = $(this).attr("key");
+        let value = $(".edit-text-synopsis").val();
+        let response = editAttributeSynopsis(
+            chapterId,
+            key,
+            value
+        );
+
+        response.then(data => {
+            if (data.code == 200) {
+                console.log(data);
+                $(".modal-edit-synopsis").modal("hide");
+                //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+            }
+            $(".loader-view-container").remove();
+        });
+    });
+
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
     if (navbarPrevSINOPSIS) {
-        $('#sinopsis-container iframe').remove();
-        new easyXDM.Socket(LandingSinopsis);
-    }
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-canal-claro").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function () {
+                let id = $(this).attr("chapter_id");
+                let data = getSynopsis(id);
 
+                socketSynopsis.postMessage(data);
+            }
+        );
+    }
+    //Editar imagen principal en landing de sinopsis
+    $('#upload-image-synopsis').click(function () {
+        let imageSynopsis = document.getElementById('image-synopsis').files[0];
+        let landingId = $(this).attr("landing_id");
+        let chapterId = $(this).attr("chapter_id");
+        let data = new FormData();
+        data.append("image-synopsis", imageSynopsis);
+        data.append("landing_id", landingId)
+        data.append("chapter_id", chapterId)
+        updateImagesSynopsis(data)
+        let response = getSynopsis(chapterId);
+        socketSynopsis.postMessage(response);
+        //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+    })
+
+    $("#banner-sinopsis-modal-button").click(function () {
+        let imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
+        let imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
+        let imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
+        let landingId = $(this).attr("landing_id");
+        let chapterId = $(this).attr("chapter_id");
+        let data = new FormData();
+        data.append("image_background_1", imageSynopsis1);
+        data.append("image_background_2", imageSynopsis2);
+        data.append("image_background_3", imageSynopsis3);
+        data.append("landing_id", landingId)
+        data.append("chapter_id", chapterId)
+        updateImagesSynopsis(data)
+        let response = getSynopsis(chapterId);
+        socketSynopsis.postMessage(response);
+    })
     //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
@@ -256,7 +508,7 @@ function eventsGrilla() {
 
                 switch (json.type) {
                     case "slider-pagination":
-                        getContentClaroCinema('slider-pagination')
+                        getContentClaroCinema("slider-pagination");
                         break;
                     case "current-programming-cinema":
                         let date = new Date();
@@ -291,7 +543,6 @@ function eventsGrilla() {
                     case "title-carrusel2":
                         getContentClaroCinema("title-carrusel2");
                         break;
-
                     case "carrusel2":
                         landing = "Claro Cinema";
                         id = 2;
@@ -301,7 +552,6 @@ function eventsGrilla() {
                             "header-background thumbnail-header-cinema"
                         );
                         break;
-
                     default:
                         break;
                 }
@@ -358,7 +608,7 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                    /* case "pencil-carrusel1":
+                        /* case "pencil-carrusel1":
              $("body").append(loader);
              setTimeout(function () {
                  $(".modal-edit-program-carrusel").modal("show");
@@ -474,7 +724,6 @@ function eventsGrilla() {
 
                         break;
 
-
                     default:
                         break;
                 }
@@ -490,21 +739,26 @@ function eventsGrilla() {
         container: document.getElementById("navbar-prev-concert-channel"),
         onMessage: function (message, origin) {
             console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container
+                .getElementsByTagName("iframe")[0]
+                .setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-    }
+    };
     //previsualizar concert channel
     $("#prev-landing-concert").click(function () {
-
         //Landing concert channel
-        resetIframe($('#navbar-prev-concert-channel iframe'), confPrevConcert)
-    })
-    $('#edit-landing-concert').click(function () {
-        resetIframe($('#navbar-prev-concert-channel iframe'), confLandingConcertChannel)
-    })
+        resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
+    });
+    $("#edit-landing-concert").click(function () {
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
+    });
     $(".button-modal-concert-channel").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
@@ -1014,8 +1268,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1033,8 +1287,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1053,8 +1307,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1072,8 +1326,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1092,8 +1346,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
@@ -1112,8 +1366,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1134,8 +1388,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel  .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1152,8 +1406,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1319,8 +1573,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1338,8 +1592,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1356,8 +1610,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1375,8 +1629,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1393,8 +1647,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1412,8 +1666,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1429,8 +1683,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1578,11 +1832,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -1645,7 +1899,7 @@ function eventsGrilla() {
 
     //para agregar un slider más en cinema
     $(".add-programming-image").click(function () {
-        console.log('pato');
+        console.log("pato");
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
@@ -2825,7 +3079,6 @@ function eventsGrilla() {
         new easyXDM.Socket(confIframe);
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
 
-
         $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $("#navbar-prev-programacion iframe").remove();
@@ -2838,23 +3091,21 @@ function eventsGrilla() {
             remote: `${baseURL}programacion.php`,
             container: document.getElementById("navbar-prev-programacion"),
             onMessage: function (message, origin) {
+                this.container.getElementsByTagName("iframe")[0].style.height =
+                    message + "px";
                 this.container.getElementsByTagName(
                     "iframe"
-                )[0].style.height = message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow =
-                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
         });
     });
 
     $(".input-image-program").change(function () {
         let currentInput = $(this);
-        console.log(currentInput);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
+
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -2959,9 +3210,6 @@ function eventsGrilla() {
     });
 
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-    $(".lan-claro").click(function () {
-        showlanding();
-    });
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
     $(".switch-landing").click(function () {
@@ -3185,7 +3433,7 @@ function eventsGrilla() {
     }
 
     $("#close_modals").click(function () {
-        console.log('cerrar')
+        console.log("cerrar");
         $(".modal").modal("hide");
         $("#modaledi").modal("hide");
         $(".modal").modal("hide");
@@ -3194,9 +3442,9 @@ function eventsGrilla() {
         //$(".modal-edit-icons").modal("hide");
         // $(".modal-edit-program").modal("hide");
     });
-    $('.close-modal-concert').click(function () {
+    $(".close-modal-concert").click(function () {
         $(".modal").modal("hide");
-    })
+    });
     //cerrar los dos modales
     $("#close_modals-claro").click(function () {
         $(".modal").modal("hide");
@@ -3236,14 +3484,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -3396,7 +3644,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -3569,8 +3817,8 @@ function eventsGrilla() {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -4180,8 +4428,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -4399,6 +4647,7 @@ function eventsGrilla() {
 
     // HEADER EDIT CANAL CLARO
     $("#btn-acepta-modal-header-cinema").click(function () {
+
         let landing = "Claro Cinema";
         let title1 = $("#ipt-heade").val() || "";
         let title2 = $("#ipt-heade-1").val() || "";
@@ -4411,7 +4660,10 @@ function eventsGrilla() {
         data.append("logo", logo);
         data.append("link", link);
         editHeaderLandingClaro(data);
-        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
     });
     // HEADER EDIT CANAL CLARO
     // TITLE EDIT CANAL CLARO
@@ -4505,6 +4757,7 @@ function eventsGrilla() {
         viewImg(this, "#img-logo-home");
         viewEdit();
     });
+
     function viewImg(objFileInput, container) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
@@ -4515,8 +4768,9 @@ function eventsGrilla() {
             $("#loader1").remove();
         }
     }
+
     function viewEdit() {
-        $('#camera').attr('src','./images/lapiz-acti.svg')
+        $('#camera').attr('src', './images/lapiz-acti.svg')
     }
     $('#modal_url').click(function () {
         console.log('click');

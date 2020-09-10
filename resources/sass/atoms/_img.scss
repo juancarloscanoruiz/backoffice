@@ -525,3 +525,15 @@
     width: 70px;
     z-index: 1;
 }
+.background-home {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .op-inac{
+    opacity:0.4;
+  }
+  .op-ac{
+    opacity:1;
+  }

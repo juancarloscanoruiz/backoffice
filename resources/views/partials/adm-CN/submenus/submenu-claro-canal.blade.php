@@ -14,7 +14,7 @@
 
 <!-- <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script> -->
 
-<script>
+<!--<script>
     new easyXDM.Socket({
         remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
         container: "navbar-prev-home",
@@ -28,7 +28,7 @@
         }
     });
 
-</script>
+</script>-->
 
 
 <body>
@@ -58,10 +58,10 @@
                     </div>
                     <!--fin de claro canal-->
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
+                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4"
                         rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class=" a-text-bold-light py-2 px-3 mb-0">HOME</p>
+                            <p class=" a-text-bold-two py-2 px-3 mb-0">HOME</p>
                         </div>
 
                     </div>
@@ -86,9 +86,9 @@
                     </div>
                 </form>
                 <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile" id="prev-mobile" >
+                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet" id="prev-tablet" >
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc" id="prev-desktop" >
                 </div>
             </div>
             <div class="float-left ml-5 mb-4 ">
@@ -385,4 +385,5 @@
     @include('partials.adm-CN.modals-claro.index')
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.sinopsis');
+    @include('partials.adm-CN.modals-home.home-encabezado');
 </body>

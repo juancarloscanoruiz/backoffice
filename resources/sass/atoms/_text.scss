@@ -2,7 +2,9 @@
 @import "../base/typography";
 
 /* TEXT BASE */
-
+.title-home{
+    font-size: 72px !important;
+}
 .h2 {
     font-size: 32px !important;
 }
@@ -37,7 +39,18 @@
     font-family: $MontserratBlack;
     color: black;
 }
-
+.a-text-black-teal {
+    font-family: $MontserratBlack;
+    color: $teal;
+}
+.text-semibold {
+    font-family: $MontserratSemiBold;
+  }
+  
+.a-text-black-blacktwo {
+    color: $black-two;
+    font-family: $MontserratBlack;
+}
 .a-text-black-yellow-two {
     font-family: $MontserratBlack;
     color: $off-yellow-two;
@@ -814,6 +827,7 @@
     font-family: $MontserratLight;
 }
 
+
 .a-text-lightgray-light {
     color: #757474;
     font-family: $MontserratLight;
@@ -1067,3 +1081,7 @@
     border-radius: 13px;
     background-color: #ffffff;
 }
+.header-h1 {
+    color:White;
+    display: none;
+  }

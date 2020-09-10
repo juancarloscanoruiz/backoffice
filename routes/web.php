@@ -89,6 +89,9 @@ Route::group(['prefix' => 'landing'], function () {
     Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
     Route::post("/setImageSliderBanner", "landingController@setImageSliderBanner");
     Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
+    Route::post("/getProgrammingSynopsisTable", "landingController@getProgrammingSynopsisTable");
+    Route::post("/getSynopsis", "landingController@getSynopsis");
+    Route::post("/updateImagesSynopsis", "landingController@updateImages");
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
@@ -114,6 +117,7 @@ Route::group(['prefix' => 'program'], function () {
     Route::post('editAttribute', "ProgramacionGeneralController@editAttribute")->name("editAttribute");
     Route::post('logout', "AuthController@signOut")->name("logout");
     Route::post('exit', "AuthController@exit")->name('exit');
+    Route::post('editSynopsis', "ProgramacionGeneralController@editSynopsis")->name('exit');
 });
 
 //RUTA PRUEBA DE MODALES
