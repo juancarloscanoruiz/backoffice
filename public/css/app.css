@@ -6713,14 +6713,13 @@ a:hover {
 
 .ipt-home-canales {
   width: 350px;
-  height: 70px;
+  height: 80px;
   box-shadow: 1px 2px 4px #a4a4a4;
   font-family: "Montserrat-Regular";
   padding-left: 5px;
 }
 
-.btn-red {
-  background: #da291c;
+.btn-camales {
   color: #ffffff;
   padding: 11px 50px;
   font-size: 20px;
@@ -6728,8 +6727,22 @@ a:hover {
   border: 1px solid transparent;
 }
 
+.btn-red {
+  background: #da291c;
+}
+
+.btn-pink {
+  background: #ff00d2;
+}
+
 .width-url {
   width: 115px;
+}
+
+.modal-carrusel-home {
+  border-radius: 0;
+  padding: 1% 2%;
+  margin: auto;
 }
 
 .dropdown-menu {

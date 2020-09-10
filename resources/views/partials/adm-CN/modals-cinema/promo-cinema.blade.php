@@ -33,7 +33,7 @@
                     <p class="a-text-bold-brown-two text-normal ">Nombre_Promoción_ClaroCinema_20200709.mp4</p>
                 </div>
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
-                    <button id="btn-acepta-promo-cinema" class="upload-promo-button d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button">ACEPTAR</button>
+                    <button id="btn-acepta-promo-cinema" class="upload-promo-button d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus">ACEPTAR</button>
                     <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>

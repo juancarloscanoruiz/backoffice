@@ -52,5 +52,6 @@
 </style>
 
 @include('partials.adm-CN.modal-home.logo')
+@include('partials.adm-CN.modal-home.carrusel')
 @include('partials.adm-CN.modal-generic.advertencia')
 @include('partials.adm-CN.modal-generic.url')

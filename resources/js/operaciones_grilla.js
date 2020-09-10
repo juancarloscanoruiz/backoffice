@@ -43,8 +43,7 @@ import {
     editElementLandingClaro,
     editPromoLandingClaro,
     getContentClaroCinema,
-    getProgrammingSynopsis,
-    confLandingHome
+    getProgrammingSynopsis
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -244,7 +243,7 @@ function eventsGrilla() {
 
     //Landing de concert channel
     let confLandingClaroCinema = {
-        remote: `${baseURL}home-edi.php`,
+        remote: `${baseURL}claro-cinema-edi.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -4381,13 +4380,6 @@ function eventsGrilla() {
 
     // CANAL CLARO
 
-    $('#btn_pruebas').click(function () {
-        console.log('click');
-        // getContentClaroCinema('header-landing-cinema')
-        // getContentClaroCinema('slider-pagination')
-        $('#modal-logo-home').modal('show');
-    });
-
     // CARGAR IMG HEADER
     $("#image-icon1").change(function () {
         FileHeaderCinema(this);
@@ -4533,6 +4525,12 @@ function eventsGrilla() {
     $('#inp_url').click(function () {
         console.log('click');
         $('#url').modal('show');
+    });
+
+
+    $('#btn_pruebas').click(function () {
+        console.log('click');
+        $('#modal-logo-home').modal('show');
     });
 
     // HOME

@@ -434,20 +434,32 @@ a:hover {
 }
 .ipt-home-canales {
     width: 350px;
-    height: 70px;
+    height: 80px;
     box-shadow: 1px 2px 4px #a4a4a4;
     font-family: $MontserratRegular;
     padding-left: 5px;
 }
-.btn-red {
-    background: $selecred;
+.btn-camales {
     color: $white;
     padding: 11px 50px;
     font-size: 20px;
     border-radius: 25px;
     border: 1px solid transparent;
 }
+.btn-red {
+    background: $selecred;
+}
+.btn-pink {
+    background: $pink;
+}
 .width-url {
     width: 115px;
 }
+// CARRUSEL
+.modal-carrusel-home {
+    border-radius: 0;
+    padding: 1% 2%;
+    margin: auto;
+}
+// CARRUSEL
 // HOME
