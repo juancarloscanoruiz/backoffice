@@ -5,7 +5,7 @@
 
                 <p class="text-normal d-flex ml-3 text-center a-text-black-brown-two pt-3">CARGAR IMÁGENES EN FORMATO
                     JPG </p>
-                    <h2 class="h2 text-center a-text-black-brown-two mt-2 ">IMAGES</h2>
+                    <h2 class="h2 text-center a-text-black-brown-two mt-2 ">IMÁGENES</h2>
                     <hr class="d-flex align-content-center separationhr mb-4 col-11">
                    
                     <form>

@@ -367,6 +367,10 @@ body {
   border-radius: 0em !important;
 }
 
+.border-none {
+  border: none;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -414,6 +418,10 @@ body {
 
 /* TEXT BASE */
 
+.title-home {
+  font-size: 72px !important;
+}
+
 .h2 {
   font-size: 32px !important;
 }
@@ -447,6 +455,20 @@ body {
 .a-text-black-black {
   font-family: "Montserrat-Black";
   color: black;
+}
+
+.a-text-black-teal {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.text-semibold {
+  font-family: "Montserrat-SemiBold";
+}
+
+.a-text-black-blacktwo {
+  color: #2d2926;
+  font-family: "Montserrat-Black";
 }
 
 .a-text-black-yellow-two {
@@ -1468,6 +1490,11 @@ body {
   background-color: #ffffff;
 }
 
+.header-h1 {
+  color: White;
+  display: none;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -1598,6 +1625,10 @@ body {
 
 .border-radius {
   border-radius: 0em !important;
+}
+
+.border-none {
+  border: none;
 }
 
 /* BOTONES REUTILIZABLES */
@@ -3103,6 +3134,22 @@ body {
   z-index: 1;
 }
 
+.background-home {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.op-inac {
+  opacity: 0.4;
+}
+
+.op-ac {
+  opacity: 1;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -3916,6 +3963,46 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #ffffff;
 }
 
+.title-home-enca::-moz-placeholder {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.title-home-enca:-ms-input-placeholder {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.title-home-enca::-ms-input-placeholder {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.title-home-enca::placeholder {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.subtitle-home-enca::-moz-placeholder {
+  font-family: "Montserrat-Black";
+  color: #2d2926;
+}
+
+.subtitle-home-enca:-ms-input-placeholder {
+  font-family: "Montserrat-Black";
+  color: #2d2926;
+}
+
+.subtitle-home-enca::-ms-input-placeholder {
+  font-family: "Montserrat-Black";
+  color: #2d2926;
+}
+
+.subtitle-home-enca::placeholder {
+  font-family: "Montserrat-Black";
+  color: #2d2926;
+}
+
 .concert-input-title::-moz-placeholder {
   font-family: "Montserrat-Black";
   color: #3cc1ff;
@@ -4032,6 +4119,36 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner {
   font-family: "Montserrat-Bold";
   color: #9b9b9b;
+}
+
+.input-title-home {
+  width: 575px;
+  height: 194px;
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+.input-subtitle-home {
+  width: 575px;
+  height: 101px;
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+.opa-holder::-moz-placeholder {
+  opacity: 0.4;
+}
+
+.opa-holder:-ms-input-placeholder {
+  opacity: 0.4;
+}
+
+.opa-holder::-ms-input-placeholder {
+  opacity: 0.4;
+}
+
+.opa-holder::placeholder {
+  opacity: 0.4;
 }
 
 .line {
@@ -4530,6 +4647,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 /* TEXT BASE */
 
+.title-home {
+  font-size: 72px !important;
+}
+
 .h2 {
   font-size: 32px !important;
 }
@@ -4563,6 +4684,20 @@ div .bootstrap-select > .dropdown-toggle:focus {
 .a-text-black-black {
   font-family: "Montserrat-Black";
   color: black;
+}
+
+.a-text-black-teal {
+  font-family: "Montserrat-Black";
+  color: #0097a9;
+}
+
+.text-semibold {
+  font-family: "Montserrat-SemiBold";
+}
+
+.a-text-black-blacktwo {
+  color: #2d2926;
+  font-family: "Montserrat-Black";
 }
 
 .a-text-black-yellow-two {
@@ -5584,6 +5719,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
   background-color: #ffffff;
 }
 
+.header-h1 {
+  color: White;
+  display: none;
+}
+
 #video-promo-concert {
   display: none;
   position: absolute;
@@ -6258,6 +6398,31 @@ ul {
 .navbar-progra-active p {
   font-family: "Montserrat-Bold";
   color: #da291c !important;
+}
+
+.claro-navbar {
+  position: inherit;
+}
+
+.claro-navbar {
+  margin-top: 25px;
+  z-index: 3;
+  position: absolute;
+  padding: 9px 0px;
+}
+
+.navbar-item-black {
+  font-size: 16px;
+  color: #525050;
+  margin-right: 20px;
+  margin-bottom: 0;
+}
+
+.claro-navbar-black {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 9px 9px 9px 0px !important;
+  margin-left: -250px;
+  border-radius: 20px;
 }
 
 a:hover {
@@ -7329,6 +7494,48 @@ header {
   background-color: #0068ff;
   height: 100px;
   z-index: 9;
+}
+
+.home-header {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.circle-video {
+  display: none;
+  margin: auto;
+  -webkit-clip-path: circle(50% at 80% 21%);
+          clip-path: circle(50% at 80% 21%);
+  position: absolute;
+  right: 0%;
+  width: 635px;
+  height: 587px;
+  z-index: 1;
+  overflow: hidden;
+  max-width: 1000px;
+}
+
+.home-video {
+  right: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 100%;
+  text-align: center;
+  font-family: "Montserrat-Black";
 }
 
 @font-face {

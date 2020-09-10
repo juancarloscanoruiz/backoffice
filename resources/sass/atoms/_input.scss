@@ -778,6 +778,14 @@ div .bootstrap-select>.dropdown-toggle:focus {
     color: $white;
 }
 
+.title-home-enca::placeholder {
+    font-family: $MontserratBlack;
+    color: $teal;
+}
+.subtitle-home-enca::placeholder {
+    font-family: $MontserratBlack;
+    color: $black-two;
+}
 .concert-input-title::placeholder {
     font-family: $MontserratBlack;
     color: $bright-cyan;
@@ -822,3 +830,18 @@ div .bootstrap-select>.dropdown-toggle:focus {
         color: $warmGrey;
     }
 }
+ .input-title-home{
+    width: 575px;
+    height: 194px;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+ }
+ .input-subtitle-home{
+    width: 575px;
+    height: 101px;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+ }
+ .opa-holder::placeholder{
+opacity: 0.4;
+ }

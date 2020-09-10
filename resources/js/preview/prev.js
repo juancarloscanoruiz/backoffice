@@ -45,7 +45,7 @@ function previewPage(icon) {
         prevTabletIcon.css("opacity", "0.4");
         prevDesktopIcon.css("opacity", "1");
         pageContainer.css(
-            "box-shadow",
+           "box-shadow",
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"
         );
         iframeHome.css("height", "4900px");

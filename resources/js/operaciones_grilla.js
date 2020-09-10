@@ -151,6 +151,71 @@ function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
     //Landing de concert channel
+
+    let LandingHomeClaro = {
+        remote: `${baseURL}home-edi-claro.php`,
+        container: document.getElementById(
+            "navbar-prev-home",
+        ),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-home-encabezado').modal("show");                        
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+                        break;
+                    case "claro-home-header":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-image-synopsis').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+                        break;
+
+                    case "claro-home-slider":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $('.modal-edit-synopsis').modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+
+                        break;
+                       
+                   
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let NavbarHomeClaro = document.getElementById("navbar-prev-home");
+    if (NavbarHomeClaro) {
+        $('#navbar-prev-homeiframe').remove();
+        new easyXDM.Socket(LandingHomeClaro);
+    }
+
+
+    
     let LandingSinopsis = {
         remote: `${baseURL}sinopsis-edi.php`,
         container: document.getElementById(

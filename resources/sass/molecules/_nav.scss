@@ -25,3 +25,26 @@
         color: $selecred !important;
     }
 }
+.claro-navbar {
+    position: inherit;
+  }
+  .claro-navbar {
+
+    margin-top: 25px;
+    z-index: 3;
+    position: absolute;
+    padding: 9px 0px;
+  }
+  .navbar-item-black {
+    font-size: 16px;
+    color: $navbarItemColor;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+.claro-navbar-black {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 9px 9px 9px 0px !important;
+    margin-left: -250px;
+    border-radius: 20px;
+  }

@@ -88986,6 +88986,56 @@ function eventsGrilla() {
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
 
+  var LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php"),
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-home-encabezado').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "claro-home-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-image-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "claro-home-slider":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-homeiframe').remove();
+    new easyXDM.Socket(LandingHomeClaro);
+  }
+
   var LandingSinopsis = {
     remote: "".concat(baseURL, "sinopsis-edi.php"),
     container: document.getElementById("sinopsis-container"),
