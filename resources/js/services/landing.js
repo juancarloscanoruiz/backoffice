@@ -3706,12 +3706,10 @@ async function updateImagesSynopsis(images) {
 
 // HOME
 function confLandingHome(baseURL) {
-    debugger
     let confLandingHome = {
-        remote: `${baseURL}home-edi.php`,
+        remote: `${baseURL}home-edi-claro.php`,
         container: document.getElementById("navbar_prev_home_landing"),
         onMessage: function (message, origin) {
-            debugger
             let json = JSON.parse(message);
             console.log(json);
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";

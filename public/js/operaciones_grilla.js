@@ -73556,9 +73556,9 @@ function showLandingSchedule(id) {
         },
         success: function success(result) {
           jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result).promise(); // let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+          jquery__WEBPACK_IMPORTED_MODULE_3___default()("#general-programming").html(result).promise();
+          var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; // let baseURL = "https://localhost/MaquetaCNetworks/"
 
-          var baseURL = "https://localhost/MaquetaCNetworks/";
           Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["confLandingHome"])(baseURL);
         }
       });
@@ -74397,8 +74397,8 @@ function eventsGrilla() {
   }); //Landing de concert channel
 
   var confLandingClaroCinema = {
-    // remote: `${baseURL}claro-cinema-edi.php`,
-    remote: "http://localhost/MaquetaCNetworks/claro-cinema-edi.php",
+    remote: "".concat(baseURL, "claro-cinema-edi.php"),
+    // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
     container: document.getElementById("navbar-prev-claro-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -79884,12 +79884,10 @@ function _updateImagesSynopsis() {
 }
 
 function confLandingHome(baseURL) {
-  debugger;
   var confLandingHome = {
-    remote: "".concat(baseURL, "home-edi.php"),
+    remote: "".concat(baseURL, "home-edi-claro.php"),
     container: document.getElementById("navbar_prev_home_landing"),
     onMessage: function onMessage(message, origin) {
-      debugger;
       var json = JSON.parse(message);
       console.log(json);
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
