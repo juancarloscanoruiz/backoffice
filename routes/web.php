@@ -70,6 +70,7 @@ Route::get("/concert-channel", "landingController@showConcertChannelLanding")->n
 Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
+Route::get("/footer", "landingController@showFooterLanding")->name('footer');
 
 Route::group(['prefix' => 'landing'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");

@@ -555,3 +555,25 @@ ul {
 .current {
     background-color: #018292 !important;
 }
+.tv-list-programming {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 9%;
+    max-width: calc(100vw - 35px);
+    margin: 0 auto 9% auto;
+    width: 350px;
+    z-index: 1;
+  }
+  .nav-li {
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: all 0.6s ease;
+    padding: 10px;
+  }
+  .active-navItem {
+    position: relative;
+    filter: none;
+    opacity: 1;
+  }

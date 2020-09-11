@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-1512 -340) translate(1218 331) translate(294 9)">
+                        <circle cx="15.5" cy="15.5" r="14.75" stroke="#FFF" stroke-width="1.5"/>
+                    </g>
+                    <g stroke="#FFF" stroke-width="1.5" transform="translate(-1512 -340) translate(1218 331) translate(294 9) translate(7 7)">
+                        <circle cx="8.5" cy="8.5" r="8.5"/>
+                        <ellipse cx="9.208" cy="8.5" rx="2.833" ry="8.5"/>
+                        <ellipse cx="8.5" cy="9.208" rx="2.833" ry="8.5" transform="rotate(90 8.5 9.208)"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

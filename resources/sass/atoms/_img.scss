@@ -537,3 +537,24 @@
   .op-ac{
     opacity:1;
   }
+  .login {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .claro-nav-image,
+.nav-image {
+  height: 50px;
+}
+
+.nav-image {
+  width: 60%;
+  cursor: pointer;
+}
+
+.claro-nav-image {
+  width: 100%;
+  cursor: pointer;
+}
