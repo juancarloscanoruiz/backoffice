@@ -229,8 +229,8 @@
                                             class="edit-program-icon-image" alt="camera" />
                                         <p
                                             class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                            472
-                                            x 245px</p>
+                                            295
+                                            x 180px</p>
                                     </div>
 
                                     <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""

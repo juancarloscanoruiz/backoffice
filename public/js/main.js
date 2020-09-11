@@ -89849,7 +89849,7 @@ function eventsGrilla() {
                       image = "./images/synopsis/image-synopsis-carrusel.jpg";
                     }
 
-                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                        <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                        class=\"input-image-program d-none image_programming\" data-index=\"1\">\n                                        <label for=\"image_banner_synopsis_").concat(index, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                        class=\" cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                        <img src=\"").concat(image, "\"\n                                        class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                        </label>\n                                        </div>\n                                        ");
+                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
                     index++;
                   } else {
                     break;
@@ -89857,7 +89857,7 @@ function eventsGrilla() {
                 }
 
                 programminfSliderSynopsis.html(slide);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis input").val("");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
 
                 try {
@@ -89925,6 +89925,19 @@ function eventsGrilla() {
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
               }
             });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+              }
+            });
             break;
 
           case "synopsis-description-container":
@@ -89945,11 +89958,40 @@ function eventsGrilla() {
             break;
 
           case "synopsis-images-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(json.id);
+            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button');
+            data.then(function (data) {
+              if (data.code == 200) {
+                console.log("titutlo", data.data.subtitle);
+                var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              }
+
+              buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
+              buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
+              }
+            });
             break;
 
           case "synopsis-datails-container":
@@ -89979,7 +90021,9 @@ function eventsGrilla() {
     response.then(function (data) {
       if (data.code == 200) {
         console.log(data);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide"); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+        var responseSynopsis = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(responseSynopsis);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
@@ -89995,10 +90039,36 @@ function eventsGrilla() {
       var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(id);
       socketSynopsis.postMessage(data);
     });
-  } //Editar imagen principal en landing de sinopsis
+  }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
+    var imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
+    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var data = new FormData();
+    data.append("image-synopsis-1", imageSynopsis1);
+    data.append("image-synopsis-2", imageSynopsis2);
+    data.append("image-synopsis-3", imageSynopsis3);
+    data.append("landing_id", landingId);
+    data.append("chapter_id", chapterId);
+    var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
+    imagesResponse.then(function (data) {
+      if (data.code == 200) {
+        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(response);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    });
+    update();
+  }); //Editar imagen principal en landing de sinopsis
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
     var imageSynopsis = document.getElementById('image-synopsis').files[0];
     var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
@@ -90006,9 +90076,16 @@ function eventsGrilla() {
     data.append("image-synopsis", imageSynopsis);
     data.append("landing_id", landingId);
     data.append("chapter_id", chapterId);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
-    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
-    socketSynopsis.postMessage(response); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+    var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
+    imagesResponse.then(function (data) {
+      if (data.code == 200) {
+        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(response);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
+    }); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button").click(function () {
     var imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
@@ -90025,6 +90102,7 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
     var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
     socketSynopsis.postMessage(response);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
   }); //Landing de concert channel
 
   var confLandingClaroCinema = {
@@ -95473,29 +95551,46 @@ function _editAttributeSynopsis() {
   return _editAttributeSynopsis.apply(this, arguments);
 }
 
-function updateImagesSynopsis(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
-    type: "POST",
-    cache: false,
-    data: data,
-    processData: false,
-    contentType: false,
-    beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-    },
-    url: "landing/updateImagesSynopsis",
-    success: function success(result) {
-      var json = JSON.parse(result);
-
-      if (json.code == 200) {
-        console.log("imágenes subidas correctamente", json);
-      }
-
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
-    }
-  });
+function updateImagesSynopsis(_x5) {
+  return _updateImagesSynopsis.apply(this, arguments);
 } // HOME
 
+
+function _updateImagesSynopsis() {
+  _updateImagesSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(images) {
+    var options, response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            options = {
+              method: "POST",
+              body: images,
+              headers: {
+                "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+              }
+            };
+            _context3.next = 3;
+            return fetch("landing/updateImagesSynopsis", options);
+
+          case 3:
+            response = _context3.sent;
+            _context3.next = 6;
+            return response.json();
+
+          case 6:
+            data = _context3.sent;
+            return _context3.abrupt("return", data);
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _updateImagesSynopsis.apply(this, arguments);
+}
 
 function confLandingHome(baseURL) {
   debugger;

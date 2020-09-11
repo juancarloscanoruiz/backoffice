@@ -358,6 +358,23 @@ function eventsGrilla() {
                                 $(".modal-image-synopsis").modal("show");
                             }
                         });
+                        $(".modal-image-synopsis .input-image-program").change(function () {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+                                reader.readAsDataURL(this.files[0]);
+
+                            }
+                        });
 
                         break;
 
@@ -394,11 +411,49 @@ function eventsGrilla() {
 
                         break;
                     case "synopsis-images-container":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-synopsis-images-container").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        let buttonImageSynopsisModal = $('#images-synopsis-modal-button');
+                        data.then(data => {
+                            if (data.code == 200) {
+                                console.log("titutlo", data.data.subtitle);
+                                let imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png"
+                                let imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png"
+                                let imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png"
+                                $('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1)
+                                $('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2)
+                                $('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3)
+                                $(".modal-synopsis-images-container").modal("show");
+                                $(".loader-view-container").remove();
+                            }
+                            buttonImageSynopsisModal.attr("landing_id", data.data.landing_id)
+                            buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id)
+                        });
+
+
+                        $(".modal-synopsis-images-container .input-image-program").change(function () {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+                                reader.readAsDataURL(this.files[0]);
+
+                                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"])
+                                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"])
+                            }
+                        });
                         break;
                     case "synopsis-datails-container":
                         $("body").append(loader);
@@ -440,11 +495,14 @@ function eventsGrilla() {
         response.then(data => {
             if (data.code == 200) {
                 console.log(data);
+                let responseSynopsis = getSynopsis(chapterId);
+                socketSynopsis.postMessage(responseSynopsis);
                 $(".modal-edit-synopsis").modal("hide");
-                //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+
             }
             $(".loader-view-container").remove();
         });
+
     });
 
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
@@ -462,8 +520,43 @@ function eventsGrilla() {
             }
         );
     }
+    $('#images-synopsis-modal-button').click(function () {
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
+        let imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
+        let imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
+        let imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
+        let landingId = $(this).attr("landing_id");
+        let chapterId = $(this).attr("chapter_id");
+        let data = new FormData();
+        data.append("image-synopsis-1", imageSynopsis1);
+        data.append("image-synopsis-2", imageSynopsis2);
+        data.append("image-synopsis-3", imageSynopsis3);
+        data.append("landing_id", landingId)
+        data.append("chapter_id", chapterId)
+
+        let imagesResponse = updateImagesSynopsis(data);
+        imagesResponse.then(data => {
+            if (data.code == 200) {
+                let response = getSynopsis(chapterId);
+                socketSynopsis.postMessage(response);
+            }
+            $('.modal-synopsis-images-container').modal("hide");
+            $(".loader-view-container").remove();
+        })
+        update();
+
+    })
     //Editar imagen principal en landing de sinopsis
     $('#upload-image-synopsis').click(function () {
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
         let imageSynopsis = document.getElementById('image-synopsis').files[0];
         let landingId = $(this).attr("landing_id");
         let chapterId = $(this).attr("chapter_id");
@@ -471,9 +564,15 @@ function eventsGrilla() {
         data.append("image-synopsis", imageSynopsis);
         data.append("landing_id", landingId)
         data.append("chapter_id", chapterId)
-        updateImagesSynopsis(data)
-        let response = getSynopsis(chapterId);
-        socketSynopsis.postMessage(response);
+        let imagesResponse = updateImagesSynopsis(data);
+        imagesResponse.then(data => {
+            if (data.code == 200) {
+                let response = getSynopsis(chapterId);
+                socketSynopsis.postMessage(response);
+            }
+            $(".loader-view-container").remove();
+            $(".modal-image-synopsis").modal("hide");
+        })
         //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
     })
 
@@ -492,6 +591,7 @@ function eventsGrilla() {
         updateImagesSynopsis(data)
         let response = getSynopsis(chapterId);
         socketSynopsis.postMessage(response);
+        $(".modal-programming-sinopsis").modal("hide");
     })
     //Landing de concert channel
     let confLandingClaroCinema = {

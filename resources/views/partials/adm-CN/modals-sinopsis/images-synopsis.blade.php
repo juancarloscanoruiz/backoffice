@@ -15,21 +15,6 @@
                         <div class="d-flex justify-content-center align-items-center align-content-center mt-3">
 
                             <div class="centro position-relative logo-lading-container mb-3">
-                                <div class="bor mx-auto position-relative thumbnail-image-program"
-                                    id="thumbnail-images-synopsis">
-                                    <input type="file" name="image-icon1" id="image-icon1"
-                                        class="input-image-program logo-landing d-none">
-                                    <label for="image-icon1"
-                                        class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                                        <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                            class="add-photo " style="z-index:10000; width:60px" />
-                                        <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                            style="z-index:10000">472px X
-                                            295px</span>
-                                        <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                    </label>
-                                </div>
 
 
 
@@ -44,19 +29,19 @@
                                             <div class="centro position-relative logo-lading-container mb-3">
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
-                                                    <input type="file" name="image-icon1" id="image-icon1"
+                                                    <input type="file" id="image-synopsis-1"
                                                         class="input-image-program logo-landing d-none">
-                                                    <label for="image-icon1"
+                                                    <label for="image-synopsis-1"
                                                         class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"
                                                             alt="add-photo" class="add-photo "
                                                             style="z-index:10000; width:60px" />
                                                         <span
                                                             class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                            style="z-index:10000">472px X
-                                                            295px</span>
-                                                        <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                                            style="z-index:10000">375px X
+                                                            215px</span>
+                                                        <img src=""
+                                                            class="image-synopsis-frame-1 w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                                     </label>
                                                 </div>
 
@@ -72,19 +57,19 @@
                                             <div class="centro position-relative mb-3 logo-lading-container">
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
-                                                    <input type="file" name="image-icon2" id="image-icon2"
+                                                    <input type="file" id="image-synopsis-2"
                                                         class="input-image-program logo-landing d-none">
-                                                    <label for="image-icon2"
+                                                    <label for="image-synopsis-2"
                                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"
                                                             alt="add-photo" class="add-photo "
                                                             style="z-index:10000; width:60px" />
                                                         <span
                                                             class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                            style="z-index:10000">472px X
-                                                            295px</span>
-                                                        <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                                            style="z-index:10000">375px X
+                                                            215px</span>
+                                                        <img src=""
+                                                            class="w-100 image-synopsis-frame-2 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                                     </label>
                                                 </div>
                                                 <!--div urls-->
@@ -98,19 +83,19 @@
                                             <div class="centro position-relative mb-3 logo-lading-container">
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
-                                                    <input type="file" name="image-icon3" id="image-icon3"
+                                                    <input type="file" id="image-synopsis-3"
                                                         class="input-image-program logo-landing d-none">
-                                                    <label for="image-icon3"
+                                                    <label for="image-synopsis-3"
                                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"
                                                             alt="add-photo" class="add-photo "
                                                             style="z-index:10000; width:60px" />
                                                         <span
                                                             class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                            style="z-index:10000">472px X
-                                                            295px</span>
-                                                        <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                                            style="z-index:10000">375px X
+                                                            215px</span>
+                                                        <img src="image-synopsis-frame-1"
+                                                            class="w-100 image-synopsis-frame-3 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                                     </label>
                                                 </div>
                                                 <!--div urls-->
@@ -141,7 +126,7 @@
                                     <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                                         <button
                                             class="d-flex m-0  mr-3  btn-landing disabled-btn a-btn-basic-small  text-uppercase a-text-bold-teal text-plus edit-landing-modal-button"
-                                            id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
+                                            id="images-synopsis-modal-button" data-dismiss="modal">ACEPTAR</button>
                                         <a href="#delete-info-synopsis" role="button"
                                             class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                                             data-toggle="modal">CANCELAR</a>
