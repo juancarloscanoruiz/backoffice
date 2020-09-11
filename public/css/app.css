@@ -2569,6 +2569,14 @@ body {
   background: rgba(255, 255, 255, 0.8) !important;
 }
 
+.black-shadow {
+  width: 100px;
+  height: 48px;
+  opacity: 0.8;
+  border-radius: 27px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .programming-dots {
   transform: translate(300px, -50px);
 }
@@ -3148,6 +3156,28 @@ body {
 
 .op-ac {
   opacity: 1;
+}
+
+.login {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.claro-nav-image,
+.nav-image {
+  height: 50px;
+}
+
+.nav-image {
+  width: 60%;
+  cursor: pointer;
+}
+
+.claro-nav-image {
+  width: 100%;
+  cursor: pointer;
 }
 
 @font-face {
@@ -6383,6 +6413,33 @@ ul {
   background-color: #018292 !important;
 }
 
+.tv-list-programming {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 9%;
+  max-width: calc(100vw - 35px);
+  margin: 0 auto 9% auto;
+  width: 350px;
+  z-index: 1;
+}
+
+.nav-li {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  opacity: 0.75;
+  transition: all 0.6s ease;
+  padding: 10px;
+}
+
+.active-navItem {
+  position: relative;
+  -webkit-filter: none;
+          filter: none;
+  opacity: 1;
+}
+
 .navbar-progra-item-border {
   border-right: 2px solid #979797;
 }
@@ -7335,6 +7392,11 @@ iframe {
   height: 461px;
 }
 
+.container-edit-title-sinopsis {
+  width: 824px;
+  height: 65px;
+}
+
 .edit-text-synopsis {
   resize: none;
   border: none;
@@ -7585,12 +7647,11 @@ header {
 }
 
 .circle-video {
-  display: none;
   margin: auto;
   -webkit-clip-path: circle(50% at 80% 21%);
           clip-path: circle(50% at 80% 21%);
   position: absolute;
-  right: 0%;
+  right: 2%;
   width: 635px;
   height: 587px;
   z-index: 1;

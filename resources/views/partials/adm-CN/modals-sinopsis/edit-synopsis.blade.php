@@ -5,10 +5,16 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">SINOPSIS</h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <div
+                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-title-sinopsis">
+                
+                <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3 synopsis-modal-title">
+                        </h1>
+
+</div>       
+                <div
                     class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis">
                     <div class="container-edit-sinopsis h-100">
-                        <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3 synopsis-modal-title">
-                        </h1>
+                        
                         <textarea id="synopsis" name=""
                             class="edit-text-synopsis container-image-synopsis a-text-medium-white">
                 </textarea>
