@@ -24,7 +24,7 @@
                     <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
                     <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
                 </div>
-            </div>                   
+            </div>
             <div class="d-flex float-right mb-4 mr-5 ">
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
@@ -41,18 +41,18 @@
                     <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
                     <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
                 </div>
-            </div>  
+            </div>
             <div class="clearfix"></div>
             <div class="ml-5 float-left ">
         <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">septiembre 17 2019</span> </span></div>
         <span class="a-text-black-light text-plus">Editado por: <label class="zona"> Antonio Pérez López (<label class="zona ">Usuario aprobador</label>)</label></span>
-    </div>            
-           
+    </div>
+
             <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria  <img src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" width="32px" /></div></button>
-           
+
         </div>
-        <div class="clearfix"></div> 
+        <div class="clearfix"></div>
         <div class="mr-5 float-right">
         <div class="d-flex  align-items-center justify-content-center mb-2 mt-2">
             <span class="a-text-semibold-black text-normal mr-3">Establecer sinopsis como:</span>
@@ -69,7 +69,7 @@
                                             Capítulo</label>
                                         </div>
         </div>
-        <div class="clearfix"></div> 
+        <div class="clearfix"></div>
         <div class=" mx-auto">
         <h3 class="a-text-black-brown-two h3 d-flex justify-content-center mt-3">SINOPSIS</h3>
         <hr class="d-flex align-content-center separationhr col-11 mt-4 mb-5">
@@ -89,7 +89,7 @@
                       class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
               </div>
       </div>
-    
+
     </div>
   </div>
 </div>

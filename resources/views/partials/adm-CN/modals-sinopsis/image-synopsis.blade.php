@@ -8,21 +8,18 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">IMAGEN </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <div
-                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-image">
-                    <div class="justify-content-around position-absolute d-flex  align-items-center">
-                        <input type="file" name="" id="image-synopsis" class="d-none">
+                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-image position-relative">
+                    <div class="justify-content-around position-absolute d-flex w-100 h-100  align-items-center">
+                        <input type="file" name="" id="image-synopsis" class="input-image-program d-none">
                         <label for="image-synopsis"
                             class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class="add-photo promo-icon cursor-pointer" style="width:95px" />
                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
                                 jpg 552px X 366px </span>
+                            <img class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program image-synopsis-modal"
+                                src="{{ asset('/images/synopsis/image-synopsis.svg') }}" alt="add-photo" />
                         </label>
-                    </div>
-
-                    <div class="position-relative " id="">
-                        <img class="image-synopsis-modal" src="{{ asset('/images/synopsis/image-synopsis.svg') }}"
-                            alt="add-photo" />
                     </div>
 
                 </div>

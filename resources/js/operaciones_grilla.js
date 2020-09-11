@@ -8,6 +8,11 @@ import {
     selectColumn
 } from "./UI/UI.js";
 
+
+//View
+import ProgramView from "./views/program.js";
+let programView = new ProgramView();
+
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
 //Servicios para editar campos en la grilla''
@@ -456,11 +461,8 @@ function eventsGrilla() {
                         });
                         break;
                     case "synopsis-datails-container":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $(".modal-info-synopsis").modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
+
+                        programView.renderDetailsSynopsis(json.id);
                         break;
 
                     default:
@@ -473,7 +475,6 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-
 
 
     //Editar sinopsis en landing de sinopsis
@@ -520,6 +521,7 @@ function eventsGrilla() {
             }
         );
     }
+    programView.editDetailsSynopsis(socketSynopsis);
     $('#images-synopsis-modal-button').click(function () {
         $("body").append(
             `<div class="loader-view-container pointer-none">

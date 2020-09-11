@@ -86,9 +86,12 @@
                     </div>
                 </form>
                 <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile" id="prev-mobile" >
-                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet" id="prev-tablet" >
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc" id="prev-desktop" >
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile"
+                        id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet"
+                        id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc"
+                        id="prev-desktop">
                 </div>
             </div>
             <div class="float-left ml-5 mb-4 ">
@@ -228,12 +231,13 @@
                                 <span class="a-text-semibold-tomato text-normal ">0/8</span>
                             </div>
                             <div class="contenedor-columna centro">
-                                <input type="image" src="./images/lapiz-acti.svg" alt="" class=" btn-focus edi load-file sinopsis  mr-3" />
+                                <input type="image" src="./images/lapiz-acti.svg" alt=""
+                                    class=" btn-focus edi load-file sinopsis  mr-3" />
                                 <input type="image" src="./images/ojito-acti.svg" alt="" class=" btn-focus edi" />
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" name="landing1"id="yes-landing" value="3"
+                                    <input type="radio" name="landing1" id="yes-landing" value="3"
                                         class="edit-switch-landing edit-landing-yes" />
                                     <label for="yes-landing" id="siestado-landing"
                                         class="mb-0 si-estilo cursor-pointer switch-label">
@@ -268,7 +272,7 @@
                                     <label for="yes-landing2" id="siestado-landing"
                                         class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing2"  name="landing2" value="0"
+                                    <input type="radio" id="no-landing2" name="landing2" value="0"
                                         class="edit-switch-landing switch-table-edit edit-landing-no" checked />
                                     <label for="no-landing2" id="noestado-landing"
                                         class="mb-0 no-estilo cursor-pointer switch-label">
@@ -292,7 +296,7 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing3" value="3"name="landing3"
+                                    <input type="radio" id="yes-landing3" value="3" name="landing3"
                                         class="edit-switch-landing edit-landing-yes" checked />
                                     <label for="yes-landing3" id="siestado-landing"
                                         class="mb-0 si-estilo cursor-pointer switch-label">
@@ -386,4 +390,5 @@
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.sinopsis');
     @include('partials.adm-CN.modals-home.home-encabezado');
+
 </body>

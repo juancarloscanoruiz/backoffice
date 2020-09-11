@@ -655,6 +655,29 @@ class landingController extends Controller
 
         return $response->getBody()->getContents();
     }
+
+
+    function editBlockSynopsis(Request $request){
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "program/editBolckSinopsis",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    'duration' => $request->input('duration'),
+                    'year' => $request->input('year'),
+                    'seasons' => $request->input('season'),
+                    'rating' => $request->input('rating')
+                ]
+            )]
+        );
+        return $response->getBody()->getContents();
+    }
+
     public function storeImagesSynopsis($id, $landing, $title, $file, $type)
     {
 
