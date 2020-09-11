@@ -6973,6 +6973,15 @@ a:hover {
   margin: auto;
 }
 
+.modal-img-carrusel {
+  width: 100%;
+  height: 666px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 .m-schedule {
   margin-bottom: 9px;
 }
