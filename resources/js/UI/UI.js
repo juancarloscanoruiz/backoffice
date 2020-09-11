@@ -692,8 +692,8 @@ function showLandingSchedule(id) {
                     $("#general-programming")
                         .html(result)
                         .promise();
-                        // let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
-                        let baseURL = "https://localhost/MaquetaCNetworks/"
+                        let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+                        // let baseURL = "https://localhost/MaquetaCNetworks/"
                         confLandingHome(baseURL);
                 }
             });

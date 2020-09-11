@@ -60,7 +60,7 @@
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5 text-sexo">CLARO SPORT</div>
+            <div class="pd-5 text-sexo">CLARO SPORTS</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
@@ -74,7 +74,9 @@
             </div>
             <div class="pd-5 text-sexo">FOOTER</div>
             <div class="justify-content-center">
-                <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
+            <a href="{{ route('footer') }}">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 

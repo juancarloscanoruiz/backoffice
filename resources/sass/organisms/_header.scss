@@ -42,11 +42,10 @@ header {
     overflow-x: hidden;
   }
   .circle-video {
-    display: none;
     margin: auto;
     clip-path: circle(50% at 80% 21%);
     position: absolute;
-    right: 0%;
+    right: 2%;
     width: 635px;
     height: 587px;
     z-index: 1;

@@ -228,7 +228,7 @@
                                     <img class="img-back-modal img-carrusel-home" id="img-carrusel-home" src="images/modals/back-large.svg">
                                 </div>
                                 <!-- BTN ICONOS -->
-                                <div class="modal-img-home">
+                                <div class="modal-img-carrusel">
                                     <!-- INPUTS -->
                                     <input class="d-none" id="img_carrusel" name="img-carrusel" type="file">
                                     <!-- LABEL -->

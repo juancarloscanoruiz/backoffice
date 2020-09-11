@@ -70,6 +70,7 @@ Route::get("/concert-channel", "landingController@showConcertChannelLanding")->n
 Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('claro-cinema');
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
+Route::get("/footer", "landingController@showFooterLanding")->name('footer');
 
 Route::group(['prefix' => 'landing'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");
@@ -93,6 +94,8 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/getSynopsis", "landingController@getSynopsis");
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
+    Route::post("/home", "landingController@getContentHome");
+
     // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
