@@ -1,5 +1,5 @@
 <div class="modal modal-home-encabezado p-0 m-0" tabindex="-1" role="dialog" id="">
-    <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style="max-width: 1350px;">
+    <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style=" max-width: 1178px;">
         <div class="modal-content  align-item-center centro " >
             <div class="modal-body ">
 
@@ -36,7 +36,7 @@
               <div class="clearfix"></div>
 
                         <!-- parte del home-->
-                        <div class="d-flex justify-content-around col-11 mx-auto">
+                        <div class="d-flex col-12 mb-5 mx-auto">
                         <div class="mr-5">
                         <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4">
                         <!--navbar-->
@@ -77,15 +77,16 @@
                         </div>-->
 
                         <!--inputs-->
-                        <input type="text" name="" id="" class="input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3" placeholder="TITULO">
-                        <input type="text" name="" id="" class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3" placeholder="SUBTITULO">
+                        <input type="text" name="" id="" class="input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex" placeholder="TITULO">
+                        <input type="text" name="" id="" class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex" placeholder="SUBTITULO">
 
                         </div>
                         <div class=" d-flex justify-content-around ">
                          
-                        <input type="file" name="" id="image-promo-concert" class="d-none">
-                            <label for="image-promo-concert"
-                                class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                        <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
+                            accept="video/*">
+                            <label for="video-promo-header-home"
+                                class="mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header">
                                <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
                                 <img src="./images/synopsis/home-video.svg" class="">
                                 <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
@@ -108,7 +109,7 @@
        <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                             <button
                                 class="d-flex m-0  mr-3  btn-landing disabled-btn a-btn-basic-small  text-uppercase a-text-bold-teal text-plus edit-landing-modal-button"
-                                id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
+                                id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
                             <a href="#delete-info-synopsis" role="button"
                                 class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                                 data-toggle="modal">CANCELAR</a>

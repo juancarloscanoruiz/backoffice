@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -74072,17 +74072,12 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-home-encabezado').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentHomeHeader"])();
             break;
 
           case "claro-home-header":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-image-synopsis').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -74090,7 +74085,6 @@ function eventsGrilla() {
           case "claro-home-slider":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -74397,8 +74391,8 @@ function eventsGrilla() {
   }); //Landing de concert channel
 
   var confLandingClaroCinema = {
-    // remote: `${baseURL}claro-cinema-edi.php`,
-    remote: "http://localhost/MaquetaCNetworks/claro-cinema-edi.php",
+    remote: "".concat(baseURL, "claro-cinema-edi.php"),
+    // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
     container: document.getElementById("navbar-prev-claro-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -77385,7 +77379,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77418,6 +77412,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAttributeSynopsis", function() { return editAttributeSynopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesSynopsis", function() { return updateImagesSynopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confLandingHome", function() { return confLandingHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeHeader", function() { return getContentHomeHeader; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -78298,6 +78293,52 @@ function getContentConcertChannelHeader() {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()("#icon_canal_claro_edit").attr("src", data.data.block_2_icon_channel); //Mostramos el modal
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel").modal("show"); //Eliminamos
+
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+      }
+    }
+  });
+} //home
+//Landing concert channel
+
+
+function getContentHomeHeader() {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/home",
+    success: function success(result) {
+      var data = JSON.parse(result);
+      console.log(data);
+
+      if (data.code == 200) {
+        //Título en header de home
+        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-1"); //Subtítulo de home
+
+        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-2"); //let headerVideo = $(".modal-home-encabezado .video-header");
+
+        headerTitle1.val(data.data.block_1_title);
+        headerTitle2.val(data.data.block_1_subtitle); // headerVideo.val(data.data.block_1_video_name);
+
+        if (data.data.block_1_video_name) {
+          var _headerVideo = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .video-header"); //Verificamos si la url es de una imagen
+
+
+          if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                    "));
+          } else {
+            //La url es de un video
+            _headerVideo.html("\n                   \n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                     </video>\n                     <img src =\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"edit-icon\" class=\"d-flex position-absolute\" style=\"z-index:5;    width: 13%;\n                     transform: translate(190%, -110%);\"/>\n                    \n                    "));
+          }
+        } else {
+          headerVideo.html("\n                <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                ");
+        } //Mostramos el modal
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("show"); //Eliminamos
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
@@ -81014,7 +81055,7 @@ function createSlickSlider(container, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

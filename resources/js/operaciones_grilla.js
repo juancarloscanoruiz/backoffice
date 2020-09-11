@@ -47,7 +47,8 @@ import {
     getSynopsis,
     editAttributeSynopsis,
     updateImagesSynopsis,
-    confLandingHome
+    confLandingHome,
+    getContentHomeHeader
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -170,18 +171,13 @@ function eventsGrilla() {
 
                 switch (json.type) {
                     case "slider-pagination":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $('.modal-home-encabezado').modal("show");
-                            $("#loader1").remove();
-                        }, 3000);
-
+                        getContentHomeHeader();
 
                         break;
                     case "claro-home-header":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-image-synopsis').modal("show");
+                           
                             $("#loader1").remove();
                         }, 3000);
 
@@ -191,7 +187,7 @@ function eventsGrilla() {
                     case "claro-home-slider":
                         $("body").append(loader);
                         setTimeout(function () {
-                            $('.modal-edit-synopsis').modal("show");
+                          
                             $("#loader1").remove();
                         }, 3000);
 
@@ -986,6 +982,8 @@ function eventsGrilla() {
         data.append("link", link);
         editHeaderLanding(data);
     });
+   
+
 
     $("#edit-titles-landing-concert").click(function () {
         //Title

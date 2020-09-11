@@ -1131,7 +1131,75 @@ function getContentConcertChannelHeader() {
         }
     });
 }
+//home
+//Landing concert channel
+function getContentHomeHeader() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/home",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                //Título en header de home
+               let headerTitle1 = $(
+                    ".modal-home-encabezado .header-title-1"
+                );
+                //Subtítulo de home
+                let headerTitle2 = $(
+                    ".modal-home-encabezado .header-title-2"
+                );
+                //let headerVideo = $(".modal-home-encabezado .video-header");
 
+                headerTitle1.val(data.data.block_1_title);
+                headerTitle2.val(data.data.block_1_subtitle);
+               // headerVideo.val(data.data.block_1_video_name);
+               if (data.data.block_1_video_name) {
+                let headerVideo = $(".modal-home-encabezado .video-header");
+                //Verificamos si la url es de una imagen
+                if (
+                    data.data.block_1_video_name.match(
+                        /\.(jpeg|jpg|gif|png)$/
+                    ) != null
+                ) {
+                    headerVideo.html(`
+                    <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="video-promo-header-home">
+                    `);
+                } else {
+                    //La url es de un video
+                    headerVideo.html(`
+                   
+                    <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
+                    <source src="${data.data.block_1_video_name}" type="video/mp4">
+                     </video>
+                     <img src ="./images/basic-icons/pencil-edit-teal.svg" alt="edit-icon" class="d-flex position-absolute" style="z-index:5;    width: 13%;
+                     transform: translate(190%, -110%);"/>
+                    
+                    `);
+                }
+            } else {
+                headerVideo.html(`
+                <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="video-promo-header-home">
+                `);
+            }
+        
+            
+                //Mostramos el modal
+                $(".modal-home-encabezado").modal("show");
+                //Eliminamos
+                $(".loader-view-container").remove();
+            }
+        }
+    });
+}
 function getContentConcertChannelBlockHeader3() {
     $.ajax({
         type: "POST",
@@ -3758,6 +3826,7 @@ export {
     getSynopsis,
     editAttributeSynopsis,
     updateImagesSynopsis,
-    confLandingHome
+    confLandingHome,
+    getContentHomeHeader
 
 };

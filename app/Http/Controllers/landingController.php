@@ -362,6 +362,37 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
+    public function getContentHome(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/home"
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+    public function editHeaderHome(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+       
+        $response = $client->post(
+            $this->url . "program/returnPost",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "landing" => $request->input('landing'),
+                   // "icon_chanel" => $logo,
+                    "title_1" => $request->input('title1'),
+                    "title_2" => $request->input('title2'),
+                   // "url_programation" => $request->input("link")
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
+    }
     public function editElementLanding(Request $request)
     {
         $value = $request->input('value');
