@@ -176,7 +176,6 @@ a:hover {
 .img-back-modal {
     object-fit: cover;
     position: absolute;
-    top: 10px;
 }
 .img-promo {
     border: 20px solid $selecred;
@@ -460,6 +459,13 @@ a:hover {
     border-radius: 0;
     padding: 1% 2%;
     margin: auto;
+}
+.m-schedule {
+    margin-bottom: 9px;
+}
+.img-carrusel-home {
+    width: 100%;
+    left: 0%;
 }
 // CARRUSEL
 // HOME

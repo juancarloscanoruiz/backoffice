@@ -1,4 +1,4 @@
-<div id="modal-logo-home" class="modal">
+<div id="modal-logo-home" class="modal" style="overflow: auto;">
     <div class="modal-dialog-centered">
         <div class="modal-content modal-logo-home">
             <!-- TEXTO -->
@@ -15,7 +15,7 @@
                         <!-- BTN ICONOS -->
                         <div class="modal-img-home">
                             <!-- INPUTS -->
-                            <input class="d-none" id="logo_home" name="img-promo-claro" type="file">
+                            <input class="d-none" id="logo_home" name="img-logo" type="file">
                             <!-- LABEL -->
                             <label for="logo_home" class="add-file">
                                 <img id="camera" class="cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />

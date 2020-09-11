@@ -496,6 +496,7 @@ function eventsGrilla() {
     //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
+        // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -4784,7 +4785,8 @@ function eventsGrilla() {
 
     $('#btn_pruebas').click(function () {
         console.log('click');
-        $('#modal-logo-home').modal('show');
+        // $('#modal-logo-home').modal('show');
+        $('#modal-carrusel-home').modal('show');
     });
 
     // HOME
