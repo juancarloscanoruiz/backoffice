@@ -4,18 +4,27 @@
             <div class="modal-body ">
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">SINOPSIS</h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                <div class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis" >
+                <div
+                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis">
                     <div class="container-edit-sinopsis h-100">
-                <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3"> MAD MEN</h1>
-                <textarea id="synopsis" name="" class="editable-attribute edit-text-synopsis container-image-synopsis a-text-medium-white" >En Nueva York durante los años 60, el dominante líder Don Draper lucha por mantenerse en la cima del grupo en las oficinas de la agencia de publicidad Sterling Cooper, de la avenida Madison, donde existe mucha presión.
+                        <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3 synopsis-modal-title">
+                        </h1>
+                        <textarea id="synopsis" name=""
+                            class="edit-text-synopsis container-image-synopsis a-text-medium-white">
                 </textarea>
+                    </div>
+
                 </div>
-                    
-                </div>
-              
+
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
-                    <button  class="d-flex m-0  mr-3  btn-landing a-btn-basic-small disabled-btn text-uppercase text-plus a-text-bold-teal edit-landing-modal-button"   id="upload-image-synopsis">ACEPTAR</button>
-                    <a href="#delete-sinopsis" role="button"     class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                    {{-- <button
+                        class="d-flex m-0  mr-3  btn-landing a-btn-basic-small disabled-btn text-uppercase text-plus a-text-bold-teal edit-landing-modal-button"
+                        id="upload-image-synopsis">ACEPTAR</button> --}}
+                    <button
+                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
+                        id="edit-synopsis-modal-button">ACEPTAR</button>
+                    <a href="#delete-sinopsis" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                         data-toggle="modal">CANCELAR</a>
                 </div>
             </div>

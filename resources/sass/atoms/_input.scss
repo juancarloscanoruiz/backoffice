@@ -749,6 +749,7 @@ div .bootstrap-select>.dropdown-toggle:focus {
     object-fit: contain;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0);
 }
+
 .input-information {
     border-radius: 0px !important;
     width: 140px;
@@ -782,10 +783,12 @@ div .bootstrap-select>.dropdown-toggle:focus {
     font-family: $MontserratBlack;
     color: $teal;
 }
+
 .subtitle-home-enca::placeholder {
     font-family: $MontserratBlack;
     color: $black-two;
 }
+
 .concert-input-title::placeholder {
     font-family: $MontserratBlack;
     color: $bright-cyan;
@@ -830,18 +833,28 @@ div .bootstrap-select>.dropdown-toggle:focus {
         color: $warmGrey;
     }
 }
- .input-title-home{
+
+.label-active {
+    background-color: $teal;
+    color: $white;
+    border: none;
+    font-family: $MontserratBlack;
+}
+
+.input-title-home {
     width: 575px;
     height: 194px;
     box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
     background-color: #ffffff;
- }
- .input-subtitle-home{
+}
+
+.input-subtitle-home {
     width: 575px;
     height: 101px;
     box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
     background-color: #ffffff;
- }
- .opa-holder::placeholder{
-opacity: 0.4;
- }
+}
+
+.opa-holder::placeholder {
+    opacity: 0.4;
+}

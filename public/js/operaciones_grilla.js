@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/asn1.js/lib/asn1.js":
 /*!******************************************!*\
   !*** ./node_modules/asn1.js/lib/asn1.js ***!
@@ -58843,6 +58855,27 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/lozad/dist/lozad.min.js":
+/*!**********************************************!*\
+  !*** ./node_modules/lozad/dist/lozad.min.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*! lozad.js - v1.16.0 - 2020-09-06
+* https://github.com/ApoorvSaxena/lozad.js
+* Copyright (c) 2020 Apoorv Saxena; Licensed MIT */
+!function(t,e){ true?module.exports=e():undefined}(this,function(){"use strict";
+/**
+   * Detect IE browser
+   * @const {boolean}
+   * @private
+   */var g="undefined"!=typeof document&&document.documentMode,f={rootMargin:"0px",threshold:0,load:function(t){if("picture"===t.nodeName.toLowerCase()){var e=t.querySelector("img"),r=!1;null===e&&(e=document.createElement("img"),r=!0),g&&t.getAttribute("data-iesrc")&&(e.src=t.getAttribute("data-iesrc")),t.getAttribute("data-alt")&&(e.alt=t.getAttribute("data-alt")),r&&t.append(e)}if("video"===t.nodeName.toLowerCase()&&!t.getAttribute("data-src")&&t.children){for(var a=t.children,o=void 0,i=0;i<=a.length-1;i++)(o=a[i].getAttribute("data-src"))&&(a[i].src=o);t.load()}t.getAttribute("data-poster")&&(t.poster=t.getAttribute("data-poster")),t.getAttribute("data-src")&&(t.src=t.getAttribute("data-src")),t.getAttribute("data-srcset")&&t.setAttribute("srcset",t.getAttribute("data-srcset"));var n=",";if(t.getAttribute("data-background-delimiter")&&(n=t.getAttribute("data-background-delimiter")),t.getAttribute("data-background-image"))t.style.backgroundImage="url('"+t.getAttribute("data-background-image").split(n).join("'),url('")+"')";else if(t.getAttribute("data-background-image-set")){var d=t.getAttribute("data-background-image-set").split(n),u=d[0].substr(0,d[0].indexOf(" "))||d[0];// Substring before ... 1x
+u=-1===u.indexOf("url(")?"url("+u+")":u,1===d.length?t.style.backgroundImage=u:t.setAttribute("style",(t.getAttribute("style")||"")+"background-image: "+u+"; background-image: -webkit-image-set("+d+"); background-image: image-set("+d+")")}t.getAttribute("data-toggle-class")&&t.classList.toggle(t.getAttribute("data-toggle-class"))},loaded:function(){}};function A(t){t.setAttribute("data-loaded",!0)}var m=function(t){return"true"===t.getAttribute("data-loaded")},v=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:document;return t instanceof Element?[t]:t instanceof NodeList?t:e.querySelectorAll(t)};return function(){var r,a,o=0<arguments.length&&void 0!==arguments[0]?arguments[0]:".lozad",t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},e=Object.assign({},f,t),i=e.root,n=e.rootMargin,d=e.threshold,u=e.load,g=e.loaded,s=void 0;"undefined"!=typeof window&&window.IntersectionObserver&&(s=new IntersectionObserver((r=u,a=g,function(t,e){t.forEach(function(t){(0<t.intersectionRatio||t.isIntersecting)&&(e.unobserve(t.target),m(t.target)||(r(t.target),A(t.target),a(t.target)))})}),{root:i,rootMargin:n,threshold:d}));for(var c,l=v(o,i),b=0;b<l.length;b++)(c=l[b]).getAttribute("data-placeholder-background")&&(c.style.background=c.getAttribute("data-placeholder-background"));return{observe:function(){for(var t=v(o,i),e=0;e<t.length;e++)m(t[e])||(s?s.observe(t[e]):(u(t[e]),A(t[e]),g(t[e])))},triggerLoad:function(t){m(t)||(u(t),A(t),g(t))},observer:s}}});
+
+
+/***/ }),
+
 /***/ "./node_modules/md5.js/index.js":
 /*!**************************************!*\
   !*** ./node_modules/md5.js/index.js ***!
@@ -69989,6 +70022,746 @@ module.exports = __webpack_require__(/*! ./lib/_stream_writable.js */ "./node_mo
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new PromiseImpl(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/ripemd160/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/ripemd160/index.js ***!
@@ -73339,7 +74112,8 @@ function eventsGrilla() {
   }
 
   var LandingSinopsis = {
-    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `${baseURL}sinopsis-edi.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -73349,52 +74123,172 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-sinopsis').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(json.id);
+            data.then(function (data) {
+              if (data.code == 200) {
+                var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
+                var index = 1;
+                var slide = "";
+                var image = "";
+
+                while (true) {
+                  if (data.data["image_background_".concat(index)] !== undefined) {
+                    image = data.data["image_background_".concat(index)];
+
+                    if (data.data["image_background_".concat(index)] == null) {
+                      image = "./images/synopsis/image-synopsis-carrusel.jpg";
+                    }
+
+                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
+                    index++;
+                  } else {
+                    break;
+                  }
                 }
-              });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+
+                programminfSliderSynopsis.html(slide);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
+
+                try {
+                  programminfSliderSynopsis.slick("unslick");
+                  programminfSliderSynopsis.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function customPaging(slider, i) {
+                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                    }
+                  });
+                } catch (error) {
+                  programminfSliderSynopsis.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function customPaging(slider, i) {
+                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                    }
+                  });
+                }
+
+                var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
+                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
+                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
+                  var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                  if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                      currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                    buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                    buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                  }
+                });
+              }
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            });
             break;
 
           case "synopsis-main-image":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-image-synopsis').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(json.id);
+            data.then(function (data) {
+              if (data.code == 200) {
+                var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-modal').attr("src", image);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
+              }
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+              }
+            });
             break;
 
           case "synopsis-description-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(json.id);
+            data.then(function (data) {
+              if (data.code == 200) {
+                console.log("titutlo", data.data.subtitle);
+                var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
+                editSynopsisButton.attr("chapter_id", data.data.chapter_id);
+                editSynopsisButton.attr("key", "synopsis");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").text(data.data.subtitle);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              }
+            });
             break;
 
           case "synopsis-images-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(json.id);
+            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button');
+            data.then(function (data) {
+              if (data.code == 200) {
+                console.log("titutlo", data.data.subtitle);
+                var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              }
+
+              buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
+              buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
+              }
+            });
             break;
 
           case "synopsis-datails-container":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-info-synopsis').modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-info-synopsis").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -73407,17 +74301,104 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  };
+  }; //Editar sinopsis en landing de sinopsis
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-synopsis-modal-button').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
+    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["editAttributeSynopsis"])(chapterId, key, value);
+    response.then(function (data) {
+      if (data.code == 200) {
+        console.log(data);
+        var responseSynopsis = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(responseSynopsis);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    });
+  });
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
 
   if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-container iframe').remove();
-    new easyXDM.Socket(LandingSinopsis);
-  } //Landing de concert channel
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
+      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(id);
+      socketSynopsis.postMessage(data);
+    });
+  }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
+    var imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
+    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var data = new FormData();
+    data.append("image-synopsis-1", imageSynopsis1);
+    data.append("image-synopsis-2", imageSynopsis2);
+    data.append("image-synopsis-3", imageSynopsis3);
+    data.append("landing_id", landingId);
+    data.append("chapter_id", chapterId);
+    var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
+    imagesResponse.then(function (data) {
+      if (data.code == 200) {
+        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(response);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    });
+    update();
+  }); //Editar imagen principal en landing de sinopsis
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var imageSynopsis = document.getElementById('image-synopsis').files[0];
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var data = new FormData();
+    data.append("image-synopsis", imageSynopsis);
+    data.append("landing_id", landingId);
+    data.append("chapter_id", chapterId);
+    var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
+    imagesResponse.then(function (data) {
+      if (data.code == 200) {
+        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+        socketSynopsis.postMessage(response);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
+    }); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button").click(function () {
+    var imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
+    var imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
+    var imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var data = new FormData();
+    data.append("image_background_1", imageSynopsis1);
+    data.append("image_background_2", imageSynopsis2);
+    data.append("image_background_3", imageSynopsis3);
+    data.append("landing_id", landingId);
+    data.append("chapter_id", chapterId);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["updateImagesSynopsis"])(data);
+    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getSynopsis"])(chapterId);
+    socketSynopsis.postMessage(response);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+  }); //Landing de concert channel
 
   var confLandingClaroCinema = {
-    remote: "".concat(baseURL, "home-edi.php"),
+    // remote: `${baseURL}claro-cinema-edi.php`,
+    remote: "http://localhost/MaquetaCNetworks/claro-cinema-edi.php",
     container: document.getElementById("navbar-prev-claro-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -73427,7 +74408,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])('slider-pagination');
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentClaroCinema"])("slider-pagination");
             break;
 
           case "current-programming-cinema":
@@ -73542,19 +74523,19 @@ function eventsGrilla() {
           $(".modal-edit-program-carrusel").modal("show");
           //slider para carrusel concert-channel
           $(".carrusel1-slider").slick({
-           slidesToShow: 1,
-           dots: true,
-           appendDots: $(".carrusel1-slider-dots1"),
-           initialSlide: 0,
-           infinite: false,
-           customPaging: function (slider, i) {
-               var thumb = $(slider.$slides[i]).data();
-               return (
-                   "<p class='a-text-bold-teal slider-pagination-item'>" +
-                   (i + 1) +
-                   "</p>"
-               );
-           }
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel1-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+           var thumb = $(slider.$slides[i]).data();
+           return (
+               "<p class='a-text-bold-teal slider-pagination-item'>" +
+               (i + 1) +
+               "</p>"
+           );
+          }
           });
           $("#loader1").remove();
           }, 3000);
@@ -73564,19 +74545,19 @@ function eventsGrilla() {
           setTimeout(function () {
           $(".modal-edit-program-carrusel2").modal("show");
           $(".carrusel2-slider").slick({
-           slidesToShow: 1,
-           dots: true,
-           appendDots: $(".carrusel2-slider-dots1"),
-           initialSlide: 0,
-           infinite: false,
-           customPaging: function (slider, i) {
-               var thumb = $(slider.$slides[i]).data();
-               return (
-                   "<p class='a-text-bold-teal slider-pagination-item'>" +
-                   (i + 1) +
-                   "</p>"
-               );
-           }
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel2-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+           var thumb = $(slider.$slides[i]).data();
+           return (
+               "<p class='a-text-bold-teal slider-pagination-item'>" +
+               (i + 1) +
+               "</p>"
+           );
+          }
           });
           $("#loader1").remove();
           }, 3000);
@@ -73664,10 +74645,10 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
     //Landing concert channel
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe'), confPrevConcert);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-landing-concert').click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-concert-channel iframe'), confLandingConcertChannel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
@@ -74380,7 +75361,7 @@ function eventsGrilla() {
   }); //para agregar un slider más en cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    console.log('pato');
+    console.log("pato");
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
@@ -74612,7 +75593,6 @@ function eventsGrilla() {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-    console.log(currentInput);
 
     if (this.files && this.files[0]) {
       var reader = new FileReader();
@@ -74692,9 +75672,6 @@ function eventsGrilla() {
     }
   }); //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lan-claro").click(function () {
-    Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["showlanding"])();
-  });
   /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
@@ -74874,14 +75851,14 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-    console.log('cerrar');
+    console.log("cerrar");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
     //$(".modal-edit-icons").modal("hide");
     // $(".modal-edit-program").modal("hide");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.close-modal-concert').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".close-modal-concert").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
   }); //cerrar los dos modales
 
@@ -75836,13 +76813,7 @@ function eventsGrilla() {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_7__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // CANAL CLARO
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
-    console.log('click'); // getContentClaroCinema('header-landing-cinema')
-    // getContentClaroCinema('slider-pagination')
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-logo-home').modal('show');
-  }); // CARGAR IMG HEADER
+  // CARGAR IMG HEADER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon1").change(function () {
     FileHeaderCinema(this);
@@ -75996,6 +76967,11 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').click(function () {
     console.log('click');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
+    console.log('click'); // $('#modal-logo-home').modal('show');
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('show');
   }); // HOME
 }
 
@@ -76079,6 +77055,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
+/* harmony import */ var _vendor_lozad__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vendor/lozad */ "./resources/js/vendor/lozad.js");
+
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
@@ -76269,6 +77247,12 @@ function filterDates(startDate, lastDate, landing) {
       var newGrill = "\n                ".concat(header, "\n                ").concat(rows, "\n            ");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html(newGrill);
+      var options = {
+        load: function load(el) {
+          el.classList.add("fade-grilla");
+        }
+      };
+      Object(_vendor_lozad__WEBPACK_IMPORTED_MODULE_2__["createLazyLoad"])(".contenedor-fila", options);
       Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__["eventsGrilla"])();
     }
   });
@@ -76401,7 +77385,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, confLandingHome */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76430,13 +77414,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentClaroCinema", function() { return getContentClaroCinema; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingClaro", function() { return editPromoLandingClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannel", function() { return getContentConcertChannel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsis", function() { return getSynopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAttributeSynopsis", function() { return editAttributeSynopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateImagesSynopsis", function() { return updateImagesSynopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confLandingHome", function() { return confLandingHome; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
-/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/config.js */ "./resources/js/config/config.js");
-/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
-/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./generalSchedule.js */ "./resources/js/services/generalSchedule.js");
+/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config/config.js */ "./resources/js/config/config.js");
+/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -76492,7 +77487,7 @@ function getMonthAndYear(month) {
 }
 
 function updateImagesOfProgrammingSlider(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
@@ -76502,28 +77497,28 @@ function updateImagesOfProgrammingSlider(data) {
     cache: false,
     url: "landing/update-programming-carrusel",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
       }
     }
   }).fail(function (e) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
     console.log(e);
   });
 }
 
 function updateLogosOfLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
@@ -76532,22 +77527,22 @@ function updateLogosOfLanding(data) {
     //esto es para poder pasar el archivo
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/updateLandingLogo",
     success: function success(result) {
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-icons").modal("hide");
       }
     }
   });
 }
 
 function updateImageProgramOfLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
@@ -76563,18 +77558,18 @@ function updateImageProgramOfLanding(data) {
 }
 
 function getChapterInfo(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     url: "landing/get-chapter-info/" + data,
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
       var data = JSON.parse(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
       var date = new Date();
       /* Número de días del mes actual */
 
@@ -76588,7 +77583,7 @@ function getChapterInfo(data) {
       var totalDaysSlider = 0;
       var daysSlider = ""; //Pegamos el nombre del mes y el año
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
 
       var dateUTC = new Date(); //Día en horario central
 
@@ -76667,16 +77662,16 @@ function getChapterInfo(data) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").html(daysSlider); //End caledario
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider").html(daysSlider); //End caledario
 
-      var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-modal-title");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("section", data.program.section_id);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("program", data.program.program.title);
+      var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-modal-title");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("section", data.program.section_id);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("program", data.program.program.title);
       modaTitle.attr("chapter_id", data.program.chapter_id);
       modaTitle.attr("section", data.program.section_id);
       modaTitle.attr("program", data.program.program.title);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
 
       var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
 
@@ -76714,45 +77709,45 @@ function getChapterInfo(data) {
       } //Insertamos el contenido en el termómetro
 
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").html(itemThermometer); //Insertamos la imagen del capítulo
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thermometer-schedule-list").html(itemThermometer); //Insertamos la imagen del capítulo
 
       if (data.image_program) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
           width: "80px",
           "margin-bottom": "16px"
         });
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
 
       var options = "";
       data.program_catalogue.forEach(function (program) {
         options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
       //selectpicker pra ls titulos de los programas
 
-      var dropdownTitles = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa");
+      var dropdownTitles = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa");
       dropdownTitles.selectpicker("destroy");
       dropdownTitles.selectpicker();
-      var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
+      var selectheader = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thumbnail-header1");
       selectheader.on("hide.bs.select", function () {
         var keyValue = "";
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
-        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa").attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("chapter_id");
 
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
-          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val()) {
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
-          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa .filter-option-inner-inner").text());
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
         }
 
-        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
       var imageTriangle = "\n            <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n        ";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-image .bootstrap-select").append(imageTriangle);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".dropimg").click(function () {
         dropdownTitles.selectpicker("toggle");
       });
       data; //Genres
@@ -76761,19 +77756,19 @@ function getChapterInfo(data) {
       data.genres.forEach(function (genre) {
         optionGenre += "\n                    <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                    ");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker("destroy");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker({
         filter: true,
         multipleSeparator: ", "
       }); //End if
 
       var editProgramLandingGenres = "";
-      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
+      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-program-genres"); //Verificamos si el usuario ha seleccionado un género o categoría
 
       selectGenres.on("change", function () {
         //Obtenemos los valores del selectpicker
-        var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+        var selected = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
 
         var selectedLength = selected.length;
         editProgramLandingGenres = "";
@@ -76789,16 +77784,16 @@ function getChapterInfo(data) {
       }); //Evento para cuando cerramos el selectpicker
 
       selectGenres.on("hide.bs.select", function () {
-        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("chapter_id"); //Obtenemos la key
 
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-program-genres").attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
 
         var keyValue = editProgramLandingGenres; //Hacemos la petición
 
-        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapterId, key, keyValue);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".available").click(function () {
-        var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".available").click(function () {
+        var section = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("section");
 
         switch (section) {
           case "1":
@@ -76817,25 +77812,25 @@ function getChapterInfo(data) {
             break;
         }
 
-        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
+        var schedule = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("schedule");
         newProgram(section, schedule);
       }); //Verificamos si el programa está en algunas de las secciones del landing
 
       switch (data.program.in_landing) {
         case 0:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-no").prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", false);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-1").prop("checked", false);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-2").prop("checked", false);
           break;
 
         case 1:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-1").prop("checked", true);
           break;
 
         case 2:
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-2").prop("checked", true);
 
         default:
           break;
@@ -76844,12 +77839,12 @@ function getChapterInfo(data) {
       if (data.program.in_landing_begin) {
         var landingBeginDateTime = data.program.in_landing_begin.split(" ");
         var fullDate = landingBeginDateTime[0].split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
 
         if (landingBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-begin").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
         }
       }
 
@@ -76858,20 +77853,20 @@ function getChapterInfo(data) {
 
         var _fullDate = landingExpirationDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-date-end").val("".concat(_fullDate[2], "-").concat(_fullDate[1], "-").concat(_fullDate[0]));
 
         if (landingExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-end").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
         }
       } //Verficar si el programa se encuentra en el home
 
 
       if (data.program.in_home == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-no").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-in-home-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-yes").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-in-home-yes").prop("checked", true);
       }
 
       if (data.program.in_home_begin) {
@@ -76879,12 +77874,12 @@ function getChapterInfo(data) {
 
         var _fullDate2 = homeBeginDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-date-begin").val("".concat(_fullDate2[2], "-").concat(_fullDate2[1], "-").concat(_fullDate2[0]));
 
         if (homeBeginDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-begin").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
         }
       }
 
@@ -76893,58 +77888,58 @@ function getChapterInfo(data) {
 
         var _fullDate3 = homeExpirationDateTime[0].split("-");
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-date-end").val("".concat(_fullDate3[2], "-").concat(_fullDate3[1], "-").concat(_fullDate3[0]));
 
         if (homeExpirationDateTime[1] == "00:00:00") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-end").val("");
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
         }
       } //Schedule Item Date Time
 
 
       var scheduleItemDate = data.program.day.split("-");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-textarea").val(data.program.synopsis); //Season
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-textarea").val(data.program.synopsis); //Season
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-season").val(data.program.season); //Program episode number
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-season").val(data.program.season); //Program episode number
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-episode-number").val(data.program.episode_number); //Year
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-episode-number").val(data.program.episode_number); //Year
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-rating-code").val(data.program.program.rating); //Duration
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-rating-code").val(data.program.program.rating); //Duration
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-duration").val(data.program.duration); //Subbed
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-duration").val(data.program.duration); //Subbed
 
       if (data.program.subbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-no").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-subbed-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-yes").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-subbed-yes").prop("checked", true);
       } //Dubbed
 
 
       if (data.program.dubbed == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-no").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-dubbed-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-yes").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-dubbed-yes").prop("checked", true);
       } //Audio 5.0
 
 
       if (data.program.audio5 == 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-no").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-audio5-no").prop("checked", true);
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-yes").prop("checked", true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-audio5-yes").prop("checked", true);
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program").modal("show");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program").modal("show");
       setTimeout(function () {
         try {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick("unslick");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider").slick("unslick");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider").slick({
             slidesToShow: 11,
             slidesToScroll: 11,
             infinite: true,
@@ -76955,7 +77950,7 @@ function getChapterInfo(data) {
             nextArrow: '<img src="./images/next.png" class="arrow-next" />'
           });
         } catch (error) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").slick({
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider").slick({
             slidesToShow: 11,
             slidesToScroll: 11,
             infinite: true,
@@ -76973,7 +77968,7 @@ function getChapterInfo(data) {
 }
 
 function newProgram(landing, schedule) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: {
       schedule: schedule,
@@ -76981,11 +77976,11 @@ function newProgram(landing, schedule) {
     },
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/newProgram",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -76993,7 +77988,7 @@ function newProgram(landing, schedule) {
 }
 
 function getProgramming(date, section, time) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: {
       date: date,
@@ -77002,22 +77997,22 @@ function getProgramming(date, section, time) {
     },
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/getProgramming",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
 
       if (data.id_status >= 1) {
-        var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-modal-title");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("section", data.program.section_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("program", data.program.program.title);
+        var modaTitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-modal-title");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("chapter_id", data.program.chapter_id);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("section", data.program.section_id);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("program", data.program.program.title);
         modaTitle.attr("chapter_id", data.program.chapter_id);
         modaTitle.attr("section", data.program.section_id);
         modaTitle.attr("program", data.program.program.title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thumbnail-header1").attr("title", data.program.title); //thermometer
 
         var thermometer = data.thermometer; //Container completo que representa una hora en el termometro
 
@@ -77055,55 +78050,55 @@ function getProgramming(date, section, time) {
         } //Insertamos el contenido en el termómetro
 
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").html(itemThermometer);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thermometer-schedule-list").html(itemThermometer);
 
         if (data.image_program) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-icon-image").attr("src", "./images/basic-icons/pencil-edit-teal.svg").css({
             width: "80px",
             "margin-bottom": "16px"
           });
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-image-program").attr("src", data.image_program); //Catalogo de programas
 
         var options = "";
         data.program_catalogue.forEach(function (program) {
           options += "\n                    <option class=\"edit-program-input text-uppercase a-text-black-warmrey  backwhite h2\"\n                    value=\"".concat(program.title, "\">").concat(program.title, "</option>\n                    ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programs-catalogue").append(options); //selectpicker pra ls titulos de los programas
         //selectpicker pra ls titulos de los programas
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker("destroy");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").selectpicker();
-        var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-header1");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa").selectpicker("destroy");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa").selectpicker();
+        var selectheader = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".thumbnail-header1");
         selectheader.on("hide.bs.select", function () {
           var keyValue = "";
-          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa").attr("key");
-          var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+          var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa").attr("key");
+          var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-data-container").attr("chapter_id");
 
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
-            keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+          if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val()) {
+            keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
-            keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa .filter-option-inner-inner").text());
+            keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
           }
 
-          Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+          Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, keyValue);
         }); //Genres
 
         var optionGenre = "";
         data.genres.forEach(function (genre) {
           optionGenre += "\n                <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").append(optionGenre);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker("destroy");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker({
           filter: true,
           multipleSeparator: ", "
         });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".available").click(function () {
-          var channel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .filter-option-inner-inner").text(data.program.program.genre);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".available").click(function () {
+          var channel = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("section");
 
           switch (channel) {
             case "1":
@@ -77122,25 +78117,25 @@ function getProgramming(date, section, time) {
               break;
           }
 
-          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("schedule");
+          var schedule = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("schedule");
           newProgram(channel, schedule); // getProgramming(date, section, schedule)
         }); //Verificamos si el programa está en algunas de las secciones del landing
 
         switch (data.program.in_landing) {
           case 0:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-no").prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", false);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", false);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-no").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-1").prop("checked", false);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-2").prop("checked", false);
             break;
 
           case 1:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-1").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-yes").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-1").prop("checked", true);
             break;
 
           case 2:
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-yes").prop("checked", true);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-carrusel-2").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-yes").prop("checked", true);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-carrusel-2").prop("checked", true);
 
           default:
             break;
@@ -77149,12 +78144,12 @@ function getProgramming(date, section, time) {
         if (data.program.in_landing_begin) {
           var landingBeginDateTime = data.program.in_landing_begin.split(" ");
           var fullDate = landingBeginDateTime[0].split("-");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-date-begin").val("".concat(fullDate[2], "-").concat(fullDate[1], "-").concat(fullDate[0]));
 
           if (landingBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-begin").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-begin").val(landingBeginDateTime[1]);
           }
         }
 
@@ -77163,20 +78158,20 @@ function getProgramming(date, section, time) {
 
           var _fullDate4 = landingExpirationDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("".concat(_fullDate4[2], "-").concat(_fullDate4[1], "-").concat(_fullDate4[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-date-end").val("".concat(_fullDate4[2], "-").concat(_fullDate4[1], "-").concat(_fullDate4[0]));
 
           if (landingExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-end").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-landing-time-end").val(landingExpirationDateTime[1]);
           }
         } //Verficar si el programa se encuentra en el home
 
 
         if (data.program.in_home == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-in-home-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-in-home-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-in-home-yes").prop("checked", true);
         }
 
         if (data.program.in_home_begin) {
@@ -77184,12 +78179,12 @@ function getProgramming(date, section, time) {
 
           var _fullDate5 = homeBeginDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("".concat(_fullDate5[2], "-").concat(_fullDate5[1], "-").concat(_fullDate5[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-date-begin").val("".concat(_fullDate5[2], "-").concat(_fullDate5[1], "-").concat(_fullDate5[0]));
 
           if (homeBeginDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-begin").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-begin").val(homeBeginDateTime[1]);
           }
         }
 
@@ -77198,51 +78193,51 @@ function getProgramming(date, section, time) {
 
           var _fullDate6 = homeExpirationDateTime[0].split("-");
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("".concat(_fullDate6[2], "-").concat(_fullDate6[1], "-").concat(_fullDate6[0]));
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-date-end").val("".concat(_fullDate6[2], "-").concat(_fullDate6[1], "-").concat(_fullDate6[0]));
 
           if (homeExpirationDateTime[1] == "00:00:00") {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-end").val("");
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-home-time-end").val(homeExpirationDateTime[1]);
           }
         } //Schedule Item Date Time
 
 
         var scheduleItemDate = data.program.day.split("-");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-schedule-date").val("".concat(scheduleItemDate[2], "-").concat(scheduleItemDate[1], "-").concat(scheduleItemDate[0], "\n                ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-schedule-item-time").val(data.program.hour))); //Synopsis
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-textarea").val(data.program.synopsis); //Season
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-textarea").val(data.program.synopsis); //Season
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-season").val(data.program.season); //Program episode number
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-season").val(data.program.season); //Program episode number
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-episode-number").val(data.program.episode_number); //Year
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-episode-number").val(data.program.episode_number); //Year
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-year-produced").val(data.program.program.year); //Subtitle
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-subtitle").val(data.program.subtitle); //Rating
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-rating-code").val(data.program.program.rating); //Duration
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-rating-code").val(data.program.program.rating); //Duration
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-duration").val(data.program.duration); //Subbed
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-duration").val(data.program.duration); //Subbed
 
         if (data.program.subbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-subbed-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-subbed-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-subbed-yes").prop("checked", true);
         } //Dubbed
 
 
         if (data.program.dubbed == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-dubbed-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-dubbed-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-dubbed-yes").prop("checked", true);
         } //Audio 5.0
 
 
         if (data.program.audio5 == 0) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-no").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-audio5-no").prop("checked", true);
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-audio5-yes").prop("checked", true);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-audio5-yes").prop("checked", true);
         }
       } else {
         newProgramByDate(section, date, time); //getProgramming(date, section, time);
@@ -77252,7 +78247,7 @@ function getProgramming(date, section, time) {
 }
 
 function newProgramByDate(section, date, time) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: {
       day: date,
@@ -77261,11 +78256,11 @@ function newProgramByDate(section, date, time) {
     },
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/newProgramByDate",
     success: function success(result) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       var data = JSON.parse(result);
       getChapterInfo(data.chapter_id);
     }
@@ -77274,11 +78269,11 @@ function newProgramByDate(section, date, time) {
 
 
 function getContentConcertChannelHeader() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
@@ -77287,110 +78282,110 @@ function getContentConcertChannelHeader() {
 
       if (data.code == 200) {
         //Título en header de concert channel color blanco
-        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1"); //Título en header de concert channel color azul
+        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel .modal-header-title-1"); //Título en header de concert channel color azul
 
-        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2");
+        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel .modal-header-title-2");
         headerTitle1.val(data.data.block_2_title_1);
         headerTitle2.val(data.data.block_2_title_2);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-title").val(data.data.block_2_button_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-title").text(data.data.block_2_button_title);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(data.data.block_2_button_url);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel .modal-header-button-title").val(data.data.block_2_button_title);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel .modal-header-button-title").text(data.data.block_2_button_title);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel .modal-header-button-link").val(data.data.block_2_button_url);
 
         if (data.data.block_2_icon_channel) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".label-no-image").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".label-no-image").remove();
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#icon_canal_claro_edit").attr("src", data.data.block_2_icon_channel); //Mostramos el modal
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#icon_canal_claro_edit").attr("src", data.data.block_2_icon_channel); //Mostramos el modal
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel").modal("show"); //Eliminamos
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel").modal("show"); //Eliminamos
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
     }
   });
 }
 
 function getContentConcertChannelBlockHeader3() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_3_title");
         landingSubtitle.attr("key", "block_3_subtitle");
         landingTitle.val(data.data.block_3_title);
         landingSubtitle.val(data.data.block_3_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
     }
   });
 }
 
 function getContentConcertChannelBlock4One() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_4_carrusel_1_title");
         landingSubtitle.attr("key", "block_4_carrusel_1_subtitle");
         landingTitle.val(data.data.block_4_carrusel_1_title);
         landingSubtitle.val(data.data.block_4_carrusel_1_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
     }
   });
 }
 
 function getContentConcertChannelBlock4OTwo() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
       var data = JSON.parse(result);
 
       if (data.code == 200) {
-        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-title");
-        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles .section-landing-subtitle");
+        var landingTitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-title");
+        var landingSubtitle = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles .section-landing-subtitle");
         landingTitle.attr("key", "block_4_carrusel_2_title");
         landingSubtitle.attr("key", "block_4_carrusel_2_subtitle");
         landingTitle.val(data.data.block_4_carrusel_2_title);
         landingSubtitle.val(data.data.block_4_carrusel_2_subtitle);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-titles").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
     }
   });
 }
 
 function getContentConcertChannel(type) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
@@ -77400,7 +78395,7 @@ function getContentConcertChannel(type) {
       if (data.code == 200) {
         switch (type) {
           case "slider-pagination":
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel");
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel");
             var counter = 1;
             var image = "";
 
@@ -77417,19 +78412,19 @@ function getContentConcertChannel(type) {
               }
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel").html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel").html(image);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-concert").modal("show");
 
             try {
               programmingSlider.slick("unslick");
               programmingSlider.slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-concert-channel"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-concert-channel"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
@@ -77437,23 +78432,23 @@ function getContentConcertChannel(type) {
               programmingSlider.slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-concert-channel"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-concert-channel"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image-concert").click(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".add-banner-image-concert").click(function () {
               //Cada vez que se haga click, el contador incrementa
-              var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+              var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-concert-channel").slick("slickAdd", "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                "));
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel").slick("slickAdd", "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                "));
             });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".banner-slider-button").click(function () {
               /*
                   Arreglo para saber la posición de las imágenes que cargo el usuario
                   es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -77462,9 +78457,9 @@ function getContentConcertChannel(type) {
 
               var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
 
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
-                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
                 }
 
                 imagesProgramming.push(this.files[0]);
@@ -77480,7 +78475,7 @@ function getContentConcertChannel(type) {
 
               data.append("positions", imagesPositions); //Hora inicio y fin
 
-              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
               data.append("landing", "Concert Channel");
               setImageSliderBanner(data);
             });
@@ -77491,28 +78486,28 @@ function getContentConcertChannel(type) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 } //Obtenemos el video promocional en el landing de concert channel
 
 
 function getConcertChannelPromo() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(" <div class = \"loader-view-container pointer-none\">\n                <img src = \"./images/loader.gif\" class = \"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append(" <div class = \"loader-view-container pointer-none\">\n                <img src = \"./images/loader.gif\" class = \"loader\"/>\n                </div>");
     },
     url: "landing/concertChannel",
     success: function success(result) {
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("show");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promos-concert").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#upload-concert-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
         if (json.data.block_3_video_url) {
-          var _promoContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container"); //Verificamos si la url es de una imagen
+          var _promoContainer = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#concert-promo-container"); //Verificamos si la url es de una imagen
 
 
           if (json.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -77526,20 +78521,20 @@ function getConcertChannelPromo() {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function editHeaderLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     data: data,
     processData: false,
     contentType: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editHeaderLanding",
     success: function success(result) {
@@ -77547,37 +78542,37 @@ function editHeaderLanding(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-header-concert-channel").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function editElementLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editElementLanding",
     success: function success(result) {
       console.log(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function editPromoLanding(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
     contentType: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editElementLanding",
     success: function success(result) {
@@ -77585,23 +78580,23 @@ function editPromoLanding(data) {
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promos-concert").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promo-cinema").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function editPromoLandingCinema(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
     contentType: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editPromoLandingCinema",
     success: function success(result) {
@@ -77609,21 +78604,21 @@ function editPromoLandingCinema(data) {
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promos-concert").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promo-cinema").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 } //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 
 
 function getProgrammingLanding(date, landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     data: {
       date: date
@@ -77674,22 +78669,22 @@ function getProgrammingLanding(date, landing) {
             _iterator.f();
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-contanier").html(chapter);
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-contanier").html(chapter);
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("show");
-        var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2");
-        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2, landingClass);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-landing").modal("show");
+        var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider2");
+        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createCalendarDays"])(calendarSlider2, landingClass);
 
         try {
           calendarSlider2.slick("unslick");
-          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_3__["calendarSlick"]);
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_4__["calendarSlick"]);
         } catch (error) {
-          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_3__["calendarSlick"]);
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_4__["calendarSlick"]);
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 } //Conseguir únicamente programas de un landing, sin mostrar el modal
@@ -77697,10 +78692,10 @@ function getProgrammingLanding(date, landing) {
 
 function getProgramsLanding(date) {
   var landing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     data: {
       date: date
@@ -77712,7 +78707,7 @@ function getProgramsLanding(date) {
 
       if (json.code == 200) {
         var programming = "";
-        var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-contanier");
+        var container = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-contanier");
 
         switch (landing) {
           case "canal-claro":
@@ -77752,17 +78747,17 @@ function getProgramsLanding(date) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 } // CLARO CANAL
 
 
 function getModalsCanalClaro(type) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/header",
     success: function success(result) {
@@ -77776,7 +78771,7 @@ function getModalsCanalClaro(type) {
           case "slider-pagination":
             var counter = 1;
             var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro");
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-canal-claro");
 
             while (true) {
               if (obj.data["block_1_image_slider_".concat(counter)]) {
@@ -77788,18 +78783,18 @@ function getModalsCanalClaro(type) {
             }
 
             programmingSlider.html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-claro").modal("show");
 
             try {
               programmingSlider.slick("unslick");
               programmingSlider.not(".slick-initialized").slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
@@ -77807,17 +78802,17 @@ function getModalsCanalClaro(type) {
               programmingSlider.not(".slick-initialized").slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-canal-claro"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".banner-slider-button").click(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".banner-slider-button").click(function () {
               /*
                   Arreglo para saber la posición de las imágenes que cargo el usuario
                   es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -77826,9 +78821,9 @@ function getModalsCanalClaro(type) {
 
               var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
 
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
-                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
                 }
 
                 imagesProgramming.push(this.files[0]);
@@ -77844,67 +78839,67 @@ function getModalsCanalClaro(type) {
 
               data.append("positions", imagesPositions); //Hora inicio y fin
 
-              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
               data.append("landing", "Canal Claro");
               setImageSliderBanner(data);
             });
             break;
 
           case "claro-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val(obj.data.block_2_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val(obj.data.block_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-3").val(obj.data.block_2_button_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-text-modal-1").val(obj.data.block_2_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-text-modal-2").val(obj.data.block_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-text-modal-3").val(obj.data.block_2_button_title);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-header").modal("show");
             break;
           // GET HEADER
           // GET TITLE
 
           case "claro-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_3_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key", "block_3_title");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_3_subtitle");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_3_title);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("key", "block_3_title");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_3_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE
           // GET PROMO
 
           case "claro-promo":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + obj.data.block_3_video_url + '" /></video>');
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-promo").modal("show");
             break;
           // GET PROMO
           // GET TITLE CARRUSEL 1
 
           case "claro-carrusel-title":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_4_carrusel_1_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("block_4_carrusel_1_title");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_1_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_4_carrusel_1_subtitle");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_4_carrusel_1_title);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("block_4_carrusel_1_title");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_1_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_4_carrusel_1_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE CARRUSEL 1
           // GET TITLE CARRUSEL 1
 
           case "claro-carrusel-title2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(obj.data.block_4_carrusel_2_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("block_4_carrusel_2_title");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_2_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("block_4_carrusel_2_subtitle");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_4_carrusel_2_title);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("block_4_carrusel_2_title");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_2_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_4_carrusel_2_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE CARRUSEL 1
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function setImageSliderBanner(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     processData: false,
@@ -77914,49 +78909,49 @@ function setImageSliderBanner(data) {
     cache: false,
     url: "landing/setImageSliderBanner",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
       console.log(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       var json = JSON.parse(result);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
       } else {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
       }
     }
   }).fail(function (e) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
     console.log(e);
   });
 }
 
 function FileHeader(objFileInput) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append(LOADER);
 
   if (objFileInput.files[0]) {
     var fileReader = new FileReader();
 
     fileReader.onload = function (e) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#" + objFileInput.name).html('<img src="' + e.target.result + '" />');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     };
   }
 }
 
 function editHeaderLandingClaro(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     data: data,
     processData: false,
     contentType: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editHeaderLandingClaro",
     success: function success(result) {
@@ -77964,32 +78959,32 @@ function editHeaderLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-header").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-header").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function FilePromoImg(objFileInput) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append(LOADER);
 
   if (objFileInput.files[0]) {
     var fileReader = new FileReader();
 
     fileReader.onload = function (e) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
     };
   }
 }
 
 function editElementLandingClaro(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     data: data,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editElementLandingClaro",
     success: function success(result) {
@@ -77997,23 +78992,23 @@ function editElementLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-title").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   }); // Canal Claro
 }
 
 function FilePromoVideo(objFileInput) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append(LOADER);
 
   if (objFileInput.files[0]) {
     var fileReader = new FileReader();
 
     fileReader.onload = function (e) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     };
 
     fileReader.readAsDataURL(objFileInput.files[0]);
@@ -78023,7 +79018,7 @@ function FilePromoVideo(objFileInput) {
 
 function getPromotionalsProgramsCarousel(idCarousel, landing) {
   var landingClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "thumbnail-header";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     url: "landing/getPromotionalsProgramsCarousel",
     data: {
@@ -78032,19 +79027,19 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
     },
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       var program = "";
       var titles = "";
       var idLanding = "";
       var classButton = ""; //Nos sirve para distinguir a qué modal y en qué landing damos click
       //Limpiamos input en donde se encuentran las imágenes
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-image-carrusel").val(""); //Verificamos cuál landing es y de ahí asignamos un id
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-image-carrusel").val(""); //Verificamos cuál landing es y de ahí asignamos un id
 
       switch (landing) {
         case "Canal Claro":
@@ -78066,8 +79061,8 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       } //Capítulos que se encuentran en el carrusel
 
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#numCarrusel").html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + "</h2>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#numCarrusel").html('<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' + idCarousel + "</h2>");
 
       var _iterator3 = _createForOfIteratorHelper(data.data.chapters),
           _step3;
@@ -78190,7 +79185,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
             carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        295\n                                        x 180px</p>\n                                </div>\n                                <img src=\"").concat(chapter.image_program, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
           }
 
-          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm mt-3\">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"mb-5 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\xA0\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
+          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm mt-3\">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"mb-5 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
         } //Mostramos el modal
 
       } catch (err) {
@@ -78199,39 +79194,39 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         _iterator3.f();
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("show"); //Volvemos a crear el slider
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel").modal("show"); //Volvemos a crear el slider
 
       try {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").slick("unslick");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").html(program);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").slick({
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").slick("unslick");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").html(program);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").slick({
           slidesToShow: 1,
           dots: true,
-          appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
+          appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-dots1"),
           initialSlide: 0,
           infinite: false,
           customPaging: function customPaging(slider, i) {
-            var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+            var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
             return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
           }
         });
       } catch (error) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").html(program);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-concert").slick({
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").html(program);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").slick({
           slidesToShow: 1,
           dots: true,
-          appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider-dots1"),
+          appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-dots1"),
           initialSlide: 0,
           infinite: false,
           customPaging: function customPaging(slider, i) {
-            var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+            var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
             return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
           }
         });
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .carrusel1-slider-concert").on("afterChange", function (slick, currentSlide) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .carrusel1-slider-concert").on("afterChange", function (slick, currentSlide) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
       }); //Genres
 
       var optionGenre = "";
@@ -78239,9 +79234,9 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         optionGenre += "\n                                         <option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>\n                                         ");
       }); //Géneros
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").append(optionGenre);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker("destroy");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list1").selectpicker({
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").append(optionGenre);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker("destroy");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker({
         filter: true,
         multipleSeparator: ", "
       }); //Añadir géneros
@@ -78254,8 +79249,8 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
           var _chapter = _step4.value;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = "";
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = _chapter.chapter.program.genre;
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = "";
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = _chapter.chapter.program.genre;
           index++;
         }
       } catch (err) {
@@ -78265,11 +79260,11 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       }
 
       var editProgramLandingGenres = "";
-      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-genres").children(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
+      var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres").children(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
 
       selectGenres.on("changed.bs.select", function () {
         //Obtenemos los valores del selectpicker
-        var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+        var selected = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
 
         var selectedLength = selected.length;
         editProgramLandingGenres = "";
@@ -78287,138 +79282,138 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
       }); //Evento para cuando cerramos el selectpicker
 
       selectGenres.on("hide.bs.select", function () {
-        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id"); //Obtenemos la key
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("chapter_id"); //Obtenemos la key
 
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
 
         var keyValue = editProgramLandingGenres; //Hacemos la petición
 
         console.log(chapterId, key, keyValue);
-        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapterId, key, keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapterId, key, keyValue);
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").append(titles);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("destroy");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker({
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-concert-select").append(titles);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-concert-select").selectpicker("destroy");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-concert-select").selectpicker({
         filter: true,
         multipleSeparator: ", "
       });
-      var selectheader = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .carrusel-concert-select").children(".carrusel-concert-select");
+      var selectheader = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .carrusel-concert-select").children(".carrusel-concert-select");
       selectheader.on("hide.bs.select", function () {
         var keyValue = "";
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("chapter_id");
 
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
-          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val()) {
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
         } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prog_titulo_programa .filter-option-inner-inner").text());
-          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prog_titulo_programa .filter-option-inner-inner").text());
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
         }
 
-        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, keyValue);
+        Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, keyValue);
       });
       /*
       Permite a todos los campos de Schedule item log time tener el formato
       tiempo en hh:mm
       */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
-        new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["scheduleTimeConfig"]);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
+        new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_3__["scheduleTimeConfig"]);
       });
       /*
       Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
       */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
-        new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["cleaveConfig"]);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
+        new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_3__["cleaveConfig"]);
       });
       /*
       Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
       */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
-        new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["timeWithSeconds"]);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
+        new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_3__["timeWithSeconds"]);
       });
       /*
       Permite a todos los input con la clase year-input tener el formato YYYY
       */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".year-input").toArray().forEach(function (yearInput) {
-        new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_2__["year"]);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".year-input").toArray().forEach(function (yearInput) {
+        new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_3__["year"]);
       });
       var imageTriangle = "\n                <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n            ";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-image .bootstrap-select").append(imageTriangle);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".dropimg").click(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel-concert-select").selectpicker("toggle");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-image .bootstrap-select").append(imageTriangle);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".dropimg").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-concert-select").selectpicker("toggle");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
-        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-program-attribute-text").blur(function (e) {
+        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("chapter_id");
+        var value = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).val();
 
         switch (key) {
           case "in_home_begin":
-            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-              var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
-              value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-              var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+            if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+              var date = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+              value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+              var _date = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
 
               value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " 00:00:00");
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
             }
 
             break;
 
           case "in_home_expiration":
-            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-              var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+            if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+              var _date2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
 
-              value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-              var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+              value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+              var _date3 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
 
               value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " 00:00:00");
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
             }
 
             break;
 
           case "in_landing_begin":
-            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-              var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+            if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+              var _date4 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
 
-              value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-              var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+              value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+              var _date5 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
 
               value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " 00:00:00");
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
             }
 
             break;
 
           case "in_landing_expiration":
             //Si se escribió la hora y la fecha
-            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-              var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
+            if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+              var _date6 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
 
-              value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
-            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-              var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+              value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+              var _date7 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
 
               value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " 00:00:00");
-              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+              Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
             }
 
             break;
 
           default:
-            Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_1__["editAttributeProgram"])(chapter_id, key, value);
+            Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(chapter_id, key, value);
             break;
         } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
         //$("#navbar-prev-programacion iframe").attr("src", iframe);
@@ -78429,7 +79424,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
 }
 
 function reload(idCarousel, landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     url: "landing/getPromotionalsProgramsCarousel",
     data: {
@@ -78440,7 +79435,7 @@ function reload(idCarousel, landing) {
     success: function success(result) {
       var data = JSON.parse(result);
       console.log(data);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .dropdown-toggle").removeClass("bs-placeholder");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .dropdown-toggle").removeClass("bs-placeholder");
 
       var _iterator5 = _createForOfIteratorHelper(data.data.chapters),
           _step5;
@@ -78448,7 +79443,7 @@ function reload(idCarousel, landing) {
       try {
         for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
           var chapter = _step5.value;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-genre-container .filter-option-inner").html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + "</div>");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .filter-option-inner").html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + "</div>");
         }
       } catch (err) {
         _iterator5.e(err);
@@ -78461,11 +79456,11 @@ function reload(idCarousel, landing) {
 
 
 function getContentClaroCinema(type) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
     },
     url: "landing/claroCinema",
     success: function success(result) {
@@ -78478,7 +79473,7 @@ function getContentClaroCinema(type) {
           case "slider-pagination":
             var counter = 1;
             var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider-claro-cinema');
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-claro-cinema");
 
             while (true) {
               if (data.data["block_1_image_slider_".concat(counter)]) {
@@ -78490,42 +79485,42 @@ function getContentClaroCinema(type) {
             }
 
             programmingSlider.html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-programming-carousel-cinema').modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-cinema").modal("show");
 
             try {
               programmingSlider.slick("unslick");
-              programmingSlider.not('.slick-initialized').slick({
+              programmingSlider.not(".slick-initialized").slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-cinema"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
             } catch (error) {
               console.log(error);
-              programmingSlider.not('.slick-initialized').slick({
+              programmingSlider.not(".slick-initialized").slick({
                 slidesToShow: 1,
                 dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-cinema"),
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
                 initialSlide: 0,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
                   return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
                 }
               });
             }
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button-cinema").click(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
               var imagesPositions = [];
               var imagesProgramming = [];
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
-                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
                 }
 
                 imagesProgramming.push(this.files[0]);
@@ -78539,48 +79534,48 @@ function getContentClaroCinema(type) {
               }
 
               data.append("positions", imagesPositions);
-              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
               data.append("landing", "Claro Cinema");
               setImageSliderBanner(data);
             });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-              console.log('cerreer');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#close_modals").click(function () {
+              console.log("cerreer");
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modaledi").modal("hide");
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
             });
             break;
           // HEADER
           // SLAIDER
 
           case "header-landing-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title1").val(data.data.block_2_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-header-claro-cinema").val(data.data.block_2_button_title);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".link-button-header-cinema").val(data.data.block_2_button_url);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val(data.data.block_2_button_url);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".cinema-header-input-title1").val(data.data.block_2_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".btn-header-claro-cinema").val(data.data.block_2_button_title);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".link-button-header-cinema").val(data.data.block_2_button_url);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".input-url-modal").val(data.data.block_2_button_url);
             var logo = data.data.block_2_icon_channel || "./images/synopsis/image-synopsis-horizontal.png";
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", logo);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-encabezado-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".logo-header-claro-cinema").attr("src", logo);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-encabezado-cinema").modal("show");
             break;
 
           case "title-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("título");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_3_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_3_title_1");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_3_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_3_title_2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_3_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_3_subtitle");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-claro-cinema").text("título");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").val(data.data.block_3_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").attr("key", "block_3_title_1");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").val(data.data.block_3_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").attr("key", "block_3_title_2");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").val(data.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").attr("key", "block_3_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-cinema").modal("show");
             break;
 
           case "promo-cinema":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promo-cinema").modal("show");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-promo-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".upload-promo-button").attr("key", "block_3_video_url"); //Checamos si existe el vídeo de promoción en concert channel
 
             if (data.data.block_3_video_url) {
-              var _promoContainer2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container"); //Verificamos si la url es de una imagen
+              var _promoContainer2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#cinema-promo-container"); //Verificamos si la url es de una imagen
 
 
               if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
@@ -78596,41 +79591,41 @@ function getContentClaroCinema(type) {
             break;
 
           case "title-carrusel1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").remove("a-text-black-yellow-two");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").addClass("a-text-bold-teal");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 1");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_1_title_1");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_1_title_2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_1_subtitle"); // $(".modal-title-carrusel1").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#ipt-titulo-cinema-2").remove("a-text-black-yellow-two");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#ipt-titulo-cinema-2").addClass("a-text-bold-teal");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-claro-cinema").text("carrusel 1");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_1_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_1_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_1_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_1_title_1");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_1_title_2");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_1_subtitle"); // $(".modal-title-carrusel1").modal("show");
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-cinema").modal("show");
             break;
 
           case "title-carrusel2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-claro-cinema").text("carrusel 2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_1);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_2_title_2);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_2_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_2_title_1");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_2_title_2");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_2_subtitle"); // $(".modal-title-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-claro-cinema").text("carrusel 2");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").val(data.data.block_4_carrusel_2_title_1);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").val(data.data.block_4_carrusel_2_title_2);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").val(data.data.block_4_carrusel_2_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title1-cinema").attr("key", "block_4_carrusel_2_title_1");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-title2-cinema").attr("key", "block_4_carrusel_2_title_2");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-input-subtitle-cinema").attr("key", "block_4_carrusel_2_subtitle"); // $(".modal-title-cinema").modal("show");
 
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-title-cinema").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-title-cinema").modal("show");
             break;
 
           case "current-programming-cinema":
-            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2"); // $(".modal-programming-landing").modal("show");
+            var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider2"); // $(".modal-programming-landing").modal("show");
 
-            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createCalendarDays"])(calendarSlider2);
+            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createCalendarDays"])(calendarSlider2);
 
             try {
               calendarSlider2.slick("unslick");
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_3__["calendarSlick"]);
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_4__["calendarSlick"]);
             } catch (error) {
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_4__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_3__["calendarSlick"]);
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_5__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_4__["calendarSlick"]);
             }
 
             break;
@@ -78639,21 +79634,21 @@ function getContentClaroCinema(type) {
             break;
         }
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       }
     }
   });
 }
 
 function editPromoLandingClaro(data) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
     data: data,
     processData: false,
     contentType: false,
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     url: "landing/editPromoLandingClaro",
     success: function success(result) {
@@ -78661,27 +79656,27 @@ function editPromoLandingClaro(data) {
       console.log(json);
 
       if (json.code == 200) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("hide");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-promo").modal("hide");
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }
 
 function getProgrammingSynopsis(landing, date) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-    type: "GET",
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
     beforeSend: function beforeSend() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     data: {
       date: date
     },
-    url: "landing/getProgrammingLanding",
+    url: "landing/getProgrammingSynopsisTable",
     success: function success(result) {
       var json = JSON.parse(result);
-      console.log(json);
+      console.log("Sinopsis", json);
 
       if (json.code == 200) {
         var programming = "";
@@ -78691,17 +79686,17 @@ function getProgrammingSynopsis(landing, date) {
         switch (landing) {
           case "canal-claro":
             programming = json.data[0].programing[0].programs;
-            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-canal-claro');
+            container = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#synopsis-table-canal-claro");
             break;
 
           case "concert-channel":
             programming = json.data[1].programing[0].programs;
-            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-concert-channel');
+            container = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#synopsis-table-concert-channel");
             break;
 
           case "claro-cinema":
             programming = json.data[2].programing[0].programs;
-            container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#synopsis-table-claro-cinema');
+            container = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#synopsis-table-claro-cinema");
             break;
 
           default:
@@ -78709,6 +79704,9 @@ function getProgrammingSynopsis(landing, date) {
         }
 
         var row = "";
+        var colorText = "";
+        var colorTextSynopsis = "";
+        var labelActive = "";
 
         var _iterator6 = _createForOfIteratorHelper(programming),
             _step6;
@@ -78716,7 +79714,27 @@ function getProgrammingSynopsis(landing, date) {
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
             var program = _step6.value;
-            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna pl-4\">\n                            <span class=\"a-text-medium-black text-normal \">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal pl-3 \">0</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"a-text-semibold-tomato text-normal \">0/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"btn-focus sinopsis edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                <input type=\"radio\" id=\"yes-landing\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\" />\n                                <label for=\"yes-landing\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\" checked />\n                                <label for=\"no-landing\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
+
+            if (program.sinopsis_info.sinopsis_len <= 21) {
+              colorTextSynopsis = "a-text-semibold-tomato";
+            } else if (program.sinopsis_info.sinopsis_len > 21 && program.sinopsis_info.sinopsis_len < 144) {
+              colorTextSynopsis = "a-text-semibold-orange";
+            } else {
+              colorTextSynopsis = "a-text-semibold-greyish-brown-two";
+            }
+
+            if (program.sinopsis_info.cant_imagenes <= 4) {
+              colorText = "a-text-semibold-tomato";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            } else if (program.sinopsis_info.cant_imagenes > 4 && program.sinopsis_info.cant_imagenes < 8) {
+              colorText = "a-text-semibold-orange";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 si-estilo label-active cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            } else {
+              colorText = "a-text-semibold-greyish-brown-two";
+              labelActive = "\n                        <label for=\"yes-synopsis\" id=\"yes-synopsis\"\n                        class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                        <label for=\"no-synopsis\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo  cursor-pointer switch-label\">\n                        No</label>\n                        ";
+            }
+
+            row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna pl-4\">\n                            <span class=\"a-text-medium-black text-normal \">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorTextSynopsis, " text-normal pl-3 \">").concat(program.sinopsis_info.sinopsis_len, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorText, " text-normal \">").concat(program.sinopsis_info.cant_imagenes, "/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"edit-synopsis-pencil btn-focus sinopsis edi mr-3\" />\n                            <input type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\" btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                ").concat(labelActive, "\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
           _iterator6.e(err);
@@ -78727,15 +79745,143 @@ function getProgrammingSynopsis(landing, date) {
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".sinopsis").click(function () {
         console.log("si");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-landing-sinopsis").modal("show");
       });
     }
   });
+}
+
+function getSynopsis(_x) {
+  return _getSynopsis.apply(this, arguments);
+}
+
+function _getSynopsis() {
+  _getSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(chapter_id) {
+    var options, response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            options = {
+              method: "POST",
+              body: JSON.stringify({
+                chapter_id: chapter_id
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+              }
+            };
+            _context.next = 3;
+            return fetch("landing/getSynopsis", options);
+
+          case 3:
+            response = _context.sent;
+            _context.next = 6;
+            return response.json();
+
+          case 6:
+            data = _context.sent;
+            return _context.abrupt("return", data);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _getSynopsis.apply(this, arguments);
+}
+
+function editAttributeSynopsis(_x2, _x3, _x4) {
+  return _editAttributeSynopsis.apply(this, arguments);
+}
+
+function _editAttributeSynopsis() {
+  _editAttributeSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(chapter_id, key, keyValue) {
+    var options, response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            options = {
+              method: "POST",
+              body: JSON.stringify({
+                chapter_id: chapter_id,
+                key: key,
+                keyValue: keyValue
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+              }
+            };
+            _context2.next = 3;
+            return fetch("program/editSynopsis", options);
+
+          case 3:
+            response = _context2.sent;
+            _context2.next = 6;
+            return response.json();
+
+          case 6:
+            data = _context2.sent;
+            return _context2.abrupt("return", data);
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _editAttributeSynopsis.apply(this, arguments);
+}
+
+function updateImagesSynopsis(_x5) {
+  return _updateImagesSynopsis.apply(this, arguments);
 } // HOME
 
+
+function _updateImagesSynopsis() {
+  _updateImagesSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(images) {
+    var options, response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            options = {
+              method: "POST",
+              body: images,
+              headers: {
+                "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+              }
+            };
+            _context3.next = 3;
+            return fetch("landing/updateImagesSynopsis", options);
+
+          case 3:
+            response = _context3.sent;
+            _context3.next = 6;
+            return response.json();
+
+          case 6:
+            data = _context3.sent;
+            return _context3.abrupt("return", data);
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _updateImagesSynopsis.apply(this, arguments);
+}
 
 function confLandingHome(baseURL) {
   debugger;
@@ -78754,7 +79900,7 @@ function confLandingHome(baseURL) {
 
   if (navbarPrevHome) {
     console.log('Llamando iframe');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar_prev_home_landing iframe").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#navbar_prev_home_landing iframe").remove();
     new easyXDM.Socket(confLandingHome);
   }
 } // HOME
@@ -79611,6 +80757,29 @@ function resetIframe(iframeToDestroy, confNewIframe) {
   setTimeout(function () {
     new easyXDM.Socket(confNewIframe);
   }, 2000);
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/vendor/lozad.js":
+/*!**************************************!*\
+  !*** ./resources/js/vendor/lozad.js ***!
+  \**************************************/
+/*! exports provided: createLazyLoad */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLazyLoad", function() { return createLazyLoad; });
+/* harmony import */ var lozad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lozad */ "./node_modules/lozad/dist/lozad.min.js");
+/* harmony import */ var lozad__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lozad__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function createLazyLoad(element, options) {
+  var observer = lozad__WEBPACK_IMPORTED_MODULE_0___default()(element, options);
+  observer.observe();
 }
 
 
