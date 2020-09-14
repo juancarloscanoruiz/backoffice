@@ -74254,7 +74254,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentHomeHeader"])();
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])();
             break;
 
           case "claro-home-header":
@@ -74283,13 +74283,13 @@ function eventsGrilla() {
   var NavbarHomeClaro = document.getElementById("navbar-prev-home");
 
   if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-homeiframe').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-homeiframe").remove();
     new easyXDM.Socket(LandingHomeClaro);
   }
 
   var LandingSinopsis = {
-    //remote: `${baseURL}sinopsis-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -74375,7 +74375,7 @@ function eventsGrilla() {
                 });
               }
 
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             });
             break;
 
@@ -74384,11 +74384,16 @@ function eventsGrilla() {
             data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
             data.then(function (data) {
               if (data.code == 200) {
+                //Verificamos si tiene una imagen
                 var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-modal').attr("src", image);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-synopsis').val(); //Button
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
               }
             });
@@ -74408,35 +74413,50 @@ function eventsGrilla() {
             break;
 
           case "synopsis-description-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                console.log("titutlo", data.data.subtitle);
-                var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
-                editSynopsisButton.attr("chapter_id", data.data.chapter_id);
-                editSynopsisButton.attr("key", "synopsis");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").text(data.data.subtitle);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }
-            });
+            programView.renderDescriptionSynopsis(json.id);
+            /*                         $("body").append(
+                                        `<div class="loader-view-container pointer-none">
+                                            <img src="./images/loader.gif" class="loader"/>
+                                        </div>`
+                                    );
+                                    data = getSynopsis(json.id);
+                                    data.then(data => {
+                                        if (data.code == 200) {
+                                             let editSynopsisButton = $(
+                                                "#edit-synopsis-modal-button"
+                                            );
+                                             $(".edit-text-synopsis").val(
+                                                data.data.sinopsis
+                                            );
+                                            editSynopsisButton.attr(
+                                                "chapter_id",
+                                                data.data.chapter_id
+                                            );
+                                            editSynopsisButton.attr("key", "synopsis");
+                                            $(".synopsis-modal-title").text(
+                                                data.data.subtitle
+                                            );
+                                            $(".modal-edit-synopsis").modal("show");
+                                            $(".loader-view-container").remove();
+                                        }
+                                    }); */
+
             break;
 
           case "synopsis-images-container":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
             data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
-            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button');
+            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
             data.then(function (data) {
               if (data.code == 200) {
-                console.log("titutlo", data.data.subtitle);
+                //Limpiar inputs
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-input').val();
                 var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
                 var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
                 var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
               }
@@ -74475,7 +74495,7 @@ function eventsGrilla() {
     }
   }; //Editar sinopsis en landing de sinopsis
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-synopsis-modal-button').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
@@ -74483,12 +74503,15 @@ function eventsGrilla() {
     var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeSynopsis"])(chapterId, key, value);
     response.then(function (data) {
       if (data.code == 200) {
-        console.log(data);
-        var responseSynopsis = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(responseSynopsis);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code === 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
       }
 
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     });
   });
@@ -74498,19 +74521,23 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(id);
-      socketSynopsis.postMessage(data);
+      programView.renderSynopsis(id, socketSynopsis);
     });
   }
 
-  programView.editDetailsSynopsis(socketSynopsis);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
-    var imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
-    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
-    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+  programView.editDetailsSynopsis(socketSynopsis); //Subir imágenes complementarias de sinopsis
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>"); //Obtenemos las imágenes
+
+    var imageSynopsis1 = document.getElementById("image-synopsis-1").files[0];
+    var imageSynopsis2 = document.getElementById("image-synopsis-2").files[0];
+    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0]; //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
+
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id"); //Obtenemos el id del capítulo
+
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     var data = new FormData();
     data.append("image-synopsis-1", imageSynopsis1);
@@ -74521,19 +74548,24 @@ function eventsGrilla() {
     var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
     imagesResponse.then(function (data) {
       if (data.code == 200) {
-        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(response);
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code == 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("hide");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     });
     update();
   }); //Editar imagen principal en landing de sinopsis
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var imageSynopsis = document.getElementById('image-synopsis').files[0];
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>"); //Obtenemos el archivo;
+
+    var imageSynopsis = document.getElementById("image-synopsis").files[0];
     var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     var data = new FormData();
@@ -74543,17 +74575,23 @@ function eventsGrilla() {
     var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
     imagesResponse.then(function (data) {
       if (data.code == 200) {
-        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(response);
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code == 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
-    }); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
-  });
+    });
+  }); //Editar las imágenes del banner
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button").click(function () {
-    var imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
-    var imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var imageSynopsis1 = document.getElementById("image_banner_synopsis_1").files[0];
+    var imageSynopsis2 = document.getElementById("image_banner_synopsis_2").files[0];
     var imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
     var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
@@ -74563,10 +74601,20 @@ function eventsGrilla() {
     data.append("image_background_3", imageSynopsis3);
     data.append("landing_id", landingId);
     data.append("chapter_id", chapterId);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
-    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-    socketSynopsis.postMessage(response);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+    var imageBannerResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
+    imageBannerResponse.then(function (data) {
+      if (data.code == 200) {
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code === 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    });
   }); //Landing de concert channel
 
   var confLandingClaroCinema = {
@@ -77121,7 +77169,7 @@ function eventsGrilla() {
 
     if (objFileInput.files[0]) {
       fileSrt.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr('src', e.target.result);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr("src", e.target.result);
       };
 
       fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -77130,21 +77178,21 @@ function eventsGrilla() {
   }
 
   function viewEdit() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#camera').attr('src', './images/lapiz-acti.svg');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#camera").attr("src", "./images/lapiz-acti.svg");
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
-    console.log('click');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal_url").click(function () {
+    console.log("click");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').click(function () {
-    console.log('click');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").click(function () {
+    console.log("click");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
-    console.log('click'); // $('#modal-logo-home').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn_pruebas").click(function () {
+    console.log("click"); // $('#modal-logo-home').modal('show');
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('show');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("show");
   }); // HOME
 }
 
@@ -81178,6 +81226,19 @@ var ProgramView = /*#__PURE__*/function () {
   }
 
   _createClass(ProgramView, [{
+    key: "renderSynopsis",
+    value: function renderSynopsis(id, socket) {
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          var dataStringified = JSON.stringify(data);
+          socket.postMessage(dataStringified);
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      });
+    }
+  }, {
     key: "renderDetailsSynopsis",
     value: function renderDetailsSynopsis(id) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
@@ -81185,11 +81246,11 @@ var ProgramView = /*#__PURE__*/function () {
       data.then(function (data) {
         console.log(data); //Put the data in all inputs
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#duration-synopsis').val(data.data.duration);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#year-synopsis').val(data.data.year);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#seasons-synopsis').val(data.data.seasons);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rating-synopsis').val(data.data.rating);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#details-synopsis-modal-button').attr("chapter_id", data.data.chapter_id); //Show the modal
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#duration-synopsis").val(data.data.duration);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val(data.data.year);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val(data.data.seasons);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val(data.data.rating);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").attr("chapter_id", data.data.chapter_id); //Show the modal
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-info-synopsis").modal("show"); //Remove the loader
 
@@ -81197,16 +81258,35 @@ var ProgramView = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "renderDescriptionSynopsis",
+    value: function renderDescriptionSynopsis(id) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
+          editSynopsisButton.attr("chapter_id", data.data.chapter_id);
+          editSynopsisButton.attr("key", "synopsis");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").val(data.data.subtitle); //Mostrar el modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show"); //Quitar loader
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }
+      });
+    }
+  }, {
     key: "editDetailsSynopsis",
     value: function editDetailsSynopsis(socket) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#details-synopsis-modal-button').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
         var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id"); //let duration = $('#duration-synopsis').val()
 
         var duration = "";
-        var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#year-synopsis').val();
-        var seasons = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#seasons-synopsis').val();
-        var rating = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rating-synopsis').val();
+        var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val();
+        var seasons = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val();
+        var rating = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val();
         var details = {
           chapter_id: chapter_id,
           duration: duration,
@@ -81217,9 +81297,15 @@ var ProgramView = /*#__PURE__*/function () {
         var response = programController.editDetailsSynopsis(details);
         response.then(function (data) {
           if (data.code == 200) {
-            var _data = programController.getSynopsis(chapter_id);
-
-            socket.postMessage(_data);
+            return programController.getSynopsis(chapter_id);
+            /*                     let data = programController.getSynopsis(chapter_id);
+                                socket.postMessage(data);
+                                $(".loader-view-container").remove(); */
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           }
         });

@@ -4188,6 +4188,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
   opacity: 0.4;
 }
 
+.synopsis-modal-title {
+  background-color: black;
+  border: none;
+}
+
 .line {
   width: 100%;
   height: 1px;
