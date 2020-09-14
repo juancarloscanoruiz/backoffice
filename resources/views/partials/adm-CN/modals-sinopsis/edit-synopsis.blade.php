@@ -6,15 +6,14 @@
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <div
                     class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-title-sinopsis">
-                
-                <h1 class="a-text-MBlack h3 d-flex justify-content-center mt-3 synopsis-modal-title">
-                        </h1>
 
-</div>       
+                    <input class="a-text-MBlack h3 d-flex justify-content-center mt-3 mb-3 synopsis-modal-title"
+                        type="text" />
+                </div>
                 <div
                     class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis">
                     <div class="container-edit-sinopsis h-100">
-                        
+
                         <textarea id="synopsis" name=""
                             class="edit-text-synopsis container-image-synopsis a-text-medium-white">
                 </textarea>
@@ -53,7 +52,8 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis">ACEPTAR</button>
+                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
+                    id="close_modals-sinopsis">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>

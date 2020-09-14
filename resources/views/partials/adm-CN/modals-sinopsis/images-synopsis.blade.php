@@ -30,7 +30,7 @@
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
                                                     <input type="file" id="image-synopsis-1"
-                                                        class="input-image-program logo-landing d-none">
+                                                        class="input-image-program image-synopsis-input logo-landing d-none">
                                                     <label for="image-synopsis-1"
                                                         class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"
@@ -58,7 +58,7 @@
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
                                                     <input type="file" id="image-synopsis-2"
-                                                        class="input-image-program logo-landing d-none">
+                                                        class="input-image-program image-synopsis-input logo-landing d-none">
                                                     <label for="image-synopsis-2"
                                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"
@@ -84,7 +84,7 @@
                                                 <div class="bor mx-auto position-relative thumbnail-image-program"
                                                     id="thumbnail-images-synopsis">
                                                     <input type="file" id="image-synopsis-3"
-                                                        class="input-image-program logo-landing d-none">
+                                                        class="input-image-program image-synopsis-input logo-landing d-none">
                                                     <label for="image-synopsis-3"
                                                         class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
                                                         <img src="{{ asset('/images/synopsis/camara.svg') }}"

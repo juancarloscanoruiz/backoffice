@@ -88709,6 +88709,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programModel = new _models_program__WEBPACK_IMPORTED_MODULE_0__["default"]();
+/**
+ * @class Clase para recibir información de la vista y mandarla al modelo
+ * Aquí se dan formato a algunos datos y se retorna el resultado del modelo a la vista
+ */
 
 var ProgramController = /*#__PURE__*/function () {
   function ProgramController() {
@@ -88725,6 +88729,12 @@ var ProgramController = /*#__PURE__*/function () {
     key: "editDetailsSynopsis",
     value: function editDetailsSynopsis(data) {
       var response = programModel.editBlockSynopsis(data);
+      return response;
+    }
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(chapterId, key, value) {
+      var response = programModel.editAttributeSynopsis(chapterId, key, value);
       return response;
     }
   }]);
@@ -89807,11 +89817,57 @@ var ProgramModel = /*#__PURE__*/function () {
 
       return getSynopsis;
     }()
+  }, {
+    key: "editAttributeSynopsis",
+    value: function () {
+      var _editAttributeSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(chapter_id, key, keyValue) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: JSON.stringify({
+                    chapter_id: chapter_id,
+                    key: key,
+                    keyValue: keyValue
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context3.next = 3;
+                return fetch("program/editSynopsis", options);
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context3.sent;
+                return _context3.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function editAttributeSynopsis(_x3, _x4, _x5) {
+        return _editAttributeSynopsis.apply(this, arguments);
+      }
+
+      return editAttributeSynopsis;
+    }()
   }]);
 
   return ProgramModel;
-}(); //http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/program/editBolckSinopsis
-
+}();
 
 
 
@@ -89969,6 +90025,31 @@ function eventsGrilla() {
         //     default:
         //         break;
         // }
+
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])();
+            break;
+
+          case "claro-home-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "claro-home-slider":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
       }
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -89978,13 +90059,13 @@ function eventsGrilla() {
   var NavbarHomeClaro = document.getElementById("navbar-prev-home");
 
   if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-homeiframe').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-homeiframe").remove();
     new easyXDM.Socket(LandingHomeClaro);
   }
 
   var LandingSinopsis = {
-    //remote: `${baseURL}sinopsis-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -90070,7 +90151,7 @@ function eventsGrilla() {
                 });
               }
 
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             });
             break;
 
@@ -90079,11 +90160,16 @@ function eventsGrilla() {
             data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
             data.then(function (data) {
               if (data.code == 200) {
+                //Verificamos si tiene una imagen
                 var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-modal').attr("src", image);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-synopsis').val(); //Button
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
               }
             });
@@ -90103,35 +90189,23 @@ function eventsGrilla() {
             break;
 
           case "synopsis-description-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                console.log("titutlo", data.data.subtitle);
-                var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
-                editSynopsisButton.attr("chapter_id", data.data.chapter_id);
-                editSynopsisButton.attr("key", "synopsis");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").text(data.data.subtitle);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }
-            });
+            programView.renderDescriptionSynopsis(json.id);
             break;
 
           case "synopsis-images-container":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
             data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(json.id);
-            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button');
+            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
             data.then(function (data) {
               if (data.code == 200) {
-                console.log("titutlo", data.data.subtitle);
+                //Limpiar inputs
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-input').val();
                 var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
                 var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
                 var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
               }
@@ -90170,42 +90244,66 @@ function eventsGrilla() {
     }
   }; //Editar sinopsis en landing de sinopsis
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-synopsis-modal-button').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
-    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeSynopsis"])(chapterId, key, value);
-    response.then(function (data) {
-      if (data.code == 200) {
-        console.log(data);
-        var responseSynopsis = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(responseSynopsis);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
-      }
+  /*     $("#edit-synopsis-modal-button").click(function () {
+          $("body").append(
+              `<div class="loader-view-container pointer-none">
+                  <img src="./images/loader.gif" class="loader"/>
+              </div>`
+          );
+          let chapterId = $(this).attr("chapter_id");
+          let key = $(this).attr("key");
+          let title = $('.synopsis-modal-title').val();
+          let value = $(".edit-text-synopsis").val();
+          //Respuesta de cuando editamos la sinopsis
+          let response = editAttributeSynopsis(chapterId, key, value);
+           response.then(data => {
+                  console.log(data);
+                  if (data.code == 200) {
+                      return editAttributeSynopsis(chapterId, "title", title);
+                  }
+               })
+              .then(data => {
+                  if (data.code == 200) {
+                      console.log(data);
+                      return getSynopsis(chapterId);
+                  }
+              })
+              .then(data => {
+                   if (data.code === 200) {
+                      let dataStringified = JSON.stringify(data);
+                      socketSynopsis.postMessage(dataStringified);
+                  }
+                  $(".modal-edit-synopsis").modal("hide");
+                  $(".loader-view-container").remove()
+              }).catch(err => {
+                  console.log(err);
+              })
+      }); */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    });
-  });
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
 
   if (navbarPrevSINOPSIS) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(id);
-      socketSynopsis.postMessage(data);
+      programView.renderSynopsis(id, socketSynopsis);
     });
   }
 
   programView.editDetailsSynopsis(socketSynopsis);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#images-synopsis-modal-button').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
-    var imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
-    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
-    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+  programView.editAttributesSynopsis(socketSynopsis); //Subir imágenes complementarias de sinopsis
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>"); //Obtenemos las imágenes
+
+    var imageSynopsis1 = document.getElementById("image-synopsis-1").files[0];
+    var imageSynopsis2 = document.getElementById("image-synopsis-2").files[0];
+    var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0]; //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
+
+    var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id"); //Obtenemos el id del capítulo
+
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     var data = new FormData();
     data.append("image-synopsis-1", imageSynopsis1);
@@ -90216,19 +90314,24 @@ function eventsGrilla() {
     var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
     imagesResponse.then(function (data) {
       if (data.code == 200) {
-        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(response);
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code == 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-synopsis-images-container').modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("hide");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     });
     update();
   }); //Editar imagen principal en landing de sinopsis
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#upload-image-synopsis').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var imageSynopsis = document.getElementById('image-synopsis').files[0];
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>"); //Obtenemos el archivo;
+
+    var imageSynopsis = document.getElementById("image-synopsis").files[0];
     var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     var data = new FormData();
@@ -90238,17 +90341,23 @@ function eventsGrilla() {
     var imagesResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
     imagesResponse.then(function (data) {
       if (data.code == 200) {
-        var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-        socketSynopsis.postMessage(response);
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code == 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
-    }); //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
-  });
+    });
+  }); //Editar las imágenes del banner
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button").click(function () {
-    var imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
-    var imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+    var imageSynopsis1 = document.getElementById("image_banner_synopsis_1").files[0];
+    var imageSynopsis2 = document.getElementById("image_banner_synopsis_2").files[0];
     var imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
     var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
@@ -90258,10 +90367,20 @@ function eventsGrilla() {
     data.append("image_background_3", imageSynopsis3);
     data.append("landing_id", landingId);
     data.append("chapter_id", chapterId);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
-    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-    socketSynopsis.postMessage(response);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+    var imageBannerResponse = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["updateImagesSynopsis"])(data);
+    imageBannerResponse.then(function (data) {
+      if (data.code == 200) {
+        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
+      }
+    }).then(function (data) {
+      if (data.code === 200) {
+        var dataStringified = JSON.stringify(data);
+        socketSynopsis.postMessage(dataStringified);
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    });
   }); //Landing de concert channel
 
   var confLandingClaroCinema = {
@@ -92818,7 +92937,7 @@ function eventsGrilla() {
 
     if (objFileInput.files[0]) {
       fileSrt.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr('src', e.target.result);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr("src", e.target.result);
       };
 
       fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -92827,7 +92946,7 @@ function eventsGrilla() {
   }
 
   function viewEdit() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#camera').attr('src', './images/lapiz-acti.svg');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#camera").attr("src", "./images/lapiz-acti.svg");
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
@@ -96974,6 +97093,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+/**
+ * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
+ * y esuchcar eventos
+ */
 
 var ProgramView = /*#__PURE__*/function () {
   function ProgramView() {
@@ -96981,6 +97104,33 @@ var ProgramView = /*#__PURE__*/function () {
   }
 
   _createClass(ProgramView, [{
+    key: "renderSynopsis",
+
+    /**
+     * Método para mandar la información de sinopsis de un programa a
+     * al socket y abrir modal
+     *
+     * @param {*} id  Id del programa a obtener la sinopsis
+     * @param {*} socket Socket del landing al que queremos mandar la información de la sinopsis
+     */
+    value: function renderSynopsis(id, socket) {
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          var dataStringified = JSON.stringify(data);
+          socket.postMessage(dataStringified);
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      });
+    }
+    /**
+     * Método para renderizar en el modal los detalles de la sinopsis de un programa
+     *
+     * @param {*} id Id del capítulo del que queremos obtener la sinopsis
+     */
+
+  }, {
     key: "renderDetailsSynopsis",
     value: function renderDetailsSynopsis(id) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
@@ -96988,28 +97138,60 @@ var ProgramView = /*#__PURE__*/function () {
       data.then(function (data) {
         console.log(data); //Put the data in all inputs
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#duration-synopsis').val(data.data.duration);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#year-synopsis').val(data.data.year);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#seasons-synopsis').val(data.data.seasons);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rating-synopsis').val(data.data.rating);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#details-synopsis-modal-button').attr("chapter_id", data.data.chapter_id); //Show the modal
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#duration-synopsis").val(data.data.duration);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val(data.data.year);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val(data.data.seasons);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val(data.data.rating);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").attr("chapter_id", data.data.chapter_id); //Show the modal
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-info-synopsis").modal("show"); //Remove the loader
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       });
     }
+    /**
+     * Método para renderizar la sinopsis en modal para editar título y sinopsis
+     *
+     * @param {*} id Id del programa del que queremos obtener la sinopsis
+     */
+
+  }, {
+    key: "renderDescriptionSynopsis",
+    value: function renderDescriptionSynopsis(id) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
+          editSynopsisButton.attr("chapter_id", data.data.chapter_id);
+          editSynopsisButton.attr("key", "synopsis");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").val(data.data.subtitle); //Mostrar el modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show"); //Quitar loader
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }
+      });
+    }
+    /**
+     * Este método permite editar los datos de un programa en la sinopsis, como duración, año, rating
+     * y número de temporadas
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
   }, {
     key: "editDetailsSynopsis",
     value: function editDetailsSynopsis(socket) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#details-synopsis-modal-button').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
         var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id"); //let duration = $('#duration-synopsis').val()
 
         var duration = "";
-        var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#year-synopsis').val();
-        var seasons = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#seasons-synopsis').val();
-        var rating = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#rating-synopsis').val();
+        var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val();
+        var seasons = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val();
+        var rating = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val();
         var details = {
           chapter_id: chapter_id,
           duration: duration,
@@ -97020,11 +97202,55 @@ var ProgramView = /*#__PURE__*/function () {
         var response = programController.editDetailsSynopsis(details);
         response.then(function (data) {
           if (data.code == 200) {
-            var _data = programController.getSynopsis(chapter_id);
-
-            socket.postMessage(_data);
+            return programController.getSynopsis(chapter_id);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           }
+        });
+      });
+    }
+    /**
+     * Método para editar el título y la sinopsis de un programa en modal
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-modal-title').val();
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
+        var response = programController.editAttributesSynopsis(chapterId, key, value); //editamos primero la sinopsis
+
+        response.then(function (data) {
+          if (data.code == 200) {
+            //Si todo fue correcto, editamos el título
+            return programController.editAttributesSynopsis(chapterId, "title", title);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            //Si todo fue correcto obtenemos la sinopsis de nuevo
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code === 200) {
+            //Mandamos la sinopsis a través del socket
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        })["catch"](function (err) {
+          console.log(err);
         });
       });
     }
