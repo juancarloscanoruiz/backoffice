@@ -58,6 +58,8 @@ class landingController extends Controller
         return $path;
     }
 
+
+
     public function updateImageProgramOfLanding(Request $request)
     {
 
@@ -376,7 +378,7 @@ class landingController extends Controller
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
-       
+
         $response = $client->post(
             $this->url . "program/returnPost",
             ['body' => json_encode(

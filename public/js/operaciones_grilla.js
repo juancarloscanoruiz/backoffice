@@ -74299,6 +74299,47 @@ function eventsGrilla() {
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
 
+  var LandingHomeConcert = {
+    //remote: `${baseURL}home-edi-claro.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/home-edi-concert.php",
+    container: document.getElementById("navbar-prev-home-concert"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "concert-home-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "concert-home-slider":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"; //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+    }
+  };
+  var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+
+  if (NavbarHomeConcert) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
+    var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
+  }
+
   var LandingHomeClaro = {
     remote: "".concat(baseURL, "home-edi-claro.php"),
     container: document.getElementById("navbar-prev-home"),
@@ -74344,8 +74385,8 @@ function eventsGrilla() {
   }
 
   var LandingSinopsis = {
-    remote: "".concat(baseURL, "sinopsis-edi.php"),
-    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+    //remote: `${baseURL}sinopsis-edi.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);

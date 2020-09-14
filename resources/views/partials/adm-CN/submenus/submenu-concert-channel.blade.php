@@ -1,4 +1,4 @@
-<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
+{{-- <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
 
 
 <script>
@@ -15,7 +15,7 @@
         }
     });
 
-</script>
+</script> --}}
 
 <body>
     <main>
@@ -46,8 +46,8 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4"
-                        rel="navbar-prev-home">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
+                        rel="navbar-prev-home-concert">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="  a-text-bold-light py-2 px-3 mb-0">HOME</p>
                         </div>
@@ -75,9 +75,12 @@
                 </form>
                 <!--Iconos para previsualizar en diferentes tamaños-->
                 <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile"
+                        id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet"
+                        id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc"
+                        id="prev-desktop">
                 </div>
             </div>
             <!--Buttons-->
@@ -296,7 +299,7 @@
 
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home-concert">
                 </div>
             </div>
         </div>
