@@ -229,8 +229,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
                                 }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -245,8 +244,7 @@ function getChapterInfo(data) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
                                 }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -262,8 +260,7 @@ function getChapterInfo(data) {
                         if (i < 10) {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
                                 }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
@@ -278,8 +275,7 @@ function getChapterInfo(data) {
                         } else {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
                                 }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
@@ -299,8 +295,7 @@ function getChapterInfo(data) {
                 for (let i = 1; i <= getDays(2); i++) {
                     if (i < 10) {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
-                            data.program.section_id
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${data.program.section_id
                             }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -313,8 +308,7 @@ function getChapterInfo(data) {
                         `;
                     } else {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
-                            data.program.section_id
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${data.program.section_id
                             }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -335,8 +329,7 @@ function getChapterInfo(data) {
                         if (i < 10) {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
                                 }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -350,8 +343,7 @@ function getChapterInfo(data) {
                         } else {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
                                 }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
@@ -367,8 +359,7 @@ function getChapterInfo(data) {
                         if (i < 10) {
                             //Días siguientes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
                                 }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
@@ -382,8 +373,7 @@ function getChapterInfo(data) {
                         } else {
                             //Días siguientes
                             daysSlider += `
-                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
+                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
                                 }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
@@ -667,8 +657,7 @@ function getChapterInfo(data) {
 
             //Schedule Item Date Time
             let scheduleItemDate = data.program.day.split("-");
-            $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
-                scheduleItemDate[1]
+            $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${scheduleItemDate[1]
                 }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
@@ -1010,8 +999,7 @@ function getProgramming(date, section, time) {
                 }
                 //Schedule Item Date Time
                 let scheduleItemDate = data.program.day.split("-");
-                $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
-                    scheduleItemDate[1]
+                $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${scheduleItemDate[1]
                     }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
@@ -1132,8 +1120,7 @@ function getContentConcertChannelHeader() {
     });
 }
 //home
-//Landing concert channel
-function getContentHomeHeader() {
+function getContentHomeHeader(type) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -1149,33 +1136,35 @@ function getContentHomeHeader() {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
-                //Título en header de home
-               let headerTitle1 = $(
-                    ".modal-home-encabezado .header-title-1"
-                );
-                //Subtítulo de home
-                let headerTitle2 = $(
-                    ".modal-home-encabezado .header-title-2"
-                );
-                //let headerVideo = $(".modal-home-encabezado .video-header");
+                switch (type) {
+                    case 'slider-pagination':
+                        //Título en header de home
+                        let headerTitle1 = $(
+                            ".modal-home-encabezado .header-title-1"
+                        );
+                        //Subtítulo de home
+                        let headerTitle2 = $(
+                            ".modal-home-encabezado .header-title-2"
+                        );
+                        //let headerVideo = $(".modal-home-encabezado .video-header");
 
-                headerTitle1.val(data.data.block_1_title);
-                headerTitle2.val(data.data.block_1_subtitle);
-               // headerVideo.val(data.data.block_1_video_name);
-               if (data.data.block_1_video_name) {
-                let headerVideo = $(".modal-home-encabezado .video-header");
-                //Verificamos si la url es de una imagen
-                if (
-                    data.data.block_1_video_name.match(
-                        /\.(jpeg|jpg|gif|png)$/
-                    ) != null
-                ) {
-                    headerVideo.html(`
+                        headerTitle1.val(data.data.block_1_title);
+                        headerTitle2.val(data.data.block_1_subtitle);
+                        // headerVideo.val(data.data.block_1_video_name);
+                        if (data.data.block_1_video_name) {
+                            let headerVideo = $(".modal-home-encabezado .video-header");
+                            //Verificamos si la url es de una imagen
+                            if (
+                                data.data.block_1_video_name.match(
+                                    /\.(jpeg|jpg|gif|png)$/
+                                ) != null
+                            ) {
+                                headerVideo.html(`
                     <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="video-promo-header-home">
                     `);
-                } else {
-                    //La url es de un video
-                    headerVideo.html(`
+                            } else {
+                                //La url es de un video
+                                headerVideo.html(`
                    
                     <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                     <source src="${data.data.block_1_video_name}" type="video/mp4">
@@ -1184,18 +1173,127 @@ function getContentHomeHeader() {
                      transform: translate(190%, -110%);"/>
                     
                     `);
-                }
-            } else {
-                headerVideo.html(`
+                            }
+                        } else {
+                            headerVideo.html(`
                 <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="video-promo-header-home">
                 `);
-            }
-        
-            
-                //Mostramos el modal
-                $(".modal-home-encabezado").modal("show");
-                //Eliminamos
-                $(".loader-view-container").remove();
+                        }
+
+
+                        //Mostramos el modal
+                        $(".modal-home-encabezado").modal("show");
+                        //Eliminamos
+                        $(".loader-view-container").remove();
+                        break
+
+                    case 'claro-home-header':
+                        $("#img-logo-home").addClass('img-logo-home-claro');
+                        $("#dinamic_width").addClass('modal-img-home-claro');
+                        $("#dinamic_btn").addClass('btn-red');
+                        if (data.data.block_3_icon_channel == "") {
+                            $("#img-logo-home").attr('src', './images/modals/img-back-promo.png');
+                        } else {
+                            $("#img-logo-home").attr('src', data.data.block_3_icon_channel);
+                        }
+                        $("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
+                        $("#inp_url").val(data.data.block_3_icon_channel_url);
+                        $("#modal-logo-home").modal("show");
+                        $(".loader-view-container").remove();
+                        break
+
+                    case 'claro-home-slider':
+                        let programmingSlider = $("#img_carrusel_home");
+                        let counter = 1;
+                        let image = "";
+                        while (true) {
+                            try {
+                                if (data.data[`block_3_image${counter}`]) {
+                                    image += `
+                                    <div>
+                                        <!-- IMG -->
+                                        <div class="position-relative text-center">
+                                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home" src="${data.data[`block_3_image${counter}`].image_vertical}">
+                                        </div>
+                                        <!-- BTN ICONOS -->
+                                        <div class="modal-img-carrusel">
+                                            <!-- INPUTS -->
+                                            <input class="d-none" id="img_carrusel" name="img-carrusel" type="file">
+                                            <!-- LABEL -->
+                                            <label for="img_carrusel" class="add-file">
+                                                <img style="width: 30%;" id="camera" class="camera_carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
+                                                <br>
+                                                <p class="a-text-bold-warm text-plus">472px X 295px</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    `;
+                                    counter++;
+                                } else {
+                                    break;
+                                }
+                            } catch (error) {
+                                break;
+                            }
+                        }
+                        $("#modal-carrusel-home").modal("show");
+                        try {
+                            programmingSlider.slick("unslick");
+                            programmingSlider.html(image);
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".slaider-home-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        } catch (error) {
+                            programmingSlider.html(image);
+                            programmingSlider.slick({
+                                slidesToShow: 1,
+                                dots: true,
+                                appendDots: $(".slaider-home-dots"),
+                                initialSlide: 0,
+                                infinite: false,
+                                customPaging: function (slider, i) {
+                                    var thumb = $(slider.$slides[i]).data();
+                                    return (
+                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                        (i + 1) +
+                                        "</p>"
+                                    );
+                                }
+                            });
+                        }
+                        // HOME CARRUSEL
+                        $("#img_carrusel").change(function () {
+                            viewImg(this, "#img-carrusel-home");
+                            viewEdit();
+                        });
+                        function viewImg(objFileInput, container) {
+                            let fileSrt = new FileReader();
+                            if (objFileInput.files[0]) {
+                                fileSrt.onload = function (e) {
+                                    $(container).attr('src', e.target.result);
+                                };
+                                fileSrt.readAsDataURL(objFileInput.files[0]);
+                            }
+                        }
+                        function viewEdit() {
+                            $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
+                        }
+                        $(".loader-view-container").remove();
+                        break
+                }
+
             }
         }
     });
@@ -1328,11 +1426,7 @@ function getContentConcertChannel(type) {
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
-                                            <img src="${
-                                        data.data[
-                                        "block_1_image_slider_" +
-                                        counter
-                                        ]
+                                            <img src="${data.data["block_1_image_slider_" + counter]
                                         }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                         </label>
@@ -1844,8 +1938,7 @@ function getModalsCanalClaro(type) {
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
                                             class="cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
-                                        <img src="${
-                                    obj.data[
+                                        <img src="${obj.data[
                                     "block_1_image_slider_" +
                                     counter
                                     ]
@@ -3328,8 +3421,7 @@ function getContentClaroCinema(type) {
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
                                     <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
-                                    <img src="${
-                                    data.data[
+                                    <img src="${data.data[
                                     "block_1_image_slider_" + counter
                                     ]
                                     }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />

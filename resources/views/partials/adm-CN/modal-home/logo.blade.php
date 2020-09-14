@@ -1,5 +1,5 @@
 <div id="modal-logo-home" class="modal" style="overflow: auto;">
-    <div class="modal-dialog-centered">
+    <div class="modal-dialog-centered modal-dialog modal-logo-home-width">
         <div class="modal-content modal-logo-home">
             <!-- TEXTO -->
             <p class="text-normal d-flex text-center a-text-black-brown-two">CARGAR IMÁGENES EN FORMATO PNG</p>
@@ -10,10 +10,10 @@
                     <div class="col-12 col-md-6 p-0">
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-logo-home" id="img-logo-home" src="images/modals/img-back-promo.png">
+                            <img class="img-back-modal-enable" id="img-logo-home">
                         </div>
                         <!-- BTN ICONOS -->
-                        <div class="modal-img-home">
+                        <div id="dinamic_width" class="">
                             <!-- INPUTS -->
                             <input class="d-none" id="logo_home" name="img-logo" type="file">
                             <!-- LABEL -->
@@ -27,7 +27,7 @@
                     <!-- BTN Y LINK -->
                     <div class="col-12 col-md-6 p-0">
                         <div class="text-right m-0">
-                            <button class="btn-camales btn-red">VER <span class="h3 ml-2">+</span></button>
+                            <button id="dinamic_btn" class="btn-camales">VER <span class="h3 ml-2">+</span></button>
                             <div class="mt-4">
                                 <img class="cursor-pointer" id="modal_url" src="./images/basic-icons/link.svg" style="width: 40px;">
                                 <input id="inp_url" class="input-url width-url a-text-bold-warm text-normal" placeholder="Enlace o URL" type="text">
@@ -39,7 +39,7 @@
                         <span class="a-text-bold-brown-two text-normal my-4 d-block">Nombredelaimagen_Home.png</span>
                     </div>
                     <!-- SUBTITULO -->
-                    <input class="ipt-home-canales text-plus text-uppercase" placeholder="SUBTITULO" type="text">
+                    <input id="inp_canales_subtitulo" class="ipt-home-canales text-plus text-uppercase" placeholder="SUBTITULO" type="text">
                 </div>
             </div>
             <!-- BOTONES -->

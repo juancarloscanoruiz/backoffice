@@ -51606,7 +51606,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -89940,8 +89940,7 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-prueba").click(function () {
     getHeaderLanding();
   });
-  var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; //Landing de concert channel
-
+  var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
   var LandingHomeClaro = {
     remote: "".concat(baseURL, "home-edi-claro.php"),
     container: document.getElementById("navbar-prev-home"),
@@ -89949,30 +89948,27 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentHomeHeader"])();
-            break;
-
-          case "claro-home-header":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "claro-home-slider":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
+        Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])(json.type); // switch (json.type) {
+        //     case "slider-pagination":
+        //         getContentHomeHeader(json.type);
+        //         break;
+        //     case "claro-home-header":
+        //         $("body").append(LOADER);
+        //         setTimeout(function () {
+        //             $('#modal-logo-home').modal('show')
+        //             $("#loader1").remove();
+        //         }, 3000);
+        //         break;
+        //     case "claro-home-slider":
+        //         $("body").append(LOADER);
+        //         setTimeout(function () {
+        //             $('#modal-carrusel-home').modal('show')
+        //             $("#loader1").remove();
+        //         }, 3000);
+        //         break;
+        //     default:
+        //         break;
+        // }
       }
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -91260,7 +91256,8 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    //Cada vez que se haga click, el contador incrementa
+    debugger; //Cada vez que se haga click, el contador incrementa
+
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
@@ -92816,6 +92813,7 @@ function eventsGrilla() {
   });
 
   function viewImg(objFileInput, container) {
+    debugger;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
@@ -92832,18 +92830,30 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#camera').attr('src', './images/lapiz-acti.svg');
   }
 
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
+    console.log('click'); // $('#modal-logo-home').modal('show');
+    // $('#modal-carrusel-home').modal('show');
+
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])('claro-home-slider');
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
-    console.log('click');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').click(function () {
-    console.log('click');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
-    console.log('click'); // $('#modal-logo-home').modal('show');
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-url").click(function () {
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close_all_modal').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-logo-home').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
   }); // HOME
 }
 
@@ -94177,10 +94187,9 @@ function getContentConcertChannelHeader() {
     }
   });
 } //home
-//Landing concert channel
 
 
-function getContentHomeHeader() {
+function getContentHomeHeader(type) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
@@ -94193,32 +94202,127 @@ function getContentHomeHeader() {
       console.log(data);
 
       if (data.code == 200) {
-        //Título en header de home
-        var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-1"); //Subtítulo de home
+        switch (type) {
+          case 'slider-pagination':
+            //Título en header de home
+            var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-1"); //Subtítulo de home
 
-        var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-2"); //let headerVideo = $(".modal-home-encabezado .video-header");
+            var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .header-title-2"); //let headerVideo = $(".modal-home-encabezado .video-header");
 
-        headerTitle1.val(data.data.block_1_title);
-        headerTitle2.val(data.data.block_1_subtitle); // headerVideo.val(data.data.block_1_video_name);
+            headerTitle1.val(data.data.block_1_title);
+            headerTitle2.val(data.data.block_1_subtitle); // headerVideo.val(data.data.block_1_video_name);
 
-        if (data.data.block_1_video_name) {
-          var _headerVideo = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .video-header"); //Verificamos si la url es de una imagen
-
-
-          if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                    "));
-          } else {
-            //La url es de un video
-            _headerVideo.html("\n                   \n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                     </video>\n                     <img src =\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"edit-icon\" class=\"d-flex position-absolute\" style=\"z-index:5;    width: 13%;\n                     transform: translate(190%, -110%);\"/>\n                    \n                    "));
-          }
-        } else {
-          headerVideo.html("\n                <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                ");
-        } //Mostramos el modal
+            if (data.data.block_1_video_name) {
+              var _headerVideo = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado .video-header"); //Verificamos si la url es de una imagen
 
 
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("show"); //Eliminamos
+              if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                    "));
+              } else {
+                //La url es de un video
+                _headerVideo.html("\n                   \n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                     </video>\n                     <img src =\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"edit-icon\" class=\"d-flex position-absolute\" style=\"z-index:5;    width: 13%;\n                     transform: translate(190%, -110%);\"/>\n                    \n                    "));
+              }
+            } else {
+              headerVideo.html("\n                <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                ");
+            } //Mostramos el modal
 
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("show"); //Eliminamos
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+            break;
+
+          case 'claro-home-header':
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").addClass('img-logo-home-claro');
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_width").addClass('modal-img-home-claro');
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_btn").addClass('btn-red');
+
+            if (data.data.block_3_icon_channel == "") {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").attr('src', './images/modals/img-back-promo.png');
+            } else {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").attr('src', data.data.block_3_icon_channel);
+            }
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#inp_url").val(data.data.block_3_icon_channel_url);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-logo-home").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+            break;
+
+          case 'claro-home-slider':
+            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img_carrusel_home");
+            var counter = 1;
+            var image = "";
+
+            while (true) {
+              try {
+                if (data.data["block_3_image".concat(counter)]) {
+                  image += "\n                                    <div>\n                                        <!-- IMG -->\n                                        <div class=\"position-relative text-center\">\n                                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home\" src=\"".concat(data.data["block_3_image".concat(counter)].image_vertical, "\">\n                                        </div>\n                                        <!-- BTN ICONOS -->\n                                        <div class=\"modal-img-carrusel\">\n                                            <!-- INPUTS -->\n                                            <input class=\"d-none\" id=\"img_carrusel\" name=\"img-carrusel\" type=\"file\">\n                                            <!-- LABEL -->\n                                            <label for=\"img_carrusel\" class=\"add-file\">\n                                                <img style=\"width: 30%;\" id=\"camera\" class=\"camera_carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                                <br>\n                                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                                            </label>\n                                        </div>\n                                    </div>\n                                    ");
+                  counter++;
+                } else {
+                  break;
+                }
+              } catch (error) {
+                break;
+              }
+            }
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-carrusel-home").modal("show");
+
+            try {
+              programmingSlider.slick("unslick");
+              programmingSlider.html(image);
+              programmingSlider.slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".slaider-home-dots"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+            } catch (error) {
+              programmingSlider.html(image);
+              programmingSlider.slick({
+                slidesToShow: 1,
+                dots: true,
+                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".slaider-home-dots"),
+                initialSlide: 0,
+                infinite: false,
+                customPaging: function customPaging(slider, i) {
+                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                }
+              });
+            } // HOME CARRUSEL
+
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img_carrusel").change(function () {
+              viewImg(this, "#img-carrusel-home");
+              viewEdit();
+            });
+
+            var viewImg = function viewImg(objFileInput, container) {
+              var fileSrt = new FileReader();
+
+              if (objFileInput.files[0]) {
+                fileSrt.onload = function (e) {
+                  jquery__WEBPACK_IMPORTED_MODULE_1___default()(container).attr('src', e.target.result);
+                };
+
+                fileSrt.readAsDataURL(objFileInput.files[0]);
+              }
+            };
+
+            var viewEdit = function viewEdit() {
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()('.camera_carrusel').attr('src', './images/lapiz-acti.svg');
+            };
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+            break;
+        }
       }
     }
   });
@@ -96951,8 +97055,8 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -177,6 +177,10 @@ a:hover {
     object-fit: cover;
     position: absolute;
 }
+.img-back-modal-enable {
+    // object-fit: cover;
+    position: absolute;
+}
 .img-promo {
     border: 20px solid $selecred;
     border-radius: 10px;
@@ -199,6 +203,7 @@ a:hover {
 }
 .add-file img {
     width: 22%;
+    display: inline-block;
 }
 .add-file span {
     background: #fff;
@@ -405,20 +410,34 @@ a:hover {
     width: 90%;
 }
 // HOME
+.modal-logo-home-width {
+    width: 1000px !important;
+    max-width: 1000px !important;
+}
 .modal-logo-home {
-    border-radius: 0;
-    padding: 1% 4%;
-    width: 1000px;
-    margin: auto;
+    border-radius: 0 !important;
+    padding: 2% 5%;
 }
 .img-logo-home {
     width: 350px;
     left: 0%;
 }
+.img-logo-home-claro {
+    width: 350px;
+    height: 120px;
+    left: 0%;
+}
 .modal-img-home {
-    top: 10px;
     width: 350px;
     height: 200px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    text-align: center;
+} 
+.modal-img-home-claro {
+    width: 350px;
+    height: 120px;
     justify-content: space-around;
     display: flex;
     align-items: center;
