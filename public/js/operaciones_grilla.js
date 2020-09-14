@@ -73814,6 +73814,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programModel = new _models_program__WEBPACK_IMPORTED_MODULE_0__["default"]();
+/**
+ * @class Clase para recibir información de la vista y mandarla al modelo
+ * Aquí se dan formato a algunos datos y se retorna el resultado del modelo a la vista
+ */
 
 var ProgramController = /*#__PURE__*/function () {
   function ProgramController() {
@@ -73830,6 +73834,12 @@ var ProgramController = /*#__PURE__*/function () {
     key: "editDetailsSynopsis",
     value: function editDetailsSynopsis(data) {
       var response = programModel.editBlockSynopsis(data);
+      return response;
+    }
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(chapterId, key, value) {
+      var response = programModel.editAttributeSynopsis(chapterId, key, value);
       return response;
     }
   }]);
@@ -74131,11 +74141,57 @@ var ProgramModel = /*#__PURE__*/function () {
 
       return getSynopsis;
     }()
+  }, {
+    key: "editAttributeSynopsis",
+    value: function () {
+      var _editAttributeSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(chapter_id, key, keyValue) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: JSON.stringify({
+                    chapter_id: chapter_id,
+                    key: key,
+                    keyValue: keyValue
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context3.next = 3;
+                return fetch("program/editSynopsis", options);
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context3.sent;
+                return _context3.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function editAttributeSynopsis(_x3, _x4, _x5) {
+        return _editAttributeSynopsis.apply(this, arguments);
+      }
+
+      return editAttributeSynopsis;
+    }()
   }]);
 
   return ProgramModel;
-}(); //http://www.claronetworks.openofficedospuntocero.info/Claro_Networks_API/public/program/editBolckSinopsis
-
+}();
 
 
 
@@ -74414,33 +74470,6 @@ function eventsGrilla() {
 
           case "synopsis-description-container":
             programView.renderDescriptionSynopsis(json.id);
-            /*                         $("body").append(
-                                        `<div class="loader-view-container pointer-none">
-                                            <img src="./images/loader.gif" class="loader"/>
-                                        </div>`
-                                    );
-                                    data = getSynopsis(json.id);
-                                    data.then(data => {
-                                        if (data.code == 200) {
-                                             let editSynopsisButton = $(
-                                                "#edit-synopsis-modal-button"
-                                            );
-                                             $(".edit-text-synopsis").val(
-                                                data.data.sinopsis
-                                            );
-                                            editSynopsisButton.attr(
-                                                "chapter_id",
-                                                data.data.chapter_id
-                                            );
-                                            editSynopsisButton.attr("key", "synopsis");
-                                            $(".synopsis-modal-title").text(
-                                                data.data.subtitle
-                                            );
-                                            $(".modal-edit-synopsis").modal("show");
-                                            $(".loader-view-container").remove();
-                                        }
-                                    }); */
-
             break;
 
           case "synopsis-images-container":
@@ -74495,26 +74524,42 @@ function eventsGrilla() {
     }
   }; //Editar sinopsis en landing de sinopsis
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
-    var response = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeSynopsis"])(chapterId, key, value);
-    response.then(function (data) {
-      if (data.code == 200) {
-        return Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getSynopsis"])(chapterId);
-      }
-    }).then(function (data) {
-      if (data.code === 200) {
-        var dataStringified = JSON.stringify(data);
-        socketSynopsis.postMessage(dataStringified);
-      }
+  /*     $("#edit-synopsis-modal-button").click(function () {
+          $("body").append(
+              `<div class="loader-view-container pointer-none">
+                  <img src="./images/loader.gif" class="loader"/>
+              </div>`
+          );
+          let chapterId = $(this).attr("chapter_id");
+          let key = $(this).attr("key");
+          let title = $('.synopsis-modal-title').val();
+          let value = $(".edit-text-synopsis").val();
+          //Respuesta de cuando editamos la sinopsis
+          let response = editAttributeSynopsis(chapterId, key, value);
+           response.then(data => {
+                  console.log(data);
+                  if (data.code == 200) {
+                      return editAttributeSynopsis(chapterId, "title", title);
+                  }
+               })
+              .then(data => {
+                  if (data.code == 200) {
+                      console.log(data);
+                      return getSynopsis(chapterId);
+                  }
+              })
+              .then(data => {
+                   if (data.code === 200) {
+                      let dataStringified = JSON.stringify(data);
+                      socketSynopsis.postMessage(dataStringified);
+                  }
+                  $(".modal-edit-synopsis").modal("hide");
+                  $(".loader-view-container").remove()
+              }).catch(err => {
+                  console.log(err);
+              })
+      }); */
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    });
-  });
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
 
   if (navbarPrevSINOPSIS) {
@@ -74527,7 +74572,8 @@ function eventsGrilla() {
     });
   }
 
-  programView.editDetailsSynopsis(socketSynopsis); //Subir imágenes complementarias de sinopsis
+  programView.editDetailsSynopsis(socketSynopsis);
+  programView.editAttributesSynopsis(socketSynopsis); //Subir imágenes complementarias de sinopsis
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>"); //Obtenemos las imágenes
@@ -81219,6 +81265,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+/**
+ * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
+ * y esuchcar eventos
+ */
 
 var ProgramView = /*#__PURE__*/function () {
   function ProgramView() {
@@ -81227,6 +81277,14 @@ var ProgramView = /*#__PURE__*/function () {
 
   _createClass(ProgramView, [{
     key: "renderSynopsis",
+
+    /**
+     * Método para mandar la información de sinopsis de un programa a
+     * al socket y abrir modal
+     *
+     * @param {*} id  Id del programa a obtener la sinopsis
+     * @param {*} socket Socket del landing al que queremos mandar la información de la sinopsis
+     */
     value: function renderSynopsis(id, socket) {
       var response = programController.getSynopsis(id);
       response.then(function (data) {
@@ -81238,6 +81296,12 @@ var ProgramView = /*#__PURE__*/function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       });
     }
+    /**
+     * Método para renderizar en el modal los detalles de la sinopsis de un programa
+     *
+     * @param {*} id Id del capítulo del que queremos obtener la sinopsis
+     */
+
   }, {
     key: "renderDetailsSynopsis",
     value: function renderDetailsSynopsis(id) {
@@ -81257,6 +81321,12 @@ var ProgramView = /*#__PURE__*/function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
       });
     }
+    /**
+     * Método para renderizar la sinopsis en modal para editar título y sinopsis
+     *
+     * @param {*} id Id del programa del que queremos obtener la sinopsis
+     */
+
   }, {
     key: "renderDescriptionSynopsis",
     value: function renderDescriptionSynopsis(id) {
@@ -81276,6 +81346,13 @@ var ProgramView = /*#__PURE__*/function () {
         }
       });
     }
+    /**
+     * Este método permite editar los datos de un programa en la sinopsis, como duración, año, rating
+     * y número de temporadas
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
   }, {
     key: "editDetailsSynopsis",
     value: function editDetailsSynopsis(socket) {
@@ -81298,9 +81375,6 @@ var ProgramView = /*#__PURE__*/function () {
         response.then(function (data) {
           if (data.code == 200) {
             return programController.getSynopsis(chapter_id);
-            /*                     let data = programController.getSynopsis(chapter_id);
-                                socket.postMessage(data);
-                                $(".loader-view-container").remove(); */
           }
         }).then(function (data) {
           if (data.code == 200) {
@@ -81308,6 +81382,47 @@ var ProgramView = /*#__PURE__*/function () {
             socket.postMessage(dataStringified);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           }
+        });
+      });
+    }
+    /**
+     * Método para editar el título y la sinopsis de un programa en modal
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-modal-title').val();
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
+        var response = programController.editAttributesSynopsis(chapterId, key, value); //editamos primero la sinopsis
+
+        response.then(function (data) {
+          if (data.code == 200) {
+            //Si todo fue correcto, editamos el título
+            return programController.editAttributesSynopsis(chapterId, "title", title);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            //Si todo fue correcto obtenemos la sinopsis de nuevo
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code === 200) {
+            //Mandamos la sinopsis a través del socket
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        })["catch"](function (err) {
+          console.log(err);
         });
       });
     }

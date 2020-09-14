@@ -417,8 +417,6 @@ function eventsGrilla() {
 
                     case "synopsis-description-container":
                         programView.renderDescriptionSynopsis(json.id)
-
-
                         break;
                     case "synopsis-images-container":
                         $("body").append(
@@ -515,33 +513,45 @@ function eventsGrilla() {
     };
 
     //Editar sinopsis en landing de sinopsis
-    $("#edit-synopsis-modal-button").click(function () {
-        $("body").append(
-            `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-        );
-        let chapterId = $(this).attr("chapter_id");
-        let key = $(this).attr("key");
-        let value = $(".edit-text-synopsis").val();
-        let response = editAttributeSynopsis(chapterId, key, value);
 
-        response.then(data => {
-            if (data.code == 200) {
+    /*     $("#edit-synopsis-modal-button").click(function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+            let chapterId = $(this).attr("chapter_id");
+            let key = $(this).attr("key");
+            let title = $('.synopsis-modal-title').val();
+            let value = $(".edit-text-synopsis").val();
+            //Respuesta de cuando editamos la sinopsis
+            let response = editAttributeSynopsis(chapterId, key, value);
 
-                return getSynopsis(chapterId);
+            response.then(data => {
+                    console.log(data);
+                    if (data.code == 200) {
+                        return editAttributeSynopsis(chapterId, "title", title);
+                    }
 
-            }
+                })
+                .then(data => {
+                    if (data.code == 200) {
+                        console.log(data);
+                        return getSynopsis(chapterId);
+                    }
+                })
+                .then(data => {
 
-        }).then(data => {
-            if (data.code === 200) {
-                let dataStringified = JSON.stringify(data);
-                socketSynopsis.postMessage(dataStringified);
-            }
-            $(".modal-edit-synopsis").modal("hide");
-            $(".loader-view-container").remove()
-        })
-    });
+                    if (data.code === 200) {
+                        let dataStringified = JSON.stringify(data);
+                        socketSynopsis.postMessage(dataStringified);
+                    }
+                    $(".modal-edit-synopsis").modal("hide");
+                    $(".loader-view-container").remove()
+                }).catch(err => {
+                    console.log(err);
+                })
+        }); */
 
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
     if (navbarPrevSINOPSIS) {
@@ -562,7 +572,7 @@ function eventsGrilla() {
         );
     }
     programView.editDetailsSynopsis(socketSynopsis);
-
+    programView.editAttributesSynopsis(socketSynopsis)
     //Subir imágenes complementarias de sinopsis
     $("#images-synopsis-modal-button").click(function () {
         $("body").append(
