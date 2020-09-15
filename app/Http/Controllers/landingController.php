@@ -371,22 +371,28 @@ class landingController extends Controller
 
         echo ($response->getBody()->getContents());
     }
-    public function editHeaderHome(Request $request)
-    {
+   
+    public function editHomeHeader(Request $request)  
+    { 
+      
+        
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
+        $videoimage = "";
+        if ($request->file('video')) {
+            $videoimage = $this->storeImages("videoimage", $request->file('video'), "public/home/video");
+        }
        
         $response = $client->post(
-            $this->url . "program/returnPost",
+            $this->url . "section/editBlock1Home",
             ['body' => json_encode(
                 [
-                    "usuario_id" => session('id_user'),
-                    "landing" => $request->input('landing'),
-                   // "icon_chanel" => $logo,
-                    "title_1" => $request->input('title1'),
-                    "title_2" => $request->input('title2'),
-                   // "url_programation" => $request->input("link")
+                    "usuario_id" => session('id_user'),  
+                    "video" => $videoimage,         
+                    "title" => $request->input('title'),
+                    "subtitle" => $request->input('subtitle')
+                    
                 ]
             )]
         );

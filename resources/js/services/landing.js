@@ -1132,7 +1132,6 @@ function getContentConcertChannelHeader() {
     });
 }
 //home
-//Landing concert channel
 function getContentHomeHeader() {
     $.ajax({
         type: "POST",
@@ -1171,17 +1170,22 @@ function getContentHomeHeader() {
                     ) != null
                 ) {
                     headerVideo.html(`
-                    <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="video-promo-header-home">
+                    <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="image-promo-header-home">
                     `);
                 } else {
                     //La url es de un video
                     headerVideo.html(`
-                   
+                    <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width: 62px;
+                    position: absolute;
+                    transform: translate(215px, -112px);" />
+                    <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute " style="    transform: translate(207px, -40px);">Añade tu archivo <br>
+                    jpg 472px X 295px </span>
+
                     <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                     <source src="${data.data.block_1_video_name}" type="video/mp4">
+                    
                      </video>
-                     <img src ="./images/basic-icons/pencil-edit-teal.svg" alt="edit-icon" class="d-flex position-absolute" style="z-index:5;    width: 13%;
-                     transform: translate(190%, -110%);"/>
+                    
                     
                     `);
                 }
@@ -1530,6 +1534,27 @@ function editHeaderLanding(data) {
                 $(".modal-header-concert-channel").modal("hide");
             }
             $(".loader-view-container").remove();
+        }
+    });
+}
+
+//edit header home
+
+function editHomeHeader(data) {  
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+     url: "landing/editHomeHeader",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $(".modal-home-encabezado").modal("hide");
+            }
+          
         }
     });
 }
@@ -3808,6 +3833,7 @@ export {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
+    editHomeHeader,
     editElementLanding,
     editPromoLandingCinema,
     getConcertChannelPromo,

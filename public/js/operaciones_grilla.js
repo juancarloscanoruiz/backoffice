@@ -74254,7 +74254,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentHomeHeader"])();
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])();
             break;
 
           case "claro-home-header":
@@ -74283,7 +74283,7 @@ function eventsGrilla() {
   var NavbarHomeClaro = document.getElementById("navbar-prev-home");
 
   if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-homeiframe').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
     new easyXDM.Socket(LandingHomeClaro);
   }
 
@@ -74898,6 +74898,38 @@ function eventsGrilla() {
     data.append("logo", logo);
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editHeaderLanding"])(data);
+  }); //Edicion del header del home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
+    var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
+    var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
+    var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
+    var data = new FormData();
+    data.append("video", videoimage);
+    data.append("title", title);
+    data.append("subtitle", subtitle);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editHomeHeader"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_8__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+  }); //Previsualizar el video que subió el usuario en el landing de home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: "video/mp4"
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").html("\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                <source src=\"".concat(url, "\" type=\"video/mp4\">\n                \n                 </video>\n                \n                "));
+      };
+    }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
     //Title
@@ -77558,7 +77590,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77574,6 +77606,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4One", function() { return getContentConcertChannelBlock4One; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4OTwo", function() { return getContentConcertChannelBlock4OTwo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLanding", function() { return editHeaderLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHomeHeader", function() { return editHomeHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingCinema", function() { return editPromoLandingCinema; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
@@ -78478,7 +78511,6 @@ function getContentConcertChannelHeader() {
     }
   });
 } //home
-//Landing concert channel
 
 
 function getContentHomeHeader() {
@@ -78507,10 +78539,10 @@ function getContentHomeHeader() {
 
 
           if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                    "));
+            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">\n                    "));
           } else {
             //La url es de un video
-            _headerVideo.html("\n                   \n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                     </video>\n                     <img src =\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"edit-icon\" class=\"d-flex position-absolute\" style=\"z-index:5;    width: 13%;\n                     transform: translate(190%, -110%);\"/>\n                    \n                    "));
+            _headerVideo.html("\n                    <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                    position: absolute;\n                    transform: translate(215px, -112px);\" />\n                    <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                    jpg 472px X 295px </span>\n\n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                    \n                     </video>\n                    \n                    \n                    "));
           }
         } else {
           headerVideo.html("\n                <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                ");
@@ -78766,6 +78798,26 @@ function editHeaderLanding(data) {
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+    }
+  });
+} //edit header home
+
+
+function editHomeHeader(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    url: "landing/editHomeHeader",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("hide");
+      }
     }
   });
 }

@@ -36,6 +36,7 @@ import {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
+    editHomeHeader,
     editElementLanding,
     editPromoLandingCinema,
     getConcertChannelPromo,
@@ -213,7 +214,7 @@ function eventsGrilla() {
 
     let NavbarHomeClaro = document.getElementById("navbar-prev-home");
     if (NavbarHomeClaro) {
-        $('#navbar-prev-homeiframe').remove();
+        $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
 
@@ -984,6 +985,61 @@ function eventsGrilla() {
         data.append("link", link);
         editHeaderLanding(data);
     });
+
+    //Edicion del header del home
+     
+      $("#edit-home-encabezado").click(function () {     
+       
+        let videoimage = document.getElementById("video-promo-header-home").files[0]||
+        "";
+        
+        let title =
+            $(".modal-home-encabezado .header-title-1").val() ||
+            "";
+        let subtitle =
+            $(".modal-home-encabezado .header-title-2").val() ||
+            "";
+      
+        let data = new FormData();  
+       
+        data.append("video", videoimage);    
+        data.append("title", title);
+        data.append("subtitle", subtitle);
+        editHomeHeader(data);
+       resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+    });
+
+ //Previsualizar el video que subió el usuario en el landing de home
+ $("#video-promo-header-home").change(function () {
+    if (this.files && this.files[0]) {
+        let file = this.files[0];
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+        reader.onload = function (e) {
+            // The file reader gives us an ArrayBuffer:
+            let buffer = e.target.result;
+
+            // We have to convert the buffer to a blob:
+            let videoBlob = new Blob([new Uint8Array(buffer)], {
+                type: "video/mp4"
+            });
+
+            // The blob gives us a URL to the video file:
+            let url = window.URL.createObjectURL(videoBlob);
+            $("#video-promo-header-home").html(
+                `
+                <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
+                <source src="${url}" type="video/mp4">
+                
+                 </video>
+                
+                `
+            );
+        };
+    }
+});
+
+  
    
 
 

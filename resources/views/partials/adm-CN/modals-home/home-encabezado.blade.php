@@ -8,31 +8,33 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">HOME - ENCABEZADO </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
-                <!--Calendar-->
-                <div class="col-12 mx-auto">
+            
+
+                 <!--Calendar-->
+                 <div class="col-12 mx-auto">
                 <div class="d-flex align-items-center float-right mt-4 mb-4 mr-4">
-                            <div>
-                                <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
+                        <div>
+                            <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
+                        </div>
+
+                        <input type="text" id="programming-carrusel-calendar" class="d-none">
+                        <label for="programming-carrusel-calendar" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3" id="date-start-table">
+                            <img src="./images/calendario.svg" alt="">
+                            <div class="ml-3">
+                                <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
+                                <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
                             </div>
+                        </label>
 
-                            <input type="text" id="programming-carrusel-calendar " class="d-none">
-                            <label for="programming-carrusel-calendar" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3" id="date-start-table">
-                                <img src="./images/calendario.svg" alt="">
-                                <div class="ml-3">
-                                    <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
-                                    <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
-                                </div>
-                            </label>
-
-                            <!--Fecha de fin de calendario-->
-                            <label for="programming-carrusel-calendar" class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
-                                <img src="./images/calendario.svg" alt="">
-                                <div class="ml-3">
-                                    <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
-                                    <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
-                                </div>
-                            </label>
-              </div>
+                        <!--Fecha de fin de calendario-->
+                        <label for="programming-carrusel-calendar" class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
+                            <img src="./images/calendario.svg" alt="">
+                            <div class="ml-3">
+                                <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
+                                <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
+                            </div>
+                        </label>
+                    </div>
               <div class="clearfix"></div>
 
                         <!-- parte del home-->
@@ -95,6 +97,14 @@
                                     jpg 472px X 295px </span>
                                      
                             </label>
+                           <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
+                        <label for="image-promo-header-home"
+                            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                                class="add-photo promo-icon cursor-pointer" style="width:95px" />
+                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
+                                jpg 472px X 295px </span>
+                        </label>-->
                         </div>
                         
                        
@@ -108,7 +118,7 @@
 
        <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                             <button
-                                class="d-flex m-0  mr-3  btn-landing disabled-btn a-btn-basic-small  text-uppercase a-text-bold-teal text-plus edit-landing-modal-button"
+                                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                                 id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
                             <a href="#delete-info-synopsis" role="button"
                                 class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"

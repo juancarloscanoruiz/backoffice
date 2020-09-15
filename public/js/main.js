@@ -12374,9 +12374,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.2 (https://getbootstrap.com/)
+  * Bootstrap v4.5.0 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -12402,22 +12402,53 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     return Constructor;
   }
 
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
+    }
 
-      return target;
-    };
-
-    return _extends.apply(this, arguments);
+    return target;
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -12428,8 +12459,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -12609,7 +12640,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.2';
+  var VERSION = '4.5.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -12765,7 +12796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.2';
+  var VERSION$1 = '4.5.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -12900,9 +12931,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
-        Button._jQueryInterface.call($(button), 'toggle');
+      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
+        event.preventDefault(); // work around event sent to label and input
       }
+
+      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -12958,7 +12991,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.2';
+  var VERSION$2 = '4.5.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -13145,7 +13178,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default, config);
+      config = _objectSpread2(_objectSpread2({}, Default), config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -13435,10 +13468,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _extends({}, Default, $(this).data());
+        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
 
         if (typeof config === 'object') {
-          _config = _extends({}, _config, config);
+          _config = _objectSpread2(_objectSpread2({}, _config), config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -13476,7 +13509,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      var config = _extends({}, $(target).data(), $(this).data());
+      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -13545,7 +13578,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.2';
+  var VERSION$3 = '4.5.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -13760,7 +13793,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$1, config);
+      config = _objectSpread2(_objectSpread2({}, Default$1), config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -13814,7 +13847,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -13894,7 +13927,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.2';
+  var VERSION$4 = '4.5.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -14121,7 +14154,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -14166,7 +14199,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -14196,7 +14229,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         };
       }
 
-      return _extends({}, popperConfig, this._config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
     } // Static
     ;
 
@@ -14408,7 +14441,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.2';
+  var VERSION$5 = '4.5.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -14600,7 +14633,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$3, config);
+      config = _objectSpread2(_objectSpread2({}, Default$3), config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -14616,24 +14649,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return;
         }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-
-        if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
-        }
-
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $(this._element).off(Util.TRANSITION_END);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $(_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -14658,8 +14678,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
-
-      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -14747,8 +14765,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
-
-      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -14931,7 +14947,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -14981,7 +14997,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -15018,8 +15034,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -15144,7 +15160,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.2';
+  var VERSION$6 = '4.5.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -15532,7 +15548,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _extends({}, defaultBsConfig, this.config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -15542,7 +15558,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -15597,7 +15613,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _extends({}, this.config, {
+        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
           trigger: 'manual',
           selector: ''
         });
@@ -15697,7 +15713,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           delete dataAttributes[dataAttr];
         }
       });
-      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -15856,21 +15872,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.2';
+  var VERSION$7 = '4.5.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _extends({}, Tooltip.Default, {
+  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
+  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
     content: '(string|element|function)'
   });
 
@@ -16036,7 +16052,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.2';
+  var VERSION$8 = '4.5.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -16150,7 +16166,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -16328,7 +16344,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.2';
+  var VERSION$9 = '4.5.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -16554,7 +16570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.2';
+  var VERSION$a = '4.5.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -16607,8 +16623,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      this._clearTimeout();
-
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -16657,7 +16671,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto.dispose = function dispose() {
-      this._clearTimeout();
+      clearTimeout(this._timeout);
+      this._timeout = null;
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -16671,7 +16686,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -16701,11 +16716,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       } else {
         complete();
       }
-    };
-
-    _proto._clearTimeout = function _clearTimeout() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
     } // Static
     ;
 
@@ -89953,7 +89963,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getContentHomeHeader"])();
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getContentHomeHeader"])();
             break;
 
           case "claro-home-header":
@@ -89982,7 +89992,7 @@ function eventsGrilla() {
   var NavbarHomeClaro = document.getElementById("navbar-prev-home");
 
   if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-homeiframe').remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
     new easyXDM.Socket(LandingHomeClaro);
   }
 
@@ -90597,6 +90607,38 @@ function eventsGrilla() {
     data.append("logo", logo);
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editHeaderLanding"])(data);
+  }); //Edicion del header del home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
+    var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
+    var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
+    var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
+    var data = new FormData();
+    data.append("video", videoimage);
+    data.append("title", title);
+    data.append("subtitle", subtitle);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["editHomeHeader"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_8__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+  }); //Previsualizar el video que subió el usuario en el landing de home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: "video/mp4"
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").html("\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                <source src=\"".concat(url, "\" type=\"video/mp4\">\n                \n                 </video>\n                \n                "));
+      };
+    }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
     //Title
@@ -93257,7 +93299,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93273,6 +93315,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4One", function() { return getContentConcertChannelBlock4One; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannelBlock4OTwo", function() { return getContentConcertChannelBlock4OTwo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLanding", function() { return editHeaderLanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHomeHeader", function() { return editHomeHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLanding", function() { return editElementLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingCinema", function() { return editPromoLandingCinema; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConcertChannelPromo", function() { return getConcertChannelPromo; });
@@ -94177,7 +94220,6 @@ function getContentConcertChannelHeader() {
     }
   });
 } //home
-//Landing concert channel
 
 
 function getContentHomeHeader() {
@@ -94206,10 +94248,10 @@ function getContentHomeHeader() {
 
 
           if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                    "));
+            _headerVideo.html("\n                    <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">\n                    "));
           } else {
             //La url es de un video
-            _headerVideo.html("\n                   \n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                     </video>\n                     <img src =\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"edit-icon\" class=\"d-flex position-absolute\" style=\"z-index:5;    width: 13%;\n                     transform: translate(190%, -110%);\"/>\n                    \n                    "));
+            _headerVideo.html("\n                    <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                    position: absolute;\n                    transform: translate(215px, -112px);\" />\n                    <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                    jpg 472px X 295px </span>\n\n                    <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                    \n                     </video>\n                    \n                    \n                    "));
           }
         } else {
           headerVideo.html("\n                <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"video-promo-header-home\">\n                ");
@@ -94465,6 +94507,26 @@ function editHeaderLanding(data) {
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+    }
+  });
+} //edit header home
+
+
+function editHomeHeader(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    url: "landing/editHomeHeader",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("hide");
+      }
     }
   });
 }
