@@ -1,9 +1,9 @@
 <div id="modal-carrusel-home" class="modal" style="overflow: auto;">
-    <div class="modal-dialog-centered">
-        <div class="modal-content modal-carrusel-home max-width-modal-xl">
+    <div class="modal-dialog-centered modal-dialog max-width-modal-xl">
+        <div class="modal-content modal-carrusel-home">
             <!-- TEXTO -->
             <p class="text-normal d-flex text-center a-text-black-brown-two">CARGAR IMÁGENES EN FORMATO JPG</p>
-            <h2 class="h2 text-center a-text-black-brown-two pt-2">HOME - <span class="h1 btn-red">CANAL CLARO</span> - CARRUSEL PROMO</h2>
+            <h2 class="h2 text-center a-text-black-brown-two pt-2">HOME - <span>CANAL CLARO</span> - CARRUSEL PROMO</h2>
             <hr class="hr">
             <div class="container-fluid">
                 <div class="row">
@@ -13,14 +13,8 @@
                                 <!-- DOCTS -->
                                 <div class="float-right">
                                     <div class="d-flex">
-                                        <div class="position-relative carrusel1-slider-dots1 my-3">
-                                            <ul class="slick-dots" role="tablist">
-                                                <li class="slick-active" role="presentation">
-                                                    <p class="a-text-bold-teal slider-pagination-item">1</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image mb-3  cursor-pointer">
+                                        <div class="position-relative slaider-docts slaider-home-dots carrusel1-slider-dots1 my-3"></div>
+                                        <!-- <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image mb-3 cursor-pointer"> -->
                                     </div>
                                 </div>
                             </div>
@@ -222,21 +216,23 @@
                                     <!-- UNICOS Y DIFERENTES -->
                                 </div>
                             </div>
-                            <div class="col-4 p-0">
-                                <!-- IMG -->
-                                <div class="position-relative text-center">
-                                    <img class="img-back-modal img-carrusel-home" id="img-carrusel-home" src="images/modals/back-large.svg">
-                                </div>
-                                <!-- BTN ICONOS -->
-                                <div class="modal-img-carrusel">
-                                    <!-- INPUTS -->
-                                    <input class="d-none" id="img_carrusel" name="img-carrusel" type="file">
-                                    <!-- LABEL -->
-                                    <label for="img_carrusel" class="add-file">
-                                        <img id="camera" class="cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
-                                        <br>
-                                        <p class="a-text-bold-warm text-plus">472px X 295px</p>
-                                    </label>
+                            <div class="col-4 p-0" id="img_carrusel_home">
+                                <div>
+                                    <!-- IMG -->
+                                    <div class="position-relative text-center">
+                                        <img class="img-back-modal img-carrusel-home" id="img-carrusel-home" src="images/modals/back-large.svg">
+                                    </div>
+                                    <!-- BTN ICONOS -->
+                                    <div class="modal-img-carrusel">
+                                        <!-- INPUTS -->
+                                        <input class="d-none" id="img_carrusel" name="img-carrusel" type="file">
+                                        <!-- LABEL -->
+                                        <label for="img_carrusel" class="add-file load-programming-carousel">
+                                            <img id="camera" class="cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
+                                            <br>
+                                            <p class="a-text-bold-warm text-plus">472px X 295px</p>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <!-- NOMBRE DE LA IMAGEN -->

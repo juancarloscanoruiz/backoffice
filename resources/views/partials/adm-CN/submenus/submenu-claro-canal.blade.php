@@ -385,10 +385,14 @@
             </div>
         </div>
     </main>
-    @include('partials.adm-CN.modals-claro.banner-claro')
-    @include('partials.adm-CN.modals-claro.index')
-    @include('partials.adm-CN.modals-concert.carrusel');
+    @include('partials.adm-CN.modals-claro.banner-claro');
+    @include('partials.adm-CN.modals-claro.index');
     @include('partials.adm-CN.modals-home.home-encabezado');
     @include('partials.adm-CN.sinopsis');
+
+    @include('partials.adm-CN.modal-home.logo');
+    @include('partials.adm-CN.modal-home.carrusel');
+    @include('partials.adm-CN.modal-generic.advertencia');
+    @include('partials.adm-CN.modal-generic.url');
 
 </body>

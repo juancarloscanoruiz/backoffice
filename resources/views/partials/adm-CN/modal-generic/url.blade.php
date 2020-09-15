@@ -7,12 +7,12 @@
                 <!-- LINK -->
                 <div class="d-flex my-5">
                     <img class="mr-3" src="images/basic-icons/link.svg" alt="Link" style="width: 40px;">
-                    <input class="input-url-modal" placeholder="Pega el enlace o URL" type="text">
+                    <input id="inp_url_modal" class="input-url-modal" placeholder="Pega el enlace o URL" type="text">
                 </div>
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center">
-                        <button id="btn-acepta-url" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-url" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                         <button data-dismiss="modal" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button>
                     </div>
                 </div>

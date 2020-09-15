@@ -34,13 +34,14 @@ export default class ProgramModel {
         return data;
     }
 
-    async editAttributeSynopsis(chapter_id, key, keyValue) {
+    async editAttributeSynopsis(chapterId, change, synopsis, title) {
         let options = {
             method: "POST",
             body: JSON.stringify({
-                chapter_id,
-                key,
-                keyValue
+                chapterId,
+                change,
+                synopsis,
+                title
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
