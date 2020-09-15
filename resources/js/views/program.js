@@ -32,11 +32,11 @@ export default class ProgramView {
 
 
     renderPrevSynopsis() {
-        var socketSynopsis;
+
         const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let options = {
-            remote: `${baseURL}sinopsis-edi.php`,
-            //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+            //remote: `${baseURL}sinopsis-edi.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
             container: document.getElementById("sinopsis-container"),
             onMessage: function (message, origin) {
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -47,7 +47,14 @@ export default class ProgramView {
         $('#prev-synopsis').click(function () {
 
             $('#sinopsis-container iframe').remove();
-            new easyXDM.Socket(options);
+            let response = programController.getSynopsis($(this).attr("chapter_id"));
+            var socketSynopsis = new easyXDM.Socket(options);
+            response.then(data => {
+                if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socketSynopsis.postMessage(dataStringified);
+                }
+            })
         })
     }
 
