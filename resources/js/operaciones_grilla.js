@@ -8,10 +8,11 @@ import {
     selectColumn
 } from "./UI/UI.js";
 
-
 //View
 import ProgramView from "./views/program.js";
 let programView = new ProgramView();
+import LandingView from "./views/landing";
+let landingView = new LandingView();
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -157,19 +158,84 @@ function eventsGrilla() {
         getHeaderLanding();
     });
 
-    const baseURL =
-        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-    //Landing de concert channel
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
-    let LandingHomeClaro = {
-        remote: `${baseURL}home-edi-claro.php`,
-        container: document.getElementById(
-            "navbar-prev-home",
-        ),
+
+    let LandingHomeConcert = {
+        //remote: `${baseURL}home-edi-claro.php`,
+        remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
+        container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "concert-home-header":
+                        $("body").append(loader);
+                        landingView.renderHomeHeaderConcertChannel();
+                        $("#loader1").remove();
+                        break;
+
+                    case "concert-home-slider":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+            //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        }
+    };
+    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+    if (NavbarHomeConcert) {
+        $("#navbar-prev-home-concert iframe").remove();
+        var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
+    }
+
+    let LandingHomeClaro = {
+        remote: `${baseURL}home-edi-claro.php`,
+        container: document.getElementById("navbar-prev-home"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                getContentHomeHeader(json.type);
+                // switch (json.type) {
+                //     case "slider-pagination":
+                //         getContentHomeHeader(json.type);
+                //         break;
+
+                //     case "claro-home-header":
+                //         $("body").append(LOADER);
+                //         setTimeout(function () {
+                //             $('#modal-logo-home').modal('show')
+                //             $("#loader1").remove();
+                //         }, 3000);
+                //         break;
+
+                //     case "claro-home-slider":
+                //         $("body").append(LOADER);
+                //         setTimeout(function () {
+                //             $('#modal-carrusel-home').modal('show')
+                //             $("#loader1").remove();
+                //         }, 3000);
+                //         break;
+
+                //     default:
+                //         break;
+                // }
+               /* let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
@@ -183,27 +249,22 @@ function eventsGrilla() {
                     case "claro-home-header":
                         $("body").append(loader);
                         setTimeout(function () {
-                           
                             $("#loader1").remove();
                         }, 3000);
-
 
                         break;
 
                     case "claro-home-slider":
                         $("body").append(loader);
                         setTimeout(function () {
-                          
                             $("#loader1").remove();
                         }, 3000);
 
-
                         break;
-
 
                     default:
                         break;
-                }
+                }*/
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -218,11 +279,9 @@ function eventsGrilla() {
         new easyXDM.Socket(LandingHomeClaro);
     }
 
-
-
     let LandingSinopsis = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -243,15 +302,29 @@ function eventsGrilla() {
                         let data = getSynopsis(json.id);
                         data.then(data => {
                             if (data.code == 200) {
-                                let programminfSliderSynopsis = $(".programming-slider-sinopsis");
+                                let programminfSliderSynopsis = $(
+                                    ".programming-slider-sinopsis"
+                                );
                                 let index = 1;
-                                let slide = ""
-                                let image = ""
+                                let slide = "";
+                                let image = "";
                                 while (true) {
-                                    if (data.data[`image_background_${index}`] !== undefined) {
-                                        image = data.data[`image_background_${index}`]
-                                        if (data.data[`image_background_${index}`] == null) {
-                                            image = "./images/synopsis/image-synopsis-carrusel.jpg"
+                                    if (
+                                        data.data[
+                                            `image_background_${index}`
+                                        ] !== undefined
+                                    ) {
+                                        image =
+                                            data.data[
+                                                `image_background_${index}`
+                                            ];
+                                        if (
+                                            data.data[
+                                                `image_background_${index}`
+                                            ] == null
+                                        ) {
+                                            image =
+                                                "./images/synopsis/image-synopsis-carrusel.jpg";
                                         }
                                         slide += `
                                         <div class="bor thumbnail-image-program position-relative h-100">
@@ -266,15 +339,16 @@ function eventsGrilla() {
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                                             </label>
                                         </div>
-                                        `
-                                        index++
-
+                                        `;
+                                        index++;
                                     } else {
                                         break;
                                     }
                                 }
                                 programminfSliderSynopsis.html(slide);
-                                $(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                                $(
+                                    ".modal-programming-sinopsis .input-banner-synopsis"
+                                ).val("");
                                 $(".modal-programming-sinopsis").modal("show");
                                 try {
                                     programminfSliderSynopsis.slick("unslick");
@@ -287,7 +361,9 @@ function eventsGrilla() {
                                         initialSlide: 0,
                                         infinite: false,
                                         customPaging: function (slider, i) {
-                                            var thumb = $(slider.$slides[i]).data();
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
                                             return (
                                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
                                                 (i + 1) +
@@ -305,7 +381,9 @@ function eventsGrilla() {
                                         initialSlide: 0,
                                         infinite: false,
                                         customPaging: function (slider, i) {
-                                            var thumb = $(slider.$slides[i]).data();
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
                                             return (
                                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
                                                 (i + 1) +
@@ -314,16 +392,25 @@ function eventsGrilla() {
                                         }
                                     });
                                 }
-                                let buttonSynopsisBannerModal = $("#banner-sinopsis-modal-button")
-                                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id)
-                                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id)
+                                let buttonSynopsisBannerModal = $(
+                                    "#banner-sinopsis-modal-button"
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
                                 //Previsualizar una imagen en el banner
-                                $(".modal-programming-sinopsis .input-image-program").change(function () {
+                                $(
+                                    ".modal-programming-sinopsis .input-image-program"
+                                ).change(function () {
                                     let currentInput = $(this);
                                     if (this.files && this.files[0]) {
                                         var reader = new FileReader();
                                         reader.onload = function (e) {
-
                                             currentInput
                                                 .next()
                                                 .children(".prev-image-program")
@@ -332,15 +419,20 @@ function eventsGrilla() {
                                                 .css("z-index", "2");
                                         };
                                         reader.readAsDataURL(this.files[0]);
-                                        buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"])
-                                        buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"])
+                                        buttonSynopsisBannerModal.removeClass([
+                                            "disabled-btn",
+                                            "a-text-bold-teal",
+                                            "btn-landing"
+                                        ]);
+                                        buttonSynopsisBannerModal.addClass([
+                                            "btn-grilla",
+                                            "a-text-bold-white"
+                                        ]);
                                     }
                                 });
                             }
-                            $('.loader-view-container').remove();
-                        })
-
-
+                            $(".loader-view-container").remove();
+                        });
 
                         break;
                     case "synopsis-main-image":
@@ -352,65 +444,49 @@ function eventsGrilla() {
                         data = getSynopsis(json.id);
                         data.then(data => {
                             if (data.code == 200) {
-                                let image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg"
+                                //Verificamos si tiene una imagen
+                                let image =
+                                    data.data.image_synopsis ||
+                                    "./images/synopsis/image-synopsis.svg";
                                 $(".loader-view-container").remove();
-                                $('#upload-image-synopsis').attr("landing_id", data.data.landing_id);
-                                $('#upload-image-synopsis').attr("chapter_id", data.data.chapter_id);
-                                $('.image-synopsis-modal').attr("src", image);
+                                //Limpiamos input
+                                $('#image-synopsis').val();
+                                //Button
+                                $("#upload-image-synopsis").attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                //Para el botón le agregamos un atributo
+                                $("#upload-image-synopsis").attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                $(".image-synopsis-modal").attr("src", image);
                                 $(".modal-image-synopsis").modal("show");
                             }
                         });
-                        $(".modal-image-synopsis .input-image-program").change(function () {
-                            let currentInput = $(this);
-                            if (this.files && this.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-
-                                    currentInput
-                                        .next()
-                                        .children(".prev-image-program")
-                                        .attr("src", e.target.result)
-                                        .addClass("h-100 w-100")
-                                        .css("z-index", "2");
-                                };
-                                reader.readAsDataURL(this.files[0]);
-
+                        $(".modal-image-synopsis .input-image-program").change(
+                            function () {
+                                let currentInput = $(this);
+                                if (this.files && this.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        currentInput
+                                            .next()
+                                            .children(".prev-image-program")
+                                            .attr("src", e.target.result)
+                                            .addClass("h-100 w-100")
+                                            .css("z-index", "2");
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                }
                             }
-                        });
+                        );
 
                         break;
 
                     case "synopsis-description-container":
-                        $("body").append(
-                            `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                        );
-                        data = getSynopsis(json.id);
-                        data.then(data => {
-                            if (data.code == 200) {
-                                console.log("titutlo", data.data.subtitle);
-                                let editSynopsisButton = $(
-                                    "#edit-synopsis-modal-button"
-                                );
-
-                                $(".edit-text-synopsis").val(
-                                    data.data.sinopsis
-                                );
-                                editSynopsisButton.attr(
-                                    "chapter_id",
-                                    data.data.chapter_id
-                                );
-                                editSynopsisButton.attr("key", "synopsis");
-                                $(".synopsis-modal-title").text(
-                                    data.data.subtitle
-                                );
-                                $(".modal-edit-synopsis").modal("show");
-                                $(".loader-view-container").remove();
-
-                            }
-                        });
-
+                        programView.renderDescriptionSynopsis(json.id)
                         break;
                     case "synopsis-images-container":
                         $("body").append(
@@ -419,30 +495,57 @@ function eventsGrilla() {
                             </div>`
                         );
                         data = getSynopsis(json.id);
-                        let buttonImageSynopsisModal = $('#images-synopsis-modal-button');
+                        let buttonImageSynopsisModal = $(
+                            "#images-synopsis-modal-button"
+                        );
                         data.then(data => {
                             if (data.code == 200) {
-                                console.log("titutlo", data.data.subtitle);
-                                let imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png"
-                                let imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png"
-                                let imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png"
-                                $('.image-synopsis-frame-1').attr("src", imageSynopsisFrame1)
-                                $('.image-synopsis-frame-2').attr("src", imageSynopsisFrame2)
-                                $('.image-synopsis-frame-3').attr("src", imageSynopsisFrame3)
-                                $(".modal-synopsis-images-container").modal("show");
+                                //Limpiar inputs
+                                $('.image-synopsis-input').val();
+
+                                let imageSynopsisFrame1 =
+                                    data.data.image_synopsis_frame_1 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame2 =
+                                    data.data.image_synopsis_frame_2 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame3 =
+                                    data.data.image_synopsis_frame_3 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                $(".image-synopsis-frame-1").attr(
+                                    "src",
+                                    imageSynopsisFrame1
+                                );
+                                $(".image-synopsis-frame-2").attr(
+                                    "src",
+                                    imageSynopsisFrame2
+                                );
+                                $(".image-synopsis-frame-3").attr(
+                                    "src",
+                                    imageSynopsisFrame3
+                                );
+                                $(".modal-synopsis-images-container").modal(
+                                    "show"
+                                );
                                 $(".loader-view-container").remove();
                             }
-                            buttonImageSynopsisModal.attr("landing_id", data.data.landing_id)
-                            buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id)
+                            buttonImageSynopsisModal.attr(
+                                "landing_id",
+                                data.data.landing_id
+                            );
+                            buttonImageSynopsisModal.attr(
+                                "chapter_id",
+                                data.data.chapter_id
+                            );
                         });
 
-
-                        $(".modal-synopsis-images-container .input-image-program").change(function () {
+                        $(
+                            ".modal-synopsis-images-container .input-image-program"
+                        ).change(function () {
                             let currentInput = $(this);
                             if (this.files && this.files[0]) {
                                 var reader = new FileReader();
                                 reader.onload = function (e) {
-
                                     currentInput
                                         .next()
                                         .children(".prev-image-program")
@@ -452,13 +555,19 @@ function eventsGrilla() {
                                 };
                                 reader.readAsDataURL(this.files[0]);
 
-                                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"])
-                                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"])
+                                buttonImageSynopsisModal.removeClass([
+                                    "disabled-btn",
+                                    "a-text-bold-teal",
+                                    "btn-landing"
+                                ]);
+                                buttonImageSynopsisModal.addClass([
+                                    "btn-grilla",
+                                    "a-text-bold-white"
+                                ]);
                             }
                         });
                         break;
                     case "synopsis-datails-container":
-
                         programView.renderDetailsSynopsis(json.id);
                         break;
 
@@ -473,35 +582,46 @@ function eventsGrilla() {
         }
     };
 
-
     //Editar sinopsis en landing de sinopsis
-    $('#edit-synopsis-modal-button').click(function () {
-        $("body").append(
-            `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-        );
-        let chapterId = $(this).attr("chapter_id");
-        let key = $(this).attr("key");
-        let value = $(".edit-text-synopsis").val();
-        let response = editAttributeSynopsis(
-            chapterId,
-            key,
-            value
-        );
 
-        response.then(data => {
-            if (data.code == 200) {
-                console.log(data);
-                let responseSynopsis = getSynopsis(chapterId);
-                socketSynopsis.postMessage(responseSynopsis);
-                $(".modal-edit-synopsis").modal("hide");
+    /*     $("#edit-synopsis-modal-button").click(function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+            let chapterId = $(this).attr("chapter_id");
+            let key = $(this).attr("key");
+            let title = $('.synopsis-modal-title').val();
+            let value = $(".edit-text-synopsis").val();
+            //Respuesta de cuando editamos la sinopsis
+            let response = editAttributeSynopsis(chapterId, key, value);
 
-            }
-            $(".loader-view-container").remove();
-        });
+            response.then(data => {
+                    console.log(data);
+                    if (data.code == 200) {
+                        return editAttributeSynopsis(chapterId, "title", title);
+                    }
 
-    });
+                })
+                .then(data => {
+                    if (data.code == 200) {
+                        console.log(data);
+                        return getSynopsis(chapterId);
+                    }
+                })
+                .then(data => {
+
+                    if (data.code === 200) {
+                        let dataStringified = JSON.stringify(data);
+                        socketSynopsis.postMessage(dataStringified);
+                    }
+                    $(".modal-edit-synopsis").modal("hide");
+                    $(".loader-view-container").remove()
+                }).catch(err => {
+                    console.log(err);
+                })
+        }); */
 
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
     if (navbarPrevSINOPSIS) {
@@ -511,87 +631,129 @@ function eventsGrilla() {
             "click",
             ".edit-synopsis-pencil",
             function () {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
                 let id = $(this).attr("chapter_id");
-                let data = getSynopsis(id);
-
-                socketSynopsis.postMessage(data);
+                programView.renderSynopsis(id, socketSynopsis);
             }
         );
     }
     programView.editDetailsSynopsis(socketSynopsis);
-    $('#images-synopsis-modal-button').click(function () {
+    programView.editAttributesSynopsis(socketSynopsis);
+    programView.renderPrevSynopsis();
+    programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
+    //Subir imágenes complementarias de sinopsis
+    $("#images-synopsis-modal-button").click(function () {
         $("body").append(
             `<div class="loader-view-container pointer-none">
                 <img src="./images/loader.gif" class="loader"/>
             </div>`
         );
-        let imageSynopsis1 = document.getElementById('image-synopsis-1').files[0];
-        let imageSynopsis2 = document.getElementById('image-synopsis-2').files[0];
-        let imageSynopsis3 = document.getElementById("image-synopsis-3").files[0];
+        //Obtenemos las imágenes
+        let imageSynopsis1 = document.getElementById("image-synopsis-1")
+            .files[0];
+        let imageSynopsis2 = document.getElementById("image-synopsis-2")
+            .files[0];
+        let imageSynopsis3 = document.getElementById("image-synopsis-3")
+            .files[0];
+        //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
         let landingId = $(this).attr("landing_id");
+        //Obtenemos el id del capítulo
         let chapterId = $(this).attr("chapter_id");
         let data = new FormData();
         data.append("image-synopsis-1", imageSynopsis1);
         data.append("image-synopsis-2", imageSynopsis2);
         data.append("image-synopsis-3", imageSynopsis3);
-        data.append("landing_id", landingId)
-        data.append("chapter_id", chapterId)
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
 
         let imagesResponse = updateImagesSynopsis(data);
         imagesResponse.then(data => {
             if (data.code == 200) {
-                let response = getSynopsis(chapterId);
-                socketSynopsis.postMessage(response);
+                return getSynopsis(chapterId);
             }
-            $('.modal-synopsis-images-container').modal("hide");
-            $(".loader-view-container").remove();
+        }).then(data => {
+            if (data.code == 200) {
+                let dataStringified = JSON.stringify(data);
+                socketSynopsis.postMessage(dataStringified);
+            }
+            $(".modal-synopsis-images-container").modal("hide");
+            $(".loader-view-container").remove()
         })
         update();
-
-    })
+    });
     //Editar imagen principal en landing de sinopsis
-    $('#upload-image-synopsis').click(function () {
+    $("#upload-image-synopsis").click(function () {
         $("body").append(
             `<div class="loader-view-container pointer-none">
                 <img src="./images/loader.gif" class="loader"/>
             </div>`
         );
-        let imageSynopsis = document.getElementById('image-synopsis').files[0];
+        //Obtenemos el archivo;
+        let imageSynopsis = document.getElementById("image-synopsis").files[0];
         let landingId = $(this).attr("landing_id");
         let chapterId = $(this).attr("chapter_id");
         let data = new FormData();
         data.append("image-synopsis", imageSynopsis);
-        data.append("landing_id", landingId)
-        data.append("chapter_id", chapterId)
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
         let imagesResponse = updateImagesSynopsis(data);
         imagesResponse.then(data => {
             if (data.code == 200) {
-                let response = getSynopsis(chapterId);
-                socketSynopsis.postMessage(response);
+                return getSynopsis(chapterId);
+            }
+
+        }).then(data => {
+            if (data.code == 200) {
+                let dataStringified = JSON.stringify(data);
+                socketSynopsis.postMessage(dataStringified);
             }
             $(".loader-view-container").remove();
             $(".modal-image-synopsis").modal("hide");
-        })
-        //resetIframe($("#sinopsis-container iframe"), LandingSinopsis);
-    })
 
+        })
+
+    });
+
+    //Editar las imágenes del banner
     $("#banner-sinopsis-modal-button").click(function () {
-        let imageSynopsis1 = document.getElementById('image_banner_synopsis_1').files[0];
-        let imageSynopsis2 = document.getElementById('image_banner_synopsis_2').files[0];
-        let imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
+        let imageSynopsis1 = document.getElementById("image_banner_synopsis_1")
+            .files[0];
+        let imageSynopsis2 = document.getElementById("image_banner_synopsis_2")
+            .files[0];
+        let imageSynopsis3 = document.getElementById("image_banner_synopsis_3")
+            .files[0];
         let landingId = $(this).attr("landing_id");
         let chapterId = $(this).attr("chapter_id");
         let data = new FormData();
         data.append("image_background_1", imageSynopsis1);
         data.append("image_background_2", imageSynopsis2);
         data.append("image_background_3", imageSynopsis3);
-        data.append("landing_id", landingId)
-        data.append("chapter_id", chapterId)
-        updateImagesSynopsis(data)
-        let response = getSynopsis(chapterId);
-        socketSynopsis.postMessage(response);
-        $(".modal-programming-sinopsis").modal("hide");
-    })
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
+        let imageBannerResponse = updateImagesSynopsis(data);
+        imageBannerResponse.then(data => {
+            if (data.code == 200) {
+                return getSynopsis(chapterId);
+            }
+        }).then(data => {
+            if (data.code === 200) {
+                let dataStringified = JSON.stringify(data);
+                socketSynopsis.postMessage(dataStringified);
+            }
+            $(".modal-programming-sinopsis").modal("hide");
+            $(".loader-view-container").remove();
+        })
+
+    });
     //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
@@ -709,83 +871,83 @@ function eventsGrilla() {
                         getContentConcertChannelBlock4OTwo();
                         break;
                         /* case "pencil-carrusel1":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-edit-program-carrusel").modal("show");
-                 //slider para carrusel concert-channel
-                 $(".carrusel1-slider").slick({
-                     slidesToShow: 1,
-                     dots: true,
-                     appendDots: $(".carrusel1-slider-dots1"),
-                     initialSlide: 0,
-                     infinite: false,
-                     customPaging: function (slider, i) {
-                         var thumb = $(slider.$slides[i]).data();
-                         return (
-                             "<p class='a-text-bold-teal slider-pagination-item'>" +
-                             (i + 1) +
-                             "</p>"
-                         );
-                     }
-                 });
-                 $("#loader1").remove();
-             }, 3000);
-             break;
-         case "pencil-carrusel2":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-edit-program-carrusel2").modal("show");
-                 $(".carrusel2-slider").slick({
-                     slidesToShow: 1,
-                     dots: true,
-                     appendDots: $(".carrusel2-slider-dots1"),
-                     initialSlide: 0,
-                     infinite: false,
-                     customPaging: function (slider, i) {
-                         var thumb = $(slider.$slides[i]).data();
-                         return (
-                             "<p class='a-text-bold-teal slider-pagination-item'>" +
-                             (i + 1) +
-                             "</p>"
-                         );
-                     }
-                 });
-                 $("#loader1").remove();
-             }, 3000);
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-edit-program-carrusel").modal("show");
+             //slider para carrusel concert-channel
+             $(".carrusel1-slider").slick({
+                 slidesToShow: 1,
+                 dots: true,
+                 appendDots: $(".carrusel1-slider-dots1"),
+                 initialSlide: 0,
+                 infinite: false,
+                 customPaging: function (slider, i) {
+                     var thumb = $(slider.$slides[i]).data();
+                     return (
+                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                         (i + 1) +
+                         "</p>"
+                     );
+                 }
+             });
+             $("#loader1").remove();
+         }, 3000);
+         break;
+     case "pencil-carrusel2":
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-edit-program-carrusel2").modal("show");
+             $(".carrusel2-slider").slick({
+                 slidesToShow: 1,
+                 dots: true,
+                 appendDots: $(".carrusel2-slider-dots1"),
+                 initialSlide: 0,
+                 infinite: false,
+                 customPaging: function (slider, i) {
+                     var thumb = $(slider.$slides[i]).data();
+                     return (
+                         "<p class='a-text-bold-teal slider-pagination-item'>" +
+                         (i + 1) +
+                         "</p>"
+                     );
+                 }
+             });
+             $("#loader1").remove();
+         }, 3000);
 
-             break;
-         case "pencil-header":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-titles").modal("show");
-                 $("#loader1").remove();
-             }, 3000);
+         break;
+     case "pencil-header":
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-titles").modal("show");
+             $("#loader1").remove();
+         }, 3000);
 
-             break;
-         case "pencil-video":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-promos-concert").modal("show");
-                 $("#loader1").remove();
-             }, 3000);
+         break;
+     case "pencil-video":
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-promos-concert").modal("show");
+             $("#loader1").remove();
+         }, 3000);
 
-             break;
-         case "pencil-header1":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-titles").modal("show");
-                 $("#loader1").remove();
-             }, 3000);
+         break;
+     case "pencil-header1":
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-titles").modal("show");
+             $("#loader1").remove();
+         }, 3000);
 
-             break;
-         case "header2":
-             $("body").append(loader);
-             setTimeout(function () {
-                 $(".modal-titles").modal("show");
-                 $("#loader1").remove();
-             }, 3000);
+         break;
+     case "header2":
+         $("body").append(loader);
+         setTimeout(function () {
+             $(".modal-titles").modal("show");
+             $("#loader1").remove();
+         }, 3000);
 
-             break;*/
+         break;*/
                     case "pencil-carrusel1":
                         let landing = "Concert Channel";
                         let id = 1;
@@ -2995,6 +3157,7 @@ function eventsGrilla() {
         );
     });
     $(".add-programming-image").click(function () {
+        debugger
         //Cada vez que se haga click, el contador incrementa
         let slideIndex = $(".load-programming-carousel").length + 1;
 
@@ -3262,7 +3425,6 @@ function eventsGrilla() {
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -4804,7 +4966,6 @@ function eventsGrilla() {
 
     // HEADER EDIT CANAL CLARO
     $("#btn-acepta-modal-header-cinema").click(function () {
-
         let landing = "Claro Cinema";
         let title1 = $("#ipt-heade").val() || "";
         let title2 = $("#ipt-heade-1").val() || "";
@@ -4850,7 +5011,10 @@ function eventsGrilla() {
             key: keySub2,
             landing: landing
         });
-        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
     });
     // TITLE EDIT CANAL CLARO
     // IMG DE PROMO
@@ -4863,7 +5027,9 @@ function eventsGrilla() {
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
                 $("#cinema-promo-container").html(
-                    '<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">'
+                    '<img src="' +
+                    e.target.result +
+                    '" alt="" class="d-flex w-100" id="promo-image-concert">'
                 );
             };
         }
@@ -4880,7 +5046,9 @@ function eventsGrilla() {
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
                 $("#cinema-promo-container").html(
-                    '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>'
+                    '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
+                    e.target.result +
+                    '" type="video/mp4"> </video>'
                 );
                 $(".loader-view-container").remove();
             };
@@ -4906,7 +5074,10 @@ function eventsGrilla() {
         data.append("landing", landing);
         data.append("key", key);
         editPromoLandingCinema(data);
-        resetIframe($("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
     });
 
     // HOME
@@ -4916,10 +5087,11 @@ function eventsGrilla() {
     });
 
     function viewImg(objFileInput, container) {
+        debugger
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
-                $(container).attr('src', e.target.result);
+                $(container).attr("src", e.target.result);
             };
             fileSrt.readAsDataURL(objFileInput.files[0]);
             $("#loader1").remove();
@@ -4927,24 +5099,35 @@ function eventsGrilla() {
     }
 
     function viewEdit() {
-        $('#camera').attr('src', './images/lapiz-acti.svg')
+        $("#camera").attr("src", "./images/lapiz-acti.svg");
     }
-    $('#modal_url').click(function () {
-        console.log('click');
-        $('#url').modal('show');
-    });
-    $('#inp_url').click(function () {
-        console.log('click');
-        $('#url').modal('show');
-    });
-
 
     $('#btn_pruebas').click(function () {
         console.log('click');
         // $('#modal-logo-home').modal('show');
-        $('#modal-carrusel-home').modal('show');
+        // $('#modal-carrusel-home').modal('show');
+        getContentHomeHeader('claro-home-slider');
     });
 
+    $('#modal_url').click(function () {
+        let url = $("#inp_url").val();
+        $("#inp_url_modal").val(url);
+        $('#url').modal('show');
+    });
+    $('#inp_url').click(function () {
+        let url = $("#inp_url").val();
+        $("#inp_url_modal").val(url);
+        $('#url').modal('show');
+    });
+    $("#btn-url").click(function () {
+        let url = $("#inp_url_modal").val();
+        $("#inp_url").val(url);
+        $("#url").modal("hide");
+    });
+    $('#close_all_modal').click(function () {
+        $('#modal-logo-home').modal('hide')
+        $('#modal-carrusel-home').modal('hide')
+    })
     // HOME
 }
 

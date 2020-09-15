@@ -58,6 +58,8 @@ class landingController extends Controller
         return $path;
     }
 
+
+
     public function updateImageProgramOfLanding(Request $request)
     {
 

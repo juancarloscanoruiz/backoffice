@@ -733,13 +733,14 @@ public function onlyday(Request $request)
         ]);
 
         $response = $client->post(
-            $this->url . "program/editChapter",
+            $this->url . "program/editSinopsisLanding",
             ['body' => json_encode(
                 [
                     'usuario_id' => session('id_user'),
-                    'chapter_id' => $request->input('chapter_id'),
-                    'key' => $request->input('key'),
-                    'value' => $request->input('keyValue'),
+                    'chapter_id' => $request->input('chapterId'),
+                    'change' => $request->input('change'),
+                    'synopsis' => $request->input('synopsis'),
+                    'title' => $request->input('title'),
                 ]
             )]
         );

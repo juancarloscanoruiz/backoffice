@@ -2634,6 +2634,10 @@ body {
   outline: none;
 }
 
+.btn-pink {
+  background: #ff00d2;
+}
+
 .add-images-icon {
   position: absolute;
   left: 50%;
@@ -3178,6 +3182,12 @@ body {
 .claro-nav-image {
   width: 100%;
   cursor: pointer;
+}
+
+.home-logo-container {
+  background-color: #d5d7d7;
+  border: 4px solid #a7a8aa;
+  border-style: dashed;
 }
 
 @font-face {
@@ -4186,6 +4196,11 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .opa-holder::placeholder {
   opacity: 0.4;
+}
+
+.synopsis-modal-title {
+  background-color: black;
+  border: none;
 }
 
 .line {
@@ -6676,6 +6691,12 @@ a:hover {
   position: absolute;
 }
 
+.img-back-modal-enable {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
 .img-promo {
   border: 20px solid #da291c;
   border-radius: 10px;
@@ -6695,12 +6716,13 @@ a:hover {
 }
 
 .add-file {
-  width: 220px;
+  width: 100%;
   z-index: 1;
 }
 
 .add-file img {
-  width: 22%;
+  width: 60px;
+  display: inline-block;
 }
 
 .add-file span {
@@ -6909,11 +6931,14 @@ a:hover {
   width: 90%;
 }
 
+.modal-logo-home-width {
+  width: 1000px !important;
+  max-width: 1000px !important;
+}
+
 .modal-logo-home {
-  border-radius: 0;
-  padding: 1% 4%;
-  width: 1000px;
-  margin: auto;
+  border-radius: 0 !important;
+  padding: 2% 5%;
 }
 
 .img-logo-home {
@@ -6921,10 +6946,35 @@ a:hover {
   left: 0%;
 }
 
+.img-logo-home-claro {
+  width: 90%;
+}
+
+.img-logo-home-concert {
+  width: 160px;
+}
+
 .modal-img-home {
-  top: 10px;
   width: 350px;
   height: 200px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-img-home-claro {
+  width: 350px;
+  height: 120px;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-img-home-concert {
+  width: 405px;
+  height: 217px;
   justify-content: space-around;
   display: flex;
   align-items: center;
@@ -6943,8 +6993,9 @@ a:hover {
   width: 350px;
   height: 80px;
   box-shadow: 1px 2px 4px #a4a4a4;
-  font-family: "Montserrat-Regular";
   padding-left: 5px;
+  border: none;
+  padding: 16px;
 }
 
 .btn-camales {
@@ -7480,7 +7531,7 @@ iframe {
 }
 
 .max-width-modal-xl {
-  max-width: 1350px;
+  max-width: 1350px !important;
   margin: auto;
 }
 
