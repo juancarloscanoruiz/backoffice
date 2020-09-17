@@ -235,6 +235,7 @@ iframe {
 
 .landing-table {
     overflow-x: scroll;
+    height: 500px;
 }
 
 .date-modal {
@@ -405,26 +406,30 @@ iframe {
     border-radius: 12px;
     background-color: $cobait;
 }
+
 .container-image-synopsis {
 
     border-radius: 12px;
     background-color: $black-three;
 }
-.container-image{
+
+.container-image {
     width: 597px;
     height: 356px;
 }
-.container-edit-sinopsis{
+
+.container-edit-sinopsis {
     width: 824px;
     height: 461px;
-    
+
 }
-.container-edit-title-sinopsis{
+
+.container-edit-title-sinopsis {
     width: 824px;
     height: 65px;
 }
 
-.edit-text-synopsis{
+.edit-text-synopsis {
     resize: none;
     border: none;
     padding: 8px;
@@ -472,7 +477,8 @@ iframe {
     width: 90%;
     z-index: 1;
 }
-.width-program{
+
+.width-program {
     width: 120px !important;
 }
 
@@ -498,7 +504,7 @@ iframe {
     }
 }
 
-.max-width-modal-xl{
+.max-width-modal-xl {
     max-width: 1350px !important;
     margin: auto;
 }
