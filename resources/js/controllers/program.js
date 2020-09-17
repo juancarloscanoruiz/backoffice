@@ -17,8 +17,8 @@ export default class ProgramController {
         return response;
     }
 
-    editAttributesSynopsis(chapterId, key, value) {
-        let response = programModel.editAttributeSynopsis(chapterId, key, value)
+    editAttributesSynopsis(chapterId, change, synopsis, title) {
+        let response = programModel.editAttributeSynopsis(chapterId, change, synopsis, title)
         return response;
     }
 }

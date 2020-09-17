@@ -1869,25 +1869,23 @@ function getContentHomeHeader(type) {
                                 ) != null
                             ) {
                                 headerVideo.html(`
-                    <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="video-promo-header-home">
-                    `);
+                                <img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="image-promo-header-home">
+                                `);
                             } else {
                                 //La url es de un video
                                 headerVideo.html(`
-                   
-                    <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
-                    <source src="${data.data.block_1_video_name}" type="video/mp4">
-                     </video>
-                     <img src ="./images/basic-icons/pencil-edit-teal.svg" alt="edit-icon" class="d-flex position-absolute" style="z-index:5;    width: 13%;
-                     transform: translate(190%, -110%);"/>
-                    
-                    `);
-                            }
-                        } else {
-                            headerVideo.html(`
-                <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="video-promo-header-home">
-                `);
-                        }
+                                <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width: 62px;
+                                position: absolute;
+                                transform: translate(215px, -112px);" />
+                                <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute " style="    transform: translate(207px, -40px);">Añade tu archivo <br>
+                                jpg 472px X 295px </span>
+                                <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
+                                <source src="${data.data.block_1_video_name}" type="video/mp4">
+                                
+                                 </video>
+            `);
+        }
+    }
 
 
                         //Mostramos el modal
@@ -1981,6 +1979,25 @@ function getContentHomeHeader(type) {
                                     );
                                 }
                             });
+                        }
+                        // HOME CARRUSEL
+                        $("#img_carrusel").change(function () {
+                            viewImg(this, "#img-carrusel-home");
+                            viewEdit();
+                        });
+
+                        function viewImg(objFileInput, container) {
+                            let fileSrt = new FileReader();
+                            if (objFileInput.files[0]) {
+                                fileSrt.onload = function (e) {
+                                    $(container).attr('src', e.target.result);
+                                };
+                                fileSrt.readAsDataURL(objFileInput.files[0]);
+                            }
+                        }
+
+                        function viewEdit() {
+                            $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
                         }
                         $(".loader-view-container").remove();
                         break
@@ -2317,6 +2334,27 @@ function editHeaderLanding(data) {
                 $(".modal-header-concert-channel").modal("hide");
             }
             $(".loader-view-container").remove();
+        }
+    });
+}
+
+//edit header home
+
+function editHomeHeader(data) {  
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+     url: "landing/editHomeHeader",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $(".modal-home-encabezado").modal("hide");
+            }
+          
         }
     });
 }
@@ -2734,8 +2772,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-header").modal("show");
                         break;
-                    // GET HEADER
-                    // GET TITLE
+                        // GET HEADER
+                        // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
@@ -2743,8 +2781,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE
-                    // GET PROMO
+                        // GET TITLE
+                        // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay muted controls class="img-back-modal img-promo" src="' +
@@ -2753,8 +2791,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-promo").modal("show");
                         break;
-                    // GET PROMO
-                    // GET TITLE CARRUSEL 1
+                        // GET PROMO
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -2768,8 +2806,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -2783,7 +2821,7 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                    // GET TITLE CARRUSEL 1
+                        // GET TITLE CARRUSEL 1
                 }
             }
 
@@ -3899,8 +3937,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3917,8 +3955,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3936,8 +3974,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3954,8 +3992,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3973,8 +4011,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
@@ -3992,8 +4030,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -4013,8 +4051,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel  .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -4030,8 +4068,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -4198,8 +4236,8 @@ function getContentClaroCinema(type) {
                             $(".modal").modal("hide");
                         });
                         break;
-                    // HEADER
-                    // SLAIDER
+                        // HEADER
+                        // SLAIDER
 
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
@@ -4475,8 +4513,8 @@ function getProgrammingSynopsis(landing, date) {
             }
             $(".loader-view-container").remove();
             $(".sinopsis").click(function () {
-                console.log("si");
-                $(".modal-landing-sinopsis").modal("show");
+
+                //$(".modal-landing-sinopsis").modal("show");
             });
 
 
@@ -4595,6 +4633,7 @@ export {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
+    editHomeHeader,
     editElementLanding,
     editPromoLandingCinema,
     getConcertChannelPromo,

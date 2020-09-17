@@ -11,6 +11,8 @@ import {
 //View
 import ProgramView from "./views/program.js";
 let programView = new ProgramView();
+import LandingView from "./views/landing";
+let landingView = new LandingView();
 
 //Librería para mostrar calendario
 import Litepicker from "litepicker";
@@ -35,6 +37,7 @@ import {
     getContentConcertChannelBlock4One,
     getContentConcertChannelBlock4OTwo,
     editHeaderLanding,
+    editHomeHeader,
     editElementLanding,
     editPromoLandingCinema,
     getConcertChannelPromo,
@@ -158,12 +161,87 @@ function eventsGrilla() {
 
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
+
+    let LandingHomeConcert = {
+        //remote: `${baseURL}home-edi-claro.php`,
+        remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
+        container: document.getElementById("navbar-prev-home-concert"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "concert-home-header":
+                        $("body").append(loader);
+                        landingView.renderHomeHeaderConcertChannel();
+                        $("#loader1").remove();
+                        break;
+
+                    case "concert-home-slider":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+            //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+        }
+    };
+    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+    if (NavbarHomeConcert) {
+        $("#navbar-prev-home-concert iframe").remove();
+        var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
+    }
+
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
         container: document.getElementById("navbar-prev-home"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                getContentHomeHeader(json.type);
+                // switch (json.type) {
+                //     case "slider-pagination":
+                //         getContentHomeHeader(json.type);
+                //         break;
+
+                //     case "claro-home-header":
+                //         $("body").append(LOADER);
+                //         setTimeout(function () {
+                //             $('#modal-logo-home').modal('show')
+                //             $("#loader1").remove();
+                //         }, 3000);
+                //         break;
+
+                //     case "claro-home-slider":
+                //         $("body").append(LOADER);
+                //         setTimeout(function () {
+                //             $('#modal-carrusel-home').modal('show')
+                //             $("#loader1").remove();
+                //         }, 3000);
+                //         break;
+
+                //     default:
+                //         break;
+                // }
+               /* let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
                 switch (json.type) {
                     case "slider-pagination":
                         getContentHomeHeader(json.type);
@@ -178,7 +256,7 @@ function eventsGrilla() {
                         break;
                     default:
                         break;
-                }
+                }*/
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -189,7 +267,7 @@ function eventsGrilla() {
 
     let NavbarHomeClaro = document.getElementById("navbar-prev-home");
     if (NavbarHomeClaro) {
-        $("#navbar-prev-homeiframe").remove();
+        $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
 
@@ -556,7 +634,9 @@ function eventsGrilla() {
         );
     }
     programView.editDetailsSynopsis(socketSynopsis);
-    programView.editAttributesSynopsis(socketSynopsis)
+    programView.editAttributesSynopsis(socketSynopsis);
+    programView.renderPrevSynopsis();
+    programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
     //Subir imágenes complementarias de sinopsis
     $("#images-synopsis-modal-button").click(function () {
         $("body").append(
@@ -782,7 +862,7 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                    /* case "pencil-carrusel1":
+                        /* case "pencil-carrusel1":
          $("body").append(loader);
          setTimeout(function () {
              $(".modal-edit-program-carrusel").modal("show");
@@ -1060,6 +1140,61 @@ function eventsGrilla() {
         editHeaderLanding(data);
     });
 
+    //Edicion del header del home
+     
+      $("#edit-home-encabezado").click(function () {     
+       
+        let videoimage = document.getElementById("video-promo-header-home").files[0]||
+        "";
+        
+        let title =
+            $(".modal-home-encabezado .header-title-1").val() ||
+            "";
+        let subtitle =
+            $(".modal-home-encabezado .header-title-2").val() ||
+            "";
+      
+        let data = new FormData();  
+       
+        data.append("video", videoimage);    
+        data.append("title", title);
+        data.append("subtitle", subtitle);
+        editHomeHeader(data);
+       resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+    });
+
+ //Previsualizar el video que subió el usuario en el landing de home
+ $("#video-promo-header-home").change(function () {
+    if (this.files && this.files[0]) {
+        let file = this.files[0];
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+        reader.onload = function (e) {
+            // The file reader gives us an ArrayBuffer:
+            let buffer = e.target.result;
+
+            // We have to convert the buffer to a blob:
+            let videoBlob = new Blob([new Uint8Array(buffer)], {
+                type: "video/mp4"
+            });
+
+            // The blob gives us a URL to the video file:
+            let url = window.URL.createObjectURL(videoBlob);
+            $("#video-promo-header-home").html(
+                `
+                <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
+                <source src="${url}" type="video/mp4">
+                
+                 </video>
+                
+                `
+            );
+        };
+    }
+});
+
+  
+   
 
 
     $("#edit-titles-landing-concert").click(function () {
@@ -1444,8 +1579,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1463,8 +1598,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1483,8 +1618,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1502,8 +1637,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1522,8 +1657,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
@@ -1542,8 +1677,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1564,8 +1699,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel  .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1582,8 +1717,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1749,8 +1884,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1768,8 +1903,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1786,8 +1921,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1805,8 +1940,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1823,8 +1958,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1842,8 +1977,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1859,8 +1994,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -2008,11 +2143,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -3660,14 +3795,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -3820,7 +3955,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -3993,8 +4128,8 @@ function eventsGrilla() {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -4604,8 +4739,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });

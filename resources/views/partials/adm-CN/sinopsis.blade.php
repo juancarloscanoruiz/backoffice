@@ -1,17 +1,17 @@
 @section('scripts')
     <!--<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
-                <script>
-                    new easyXDM.Socket({
-                        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/sinopsis-edi.php",
-                        container: "sinopsis-container",
-                        onMessage: function(message, origin) {
-                            console.log(message);
-                            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                        }
-                    });
-                </script> -->
+                            <script>
+                                new easyXDM.Socket({
+                                    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/sinopsis-edi.php",
+                                    container: "sinopsis-container",
+                                    onMessage: function(message, origin) {
+                                        console.log(message);
+                                        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                                        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                                        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                                    }
+                                });
+                            </script> -->
     <div class="modal modal-landing-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important; overflow: auto; ">
         <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
@@ -29,12 +29,13 @@
                         <div class="d-flex float-right mb-4 mr-5 ">
                             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                                 <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                                    <input type="radio" name="sexo" id="edit" checked />
-                                    <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                                    <input type="radio" name="sexo" id="edit-synopsis" checked />
+                                    <label for="edit-synopsis" id="editar"
+                                        class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                                         <p class=" a-prev-title">EDITAR</p>
                                     </label>
-                                    <input type="radio" name="sexo" id="prev" />
-                                    <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                                    <input type="radio" name="sexo" id="prev-synopsis" />
+                                    <label for="prev-synopsis" id="previsualiza" class="hombre-estilo pl-2 pt-3">
                                         <p class=" a-prev-title ">PREVISUALIZAR</p>
                                     </label>
                                 </div>
@@ -63,12 +64,12 @@
                         <div class="d-flex  align-items-center justify-content-center mb-2 mt-2">
                             <span class="a-text-semibold-black text-normal mr-3">Establecer sinopsis como:</span>
                             <input type="radio" id="yes-program" name="program-chapter" value="1"
-                                class="edit-switch-landing edit-landing-yes" />
+                                class="program-chpater-synopsis" />
                             <label for="yes-program" id="siestado-landing"
                                 class="mb-0 si-estilo cursor-pointer switch-label width-program">
                                 Programa</label>
-                            <input type="radio" id="yes-chapter" name="program-chapter" value="2"
-                                class="edit-switch-landing switch-table-edit edit-landing-no " checked />
+                            <input type="radio" id="yes-chapter" name="program-chapter" value="0"
+                                class="program-chpater-synopsis" checked />
                             <label for="yes-chapter" id="noestado-landing"
                                 class="mb-0 no-estilo cursor-pointer switch-label width-program">
                                 Capítulo</label>
@@ -94,7 +95,7 @@
                             data-toggle="modal">CANCELAR</a>
 
                         <!-- <button
-                                  class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
+                                              class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
                     </div>
                 </div>
 
