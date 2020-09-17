@@ -67,6 +67,16 @@ $.ajaxSetup({
 
 $(document).ready(function () {
 
+    /*     OverlayScrollbars(document.querySelector("#rempla-claro-canal"), {
+            className: "os-theme-dark",
+            resize: "both",
+            sizeAutoCapable: true,
+            paddingAbsolute: true,
+            scrollbars: {
+                clickScrolling: true
+            }
+        }); */
+
     let options = {
         load: function (el) {
             el.classList.add("fade-grilla");

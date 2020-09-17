@@ -95,15 +95,13 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
     Route::post("/home", "landingController@getContentHome");
-    Route::post("/editHomeHeader", "landingController@editHomeHeader");
-
-    // MODAL CLARO
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
     Route::post("/editPromoLandingCinema", "landingController@editPromoLandingCinema");
+    Route::post("/homeCarrusel", "landingController@homeCarrusel");
 
     // MODAL CLARO
 });

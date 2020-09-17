@@ -1120,6 +1120,715 @@ function getContentConcertChannelHeader() {
     });
 }
 //home
+function getCarruselHome(landing) {
+    switch (landing) {
+        case 'Canal Claro':
+            landing = 'canal_claro';
+            break
+    }
+    $.ajax({
+        type: "POST",
+        url: "landing/homeCarrusel",
+        data: {
+            landing
+        },
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                let program = "";
+                let titles = "";
+                let programmingSlider = $(".carrusel-home-obj");
+
+                let inLandingSwitch = "";
+                let inLandingDates = "";
+                let inLandingTimes = "";
+
+                //HOME
+                let inHomeSwitch = "";
+                let inHomeDates = "";
+                let inHomeTimes = "";
+
+                $(".carrusel-home-obj").html("");
+
+                for (const chapter of data.data.chapters) {
+
+                    //Fechas
+                    let dateExpirationLanding = "";
+                    let timeExpiration = "";
+                    let dateTimeExpiration = "";
+                    let dateExpiration = "";
+                    if (chapter.chapter.in_landing_expiration) {
+                        dateTimeExpiration = chapter.chapter.in_landing_expiration.split(" ");
+                        dateExpiration = dateTimeExpiration[0].split("-");
+                        dateExpirationLanding = `${dateExpiration[2]}-${dateExpiration[1]}-${dateExpiration[0]}`;
+                        timeExpiration = dateTimeExpiration[1];
+                    };
+
+                    let dateBeginLanding = "";
+                    let timeBegin = "";
+                    let dateTimeBegin = "";
+                    let dateBegin = "";
+                    //Revisamos si
+                    if (chapter.chapter.in_landing_begin) {
+                        dateTimeBegin = chapter.chapter.in_landing_begin.split(" ");
+                        dateBegin = dateTimeBegin[0].split("-");
+                        dateBeginLanding = `${dateBegin[2]}-${dateBegin[1]}-${dateBegin[0]}`;
+                        timeBegin = dateTimeBegin[1];
+                    };
+
+                    // PARA SWITCH DE HOME
+                    //Fechas
+                    let dateHomeExpiration = "";
+                    let timeHomeExpiration = "";
+                    let dateTimeHomeExpiration = "";
+                    if (chapter.chapter.in_home_expiration) {
+                        dateTimeHomeExpiration = chapter.chapter.in_home_expiration.split(" ");
+                        let dateHome = dateTimeHomeExpiration[0].split("-");
+                        dateHomeExpiration = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
+                        timeHomeExpiration = dateTimeHomeExpiration[1];
+                    }
+
+                    let dateHomeBegin = "";
+                    let timeHomeBegin = "";
+                    let dateHomeTimeBegin = "";
+                    //Revisamos si
+                    if (chapter.chapter.in_home_begin) {
+                        dateHomeTimeBegin = chapter.chapter.in_home_begin.split(" ");
+                        let dateHome = dateHomeTimeBegin[0].split("-");
+                        dateHomeBegin = `${dateHome[2]}-${dateHome[1]}-${dateHome[0]}`;
+                        timeHomeBegin = dateHomeTimeBegin[1];
+                    }
+
+                    let scheduleDate = chapter.chapter.day.split("-");
+
+                    let subbed = "";
+                    if (chapter.chapter.subbed == 0) {
+                        subbed = `
+                        <div class="d-flex">
+                            <input type="radio" id="yes-subbed-${chapter.chapter.id}" name="subbed-${chapter.chapter.id}" value="1" chapter_id="${chapter.chapter.id}" class="edit-program-switch switch-landing edit-subbed-yes" key="subbed" />
+                            <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing" class="si-estilo cursor-pointer mb-0 switch-label">Sí</label>
+                            <input type="radio" name="subbed-${chapter.chapter.id}" id="no-subbed-${chapter.chapter.id}" value="0" checked chapter_id="${chapter.chapter.id}" class="edit-program-switch switch-landing switch-table-edit edit-subbed-no" key="subbed" />
+                            <label for="no-subbed-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>
+                        `;
+                    } else {
+                        subbed = `
+                        <div class="d-flex">
+                            <input type="radio" name="subbed-${chapter.chapter.id}" id="yes-subbed-${chapter.chapter.id}" checked value="1" chapter_id="${chapter.chapter.id}" class="edit-program-switch switch-landing edit-subbed-yes" key="subbed" />
+                            <label for="yes-subbed-${chapter.chapter.id}" id="siestado-landing" class="si-estilo cursor-pointer mb-0 switch-label">Sí</label>
+                            <input type="radio" name="subbed-${chapter.chapter.id}" id="no-subbed-${chapter.chapter.id}" value="0" chapter_id="${chapter.chapter.id}" class="edit-program-switch switch-landing switch-table-edit edit-subbed-no" key="subbed" />
+                            <label for="no-subbed-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>
+                        `;
+                    }
+
+                    let dubbed = "";
+                    if (chapter.chapter.dubbed == 0) {
+                        dubbed = `
+                        <div class="d-flex">
+                            <input type="radio" id="yes-dubbed-${chapter.chapter.id}" value="1" name="dubbed-${chapter.chapter.id}"
+                                class="edit-program-switch switch-landing edit-dubbed-yes"
+                                key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                            <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
+                                class="si-estilo cursor-pointer mb-0 switch-label">
+                                Sí</label>
+                            <input type="radio" id="no-dubbed-${chapter.chapter.id}" value="0" checked name="dubbed-${chapter.chapter.id}"
+                                class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                                key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                            <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                No</label>
+                        </div>
+                        `;
+                    } else {
+                        dubbed = `
+                        <div class="d-flex">
+                            <input type="radio" id="yes-dubbed-${chapter.chapter.id}" name="dubbed-${chapter.chapter.id}" value="1" checked
+                                class="edit-program-switch switch-landing edit-dubbed-yes"
+                                key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                            <label for="yes-dubbed-${chapter.chapter.id}" id="siestado-landing"
+                                class="si-estilo cursor-pointer mb-0 switch-label">
+                                Sí</label>
+                            <input type="radio" id="no-dubbed-${chapter.chapter.id}" name="dubbed-${chapter.chapter.id}" value="0"
+                                class="edit-program-switch switch-landing switch-table-edit edit-dubbed-no"
+                                key="dubbed" chapter_id="${chapter.chapter.id}"/>
+                            <label for="no-dubbed-${chapter.chapter.id}" id="noestado-landing"
+                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                No</label>
+                        </div>
+                        `;
+                    }
+
+                    let audio5 = "";
+                    if (chapter.chapter.audio5 == 0) {
+                        audio5 = `
+                        <div class="d-flex">
+                            <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                                class="edit-program-switch switch-landing edit-audio5-yes"
+                                key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
+                            <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                                class="si-estilo cursor-pointer mb-0 switch-label">
+                                Sí</label>
+                            <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0" checked
+                                class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                                key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
+                            <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                No</label>
+                        </div>
+                        `;
+                    } else {
+                        audio5 = `
+                        <div class="d-flex">
+                            <input type="radio" id="yes-audio5-${chapter.chapter.id}" value="1"
+                                class="edit-program-switch switch-landing edit-audio5-yes" checked
+                                key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
+                            <label for="yes-audio5-${chapter.chapter.id}" id="siestado-landing"
+                                class="si-estilo cursor-pointer mb-0 switch-label">
+                                Sí</label>
+                            <input type="radio" id="no-audio5-${chapter.chapter.id}" value="0"
+                                class="edit-program-switch switch-landing switch-table-edit edit-audio5-no"
+                                key="audio5" chapter_id="${chapter.chapter.id}" name="audio5-${chapter.chapter.id}"/>
+                            <label for="no-audio5-${chapter.chapter.id}" id="noestado-landing"
+                                class="mb-0 no-estilo cursor-pointer switch-label">
+                                No</label>
+                        </div>
+                        `;
+                    }
+
+                    if (chapter.chapter.in_landing == 1) {
+                        //Switch de landing
+                        inLandingSwitch = `
+                        <div class="d-flex align-items-center mb-3 pl-5">
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes" switch-table-edit chapter_id="${chapter.chapter.id} key="in_landing" checked />
+                            <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id} key="in_landing" />
+                            <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>`;
+
+                        inLandingDates = `
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_landing_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_landing_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateExpirationLanding}"></span>
+                                </div>
+                            </div>
+                        </div>`;
+
+                        inLandingTimes = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${timeBegin}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${timeExpiration}"></span>
+                            </div>
+                        </div>
+                    </div>`;
+                    } else {
+                        inLandingSwitch = `
+                        <div class="d-flex align-items-center mb-3 pl-5">
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes" switch-table-edit chapter_id="${chapter.chapter.id} key="in_landing" />
+                            <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id} key="in_landing" checked/>
+                            <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>
+                        `;
+                        inLandingDates = `
+                    <div class="row">
+                        <div class="col-6 mb-4">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
+                                <img src="./images/calendario.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/calendario.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                            </div>
+                        </div>
+                    </div>`;
+                        inLandingTimes = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_landing_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
+                            </div>
+                        </div>
+                    </div>`;
+                    }
+
+                    if (chapter.chapter.in_home == 1) {
+                        //Switch de home
+                        inHomeSwitch = `
+                        <div class="d-flex align-items-center mb-3 pl-5">
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes" edit-program-switch chapter_id="${chapter.chapter.id} key="in_home" checked />
+                            <label for="yes-home-carrusel-${chapter.chapter.id}" id="siestado-home" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id} key="in_home" />
+                            <label for="no-home-carrusel-${chapter.chapter.id}" id="noestado-home" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>`;
+
+                        inHomeDates = `
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_home_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeBegin}"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_home_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"></span>
+                                </div>
+                            </div>
+                        </div>`;
+
+                        inHomeTimes = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_home_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${dateHomeBegin}"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_home_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${dateHomeExpiration}"></span>
+                            </div>
+                        </div>
+                    </div>`;
+                    } else {
+                        inHomeSwitch = `
+                        <div class="d-flex align-items-center mb-3 pl-5">
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes" edit-program-switch chapter_id="${chapter.chapter.id} key="in_home" />
+                            <label for="yes-home-carrusel-${chapter.chapter.id}" id="siestado-home" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id} key="in_home" checked />
+                            <label for="no-home-carrusel-${chapter.chapter.id}" id="noestado-home" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
+                        </div>`;
+
+                        inHomeDates = `
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_home_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                    <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                    <img src="./images/calendario.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm mt-3">
+                                        <input key="in_home_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                </div>
+                            </div>
+                        </div>`;
+                        inHomeTimes = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_home_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
+                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <img src="./images/reloj.svg" alt="" class="mr-3">
+                                <span class="a-text-bold-warm mt-3">
+                                    <input key="in_home_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
+                            </div>
+                        </div>
+                    </div>`;
+                    }
+
+                    program +=
+                        `
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <!--Landing-->
+                        <div class="col-6 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left">Estableceren landing</p>
+                                <!--Switch-->
+                                ${inLandingSwitch}
+                                <!--Inputs radio-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="a-text-bold-silver cursor-pointer ml-2 text-uppercase">Carrusel 1</span>
+                                </div>
+                                <div>
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
+                                    ${inLandingDates}
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                    ${inLandingTimes}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DATA TIME -->
+                        <div class="col-6 edit-program-data-container">
+                            <div class="edit-data-container">
+                                <p class="text-plus text-plus text-uppercase a-text-bold-coolgray" style="margin-bottom: 72px;">Schedule Item Date time</p>
+                                <div class="row">
+                                    <div class="col-6 mb-4">
+                                        <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
+                                        <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 99px">
+                                            <img src="./images/calendario.svg" alt="" class="mr-3">
+                                            <span class="a-text-bold-warm mt-2">
+                                                <input key="" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                        <div class="text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2">
+                                            <img src="./images/reloj.svg" alt="" class="mr-3">
+                                            <span class="a-text-bold-warm mt-2">
+                                                <input type="text" class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase" placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Home-->
+                        <div class="col-6 edit-program-data-container mt-3">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left">Establecer en home</p>
+                                <!--Switch-->
+                                ${inHomeSwitch}
+                                <div>
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Fecha</p>
+                                    ${inHomeDates}
+                                    <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
+                                    ${inHomeTimes}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- UNICOS Y DIFERENTES -->
+                        <div class="col-6 mt-3">
+                            <div class="edit-data-container d-flex justify-content-between m-schedule">
+                                <p class="mb-0 text-plus text-uppercase a-text-bold-brown-two">Schedule version <br> subbed</p>
+                                ${subbed}
+                            </div>
+                            <div class="edit-data-container d-flex justify-content-between m-schedule">
+                                <p class="mb-0 text-plus text-uppercase a-text-bold-brown-two">Schedule version <br> dubbed</p>
+                                ${dubbed}
+                            </div>
+                            <div class="edit-data-container d-flex justify-content-between">
+                                <p class="mb-0 text-plus text-uppercase a-text-bold-brown-two">Audio 5.1 available</p>
+                                ${audio5}
+                            </div>
+                        </div>
+                        <!-- UNICOS Y DIFERENTES -->
+                    </div>
+                </div>
+                <div class="col-4 p-0" id="img_carrusel_home">
+                    <div>
+                        <!-- IMG -->
+                        <div class="position-relative text-center">
+                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.program.thumbnail_list_vertical}">
+                        </div>
+                        <!-- BTN ICONOS -->
+                        <div class="modal-img-carrusel">
+                            <!-- INPUTS -->
+                            <input class="d-none" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file">
+                            <!-- LABEL -->
+                            <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
+                                <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
+                                <br>
+                                <p class="a-text-bold-warm text-plus">472px X 295px</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- NOMBRE DE LA IMAGEN -->
+                <div class="offset-8 col-4 p-0">
+                    <span class="a-text-bold-brown-two text-plus my-4 d-block">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>
+                </div>
+                <!-- SINOPSIS -->
+                <div class="col-12">
+                    <section class="mb-5 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                        <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
+                        <!--Textarea-->
+                        <textarea chapter_id="${chapter.chapter.id}" key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
+                    </section>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <!--Program episode season-->
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode season</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.season}" type="text" key="season" class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="00">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program episode number-->
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode number</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program_episode_number}" type="text" key="program_episode_number" class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="000">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program year produced-->
+                        <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program year produced</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program.year}" type="text" key="program_year_produced" class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase" placeholder="YYYY">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program title alternate-->
+                        <div class="col-4 edit-program-data-container mt-3 chapter_id="${chapter.chapter.id}"">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program title alternate</p>
+                                <div class="mb-3 edit-rectangle-container p-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.subtitle}" type="text" key="subtitle" class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm" placeholder="Program Title Alternate">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Program genre list-->
+                        <div class="col-4 edit-program-data-container position-relative mt-3" id="edit-genre-container" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list</p>
+                                <div class="mb-3 edit-rectangle-container ">
+                                    <select
+                                        class="list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
+                                         title="Genere list" multiple
+                                        data-live-search="true" data-live-search-placeholder="Buscar"
+                                        data-header="Program List" data-dropup-auto="false" key="genre" chapter_id="${chapter.chapter.id}">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CODE -->
+                        <div class="col-4 edit-program-data-container mt-3" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container">
+                                <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item rating code</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program.rating}" type="text" key="rating" class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code" placeholder="PG-00">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DATE -->
+                        <div class="col-4 edit-program-data-container mt-3" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container d-flex flex-column justify-content-between h-100">
+                                <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log date</p>
+                                <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                    <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}" type="text" key="day" class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="DD:MM:YY">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- GMT -->
+                        <div class="col-4 edit-program-data-container mt-3" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container h-100 d-flex flex-column justify-content-between">
+                                <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log time (gmt)</p>
+                                <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.hour}" type="text" key="programing" class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DURATION -->
+                        <div class="col-4 edit-program-data-container mt-3" chapter_id="${chapter.chapter.id}">
+                            <div class="edit-data-container d-flex flex-column justify-content-between h-100">
+                                <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated schedule item duration</p>
+                                <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
+                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                    <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.duration}" type="text" key="duration" class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+                    `;
+                }
+                $("#modal-carrusel-home").modal("show");
+
+                programmingSlider.html(program);
+                $(".loader-view-container").remove();
+
+                try {
+                    programmingSlider.slick("unslick");
+                    programmingSlider.slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(".slaider-home-dots"),
+                        initialSlide: 0,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
+                    });
+                } catch (error) {
+                    programmingSlider.slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(".slaider-home-dots"),
+                        initialSlide: 0,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
+                    });
+                }
+
+                //Genres
+                let optionGenre = "";
+                data.data.genres.forEach(genre => {
+                    optionGenre += `<option value="${genre.title}">${genre.title}</option>`;
+                });
+                $(".list1").append(optionGenre);
+                $(".list1").selectpicker("destroy");
+                $(".list1").selectpicker({
+                    filter: true,
+                    multipleSeparator: ", "
+                });
+                /*
+                Permite a todos los campos de Schedule item log time tener el formato
+                tiempo en hh:mm
+                */
+                $(".schedule-time-input")
+                    .toArray()
+                    .forEach(scheduleTime => { new Cleave(scheduleTime, scheduleTimeConfig); });
+                /*
+                Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
+                */
+                $(".schedule-date-input")
+                    .toArray()
+                    .forEach(scheduleDate => {
+                        new Cleave(scheduleDate, cleaveConfig);
+                    });
+                /*
+                Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+                */
+                $(".time-seconds-input")
+                    .toArray()
+                    .forEach(timeInput => { new Cleave(timeInput, timeWithSeconds); });
+                /*
+                Permite a todos los input con la clase year-input tener el formato YYYY
+                */
+                $(".year-input")
+                    .toArray()
+                    .forEach(yearInput => { new Cleave(yearInput, year); });
+
+                for (const chapter of data.data.chapters) {
+                    $("#edit-genre-container .filter-option-inner").html(
+                        '<div class="filter-option-inner-inner">' +
+                        chapter.chapter.program.genre +
+                        "</div>"
+                    );
+                }
+
+            }
+
+            $('.add-file-carrusel').click(function () {
+                let id = $(this).attr("id")
+                imgCarruselHome(id);
+            })
+        }
+    });
+}
+
+function imgCarruselHome(id) {
+    $("#img_carrusel_" + id).change(function () {
+        viewImg(this, "#img-carrusel-home-" + id);
+        viewEdit();
+    });
+}
+
+function viewImg(objFileInput, container) {
+    let fileSrt = new FileReader();
+    if (objFileInput.files[0]) {
+        fileSrt.onload = function (e) {
+            $(container).attr('src', e.target.result);
+        };
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+    }
+}
+function viewEdit() {
+    $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
+}
+
 function getContentHomeHeader(type) {
     $.ajax({
         type: "POST",
@@ -3894,7 +4603,6 @@ async function updateImagesSynopsis(images) {
     });
 }
 
-// HOME
 function confLandingHome(baseURL) {
     let confLandingHome = {
         remote: `${baseURL}home-edi-claro.php`,
@@ -3914,6 +4622,9 @@ function confLandingHome(baseURL) {
         new easyXDM.Socket(confLandingHome);
     }
 }
+
+// HOME
+
 // HOME
 
 
@@ -3948,6 +4659,7 @@ export {
     editAttributeSynopsis,
     updateImagesSynopsis,
     confLandingHome,
-    getContentHomeHeader
+    getContentHomeHeader,
+    getCarruselHome
 
 };

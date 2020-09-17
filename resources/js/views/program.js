@@ -32,11 +32,11 @@ export default class ProgramView {
 
 
     renderPrevSynopsis() {
-        var socketSynopsis;
+
         const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let options = {
-            remote: `${baseURL}sinopsis-edi.php`,
-            //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+            //remote: `${baseURL}sinopsis-edi.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
             container: document.getElementById("sinopsis-container"),
             onMessage: function (message, origin) {
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -47,7 +47,14 @@ export default class ProgramView {
         $('#prev-synopsis').click(function () {
 
             $('#sinopsis-container iframe').remove();
-            new easyXDM.Socket(options);
+            let response = programController.getSynopsis($(this).attr("chapter_id"));
+            var socketSynopsis = new easyXDM.Socket(options);
+            response.then(data => {
+                if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socketSynopsis.postMessage(dataStringified);
+                }
+            })
         })
     }
 
@@ -56,7 +63,7 @@ export default class ProgramView {
      * @param {Object} options configuraciones de easyXDM para poder crear el socket
      */
     renderEditSynopsis(socketSynopsis, options) {
-
+        let that = this;
         $('#edit-synopsis').click(function () {
             let id = $(this).attr("chapter_id");
             let response = programController.getSynopsis(id);
@@ -68,7 +75,11 @@ export default class ProgramView {
                 if (data.code == 200) {
                     let dataStringified = JSON.stringify(data);
                     socketSynopsis.postMessage(dataStringified);
-                    this.editDetailsSynopsis(socketSynopsis)
+                    that.editDetailsSynopsis(socketSynopsis)
+                    that.editAttributesSynopsis(socketSynopsis)
+                    that.editImagesBanner(socketSynopsis);
+                    that.editImageSynopsis(socketSynopsis);
+                    that.editImagesBanner(socketSynopsis);
                 }
             })
         })
@@ -223,6 +234,122 @@ export default class ProgramView {
                 .catch(err => {
                     console.log(err);
                 })
+        });
+    }
+
+    editImagesSynopsis(socket) {
+        $("#images-synopsis-modal-button").click(function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+            //Obtenemos las imágenes
+            let imageSynopsis1 = document.getElementById("image-synopsis-1")
+                .files[0];
+            let imageSynopsis2 = document.getElementById("image-synopsis-2")
+                .files[0];
+            let imageSynopsis3 = document.getElementById("image-synopsis-3")
+                .files[0];
+            //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
+            let landingId = $(this).attr("landing_id");
+            //Obtenemos el id del capítulo
+            let chapterId = $(this).attr("chapter_id");
+            let data = new FormData();
+            data.append("image-synopsis-1", imageSynopsis1);
+            data.append("image-synopsis-2", imageSynopsis2);
+            data.append("image-synopsis-3", imageSynopsis3);
+            data.append("landing_id", landingId);
+            data.append("chapter_id", chapterId);
+
+            let imagesResponse = programController.updateImagesSynopsis(data);
+            imagesResponse.then(data => {
+                if (data.code == 200) {
+                    return programController.getSynopsis(chapterId);
+                }
+            }).then(data => {
+                if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socket.postMessage(dataStringified);
+                }
+                $(".modal-synopsis-images-container").modal("hide");
+                $(".loader-view-container").remove()
+            })
+            //update();
+        });
+    }
+
+    //Editar imagen principal en landing de sinopsis
+    editImageSynopsis(socket) {
+        $("#upload-image-synopsis").click(function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+            //Obtenemos el archivo;
+            let imageSynopsis = document.getElementById("image-synopsis").files[0];
+            let landingId = $(this).attr("landing_id");
+            let chapterId = $(this).attr("chapter_id");
+            let data = new FormData();
+            data.append("image-synopsis", imageSynopsis);
+            data.append("landing_id", landingId);
+            data.append("chapter_id", chapterId);
+            let imageResponse = programController.updateImagesSynopsis(data);
+            imageResponse.then(data => {
+                if (data.code == 200) {
+                    return programController.getSynopsis(chapterId);
+                }
+
+            }).then(data => {
+                if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socket.postMessage(dataStringified);
+                }
+                $(".loader-view-container").remove();
+                $(".modal-image-synopsis").modal("hide");
+
+            })
+
+        });
+    }
+
+    editImagesBanner(socket) {
+        //Editar las imágenes del banner
+        $("#banner-sinopsis-modal-button").click(function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+            );
+            let imageSynopsis1 = document.getElementById("image_banner_synopsis_1")
+                .files[0];
+            let imageSynopsis2 = document.getElementById("image_banner_synopsis_2")
+                .files[0];
+            let imageSynopsis3 = document.getElementById("image_banner_synopsis_3")
+                .files[0];
+            let landingId = $(this).attr("landing_id");
+            let chapterId = $(this).attr("chapter_id");
+            let data = new FormData();
+            data.append("image_background_1", imageSynopsis1);
+            data.append("image_background_2", imageSynopsis2);
+            data.append("image_background_3", imageSynopsis3);
+            data.append("landing_id", landingId);
+            data.append("chapter_id", chapterId);
+            let imageBannerResponse = programController.updateImagesSynopsis(data);
+            imageBannerResponse.then(data => {
+                if (data.code == 200) {
+                    return programController.getSynopsis(chapterId);
+                }
+            }).then(data => {
+                if (data.code === 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socket.postMessage(dataStringified);
+                }
+                $(".modal-programming-sinopsis").modal("hide");
+                $(".loader-view-container").remove();
+            })
+
         });
     }
 }

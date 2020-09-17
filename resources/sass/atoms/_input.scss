@@ -651,7 +651,8 @@ div .bootstrap-select>.dropdown-toggle:focus {
 }
 
 .bootstrap-select>.dropdown-toggle.bs-placeholder {
-    color: white !important;
+    // color: white !important;
+    color: white;
 }
 
 .btn.focus,

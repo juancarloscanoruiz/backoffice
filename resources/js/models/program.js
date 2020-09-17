@@ -53,5 +53,19 @@ export default class ProgramModel {
         return data;
     }
 
+    async updateImagesSynopsis(images) {
+        let options = {
+            method: "POST",
+            body: images,
+            headers: {
+                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+            }
+        };
+        let response = await fetch("landing/updateImagesSynopsis", options);
+        let data = await response.json();
+        return data;
+
+    }
+
 
 }
