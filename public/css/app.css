@@ -7267,6 +7267,7 @@ iframe {
 
 .landing-table {
   overflow-x: scroll;
+  height: 500px;
 }
 
 .date-modal {

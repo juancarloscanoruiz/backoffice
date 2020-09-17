@@ -272,8 +272,8 @@ function eventsGrilla() {
     }
 
     let LandingSinopsis = {
-        remote: `${baseURL}sinopsis-edi.php`,
-        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -574,46 +574,6 @@ function eventsGrilla() {
         }
     };
 
-    //Editar sinopsis en landing de sinopsis
-
-    /*     $("#edit-synopsis-modal-button").click(function () {
-            $("body").append(
-                `<div class="loader-view-container pointer-none">
-                    <img src="./images/loader.gif" class="loader"/>
-                </div>`
-            );
-            let chapterId = $(this).attr("chapter_id");
-            let key = $(this).attr("key");
-            let title = $('.synopsis-modal-title').val();
-            let value = $(".edit-text-synopsis").val();
-            //Respuesta de cuando editamos la sinopsis
-            let response = editAttributeSynopsis(chapterId, key, value);
-
-            response.then(data => {
-                    console.log(data);
-                    if (data.code == 200) {
-                        return editAttributeSynopsis(chapterId, "title", title);
-                    }
-
-                })
-                .then(data => {
-                    if (data.code == 200) {
-                        console.log(data);
-                        return getSynopsis(chapterId);
-                    }
-                })
-                .then(data => {
-
-                    if (data.code === 200) {
-                        let dataStringified = JSON.stringify(data);
-                        socketSynopsis.postMessage(dataStringified);
-                    }
-                    $(".modal-edit-synopsis").modal("hide");
-                    $(".loader-view-container").remove()
-                }).catch(err => {
-                    console.log(err);
-                })
-        }); */
 
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
     if (navbarPrevSINOPSIS) {
@@ -633,119 +593,15 @@ function eventsGrilla() {
             }
         );
     }
+    //Editar información de sinopsis
     programView.editDetailsSynopsis(socketSynopsis);
     programView.editAttributesSynopsis(socketSynopsis);
     programView.renderPrevSynopsis();
     programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
-    //Subir imágenes complementarias de sinopsis
-    $("#images-synopsis-modal-button").click(function () {
-        $("body").append(
-            `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-        );
-        //Obtenemos las imágenes
-        let imageSynopsis1 = document.getElementById("image-synopsis-1")
-            .files[0];
-        let imageSynopsis2 = document.getElementById("image-synopsis-2")
-            .files[0];
-        let imageSynopsis3 = document.getElementById("image-synopsis-3")
-            .files[0];
-        //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
-        let landingId = $(this).attr("landing_id");
-        //Obtenemos el id del capítulo
-        let chapterId = $(this).attr("chapter_id");
-        let data = new FormData();
-        data.append("image-synopsis-1", imageSynopsis1);
-        data.append("image-synopsis-2", imageSynopsis2);
-        data.append("image-synopsis-3", imageSynopsis3);
-        data.append("landing_id", landingId);
-        data.append("chapter_id", chapterId);
+    programView.editImagesSynopsis(socketSynopsis)
+    programView.editImageSynopsis(socketSynopsis);
+    programView.editImagesBanner(socketSynopsis);
 
-        let imagesResponse = updateImagesSynopsis(data);
-        imagesResponse.then(data => {
-            if (data.code == 200) {
-                return getSynopsis(chapterId);
-            }
-        }).then(data => {
-            if (data.code == 200) {
-                let dataStringified = JSON.stringify(data);
-                socketSynopsis.postMessage(dataStringified);
-            }
-            $(".modal-synopsis-images-container").modal("hide");
-            $(".loader-view-container").remove()
-        })
-        update();
-    });
-    //Editar imagen principal en landing de sinopsis
-    $("#upload-image-synopsis").click(function () {
-        $("body").append(
-            `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-        );
-        //Obtenemos el archivo;
-        let imageSynopsis = document.getElementById("image-synopsis").files[0];
-        let landingId = $(this).attr("landing_id");
-        let chapterId = $(this).attr("chapter_id");
-        let data = new FormData();
-        data.append("image-synopsis", imageSynopsis);
-        data.append("landing_id", landingId);
-        data.append("chapter_id", chapterId);
-        let imagesResponse = updateImagesSynopsis(data);
-        imagesResponse.then(data => {
-            if (data.code == 200) {
-                return getSynopsis(chapterId);
-            }
-
-        }).then(data => {
-            if (data.code == 200) {
-                let dataStringified = JSON.stringify(data);
-                socketSynopsis.postMessage(dataStringified);
-            }
-            $(".loader-view-container").remove();
-            $(".modal-image-synopsis").modal("hide");
-
-        })
-
-    });
-
-    //Editar las imágenes del banner
-    $("#banner-sinopsis-modal-button").click(function () {
-        $("body").append(
-            `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-        );
-        let imageSynopsis1 = document.getElementById("image_banner_synopsis_1")
-            .files[0];
-        let imageSynopsis2 = document.getElementById("image_banner_synopsis_2")
-            .files[0];
-        let imageSynopsis3 = document.getElementById("image_banner_synopsis_3")
-            .files[0];
-        let landingId = $(this).attr("landing_id");
-        let chapterId = $(this).attr("chapter_id");
-        let data = new FormData();
-        data.append("image_background_1", imageSynopsis1);
-        data.append("image_background_2", imageSynopsis2);
-        data.append("image_background_3", imageSynopsis3);
-        data.append("landing_id", landingId);
-        data.append("chapter_id", chapterId);
-        let imageBannerResponse = updateImagesSynopsis(data);
-        imageBannerResponse.then(data => {
-            if (data.code == 200) {
-                return getSynopsis(chapterId);
-            }
-        }).then(data => {
-            if (data.code === 200) {
-                let dataStringified = JSON.stringify(data);
-                socketSynopsis.postMessage(dataStringified);
-            }
-            $(".modal-programming-sinopsis").modal("hide");
-            $(".loader-view-container").remove();
-        })
-
-    });
     //Landing de concert channel
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
@@ -1141,60 +997,60 @@ function eventsGrilla() {
     });
 
     //Edicion del header del home
-     
-      $("#edit-home-encabezado").click(function () {     
-       
-        let videoimage = document.getElementById("video-promo-header-home").files[0]||
-        "";
-        
+
+    $("#edit-home-encabezado").click(function () {
+
+        let videoimage = document.getElementById("video-promo-header-home").files[0] ||
+            "";
+
         let title =
             $(".modal-home-encabezado .header-title-1").val() ||
             "";
         let subtitle =
             $(".modal-home-encabezado .header-title-2").val() ||
             "";
-      
-        let data = new FormData();  
-       
-        data.append("video", videoimage);    
+
+        let data = new FormData();
+
+        data.append("video", videoimage);
         data.append("title", title);
         data.append("subtitle", subtitle);
         editHomeHeader(data);
-       resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+        resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
     });
 
- //Previsualizar el video que subió el usuario en el landing de home
- $("#video-promo-header-home").change(function () {
-    if (this.files && this.files[0]) {
-        let file = this.files[0];
-        var reader = new FileReader();
-        reader.readAsArrayBuffer(file);
-        reader.onload = function (e) {
-            // The file reader gives us an ArrayBuffer:
-            let buffer = e.target.result;
+    //Previsualizar el video que subió el usuario en el landing de home
+    $("#video-promo-header-home").change(function () {
+        if (this.files && this.files[0]) {
+            let file = this.files[0];
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function (e) {
+                // The file reader gives us an ArrayBuffer:
+                let buffer = e.target.result;
 
-            // We have to convert the buffer to a blob:
-            let videoBlob = new Blob([new Uint8Array(buffer)], {
-                type: "video/mp4"
-            });
+                // We have to convert the buffer to a blob:
+                let videoBlob = new Blob([new Uint8Array(buffer)], {
+                    type: "video/mp4"
+                });
 
-            // The blob gives us a URL to the video file:
-            let url = window.URL.createObjectURL(videoBlob);
-            $("#video-promo-header-home").html(
-                `
+                // The blob gives us a URL to the video file:
+                let url = window.URL.createObjectURL(videoBlob);
+                $("#video-promo-header-home").html(
+                    `
                 <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                 <source src="${url}" type="video/mp4">
-                
-                 </video>
-                
-                `
-            );
-        };
-    }
-});
 
-  
-   
+                 </video>
+
+                `
+                );
+            };
+        }
+    });
+
+
+
 
 
     $("#edit-titles-landing-concert").click(function () {

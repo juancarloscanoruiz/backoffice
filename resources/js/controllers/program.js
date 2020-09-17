@@ -21,4 +21,9 @@ export default class ProgramController {
         let response = programModel.editAttributeSynopsis(chapterId, change, synopsis, title)
         return response;
     }
+
+    updateImagesSynopsis(images) {
+        let response = programModel.updateImagesSynopsis(images)
+        return response;
+    }
 }
