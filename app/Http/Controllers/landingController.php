@@ -373,11 +373,11 @@ class landingController extends Controller
 
         echo ($response->getBody()->getContents());
     }
-   
-    public function editHomeHeader(Request $request)  
-    { 
-      
-        
+
+    public function editHomeHeader(Request $request)
+    {
+
+
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
@@ -385,16 +385,16 @@ class landingController extends Controller
         if ($request->file('video')) {
             $videoimage = $this->storeImages("videoimage", $request->file('video'), "public/home/video");
         }
-       
+
         $response = $client->post(
             $this->url . "section/editBlock1Home",
             ['body' => json_encode(
                 [
-                    "usuario_id" => session('id_user'),  
-                    "video" => $videoimage,         
+                    "usuario_id" => session('id_user'),
+                    "video" => $videoimage,
                     "title" => $request->input('title'),
                     "subtitle" => $request->input('subtitle')
-                    
+
                 ]
             )]
         );
@@ -494,7 +494,6 @@ class landingController extends Controller
                 break;
 
             default:
-                # code...
                 break;
         }
         $client = new Client([
@@ -699,7 +698,8 @@ class landingController extends Controller
     }
 
 
-    function editBlockSynopsis(Request $request){
+    function editBlockSynopsis(Request $request)
+    {
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
         ]);
@@ -877,6 +877,50 @@ class landingController extends Controller
             $this->url . "section/getCarruselHome/" . $request->input("landing")
         );
 
+        echo ($response->getBody()->getContents());
+    }
+
+    function editHeaderHome(Request $request)
+    {
+        $folderLanding = "";
+        switch ($request->input("landing")) {
+            case 'Canal Claro':
+                $folderLanding = "canal-claro";
+                $landing = 'canal_claro';
+                break;
+            case 'Concert Channel':
+                $folderLanding = "concert-channel";
+                $landing = 'concert_channel';
+                break;
+            case 'Claro Cinema':
+                $folderLanding = "claro-cinema";
+                $landing = 'claro_cinema';
+                break;
+
+            default:
+                break;
+        }
+        $client = new Client(['headers' => ['Content-Type' => 'application/json']]);
+        $logo = "";
+        if ($request->file('logo')) {
+            $logo = $this->storeImages("logo-home", $request->file('logo'), "public/" . $folderLanding . "/logos");
+        }
+        $response = $client->post(
+            $this->url . "section/editBlockChannelHome",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "channel" => $landing,
+                    "subtitle" => $request->input('subtitle'),
+                    "icon" => $logo,
+                    "button_title" => "",
+                    "button_url" => $request->input('link'),
+                    "legend" => "",
+                    "inicio" => "",
+                    "fin" => ""
+                ]
+            )]
+        );
         echo ($response->getBody()->getContents());
     }
 }

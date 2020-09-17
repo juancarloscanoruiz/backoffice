@@ -68077,6 +68077,28 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/litepicker/dist/js/main.js":
+/*!*************************************************!*\
+  !*** ./node_modules/litepicker/dist/js/main.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * 
+ *     Litepicker v1.5.7 (https://github.com/wakirin/Litepicker)
+ *     Package: litepicker (https://www.npmjs.com/package/litepicker)
+ *     License: MIT (https://github.com/wakirin/Litepicker/blob/master/LICENCE.md)
+ *     Copyright 2019-2020 Rinat G.
+ *     
+ *     Hash: 85b7ce11883a11b98abb
+ *     Generated on: 1592979305748
+ *     
+ */
+!function(t,e){ true?module.exports=e():undefined}(window,(function(){return function(t){var e={};function i(o){if(e[o])return e[o].exports;var n=e[o]={i:o,l:!1,exports:{}};return t[o].call(n.exports,n,n.exports,i),n.l=!0,n.exports}return i.m=t,i.c=e,i.d=function(t,e,o){i.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},i.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},i.t=function(t,e){if(1&e&&(t=i(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(i.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)i.d(o,n,function(e){return t[e]}.bind(null,n));return o},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},i.p="",i(i.s=4)}([function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=function(){function t(e,i,o){void 0===e&&(e=null),void 0===i&&(i=null),void 0===o&&(o="en-US"),this.dateInstance=i?t.parseDateTime(e,i,o):e?t.parseDateTime(e):t.parseDateTime(new Date),this.lang=o}return t.parseDateTime=function(e,i,o){if(void 0===i&&(i="YYYY-MM-DD"),void 0===o&&(o="en-US"),!e)return new Date(NaN);if(e instanceof Date)return new Date(e);if(e instanceof t)return e.clone().getDateInstance();if(/^-?\d{10,}$/.test(e))return t.getDateZeroTime(new Date(Number(e)));if("string"==typeof e){for(var n=[],s=null;null!=(s=t.regex.exec(i));)"\\"!==s[1]&&n.push(s);if(n.length){var r={year:null,month:null,shortMonth:null,longMonth:null,day:null,value:""};n[0].index>0&&(r.value+=".*?");for(var a=0,l=Object.entries(n);a<l.length;a++){var p=l[a],c=p[0],h=p[1],d=Number(c),u=t.formatPatterns(h[0],o),m=u.group,f=u.pattern;r[m]=d+1,r.value+=f,r.value+=".*?"}var g=new RegExp("^"+r.value+"$");if(g.test(e)){var y=g.exec(e),k=Number(y[r.year]),v=null;r.month?v=Number(y[r.month])-1:r.shortMonth?v=t.shortMonths(o).indexOf(y[r.shortMonth]):r.longMonth&&(v=t.longMonths(o).indexOf(y[r.longMonth]));var D=Number(y[r.day])||1;return new Date(k,v,D,0,0,0,0)}}}return t.getDateZeroTime(new Date(e))},t.convertArray=function(e,i){return e.map((function(e){return e instanceof Array?e.map((function(e){return new t(e,i)})):new t(e,i)}))},t.getDateZeroTime=function(t){return new Date(t.getFullYear(),t.getMonth(),t.getDate(),0,0,0,0)},t.shortMonths=function(e){return t.MONTH_JS.map((function(t){return new Date(2019,t).toLocaleString(e,{month:"short"})}))},t.longMonths=function(e){return t.MONTH_JS.map((function(t){return new Date(2019,t).toLocaleString(e,{month:"long"})}))},t.formatPatterns=function(e,i){switch(e){case"YY":case"YYYY":return{group:"year",pattern:"(\\d{"+e.length+"})"};case"M":return{group:"month",pattern:"(\\d{1,2})"};case"MM":return{group:"month",pattern:"(\\d{2})"};case"MMM":return{group:"shortMonth",pattern:"("+t.shortMonths(i).join("|")+")"};case"MMMM":return{group:"longMonth",pattern:"("+t.longMonths(i).join("|")+")"};case"D":return{group:"day",pattern:"(\\d{1,2})"};case"DD":return{group:"day",pattern:"(\\d{2})"}}},t.prototype.getDateInstance=function(){return this.dateInstance},t.prototype.toLocaleString=function(t,e){return this.dateInstance.toLocaleString(t,e)},t.prototype.toDateString=function(){return this.dateInstance.toDateString()},t.prototype.getSeconds=function(){return this.dateInstance.getSeconds()},t.prototype.getDay=function(){return this.dateInstance.getDay()},t.prototype.getTime=function(){return this.dateInstance.getTime()},t.prototype.getDate=function(){return this.dateInstance.getDate()},t.prototype.getMonth=function(){return this.dateInstance.getMonth()},t.prototype.getFullYear=function(){return this.dateInstance.getFullYear()},t.prototype.setMonth=function(t){return this.dateInstance.setMonth(t)},t.prototype.setHours=function(t,e,i,o){void 0===t&&(t=0),void 0===e&&(e=0),void 0===i&&(i=0),void 0===o&&(o=0),this.dateInstance.setHours(t,e,i,o)},t.prototype.setSeconds=function(t){return this.dateInstance.setSeconds(t)},t.prototype.setDate=function(t){return this.dateInstance.setDate(t)},t.prototype.setFullYear=function(t){return this.dateInstance.setFullYear(t)},t.prototype.getWeek=function(t){var e=new Date(this.timestamp()),i=(this.getDay()+(7-t))%7;e.setDate(e.getDate()-i);var o=e.getTime();return e.setMonth(0,1),e.getDay()!==t&&e.setMonth(0,1+(4-e.getDay()+7)%7),1+Math.ceil((o-e.getTime())/6048e5)},t.prototype.clone=function(){return new t(this.getDateInstance())},t.prototype.isBetween=function(t,e,i){switch(void 0===i&&(i="()"),i){default:case"()":return this.timestamp()>t.getTime()&&this.timestamp()<e.getTime();case"[)":return this.timestamp()>=t.getTime()&&this.timestamp()<e.getTime();case"(]":return this.timestamp()>t.getTime()&&this.timestamp()<=e.getTime();case"[]":return this.timestamp()>=t.getTime()&&this.timestamp()<=e.getTime()}},t.prototype.isBefore=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":return t.getTime()>this.getTime();case"day":case"days":return new Date(t.getFullYear(),t.getMonth(),t.getDate()).getTime()>new Date(this.getFullYear(),this.getMonth(),this.getDate()).getTime();case"month":case"months":return new Date(t.getFullYear(),t.getMonth(),1).getTime()>new Date(this.getFullYear(),this.getMonth(),1).getTime();case"year":case"years":return t.getFullYear()>this.getFullYear()}throw new Error("isBefore: Invalid unit!")},t.prototype.isSameOrBefore=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":return t.getTime()>=this.getTime();case"day":case"days":return new Date(t.getFullYear(),t.getMonth(),t.getDate()).getTime()>=new Date(this.getFullYear(),this.getMonth(),this.getDate()).getTime();case"month":case"months":return new Date(t.getFullYear(),t.getMonth(),1).getTime()>=new Date(this.getFullYear(),this.getMonth(),1).getTime()}throw new Error("isSameOrBefore: Invalid unit!")},t.prototype.isAfter=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":return this.getTime()>t.getTime();case"day":case"days":return new Date(this.getFullYear(),this.getMonth(),this.getDate()).getTime()>new Date(t.getFullYear(),t.getMonth(),t.getDate()).getTime();case"month":case"months":return new Date(this.getFullYear(),this.getMonth(),1).getTime()>new Date(t.getFullYear(),t.getMonth(),1).getTime();case"year":case"years":return this.getFullYear()>t.getFullYear()}throw new Error("isAfter: Invalid unit!")},t.prototype.isSameOrAfter=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":return this.getTime()>=t.getTime();case"day":case"days":return new Date(this.getFullYear(),this.getMonth(),this.getDate()).getTime()>=new Date(t.getFullYear(),t.getMonth(),t.getDate()).getTime();case"month":case"months":return new Date(this.getFullYear(),this.getMonth(),1).getTime()>=new Date(t.getFullYear(),t.getMonth(),1).getTime()}throw new Error("isSameOrAfter: Invalid unit!")},t.prototype.isSame=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":return this.getTime()===t.getTime();case"day":case"days":return new Date(this.getFullYear(),this.getMonth(),this.getDate()).getTime()===new Date(t.getFullYear(),t.getMonth(),t.getDate()).getTime();case"month":case"months":return new Date(this.getFullYear(),this.getMonth(),1).getTime()===new Date(t.getFullYear(),t.getMonth(),1).getTime()}throw new Error("isSame: Invalid unit!")},t.prototype.add=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":this.setSeconds(this.getSeconds()+t);break;case"day":case"days":this.setDate(this.getDate()+t);break;case"month":case"months":this.setMonth(this.getMonth()+t)}return this},t.prototype.subtract=function(t,e){switch(void 0===e&&(e="seconds"),e){case"second":case"seconds":this.setSeconds(this.getSeconds()-t);break;case"day":case"days":this.setDate(this.getDate()-t);break;case"month":case"months":this.setMonth(this.getMonth()-t)}return this},t.prototype.diff=function(t,e){void 0===e&&(e="seconds");switch(e){default:case"second":case"seconds":return this.getTime()-t.getTime();case"day":case"days":return Math.round((this.timestamp()-t.getTime())/864e5);case"month":case"months":}},t.prototype.format=function(e,i){void 0===i&&(i="en-US");for(var o="",n=[],s=null;null!=(s=t.regex.exec(e));)"\\"!==s[1]&&n.push(s);if(n.length){n[0].index>0&&(o+=e.substring(0,n[0].index));for(var r=0,a=Object.entries(n);r<a.length;r++){var l=a[r],p=l[0],c=l[1],h=Number(p);o+=this.formatTokens(c[0],i),n[h+1]&&(o+=e.substring(c.index+c[0].length,n[h+1].index)),h===n.length-1&&(o+=e.substring(c.index+c[0].length))}}return o.replace(/\\/g,"")},t.prototype.timestamp=function(){return new Date(this.getFullYear(),this.getMonth(),this.getDate(),0,0,0,0).getTime()},t.prototype.formatTokens=function(e,i){switch(e){case"YY":return String(this.getFullYear()).slice(-2);case"YYYY":return String(this.getFullYear());case"M":return String(this.getMonth()+1);case"MM":return("0"+(this.getMonth()+1)).slice(-2);case"MMM":return t.shortMonths(i)[this.getMonth()];case"MMMM":return t.longMonths(i)[this.getMonth()];case"D":return String(this.getDate());case"DD":return("0"+this.getDate()).slice(-2);default:return""}},t.regex=/(\\)?(Y{2,4}|M{1,4}|D{1,2}|d{1,4})/g,t.MONTH_JS=[0,1,2,3,4,5,6,7,8,9,10,11],t}();e.DateTime=o},function(t,e,i){var o=i(6);"string"==typeof o&&(o=[[t.i,o,""]]);var n={insert:function(t){var e=document.querySelector("head"),i=window._lastElementInsertedByStyleLoader;window.disableLitepickerStyles||(i?i.nextSibling?e.insertBefore(t,i.nextSibling):e.appendChild(t):e.insertBefore(t,e.firstChild),window._lastElementInsertedByStyleLoader=t)},singleton:!1};i(8)(o,n);o.locals&&(t.exports=o.locals)},function(t,e,i){"use strict";function o(){return window.matchMedia("(orientation: portrait)").matches?"portrait":"landscape"}Object.defineProperty(e,"__esModule",{value:!0}),e.isMobile=function(){var t="portrait"===o();return window.matchMedia("(max-device-"+(t?"width":"height")+": 480px)").matches},e.getOrientation=o,e.findNestedMonthItem=function(t){for(var e=t.parentNode.childNodes,i=0;i<e.length;i+=1){if(e.item(i)===t)return i}return 0}},function(t,e,i){"use strict";var o,n=this&&this.__extends||(o=function(t,e){return(o=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var i in e)e.hasOwnProperty(i)&&(t[i]=e[i])})(t,e)},function(t,e){function i(){this.constructor=t}o(t,e),t.prototype=null===e?Object.create(e):(i.prototype=e.prototype,new i)}),s=this&&this.__assign||function(){return(s=Object.assign||function(t){for(var e,i=1,o=arguments.length;i<o;i++)for(var n in e=arguments[i])Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t}).apply(this,arguments)},r=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var i in t)Object.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e.default=t,e};Object.defineProperty(e,"__esModule",{value:!0});var a=i(5),l=i(0),p=r(i(1)),c=i(2),h=function(t){function e(e){var i=t.call(this)||this;i.options=s(s({},i.options),e.element.dataset),Object.keys(i.options).forEach((function(t){"true"!==i.options[t]&&"false"!==i.options[t]||(i.options[t]="true"===i.options[t])}));var o=s(s({},i.options.dropdowns),e.dropdowns),n=s(s({},i.options.buttonText),e.buttonText),r=s(s({},i.options.tooltipText),e.tooltipText);i.options=s(s({},i.options),e),i.options.dropdowns=s({},o),i.options.buttonText=s({},n),i.options.tooltipText=s({},r),i.options.elementEnd||(i.options.allowRepick=!1),i.options.lockDays.length&&(i.options.lockDays=l.DateTime.convertArray(i.options.lockDays,i.options.lockDaysFormat)),i.options.bookedDays.length&&(i.options.bookedDays=l.DateTime.convertArray(i.options.bookedDays,i.options.bookedDaysFormat)),i.options.highlightedDays.length&&(i.options.highlightedDays=l.DateTime.convertArray(i.options.highlightedDays,i.options.highlightedDaysFormat)),!i.options.hotelMode||"bookedDaysInclusivity"in e||(i.options.bookedDaysInclusivity="[)"),!i.options.hotelMode||"disallowBookedDaysInRange"in e||(i.options.disallowBookedDaysInRange=!0),!i.options.hotelMode||"selectForward"in e||(i.options.selectForward=!0);var a=i.parseInput(),p=a[0],c=a[1];i.options.startDate&&(i.options.singleMode||i.options.endDate)&&(p=new l.DateTime(i.options.startDate,i.options.format,i.options.lang)),p&&i.options.endDate&&(c=new l.DateTime(i.options.endDate,i.options.format,i.options.lang)),p instanceof l.DateTime&&!isNaN(p.getTime())&&(i.options.startDate=p),i.options.startDate&&c instanceof l.DateTime&&!isNaN(c.getTime())&&(i.options.endDate=c),!i.options.singleMode||i.options.startDate instanceof l.DateTime||(i.options.startDate=null),i.options.singleMode||i.options.startDate instanceof l.DateTime&&i.options.endDate instanceof l.DateTime||(i.options.startDate=null,i.options.endDate=null);for(var h=0;h<i.options.numberOfMonths;h+=1){var d=i.options.startDate instanceof l.DateTime?i.options.startDate.clone():new l.DateTime;d.setDate(1),d.setMonth(d.getMonth()+h),i.calendars[h]=d}if(i.options.showTooltip)if(i.options.tooltipPluralSelector)i.pluralSelector=i.options.tooltipPluralSelector;else try{var u=new Intl.PluralRules(i.options.lang);i.pluralSelector=u.select.bind(u)}catch(t){i.pluralSelector=function(t){return 0===Math.abs(t)?"one":"other"}}return i.loadPolyfillsForIE11(),i.onInit(),i}return n(e,t),e.prototype.onInit=function(){var t=this;if(document.addEventListener("click",(function(e){return t.onClick(e)}),!0),this.picker=document.createElement("div"),this.picker.className=p.litepicker,this.picker.style.display="none",this.picker.addEventListener("mouseenter",(function(e){return t.onMouseEnter(e)}),!0),this.picker.addEventListener("mouseleave",(function(e){return t.onMouseLeave(e)}),!1),this.options.autoRefresh?(this.options.element instanceof HTMLElement&&this.options.element.addEventListener("keyup",(function(e){return t.onInput(e)}),!0),this.options.elementEnd instanceof HTMLElement&&this.options.elementEnd.addEventListener("keyup",(function(e){return t.onInput(e)}),!0)):(this.options.element instanceof HTMLElement&&this.options.element.addEventListener("change",(function(e){return t.onInput(e)}),!0),this.options.elementEnd instanceof HTMLElement&&this.options.elementEnd.addEventListener("change",(function(e){return t.onInput(e)}),!0)),this.options.moduleNavKeyboard){if("function"!=typeof this.enableModuleNavKeyboard)throw new Error("moduleNavKeyboard is on but library does not included. See https://github.com/wakirin/litepicker-module-navkeyboard.");this.enableModuleNavKeyboard.call(this,this)}this.render(),this.options.parentEl?this.options.parentEl instanceof HTMLElement?this.options.parentEl.appendChild(this.picker):document.querySelector(this.options.parentEl).appendChild(this.picker):this.options.inlineMode?this.options.element instanceof HTMLInputElement?this.options.element.parentNode.appendChild(this.picker):this.options.element.appendChild(this.picker):document.body.appendChild(this.picker),this.options.mobileFriendly&&(this.backdrop=document.createElement("div"),this.backdrop.className=p.litepickerBackdrop,this.backdrop.addEventListener("click",this.hide()),this.options.element&&this.options.element.parentNode&&this.options.element.parentNode.appendChild(this.backdrop),window.addEventListener("orientationchange",(function(e){var i=function(){if(c.isMobile()&&t.isShowning()){switch(c.getOrientation()){case"landscape":t.options.numberOfMonths=2,t.options.numberOfColumns=2;break;default:t.options.numberOfMonths=1,t.options.numberOfColumns=1}if(t.render(),!t.options.inlineMode){var e=t.picker.getBoundingClientRect();t.picker.style.top="calc(50% - "+e.height/2+"px)",t.picker.style.left="calc(50% - "+e.width/2+"px)"}}window.removeEventListener("resize",i)};window.addEventListener("resize",i)}))),this.options.inlineMode&&(this.show(),this.options.mobileFriendly&&c.isMobile()&&(window.dispatchEvent(new Event("orientationchange")),window.dispatchEvent(new Event("resize")))),this.updateInput()},e.prototype.parseInput=function(){var t=this.options.delimiter,e=new RegExp(""+t),i=this.options.element instanceof HTMLInputElement?this.options.element.value.split(t):[];if(this.options.elementEnd){if(this.options.element instanceof HTMLInputElement&&this.options.element.value.length&&this.options.elementEnd instanceof HTMLInputElement&&this.options.elementEnd.value.length)return[new l.DateTime(this.options.element.value,this.options.format),new l.DateTime(this.options.elementEnd.value,this.options.format)]}else if(this.options.singleMode){if(this.options.element instanceof HTMLInputElement&&this.options.element.value.length)return[new l.DateTime(this.options.element.value,this.options.format)]}else if(this.options.element instanceof HTMLInputElement&&e.test(this.options.element.value)&&i.length&&i.length%2==0){var o=i.slice(0,i.length/2).join(t),n=i.slice(i.length/2).join(t);return[new l.DateTime(o,this.options.format),new l.DateTime(n,this.options.format)]}return[]},e.prototype.updateInput=function(){if(this.options.element instanceof HTMLInputElement){if(this.options.singleMode&&this.options.startDate)this.options.element.value=this.options.startDate.format(this.options.format,this.options.lang);else if(!this.options.singleMode&&this.options.startDate&&this.options.endDate){var t=this.options.startDate.format(this.options.format,this.options.lang),e=this.options.endDate.format(this.options.format,this.options.lang);this.options.elementEnd?(this.options.element.value=t,this.options.elementEnd.value=e):this.options.element.value=""+t+this.options.delimiter+e}this.options.startDate||this.options.endDate||(this.options.element.value="",this.options.elementEnd&&(this.options.elementEnd.value=""))}},e.prototype.isSamePicker=function(t){return t.closest("."+p.litepicker)===this.picker},e.prototype.shouldShown=function(t){return t===this.options.element||this.options.elementEnd&&t===this.options.elementEnd},e.prototype.shouldResetDatePicked=function(){return this.options.singleMode||2===this.datePicked.length},e.prototype.shouldSwapDatePicked=function(){return 2===this.datePicked.length&&this.datePicked[0].getTime()>this.datePicked[1].getTime()},e.prototype.shouldCheckLockDays=function(){return this.options.disallowLockDaysInRange&&this.options.lockDays.length&&2===this.datePicked.length},e.prototype.shouldCheckBookedDays=function(){return this.options.disallowBookedDaysInRange&&this.options.bookedDays.length&&2===this.datePicked.length},e.prototype.onClick=function(t){var e=this,i=t.target;if(i&&this.picker)if(this.shouldShown(i))this.show(i);else if(i.closest("."+p.litepicker)){if(i.classList.contains(p.dayItem)){if(t.preventDefault(),!this.isSamePicker(i))return;if(i.classList.contains(p.isLocked))return;if(i.classList.contains(p.isBooked))return;if(this.shouldResetDatePicked()&&(this.datePicked.length=0),this.datePicked[this.datePicked.length]=new l.DateTime(i.dataset.time),this.shouldSwapDatePicked()){var o=this.datePicked[1].clone();this.datePicked[1]=this.datePicked[0].clone(),this.datePicked[0]=o.clone()}if(this.shouldCheckLockDays()){var n=this.options.lockDaysInclusivity;this.options.lockDays.filter((function(t){return t instanceof Array?t[0].isBetween(e.datePicked[0],e.datePicked[1],n)||t[1].isBetween(e.datePicked[0],e.datePicked[1],n):t.isBetween(e.datePicked[0],e.datePicked[1],n)})).length&&(this.datePicked.length=0,"function"==typeof this.options.onError&&this.options.onError.call(this,"INVALID_RANGE"))}if(this.shouldCheckBookedDays()){var s=this.options.bookedDaysInclusivity;this.options.hotelMode&&2===this.datePicked.length&&(s="()");var r=this.options.bookedDays.filter((function(t){return t instanceof Array?t[0].isBetween(e.datePicked[0],e.datePicked[1],s)||t[1].isBetween(e.datePicked[0],e.datePicked[1],s):t.isBetween(e.datePicked[0],e.datePicked[1])})).length,a=this.options.anyBookedDaysAsCheckout&&1===this.datePicked.length;r&&!a&&(this.datePicked.length=0,"function"==typeof this.options.onError&&this.options.onError.call(this,"INVALID_RANGE"))}return this.render(),void(this.options.autoApply&&(this.options.singleMode&&this.datePicked.length?(this.setDate(this.datePicked[0]),this.hide()):this.options.singleMode||2!==this.datePicked.length||(this.setDateRange(this.datePicked[0],this.datePicked[1]),this.hide())))}if(i.classList.contains(p.buttonPreviousMonth)){if(t.preventDefault(),!this.isSamePicker(i))return;var h=0,d=this.options.moveByOneMonth?1:this.options.numberOfMonths;if(this.options.splitView){var u=i.closest("."+p.monthItem);h=c.findNestedMonthItem(u),d=1}return this.calendars[h].setMonth(this.calendars[h].getMonth()-d),this.gotoDate(this.calendars[h],h),void("function"==typeof this.options.onChangeMonth&&this.options.onChangeMonth.call(this,this.calendars[h],h))}if(i.classList.contains(p.buttonNextMonth)){if(t.preventDefault(),!this.isSamePicker(i))return;h=0,d=this.options.moveByOneMonth?1:this.options.numberOfMonths;if(this.options.splitView){u=i.closest("."+p.monthItem);h=c.findNestedMonthItem(u),d=1}return this.calendars[h].setMonth(this.calendars[h].getMonth()+d),this.gotoDate(this.calendars[h],h),void("function"==typeof this.options.onChangeMonth&&this.options.onChangeMonth.call(this,this.calendars[h],h))}if(i.classList.contains(p.buttonCancel)){if(t.preventDefault(),!this.isSamePicker(i))return;this.hide()}if(i.classList.contains(p.buttonApply)){if(t.preventDefault(),!this.isSamePicker(i))return;this.options.singleMode&&this.datePicked.length?this.setDate(this.datePicked[0]):this.options.singleMode||2!==this.datePicked.length||this.setDateRange(this.datePicked[0],this.datePicked[1]),this.hide()}}else this.hide()},e.prototype.showTooltip=function(t,e){var i=this.picker.querySelector("."+p.containerTooltip);i.style.visibility="visible",i.innerHTML=e;var o=this.picker.getBoundingClientRect(),n=i.getBoundingClientRect(),s=t.getBoundingClientRect(),r=s.top,a=s.left;if(this.options.inlineMode&&this.options.parentEl){var l=this.picker.parentNode.getBoundingClientRect();r-=l.top,a-=l.left}else r-=o.top,a-=o.left;r-=n.height,a-=n.width/2,a+=s.width/2,i.style.top=r+"px",i.style.left=a+"px","function"==typeof this.options.onShowTooltip&&this.options.onShowTooltip.call(this,i,t)},e.prototype.hideTooltip=function(){this.picker.querySelector("."+p.containerTooltip).style.visibility="hidden"},e.prototype.shouldAllowMouseEnter=function(t){return!this.options.singleMode&&!t.classList.contains(p.isLocked)&&!t.classList.contains(p.isBooked)},e.prototype.shouldAllowRepick=function(){return this.options.elementEnd&&this.options.allowRepick&&this.options.startDate&&this.options.endDate},e.prototype.isDayItem=function(t){return t.classList.contains(p.dayItem)},e.prototype.onMouseEnter=function(t){var e=this,i=t.target;if(this.isDayItem(i)&&("function"==typeof this.options.onDayHover&&this.options.onDayHover.call(this,l.DateTime.parseDateTime(i.dataset.time),i.classList.toString().split(/\s/),i),this.shouldAllowMouseEnter(i))){if(this.shouldAllowRepick()&&(this.triggerElement===this.options.element?this.datePicked[0]=this.options.endDate.clone():this.triggerElement===this.options.elementEnd&&(this.datePicked[0]=this.options.startDate.clone())),1!==this.datePicked.length)return;var o=this.picker.querySelector("."+p.dayItem+'[data-time="'+this.datePicked[0].getTime()+'"]'),n=this.datePicked[0].clone(),s=new l.DateTime(i.dataset.time),r=!1;if(n.getTime()>s.getTime()){var a=n.clone();n=s.clone(),s=a.clone(),r=!0}if(Array.prototype.slice.call(this.picker.querySelectorAll("."+p.dayItem)).forEach((function(t){var i=new l.DateTime(t.dataset.time),o=e.renderDay(i);i.isBetween(n,s)&&o.classList.add(p.isInRange),t.className=o.className})),i.classList.add(p.isEndDate),r?(o&&o.classList.add(p.isFlipped),i.classList.add(p.isFlipped)):(o&&o.classList.remove(p.isFlipped),i.classList.remove(p.isFlipped)),this.options.showTooltip){var c=s.diff(n,"day");if(this.options.hotelMode||(c+=1),c>0){var h=this.pluralSelector(c),d=c+" "+(this.options.tooltipText[h]?this.options.tooltipText[h]:"["+h+"]");this.showTooltip(i,d)}else this.hideTooltip()}}},e.prototype.onMouseLeave=function(t){t.target;this.options.allowRepick&&(!this.options.allowRepick||this.options.startDate||this.options.endDate)&&(this.datePicked.length=0,this.render())},e.prototype.onInput=function(t){var e=this.parseInput(),i=e[0],o=e[1],n=this.options.format;if(this.options.elementEnd?i instanceof l.DateTime&&o instanceof l.DateTime&&i.format(n)===this.options.element.value&&o.format(n)===this.options.elementEnd.value:this.options.singleMode?i instanceof l.DateTime&&i.format(n)===this.options.element.value:i instanceof l.DateTime&&o instanceof l.DateTime&&""+i.format(n)+this.options.delimiter+o.format(n)===this.options.element.value){if(o&&i.getTime()>o.getTime()){var s=i.clone();i=o.clone(),o=s.clone()}this.options.startDate=new l.DateTime(i,this.options.format,this.options.lang),o&&(this.options.endDate=new l.DateTime(o,this.options.format,this.options.lang)),this.updateInput(),this.render();var r=i.clone(),a=0;(this.options.elementEnd?i.format(n)===t.target.value:t.target.value.startsWith(i.format(n)))||(r=o.clone(),a=this.options.numberOfMonths-1),"function"==typeof this.options.onSelect&&this.options.onSelect.call(this,this.getStartDate(),this.getEndDate()),this.gotoDate(r,a)}},e.prototype.isShowning=function(){return this.picker&&"none"!==this.picker.style.display},e.prototype.loadPolyfillsForIE11=function(){Object.entries||(Object.entries=function(t){for(var e=Object.keys(t),i=e.length,o=new Array(i);i;)o[i-=1]=[e[i],t[e[i]]];return o}),Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Element.prototype.closest||(Element.prototype.closest=function(t){var e=this;do{if(e.matches(t))return e;e=e.parentElement||e.parentNode}while(null!==e&&1===e.nodeType);return null})},e}(a.Calendar);e.Litepicker=h},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=i(3);e.Litepicker=o.Litepicker,i(9),i(10),window.Litepicker=o.Litepicker,e.default=o.Litepicker},function(t,e,i){"use strict";var o=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var i in t)Object.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e.default=t,e};Object.defineProperty(e,"__esModule",{value:!0});var n=i(0),s=o(i(1)),r=i(2),a=function(){function t(){this.options={element:null,elementEnd:null,parentEl:null,firstDay:1,format:"YYYY-MM-DD",lang:"en-US",delimiter:" - ",numberOfMonths:1,numberOfColumns:1,startDate:null,endDate:null,zIndex:9999,minDate:null,maxDate:null,minDays:null,maxDays:null,selectForward:!1,selectBackward:!1,splitView:!1,inlineMode:!1,singleMode:!0,autoApply:!0,allowRepick:!1,showWeekNumbers:!1,showTooltip:!0,hotelMode:!1,disableWeekends:!1,scrollToDate:!0,mobileFriendly:!0,useResetBtn:!1,autoRefresh:!1,moveByOneMonth:!1,lockDaysFormat:"YYYY-MM-DD",lockDays:[],disallowLockDaysInRange:!1,lockDaysInclusivity:"[]",bookedDaysFormat:"YYYY-MM-DD",bookedDays:[],disallowBookedDaysInRange:!1,bookedDaysInclusivity:"[]",anyBookedDaysAsCheckout:!1,highlightedDaysFormat:"YYYY-MM-DD",highlightedDays:[],dropdowns:{minYear:1990,maxYear:null,months:!1,years:!1},buttonText:{apply:"Apply",cancel:"Cancel",previousMonth:'<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M7.919 0l2.748 2.667L5.333 8l5.334 5.333L7.919 16 0 8z" fill-rule="nonzero"/></svg>',nextMonth:'<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.748 16L0 13.333 5.333 8 0 2.667 2.748 0l7.919 8z" fill-rule="nonzero"/></svg>',reset:'<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">\n        <path d="M0 0h24v24H0z" fill="none"/>\n        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>\n      </svg>'},tooltipText:{one:"day",other:"days"},tooltipPluralSelector:null,onShow:null,onHide:null,onSelect:null,onError:null,onRender:null,onRenderDay:null,onChangeMonth:null,onChangeYear:null,onDayHover:null,onShowTooltip:null,resetBtnCallback:null,moduleRanges:null,moduleNavKeyboard:null},this.calendars=[],this.datePicked=[]}return t.prototype.render=function(){var t=this,e=document.createElement("div");e.className=s.containerMain;var i=document.createElement("div");i.className=s.containerMonths,s["columns"+this.options.numberOfColumns]&&(i.classList.remove(s.columns2,s.columns3,s.columns4),i.classList.add(s["columns"+this.options.numberOfColumns])),this.options.splitView&&i.classList.add(s.splitView),this.options.showWeekNumbers&&i.classList.add(s.showWeekNumbers);for(var o=this.calendars[0].clone(),n=o.getMonth(),r=o.getMonth()+this.options.numberOfMonths,a=0,l=n;l<r;l+=1){var p=o.clone();p.setDate(1),this.options.splitView?p=this.calendars[a].clone():p.setMonth(l),i.appendChild(this.renderMonth(p)),a+=1}if(this.picker.innerHTML="",e.appendChild(i),this.options.useResetBtn){var c=document.createElement("a");c.href="#",c.className=s.resetButton,c.innerHTML=this.options.buttonText.reset,c.addEventListener("click",(function(e){e.preventDefault(),t.clearSelection(),"function"==typeof t.options.resetBtnCallback&&t.options.resetBtnCallback.call(t)})),e.querySelector("."+s.monthItem+":last-child").querySelector("."+s.monthItemHeader).appendChild(c)}if(this.picker.appendChild(e),this.options.autoApply&&!this.options.footerHTML||this.picker.appendChild(this.renderFooter()),this.options.showTooltip&&this.picker.appendChild(this.renderTooltip()),this.options.moduleRanges){if("function"!=typeof this.enableModuleRanges)throw new Error("moduleRanges is on but library does not included. See https://github.com/wakirin/litepicker-module-ranges.");this.enableModuleRanges.call(this,this)}"function"==typeof this.options.onRender&&this.options.onRender.call(this,this.picker)},t.prototype.renderMonth=function(t){var e=this,i=t.clone(),o=32-new Date(i.getFullYear(),i.getMonth(),32).getDate(),a=document.createElement("div");a.className=s.monthItem;var l=document.createElement("div");l.className=s.monthItemHeader;var p=document.createElement("div");if(this.options.dropdowns.months){var c=document.createElement("select");c.className=s.monthItemName;for(var h=0;h<12;h+=1){var d=document.createElement("option"),u=new n.DateTime(new Date(t.getFullYear(),h,1,0,0,0));d.value=String(h),d.text=u.toLocaleString(this.options.lang,{month:"long"}),d.disabled=this.options.minDate&&u.isBefore(new n.DateTime(this.options.minDate),"month")||this.options.maxDate&&u.isAfter(new n.DateTime(this.options.maxDate),"month"),d.selected=u.getMonth()===t.getMonth(),c.appendChild(d)}c.addEventListener("change",(function(t){var i=t.target,o=0;if(e.options.splitView){var n=i.closest("."+s.monthItem);o=r.findNestedMonthItem(n)}e.calendars[o].setMonth(Number(i.value)),e.render(),"function"==typeof e.options.onChangeMonth&&e.options.onChangeMonth.call(e,e.calendars[o],o)})),p.appendChild(c)}else{var m=document.createElement("strong");m.className=s.monthItemName,m.innerHTML=t.toLocaleString(this.options.lang,{month:"long"}),p.appendChild(m)}if(this.options.dropdowns.years){var f=document.createElement("select");f.className=s.monthItemYear;var g=this.options.dropdowns.minYear,y=this.options.dropdowns.maxYear?this.options.dropdowns.maxYear:(new Date).getFullYear();if(t.getFullYear()>y)(d=document.createElement("option")).value=String(t.getFullYear()),d.text=String(t.getFullYear()),d.selected=!0,d.disabled=!0,f.appendChild(d);for(h=y;h>=g;h-=1){var d=document.createElement("option"),k=new n.DateTime(new Date(h,0,1,0,0,0));d.value=h,d.text=h,d.disabled=this.options.minDate&&k.isBefore(new n.DateTime(this.options.minDate),"year")||this.options.maxDate&&k.isAfter(new n.DateTime(this.options.maxDate),"year"),d.selected=t.getFullYear()===h,f.appendChild(d)}if(t.getFullYear()<g)(d=document.createElement("option")).value=String(t.getFullYear()),d.text=String(t.getFullYear()),d.selected=!0,d.disabled=!0,f.appendChild(d);if("asc"===this.options.dropdowns.years){var v=Array.prototype.slice.call(f.childNodes).reverse();f.innerHTML="",v.forEach((function(t){t.innerHTML=t.value,f.appendChild(t)}))}f.addEventListener("change",(function(t){var i=t.target,o=0;if(e.options.splitView){var n=i.closest("."+s.monthItem);o=r.findNestedMonthItem(n)}e.calendars[o].setFullYear(Number(i.value)),e.render(),"function"==typeof e.options.onChangeYear&&e.options.onChangeYear.call(e,e.calendars[o],o)})),p.appendChild(f)}else{var D=document.createElement("span");D.className=s.monthItemYear,D.innerHTML=String(t.getFullYear()),p.appendChild(D)}var b=document.createElement("a");b.href="#",b.className=s.buttonPreviousMonth,b.innerHTML=this.options.buttonText.previousMonth;var w=document.createElement("a");w.href="#",w.className=s.buttonNextMonth,w.innerHTML=this.options.buttonText.nextMonth,l.appendChild(b),l.appendChild(p),l.appendChild(w),this.options.minDate&&i.isSameOrBefore(new n.DateTime(this.options.minDate),"month")&&a.classList.add(s.noPreviousMonth),this.options.maxDate&&i.isSameOrAfter(new n.DateTime(this.options.maxDate),"month")&&a.classList.add(s.noNextMonth);var M=document.createElement("div");M.className=s.monthItemWeekdaysRow,this.options.showWeekNumbers&&(M.innerHTML="<div>W</div>");for(var x=1;x<=7;x+=1){var T=3+this.options.firstDay+x,_=document.createElement("div");_.innerHTML=this.weekdayName(T),_.title=this.weekdayName(T,"long"),M.appendChild(_)}var L=document.createElement("div");L.className=s.containerDays;var S=this.calcSkipDays(i);this.options.showWeekNumbers&&S&&L.appendChild(this.renderWeekNumber(i));for(var E=0;E<S;E+=1){var I=document.createElement("div");L.appendChild(I)}for(E=1;E<=o;E+=1)i.setDate(E),this.options.showWeekNumbers&&i.getDay()===this.options.firstDay&&L.appendChild(this.renderWeekNumber(i)),L.appendChild(this.renderDay(i));return a.appendChild(l),a.appendChild(M),a.appendChild(L),a},t.prototype.renderDay=function(t){var e=this;t.setHours();var i=document.createElement("a");if(i.href="#",i.className=s.dayItem,i.innerHTML=String(t.getDate()),i.dataset.time=String(t.getTime()),t.toDateString()===(new Date).toDateString()&&i.classList.add(s.isToday),this.datePicked.length?(this.datePicked[0].toDateString()===t.toDateString()&&(i.classList.add(s.isStartDate),this.options.singleMode&&i.classList.add(s.isEndDate)),2===this.datePicked.length&&this.datePicked[1].toDateString()===t.toDateString()&&i.classList.add(s.isEndDate),2===this.datePicked.length&&t.isBetween(this.datePicked[0],this.datePicked[1])&&i.classList.add(s.isInRange)):this.options.startDate&&(this.options.startDate.toDateString()===t.toDateString()&&(i.classList.add(s.isStartDate),this.options.singleMode&&i.classList.add(s.isEndDate)),this.options.endDate&&this.options.endDate.toDateString()===t.toDateString()&&i.classList.add(s.isEndDate),this.options.startDate&&this.options.endDate&&t.isBetween(this.options.startDate,this.options.endDate)&&i.classList.add(s.isInRange)),this.options.minDate&&t.isBefore(new n.DateTime(this.options.minDate))&&i.classList.add(s.isLocked),this.options.maxDate&&t.isAfter(new n.DateTime(this.options.maxDate))&&i.classList.add(s.isLocked),this.options.minDays&&1===this.datePicked.length){var o=Number(!this.options.hotelMode),r=this.datePicked[0].clone().subtract(this.options.minDays-o,"day"),a=this.datePicked[0].clone().add(this.options.minDays-o,"day");t.isBetween(r,this.datePicked[0],"(]")&&i.classList.add(s.isLocked),t.isBetween(this.datePicked[0],a,"[)")&&i.classList.add(s.isLocked)}if(this.options.maxDays&&1===this.datePicked.length){o=Number(this.options.hotelMode),r=this.datePicked[0].clone().subtract(this.options.maxDays+o,"day"),a=this.datePicked[0].clone().add(this.options.maxDays+o,"day");t.isSameOrBefore(r)&&i.classList.add(s.isLocked),t.isSameOrAfter(a)&&i.classList.add(s.isLocked)}(this.options.selectForward&&1===this.datePicked.length&&t.isBefore(this.datePicked[0])&&i.classList.add(s.isLocked),this.options.selectBackward&&1===this.datePicked.length&&t.isAfter(this.datePicked[0])&&i.classList.add(s.isLocked),this.options.lockDays.length)&&(this.options.lockDays.filter((function(i){return i instanceof Array?t.isBetween(i[0],i[1],e.options.lockDaysInclusivity):i.isSame(t,"day")})).length&&i.classList.add(s.isLocked));this.options.highlightedDays.length&&(this.options.highlightedDays.filter((function(e){return e instanceof Array?t.isBetween(e[0],e[1],"[]"):e.isSame(t,"day")})).length&&i.classList.add(s.isHighlighted));if(this.datePicked.length<=1&&this.options.bookedDays.length){var l=this.options.bookedDaysInclusivity;this.options.hotelMode&&1===this.datePicked.length&&(l="()");var p=t.clone();p.subtract(1,"day"),t.clone().add(1,"day");var c=this.dateIsBooked(t,l),h=this.dateIsBooked(p,"[]"),d=this.dateIsBooked(t,"(]"),u=0===this.datePicked.length&&c||1===this.datePicked.length&&h&&c||1===this.datePicked.length&&h&&d,m=this.options.anyBookedDaysAsCheckout&&1===this.datePicked.length;u&&!m&&i.classList.add(s.isBooked)}return!this.options.disableWeekends||6!==t.getDay()&&0!==t.getDay()||i.classList.add(s.isLocked),"function"==typeof this.options.onRenderDay&&this.options.onRenderDay.call(this,i),i},t.prototype.renderFooter=function(){var t=document.createElement("div");if(t.className=s.containerFooter,this.options.footerHTML?t.innerHTML=this.options.footerHTML:t.innerHTML='\n      <span class="'+s.previewDateRange+'"></span>\n      <button type="button" class="'+s.buttonCancel+'">'+this.options.buttonText.cancel+'</button>\n      <button type="button" class="'+s.buttonApply+'">'+this.options.buttonText.apply+"</button>\n      ",this.options.singleMode){if(1===this.datePicked.length){var e=this.datePicked[0].format(this.options.format,this.options.lang);t.querySelector("."+s.previewDateRange).innerHTML=e}}else if(1===this.datePicked.length&&t.querySelector("."+s.buttonApply).setAttribute("disabled",""),2===this.datePicked.length){e=this.datePicked[0].format(this.options.format,this.options.lang);var i=this.datePicked[1].format(this.options.format,this.options.lang);t.querySelector("."+s.previewDateRange).innerHTML=""+e+this.options.delimiter+i}return t},t.prototype.renderWeekNumber=function(t){var e=document.createElement("div"),i=t.getWeek(this.options.firstDay);return e.className=s.weekNumber,e.innerHTML=53===i&&0===t.getMonth()?"53 / 1":i,e},t.prototype.renderTooltip=function(){var t=document.createElement("div");return t.className=s.containerTooltip,t},t.prototype.dateIsBooked=function(t,e){return this.options.bookedDays.filter((function(i){return i instanceof Array?t.isBetween(i[0],i[1],e):i.isSame(t,"day")})).length},t.prototype.weekdayName=function(t,e){return void 0===e&&(e="short"),new Date(1970,0,t,12,0,0,0).toLocaleString(this.options.lang,{weekday:e})},t.prototype.calcSkipDays=function(t){var e=t.getDay()-this.options.firstDay;return e<0&&(e+=7),e},t}();e.Calendar=a},function(t,e,i){(e=t.exports=i(7)(!1)).push([t.i,':root{--litepickerBgColor: #fff;--litepickerMonthHeaderTextColor: #333;--litepickerMonthButton: #9e9e9e;--litepickerMonthButtonHover: #2196f3;--litepickerMonthWidth: calc(var(--litepickerDayWidth) * 7);--litepickerMonthWeekdayColor: #9e9e9e;--litepickerDayColor: #333;--litepickerDayColorHover: #2196f3;--litepickerDayIsTodayColor: #f44336;--litepickerDayIsInRange: #bbdefb;--litepickerDayIsLockedColor: #9e9e9e;--litepickerDayIsBookedColor: #9e9e9e;--litepickerDayIsStartColor: #fff;--litepickerDayIsStartBg: #2196f3;--litepickerDayIsEndColor: #fff;--litepickerDayIsEndBg: #2196f3;--litepickerDayWidth: 38px;--litepickerButtonCancelColor: #fff;--litepickerButtonCancelBg: #9e9e9e;--litepickerButtonApplyColor: #fff;--litepickerButtonApplyBg: #2196f3;--litepickerButtonResetBtn: #909090;--litepickerButtonResetBtnHover: #2196f3;--litepickerHighlightedDayColor: #333;--litepickerHighlightedDayBg: #ffeb3b}.show-week-numbers{--litepickerMonthWidth: calc(var(--litepickerDayWidth) * 8)}.litepicker{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;font-size:0.8em;display:none}.litepicker .container__main{display:-webkit-box;display:-ms-flexbox;display:flex}.litepicker .container__months{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;background-color:var(--litepickerBgColor);border-radius:5px;-webkit-box-shadow:0 0 5px #ddd;box-shadow:0 0 5px #ddd;width:calc(var(--litepickerMonthWidth) + 10px);-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__months.columns-2{width:calc((var(--litepickerMonthWidth) * 2) + 20px)}.litepicker .container__months.columns-3{width:calc((var(--litepickerMonthWidth) * 3) + 30px)}.litepicker .container__months.columns-4{width:calc((var(--litepickerMonthWidth) * 4) + 40px)}.litepicker .container__months.split-view .month-item-header .button-previous-month,.litepicker .container__months.split-view .month-item-header .button-next-month{visibility:visible}.litepicker .container__months .month-item{padding:5px;width:var(--litepickerMonthWidth);-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__months .month-item-header{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;font-weight:500;padding:10px 5px;text-align:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--litepickerMonthHeaderTextColor)}.litepicker .container__months .month-item-header div{-webkit-box-flex:1;-ms-flex:1;flex:1}.litepicker .container__months .month-item-header div>.month-item-name{margin-right:5px}.litepicker .container__months .month-item-header div>.month-item-year{padding:0}.litepicker .container__months .month-item-header .reset-button{color:var(--litepickerButtonResetBtn)}.litepicker .container__months .month-item-header .reset-button>svg,.litepicker .container__months .month-item-header .reset-button>img{fill:var(--litepickerButtonResetBtn);pointer-events:none}.litepicker .container__months .month-item-header .reset-button:hover{color:var(--litepickerButtonResetBtnHover)}.litepicker .container__months .month-item-header .reset-button:hover>svg{fill:var(--litepickerButtonResetBtnHover)}.litepicker .container__months .month-item-header .button-previous-month,.litepicker .container__months .month-item-header .button-next-month{visibility:hidden;text-decoration:none;color:var(--litepickerMonthButton);padding:3px 5px;border-radius:3px;-webkit-transition:color 0.3s, border 0.3s;transition:color 0.3s, border 0.3s;cursor:default}.litepicker .container__months .month-item-header .button-previous-month>svg,.litepicker .container__months .month-item-header .button-previous-month>img,.litepicker .container__months .month-item-header .button-next-month>svg,.litepicker .container__months .month-item-header .button-next-month>img{fill:var(--litepickerMonthButton);pointer-events:none}.litepicker .container__months .month-item-header .button-previous-month:hover,.litepicker .container__months .month-item-header .button-next-month:hover{color:var(--litepickerMonthButtonHover)}.litepicker .container__months .month-item-header .button-previous-month:hover>svg,.litepicker .container__months .month-item-header .button-next-month:hover>svg{fill:var(--litepickerMonthButtonHover)}.litepicker .container__months .month-item-weekdays-row{display:-webkit-box;display:-ms-flexbox;display:flex;justify-self:center;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;color:var(--litepickerMonthWeekdayColor)}.litepicker .container__months .month-item-weekdays-row>div{padding:5px 0;font-size:85%;-webkit-box-flex:1;-ms-flex:1;flex:1;width:var(--litepickerDayWidth);text-align:center}.litepicker .container__months .month-item:first-child .button-previous-month{visibility:visible}.litepicker .container__months .month-item:last-child .button-next-month{visibility:visible}.litepicker .container__months .month-item.no-previous-month .button-previous-month{visibility:hidden}.litepicker .container__months .month-item.no-next-month .button-next-month{visibility:hidden}.litepicker .container__days{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;justify-self:center;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:center;-webkit-box-sizing:content-box;box-sizing:content-box}.litepicker .container__days>div,.litepicker .container__days>a{padding:5px 0;width:var(--litepickerDayWidth)}.litepicker .container__days .day-item{color:var(--litepickerDayColor);text-align:center;text-decoration:none;border-radius:3px;-webkit-transition:color 0.3s, border 0.3s;transition:color 0.3s, border 0.3s;cursor:default}.litepicker .container__days .day-item:hover{color:var(--litepickerDayColorHover);-webkit-box-shadow:inset 0 0 0 1px var(--litepickerDayColorHover);box-shadow:inset 0 0 0 1px var(--litepickerDayColorHover)}.litepicker .container__days .day-item.is-today{color:var(--litepickerDayIsTodayColor)}.litepicker .container__days .day-item.is-locked{color:var(--litepickerDayIsLockedColor)}.litepicker .container__days .day-item.is-locked:hover{color:var(--litepickerDayIsLockedColor);-webkit-box-shadow:none;box-shadow:none;cursor:default}.litepicker .container__days .day-item.is-booked{color:var(--litepickerDayIsBookedColor)}.litepicker .container__days .day-item.is-booked:hover{color:var(--litepickerDayIsBookedColor);-webkit-box-shadow:none;box-shadow:none;cursor:default}.litepicker .container__days .day-item.is-in-range{background-color:var(--litepickerDayIsInRange);border-radius:0}.litepicker .container__days .day-item.is-start-date{color:var(--litepickerDayIsStartColor);background-color:var(--litepickerDayIsStartBg);border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:0;border-bottom-right-radius:0}.litepicker .container__days .day-item.is-start-date.is-flipped{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-end-date{color:var(--litepickerDayIsEndColor);background-color:var(--litepickerDayIsEndBg);border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-end-date.is-flipped{border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:0;border-bottom-right-radius:0}.litepicker .container__days .day-item.is-start-date.is-end-date{border-top-left-radius:5px;border-bottom-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px}.litepicker .container__days .day-item.is-highlighted{color:var(--litepickerHighlightedDayColor);background-color:var(--litepickerHighlightedDayBg)}.litepicker .container__days .week-number{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#9e9e9e;font-size:85%}.litepicker .container__footer{text-align:right;padding:10px 5px;margin:0 5px;background-color:#fafafa;-webkit-box-shadow:inset 0px 3px 3px 0px #ddd;box-shadow:inset 0px 3px 3px 0px #ddd;border-bottom-left-radius:5px;border-bottom-right-radius:5px}.litepicker .container__footer .preview-date-range{margin-right:10px;font-size:90%}.litepicker .container__footer .button-cancel{background-color:var(--litepickerButtonCancelBg);color:var(--litepickerButtonCancelColor);border:0;padding:3px 7px 4px;border-radius:3px}.litepicker .container__footer .button-cancel>svg,.litepicker .container__footer .button-cancel>img{pointer-events:none}.litepicker .container__footer .button-apply{background-color:var(--litepickerButtonApplyBg);color:var(--litepickerButtonApplyColor);border:0;padding:3px 7px 4px;border-radius:3px;margin-left:10px;margin-right:10px}.litepicker .container__footer .button-apply:disabled{opacity:0.7}.litepicker .container__footer .button-apply>svg,.litepicker .container__footer .button-apply>img{pointer-events:none}.litepicker .container__tooltip{position:absolute;margin-top:-4px;padding:4px 8px;border-radius:4px;background-color:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.25);box-shadow:0 1px 3px rgba(0,0,0,0.25);white-space:nowrap;font-size:11px;pointer-events:none;visibility:hidden}.litepicker .container__tooltip:before{position:absolute;bottom:-5px;left:calc(50% - 5px);border-top:5px solid rgba(0,0,0,0.12);border-right:5px solid transparent;border-left:5px solid transparent;content:""}.litepicker .container__tooltip:after{position:absolute;bottom:-4px;left:calc(50% - 4px);border-top:4px solid #fff;border-right:4px solid transparent;border-left:4px solid transparent;content:""}.litepicker-open{overflow:hidden}.litepicker-backdrop{display:none;background-color:#000;opacity:0.3;position:fixed;top:0;right:0;bottom:0;left:0}\n',""]),e.locals={showWeekNumbers:"show-week-numbers",litepicker:"litepicker",containerMain:"container__main",containerMonths:"container__months",columns2:"columns-2",columns3:"columns-3",columns4:"columns-4",splitView:"split-view",monthItemHeader:"month-item-header",buttonPreviousMonth:"button-previous-month",buttonNextMonth:"button-next-month",monthItem:"month-item",monthItemName:"month-item-name",monthItemYear:"month-item-year",resetButton:"reset-button",monthItemWeekdaysRow:"month-item-weekdays-row",noPreviousMonth:"no-previous-month",noNextMonth:"no-next-month",containerDays:"container__days",dayItem:"day-item",isToday:"is-today",isLocked:"is-locked",isBooked:"is-booked",isInRange:"is-in-range",isStartDate:"is-start-date",isFlipped:"is-flipped",isEndDate:"is-end-date",isHighlighted:"is-highlighted",weekNumber:"week-number",containerFooter:"container__footer",previewDateRange:"preview-date-range",buttonCancel:"button-cancel",buttonApply:"button-apply",containerTooltip:"container__tooltip",litepickerOpen:"litepicker-open",litepickerBackdrop:"litepicker-backdrop"}},function(t,e,i){"use strict";t.exports=function(t){var e=[];return e.toString=function(){return this.map((function(e){var i=function(t,e){var i=t[1]||"",o=t[3];if(!o)return i;if(e&&"function"==typeof btoa){var n=(r=o,a=btoa(unescape(encodeURIComponent(JSON.stringify(r)))),l="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(a),"/*# ".concat(l," */")),s=o.sources.map((function(t){return"/*# sourceURL=".concat(o.sourceRoot).concat(t," */")}));return[i].concat(s).concat([n]).join("\n")}var r,a,l;return[i].join("\n")}(e,t);return e[2]?"@media ".concat(e[2],"{").concat(i,"}"):i})).join("")},e.i=function(t,i){"string"==typeof t&&(t=[[null,t,""]]);for(var o={},n=0;n<this.length;n++){var s=this[n][0];null!=s&&(o[s]=!0)}for(var r=0;r<t.length;r++){var a=t[r];null!=a[0]&&o[a[0]]||(i&&!a[2]?a[2]=i:i&&(a[2]="(".concat(a[2],") and (").concat(i,")")),e.push(a))}},e}},function(t,e,i){"use strict";var o,n={},s=function(){return void 0===o&&(o=Boolean(window&&document&&document.all&&!window.atob)),o},r=function(){var t={};return function(e){if(void 0===t[e]){var i=document.querySelector(e);if(window.HTMLIFrameElement&&i instanceof window.HTMLIFrameElement)try{i=i.contentDocument.head}catch(t){i=null}t[e]=i}return t[e]}}();function a(t,e){for(var i=[],o={},n=0;n<t.length;n++){var s=t[n],r=e.base?s[0]+e.base:s[0],a={css:s[1],media:s[2],sourceMap:s[3]};o[r]?o[r].parts.push(a):i.push(o[r]={id:r,parts:[a]})}return i}function l(t,e){for(var i=0;i<t.length;i++){var o=t[i],s=n[o.id],r=0;if(s){for(s.refs++;r<s.parts.length;r++)s.parts[r](o.parts[r]);for(;r<o.parts.length;r++)s.parts.push(g(o.parts[r],e))}else{for(var a=[];r<o.parts.length;r++)a.push(g(o.parts[r],e));n[o.id]={id:o.id,refs:1,parts:a}}}}function p(t){var e=document.createElement("style");if(void 0===t.attributes.nonce){var o=i.nc;o&&(t.attributes.nonce=o)}if(Object.keys(t.attributes).forEach((function(i){e.setAttribute(i,t.attributes[i])})),"function"==typeof t.insert)t.insert(e);else{var n=r(t.insert||"head");if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");n.appendChild(e)}return e}var c,h=(c=[],function(t,e){return c[t]=e,c.filter(Boolean).join("\n")});function d(t,e,i,o){var n=i?"":o.css;if(t.styleSheet)t.styleSheet.cssText=h(e,n);else{var s=document.createTextNode(n),r=t.childNodes;r[e]&&t.removeChild(r[e]),r.length?t.insertBefore(s,r[e]):t.appendChild(s)}}function u(t,e,i){var o=i.css,n=i.media,s=i.sourceMap;if(n&&t.setAttribute("media",n),s&&btoa&&(o+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(s))))," */")),t.styleSheet)t.styleSheet.cssText=o;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(o))}}var m=null,f=0;function g(t,e){var i,o,n;if(e.singleton){var s=f++;i=m||(m=p(e)),o=d.bind(null,i,s,!1),n=d.bind(null,i,s,!0)}else i=p(e),o=u.bind(null,i,e),n=function(){!function(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t)}(i)};return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e)}else n()}}t.exports=function(t,e){(e=e||{}).attributes="object"==typeof e.attributes?e.attributes:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=s());var i=a(t,e);return l(i,e),function(t){for(var o=[],s=0;s<i.length;s++){var r=i[s],p=n[r.id];p&&(p.refs--,o.push(p))}t&&l(a(t,e),e);for(var c=0;c<o.length;c++){var h=o[c];if(0===h.refs){for(var d=0;d<h.parts.length;d++)h.parts[d]();delete n[h.id]}}}}},function(t,e,i){"use strict";var o=this&&this.__assign||function(){return(o=Object.assign||function(t){for(var e,i=1,o=arguments.length;i<o;i++)for(var n in e=arguments[i])Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t}).apply(this,arguments)},n=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var e={};if(null!=t)for(var i in t)Object.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e.default=t,e};Object.defineProperty(e,"__esModule",{value:!0});var s=i(0),r=i(3),a=n(i(1)),l=i(2);r.Litepicker.prototype.show=function(t){void 0===t&&(t=null);var e=t||this.options.element;if(this.triggerElement=e,this.options.inlineMode)return this.picker.style.position="static",this.picker.style.display="inline-block",this.picker.style.top=null,this.picker.style.left=null,this.picker.style.bottom=null,void(this.picker.style.right=null);if(this.options.scrollToDate)if(!this.options.startDate||t&&t!==this.options.element){if(t&&this.options.endDate&&t===this.options.elementEnd){var i=this.options.endDate.clone();i.setDate(1),this.options.numberOfMonths>1&&i.setMonth(i.getMonth()-(this.options.numberOfMonths-1)),this.calendars[0]=i.clone()}}else{var o=this.options.startDate.clone();o.setDate(1),this.calendars[0]=o.clone()}if(this.options.mobileFriendly&&l.isMobile()){this.picker.style.position="fixed",this.picker.style.display="block","portrait"===l.getOrientation()?(this.options.numberOfMonths=1,this.options.numberOfColumns=1):(this.options.numberOfMonths=2,this.options.numberOfColumns=2),this.render();var n=this.picker.getBoundingClientRect();return this.picker.style.top="calc(50% - "+n.height/2+"px)",this.picker.style.left="calc(50% - "+n.width/2+"px)",this.picker.style.right=null,this.picker.style.bottom=null,this.picker.style.zIndex=this.options.zIndex,this.backdrop.style.display="block",this.backdrop.style.zIndex=this.options.zIndex-1,document.body.classList.add(a.litepickerOpen),"function"==typeof this.options.onShow&&this.options.onShow.call(this),void(t?t.blur():this.options.element.blur())}this.render(),this.picker.style.position="absolute",this.picker.style.display="block",this.picker.style.zIndex=this.options.zIndex;var s=e.getBoundingClientRect(),r=this.picker.getBoundingClientRect(),p=s.bottom,c=s.left,h=0,d=0,u=0,m=0;if(this.options.parentEl){var f=this.picker.parentNode.getBoundingClientRect();p-=f.bottom,(p+=s.height)+r.height>window.innerHeight&&s.top-f.top-s.height>0&&(u=s.top-f.top-s.height),(c-=f.left)+r.width>window.innerWidth&&s.right-f.right-r.width>0&&(m=s.right-f.right-r.width)}else h=window.scrollX||window.pageXOffset,d=window.scrollY||window.pageYOffset,p+r.height>window.innerHeight&&s.top-r.height>0&&(u=s.top-r.height),c+r.width>window.innerWidth&&s.right-r.width>0&&(m=s.right-r.width);this.picker.style.top=(u||p)+d+"px",this.picker.style.left=(m||c)+h+"px",this.picker.style.right=null,this.picker.style.bottom=null,"function"==typeof this.options.onShow&&this.options.onShow.call(this)},r.Litepicker.prototype.hide=function(){this.isShowning()&&(this.datePicked.length=0,this.updateInput(),this.options.inlineMode?this.render():(this.picker.style.display="none","function"==typeof this.options.onHide&&this.options.onHide.call(this),this.options.mobileFriendly&&(document.body.classList.remove(a.litepickerOpen),this.backdrop.style.display="none")))},r.Litepicker.prototype.getDate=function(){return this.getStartDate()},r.Litepicker.prototype.getStartDate=function(){return this.options.startDate?this.options.startDate.clone().getDateInstance():null},r.Litepicker.prototype.getEndDate=function(){return this.options.endDate?this.options.endDate.clone().getDateInstance():null},r.Litepicker.prototype.setDate=function(t){this.setStartDate(t),"function"==typeof this.options.onSelect&&this.options.onSelect.call(this,this.getDate())},r.Litepicker.prototype.setStartDate=function(t){t&&(this.options.startDate=new s.DateTime(t,this.options.format,this.options.lang),this.updateInput())},r.Litepicker.prototype.setEndDate=function(t){t&&(this.options.endDate=new s.DateTime(t,this.options.format,this.options.lang),this.options.startDate.getTime()>this.options.endDate.getTime()&&(this.options.endDate=this.options.startDate.clone(),this.options.startDate=new s.DateTime(t,this.options.format,this.options.lang)),this.updateInput())},r.Litepicker.prototype.setDateRange=function(t,e){this.triggerElement=void 0,this.setStartDate(t),this.setEndDate(e),this.updateInput(),"function"==typeof this.options.onSelect&&this.options.onSelect.call(this,this.getStartDate(),this.getEndDate())},r.Litepicker.prototype.gotoDate=function(t,e){void 0===e&&(e=0);var i=new s.DateTime(t);i.setDate(1),this.calendars[e]=i.clone(),this.render()},r.Litepicker.prototype.setLockDays=function(t){this.options.lockDays=s.DateTime.convertArray(t,this.options.lockDaysFormat),this.render()},r.Litepicker.prototype.setBookedDays=function(t){this.options.bookedDays=s.DateTime.convertArray(t,this.options.bookedDaysFormat),this.render()},r.Litepicker.prototype.setHighlightedDays=function(t){this.options.highlightedDays=s.DateTime.convertArray(t,this.options.highlightedDaysFormat),this.render()},r.Litepicker.prototype.setOptions=function(t){delete t.element,delete t.elementEnd,delete t.parentEl,t.startDate&&(t.startDate=new s.DateTime(t.startDate,this.options.format,this.options.lang)),t.endDate&&(t.endDate=new s.DateTime(t.endDate,this.options.format,this.options.lang));var e=o(o({},this.options.dropdowns),t.dropdowns),i=o(o({},this.options.buttonText),t.buttonText),n=o(o({},this.options.tooltipText),t.tooltipText);this.options=o(o({},this.options),t),this.options.dropdowns=o({},e),this.options.buttonText=o({},i),this.options.tooltipText=o({},n),!this.options.singleMode||this.options.startDate instanceof s.DateTime||(this.options.startDate=null,this.options.endDate=null),this.options.singleMode||this.options.startDate instanceof s.DateTime&&this.options.endDate instanceof s.DateTime||(this.options.startDate=null,this.options.endDate=null);for(var r=0;r<this.options.numberOfMonths;r+=1){var a=this.options.startDate?this.options.startDate.clone():new s.DateTime;a.setDate(1),a.setMonth(a.getMonth()+r),this.calendars[r]=a}this.options.lockDays.length&&(this.options.lockDays=s.DateTime.convertArray(this.options.lockDays,this.options.lockDaysFormat)),this.options.bookedDays.length&&(this.options.bookedDays=s.DateTime.convertArray(this.options.bookedDays,this.options.bookedDaysFormat)),this.options.highlightedDays.length&&(this.options.highlightedDays=s.DateTime.convertArray(this.options.highlightedDays,this.options.highlightedDaysFormat)),this.render(),this.options.inlineMode&&this.show(),this.updateInput()},r.Litepicker.prototype.clearSelection=function(){this.options.startDate=null,this.options.endDate=null,this.datePicked.length=0,this.updateInput(),this.isShowning()&&this.render()},r.Litepicker.prototype.destroy=function(){this.picker&&this.picker.parentNode&&(this.picker.parentNode.removeChild(this.picker),this.picker=null),this.backdrop&&this.backdrop.parentNode&&this.backdrop.parentNode.removeChild(this.backdrop)}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0})}]).Litepicker}));
+
+/***/ }),
+
 /***/ "./node_modules/lozad/dist/lozad.min.js":
 /*!**********************************************!*\
   !*** ./node_modules/lozad/dist/lozad.min.js ***!
@@ -88668,6 +88690,108 @@ var calendarSlick = {
 
 /***/ }),
 
+/***/ "./resources/js/controllers/landing.js":
+/*!*********************************************!*\
+  !*** ./resources/js/controllers/landing.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LandingController; });
+/* harmony import */ var _models_landing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/landing */ "./resources/js/models/landing.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var landingModel = new _models_landing__WEBPACK_IMPORTED_MODULE_0__["default"]();
+
+var LandingController = /*#__PURE__*/function () {
+  function LandingController() {
+    _classCallCheck(this, LandingController);
+  }
+
+  _createClass(LandingController, [{
+    key: "getContentHome",
+    value: function getContentHome() {
+      var data = landingModel.getContentHome();
+      return data;
+    }
+  }]);
+
+  return LandingController;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/controllers/program.js":
+/*!*********************************************!*\
+  !*** ./resources/js/controllers/program.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProgramController; });
+/* harmony import */ var _models_program__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/program */ "./resources/js/models/program.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var programModel = new _models_program__WEBPACK_IMPORTED_MODULE_0__["default"]();
+/**
+ * @class Clase para recibir información de la vista y mandarla al modelo
+ * Aquí se dan formato a algunos datos y se retorna el resultado del modelo a la vista
+ */
+
+var ProgramController = /*#__PURE__*/function () {
+  function ProgramController() {
+    _classCallCheck(this, ProgramController);
+  }
+
+  _createClass(ProgramController, [{
+    key: "getSynopsis",
+    value: function getSynopsis(id) {
+      var data = programModel.getSynopsis(id);
+      return data;
+    }
+  }, {
+    key: "editDetailsSynopsis",
+    value: function editDetailsSynopsis(data) {
+      var response = programModel.editBlockSynopsis(data);
+      return response;
+    }
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(chapterId, change, synopsis, title) {
+      var response = programModel.editAttributeSynopsis(chapterId, change, synopsis, title);
+      return response;
+    }
+  }, {
+    key: "updateImagesSynopsis",
+    value: function updateImagesSynopsis(images) {
+      var response = programModel.updateImagesSynopsis(images);
+      return response;
+    }
+  }]);
+
+  return ProgramController;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/form/form.js":
 /*!***********************************!*\
   !*** ./resources/js/form/form.js ***!
@@ -89626,6 +89750,304 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", function (e)
 
 /***/ }),
 
+/***/ "./resources/js/models/landing.js":
+/*!****************************************!*\
+  !*** ./resources/js/models/landing.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LandingModel; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var LandingModel = /*#__PURE__*/function () {
+  function LandingModel() {
+    _classCallCheck(this, LandingModel);
+  }
+
+  _createClass(LandingModel, [{
+    key: "getContentHome",
+    value: function () {
+      var _getContentHome = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return fetch("landing/home");
+
+              case 2:
+                response = _context.sent;
+                _context.next = 5;
+                return response.json();
+
+              case 5:
+                data = _context.sent;
+                return _context.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getContentHome() {
+        return _getContentHome.apply(this, arguments);
+      }
+
+      return getContentHome;
+    }()
+  }]);
+
+  return LandingModel;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/program.js":
+/*!****************************************!*\
+  !*** ./resources/js/models/program.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProgramModel; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var ProgramModel = /*#__PURE__*/function () {
+  function ProgramModel() {
+    _classCallCheck(this, ProgramModel);
+  }
+
+  _createClass(ProgramModel, [{
+    key: "editBlockSynopsis",
+    //Edit block of data at the bottom of the synopsis landing
+    value: function () {
+      var _editBlockSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(details) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: JSON.stringify(details),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context.next = 3;
+                return fetch("landing/editBlockSynopsis", options);
+
+              case 3:
+                response = _context.sent;
+                _context.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context.sent;
+                return _context.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function editBlockSynopsis(_x) {
+        return _editBlockSynopsis.apply(this, arguments);
+      }
+
+      return editBlockSynopsis;
+    }()
+  }, {
+    key: "getSynopsis",
+    value: function () {
+      var _getSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(chapter_id) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: JSON.stringify({
+                    chapter_id: chapter_id
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context2.next = 3;
+                return fetch("landing/getSynopsis", options);
+
+              case 3:
+                response = _context2.sent;
+                _context2.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context2.sent;
+                return _context2.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getSynopsis(_x2) {
+        return _getSynopsis.apply(this, arguments);
+      }
+
+      return getSynopsis;
+    }()
+  }, {
+    key: "editAttributeSynopsis",
+    value: function () {
+      var _editAttributeSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(chapterId, change, synopsis, title) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: JSON.stringify({
+                    chapterId: chapterId,
+                    change: change,
+                    synopsis: synopsis,
+                    title: title
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context3.next = 3;
+                return fetch("program/editSynopsis", options);
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context3.sent;
+                return _context3.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function editAttributeSynopsis(_x3, _x4, _x5, _x6) {
+        return _editAttributeSynopsis.apply(this, arguments);
+      }
+
+      return editAttributeSynopsis;
+    }()
+  }, {
+    key: "updateImagesSynopsis",
+    value: function () {
+      var _updateImagesSynopsis = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(images) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: images,
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context4.next = 3;
+                return fetch("landing/updateImagesSynopsis", options);
+
+              case 3:
+                response = _context4.sent;
+                _context4.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context4.sent;
+                return _context4.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function updateImagesSynopsis(_x7) {
+        return _updateImagesSynopsis.apply(this, arguments);
+      }
+
+      return updateImagesSynopsis;
+    }()
+  }]);
+
+  return ProgramModel;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/nav/nav.js":
 /*!*********************************!*\
   !*** ./resources/js/nav/nav.js ***!
@@ -89654,9 +90076,3023 @@ function showContentNav(content, itemNav, items, activeClass) {
   !*** ./resources/js/operaciones_grilla.js ***!
   \********************************************/
 /*! exports provided: eventsGrilla */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js: Unexpected token (239:0)\n\n\u001b[0m \u001b[90m 237 | \u001b[39m                \u001b[90m//         break;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 238 | \u001b[39m                \u001b[90m// }\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 239 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 240 | \u001b[39m               \u001b[90m/* let loader = `\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 241 | \u001b[39m\u001b[90m                        <div class=\"loader-view-container\" id=\"loader1\">\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 242 | \u001b[39m\u001b[90m                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\u001b[39m\u001b[0m\n    at Parser._raise (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:746:17)\n    at Parser.raiseWithData (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:739:17)\n    at Parser.raise (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:733:17)\n    at Parser.unexpected (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:8807:16)\n    at Parser.parseExprAtom (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:10130:20)\n    at Parser.parseExprSubscripts (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9656:23)\n    at Parser.parseMaybeUnary (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9636:21)\n    at Parser.parseExprOps (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9506:23)\n    at Parser.parseMaybeConditional (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9479:23)\n    at Parser.parseMaybeAssign (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9434:21)\n    at Parser.parseExpression (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9386:23)\n    at Parser.parseStatementContent (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11285:23)\n    at Parser.parseStatement (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Parser.parseBlockOrModuleBlockBody (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Parser.parseBlockBody (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Parser.parseBlock (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11701:10)\n    at Parser.parseStatementContent (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11232:21)\n    at Parser.parseStatement (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Parser.parseIfStatement (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11508:28)\n    at Parser.parseStatementContent (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11201:21)\n    at Parser.parseStatement (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Parser.parseBlockOrModuleBlockBody (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Parser.parseBlockBody (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Parser.parseBlock (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11701:10)\n    at Parser.parseFunctionBody (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:10708:24)\n    at Parser.parseFunctionBodyAndFinish (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:10691:10)\n    at /Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11871:12\n    at Parser.withTopicForbiddingContext (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11031:14)\n    at Parser.parseFunction (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:11870:10)\n    at Parser.parseFunctionExpression (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:10171:17)\n    at Parser.parseExprAtom (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:10061:21)\n    at Parser.parseExprSubscripts (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9656:23)\n    at Parser.parseMaybeUnary (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9636:21)\n    at Parser.parseExprOps (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9506:23)\n    at Parser.parseMaybeConditional (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9479:23)\n    at Parser.parseMaybeAssign (/Users/zaid/Documents/CTIN/Claro_Network/backoffice/node_modules/@babel/parser/lib/index.js:9434:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventsGrilla", function() { return eventsGrilla; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_UI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UI/UI.js */ "./resources/js/UI/UI.js");
+/* harmony import */ var _views_program_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/program.js */ "./resources/js/views/program.js");
+/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/landing */ "./resources/js/views/landing.js");
+/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! litepicker */ "./node_modules/litepicker/dist/js/main.js");
+/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(litepicker__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./config/config.js */ "./resources/js/config/config.js");
+/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config/slick.js */ "./resources/js/config/slick.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//JQUERY
+ //Métodos para aplicar ciertos estilos a las filas y columnas
+
+ //View
+
+
+var programView = new _views_program_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
+
+var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); //Librería para mostrar calendario
+
+ //Servicios para editar campos en la grilla''
+
+ //Servicios para editar landing
+
+ //Configraciones para la librería de Cleave JS
+
+
+ //Métodos para mostrar las vistas de "Landing" o "Grilla"
+
+ //Config
+
+
+
+
+function eventsGrilla() {
+  //calendario de sinopsis
+  var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
+    slidesToShow: 11,
+    slidesToScroll: 11,
+    infinite: true,
+    dots: false,
+    centerMode: false,
+    arrows: true,
+    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  });
+  calendarsinopsis.slick("unslick");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("canal-claro", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+  }); //Previsualizar el video que subió el usuario en el landing de concert channel
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: "video/mp4"
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container video").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
+      };
+    }
+  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+  }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-prueba").click(function () {
+    getHeaderLanding();
+  });
+  var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+  var LandingHomeConcert = {
+    //remote: `${baseURL}home-edi-claro.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/home-edi-concert.php",
+    container: document.getElementById("navbar-prev-home-concert"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "concert-home-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            landingView.renderHomeHeaderConcertChannel();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            break;
+
+          case "concert-home-slider":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"; //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+    }
+  };
+  var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+
+  if (NavbarHomeConcert) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
+    var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
+  }
+
+  var LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php"),
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            break;
+
+          case "claro-home-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            break;
+
+          case "claro-home-slider":
+            var landing = 'Canal Claro';
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
+    new easyXDM.Socket(LandingHomeClaro);
+  }
+
+  var LandingSinopsis = {
+    //remote: `${baseURL}sinopsis-edi.php`,
+    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    container: document.getElementById("sinopsis-container"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+            data.then(function (data) {
+              if (data.code == 200) {
+                var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
+                var index = 1;
+                var slide = "";
+                var image = "";
+
+                while (true) {
+                  if (data.data["image_background_".concat(index)] !== undefined) {
+                    image = data.data["image_background_".concat(index)];
+
+                    if (data.data["image_background_".concat(index)] == null) {
+                      image = "./images/synopsis/image-synopsis-carrusel.jpg";
+                    }
+
+                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
+                    index++;
+                  } else {
+                    break;
+                  }
+                }
+
+                programminfSliderSynopsis.html(slide);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
+
+                try {
+                  programminfSliderSynopsis.slick("unslick");
+                  programminfSliderSynopsis.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function customPaging(slider, i) {
+                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                    }
+                  });
+                } catch (error) {
+                  programminfSliderSynopsis.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                    initialSlide: 0,
+                    infinite: false,
+                    customPaging: function customPaging(slider, i) {
+                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                    }
+                  });
+                }
+
+                var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
+                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
+                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
+                  var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                  if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                      currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                    buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                    buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                  }
+                });
+              }
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+            });
+            break;
+
+          case "synopsis-main-image":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+            data.then(function (data) {
+              if (data.code == 200) {
+                //Verificamos si tiene una imagen
+                var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image-synopsis').val(); //Button
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
+              }
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+              }
+            });
+            break;
+
+          case "synopsis-description-container":
+            programView.renderDescriptionSynopsis(json.id);
+            break;
+
+          case "synopsis-images-container":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
+            data.then(function (data) {
+              if (data.code == 200) {
+                //Limpiar inputs
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('.image-synopsis-input').val();
+                var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
+                var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              }
+
+              buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
+              buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
+              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+              if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
+              }
+            });
+            break;
+
+          case "synopsis-datails-container":
+            programView.renderDetailsSynopsis(json.id);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+
+  if (navbarPrevSINOPSIS) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      programView.renderSynopsis(id, socketSynopsis);
+    });
+  } //Editar información de sinopsis
+
+
+  programView.editDetailsSynopsis(socketSynopsis);
+  programView.editAttributesSynopsis(socketSynopsis);
+  programView.renderPrevSynopsis();
+  programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
+  programView.editImagesSynopsis(socketSynopsis);
+  programView.editImageSynopsis(socketSynopsis);
+  programView.editImagesBanner(socketSynopsis); //Landing de concert channel
+
+  var confLandingClaroCinema = {
+    remote: "".concat(baseURL, "claro-cinema-edi.php"),
+    // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
+    container: document.getElementById("navbar-prev-claro-cinema"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("slider-pagination");
+            break;
+
+          case "current-programming-cinema":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year = date.getUTCFullYear();
+
+            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
+
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro");
+            break;
+
+          case "header-landing-cinema":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("header-landing-cinema");
+            break;
+
+          case "title-cinema":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-cinema");
+            break;
+
+          case "promo-cinema":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("promo-cinema");
+            break;
+
+          case "title-carrusel1":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel1");
+            break;
+
+          case "carrusel1":
+            var landing = "Claro Cinema";
+            var id = 1;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
+            break;
+
+          case "title-carrusel2":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel2");
+            break;
+
+          case "carrusel2":
+            landing = "Claro Cinema";
+            id = 2;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarPrevClaroCinema = document.getElementById("navbar-prev-claro-cinema");
+
+  if (navbarPrevClaroCinema) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe").remove();
+    new easyXDM.Socket(confLandingClaroCinema);
+  }
+  /* Concert channel */
+
+
+  var confLandingConcertChannel = {
+    remote: "".concat(baseURL, "concert-channel-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
+    container: document.getElementById("navbar-prev-concert-channel"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
+
+        switch (json.type) {
+          case "current-programming-concert":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year2 = date.getUTCFullYear();
+
+            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day);
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel");
+            break;
+
+          case "header-landing-concert":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelHeader"])();
+            break;
+
+          case "pencil-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlockHeader3"])();
+            break;
+
+          case "pencil-video":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getConcertChannelPromo"])();
+            break;
+
+          case "pencil-header1":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4One"])();
+            break;
+
+          case "header2":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4OTwo"])();
+            break;
+
+          /* case "pencil-carrusel1":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-edit-program-carrusel").modal("show");
+          //slider para carrusel concert-channel
+          $(".carrusel1-slider").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel1-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+          var thumb = $(slider.$slides[i]).data();
+          return (
+           "<p class='a-text-bold-teal slider-pagination-item'>" +
+           (i + 1) +
+           "</p>"
+          );
+          }
+          });
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-carrusel2":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-edit-program-carrusel2").modal("show");
+          $(".carrusel2-slider").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel2-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+          var thumb = $(slider.$slides[i]).data();
+          return (
+           "<p class='a-text-bold-teal slider-pagination-item'>" +
+           (i + 1) +
+           "</p>"
+          );
+          }
+          });
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-header":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-video":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-promos-concert").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-header1":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "header2":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;*/
+
+          case "pencil-carrusel1":
+            var landing = "Concert Channel";
+            var id = 1;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+            break;
+
+          case "pencil-carrusel2":
+            landing = "Concert Channel";
+            id = 2;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+            break;
+
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannel"])("slider-pagination");
+            break;
+
+          case "pencil-header1":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "header2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var confPrevConcert = {
+    remote: "".concat(baseURL, "concert-channel.php"),
+    container: document.getElementById("navbar-prev-concert-channel"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  }; //previsualizar concert channel
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+    //Landing concert channel
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-concert-channel", function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-concert-landing", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "concert-channel");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-canal-landing", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-canal-landing").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "canal-claro");
+  }); //Pencil Chanel
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-canal-claro", function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId);
+  }); //Pencil Canal
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId);
+  }); //Modal de link para botón
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("show.bs.modal", function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val(link);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("hidden.bs.modal", function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(link);
+  }); //Concert channel promo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").click(function () {
+    var file = "";
+
+    if (document.getElementById("video-promo-file-concert").files[0]) {
+      file = document.getElementById("video-promo-file-concert").files[0];
+    } else if (document.getElementById("image-promo-concert").files[0]) {
+      file = document.getElementById("image-promo-concert").files[0];
+    } else {
+      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+    }
+
+    var landing = "Concert Channel";
+    var data = new FormData();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    data.append("promo", file);
+    data.append("landing", landing);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLanding"])(data);
+  }); //Concert Channel Header
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
+    var landing = "Concert Channel";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2").val() || "";
+    var logo = document.getElementById("header-lading-concert-logo").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLanding"])(data);
+  }); //Edicion del header del home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
+    var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
+    var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
+    var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
+    var data = new FormData();
+    data.append("video", videoimage);
+    data.append("title", title);
+    data.append("subtitle", subtitle);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHomeHeader"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+  }); //Previsualizar el video que subió el usuario en el landing de home
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: "video/mp4"
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").html("\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                <source src=\"".concat(url, "\" type=\"video/mp4\">\n\n                 </video>\n\n                "));
+      };
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
+    //Title
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
+    var landing = "Concert Channel";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); //Subtitle
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+  });
+
+  function checkURL(url) {
+    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  } //Previsualizar el video que subió el usuario en el landing de concert channel
+
+
+  var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").val("");
+
+    if (this.files && this.files[0]) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      reader.onload = function (e) {
+        // The file reader gives us an ArrayBuffer:
+        var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+        var videoBlob = new Blob([new Uint8Array(buffer)], {
+          type: "video/mp4"
+        }); // The blob gives us a URL to the video file:
+
+        var url = window.URL.createObjectURL(videoBlob);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
+      };
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
+    videoPromoInput.val("");
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
+      };
+    }
+
+    reader.readAsDataURL(this.files[0]);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close-modal-promos-concert").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val("");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo-concert-button").on("click", function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+    var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container");
+    var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+    var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert");
+
+    if (checkURL(link)) {
+      //Insertamos una nueva imagen con el link
+      prevContainer.html("\n            <img src=\"".concat(link, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n            ")); //Limpiamos los input
+
+      videoInput.val("");
+      imageInput.val("");
+    } else {
+      prevContainer.html("\n                <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(link, "\" type=\"video/mp4\">\n                </video>\n                ")); //Limpiamos input
+
+      videoInput.val("");
+      imageInput.val("");
+    }
+  }); //Landing de concert channel
+
+  var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
+
+  if (navbarPrevConcertChannel) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe").remove();
+    new easyXDM.Socket(confLandingConcertChannel);
+  } //loader, antes de subir un archivo
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-files").on("click", function () {
+    var loader = "\n        <div class=\"loader-view-container\" id=\"loader2\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
+    }, 3000);
+  }); //Evento para cuando cerramos el selectpicker
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").on("click", ".programming-item", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
+    var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
+    var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current").attr("schedule");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramming"])(date, section, time);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapter_id);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".edit-image-carrusel", function () {
+    var image = this.files[0];
+    var name = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    console.log(landing, name, chapter_id);
+    var data = new FormData();
+    data.append("image-horizontal", image);
+    data.append("landing", landing);
+    data.append("chapter_id", chapter_id);
+    data.append("name", name);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
+    var image = this.files[0];
+    var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
+    var name = editProgramDataContainer.attr("program");
+    var landing = editProgramDataContainer.attr("section");
+    var chapter_id = editProgramDataContainer.attr("chapter_id");
+    var data = new FormData();
+    data.append("image-horizontal", image);
+    data.append("landing", landing);
+    data.append("chapter_id", chapter_id);
+    data.append("name", name);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
+    if (e.which === 13 && !e.shiftKey) {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container-s").attr("chapter_id"));
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      switch (key) {
+        case "in_home_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+            value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+            var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+            value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_home_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+            var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+            var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_landing_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+            var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_landing_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+            var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        default:
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          break;
+      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+      //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").on("change", ".input-image-program", function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").on("change", ".input-image-program", function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".input-image-program", function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  }); //Editar datos de un programa de un carrusel en el landing
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
+    if (e.which === 13 && !e.shiftKey) {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      switch (key) {
+        case "in_home_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+            var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+            value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+            var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+
+            value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_home_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+            var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+
+            value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+            var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+
+            value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_landing_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+            var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+            var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        case "in_landing_expiration":
+          //Si se escribió la hora y la fecha
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+            var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+            var _date13 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          }
+
+          break;
+
+        default:
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+          break;
+      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+      //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
+    console.log("blur");
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+    switch (key) {
+      case "in_home_begin":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_home_expiration":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+          var _date14 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+          var _date15 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date15[2], "-").concat(_date15[1], "-").concat(_date15[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_landing_begin":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+          var _date16 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date16[2], "-").concat(_date16[1], "-").concat(_date16[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+          var _date17 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_landing_expiration":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+          var _date18 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+          var _date19 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date19[2], "-").concat(_date19[1], "-").concat(_date19[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      default:
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        break;
+    } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+    //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("blur", ".edit-program-attribute-text", function (e) {
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+    switch (key) {
+      case "in_home_begin":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val();
+          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+          var _date20 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+
+          value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_home_expiration":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
+          var _date21 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date21[2], "-").concat(_date21[1], "-").concat(_date21[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val());
+          console.log(_date21);
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
+          var _date22 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_landing_begin":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+          var _date23 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+          var _date24 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      case "in_landing_expiration":
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+          var _date25 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+          var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " 00:00:00");
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        }
+
+        break;
+
+      default:
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        break;
+    } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+    //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-program-switch", function () {
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-home").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-home", function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
+    }
+  }); //
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-landing", function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    }
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modales").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }, 3000);
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modal-programming").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }, 3000);
+  }); //loader, antes de subir un archivo
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }, 3000);
+  }); //activacion de paginacion
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("a-text-bold-white");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").addClass("a-text-bold-teal");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").removeClass("a-text-bold-teal");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
+    var data = new FormData(); //Canal claro
+
+    var logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+    data.append("logoCanalClaro", logoUrlCanalClaro);
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
+    data.append("urlCanalClaro", urlCanalClaro); //Concert channel
+
+    var logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
+    data.append("logoConcertChannel", logoUrlConcertChannel);
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
+    data.append("urlConcertChannel", urlConertChannel); //Claro cinema
+
+    var logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
+    data.append("logoClaroCinema", logoUrlClaroCinema);
+    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
+    data.append("urlClaroCinema", urlClaroCinema);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateLogosOfLanding"])(data);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
+    /*
+        Arreglo para saber la posición de las imágenes que cargo el usuario
+        es decir, saber si subió la 1 y 3, o 2,3 etc.
+    */
+    var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+    var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+      if (this.files[0]) {
+        imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+      }
+
+      imagesProgramming.push(this.files[0]);
+    });
+    var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+    for (var index = 0; index < imagesProgramming.length; index++) {
+      var file = "file" + (index + 1).toString();
+      file = file.toString();
+      data.append(file, imagesProgramming[index]);
+    } //Posiciones de las imágenes
+
+
+    data.append("positions", imagesPositions); //Hora inicio y fin
+
+    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImagesOfProgrammingSlider"])(data);
+  }); //para agregar un slider más en cinema
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    console.log("pato");
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
+    //Agregamos un slide al slider de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
+  }); //para agregar un slider más en carrusel2-concert
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    var sliderIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick("slickAdd", "\n        <!--otro slider-->\n<div>\n\n<section class=\"edit-program-image\">\n    <select\n        class=\".header-background1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n        title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n        data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n        name=\"thumbnail-header1\" key=\"title\">\n    </select>\n    <!--Imagen del programa--->\n    <div class=\"edit-thumbnail position-relative\">\n\n        <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n            class=\"input-image-program d-none \">\n        <label for=\"edit-image-horizontal\"\n            class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n            <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                alt=\"heart-icon\" />\n            <div class=\"edit-program-camera text-center\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                    class=\"edit-program-icon-image\" alt=\"camera\" />\n                <p\n                    class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                    472\n                    x 245px</p>\n            </div>\n\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n        </label>\n    </div>\n    <!--Nombre de la imagen-->\n    <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n</section>\n<!--Establecer en landing, home, schedule item date time-->\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Landing-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en landing\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center mb-3\">\n                    <input type=\"radio\"  id=\"yes-landing-carrusel\" value=\"3\"\n                        class=\"edit-switch-landing edit-landing-yes\" key=\"in_landing\" />\n                    <label for=\"yes-landing-carrusel\" id=\"siestado-landing\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-landing-carrusel\" value=\"0\"\n                        class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                         checked/>\n                    <label for=\"no-landing-carrusel\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <!--Inputs radio-->\n                <div class=\"d-flex align-items-center mb-3\">\n\n                    <span\n                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                        2</span>\n\n\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                            key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <!--Home-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en home\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center edit-switches-home-container\">\n                    <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                        class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                        checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p\n                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Schedule Item Date time\n                </p>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                        style=\"margin-bottom: 81px\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                class=\"mr-3\">\n                        <span class=\"a-text-bold-warm mt-3\">\n\n                            <input key=\"\" type=\" text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                </p>\n                <div\n                    class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                    <img\n                            src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                    <span class=\"a-text-bold-warm mt-3\"><input\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Sinopsis-->\n<section class=\"mb-5 edit-program-data-container\">\n    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n    <!--Textarea-->\n    <textarea key=\"synopsis\"\n        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n        id=\"prog_sinopsis\"></textarea>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program episode season-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    season\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"season\"\n                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"00\">\n                </div>\n            </div>\n        </div>\n        <!--Program episode number-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    number\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_episode_number\"\n                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"000\">\n                </div>\n            </div>\n        </div>\n        <!--Program year produced-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                    produced\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"program_year_produced\"\n                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                        placeholder=\"YYYY\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program title alternate-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                    alternate\n                </p>\n                <div class=\"mb-3 edit-rectangle-container p-3\">\n                    <input type=\"text\" key=\"subtitle\"\n                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                        placeholder=\"Program Title Alternate\">\n                </div>\n            </div>\n        </div>\n        <!--Program genre list-->\n        <div class=\"col-4 edit-program-data-container position-relative\"\n            id=\"edit-genre-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                    list\n                </p>\n                <div class=\"mb-3 edit-rectangle-container \">\n                    <select\n                        class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                        id=\"edit-program-genres\" title=\"Genere list\" multiple\n                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                    </select>\n                </div>\n            </div>\n        </div>\n        <!---->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                    rating\n                    code\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                    <input type=\"text\" key=\"rating\"\n                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                        placeholder=\"PG-00\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                    date\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                    \">Fecha\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"day\"\n                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"DD:MM:YY\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                    item log\n                    time (gmt)\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"programing\"\n                            class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                    schedule item duration\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"duration\"\n                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    subbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                        key=\"subbed\" />\n                    <label for=\"yes-subbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                        key=\"subbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    dubbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                        key=\"dubbed\" />\n                    <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                        key=\"dubbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                    available\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                        key=\"audio5\" />\n                    <label for=\"yes-audio5\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                        key=\"audio5\" />\n                    <label for=\"no-audio5\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<div class=\" d-flex justify-content-center\">\n<section class=\"text-center mb-3 d-flex justify-content-center\">\n<button\n    class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n    data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n</section>\n\n</div>\n</div>\n\n       <!--fin del otro slider-->\n");
+  }); //para agregar un slider más en carrusel1-concert
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
+    //Agregamos un slide al slider de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n\n                <section class=\"edit-program-image\">\n                <select\n                    class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                    title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                    data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                    name=\"thumbnail-header1\" key=\"title\">\n                </select>\n                <!--Imagen del programa--->\n                <div class=\"edit-thumbnail position-relative\">\n\n                    <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n                        class=\"input-image-program d-none \">\n                    <label for=\"edit-image-horizontal\"\n                        class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                        <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                            alt=\"heart-icon\" />\n                        <div class=\"edit-program-camera text-center\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                                class=\"edit-program-icon-image\" alt=\"camera\" />\n                            <p\n                                class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                472\n                                x 245px</p>\n                        </div>\n\n                        <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                            class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n                    </label>\n                </div>\n                <!--Nombre de la imagen-->\n                <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n            </section>\n            <!--Establecer en landing, home, schedule item date time-->\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Landing-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en landing\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center mb-3\">\n                                <input type=\"radio\"  id=\"yes-landing-carrusel1\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\"  />\n                                <label for=\"yes-landing-carrusel1\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing-carrusel1\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                                    checked />\n                                <label for=\"no-landing-carrusel1\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <!--Inputs radio-->\n                            <div class=\"d-flex align-items-center mb-3\">\n\n                                <span\n                                    class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                    1</span>\n\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                            placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                            key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                                        key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                        key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <!--Home-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en home\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center edit-switches-home-container\">\n                                <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                                    class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                                    checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                            type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin:\n                                        <input type=\"text\" key=\"in_home_expiration\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p\n                                class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Schedule Item Date time\n                            </p>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center\"\n                                    style=\"margin-bottom: 81px\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                            class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\">\n\n                                        <input key=\"\" type=\" text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                            </p>\n                            <div\n                                class=\"text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2\">\n                                <img\n                                        src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\"><input\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <!--Sinopsis-->\n            <section class=\"mb-5 edit-program-data-container\">\n                <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                <!--Textarea-->\n                <textarea key=\"synopsis\"\n                    class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                    id=\"prog_sinopsis\"></textarea>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program episode season-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                season\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"season\"\n                                    class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"00\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program episode number-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                number\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_episode_number\"\n                                    class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"000\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program year produced-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                                produced\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"program_year_produced\"\n                                    class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                    placeholder=\"YYYY\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program title alternate-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                                alternate\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container p-3\">\n                                <input type=\"text\" key=\"subtitle\"\n                                    class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                    placeholder=\"Program Title Alternate\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program genre list-->\n                    <div class=\"col-4 edit-program-data-container position-relative\"\n                        id=\"edit-genre-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                                list\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container \">\n                                <select\n                                    class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                    id=\"edit-program-genres\" title=\"Genere list\" multiple\n                                    data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                    data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                    <!---->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                rating\n                                code\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                <input type=\"text\" key=\"rating\"\n                                    class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                    placeholder=\"PG-00\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                                date\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                \">Fecha\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"day\"\n                                        class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                item log\n                                time (gmt)\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"programing\"\n                                        class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                schedule item duration\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"duration\"\n                                        class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                subbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                                    key=\"subbed\" />\n                                <label for=\"yes-subbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                                    key=\"subbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                dubbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                                    key=\"dubbed\" />\n                                <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                                    key=\"dubbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                                available\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                                    key=\"audio5\" />\n                                <label for=\"yes-audio5\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                                    key=\"audio5\" />\n                                <label for=\"no-audio5\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <div class=\" d-flex justify-content-center\">\n        <section class=\"text-center mb-3 d-flex justify-content-center\">\n            <button\n                class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n        </section>\n\n    </div>\n\n            </div>\n            ");
+  }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+  //Añadimos un slide al slider de imágenes de programación
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image").click(function () {
+    //Cada vez que se haga click, el contador incrementa
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+    debugger; //Cada vez que se haga click, el contador incrementa
+
+    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+  });
+  /*function preloader() {
+      console.log("si entra al metodo desde submenu");
+      document.getElementById("loader-view").style.display = "none";
+      document.getElementById("navbar-prev-programacion").style.display =
+          "block";
+  }
+  window.onload = preloader;*/
+  //Landing de programación de claro cinema
+
+  var navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
+  var confProgramacionClaroCinema = {
+    remote: "".concat(baseURL, "programacion-edi-cinema.php"),
+    container: document.getElementById("navbar-prev-programacion-cinema"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var iframeProgramacionCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe");
+
+  if (navbarPrograContainerCinema) {
+    iframeProgramacionCinema.remove();
+    new easyXDM.Socket(confProgramacionClaroCinema);
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+  }); //Landing de programacion de concert channel
+
+  var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
+  var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
+  var confProgramacionConcertChannel = {
+    remote: "".concat(baseURL, "programacion-edi-concert.php"),
+    container: document.getElementById("navbar-prev-programacion-concert"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+
+  if (navbarPrograContainerConcert) {
+    iframeProgramacionConcert.remove();
+    new easyXDM.Socket(confProgramacionConcertChannel);
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+  }); //Landing de programación de claro canal
+  //Canal claro
+
+  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+  var confIframe = {
+    remote: "".concat(baseURL, "programacion-edi.php"),
+    container: document.getElementById("navbar-prev-programacion"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+  }); //Verificamos si existe el contenedor para insertar el iframe
+
+  if (navbarPrograContainer) {
+    new easyXDM.Socket(confIframe); //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
+      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      new easyXDM.Socket(confIframe);
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+    new easyXDM.Socket({
+      remote: "".concat(baseURL, "programacion.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+      };
+
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select-carrusel").selectpicker({
+    filter: true,
+    multipleSeparator: ", "
+  });
+  var imageTriangle = "\n    <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n";
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle); //selectpicker para el campo de género en un programa
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+    filter: true,
+    multipleSeparator: ", "
+  });
+  /*
+      Obtener el valor de las cateogrías seleccionadas y colocarlas
+      en un string
+  */
+
+  var genres = "";
+  var selectpicker = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker"); //Verificamos si el usuario ha seleccionado un género o categoría
+
+  selectpicker.on("change", function () {
+    //Obtenemos los valores del selectpicker
+    var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+
+    var selectedLength = selected.length;
+    genres = "";
+
+    for (var index = 0; index < selectedLength; index++) {
+      //Si es la primera palabra o la última, no agregamos una coma
+      if (selectedLength - 1 == index) {
+        genres += "".concat(selected[index]);
+      } else {
+        genres += "".concat(selected[index], ",");
+      }
+    }
+  }); //Evento para cuando cerramos el selectpicker
+
+  selectpicker.on("hide.bs.select", function () {
+    //Seleccionamos la columna en la que estamos
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Obtenemos el cahpter_id de la columna
+
+    var chapterId = currentColumn.attr("chapter_id"); //Obtenemos la key
+
+    var key = currentColumn.attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+
+    var keyValue = genres; //Hacemos la petición
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  }); //Al momento de dar click en el boton de grilla
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
+      .removeClass("a-text-semi-brown-two"); //text-landing
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+    }
+  }); //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
+
+  /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+    var landingOptionsChecks = currentColumn.children(".establecer-options"); //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
+      landingOptionsChecks.css("pointer-events", "all");
+      currentColumn.next().children(".programar-content").css("pointer-events", "all");
+    } else {
+      landingOptionsChecks.css("pointer-events", "none"); //Hacemos que no se pueda escribir en los campos siguientes
+
+      currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
+
+      currentColumn.next().find("input").val("");
+      currentColumn.children(".establecer-options").find("input").prop("checked", false);
+    }
+  });
+  /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-home").click(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
+      currentColumn.next().children(".programar-content").css("pointer-events", "all");
+    } else {
+      //Hacemos que no se pueda escribir en los campos siguientes
+      currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
+
+      currentColumn.next().find("input").val("");
+      currentColumn.children(".establecer-options").find("input").prop("checked", false);
+    }
+  }); //Mostrar la sinópsis completa en modal
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".see-more").click(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sinopsis actual del programa sin tener el texto truncado con "..."
+
+    var synopsis = currentColumn.attr("synopsis");
+    var chapterId = currentColumn.attr("chapter_id"); //Id del programa actual
+
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().attr("id");
+    var key = currentColumn.attr("key"); //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").attr({
+      chapter_id: chapterId,
+      key: key,
+      synopsis: synopsis,
+      program: program
+    }); //Pasamos al textarea del modal la sinopsis actual del programa
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-textarea").val(synopsis); //Ponemos el título del programa en el header del modal
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-title").text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program_title")); //Hacemos aparecer el modal
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("show");
+  }); //botón de modal de edición de de sinopsis
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").click(function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Obtenemos la sinopsis nueva del textarea del modal
+
+    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-content").val(); //Programa del cual se está actualizando al sinopsis
+
+    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program"); //Cambiamos el atributo "sinopsis" en el programa de la grilla
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).closest(".contenedor-columna").attr("synopsis", keyValue); //Truncamos el texto en grilla con tres puntos...
+
+    if (keyValue.length > 200) {
+      var text = keyValue.substr(0, 200) + "...";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(text);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(keyValue);
+    } //Hacemos la petición para cambiar la sinopsis
+
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue); //Ocultamos el modal
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("hide");
+  }); //Removemos las instancias de litepicker que sobran
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove(); //Sacamos la fecha actual para ponerla en el calendario
+
+  var currentDate = new Date(); //Obtenemos el año
+
+  var calendarYear = currentDate.getFullYear(); //obtenemos el mes
+
+  var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
+
+  var calendarDay = currentDate.getDate();
+  var dateStartInput = document.getElementById("date-start-input");
+
+  if (dateStartInput) {
+    //Iniciamos el calendario Litepicker
+    var picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
+      element: document.getElementById("date-start-input"),
+      format: "YYYY-MM-DD",
+      delimiter: ",",
+      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+      //Al aparecer, aplicamos estilos parecidos a los de un modal
+      onShow: function onShow() {
+        picker.picker.style.left = "50%";
+        picker.picker.style.top = "50%";
+        picker.picker.style.transform = "translate(-50%, -50%)";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+      },
+      //Evento que utilizamos cada vez que el calendario se oculta
+      onHide: function onHide() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+      },
+      onSelect: function onSelect() {
+        //Separamos las dos fechas
+        var fullDate = document.getElementById("date-start-input").value.split(","); //  Fecha inicial del datepicker
+
+        var startDate = fullDate[0]; //Separamos la primer fecha
+
+        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
+        var endDate = fullDate[1];
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["filterDates"])(startDate, endDate, landing);
+        var endDateSplit = endDate.split("-");
+        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+      },
+      numberOfMonths: 1,
+      numberOfColumns: 1,
+      singleMode: false
+    });
+  }
+
+  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
+
+  if (programmingCarruselPicker) {
+    //Iniciamos el calendario Litepicker
+    var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
+      element: programmingCarruselPicker,
+      format: "YYYY-MM-DD",
+      delimiter: ",",
+      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+      //Al aparecer, aplicamos estilos parecidos a los de un modal
+      onShow: function onShow() {
+        _picker.picker.style.left = "50%";
+        _picker.picker.style.top = "50%";
+        _picker.picker.style.transform = "translate(-50%, -50%)";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+      },
+      //Evento que utilizamos cada vez que el calendario se oculta
+      onHide: function onHide() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+      },
+      onSelect: function onSelect() {
+        //Separamos las dos fechas
+        var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
+
+        var startDate = fullDate[0]; //Separamos la primer fecha
+
+        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+        var endDate = fullDate[1];
+        var endDateSplit = endDate.split("-");
+        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+      },
+      numberOfMonths: 1,
+      numberOfColumns: 1,
+      singleMode: false
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
+    console.log("cerrar");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
+    //$(".modal-edit-icons").modal("hide");
+    // $(".modal-edit-program").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".close-modal-concert").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+  }); //cerrar los dos modales
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-sinopsis").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info-sinopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-image-sinopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-sinopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+  });
+  /* Al dar "enter" cancelamos el salto de línea,
+      conseguimos el valor del campo de la grilla
+      y hacemos la petición
+  */
+
+  var editableAttribute = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".editable-attribute");
+  editableAttribute.keydown(function (e) {
+    //Si la tecla que presionamos fue "Enter"
+    if (e.which === 13 && !e.shiftKey) {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("key");
+      var keyValue = "";
+      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("chapter_id");
+
+      switch (key) {
+        //Verificamos si lo que estamos editando es Schedule Item Long Date
+        case "day":
+          //Seperamos la fecha
+          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+
+          keyValue = "".concat(date[2], "-").concat(date[1], "-").concat(date[0]);
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+          break;
+        //Verificamos si el campo que estamos editando es el año de producción
+
+        case "program_year_produced":
+          //Convertimos el año a entero
+          keyValue = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()); //Hacemos la petición
+
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+          break;
+        //Verificamos si el campo editable, es el de programar publicación para Landing
+
+        case "in_landing_publicacion":
+          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+          var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
+
+          if (schedule == "in_landing_begin") {
+            //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+            //Obteemos la fecha y la dividimos
+            var _date27 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+
+
+            var day = "".concat(_date27[2], "-").concat(_date27[1], "-").concat(_date27[0]);
+            var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+            //En caso de tener ambos valores, hacemos al petición
+
+            if (day != "" && hours != "") {
+              keyValue = "".concat(day, " ").concat(hours);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+            } //En caso de solo tener el día, mandamos la hora en 0
+            else if (day != "" && hours == "") {
+                hours = "00:00:00";
+                keyValue = "".concat(day, " ").concat(hours);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              }
+          } //Verificamos si es la fecha fin
+          else if (schedule == "in_landing_expiration") {
+              var _date28 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+
+
+              var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+
+
+              var _day = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+              if (_date28 != "" && _hours != "") {
+                var _day2 = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0]);
+
+                keyValue = "".concat(_day2, " ").concat(_hours);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+              else if (_date28 != "" && _hours == "") {
+                  _hours = "00:00:00";
+                  keyValue = "".concat(_day, " ").concat(_hours);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+                }
+            }
+
+          break;
+
+        case "in_home_publicacion":
+          var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio del home
+
+          if (scheduleHome == "in_home_begin") {
+            //Obtenemos la fecha
+            var _date29 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+
+            var _day3 = "".concat(_date29[2], "-").concat(_date29[1], "-").concat(_date29[0]); //Obtenemos la hora
+
+
+            var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+            if (_date29 != "" && _hours2 != "") {
+              keyValue = "".concat(_day3, " ").concat(_hours2);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            } //En caso de que la hora venga vacía, la igualamos a 0
+            else if (_date29 != "" && _hours2 == "") {
+                _hours2 = "00:00:00";
+                keyValue = "".concat(_day3, " ").concat(_hours2);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              }
+          } else if (scheduleHome == "in_home_expiration") {
+            //Obtenemos la fecha
+            var _date30 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+
+            var _day4 = "".concat(_date30[2], "-").concat(_date30[1], "-").concat(_date30[0]); //Obtenemos la hora
+
+
+            var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+            if (_date30 != "" && _hours3 != "") {
+              keyValue = "".concat(_day4, " ").concat(_hours3);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            } //En caso de que la hora venga vacía, la igualamos a 0
+            else if (_date30 != "" && _hours3 == "") {
+                _hours3 = "00:00:00";
+                keyValue = "".concat(_day4, " ").concat(_hours3);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              }
+          }
+
+          break;
+
+        default:
+          //Si no es ninguno de los casos, sacamos el valor del campo directamente
+          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Hacemos la petición
+
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+          break;
+      } //Quitamos el comportamiento por defecto
+
+
+      e.preventDefault(); //Después de dar click, "sacamos" al usuario del input
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+      return false;
+    }
+  }); //Se ejecuta cuando editamos un campo y damos click "fuera" del input
+
+  editableAttribute.blur(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+    var key = currentColumn.attr("key");
+    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var chapterId = currentColumn.attr("chapter_id"); //Verificamos el campo que estamos editando
+
+    switch (key) {
+      //Verificamos si lo que estamos editando es Schedule Item Long Date
+      case "day":
+        //Seperamos la fecha
+        var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+
+        keyValue = "".concat(date[2], "-").concat(date[1], "-").concat(date[0]);
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+        break;
+      //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+
+      case "in_landing_publicacion":
+        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+        var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
+
+        if (schedule == "in_landing_begin") {
+          //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+          //Obteemos la fecha y la dividimos
+          var _date31 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+
+
+          var day = "".concat(_date31[2], "-").concat(_date31[1], "-").concat(_date31[0]);
+          var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+          //En caso de tener ambos valores, hacemos al petición
+
+          if (day != "" && hours != "") {
+            keyValue = "".concat(day, " ").concat(hours);
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+          } //En caso de solo tener el día, mandamos la hora en 0
+          else if (day != "" && hours == "") {
+              hours = "00:00:00";
+              keyValue = "".concat(day, " ").concat(hours);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+            }
+        } //Verificamos si es la fecha fin
+        else if (schedule == "in_landing_expiration") {
+            var _date32 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+
+
+            var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+
+
+            var _day5 = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+            if (_date32 != "" && _hours4 != "") {
+              var _day6 = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0]);
+
+              keyValue = "".concat(_day6, " ").concat(_hours4);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+            } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+            else if (_date32 != "" && _hours4 == "") {
+                _hours4 = "00:00:00";
+                keyValue = "".concat(_day5, " ").concat(_hours4);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              }
+          }
+
+        break;
+
+      case "in_home_publicacion":
+        var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+        var parentHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio del home
+
+        if (scheduleHome == "in_home_begin") {
+          //Obtenemos la fecha
+          var _date33 = parentHome.find(".home-start-day").val().split("-");
+
+          var _day7 = "".concat(_date33[2], "-").concat(_date33[1], "-").concat(_date33[0]); //Obtenemos la hora
+
+
+          var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+          if (_date33 != "" && _hours5 != "") {
+            keyValue = "".concat(_day7, " ").concat(_hours5);
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+          } //En caso de que la hora venga vacía, la igualamos a 0
+          else if (_date33 != "" && _hours5 == "") {
+              _hours5 = "00:00:00";
+              keyValue = "".concat(_day7, " ").concat(_hours5);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            }
+        } else if (scheduleHome == "in_home_expiration") {
+          //Obtenemos la fecha
+          var _date34 = parentHome.find(".home-expiration-day").val().split("-");
+
+          var _day8 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]); //Obtenemos la hora
+
+
+          var _hours6 = parentHome.find(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+          if (_date34 != "" && _hours6 != "") {
+            _day8 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]);
+            keyValue = "".concat(_day8, " ").concat(_hours6);
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+          } //En caso de que la hora venga vacía, la igualamos a 0
+          else if (_date34 != "" && _hours6 == "") {
+              _hours6 = "00:00:00";
+              keyValue = "".concat(_day8, " ").concat(_hours6);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            }
+        }
+
+        break;
+
+      default:
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+        break;
+    }
+  }); //Sacar los valores de los switches en la grilla
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
+    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sacamos el valor del switch o radio button
+
+    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //De la columna, sacamos el chapter_id
+
+    var chapterId = currentColumn.attr("chapter_id"); //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+
+    var key = currentColumn.attr("key"); //Hacemos la petición
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+  }); //Sacar los valores de los switches en el modal de edicion
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table-edit").click(function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Hacemos la petición
+
+    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+  });
+  /*
+  Permite a todos los campos de Schedule item log time tener el formato
+  tiempo en hh:mm
+  */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
+    new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["scheduleTimeConfig"]);
+  });
+  /*
+  Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
+  */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
+    new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["cleaveConfig"]);
+  });
+  /*
+  Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+  */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
+    new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["timeWithSeconds"]);
+  });
+  /*
+  Permite a todos los input con la clase year-input tener el formato YYYY
+  */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".year-input").toArray().forEach(function (yearInput) {
+    new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["year"]);
+  }); //Truncar texto de sinópsis con "..."
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().length > 200) {
+      var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".listcinema").selectpicker({
+    multipleSeparator: " ",
+    filter: true
+  }); //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]); //Al dar click en una columna, aplicamos estilos
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+    multipleSeparator: " ",
+    filter: true
+  }).on("changed.bs.select", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
+  });
+  /*     //EDITAR CLARO CANAL
+      $("#edit").click(function () {
+          if ($('input[id="edit"]').is(":checked")) {
+              $("#navbar-prev-canal-claro").html(`
+               <script>
+              new easyXDM.Socket({
+                  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
+                  container: "navbar-prev-canal-claro",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                   }
+              });
+              </script>`);
+              $("#navbar-prev-home").html(` <script>
+              new easyXDM.Socket({
+                  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
+                  container: "navbar-prev-home",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+              $("#navbar-prev-programacion").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi.php",
+              container: "navbar-prev-programacion",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+          }
+      });
+       //PREV CLARO CANAL
+      $("#prev").click(function () {
+          if ($('input[id="prev"]').is(":checked")) {
+              $("#navbar-prev-canal-claro").html(`
+              <script>
+                  new easyXDM.Socket({
+                      remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-prev.php",
+                      container: "navbar-prev-canal-claro",
+                      onMessage: function(message, origin) {
+                          console.log(message);
+                          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                      }
+                  });
+              </script>
+              `);
+               $("#navbar-prev-programacion").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+              container: "navbar-prev-programacion",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+              $("#navbar-prev-home").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php",
+              container: "navbar-prev-home",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+          }
+      }); */
+  //EDITAR CINEMA
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edi-cinema").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n      new easyXDM.Socket({\n        remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-edi.php\",\n        container: \"navbar-prev-claro-cinema\",\n          onMessage: function(message, origin) {\n              console.log(message);\n              this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n              this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n\n          }\n      });\n  </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-cinema.php\",\n                container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n                container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n                    this.container.getElementsByTagName(\"iframe\")[0].setAttribute(\"scrolling\", \"no\");\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+    }
+  }); //PREV CINEMA
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".prev-cinema").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="prev"]').is(":checked")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-cinema-prev.php\",\n                container: \"navbar-prev-claro-cinema\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n            container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+    }
+  }); //EDITAR CONCERT
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edi-concert").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="edit"]').is(":checked")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-edi.php\",\n            container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-edi-concert.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+    }
+  }); //PREV CONCERT
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".prev-concert").click(function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[id="prev"]').is(":checked")) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel").html(" <script>\n            new easyXDM.Socket({\n                remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/concert-channel-prev.php\",\n                container: \"navbar-prev-concert-channel\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion").html(" <script>\n            new easyXDM.Socket({\n            remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php\",\n            container: \"navbar-prev-programacion\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home").html(" <script>\n            new easyXDM.Socket({\n              remote: \"http://www.claronetworks.openofficedospuntocero.info/v1.2/home-prev.php\",\n              container: \"navbar-prev-home\",\n                onMessage: function(message, origin) {\n                    console.log(message);\n                    this.container.getElementsByTagName(\"iframe\")[0].style.height = message + \"px\";\n\n                    this.container.getElementsByTagName(\"iframe\")[0].style.boxShadow = \"rgba(0, 0, 0, 0.5) -1px -1px 17px 9px\";\n                }\n            });\n            </script>");
+    }
+  });
+  /*     //EDITAR HOME
+      $(".edi-home").click(function () {
+          if ($('input[id="edit"]').is(":checked")) {
+              $("#navbar-prev-home").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
+              container: "navbar-prev-home",
+              onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                   }
+              });
+              </script>`);
+              $("#navbar-prev-programacion").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+              container: "navbar-prev-programacion",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+          }
+      });
+      //PREV HOME
+      $(".prev-home").click(function () {
+          if ($('input[id="prev"]').is(":checked")) {
+              $("#navbar-prev-home").html(` <script>
+              new easyXDM.Socket({
+                  remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
+                  container: "navbar-prev-home",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+              $("#navbar-prev-programacion").html(` <script>
+              new easyXDM.Socket({
+              remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/programacion-prev.php",
+              container: "navbar-prev-programacion",
+                  onMessage: function(message, origin) {
+                      console.log(message);
+                      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                      this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+                      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                  }
+              });
+              </script>`);
+          }
+      }); */
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing").on("change", function () {
+    /**
+     * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+     * esto para no caursar poroblemas mayores se manda a null e value del form
+     * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
+     */
+    try {
+      var file = this.files[0];
+      var filename = this.files[0].name;
+
+      if (filename != null) {
+        var splName = filename.split(".");
+        var fileFormat = splName[splName.length - 1];
+
+        if (fileFormat != "xlsx" && fileFormat != "xls") {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-file").modal("show");
+        } else {
+          var data_for_api = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("api");
+          sendFilePHP(file, data_for_api);
+          console.log(this.files[0].name);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    this.value = null; //aqui para evitar que se hagan registros dobles
+  });
+  /**
+   * Eviar archivo mediante ajax a un "controlador" php
+   */
+
+  function updateGrill(landing) {
+    var canal = "canal-claro";
+
+    switch (landing) {
+      case 1:
+        canal = "canal-claro";
+        break;
+
+      case 2:
+        canal = "concert-channel";
+        break;
+
+      case 3:
+        canal = "claro-cinema";
+        break;
+
+      default:
+        break;
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      url: "view",
+      data: {
+        view: "grilla-" + canal + "-button"
+      },
+      beforeSend: function beforeSend() {
+        var loader = "\n                <div class=\"loader-view-container\">\n                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+      },
+      success: function success(result) {
+        console.log("grilla de canal claro");
+        console.log(result);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+        eventsGrilla();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }
+    });
+  }
+
+  function sendFilePHP(file, data_for_api) {
+    console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
+
+    var data = new FormData();
+    data.append("file", file);
+    data.append("datos", data_for_api); //Realizamos el ajax
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      processData: false,
+      //esto es para poder pasar el archivo
+      contentType: false,
+      //esto es para poder pasar el archivo
+      url: "general-program/captureExcel",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        var existe_programacion = JSON.parse(result);
+
+        if (existe_programacion.data == 1) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          console.log("Preguntamos al usuario");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
+        } else {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+
+          if (existe_programacion.data == -1) {
+            console.log("es de un dia anterior");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
+          } else {
+            console.log("se agregó la programación");
+            var landing = JSON.parse(data_for_api).landing_id;
+            updateGrill(landing);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          }
+        }
+      }
+    }).fail(function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      console.log(e);
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-remplaza").click(function () {
+    console.log("Se remplaza la programacion");
+    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      url: "general-program/changePrograming",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        updateGrill(data.landing_id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+        console.log(JSON.parse(result));
+      }
+    }).fail(function (e) {
+      console.log(e);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-agrega").click(function () {
+    console.log("Se agrega la programacion");
+    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+    console.log(data);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: data,
+      url: "general-program/addPrograming",
+      beforeSend: function beforeSend() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-con tent").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+      },
+      success: function success(result) {
+        updateGrill(data.landing_id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+        console.log(JSON.parse(result));
+      }
+    }).fail(function (e) {
+      console.log(e);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-cancela").click(function () {
+    console.log("Se cancela la programacion");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(" ");
+    var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
+    console.log(programas);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+  }); // CANAL CLARO
+
+  var LOADER = "<div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>";
+  var landingCanalClaro = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php",
+    container: document.getElementById("navbar-prev-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "claro-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "claro-programacion":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            setTimeout(function () {
+              var date = new Date();
+              var day = ("0" + date.getUTCDate()).slice(-2);
+              var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+              var year = date.getUTCFullYear();
+              var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "claro-title":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "claro-promo":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "claro-carrusel1":
+            var id = 1;
+            var landing = "Canal Claro";
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro");
+            break;
+
+          case "claro-carrusel2":
+            id = 2;
+            landing = "Canal Claro";
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro ");
+            break;
+
+          case "claro-carrusel-title":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "claro-carrusel-title2":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "btn-redirect-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            break;
+
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])("slider-pagination");
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
+
+  if (menuClaroCanal) {
+    new easyXDM.Socket(landingCanalClaro);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      new easyXDM.Socket({
+        remote: "".concat(baseURL, "claro-canal.php"),
+        container: document.getElementById("navbar-prev-canal-claro"),
+        onMessage: function onMessage(message, origin) {
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      });
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
+      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      new easyXDM.Socket(landingCanalClaro);
+    });
+  } // BTN MODAL URL ENCABEZADO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+  }); // BTN MODAL URL PROMO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+  }); // BTN BANNER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-claro").change(function () {
+    File(this);
+  }); // BTN BANNER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-url").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("hide");
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val() || "";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(url);
+  }); // FILE PARA BANNER
+
+  var fileSrt = new FileReader();
+  var fileReader = new FileReader();
+
+  function File(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+  } // CARGAR IMG HEADER
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
+    FileHeader(this);
+  }); // FILE HEADER
+
+  function FileHeader(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + e.target.result + '" />');
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }
+  } // IMG DE PROMO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-img").change(function () {
+    FilePromoImg(this);
+  }); // IMG DE PROMO CARGAR
+
+  function FilePromoImg(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+      };
+    }
+
+    fileSrt.readAsDataURL(objFileInput.files[0]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+  } // VIDEO DE PROMO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-video").change(function () {
+    FilePromoVideo(this);
+  }); // VIDEO DE PROMO CARGAR
+
+  function FilePromoVideo(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+    }
+  } // IMG DE CARRUSEL 1
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#carrusel1-claro-img").change(function () {
+    FileCarrusel1Img(this);
+  }); // IMG DE CARRUSEL 1 CARGAR
+
+  function FileCarrusel1Img(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-carrusel1-claro").html('<img class="img-back-modal img-carrusel" src="' + e.target.result + '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />');
+      };
+    }
+
+    fileSrt.readAsDataURL(objFileInput.files[0]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+  } //CLARO CANAL POST HEADER
+  // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header").click(function () {
+    var landing = "Canal Claro";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
+    var logo = document.getElementById("img-header").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-canal-claro").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // HEADER EDIT CANAL CLARO
+  // TITLE EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-title").click(function () {
+    // TITULO
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
+    var landing = "Canal Claro";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); // SUB TITULO
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(); // let keySub = "block_3_subtitle";
+
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // TITLE EDIT CANAL CLARO
+  // HEADER EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-promo").click(function () {
+    var landing = "Canal Claro";
+    var img = document.getElementById("promo-claro-img").files[0] || "";
+    var video = document.getElementById("promo-claro-video").files[0] || "";
+    var key = "block_3_video_url";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("img", img);
+    data.append("video", video);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+  }); // HEADER EDIT CANAL CLARO
+  // CANAL CLARO
+  // CARGAR IMG HEADER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon1").change(function () {
+    FileHeaderCinema(this);
+  }); // FILE HEADER
+
+  function FileHeaderCinema(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", e.target.result);
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }
+  } // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header-cinema").click(function () {
+    var landing = "Claro Cinema";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade-1").val() || "";
+    var logo = document.getElementById("image-icon1").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  }); // HEADER EDIT CANAL CLARO
+  // TITLE EDIT CANAL CLARO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titulos-cinema").click(function () {
+    // TITULO
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").attr("key");
+    var landing = "Claro Cinema";
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+      value: value,
+      key: key,
+      landing: landing
+    }); // SUB TITULO
+
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    }); // SUB TITULO 2
+
+    var valueSub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").val();
+    var keySub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").attr("key");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+      value: valueSub2,
+      key: keySub2,
+      landing: landing
+    });
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  }); // TITLE EDIT CANAL CLARO
+  // IMG DE PROMO
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
+    FilePromoImg(this);
+  }); // IMG DE PROMO CARGAR
+
+  function FilePromoImg(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">');
+      };
+    }
+
+    fileSrt.readAsDataURL(objFileInput.files[0]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+  } // VIDEO DE PROMO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+    FilePromoVideo(this);
+  }); // VIDEO DE PROMO CARGAR
+
+  function FilePromoVideo(objFileInput) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+    }
+  } // HEADER EDIT CANAL CLARO
+  // HEADER EDIT CANAL CLARO
+
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-promo-cinema").click(function () {
+    var file = "";
+
+    if (document.getElementById("video-promo-file-concert").files[0]) {
+      file = document.getElementById("video-promo-file-concert").files[0];
+    } else if (document.getElementById("image-promo-concert").files[0]) {
+      file = document.getElementById("image-promo-concert").files[0];
+    } else {
+      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+    }
+
+    var landing = "Claro Cinema";
+    var data = new FormData();
+    var key = "block_3_video_url";
+    data.append("promo", file);
+    data.append("landing", landing);
+    data.append("key", key);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingCinema"])(data);
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+  }); // HOME
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#logo_home").change(function () {
+    viewImg(this, "#img-logo-home");
+    viewEdit();
+  });
+
+  function viewImg(objFileInput, container) {
+    debugger;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+    if (objFileInput.files[0]) {
+      fileSrt.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr("src", e.target.result);
+      };
+
+      fileSrt.readAsDataURL(objFileInput.files[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }
+  }
+
+  function viewEdit() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#camera").attr("src", "./images/lapiz-acti.svg");
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])('claro-home-header');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').click(function () {
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-url").click(function () {
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close_all_modal').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-logo-home').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
+    debugger;
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
+    var logo = document.getElementById("logo_home").files[0] || "";
+    var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val() || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("logo", logo);
+    data.append("subtitle", subtitle);
+    data.append("link", link);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderHome"])(data);
+
+    if (landing == 'Canal Claro') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    }
+  }); // HOME
+}
+
+
 
 /***/ }),
 
@@ -90066,7 +93502,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90102,6 +93538,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confLandingHome", function() { return confLandingHome; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeHeader", function() { return getContentHomeHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCarruselHome", function() { return getCarruselHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderHome", function() { return editHeaderHome; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -91286,7 +94723,7 @@ function getContentHomeHeader(type) {
                 headerVideo.html("\n                                <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">\n                                "));
               } else {
                 //La url es de un video
-                headerVideo.html("\n                                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                                position: absolute;\n                                transform: translate(215px, -112px);\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                                jpg 472px X 295px </span>\n                                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                                <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                                \n                                 </video>\n            "));
+                headerVideo.html("\n                                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                                position: absolute;\n                                transform: translate(215px, -112px);\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                                jpg 472px X 295px </span>\n                                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                                <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                                \n                                 </video>"));
               }
             } //Mostramos el modal
 
@@ -91297,6 +94734,7 @@ function getContentHomeHeader(type) {
             break;
 
           case 'claro-home-header':
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#landing_name").attr('value', 'Canal Claro');
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").addClass('img-logo-home-claro');
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_width").addClass('modal-img-home-claro');
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_btn").addClass('btn-red');
@@ -91310,81 +94748,6 @@ function getContentHomeHeader(type) {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#inp_url").val(data.data.block_3_icon_channel_url);
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-logo-home").modal("show");
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
-            break;
-
-          case 'claro-home-slider':
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img_carrusel_home");
-            var counter = 1;
-            var image = "";
-
-            while (true) {
-              try {
-                if (data.data["block_3_image".concat(counter)]) {
-                  image += "\n                                    <div>\n                                        <!-- IMG -->\n                                        <div class=\"position-relative text-center\">\n                                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home\" src=\"".concat(data.data["block_3_image".concat(counter)].image_vertical, "\">\n                                        </div>\n                                        <!-- BTN ICONOS -->\n                                        <div class=\"modal-img-carrusel\">\n                                            <!-- INPUTS -->\n                                            <input class=\"d-none\" id=\"img_carrusel\" name=\"img-carrusel\" type=\"file\">\n                                            <!-- LABEL -->\n                                            <label for=\"img_carrusel\" class=\"add-file\">\n                                                <img style=\"width: 30%;\" id=\"camera\" class=\"camera_carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                                <br>\n                                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                                            </label>\n                                        </div>\n                                    </div>\n                                    ");
-                  counter++;
-                } else {
-                  break;
-                }
-              } catch (error) {
-                break;
-              }
-            }
-
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-carrusel-home").modal("show");
-
-            try {
-              programmingSlider.slick("unslick");
-              programmingSlider.html(image);
-              programmingSlider.slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".slaider-home-dots"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-            } catch (error) {
-              programmingSlider.html(image);
-              programmingSlider.slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".slaider-home-dots"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-            } // HOME CARRUSEL
-
-
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img_carrusel").change(function () {
-              _viewImg(this, "#img-carrusel-home");
-
-              _viewEdit();
-            });
-
-            var _viewImg = function _viewImg(objFileInput, container) {
-              var fileSrt = new FileReader();
-
-              if (objFileInput.files[0]) {
-                fileSrt.onload = function (e) {
-                  jquery__WEBPACK_IMPORTED_MODULE_1___default()(container).attr('src', e.target.result);
-                };
-
-                fileSrt.readAsDataURL(objFileInput.files[0]);
-              }
-            };
-
-            var _viewEdit = function _viewEdit() {
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()('.camera_carrusel').attr('src', './images/lapiz-acti.svg');
-            };
-
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
             break;
         }
@@ -93007,7 +96370,31 @@ function confLandingHome(baseURL) {
     new easyXDM.Socket(confLandingHome);
   }
 } // HOME
-// HOME
+
+
+function editHeaderHome(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    data: data,
+    processData: false,
+    contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/editHeaderHome",
+    success: function success(result) {
+      var json = JSON.parse(result);
+      console.log(json);
+
+      if (json.code == 200) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-logo-home").modal("hide");
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+    }
+  });
+} // HOME
 
 
 
@@ -93846,6 +97233,27 @@ function sendEmailResetPassword(input) {
 
 /***/ }),
 
+/***/ "./resources/js/vendor/easyXDM.js":
+/*!****************************************!*\
+  !*** ./resources/js/vendor/easyXDM.js ***!
+  \****************************************/
+/*! exports provided: resetIframe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetIframe", function() { return resetIframe; });
+function resetIframe(iframeToDestroy, confNewIframe) {
+  iframeToDestroy.remove();
+  setTimeout(function () {
+    new easyXDM.Socket(confNewIframe);
+  }, 2000);
+}
+
+
+
+/***/ }),
+
 /***/ "./resources/js/vendor/lozad.js":
 /*!**************************************!*\
   !*** ./resources/js/vendor/lozad.js ***!
@@ -94008,6 +97416,406 @@ function createCalendarDays(container) {
 function createSlickSlider(container, options) {
   container.slick(options);
 }
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/landing.js":
+/*!***************************************!*\
+  !*** ./resources/js/views/landing.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LandingView; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _controllers_landing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing */ "./resources/js/controllers/landing.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var landingController = new _controllers_landing__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
+var LandingView = /*#__PURE__*/function () {
+  function LandingView() {
+    _classCallCheck(this, LandingView);
+  }
+
+  _createClass(LandingView, [{
+    key: "renderHomeHeaderConcertChannel",
+    value: function renderHomeHeaderConcertChannel() {
+      var data = landingController.getContentHome();
+      data.then(function (data) {
+        if (data.code == 200) {
+          // Add name
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Concert Channel'); //Add a class to the button
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-pink'); //set the width of the image
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home-concert'); //Set the width of the container
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home-concert');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_canales_subtitulo').val(data.data.block_4_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').val(data.data.block_4_icon_channel_url); //Change the logo
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_4_icon_channel); //Modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show");
+          console.log(data);
+        }
+      });
+    }
+  }]);
+
+  return LandingView;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/program.js":
+/*!***************************************!*\
+  !*** ./resources/js/views/program.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProgramView; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/program.js */ "./resources/js/controllers/program.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//JQUERY
+
+
+var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+/**
+ * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
+ * y esuchcar eventos
+ */
+
+var ProgramView = /*#__PURE__*/function () {
+  function ProgramView() {
+    _classCallCheck(this, ProgramView);
+  }
+
+  _createClass(ProgramView, [{
+    key: "renderSynopsis",
+
+    /**
+     * Método para mandar la información de sinopsis de un programa a
+     * al socket y abrir modal
+     *
+     * @param {*} id  Id del programa a obtener la sinopsis
+     * @param {Object} socket Socket del landing al que queremos mandar la información de la sinopsis
+     */
+    value: function renderSynopsis(id, socket) {
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prev-synopsis').attr("chapter_id", data.data.chapter_id);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-synopsis').attr("chapter_id", data.data.chapter_id);
+          var dataStringified = JSON.stringify(data);
+          socket.postMessage(dataStringified);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("show");
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      });
+    }
+  }, {
+    key: "renderPrevSynopsis",
+    value: function renderPrevSynopsis() {
+      var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+      var options = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php",
+        container: document.getElementById("sinopsis-container"),
+        onMessage: function onMessage(message, origin) {
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prev-synopsis').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-container iframe').remove();
+        var response = programController.getSynopsis(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id"));
+        var socketSynopsis = new easyXDM.Socket(options);
+        response.then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socketSynopsis.postMessage(dataStringified);
+          }
+        });
+      });
+    }
+    /**
+     *
+     * @param {Object} options configuraciones de easyXDM para poder crear el socket
+     */
+
+  }, {
+    key: "renderEditSynopsis",
+    value: function renderEditSynopsis(socketSynopsis, options) {
+      var that = this;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-synopsis').click(function () {
+        var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var response = programController.getSynopsis(id);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-container iframe').remove();
+        socketSynopsis = new easyXDM.Socket(options);
+        response.then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socketSynopsis.postMessage(dataStringified);
+            that.editDetailsSynopsis(socketSynopsis);
+            that.editAttributesSynopsis(socketSynopsis);
+            that.editImagesBanner(socketSynopsis);
+            that.editImageSynopsis(socketSynopsis);
+            that.editImagesBanner(socketSynopsis);
+          }
+        });
+      });
+    }
+    /**
+     * Método para renderizar en el modal los detalles de la sinopsis de un programa
+     *
+     * @param {*} id Id del capítulo del que queremos obtener la sinopsis
+     */
+
+  }, {
+    key: "renderDetailsSynopsis",
+    value: function renderDetailsSynopsis(id) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var data = programController.getSynopsis(id);
+      data.then(function (data) {
+        console.log(data); //Put the data in all inputs
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#duration-synopsis").val(data.data.duration);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val(data.data.year);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val(data.data.seasons);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val(data.data.rating);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").attr("chapter_id", data.data.chapter_id); //Show the modal
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-info-synopsis").modal("show"); //Remove the loader
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      });
+    }
+    /**
+     * Método para renderizar la sinopsis en modal para editar título y sinopsis
+     *
+     * @param {*} id Id del programa del que queremos obtener la sinopsis
+     */
+
+  }, {
+    key: "renderDescriptionSynopsis",
+    value: function renderDescriptionSynopsis(id) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var response = programController.getSynopsis(id);
+      response.then(function (data) {
+        if (data.code == 200) {
+          var editSynopsisButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val(data.data.sinopsis);
+          editSynopsisButton.attr("chapter_id", data.data.chapter_id);
+          editSynopsisButton.attr("key", "synopsis");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-modal-title").val(data.data.subtitle); //Mostrar el modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("show"); //Quitar loader
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }
+      });
+    }
+    /**
+     * Este método permite editar los datos de un programa en la sinopsis, como duración, año, rating
+     * y número de temporadas
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
+  }, {
+    key: "editDetailsSynopsis",
+    value: function editDetailsSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#details-synopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id"); //let duration = $('#duration-synopsis').val()
+
+        var duration = "";
+        var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#year-synopsis").val();
+        var seasons = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#seasons-synopsis").val();
+        var rating = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#rating-synopsis").val();
+        var details = {
+          chapter_id: chapter_id,
+          duration: duration,
+          year: year,
+          seasons: seasons,
+          rating: rating
+        };
+        var response = programController.editDetailsSynopsis(details);
+        response.then(function (data) {
+          if (data.code == 200) {
+            return programController.getSynopsis(chapter_id);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          }
+        });
+      });
+    }
+    /**
+     * Método para editar el título y la sinopsis de un programa en modal
+     *
+     * @param {Object} socket Socket al que queremos mandar la información de toda la sinopsis de un programa
+     */
+
+  }, {
+    key: "editAttributesSynopsis",
+    value: function editAttributesSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-synopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var change = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.program-chpater-synopsis:checked').val();
+        var synopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-text-synopsis").val();
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-modal-title').val();
+        var response = programController.editAttributesSynopsis(chapterId, change, synopsis, title); //editamos primero la sinopsis
+
+        response.then(function (data) {
+          if (data.code == 200) {
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      });
+    }
+  }, {
+    key: "editImagesSynopsis",
+    value: function editImagesSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>"); //Obtenemos las imágenes
+
+        var imageSynopsis1 = document.getElementById("image-synopsis-1").files[0];
+        var imageSynopsis2 = document.getElementById("image-synopsis-2").files[0];
+        var imageSynopsis3 = document.getElementById("image-synopsis-3").files[0]; //Obtenemos el id del landing para saber en qué carpeta guardar la imagen
+
+        var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id"); //Obtenemos el id del capítulo
+
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var data = new FormData();
+        data.append("image-synopsis-1", imageSynopsis1);
+        data.append("image-synopsis-2", imageSynopsis2);
+        data.append("image-synopsis-3", imageSynopsis3);
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
+        var imagesResponse = programController.updateImagesSynopsis(data);
+        imagesResponse.then(function (data) {
+          if (data.code == 200) {
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }); //update();
+      });
+    } //Editar imagen principal en landing de sinopsis
+
+  }, {
+    key: "editImageSynopsis",
+    value: function editImageSynopsis(socket) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>"); //Obtenemos el archivo;
+
+        var imageSynopsis = document.getElementById("image-synopsis").files[0];
+        var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var data = new FormData();
+        data.append("image-synopsis", imageSynopsis);
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
+        var imageResponse = programController.updateImagesSynopsis(data);
+        imageResponse.then(function (data) {
+          if (data.code == 200) {
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
+        });
+      });
+    }
+  }, {
+    key: "editImagesBanner",
+    value: function editImagesBanner(socket) {
+      //Editar las imágenes del banner
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+        var imageSynopsis1 = document.getElementById("image_banner_synopsis_1").files[0];
+        var imageSynopsis2 = document.getElementById("image_banner_synopsis_2").files[0];
+        var imageSynopsis3 = document.getElementById("image_banner_synopsis_3").files[0];
+        var landingId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing_id");
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var data = new FormData();
+        data.append("image_background_1", imageSynopsis1);
+        data.append("image_background_2", imageSynopsis2);
+        data.append("image_background_3", imageSynopsis3);
+        data.append("landing_id", landingId);
+        data.append("chapter_id", chapterId);
+        var imageBannerResponse = programController.updateImagesSynopsis(data);
+        imageBannerResponse.then(function (data) {
+          if (data.code == 200) {
+            return programController.getSynopsis(chapterId);
+          }
+        }).then(function (data) {
+          if (data.code === 200) {
+            var dataStringified = JSON.stringify(data);
+            socket.postMessage(dataStringified);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        });
+      });
+    }
+  }]);
+
+  return ProgramView;
+}();
 
 
 

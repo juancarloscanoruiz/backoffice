@@ -4,12 +4,12 @@ let landingController = new LandingController();
 
 export default class LandingView {
 
-
-
     renderHomeHeaderConcertChannel() {
         let data = landingController.getContentHome();
         data.then(data => {
             if (data.code == 200) {
+                // Add name
+                $("#landing_name").attr('value', 'Concert Channel');
                 //Add a class to the button
                 $("#dinamic_btn").addClass('btn-pink');
                 //set the width of the image
