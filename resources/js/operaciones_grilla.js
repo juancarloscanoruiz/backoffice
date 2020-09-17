@@ -52,7 +52,8 @@ import {
     editAttributeSynopsis,
     updateImagesSynopsis,
     confLandingHome,
-    getContentHomeHeader
+    getContentHomeHeader,
+    getCarruselHome
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -163,58 +164,18 @@ function eventsGrilla() {
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
-                getContentHomeHeader(json.type);
-                // switch (json.type) {
-                //     case "slider-pagination":
-                //         getContentHomeHeader(json.type);
-                //         break;
-
-                //     case "claro-home-header":
-                //         $("body").append(LOADER);
-                //         setTimeout(function () {
-                //             $('#modal-logo-home').modal('show')
-                //             $("#loader1").remove();
-                //         }, 3000);
-                //         break;
-
-                //     case "claro-home-slider":
-                //         $("body").append(LOADER);
-                //         setTimeout(function () {
-                //             $('#modal-carrusel-home').modal('show')
-                //             $("#loader1").remove();
-                //         }, 3000);
-                //         break;
-
-                //     default:
-                //         break;
-                // }
-                let loader = `
-                        <div class="loader-view-container" id="loader1">
-                            <img src="./images/loader.gif" class="loader" alt="">
-                        </div>
-                            `;
-
                 switch (json.type) {
                     case "slider-pagination":
-                        getContentHomeHeader();
-
+                        getContentHomeHeader(json.type);
                         break;
                     case "claro-home-header":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $("#loader1").remove();
-                        }, 3000);
-
+                        getContentHomeHeader(json.type);
                         break;
-
                     case "claro-home-slider":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $("#loader1").remove();
-                        }, 3000);
-
+                        // let landing = 'Canal Claro';
+                        // getCarruselHome(landing);
+                        getContentHomeHeader(json.type);
                         break;
-
                     default:
                         break;
                 }
@@ -264,16 +225,16 @@ function eventsGrilla() {
                                 while (true) {
                                     if (
                                         data.data[
-                                            `image_background_${index}`
+                                        `image_background_${index}`
                                         ] !== undefined
                                     ) {
                                         image =
                                             data.data[
-                                                `image_background_${index}`
+                                            `image_background_${index}`
                                             ];
                                         if (
                                             data.data[
-                                                `image_background_${index}`
+                                            `image_background_${index}`
                                             ] == null
                                         ) {
                                             image =
@@ -5002,7 +4963,9 @@ function eventsGrilla() {
         console.log('click');
         // $('#modal-logo-home').modal('show');
         // $('#modal-carrusel-home').modal('show');
-        getContentHomeHeader('claro-home-slider');
+        // getContentHomeHeader('claro-home-slider');
+        getPromotionalsProgramsCarousel('Canal Claro');
+        // getPromotionalsProgramsCarousel(1, "Canal Claro", "Canal Claro")
     });
 
     $('#modal_url').click(function () {
@@ -5020,7 +4983,7 @@ function eventsGrilla() {
         $("#inp_url").val(url);
         $("#url").modal("hide");
     });
-    $('#close_all_modal').click(function(){
+    $('#close_all_modal').click(function () {
         $('#modal-logo-home').modal('hide')
         $('#modal-carrusel-home').modal('hide')
     })

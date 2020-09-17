@@ -555,7 +555,6 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    // PROMO
     public function editPromoLandingClaro(Request $request)
     {
         $folderLanding = "";
@@ -862,5 +861,14 @@ class landingController extends Controller
 
 
         return $response->getBody()->getContents();
+    }
+    function homeCarrusel(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/getCarruselHome/" . $request->input("landing")
+        );
+
+        echo ($response->getBody()->getContents());
     }
 }
