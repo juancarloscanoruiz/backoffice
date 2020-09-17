@@ -164,8 +164,8 @@ function eventsGrilla() {
 
 
     let LandingHomeConcert = {
-        //remote: `${baseURL}home-edi-claro.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
+    remote: `${baseURL}home-edi-concert.php`,
+       // remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
