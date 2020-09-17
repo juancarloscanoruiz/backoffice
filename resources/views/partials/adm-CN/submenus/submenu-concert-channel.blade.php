@@ -49,7 +49,7 @@
                     <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
                         rel="navbar-prev-home-concert">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="  a-text-bold-light py-2 px-3 mb-0">HOME</p>
+                            <p class=" a-text-bold-two py-2 px-3 mb-0">HOME</p>
                         </div>
                     </div>
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-right">

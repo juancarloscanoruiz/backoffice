@@ -74420,8 +74420,8 @@ function eventsGrilla() {
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
   var LandingHomeConcert = {
-    //remote: `${baseURL}home-edi-claro.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/home-edi-concert.php",
+    remote: "".concat(baseURL, "home-edi-concert.php"),
+    // remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
     container: document.getElementById("navbar-prev-home-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -79194,6 +79194,9 @@ function editHomeHeader(data) {
     data: data,
     processData: false,
     contentType: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
     url: "landing/editHomeHeader",
     success: function success(result) {
       var json = JSON.parse(result);
@@ -79202,6 +79205,8 @@ function editHomeHeader(data) {
       if (json.code == 200) {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-home-encabezado").modal("hide");
       }
+
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
 }

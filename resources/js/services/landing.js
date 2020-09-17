@@ -1638,6 +1638,13 @@ function editHomeHeader(data) {
         data: data,
         processData: false,
         contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
      url: "landing/editHomeHeader",
         success: function (result) {
             let json = JSON.parse(result);
@@ -1645,6 +1652,7 @@ function editHomeHeader(data) {
             if (json.code == 200) {
                 $(".modal-home-encabezado").modal("hide");
             }
+            $(".loader-view-container").remove();
           
         }
     });

@@ -27,7 +27,7 @@
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
                     <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion" navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-regular-blacktwo py-2 px-3 mb-0">PROGRAMACIÓN</p>
+                            <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
 
                     </div>
@@ -45,9 +45,9 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home pointer-none" navbar-index="4" rel="navbar-prev-home">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4" rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
-                            <p class="a-text-bold-light py-2 px-3 mb-0">HOME</p>
+                            <p class="a-text-bold-two py-2 px-3 mb-0">HOME</p>
                         </div>
                     </div>
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-right">
