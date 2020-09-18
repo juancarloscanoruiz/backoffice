@@ -102,6 +102,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/editPromoLandingClaro", "landingController@editPromoLandingClaro");
     Route::post("/editPromoLandingCinema", "landingController@editPromoLandingCinema");
     Route::post("/homeCarrusel", "landingController@homeCarrusel");
+    Route::post("/editHeaderHome", "landingController@editHeaderHome");
 
     // MODAL CLARO
 });

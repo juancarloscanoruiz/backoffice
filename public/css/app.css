@@ -6941,13 +6941,9 @@ a:hover {
   padding: 2% 5%;
 }
 
-.img-logo-home {
-  width: 350px;
-  left: 0%;
-}
-
 .img-logo-home-claro {
-  width: 90%;
+  width: 98%;
+  height: 98%;
 }
 
 .img-logo-home-concert {

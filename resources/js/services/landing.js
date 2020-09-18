@@ -1882,10 +1882,9 @@ function getContentHomeHeader(type) {
                                 <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                                 <source src="${data.data.block_1_video_name}" type="video/mp4">
                                 
-                                 </video>
-            `);
-        }
-    }
+                                 </video>`);
+                            }
+                        }
 
 
                         //Mostramos el modal
@@ -1895,6 +1894,7 @@ function getContentHomeHeader(type) {
                         break
 
                     case 'claro-home-header':
+                        $("#landing_name").attr('value', 'Canal Claro');
                         $("#img-logo-home").addClass('img-logo-home-claro');
                         $("#dinamic_width").addClass('modal-img-home-claro');
                         $("#dinamic_btn").addClass('btn-red');
@@ -1906,99 +1906,6 @@ function getContentHomeHeader(type) {
                         $("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
                         $("#inp_url").val(data.data.block_3_icon_channel_url);
                         $("#modal-logo-home").modal("show");
-                        $(".loader-view-container").remove();
-                        break
-
-                    case 'claro-home-slider':
-                        let programmingSlider = $("#img_carrusel_home");
-                        let counter = 1;
-                        let image = "";
-                        while (true) {
-                            try {
-                                if (data.data[`block_3_image${counter}`]) {
-                                    image += `
-                                    <div>
-                                        <!-- IMG -->
-                                        <div class="position-relative text-center">
-                                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home" src="${data.data[`block_3_image${counter}`].image_vertical}">
-                                        </div>
-                                        <!-- BTN ICONOS -->
-                                        <div class="modal-img-carrusel">
-                                            <!-- INPUTS -->
-                                            <input class="d-none" id="img_carrusel" name="img-carrusel" type="file">
-                                            <!-- LABEL -->
-                                            <label for="img_carrusel" class="add-file">
-                                                <img style="width: 30%;" id="camera" class="camera_carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
-                                                <br>
-                                                <p class="a-text-bold-warm text-plus">472px X 295px</p>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    `;
-                                    counter++;
-                                } else {
-                                    break;
-                                }
-                            } catch (error) {
-                                break;
-                            }
-                        }
-                        $("#modal-carrusel-home").modal("show");
-                        try {
-                            programmingSlider.slick("unslick");
-                            programmingSlider.html(image);
-                            programmingSlider.slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".slaider-home-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                        } catch (error) {
-                            programmingSlider.html(image);
-                            programmingSlider.slick({
-                                slidesToShow: 1,
-                                dots: true,
-                                appendDots: $(".slaider-home-dots"),
-                                initialSlide: 0,
-                                infinite: false,
-                                customPaging: function (slider, i) {
-                                    var thumb = $(slider.$slides[i]).data();
-                                    return (
-                                        "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
-                                        "</p>"
-                                    );
-                                }
-                            });
-                        }
-                        // HOME CARRUSEL
-                        $("#img_carrusel").change(function () {
-                            viewImg(this, "#img-carrusel-home");
-                            viewEdit();
-                        });
-
-                        function viewImg(objFileInput, container) {
-                            let fileSrt = new FileReader();
-                            if (objFileInput.files[0]) {
-                                fileSrt.onload = function (e) {
-                                    $(container).attr('src', e.target.result);
-                                };
-                                fileSrt.readAsDataURL(objFileInput.files[0]);
-                            }
-                        }
-
-                        function viewEdit() {
-                            $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
-                        }
                         $(".loader-view-container").remove();
                         break
                 }
@@ -2340,7 +2247,7 @@ function editHeaderLanding(data) {
 
 //edit header home
 
-function editHomeHeader(data) {  
+function editHomeHeader(data) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -2780,8 +2687,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-header").modal("show");
                         break;
-                        // GET HEADER
-                        // GET TITLE
+                    // GET HEADER
+                    // GET TITLE
                     case "claro-title":
                         $(".inp-title-modal").val(obj.data.block_3_title);
                         $(".inp-title-modal").attr("key", "block_3_title");
@@ -2789,8 +2696,8 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").attr("block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE
-                        // GET PROMO
+                    // GET TITLE
+                    // GET PROMO
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay muted controls class="img-back-modal img-promo" src="' +
@@ -2799,8 +2706,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-promo").modal("show");
                         break;
-                        // GET PROMO
-                        // GET TITLE CARRUSEL 1
+                    // GET PROMO
+                    // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
@@ -2814,8 +2721,8 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE CARRUSEL 1
-                        // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
                     case "claro-carrusel-title2":
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
@@ -2829,7 +2736,7 @@ function getModalsCanalClaro(type) {
                         );
                         $("#modal-title").modal("show");
                         break;
-                        // GET TITLE CARRUSEL 1
+                    // GET TITLE CARRUSEL 1
                 }
             }
 
@@ -3945,8 +3852,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                )
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -3963,8 +3870,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                )
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -3982,8 +3889,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                )
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -4000,8 +3907,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                )
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -4019,8 +3926,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                                 .val()
                                 .split("-");
 
@@ -4038,8 +3945,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -4059,8 +3966,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
-                                )
+                                ".modal-edit-program-carrusel  .edit-landing-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -4076,8 +3983,8 @@ function getPromotionalsProgramsCarousel(
                             ).val()
                         ) {
                             let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-end"
-                                )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -4244,8 +4151,8 @@ function getContentClaroCinema(type) {
                             $(".modal").modal("hide");
                         });
                         break;
-                        // HEADER
-                        // SLAIDER
+                    // HEADER
+                    // SLAIDER
 
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(
@@ -4625,6 +4532,31 @@ function confLandingHome(baseURL) {
 
 // HOME
 
+function editHeaderHome(data){
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+            );
+        },
+        url: "landing/editHeaderHome",
+        success: function (result) {
+            let json = JSON.parse(result);
+            console.log(json);
+            if (json.code == 200) {
+                $("#modal-logo-home").modal("hide");
+            }
+            $(".loader-view-container").remove();
+        }
+    });
+}
 // HOME
 
 
@@ -4660,6 +4592,7 @@ export {
     updateImagesSynopsis,
     confLandingHome,
     getContentHomeHeader,
-    getCarruselHome
+    getCarruselHome,
+    editHeaderHome
 
 };
