@@ -1161,6 +1161,8 @@ function getCarruselHome(landing) {
 
                 for (const chapter of data.data.chapters) {
 
+                    let chapter_id_master = chapter.chapter.chapter_id;
+
                     //Fechas
                     let dateExpirationLanding = "";
                     let timeExpiration = "";
@@ -1309,9 +1311,9 @@ function getCarruselHome(landing) {
                         //Switch de landing
                         inLandingSwitch = `
                         <div class="d-flex align-items-center mb-3 pl-5">
-                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes" switch-table-edit chapter_id="${chapter.chapter.id} key="in_landing" checked />
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes edit-program-switch" chapter_id="${chapter.chapter.id}" key="in_landing" checked />
                             <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
-                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id} key="in_landing" />
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing edit-program-switch edit-landing-no" chapter_id="${chapter.chapter.id}" key="in_landing" />
                             <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
                         </div>`;
 
@@ -1322,7 +1324,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_landing_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}"></span>
+                                        <input key="in_landing_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-program-attribute-text edit-landing-date-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}"></span>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -1330,7 +1332,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_landing_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateExpirationLanding}"></span>
+                                        <input key="in_landing_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-program-attribute-text edit-landing-date-end" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateExpirationLanding}"></span>
                                 </div>
                             </div>
                         </div>`;
@@ -1339,10 +1341,10 @@ function getCarruselHome(landing) {
                     <div class="row">
                         <div class="col-6">
                             <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
-                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${timeBegin}"></span>
+                                    <input key="in_landing_begin" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-time-begin" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${timeBegin}"></span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -1350,19 +1352,18 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${timeExpiration}"></span>
+                                    <input key="in_landing_expiration" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-time-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${timeExpiration}"></span>
                             </div>
                         </div>
                     </div>`;
                     } else {
                         inLandingSwitch = `
                         <div class="d-flex align-items-center mb-3 pl-5">
-                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes" switch-table-edit chapter_id="${chapter.chapter.id} key="in_landing" />
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}" id="yes-landing-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-landing edit-landing-yes edit-program-switch " chapter_id="${chapter.chapter.id}" key="in_landing" />
                             <label for="yes-landing-carrusel-${chapter.chapter.id}" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
-                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" chapter_id="${chapter.chapter.id} key="in_landing" checked/>
+                            <input type="radio" name="yes-landing-carrusel-${chapter.chapter.id}"  id="no-landing-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-landing edit-program-switch edit-landing-no" chapter_id="${chapter.chapter.id}" key="in_landing" checked />
                             <label for="no-landing-carrusel-${chapter.chapter.id}" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
-                        </div>
-                        `;
+                        </div>`;
                         inLandingDates = `
                     <div class="row">
                         <div class="col-6 mb-4">
@@ -1370,7 +1371,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                 <img src="./images/calendario.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                    <input key="in_landing_begin" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-date-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -1378,7 +1379,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/calendario.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                    <input key="in_landing_expiration" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-time-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                             </div>
                         </div>
                     </div>`;
@@ -1386,10 +1387,10 @@ function getCarruselHome(landing) {
                     <div class="row">
                         <div class="col-6">
                             <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center">
-                                <p class="text-small-rectangle a-text-bold-warm">Fin</p>
+                                <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
+                                    <input key="in_landing_begin" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-date-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -1397,7 +1398,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_landing_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
+                                    <input key="in_landing_expiration" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-landing-time-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
                             </div>
                         </div>
                     </div>`;
@@ -1407,9 +1408,9 @@ function getCarruselHome(landing) {
                         //Switch de home
                         inHomeSwitch = `
                         <div class="d-flex align-items-center mb-3 pl-5">
-                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes" edit-program-switch chapter_id="${chapter.chapter.id} key="in_home" checked />
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes edit-program-switch " chapter_id="${chapter.chapter.id}" key="in_home" checked />
                             <label for="yes-home-carrusel-${chapter.chapter.id}" id="siestado-home" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
-                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id} key="in_home" />
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id}" key="in_home" />
                             <label for="no-home-carrusel-${chapter.chapter.id}" id="noestado-home" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
                         </div>`;
 
@@ -1420,7 +1421,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_home_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeBegin}"></span>
+                                        <input key="in_home_begin" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeBegin}"></span>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -1428,7 +1429,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_home_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"></span>
+                                        <input key="in_home_expiration" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"></span>
                                 </div>
                             </div>
                         </div>`;
@@ -1440,7 +1441,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_home_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${dateHomeBegin}"></span>
+                                    <input key="in_home_begin" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="${timeHomeBegin}"></span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -1448,16 +1449,16 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_home_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${dateHomeExpiration}"></span>
+                                    <input key="in_home_expiration" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value="${dateHomeExpiration}"></span>
                             </div>
                         </div>
                     </div>`;
                     } else {
                         inHomeSwitch = `
                         <div class="d-flex align-items-center mb-3 pl-5">
-                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes" edit-program-switch chapter_id="${chapter.chapter.id} key="in_home" />
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}" id="yes-home-carrusel-${chapter.chapter.id}" value="1" class="edit-switch-home edit-home-yes" edit-program-switch chapter_id="${chapter.chapter.id}" key="in_home" />
                             <label for="yes-home-carrusel-${chapter.chapter.id}" id="siestado-home" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
-                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id} key="in_home" checked />
+                            <input type="radio" name="yes-home-carrusel-${chapter.chapter.id}"  id="no-home-carrusel-${chapter.chapter.id}" value="0" class="edit-switch-home edit-program-switch edit-home-no" chapter_id="${chapter.chapter.id}" key="in_home" checked />
                             <label for="no-home-carrusel-${chapter.chapter.id}" id="noestado-home" class="mb-0 no-estilo cursor-pointer switch-label">No</label>
                         </div>`;
 
@@ -1468,7 +1469,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Inicio</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_home_begin" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                        <input key="in_home_begin" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -1476,7 +1477,7 @@ function getCarruselHome(landing) {
                                     <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                     <img src="./images/calendario.svg" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3">
-                                        <input key="in_home_expiration" type=" text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
+                                        <input key="in_home_expiration" type=" text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-begin" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                                 </div>
                             </div>
                         </div>`;
@@ -1487,7 +1488,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_home_begin" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
+                                    <input key="in_home_begin" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value=""></span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -1495,7 +1496,7 @@ function getCarruselHome(landing) {
                                 <p class="text-small-rectangle a-text-bold-warm">Fin</p>
                                 <img src="./images/reloj.svg" alt="" class="mr-3">
                                 <span class="a-text-bold-warm mt-3">
-                                    <input key="in_home_expiration" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
+                                    <input key="in_home_expiration" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-end" placeholder="00:00:00" chapter_id="${chapter.chapter.id}" key="in_landing_expiration" value=""></span>
                             </div>
                         </div>
                     </div>`;
@@ -1504,6 +1505,7 @@ function getCarruselHome(landing) {
                     program +=
                         `
             <div class="container-fluid">
+            <input type="hidden" id="chapter_id_master" class="chapter_id_master" value="${chapter_id_master}">
             <div class="row">
                 <div class="col-8">
                     <div class="row">
@@ -1535,7 +1537,7 @@ function getCarruselHome(landing) {
                                         <div class="text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center" style="margin-bottom: 99px">
                                             <img src="./images/calendario.svg" alt="" class="mr-3">
                                             <span class="a-text-bold-warm mt-2">
-                                                <input key="" type="text" class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"></span>
+                                                <input key="" type="text" class="edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date" placeholder="00-00-0000" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"></span>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -1543,7 +1545,7 @@ function getCarruselHome(landing) {
                                         <div class="text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2">
                                             <img src="./images/reloj.svg" alt="" class="mr-3">
                                             <span class="a-text-bold-warm mt-2">
-                                                <input type="text" class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase" placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
+                                                <input type="text" class="edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase" placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -1590,7 +1592,7 @@ function getCarruselHome(landing) {
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
                             <!-- INPUTS -->
-                            <input class="d-none" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file">
+                            <input class="d-none load-carrusel" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical">
                             <!-- LABEL -->
                             <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
                                 <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
@@ -1802,27 +1804,31 @@ function getCarruselHome(landing) {
             }
 
             $('.add-file-carrusel').click(function () {
-                let id = $(this).attr("id")
-                imgCarruselHome(id);
+                debugger
+                let id = $(this).attr("id");
+                let key = $('.load-carrusel').attr("key");
+                imgCarruselHome(id, key);
+
             })
         }
     });
 }
 
-function imgCarruselHome(id) {
+function imgCarruselHome(id, key) {
     $("#img_carrusel_" + id).change(function () {
-        viewImg(this, "#img-carrusel-home-" + id);
+        viewImg(this, "#img-carrusel-home-" + id, id, key);
         viewEdit();
     });
 }
 
-function viewImg(objFileInput, container) {
+function viewImg(objFileInput, container, id, key) {
     let fileSrt = new FileReader();
     if (objFileInput.files[0]) {
         fileSrt.onload = function (e) {
             $(container).attr('src', e.target.result);
         };
         fileSrt.readAsDataURL(objFileInput.files[0]);
+        editAttributeProgram(id, key, objFileInput.files[0]);
     }
 }
 function viewEdit() {
@@ -2261,7 +2267,7 @@ function editHomeHeader(data) {
                 </div>`
             );
         },
-     url: "landing/editHomeHeader",
+        url: "landing/editHomeHeader",
         success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
@@ -2269,7 +2275,7 @@ function editHomeHeader(data) {
                 $(".modal-home-encabezado").modal("hide");
             }
             $(".loader-view-container").remove();
-          
+
         }
     });
 }
@@ -4532,7 +4538,7 @@ function confLandingHome(baseURL) {
 
 // HOME
 
-function editHeaderHome(data){
+function editHeaderHome(data) {
     $.ajax({
         type: "POST",
         cache: false,

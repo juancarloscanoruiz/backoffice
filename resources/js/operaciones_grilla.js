@@ -239,6 +239,7 @@ function eventsGrilla() {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
+    /*
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home"),
@@ -254,12 +255,14 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+    
 
     let NavbarHomeCinema = document.getElementById("navbar-prev-home");
     if (NavbarHomeCinema) {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeCinema);
     }
+    */
 
 
     let LandingSinopsis = {
@@ -1409,8 +1412,11 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "keydown",
         ".edit-program-attribute-text",
+       
         function (e) {
+            
             if (e.which === 13 && !e.shiftKey) {
+                debugger
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -1721,7 +1727,8 @@ function eventsGrilla() {
                             ".modal-edit-program-carrusel .edit-home-time-begin"
                         ).val()}`;
 
-                        editAttributeProgram(chapter_id, key, value);
+                        
+                        (chapter_id, key, value);
                     } else if (
                         $(
                             ".modal-edit-program-carrusel .edit-home-date-begin"
@@ -4943,7 +4950,9 @@ function eventsGrilla() {
     }
 
     $('#btn_pruebas').click(function () {
-        getContentHomeHeader('claro-home-header');
+        // getContentHomeHeader('claro-home-header');
+        let landing = 'Canal Claro';
+        getCarruselHome(landing);
     });
 
     $('#modal_url').click(function () {
@@ -4967,7 +4976,6 @@ function eventsGrilla() {
     })
 
     $("#acepta_canales_home").click(function () {
-        debugger
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -4985,6 +4993,9 @@ function eventsGrilla() {
     });
 
     // HOME
+    $('.acepta_carrusel_home').click(function(){
+        programView.editCarruselHome()
+    })
 }
 
 export {

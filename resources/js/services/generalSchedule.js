@@ -14,6 +14,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
+    debugger
     let data = {
         chapter_id,
         key,
