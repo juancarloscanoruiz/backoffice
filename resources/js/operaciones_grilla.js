@@ -270,6 +270,28 @@ function eventsGrilla() {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
+    let LandingHomeCinema = {
+        remote: `${baseURL}home-edi-cinema.php`,
+        container: document.getElementById("navbar-prev-home"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                getContentHomeHeader(json.type);
+            
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let NavbarHomeCinema = document.getElementById("navbar-prev-home");
+    if (NavbarHomeCinema) {
+        $('#navbar-prev-home iframe').remove();
+        new easyXDM.Socket(LandingHomeCinema);
+    }
+
 
     let LandingSinopsis = {
         //remote: `${baseURL}sinopsis-edi.php`,
@@ -3534,6 +3556,7 @@ function eventsGrilla() {
                 //Creamos una nueva fecha empezando por año
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
+             
                 //   Fecha final del datepicker
 
                 let landing = $("#date-start-input").attr("landing");

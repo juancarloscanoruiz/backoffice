@@ -67,6 +67,8 @@ $.ajaxSetup({
 
 $(document).ready(function () {
 
+    
+
     /*     OverlayScrollbars(document.querySelector("#rempla-claro-canal"), {
             className: "os-theme-dark",
             resize: "both",

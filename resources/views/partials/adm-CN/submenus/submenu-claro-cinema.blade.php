@@ -2,20 +2,6 @@
 
 
 
-<script>
-    new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
-        container: "navbar-prev-home",
-        onMessage: function(message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-        }
-    });
-</script>
 
 
 <body>
@@ -579,4 +565,5 @@
     @include('partials.adm-CN.modals-cinema.modal-advertencia')
     @include('partials.adm-CN.modals-cinema.programming');
 
+    @include('partials.adm-CN.modals-home.home-encabezado');
 </body>

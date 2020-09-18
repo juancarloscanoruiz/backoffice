@@ -90287,6 +90287,27 @@ function eventsGrilla() {
     new easyXDM.Socket(LandingHomeClaro);
   }
 
+  var LandingHomeCinema = {
+    remote: "".concat(baseURL, "home-edi-cinema.php"),
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var NavbarHomeCinema = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeCinema) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
+    new easyXDM.Socket(LandingHomeCinema);
+  }
+
   var LandingSinopsis = {
     //remote: `${baseURL}sinopsis-edi.php`,
     remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
@@ -91917,7 +91938,8 @@ function eventsGrilla() {
         var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
 
         var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".start-date-inicio").val(startDateFull); //   Fecha final del datepicker
 
         var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
         var endDate = fullDate[1];

@@ -18,7 +18,7 @@
                         </div>
 
                         <input type="text" id="programming-carrusel-calendar" class="d-none">
-                        <label for="programming-carrusel-calendar" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3" id="date-start-table">
+                        <label for="programming-carrusel-calendar" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3" id="date-start-input">
                             <img src="./images/calendario.svg" alt="">
                             <div class="ml-3">
                                 <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
