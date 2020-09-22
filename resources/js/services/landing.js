@@ -1915,6 +1915,45 @@ function getContentHomeHeader(type) {
     });
 }
 
+function getContentHomeHeaderCinema(){
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/home",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+             
+                $("#landing_name").attr('value', 'Claro Cinema');
+                //Add a class to the button
+                $("#dinamic_btn").addClass('btn-red');
+                //set the width of the image
+                $("#img-logo-home").addClass('img-logo-home-concert');
+                //Set the width of the container
+                $("#dinamic_width").addClass('modal-img-home-concert');
+                $('#inp_canales_subtitulo').val(data.data.block_5_subtitle)
+                $('#inp_url').val(data.data.block_5_button1_url)
+                //Change the logo
+                $("#img-logo-home").attr('src', data.data.block_5_icon_channel);
+                //Modal
+                $("#modal-logo-home").modal("show");
+                $(".loader-view-container").remove();
+                        
+            
+
+            }
+        }
+    });
+
+}
 function getContentConcertChannelBlockHeader3() {
     $.ajax({
         type: "POST",
@@ -4547,8 +4586,8 @@ function editHeaderHome(data){
             );
         },
         url: "landing/editHeaderHome",
-        success: function (result) {
-            let json = JSON.parse(result);
+        success: function (result) {         
+            let json = JSON.parse(result);         
             console.log(json);
             if (json.code == 200) {
                 $("#modal-logo-home").modal("hide");
@@ -4593,6 +4632,7 @@ export {
     confLandingHome,
     getContentHomeHeader,
     getCarruselHome,
-    editHeaderHome
+    editHeaderHome,
+    getContentHomeHeaderCinema
 
 };

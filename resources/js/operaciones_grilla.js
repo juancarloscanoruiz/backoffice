@@ -57,7 +57,8 @@ import {
     confLandingHome,
     getContentHomeHeader,
     getCarruselHome,
-    editHeaderHome
+    editHeaderHome,
+    getContentHomeHeaderCinema
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -85,10 +86,28 @@ import {
 
 import {
     createSlickSlider,
-    createCalendarDays
+    createCalendarDays,
+    getDayName,
+    getMonthAndYear,
+    getMonthAndYearmin
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
+  
+
+   //Sacamos la fecha actual para ponerla en el calendario
+   let currentDate1 = new Date();
+  
+   //obtenemos el mes
+   let calendarMonth1 = currentDate1.getMonth();
+   //Obtenemos el día
+   let calendarDay1 = currentDate1.getDate();
+   let hora = currentDate1.getHours()+":" + currentDate1.getMinutes() +":" + currentDate1.getSeconds() + " GMT";
+  
+ let daymonth =  getDayName(calendarMonth1 , calendarDay1);
+  let monthday = getMonthAndYearmin(calendarMonth1 );
+   let fulldatelanding =`${calendarDay1} ${monthday},  ${hora}`;
+    $("#date-edit").text(fulldatelanding);
     //calendario de sinopsis
     let calendarsinopsis = $(".calendar-sinopsis-slider");
     $(".calendar-sinopsis-slider").slick({
@@ -177,6 +196,9 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
+                    case "slider-pagination":
+                        getContentHomeHeader(json.type);
+                        break;
                     case "concert-home-header":
                         $("body").append(loader);
                         landingView.renderHomeHeaderConcertChannel();
@@ -241,11 +263,27 @@ function eventsGrilla() {
     }
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
-        container: document.getElementById("navbar-prev-home"),
+        container: document.getElementById("navbar-prev-home-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
-                getContentHomeHeader(json.type);
+               
+                switch (json.type) {       
+                    case "slider-pagination":
+                        getContentHomeHeader(json.type);
+                        break;
+                    case "claro-home-header":
+                        getContentHomeHeaderCinema(json.type);
+                        break;
+                    case "claro-home-slider":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    default:
+                        break;
+                }
             
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
@@ -255,9 +293,9 @@ function eventsGrilla() {
         }
     };
 
-    let NavbarHomeCinema = document.getElementById("navbar-prev-home");
+    let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
     if (NavbarHomeCinema) {
-        $('#navbar-prev-home iframe').remove();
+        $('#navbar-prev-home-cinema iframe').remove();
         new easyXDM.Socket(LandingHomeCinema);
     }
 
@@ -3591,6 +3629,7 @@ function eventsGrilla() {
         });
     }
 
+   
     $("#close_modals").click(function () {
         console.log("cerrar");
         $(".modal").modal("hide");
@@ -4967,7 +5006,7 @@ function eventsGrilla() {
     })
 
     $("#acepta_canales_home").click(function () {
-        debugger
+    
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -4978,13 +5017,29 @@ function eventsGrilla() {
         data.append("subtitle", subtitle);
         data.append("link", link);
         editHeaderHome(data);
-        if (landing == 'Canal Claro') {
+       /* if (landing == 'Canal Claro') {
             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-        }
+        }*/
 
     });
 
-    // HOME
+   /* $("#acepta_canales_home").click(function () {      
+        let landing = $("#landing_name").val();
+        let logo = document.getElementById("logo_home").files[0] || "";
+        let subtitle = $("#inp_canales_subtitulo").val() || "";
+        let link = $("#inp_url").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("logo", logo);
+        data.append("subtitle", subtitle);
+        data.append("link", link);
+        editHeaderHome(data);
+      // resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+        
+
+    });*/
+
+   
 }
 
 export {

@@ -450,5 +450,6 @@
     @include('partials.adm-CN.modals-concert.carrusel2')
 
     <!--HOME-->
+    @include('partials.adm-CN.modals-home.home-encabezado');
     @include('partials.adm-CN.modal-home.logo');
 </body>

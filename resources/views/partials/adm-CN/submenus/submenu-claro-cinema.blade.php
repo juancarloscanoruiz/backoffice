@@ -31,7 +31,7 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4" rel="navbar-prev-home">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4" rel="navbar-prev-home-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">HOME</p>
                         </div>
@@ -314,7 +314,7 @@
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
+                <div class="navbar-progra-content  navbar-prev-home mb-5 mt-5" id="navbar-prev-home-cinema">
                 </div>
             </div>
         </div>
@@ -565,5 +565,8 @@
     @include('partials.adm-CN.modals-cinema.modal-advertencia')
     @include('partials.adm-CN.modals-cinema.programming');
 
+      <!--HOME-->
+     
     @include('partials.adm-CN.modals-home.home-encabezado');
+    @include('partials.adm-CN.modal-home.logo');
 </body>

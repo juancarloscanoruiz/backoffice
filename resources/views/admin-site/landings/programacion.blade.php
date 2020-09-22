@@ -31,9 +31,12 @@
             </div>  
             <div class="clearfix"></div>
             <div class="ml-5 float-left mb-4">
-        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">septiembre 17 2019</span> </span></div>
-        <span class="a-text-black-light text-plus">Editado por: <label class="zona"> Antonio Pérez López (<label class="zona ">Usuario aprobador</label>)</label></span>
-    </div>            
+            <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit">septiembre 17
+                            2019</span> </span></div>
+                <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label
+                            class="zona ">{{ session('rol_name') }}</label>)</label></span>
+            </div>
+                  
            
             <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1"style="width:32px" /></button>

@@ -39,6 +39,26 @@ function getMonthAndYear(month) {
 
     return `${months[month]} ${year}`;
 }
+function getMonthAndYearmin(month) {
+    let date = new Date();
+    let year = date.getUTCFullYear();
+    let months = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+    ];
+
+    return `${months[month]} ${year}`;
+}
 
 //Creamos los días del slider de calendario
 function createCalendarDays(container, calendarClass = "") {
@@ -228,5 +248,9 @@ function createSlickSlider(container, options) {
 
 export {
     createSlickSlider,
-    createCalendarDays
+    createCalendarDays,
+    getDay,
+    getDayName,
+    getMonthAndYear,
+    getMonthAndYearmin
 }

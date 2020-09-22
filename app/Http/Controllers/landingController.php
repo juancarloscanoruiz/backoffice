@@ -922,5 +922,6 @@ class landingController extends Controller
             )]
         );
         echo ($response->getBody()->getContents());
+     
     }
 }
