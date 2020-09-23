@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class=" modal  delete-info-claro" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
-    data-modal-parent="#modalbanner">
+    data-modal-parent="#modalbanner" style="overflow: auto; z-index: 9999;">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
