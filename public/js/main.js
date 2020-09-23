@@ -90094,6 +90094,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config/slick.js */ "./resources/js/config/slick.js");
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -90121,6 +90123,8 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 
 function eventsGrilla() {
+  var _LandingHomeClaro;
+
   //calendario de sinopsis
   var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
@@ -90215,25 +90219,73 @@ function eventsGrilla() {
     var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
   }
 
-  var LandingHomeClaro = {
-    remote: "".concat(baseURL, "home-edi-claro.php"),
-    container: document.getElementById("navbar-prev-home"),
+  var LandingHomeClaro = (_LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php")
+  }, _defineProperty(_LandingHomeClaro, "remote", "http://localhost/MaquetaCNetworks/home-edi-claro.php"), _defineProperty(_LandingHomeClaro, "container", document.getElementById("navbar-prev-home")), _defineProperty(_LandingHomeClaro, "onMessage", function onMessage(message, origin) {
+    var json = JSON.parse(message);
+
+    if (_typeof(json) == "object") {
+      switch (json.type) {
+        case "home-claro-carrousel-main":
+          var date = new Date();
+          var day = ("0" + date.getUTCDate()).slice(-2);
+          var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+          var _year = date.getUTCFullYear();
+
+          var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
+
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", 'home');
+          break;
+
+        case "slider-pagination":
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+          break;
+
+        case "claro-home-header":
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+          break;
+
+        case "claro-home-slider":
+          var landing = 'Canal Claro';
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+    this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+  }), _LandingHomeClaro);
+  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
+    new easyXDM.Socket(LandingHomeClaro);
+  }
+
+  var LandingHomeCinema = {
+    remote: "".concat(baseURL, "home-edi-cinema.php"),
+    container: document.getElementById("navbar-prev-home-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeCinema"])(json.type);
             break;
 
           case "claro-home-header":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeCinema"])(json.type);
             break;
 
           case "claro-home-slider":
-            var landing = 'Canal Claro';
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            // let landing = 'Canal Claro';
+            // getCarruselHome(landing);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("show");
             break;
 
           default:
@@ -90245,36 +90297,13 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
-  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+  var NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
 
-  if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
-    new easyXDM.Socket(LandingHomeClaro);
-  }
-  /*
-  let LandingHomeCinema = {
-      remote: `${baseURL}home-edi-cinema.php`,
-      container: document.getElementById("navbar-prev-home"),
-      onMessage: function (message, origin) {
-          let json = JSON.parse(message);
-          if (typeof json == "object") {
-              getContentHomeHeader(json.type);
-          
-          }
-          this.container.getElementsByTagName("iframe")[0].style.height =
-              message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-              "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      }
-  };
-  
-   let NavbarHomeCinema = document.getElementById("navbar-prev-home");
   if (NavbarHomeCinema) {
-      $('#navbar-prev-home iframe').remove();
-      new easyXDM.Socket(LandingHomeCinema);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home-cinema iframe').remove();
+    new easyXDM.Socket(LandingHomeCinema);
   }
-  */
-
 
   var LandingSinopsis = {
     //remote: `${baseURL}sinopsis-edi.php`,
@@ -90497,12 +90526,12 @@ function eventsGrilla() {
             var day = ("0" + date.getUTCDate()).slice(-2);
             var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-            var _year = date.getUTCFullYear();
+            var _year2 = date.getUTCFullYear();
 
-            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
+            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
 
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "canal-claro", '');
             break;
 
           case "header-landing-cinema":
@@ -90571,11 +90600,11 @@ function eventsGrilla() {
             var day = ("0" + date.getUTCDate()).slice(-2);
             var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-            var _year2 = date.getUTCFullYear();
+            var _year3 = date.getUTCFullYear();
 
-            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day);
+            var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "concert-channel", '');
             break;
 
           case "header-landing-concert":
@@ -92689,7 +92718,7 @@ function eventsGrilla() {
               var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
               var year = date.getUTCFullYear();
               var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro");
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro", '');
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
             break;
@@ -93078,8 +93107,20 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn_pruebas').click(function () {
     // getContentHomeHeader('claro-home-header');
-    var landing = 'Canal Claro';
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+    // let landing = 'Canal Claro';
+    // getCarruselHome(landing);
+    // landingView.renderHomeHeaderClaroCinema();
+    // getContentHomeCinema('claro-home-header');
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+      var date = new Date();
+      var day = ("0" + date.getUTCDate()).slice(-2);
+      var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+      var year = date.getUTCFullYear();
+      var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro", '');
+    }, 3000);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
     var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
@@ -93101,6 +93142,7 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
+    debugger;
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
     var logo = document.getElementById("logo_home").files[0] || "";
     var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val() || "";
@@ -93114,6 +93156,10 @@ function eventsGrilla() {
 
     if (landing == 'Canal Claro') {
       Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    }
+
+    if (landing == 'Claro Cinema') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeCinema);
     }
   }); // HOME
 
@@ -93533,7 +93579,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome, getContentHomeCinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93570,6 +93616,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeHeader", function() { return getContentHomeHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCarruselHome", function() { return getCarruselHome; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderHome", function() { return editHeaderHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeCinema", function() { return getContentHomeCinema; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -93719,6 +93766,7 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
+      var capsule = "\n                <div class=\"d-flex justify-content-center my-5\">\n                    <div class=\"position-relative d-inline-block mx-auto\">\n                        <div class=\"row no-gutters col-12\">\n                            <ul class=\"d-flex list-progra pl-0\">\n                                <!--Logo canal claro-->\n                                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                                <!--Logo concert channel-->\n                                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                                            <!--class to update image-->\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                                <!--Logo claro cinema-->\n                                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            ";
       var data = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
@@ -94086,6 +94134,8 @@ function getChapterInfo(data) {
       } else {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".edit-audio5-yes").prop("checked", true);
       }
+
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cj').html(capsule); // $().addClass('capsule');
 
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program").modal("show");
       setTimeout(function () {
@@ -94481,7 +94531,6 @@ function getCarruselHome(landing) {
 
       if (data.code == 200) {
         var program = "";
-        var titles = "";
         var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-home-obj");
         var inLandingSwitch = "";
         var inLandingDates = "";
@@ -94599,7 +94648,7 @@ function getCarruselHome(landing) {
               inHomeTimes = "\n                    <div class=\"row\">\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_begin\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-end\" placeholder=\"00:00:00\" chapter_id=\"".concat(chapter.chapter.id, "\" key=\"in_landing_begin\" value=\"\"></span>\n                            </div>\n                        </div>\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_expiration\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-end\" placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\" key=\"in_landing_expiration\" value=\"\"></span>\n                            </div>\n                        </div>\n                    </div>");
             }
 
-            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.program.thumbnail_list_vertical, "\">\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input class=\"d-none load-carrusel\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\"mb-5 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                    </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container \">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
+            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.program.thumbnail_list_vertical, "\">\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input class=\"d-none load-carrusel\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\"mb-5 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                    </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container borrando\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
           }
         } catch (err) {
           _iterator.e(err);
@@ -94644,7 +94693,6 @@ function getCarruselHome(landing) {
           optionGenre += "<option value=\"".concat(genre.title, "\">").concat(genre.title, "</option>");
         });
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").append(optionGenre);
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker("destroy");
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".list1").selectpicker({
           filter: true,
           multipleSeparator: ", "
@@ -94726,6 +94774,43 @@ function viewImg(objFileInput, container, id, key) {
 
 function viewEdit() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.camera_carrusel').attr('src', './images/lapiz-acti.svg');
+}
+
+function getContentHomeCinema(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/home",
+    success: function success(result) {
+      var data = JSON.parse(result);
+      console.log(data);
+
+      if (data.code == 200) {
+        switch (type) {
+          case 'claro-home-header':
+            // Add name
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#landing_name").attr('value', 'Claro Cinema'); //Add a class to the button
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").addClass('img-logo-home'); //Set the width of the container
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_width").addClass('modal-img-home');
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()('#inp_canales_subtitulo').val(data.data.block_5_subtitle);
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()('#inp_url').val(data.data.block_5_icon_channel_url); //Change the logo
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").attr('src', data.data.block_5_icon_channel); //Modal
+
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-logo-home").modal("show");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+            break;
+        }
+      }
+    }
+  });
 }
 
 function getContentHomeHeader(type) {
@@ -95125,7 +95210,7 @@ function editPromoLandingCinema(data) {
 } //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 
 
-function getProgrammingLanding(date, landing) {
+function getProgrammingLanding(date, landing, cj) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     beforeSend: function beforeSend() {
@@ -95142,6 +95227,7 @@ function getProgrammingLanding(date, landing) {
       if (json.code == 200) {
         var programming = "";
         var landingClass = "";
+        var _cj = "";
 
         switch (landing) {
           case "canal-claro":
@@ -96413,6 +96499,7 @@ function confLandingHome(baseURL) {
 
 
 function editHeaderHome(data) {
+  debugger;
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
@@ -97500,13 +97587,37 @@ var LandingView = /*#__PURE__*/function () {
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-pink'); //set the width of the image
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home-concert'); //Set the width of the container
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home'); //Set the width of the container
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home-concert');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home');
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_canales_subtitulo').val(data.data.block_4_subtitle);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').val(data.data.block_4_icon_channel_url); //Change the logo
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_4_icon_channel); //Modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show");
+          console.log(data);
+        }
+      });
+    }
+  }, {
+    key: "renderHomeHeaderClaroCinema",
+    value: function renderHomeHeaderClaroCinema() {
+      var data = landingController.getContentHome();
+      data.then(function (data) {
+        if (data.code == 200) {
+          // Add name
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Claro Cinema'); //Add a class to the button
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home'); //Set the width of the container
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_canales_subtitulo').val(data.data.block_5_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').val(data.data.block_5_icon_channel_url); //Change the logo
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_5_icon_channel); //Modal
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show");
           console.log(data);

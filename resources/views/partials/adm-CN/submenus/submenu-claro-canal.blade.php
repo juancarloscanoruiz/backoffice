@@ -58,7 +58,7 @@
                     </div>
                     <!--fin de claro canal-->
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4"
+                    <div class="navbar-progra-item navbar-prev-home navbar-home" navbar-index="4"
                         rel="navbar-prev-home">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class=" a-text-bold-two py-2 px-3 mb-0">HOME</p>

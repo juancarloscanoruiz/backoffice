@@ -57,7 +57,8 @@ import {
     confLandingHome,
     getContentHomeHeader,
     getCarruselHome,
-    editHeaderHome
+    editHeaderHome,
+    getContentHomeCinema
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -164,8 +165,8 @@ function eventsGrilla() {
 
 
     let LandingHomeConcert = {
-    remote: `${baseURL}home-edi-concert.php`,
-       // remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
+        remote: `${baseURL}home-edi-concert.php`,
+        // remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -208,11 +209,20 @@ function eventsGrilla() {
 
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
+        remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
         container: document.getElementById("navbar-prev-home"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 switch (json.type) {
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro", 'home');
+                        break;
                     case "slider-pagination":
                         getContentHomeHeader(json.type);
                         break;
@@ -239,15 +249,28 @@ function eventsGrilla() {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
-    /*
+
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
-        container: document.getElementById("navbar-prev-home"),
+        container: document.getElementById("navbar-prev-home-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
-                getContentHomeHeader(json.type);
-            
+                switch (json.type) {
+                    case "slider-pagination":
+                        getContentHomeCinema(json.type);
+                        break;
+                    case "claro-home-header":
+                        getContentHomeCinema(json.type);
+                        break;
+                    case "claro-home-slider":
+                        // let landing = 'Canal Claro';
+                        // getCarruselHome(landing);
+                        $("#modal-carrusel-home").modal("show");
+                        break;
+                    default:
+                        break;
+                }
             }
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -255,14 +278,15 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    
 
-    let NavbarHomeCinema = document.getElementById("navbar-prev-home");
+
+    let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
     if (NavbarHomeCinema) {
-        $('#navbar-prev-home iframe').remove();
+        $(".loader-view-container").remove();
+        $('#navbar-prev-home-cinema iframe').remove();
         new easyXDM.Socket(LandingHomeCinema);
     }
-    */
+
 
 
     let LandingSinopsis = {
@@ -621,7 +645,7 @@ function eventsGrilla() {
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
                         // getProgrammingLanding(currentDate, "claro-cinema");
-                        getProgrammingLanding(currentDate, "canal-claro");
+                        getProgrammingLanding(currentDate, "canal-claro", '');
                         break;
                     case "header-landing-cinema":
                         getContentClaroCinema("header-landing-cinema");
@@ -695,7 +719,7 @@ function eventsGrilla() {
                         let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
-                        getProgrammingLanding(currentDate, "concert-channel");
+                        getProgrammingLanding(currentDate, "concert-channel", '');
                         break;
                     case "header-landing-concert":
                         getContentConcertChannelHeader();
@@ -1412,9 +1436,9 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "keydown",
         ".edit-program-attribute-text",
-       
+
         function (e) {
-            
+
             if (e.which === 13 && !e.shiftKey) {
                 debugger
                 let key = $(this).attr("key");
@@ -1727,7 +1751,7 @@ function eventsGrilla() {
                             ".modal-edit-program-carrusel .edit-home-time-begin"
                         ).val()}`;
 
-                        
+
                         (chapter_id, key, value);
                     } else if (
                         $(
@@ -3532,7 +3556,7 @@ function eventsGrilla() {
                 //Creamos una nueva fecha empezando por año
                 let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
                 $("#start-date-text").text(startDateFull);
-             
+
                 //   Fecha final del datepicker
 
                 let landing = $("#date-start-input").attr("landing");
@@ -4532,7 +4556,7 @@ function eventsGrilla() {
                             );
                             let year = date.getUTCFullYear();
                             let currentDate = `${year}-${month}-${day}`;
-                            getProgrammingLanding(currentDate, "canal-claro");
+                            getProgrammingLanding(currentDate, "canal-claro", '');
                             $("#loader1").remove();
                         }, 3000);
                         break;
@@ -4951,8 +4975,22 @@ function eventsGrilla() {
 
     $('#btn_pruebas').click(function () {
         // getContentHomeHeader('claro-home-header');
-        let landing = 'Canal Claro';
-        getCarruselHome(landing);
+        // let landing = 'Canal Claro';
+        // getCarruselHome(landing);
+        // landingView.renderHomeHeaderClaroCinema();
+        // getContentHomeCinema('claro-home-header');
+        setTimeout(function () {
+            $("body").append(LOADER);
+            let date = new Date();
+            let day = ("0" + date.getUTCDate()).slice(-2);
+            let month = ("0" + (date.getUTCMonth() + 1)).slice(
+                -2
+            );
+            let year = date.getUTCFullYear();
+            let currentDate = `${year}-${month}-${day}`;
+            getProgrammingLanding(currentDate, "canal-claro", '');
+        }, 3000);
+        $("#loader1").remove();
     });
 
     $('#modal_url').click(function () {
@@ -4976,6 +5014,7 @@ function eventsGrilla() {
     })
 
     $("#acepta_canales_home").click(function () {
+        debugger
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -4989,11 +5028,14 @@ function eventsGrilla() {
         if (landing == 'Canal Claro') {
             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
         }
+        if (landing == 'Claro Cinema') {
+            resetIframe($("#navbar-prev-home iframe"), LandingHomeCinema);
+        }
 
     });
 
     // HOME
-    $('.acepta_carrusel_home').click(function(){
+    $('.acepta_carrusel_home').click(function () {
         programView.editCarruselHome()
     })
 }

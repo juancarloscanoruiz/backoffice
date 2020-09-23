@@ -364,7 +364,7 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
-    public function getContentHome(Request $request)
+    public function getContentHome()
     {
         $client = new Client();
         $response = $client->get(

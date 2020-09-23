@@ -176,6 +176,56 @@ function getChapterInfo(data) {
         },
 
         success: function (result) {
+
+            let capsule = `
+                <div class="d-flex justify-content-center my-5">
+                    <div class="position-relative d-inline-block mx-auto">
+                        <div class="row no-gutters col-12">
+                            <ul class="d-flex list-progra pl-0">
+                                <!--Logo canal claro-->
+                                <div class="text-center no-gap  mr-2 capsule-claro capsule">
+                                    <li rel="claro-canal-programing-edit" class="navs-li active-navItems navbar-progra-item-container d-inline-block" style="width: 200px !important;">
+
+                                        <div class=" mx-auto position-relative thumbnail-image-program " id="images-logo">
+
+                                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
+                                                <img class="claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416" alt="" id="icon_canal_claro_edi">
+
+                                            </label>
+                                        </div>
+                                    </li>
+                                </div>
+                                <!--Logo concert channel-->
+                                <div class=" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel">
+                                    <li rel="concert-channel-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
+                                        <!--  <img class="nav-image" src="./images/home/tv-2.svg" alt="" />-->
+                                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
+                                            <!--  <input type="file" name="image-to-logo" id="imagelogo" class="input-image-program d-none">-->
+                                            <!--class to update image-->
+                                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
+                                                <img class="claro-nav-image cursor-auto thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418" alt="" id="icon_concert_channel_edi">
+
+                                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">472px X 295px</span>-->
+                                            </label>
+                                        </div>
+                                    </li>
+                                </div>
+                                <!--Logo claro cinema-->
+                                <div class=" text-center no-gap  ml-2 capsule-cinema">
+                                    <li rel="claro-cinema-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
+                                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
+                                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
+                                                <img class="cursor-auto claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419" alt="" id="icon_claro_cinema_edi">
+                                            </label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+
             let data = JSON.parse(result);
             $(".loader-view-container").remove();
             $(".loader-container").remove();
@@ -695,6 +745,10 @@ function getChapterInfo(data) {
                 $(".edit-audio5-yes").prop("checked", true);
             }
 
+            $('.cj').html(capsule);
+
+            // $().addClass('capsule');
+
             $(".modal-edit-program").modal("show");
             setTimeout(() => {
                 try {
@@ -1145,7 +1199,6 @@ function getCarruselHome(landing) {
             console.log(data);
             if (data.code == 200) {
                 let program = "";
-                let titles = "";
                 let programmingSlider = $(".carrusel-home-obj");
 
                 let inLandingSwitch = "";
@@ -1656,7 +1709,7 @@ function getCarruselHome(landing) {
                         <div class="col-4 edit-program-data-container position-relative mt-3" id="edit-genre-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list</p>
-                                <div class="mb-3 edit-rectangle-container ">
+                                <div class="mb-3 edit-rectangle-container borrando">
                                     <select
                                         class="list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
                                          title="Genere list" multiple
@@ -1759,8 +1812,8 @@ function getCarruselHome(landing) {
                 data.data.genres.forEach(genre => {
                     optionGenre += `<option value="${genre.title}">${genre.title}</option>`;
                 });
+
                 $(".list1").append(optionGenre);
-                $(".list1").selectpicker("destroy");
                 $(".list1").selectpicker({
                     filter: true,
                     multipleSeparator: ", "
@@ -1833,6 +1886,47 @@ function viewImg(objFileInput, container, id, key) {
 }
 function viewEdit() {
     $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
+}
+
+function getContentHomeCinema(type) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        beforeSend: function () {
+            $("body").append(
+                `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+            );
+        },
+        url: "landing/home",
+        success: function (result) {
+            let data = JSON.parse(result);
+            console.log(data);
+            if (data.code == 200) {
+                switch (type) {
+                    case 'claro-home-header':
+                        // Add name
+                        $("#landing_name").attr('value', 'Claro Cinema');
+                        //Add a class to the button
+                        $("#dinamic_btn").addClass('btn-red');
+                        //set the width of the image
+                        $("#img-logo-home").addClass('img-logo-home');
+                        //Set the width of the container
+                        $("#dinamic_width").addClass('modal-img-home');
+                        $('#inp_canales_subtitulo').val(data.data.block_5_subtitle)
+                        $('#inp_url').val(data.data.block_5_icon_channel_url)
+                        //Change the logo
+                        $("#img-logo-home").attr('src', data.data.block_5_icon_channel);
+                        //Modal
+                        $("#modal-logo-home").modal("show");
+                        $(".loader-view-container").remove();
+                        break
+                }
+
+            }
+        }
+    });
 }
 
 function getContentHomeHeader(type) {
@@ -2352,7 +2446,7 @@ function editPromoLandingCinema(data) {
 }
 
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
-function getProgrammingLanding(date, landing) {
+function getProgrammingLanding(date, landing, cj) {
     $.ajax({
         type: "GET",
         beforeSend: function () {
@@ -2372,6 +2466,7 @@ function getProgrammingLanding(date, landing) {
             if (json.code == 200) {
                 let programming = "";
                 let landingClass = "";
+                let cj = "";
                 switch (landing) {
                     case "canal-claro":
                         programming = json.data[0].programing[0].programs;
@@ -4539,6 +4634,7 @@ function confLandingHome(baseURL) {
 // HOME
 
 function editHeaderHome(data) {
+    debugger
     $.ajax({
         type: "POST",
         cache: false,
@@ -4599,6 +4695,7 @@ export {
     confLandingHome,
     getContentHomeHeader,
     getCarruselHome,
-    editHeaderHome
+    editHeaderHome,
+    getContentHomeCinema
 
 };
