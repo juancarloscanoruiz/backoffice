@@ -1,4 +1,4 @@
-import LandingModel from "../models/landing";
+import LandingModel from "../models/landing.js";
 let landingModel = new LandingModel();
 export default class LandingController {
 

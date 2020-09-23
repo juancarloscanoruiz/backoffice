@@ -1,5 +1,5 @@
 import $ from "jquery";
-import LandingController from "../controllers/landing";
+import LandingController from "../controllers/landing.js";
 let landingController = new LandingController();
 
 export default class LandingView {

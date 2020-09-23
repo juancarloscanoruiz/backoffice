@@ -380,7 +380,7 @@
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
+                <div class="navbar-progra-content   mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>

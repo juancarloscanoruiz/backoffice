@@ -565,6 +565,8 @@
     @include('partials.adm-CN.modals-cinema.modal-advertencia')
     @include('partials.adm-CN.modals-cinema.programming');
 
+      <!--HOME-->
+     
     @include('partials.adm-CN.modals-home.home-encabezado');
 
     @include('partials.adm-CN.modal-home.logo');

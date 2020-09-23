@@ -86,10 +86,28 @@ import {
 
 import {
     createSlickSlider,
-    createCalendarDays
+    createCalendarDays,
+    getDayName,
+    getMonthAndYear,
+    getMonthAndYearmin
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
+  
+
+   //Sacamos la fecha actual para ponerla en el calendario
+   let currentDate1 = new Date();
+  
+   //obtenemos el mes
+   let calendarMonth1 = currentDate1.getMonth();
+   //Obtenemos el día
+   let calendarDay1 = currentDate1.getDate();
+   let hora = currentDate1.getHours()+":" + currentDate1.getMinutes() +":" + currentDate1.getSeconds() + " GMT";
+  
+ let daymonth =  getDayName(calendarMonth1 , calendarDay1);
+  let monthday = getMonthAndYearmin(calendarMonth1 );
+   let fulldatelanding =`${calendarDay1} ${monthday},  ${hora}`;
+    $("#date-edit").text(fulldatelanding);
     //calendario de sinopsis
     let calendarsinopsis = $(".calendar-sinopsis-slider");
     $(".calendar-sinopsis-slider").slick({
@@ -178,6 +196,9 @@ function eventsGrilla() {
                             `;
 
                 switch (json.type) {
+                    case "slider-pagination":
+                        getContentHomeHeader(json.type);
+                        break;
                     case "concert-home-header":
                         $("body").append(loader);
                         landingView.renderHomeHeaderConcertChannel();
@@ -3622,6 +3643,7 @@ function eventsGrilla() {
         });
     }
 
+   
     $("#close_modals").click(function () {
         console.log("cerrar");
         $(".modal").modal("hide");
@@ -5025,7 +5047,7 @@ function eventsGrilla() {
         data.append("subtitle", subtitle);
         data.append("link", link);
         editHeaderHome(data);
-        if (landing == 'Canal Claro') {
+       /* if (landing == 'Canal Claro') {
             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
         }
         if (landing == 'Claro Cinema') {
