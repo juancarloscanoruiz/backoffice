@@ -1179,15 +1179,19 @@ function getCarruselHome(landing) {
         case 'Canal Claro':
             $(".changelanding").text(landing);
             landing = 'canal_claro';
-           
             break;
-           
-            case 'Claro Cinema':
-                $(".changelanding").text(landing);
-                landing = 'claro_cinema';
-                break;
-                default:
-                break;
+
+        case 'Concert Channel':
+            $(".changelanding").text(landing);
+            landing = 'concert_channel';
+            break;
+
+        case 'Claro Cinema':
+            $(".changelanding").text(landing);
+            landing = 'claro_cinema';
+            break;
+        default:
+            break;
     }
     $.ajax({
         type: "POST",
@@ -1649,7 +1653,7 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.image_program}">
+                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}">
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
@@ -2026,9 +2030,9 @@ function getContentHomeHeader(type) {
     });
 }
 
-function getContentHomeHeaderCinema(){
+function getContentHomeHeaderCinema() {
     $.ajax({
-        type: "POST",
+        type: "GET",
         cache: false,
         beforeSend: function () {
             $("body").append(
@@ -2042,7 +2046,7 @@ function getContentHomeHeaderCinema(){
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
-             
+
                 $("#landing_name").attr('value', 'Claro Cinema');
                 //Add a class to the button
                 $("#dinamic_btn").addClass('btn-red');
@@ -2057,8 +2061,8 @@ function getContentHomeHeaderCinema(){
                 //Modal
                 $("#modal-logo-home").modal("show");
                 $(".loader-view-container").remove();
-                        
-            
+
+
 
             }
         }
@@ -4684,7 +4688,7 @@ function confLandingHome(baseURL) {
 // HOME
 
 function editHeaderHome(data) {
-    
+
     $.ajax({
         type: "POST",
         cache: false,
@@ -4699,8 +4703,8 @@ function editHeaderHome(data) {
             );
         },
         url: "landing/editHeaderHome",
-        success: function (result) {         
-            let json = JSON.parse(result);         
+        success: function (result) {
+            let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
                 $("#modal-logo-home").modal("hide");

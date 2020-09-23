@@ -352,8 +352,4 @@ export default class ProgramView {
 
         });
     }
-
-    editCarruselHome(){
-        
-    }
 }

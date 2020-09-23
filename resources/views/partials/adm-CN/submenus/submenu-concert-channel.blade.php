@@ -452,4 +452,6 @@
     <!--HOME-->
     @include('partials.adm-CN.modals-home.home-encabezado');
     @include('partials.adm-CN.modal-home.logo');
+    
+    @include('partials.adm-CN.modal-home.carrusel');
 </body>

@@ -94,20 +94,20 @@ import {
 } from "./vendor/slick.js";
 
 function eventsGrilla() {
-  
 
-   //Sacamos la fecha actual para ponerla en el calendario
-   let currentDate1 = new Date();
-  
-   //obtenemos el mes
-   let calendarMonth1 = currentDate1.getMonth();
-   //Obtenemos el día
-   let calendarDay1 = currentDate1.getDate();
-   let hora = currentDate1.getHours()+":" + currentDate1.getMinutes() +":" + currentDate1.getSeconds() + " GMT";
-  
- let daymonth =  getDayName(calendarMonth1 , calendarDay1);
-  let monthday = getMonthAndYearmin(calendarMonth1 );
-   let fulldatelanding =`${calendarDay1} ${monthday},  ${hora}`;
+
+    //Sacamos la fecha actual para ponerla en el calendario
+    let currentDate1 = new Date();
+
+    //obtenemos el mes
+    let calendarMonth1 = currentDate1.getMonth();
+    //Obtenemos el día
+    let calendarDay1 = currentDate1.getDate();
+    let hora = currentDate1.getHours() + ":" + currentDate1.getMinutes() + ":" + currentDate1.getSeconds() + " GMT";
+
+    let daymonth = getDayName(calendarMonth1, calendarDay1);
+    let monthday = getMonthAndYearmin(calendarMonth1);
+    let fulldatelanding = `${calendarDay1} ${monthday},  ${hora}`;
     $("#date-edit").text(fulldatelanding);
     //calendario de sinopsis
     let calendarsinopsis = $(".calendar-sinopsis-slider");
@@ -182,53 +182,6 @@ function eventsGrilla() {
 
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
-
-    let LandingHomeConcert = {
-        remote: `${baseURL}home-edi-concert.php`,
-        // remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
-        container: document.getElementById("navbar-prev-home-concert"),
-        onMessage: function (message, origin) {
-            let json = JSON.parse(message);
-            if (typeof json == "object") {
-                let loader = `
-                        <div class="loader-view-container" id="loader1">
-                            <img src="./images/loader.gif" class="loader" alt="">
-                        </div>
-                            `;
-
-                switch (json.type) {
-                    case "slider-pagination":
-                        getContentHomeHeader(json.type);
-                        break;
-                    case "concert-home-header":
-                        $("body").append(loader);
-                        landingView.renderHomeHeaderConcertChannel();
-                        $("#loader1").remove();
-                        break;
-
-                    case "concert-home-slider":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            //this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-        }
-    };
-    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
-    if (NavbarHomeConcert) {
-        $("#navbar-prev-home-concert iframe").remove();
-        var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
-    }
-
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
         //remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
@@ -246,7 +199,7 @@ function eventsGrilla() {
                         getProgrammingLanding(currentDate, "canal-claro", 'home');
                         break;
                     case "slider-pagination":
-                        getContentHomeHeader(json.type);
+                        landingView.renderHomeBanner();
                         break;
                     case "claro-home-header":
                         getContentHomeHeader(json.type);
@@ -271,7 +224,7 @@ function eventsGrilla() {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
-    
+
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
@@ -280,10 +233,10 @@ function eventsGrilla() {
             if (typeof json == "object") {
                 switch (json.type) {
                     case "slider-pagination":
-                        getContentHomeCinema(json.type);
+                        landingView.renderHomeBanner();
                         break;
                     case "cinema-home-header":
-                        getContentHomeHeaderCinema(json.type);
+                        getContentHomeHeaderCinema();
                         break;
                     case "cinema-home-slider":
                         let landing = 'Claro Cinema';
@@ -307,7 +260,7 @@ function eventsGrilla() {
         $('#navbar-prev-home-cinema iframe').remove();
         new easyXDM.Socket(LandingHomeCinema);
     }
-    
+
 
 
     let LandingSinopsis = {
@@ -3643,7 +3596,7 @@ function eventsGrilla() {
         });
     }
 
-   
+
     $("#close_modals").click(function () {
         console.log("cerrar");
         $(".modal").modal("hide");
@@ -5042,7 +4995,7 @@ function eventsGrilla() {
         let subtitle = $("#inp_canales_subtitulo").val() || "";
         let link = $("#inp_url").val() || "";
         let data = new FormData();
-       data.append("landing", landing);
+        data.append("landing", landing);
         console.log(landing);
         data.append("logo", logo);
         data.append("subtitle", subtitle);
@@ -5071,7 +5024,45 @@ function eventsGrilla() {
             console.log("si lo borra");
         }, 2000);
         
-    })
+    });
+       
+
+    /* MVC */
+
+    let LandingHomeConcert = {
+        remote: `${baseURL}home-edi-concert.php`,
+        container: document.getElementById("navbar-prev-home-concert"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "concert-home-header":
+                        landingView.renderHomeHeaderConcertChannel();
+                        break;
+                    case "concert-home-slider":
+                        let landing = 'Concert Channel';
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+    if (NavbarHomeConcert) {
+        $("#navbar-prev-home-concert iframe").remove();
+        new easyXDM.Socket(LandingHomeConcert);
+    }
+
+    /* MVC */
 }
 
 export {
