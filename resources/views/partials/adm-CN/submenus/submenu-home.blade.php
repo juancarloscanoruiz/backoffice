@@ -74,7 +74,7 @@
             </div>
             <div class="clearfix"></div>
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
-                <div class="navbar-progra d-flex align-items-center justify-content-center mt-5">
+                <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
                     <!--<span class="p-3 arrow arrow-left">
             < </span>-->

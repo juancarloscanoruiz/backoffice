@@ -1123,8 +1123,17 @@ function getContentConcertChannelHeader() {
 function getCarruselHome(landing) {
     switch (landing) {
         case 'Canal Claro':
+            $(".changelanding").text(landing);
             landing = 'canal_claro';
-            break
+           
+            break;
+           
+            case 'Claro Cinema':
+                $(".changelanding").text(landing);
+                landing = 'claro_cinema';
+                break;
+                default:
+                break;
     }
     $.ajax({
         type: "POST",
@@ -1587,7 +1596,7 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.program.thumbnail_list_vertical}">
+                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.image_program}">
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
@@ -4578,6 +4587,7 @@ function confLandingHome(baseURL) {
 // HOME
 
 function editHeaderHome(data) {
+    
     $.ajax({
         type: "POST",
         cache: false,

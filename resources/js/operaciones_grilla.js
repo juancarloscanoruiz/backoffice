@@ -261,7 +261,7 @@ function eventsGrilla() {
         $('#navbar-prev-home iframe').remove();
         new easyXDM.Socket(LandingHomeClaro);
     }
-    /*
+    
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
@@ -273,14 +273,12 @@ function eventsGrilla() {
                     case "slider-pagination":
                         getContentHomeHeader(json.type);
                         break;
-                    case "claro-home-header":
+                    case "cinema-home-header":
                         getContentHomeHeaderCinema(json.type);
                         break;
-                    case "claro-home-slider":
-                        $("body").append(loader);
-                        setTimeout(function () {
-                            $("#loader1").remove();
-                        }, 3000);
+                    case "cinema-home-slider":
+                        let landing = 'Claro Cinema';
+                        getCarruselHome(landing);
                         break;
                     default:
                         break;
@@ -300,7 +298,7 @@ function eventsGrilla() {
         $('#navbar-prev-home-cinema iframe').remove();
         new easyXDM.Socket(LandingHomeCinema);
     }
-    */
+    
 
 
     let LandingSinopsis = {
@@ -5021,7 +5019,8 @@ function eventsGrilla() {
         let subtitle = $("#inp_canales_subtitulo").val() || "";
         let link = $("#inp_url").val() || "";
         let data = new FormData();
-        data.append("landing", landing);
+       data.append("landing", landing);
+        console.log(landing);
         data.append("logo", logo);
         data.append("subtitle", subtitle);
         data.append("link", link);

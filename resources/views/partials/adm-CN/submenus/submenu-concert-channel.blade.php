@@ -22,7 +22,7 @@
         <div id="menu">
             <!--Navbar para ir viendo previsualizaciones de landings-->
             <nav class="d-flex col-xl-11 navbar-expand-sm  mx-auto justify-content-center mb-5" id="option">
-                <div class="navbar-progra d-flex align-items-center justify-content-center mt-5">
+                <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
 
                     <div class="navbar-progra-item navbar-progra-item-border navbar-programacion navbar-progra-active navbar-prev-programacion"
