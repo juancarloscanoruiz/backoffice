@@ -246,7 +246,7 @@
                                             <div class="col-4 edit-program-data-container">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode season</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container  backwhite py-3">
                                                         <input type="text" key="season" class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="00">
                                                     </div>
                                                 </div>
@@ -255,7 +255,7 @@
                                             <div class="col-4 edit-program-data-container">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode number</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <input type="text" key="program_episode_number" class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="000">
                                                     </div>
                                                 </div>
@@ -264,7 +264,7 @@
                                             <div class="col-4 edit-program-data-container">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program year produced</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <input type="text" key="program_year_produced" class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase" placeholder="YYYY">
                                                     </div>
                                                 </div>
@@ -292,7 +292,7 @@
                                             <div class="col-4 edit-program-data-container mt-3">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item rating code</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <input type="text" key="rating" class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code" placeholder="PG-00">
                                                     </div>
                                                 </div>
@@ -302,7 +302,7 @@
                                                 <div class="edit-data-container d-flex flex-column justify-content-between h-100">
                                                     <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log date</p>
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container  backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="day" class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="DD:MM:YY">
                                                     </div>
@@ -313,7 +313,7 @@
                                                 <div class="edit-data-container h-100 d-flex flex-column justify-content-between">
                                                     <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log time (gmt)</p>
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container  backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="programing" class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                                     </div>
@@ -324,7 +324,7 @@
                                                 <div class="edit-data-container d-flex flex-column justify-content-between h-100">
                                                     <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated schedule item duration</p>
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container  backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="duration" class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                                     </div>

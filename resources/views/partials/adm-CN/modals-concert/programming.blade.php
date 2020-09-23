@@ -229,9 +229,9 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button id="btn-acepta-modal-promo"
-                            class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                            class="m-0 mr-4 btn-grilla a-btn-basic-small h1 a-text-MBlack">ACEPTAR</button>
                         <a href="#delete-info-programming" role="button"
-                            class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                            class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small h1 a-text-bold-teal cancel"
                             data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
@@ -251,9 +251,9 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button"
-                    class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal close-modal-concert">ACEPTAR</button>
+                    class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato h1 close-modal-concert">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1"
                     data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>

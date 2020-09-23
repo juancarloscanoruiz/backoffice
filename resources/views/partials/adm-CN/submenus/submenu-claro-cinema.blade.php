@@ -62,9 +62,9 @@
             </div>
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
-                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro  a-text-MBlack  text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha  a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
             </div>
@@ -561,14 +561,12 @@
     @include('partials.adm-CN.modals-cinema.titulo-carrusel1')
     @include('partials.adm-CN.modals-concert.carrusel');
 
-    @include('partials.adm-CN.modals-cinema.modal-url')
-    @include('partials.adm-CN.modals-cinema.modal-advertencia')
+
     @include('partials.adm-CN.modals-cinema.programming');
 
       <!--HOME-->
-      @include('partials.adm-CN.modal-home.carrusel');
+ 
     @include('partials.adm-CN.modals-home.home-encabezado');
-
     @include('partials.adm-CN.modal-home.logo');
     @include('partials.adm-CN.modal-home.carrusel');
     @include('partials.adm-CN.modal-generic.advertencia');

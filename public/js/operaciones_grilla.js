@@ -74386,8 +74386,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config/slick.js */ "./resources/js/config/slick.js");
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -74415,8 +74413,6 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 
 function eventsGrilla() {
-  var _LandingHomeClaro;
-
   //Sacamos la fecha actual para ponerla en el calendario
   var currentDate1 = new Date(); //obtenemos el mes
 
@@ -74526,46 +74522,49 @@ function eventsGrilla() {
     var socketHomeConcert = new easyXDM.Socket(LandingHomeConcert);
   }
 
-  var LandingHomeClaro = (_LandingHomeClaro = {
-    remote: "".concat(baseURL, "home-edi-claro.php")
-  }, _defineProperty(_LandingHomeClaro, "remote", "http://localhost/MaquetaCNetworks/home-edi-claro.php"), _defineProperty(_LandingHomeClaro, "container", document.getElementById("navbar-prev-home")), _defineProperty(_LandingHomeClaro, "onMessage", function onMessage(message, origin) {
-    var json = JSON.parse(message);
+  var LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php"),
+    //remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
 
-    if (_typeof(json) == "object") {
-      switch (json.type) {
-        case "home-claro-carrousel-main":
-          var date = new Date();
-          var day = ("0" + date.getUTCDate()).slice(-2);
-          var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "home-claro-carrousel-main":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-          var _year = date.getUTCFullYear();
+            var _year = date.getUTCFullYear();
 
-          var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
+            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
 
-          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", 'home');
-          break;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", 'home');
+            break;
 
-        case "slider-pagination":
-          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
-          break;
+          case "slider-pagination":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            break;
 
-        case "claro-home-header":
-          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
-          break;
+          case "claro-home-header":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+            break;
 
-        case "claro-home-slider":
-          var landing = 'Canal Claro';
-          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-          break;
+          case "claro-home-slider":
+            var landing = 'Canal Claro';
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            break;
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
-    }
 
-    this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-    this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-  }), _LandingHomeClaro);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
   var NavbarHomeClaro = document.getElementById("navbar-prev-home");
 
   if (NavbarHomeClaro) {
@@ -74586,7 +74585,7 @@ function eventsGrilla() {
             break;
 
           case "cinema-home-header":
-            getContentHomeHeaderCinema(json.type);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeaderCinema"])(json.type);
             break;
 
           case "cinema-home-slider":
@@ -77448,7 +77447,6 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
-    debugger;
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
     var logo = document.getElementById("logo_home").files[0] || "";
     var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val() || "";
@@ -77460,17 +77458,23 @@ function eventsGrilla() {
     data.append("subtitle", subtitle);
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderHome"])(data);
-    /* if (landing == 'Canal Claro') {
-         resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-     }
-     if (landing == 'Claro Cinema') {
-         resetIframe($("#navbar-prev-home iframe"), LandingHomeCinema);
-     }
-    */
+
+    if (landing == 'Canal Claro') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    }
+
+    if (landing == 'Claro Cinema') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+    }
   }); // HOME
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.acepta_carrusel_home').click(function () {
-    programView.editCarruselHome();
+    var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+      console.log("si lo borra");
+    }, 2000);
   });
 }
 
@@ -77885,7 +77889,7 @@ function addImagesModalBanner() {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome, getContentHomeCinema */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome, getContentHomeCinema, getContentHomeHeaderCinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77923,6 +77927,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCarruselHome", function() { return getCarruselHome; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderHome", function() { return editHeaderHome; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeCinema", function() { return getContentHomeCinema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentHomeHeaderCinema", function() { return getContentHomeHeaderCinema; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -78972,11 +78977,11 @@ function getCarruselHome(landing) {
         }
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-carrusel-home").modal("show");
-        programmingSlider.html(program);
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
 
         try {
-          programmingSlider.slick("unslick");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel-home-obj").slick("unslick");
+          programmingSlider.html(program);
           programmingSlider.slick({
             slidesToShow: 1,
             dots: true,
@@ -78989,6 +78994,7 @@ function getCarruselHome(landing) {
             }
           });
         } catch (error) {
+          programmingSlider.html(program);
           programmingSlider.slick({
             slidesToShow: 1,
             dots: true,
@@ -79208,9 +79214,9 @@ function getContentHomeHeaderCinema() {
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
 
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").addClass('img-logo-home-concert'); //Set the width of the container
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-logo-home").addClass('img-logo-home-claro'); //Set the width of the container
 
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_width").addClass('modal-img-home-concert');
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dinamic_width").addClass('modal-img-home-claro');
         jquery__WEBPACK_IMPORTED_MODULE_1___default()('#inp_canales_subtitulo').val(data.data.block_5_subtitle);
         jquery__WEBPACK_IMPORTED_MODULE_1___default()('#inp_url').val(data.data.block_5_button1_url); //Change the logo
 

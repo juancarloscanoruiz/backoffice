@@ -1778,12 +1778,13 @@ function getCarruselHome(landing) {
                 }
                 $("#modal-carrusel-home").modal("show");
 
-                programmingSlider.html(program);
+              
                 $(".loader-view-container").remove();
 
-                try {
-                    programmingSlider.slick("unslick");
-                    programmingSlider.slick({
+                try {  
+                    $(".carrusel-home-obj").slick("unslick");
+                    programmingSlider.html(program);
+                 programmingSlider.slick({
                         slidesToShow: 1,
                         dots: true,
                         appendDots: $(".slaider-home-dots"),
@@ -1799,6 +1800,7 @@ function getCarruselHome(landing) {
                         }
                     });
                 } catch (error) {
+                    programmingSlider.html(program);
                     programmingSlider.slick({
                         slidesToShow: 1,
                         dots: true,
@@ -2045,9 +2047,9 @@ function getContentHomeHeaderCinema(){
                 //Add a class to the button
                 $("#dinamic_btn").addClass('btn-red');
                 //set the width of the image
-                $("#img-logo-home").addClass('img-logo-home-concert');
+                $("#img-logo-home").addClass('img-logo-home-claro');
                 //Set the width of the container
-                $("#dinamic_width").addClass('modal-img-home-concert');
+                $("#dinamic_width").addClass('modal-img-home-claro');
                 $('#inp_canales_subtitulo').val(data.data.block_5_subtitle)
                 $('#inp_url').val(data.data.block_5_button1_url)
                 //Change the logo
@@ -4744,6 +4746,7 @@ export {
     getContentHomeHeader,
     getCarruselHome,
     editHeaderHome,
-    getContentHomeCinema
+    getContentHomeCinema,
+    getContentHomeHeaderCinema
 
 };

@@ -58,7 +58,8 @@ import {
     getContentHomeHeader,
     getCarruselHome,
     editHeaderHome,
-    getContentHomeCinema
+    getContentHomeCinema,
+    getContentHomeHeaderCinema
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -230,7 +231,7 @@ function eventsGrilla() {
 
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
-        remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
+        //remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
         container: document.getElementById("navbar-prev-home"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -5035,7 +5036,7 @@ function eventsGrilla() {
     })
 
     $("#acepta_canales_home").click(function () {
-        debugger
+       
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -5047,18 +5048,29 @@ function eventsGrilla() {
         data.append("subtitle", subtitle);
         data.append("link", link);
         editHeaderHome(data);
-       /* if (landing == 'Canal Claro') {
+        if (landing == 'Canal Claro') {
             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
         }
         if (landing == 'Claro Cinema') {
-            resetIframe($("#navbar-prev-home iframe"), LandingHomeCinema);
+            resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
         }
-*/
+
     });
 
     // HOME
     $('.acepta_carrusel_home').click(function () {
-        programView.editCarruselHome()
+        const loader = `
+        <div class="loader-view-container" id="loader1">
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+        $("body").append(loader);
+
+        setTimeout(function () {
+            $("#loader1").remove();
+            console.log("si lo borra");
+        }, 2000);
+        
     })
 }
 

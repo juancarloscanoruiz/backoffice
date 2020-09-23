@@ -9,9 +9,9 @@
             </div>
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-claro">ACEPTAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato h1" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-claro">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>
