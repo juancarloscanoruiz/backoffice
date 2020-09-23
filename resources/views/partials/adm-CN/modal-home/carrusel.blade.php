@@ -341,7 +341,7 @@
             <!-- BOTONES -->
             <div class="content my-4">
                 <div class="d-flex justify-content-center">
-                    <button id="acepta_carrusel_home" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack modal-edit-program-carrusel acepta_carrusel_home">ACEPTAR</button>
+                    <button data-dismiss="modal" id="acepta_carrusel_home" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack modal-edit-program-carrusel acepta_carrusel_home">ACEPTAR</button>
                     <!-- <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a> -->
                 </div>
             </div>

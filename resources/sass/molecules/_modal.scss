@@ -460,23 +460,20 @@ a:hover {
     padding: 2% 5%;
 }
 
-// .img-logo-home {
-//     width: 350px;
-//     left: 0%;
-// }
+.img-logo-home {
+    width: 160px;
+    //  width: 350px;
+    //  left: 0%;
+}
 
 .img-logo-home-claro {
     width: 98%;
     height: 98%;
 }
 
-.img-logo-home-concert {
-    width: 160px;
-}
-
 .modal-img-home {
     width: 350px;
-    height: 200px;
+    height: 217px;
     justify-content: space-around;
     display: flex;
     align-items: center;
@@ -486,15 +483,6 @@ a:hover {
 .modal-img-home-claro {
     width: 350px;
     height: 120px;
-    justify-content: space-around;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.modal-img-home-concert {
-    width: 405px;
-    height: 217px;
     justify-content: space-around;
     display: flex;
     align-items: center;
@@ -561,6 +549,12 @@ a:hover {
 .img-carrusel-home {
     width: 100%;
     left: 0%;
+}
+
+.capsule {
+    border-radius: 25px;
+    background: #ffffff;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 // CARRUSEL
