@@ -59,3 +59,4 @@
 @include('partials.adm-CN.modal-home.carrusel')
 @include('partials.adm-CN.modal-generic.advertencia')
 @include('partials.adm-CN.modal-generic.url')
+@include('partials.adm-CN.modal-footer.terminosycondiciones')

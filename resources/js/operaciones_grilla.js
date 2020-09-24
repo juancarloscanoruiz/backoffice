@@ -4911,18 +4911,7 @@ function eventsGrilla() {
         // getCarruselHome(landing);
         // landingView.renderHomeHeaderClaroCinema();
         // getContentHomeCinema('claro-home-header');
-        setTimeout(function () {
-            $("body").append(LOADER);
-            let date = new Date();
-            let day = ("0" + date.getUTCDate()).slice(-2);
-            let month = ("0" + (date.getUTCMonth() + 1)).slice(
-                -2
-            );
-            let year = date.getUTCFullYear();
-            let currentDate = `${year}-${month}-${day}`;
-            getProgrammingLanding(currentDate, "canal-claro", '');
-        }, 3000);
-        $("#loader1").remove();
+        $('#modal-terminos-footer').modal('show');
     });
 
     $('#modal_url').click(function () {
@@ -4943,6 +4932,7 @@ function eventsGrilla() {
     $('#close_all_modal').click(function () {
         $('#modal-logo-home').modal('hide')
         $('#modal-carrusel-home').modal('hide')
+        $('#modal-terminos-footer').modal('hide')
     })
 
     $("#acepta_canales_home").click(function () {
