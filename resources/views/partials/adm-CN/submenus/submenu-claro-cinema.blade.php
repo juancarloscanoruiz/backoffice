@@ -62,9 +62,9 @@
             </div>
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
-                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro  a-text-MBlack  text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha  a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
             </div>
@@ -76,16 +76,14 @@
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5"
-                    id="navbar-prev-programacion-cinema">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5" id="navbar-prev-programacion-cinema">
                 </div>
             </div>
             <!--landing de sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
-                        id="slider-calendar-current-date">Octubre 2020</h3>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -533,26 +531,13 @@
         </div>
     </div>
 
-    <!--modal para perder lo hecho en los landing de edit-->
-    <div class=" modal  delete-info" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog" data-modal-parent="#modalbanner">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content  ">
-                <div class="modal-body ">
-                    <img src="images/basic-icons/delete.svg" alt="advertencia de borrado" class="mx-auto d-flex mt-5 ">
-                    <p class="a-text-medium-warm-grey-three h3 mt-5 centro">Se perderá toda la información, NO PODRÁS
-                        recuperar la <span class="h3 a-text-bold-warm-grey-three"> información.</span></p>
-                </div>
-
-                <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                    <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals">ACEPTAR</button>
-
-                    <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
+    <!--HOME-->
+  
+    @include('partials.adm-CN.modals-home.home-encabezado');
+    @include('partials.adm-CN.modal-home.logo');
+    @include('partials.adm-CN.modal-home.carrusel');
+    @include('partials.adm-CN.modal-generic.advertencia');
+    @include('partials.adm-CN.modal-generic.url');
 
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
     @include('partials.adm-CN.modals-cinema.promo-cinema')
@@ -561,16 +546,6 @@
     @include('partials.adm-CN.modals-cinema.titulo-carrusel1')
     @include('partials.adm-CN.modals-concert.carrusel');
 
-    @include('partials.adm-CN.modals-cinema.modal-url')
-    @include('partials.adm-CN.modals-cinema.modal-advertencia')
+
     @include('partials.adm-CN.modals-cinema.programming');
-
-      <!--HOME-->
-      @include('partials.adm-CN.modal-home.carrusel');
-    @include('partials.adm-CN.modals-home.home-encabezado');
-
-    @include('partials.adm-CN.modal-home.logo');
-    @include('partials.adm-CN.modal-home.carrusel');
-    @include('partials.adm-CN.modal-generic.advertencia');
-    @include('partials.adm-CN.modal-generic.url');
 </body>

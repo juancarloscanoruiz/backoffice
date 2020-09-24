@@ -434,6 +434,10 @@ body {
   font-size: 16px;
 }
 
+.h1 {
+  font-size: 21px !important;
+}
+
 .text-small {
   font-size: 14px;
 }
@@ -4244,6 +4248,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border-radius: 20px;
 }
 
+.backwhite {
+  background: white;
+}
+
 .line {
   width: 100%;
   height: 1px;
@@ -4754,6 +4762,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .text-normal {
   font-size: 16px;
+}
+
+.h1 {
+  font-size: 21px !important;
 }
 
 .text-small {
@@ -7109,6 +7121,40 @@ a:hover {
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
+.modal-terminos-footer-width {
+  width: 1000px !important;
+  max-width: 1000px !important;
+}
+
+.modal-terminos-footer {
+  border-radius: 0 !important;
+  padding: 2% 5%;
+}
+
+.txa-tercon {
+  border-radius: 15px;
+  width: 100%;
+  box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.5);
+  padding: 10px 0 10px 15px;
+  height: 580px;
+}
+
+.txa-tercon input {
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  border: none;
+}
+
+.txa-tercon textarea {
+  width: 100%;
+  display: block;
+  resize: none;
+  border: none;
+  height: 92%;
+  padding-right: 25px;
+}
+
 .dropdown-menu {
   width: 100% !important;
 }
@@ -7611,6 +7657,10 @@ iframe {
 
 .navbar-prev-footers {
   display: none;
+}
+
+.menu-item-container {
+  width: 163px;
 }
 
 @font-face {

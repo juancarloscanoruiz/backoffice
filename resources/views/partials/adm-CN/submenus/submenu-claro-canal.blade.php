@@ -96,9 +96,9 @@
             </div>
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
-                    <button class="btn-apro text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha text-grilla lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
                 <!-- <div>

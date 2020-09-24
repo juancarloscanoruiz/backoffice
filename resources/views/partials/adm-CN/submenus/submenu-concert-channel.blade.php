@@ -86,9 +86,9 @@
             <!--Buttons-->
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
-                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro  a-text-MBlack  text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha  a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
             </div>
@@ -317,6 +317,9 @@
                 <div class="modal-body ">
                     <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
                     <hr class="d-flex align-content-center separationhr mb-4 col-12">
+
+                    <div class="cj"></div>
+                    
                     <!--div padre-->
                     <form>
                         <div class="d-flex justify-content-around col-11 mb-5 mt-5">
@@ -424,10 +427,10 @@
                         <!--div botones-->
                         <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                             <button
-                                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack h1 edit-landing-modal-button"
                                 id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
                             <a href="#delete-info" role="button"
-                                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small h1 a-text-bold-teal cancel"
                                 data-toggle="modal">CANCELAR</a>
 
                         </div>
@@ -452,4 +455,6 @@
     <!--HOME-->
     @include('partials.adm-CN.modals-home.home-encabezado');
     @include('partials.adm-CN.modal-home.logo');
+    
+    @include('partials.adm-CN.modal-home.carrusel');
 </body>

@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class=" modal  delete-info-claro" data-backdrop-limit="1" id="delete-info" tabindex="-1" role="dialog"
-    data-modal-parent="#modalbanner">
+    data-modal-parent="#modalbanner" style="overflow: auto; z-index: 9999;">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
@@ -44,9 +44,9 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button"
-                    class="a-btn-basic-small close-modal-concert a-btn-border-tomato mr-3 a-text-bold-tomato text-normal">ACEPTAR</button>
+                    class="a-btn-basic-small close-modal-concert a-btn-border-tomato mr-3 a-text-bold-tomato h1">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1"
                     data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>

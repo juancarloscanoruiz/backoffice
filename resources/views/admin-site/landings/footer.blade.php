@@ -103,5 +103,7 @@
         @include('partials.adm-CN.modal-footer.edit-footer')
         <!--Modal url-->
         @include('partials.adm-CN.modal-generic.url')
+        <!--Términos y condiciones-->
+        @include('partials.adm-CN.modal-footer.terminosycondiciones')
     </body>
 @endsection
