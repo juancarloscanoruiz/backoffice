@@ -317,6 +317,9 @@
                 <div class="modal-body ">
                     <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
                     <hr class="d-flex align-content-center separationhr mb-4 col-12">
+
+                    <div class="cj"></div>
+                    
                     <!--div padre-->
                     <form>
                         <div class="d-flex justify-content-around col-11 mb-5 mt-5">

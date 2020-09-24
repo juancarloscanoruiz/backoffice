@@ -8,6 +8,31 @@ const LOADER =
 
 export default class LandingView {
 
+    renderHomeHeaderCanalClaro() {
+        $("body").append(LOADER);
+        let data = landingController.getContentHome();
+        data.then(data => {
+            if (data.code == 200) {
+                // Add name
+                $("#landing_name").attr('value', 'Canal Claro');
+                //Add a class to the button
+                $("#dinamic_btn").addClass('btn-red');
+                //set the width of the image
+                $("#img-logo-home").addClass('img-logo-home-claro');
+                //Set the width of the container
+                $("#dinamic_width").addClass('modal-img-home-claro');
+                $("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
+                $("#inp_url").val(data.data.block_3_icon_channel_url);
+                //Change the logo
+                $("#img-logo-home").attr('src', data.data.block_3_icon_channel);
+                //Modal
+                $("#modal-logo-home").modal("show");
+                // Remove loader
+                $(".loader-view-container").remove();
+            }
+        })
+    }
+
     renderHomeHeaderConcertChannel() {
         $("body").append(LOADER);
         let data = landingController.getContentHome();
