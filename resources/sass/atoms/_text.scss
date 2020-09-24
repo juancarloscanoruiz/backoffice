@@ -2,9 +2,10 @@
 @import "../base/typography";
 
 /* TEXT BASE */
-.title-home{
+.title-home {
     font-size: 72px !important;
 }
+
 .h2 {
     font-size: 32px !important;
 }
@@ -39,18 +40,21 @@
     font-family: $MontserratBlack;
     color: black;
 }
+
 .a-text-black-teal {
     font-family: $MontserratBlack;
     color: $teal;
 }
+
 .text-semibold {
     font-family: $MontserratSemiBold;
-  }
-  
+}
+
 .a-text-black-blacktwo {
     color: $black-two;
     font-family: $MontserratBlack;
 }
+
 .a-text-black-yellow-two {
     font-family: $MontserratBlack;
     color: $off-yellow-two;
@@ -141,10 +145,12 @@
     color: $coolGray;
     font-family: $MontserratBold;
 }
+
 .a-text-bold-greyish-brown-two {
     font-family: $MontserratBold;
     color: $greyish-brown-two;
 }
+
 .a-text-bold-warm-grey-three {
     font-family: $MontserratBold;
     color: $warm-grey-three;
@@ -174,10 +180,12 @@
     font-family: $MontserratMedium;
     color: $repassgray;
 }
+
 .a-text-medium-white {
     font-family: $MontserratMedium;
     color: white;
 }
+
 .a-text-medium-black {
     font-family: $MontserratRegular;
     color: $black;
@@ -1081,7 +1089,20 @@
     border-radius: 13px;
     background-color: #ffffff;
 }
+
 .header-h1 {
-    color:White;
+    color: White;
     display: none;
-  }
+}
+
+.label-footer-icon {
+    span {
+        z-index: 1;
+    }
+}
+
+.label-footer-option {
+    span {
+        z-index: 1;
+    }
+}

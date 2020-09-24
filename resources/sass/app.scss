@@ -16,6 +16,7 @@ $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "./atoms/text";
 @import "./atoms/video";
 @import "./atoms/link";
+@import "./atoms/label";
 @import "./molecules/cards";
 @import "./molecules/lists";
 @import "./molecules/nav";
@@ -29,6 +30,7 @@ $slick-loader-path: "~slick-carousel/slick/"; // To add
 @import "./organisms/section";
 @import "./helpers/cursor";
 @import "./helpers/spacing";
+@import "./helpers/shadows";
 @import "./organisms/slider";
 
 .fade-grilla {

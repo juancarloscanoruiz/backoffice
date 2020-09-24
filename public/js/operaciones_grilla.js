@@ -73826,6 +73826,12 @@ var LandingController = /*#__PURE__*/function () {
       var data = landingModel.getContentHome();
       return data;
     }
+  }, {
+    key: "getContentFooter",
+    value: function getContentFooter() {
+      var data = landingModel.getContentFooter();
+      return data;
+    }
   }]);
 
   return LandingController;
@@ -74132,6 +74138,41 @@ var LandingModel = /*#__PURE__*/function () {
       }
 
       return getContentHome;
+    }()
+  }, {
+    key: "getContentFooter",
+    value: function () {
+      var _getContentFooter = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return fetch("landing/getContentFooter");
+
+              case 2:
+                response = _context2.sent;
+                _context2.next = 5;
+                return response.json();
+
+              case 5:
+                data = _context2.sent;
+                return _context2.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getContentFooter() {
+        return _getContentFooter.apply(this, arguments);
+      }
+
+      return getContentFooter;
     }()
   }]);
 
@@ -74612,8 +74653,8 @@ function eventsGrilla() {
   }
 
   var LandingSinopsis = {
-    //remote: `${baseURL}sinopsis-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -81918,6 +81959,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing.js */ "./resources/js/controllers/landing.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -81979,6 +82022,183 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show");
           console.log(data);
         }
+      });
+    }
+  }, {
+    key: "renderFooterClaroNetworks",
+    value: function renderFooterClaroNetworks() {
+      var that = this;
+      var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
+      var FooterClaroNetworks = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-edition.php",
+        container: document.getElementById("claro-networks-programing"),
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              case "footer-claro-networks":
+                that.renderContentFooter();
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroNetworks) {
+        var socketFooterClaroNetworks = new easyXDM.Socket(FooterClaroNetworks);
+      }
+    }
+  }, {
+    key: "renderContentFooter",
+    value: function renderContentFooter(landingFooter) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var data = landingController.getContentFooter();
+      data.then(function (data) {
+        if (data.code == 200) {
+          //evaluamos cuál footer es
+          switch (landingFooter) {
+            case "footer-claro-networks":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-container').remove();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-title').remove();
+              break;
+
+            default:
+              break;
+          }
+
+          var imageRight = data.data.image_right;
+          var imageLeft = data.data.image_left; //Imágenes de arriba
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').attr("src", imageRight);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').attr("src", imageLeft); //Menu 1
+
+          var optionTitle1 = data.data.menu_1_opcion_1_title;
+          var optionLink1 = data.data.menu_1_opcion_1_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-title').val(optionTitle1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1);
+          var optionTitle2 = data.data.menu_1_opcion_2_title;
+          var optionLink2 = data.data.menu_1_opcion_2_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-footer').modal("show");
+        }
+      });
+    }
+  }, {
+    key: "renderFooterClaroCanal",
+    value: function renderFooterClaroCanal() {
+      var containerFooterClaroCanal = document.getElementById("claro-canal-programing");
+      var FooterClaroCanalOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php",
+        container: containerFooterClaroCanal,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCanal) {
+        var socketFooterClaroCanal = new easyXDM.Socket(FooterClaroCanalOptions);
+      }
+    }
+  }, {
+    key: "renderFooterConcertChannel",
+    value: function renderFooterConcertChannel() {
+      var containerFooterConcertChannel = document.getElementById("concert-channel-programing");
+      var FooterConcertChannelOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php",
+        container: containerFooterConcertChannel,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterConcertChannel) {
+        var socketFooterConcertChannel = new easyXDM.Socket(FooterConcertChannelOptions);
+      }
+    }
+  }, {
+    key: "renderFooterClaroCinema",
+    value: function renderFooterClaroCinema() {
+      var containerFooterClaroCinema = document.getElementById("claro-cinema-programing");
+      var FooterClaroCinemaOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php",
+        container: containerFooterClaroCinema,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCinema) {
+        var socketFooterClaroCinema = new easyXDM.Socket(FooterClaroCinemaOptions);
+      }
+    }
+  }, {
+    key: "goToLandingFooter",
+    value: function goToLandingFooter() {
+      var iconsLandingFooter = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list-channel-item');
+      var footersContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers');
+      footersContainer.hide();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers:first').show();
+      var that = this;
+      iconsLandingFooter.click(function () {
+        iconsLandingFooter.removeClass('list-channel-active');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('list-channel-active');
+        var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
+        footersContainer.hide();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + rel).show();
       });
     }
   }]);
@@ -82052,8 +82272,8 @@ var ProgramView = /*#__PURE__*/function () {
     value: function renderPrevSynopsis() {
       var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
       var options = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php",
+        remote: "".concat(baseURL, "sinopsis-prev.php"),
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";

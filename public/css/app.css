@@ -71,7 +71,7 @@ body {
   display: none;
 }
 
-[dir=rtl] .slick-slide {
+[dir="rtl"] .slick-slide {
   float: right;
 }
 
@@ -177,7 +177,7 @@ body {
   left: -25px;
 }
 
-[dir=rtl] .slick-prev {
+[dir="rtl"] .slick-prev {
   left: auto;
   right: -25px;
 }
@@ -186,7 +186,7 @@ body {
   content: "\2190";
 }
 
-[dir=rtl] .slick-prev:before {
+[dir="rtl"] .slick-prev:before {
   content: "\2192";
 }
 
@@ -194,7 +194,7 @@ body {
   right: -25px;
 }
 
-[dir=rtl] .slick-next {
+[dir="rtl"] .slick-next {
   left: -25px;
   right: auto;
 }
@@ -203,7 +203,7 @@ body {
   content: "\2192";
 }
 
-[dir=rtl] .slick-next:before {
+[dir="rtl"] .slick-next:before {
   content: "\2190";
 }
 
@@ -1493,6 +1493,14 @@ body {
 .header-h1 {
   color: White;
   display: none;
+}
+
+.label-footer-icon span {
+  z-index: 1;
+}
+
+.label-footer-option span {
+  z-index: 1;
 }
 
 @font-face {
@@ -3190,6 +3198,31 @@ body {
   border-style: dashed;
 }
 
+.footer-image {
+  width: 445px;
+  height: 335px;
+}
+
+.oval-icon-social-media {
+  width: 82px;
+  height: 82px;
+  border: solid 2px #d5d7d7;
+  background-color: #f7f7f7;
+  border-radius: 50%;
+}
+
+.label-footer .add-photo {
+  width: 25px;
+}
+
+.label-footer-icon .add-photo {
+  width: 37px;
+}
+
+.label-footer-option .add-photo {
+  width: 37px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -3275,23 +3308,23 @@ body {
   letter-spacing: normal;
 }
 
-input[type=radio]:checked + .a-btn-check:before {
+input[type="radio"]:checked + .a-btn-check:before {
   content: "\2713";
   font-size: 30px;
   color: #009245;
 }
 
-input[type=radio]:checked + .hombre-estilo {
+input[type="radio"]:checked + .hombre-estilo {
   background: #03ad50;
   color: #ffffff;
   border: none;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   display: none;
 }
 
-input[type=radio] {
+input[type="radio"] {
   display: none;
 }
 
@@ -3328,13 +3361,13 @@ option:checked + .roles {
   border: none;
 }
 
-input[type=radio]:checked + .mujer-estilo {
+input[type="radio"]:checked + .mujer-estilo {
   background: #03ad50;
   color: #ffffff;
   border: none;
 }
 
-input[type=radio]:checked + .mujer-estilo1 {
+input[type="radio"]:checked + .mujer-estilo1 {
   background: #03ad50;
   color: #ffffff;
   border: none;
@@ -3351,7 +3384,7 @@ input[type="radio"]:checked + .no-estilo {
     border: none;
 }*/
 
-input[type=radio]:checked + .switch-label {
+input[type="radio"]:checked + .switch-label {
   background-color: #0097a9;
   color: #ffffff;
   border: none;
@@ -3362,13 +3395,13 @@ input[type=radio]:checked + .switch-label {
   font-family: "Montserrat-SemiBold";
 }
 
-input[type=radio]:checked + .si-estilo1 {
+input[type="radio"]:checked + .si-estilo1 {
   background-color: #4c4b4b;
   color: #ffffff;
   border: none;
 }
 
-input[type=radio]:checked + .no-estilo1 {
+input[type="radio"]:checked + .no-estilo1 {
   background-color: #4c4b4b;
   color: #ffffff;
   border: none;
@@ -3829,7 +3862,7 @@ input[type=radio]:checked + .no-estilo1 {
   cursor: pointer;
 }
 
-.list1:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+.list1:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
 }
 
@@ -3928,7 +3961,7 @@ div .bootstrap-select > .dropdown-toggle:focus {
   box-sizing: border-box;
 }
 
-.listcinema:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+.listcinema:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
 }
 
@@ -4203,6 +4236,14 @@ div .bootstrap-select > .dropdown-toggle:focus {
   border: none;
 }
 
+.input-url-footer {
+  width: 112px;
+}
+
+.inpuut-footer-menu-item {
+  border-radius: 20px;
+}
+
 .line {
   width: 100%;
   height: 1px;
@@ -4458,8 +4499,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .veri {
   /*display: none;
-  position: absolute;
-  top: -172px;*/
+    position: absolute;
+    top: -172px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -4475,8 +4516,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .edita {
   /*display: none;
-  position: absolute;
-  top: 32px;*/
+    position: absolute;
+    top: 32px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -4492,8 +4533,8 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .borra {
   /*display: none;
-  position: absolute;
-  top: 66px;*/
+    position: absolute;
+    top: 66px;*/
   display: none;
   position: absolute;
   left: 30px;
@@ -5776,6 +5817,14 @@ div .bootstrap-select > .dropdown-toggle:focus {
   display: none;
 }
 
+.label-footer-icon span {
+  z-index: 1;
+}
+
+.label-footer-option span {
+  z-index: 1;
+}
+
 #video-promo-concert {
   display: none;
   position: absolute;
@@ -5785,6 +5834,16 @@ div .bootstrap-select > .dropdown-toggle:focus {
 
 .link-url-modal {
   z-index: 1;
+}
+
+.label-footer-icon {
+  width: 162px;
+  height: 96px;
+}
+
+.label-footer-option {
+  width: 151px;
+  height: 100px;
 }
 
 .login-BO {
@@ -6435,7 +6494,7 @@ ul {
   padding: 0;
   margin-bottom: 9%;
   max-width: calc(100vw - 35px);
-  margin: 0 auto 9% auto;
+  margin: 0 auto 0 auto;
   width: 350px;
   z-index: 1;
 }
@@ -6453,6 +6512,21 @@ ul {
   -webkit-filter: none;
           filter: none;
   opacity: 1;
+}
+
+.list-channel-active {
+  border-radius: 20px;
+  background: white;
+  -webkit-filter: none !important;
+          filter: none !important;
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.list-channel-item {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  opacity: 0.75;
+  transition: all 0.6s ease;
 }
 
 .navbar-progra-item-border {
@@ -6973,7 +7047,7 @@ a:hover {
   border-radius: 7px;
   padding: 7px 15px;
   display: inline;
-  opacity: 0.8;
+  opacity: .8;
 }
 
 .ipt-home-canales {
@@ -7535,6 +7609,10 @@ iframe {
   left: 38%;
 }
 
+.navbar-prev-footers {
+  display: none;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -7959,6 +8037,10 @@ select:focus {
 
 .mr-7 {
   margin-right: 96px;
+}
+
+.shadow-black {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 .synopsis-image-slider,

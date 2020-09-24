@@ -1,5 +1,6 @@
 @import "../base/typography";
 @import "../base/color";
+@import "../base/mixins";
 
 .input-basic {
     outline: none;
@@ -863,4 +864,14 @@ div .bootstrap-select>.dropdown-toggle:focus {
 .synopsis-modal-title {
     background-color: black;
     border: none
+}
+
+
+.input-url-footer {
+    width: 112px;
+}
+
+
+.inpuut-footer-menu-item {
+    border-radius: 20px;
 }

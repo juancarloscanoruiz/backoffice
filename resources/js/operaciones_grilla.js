@@ -310,8 +310,8 @@ function eventsGrilla() {
 
 
     let LandingSinopsis = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
