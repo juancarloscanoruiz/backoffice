@@ -1981,7 +1981,6 @@ function getCarruselHome(landing) {
             }
 
             $('.add-file-carrusel').click(function () {
-                debugger
                 let id = $(this).attr("id");
                 let key = $('.load-carrusel').attr("key");
                 imgCarruselHome(id, key);
@@ -2005,11 +2004,19 @@ function viewImg(objFileInput, container, id, key) {
             $(container).attr('src', e.target.result);
         };
         fileSrt.readAsDataURL(objFileInput.files[0]);
-        editAttributeProgram(id, key, objFileInput.files[0]);
     }
+    actualizarImgCarrusel(id, key);
 }
 function viewEdit() {
     $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
+}
+
+
+function actualizarImgCarrusel(id, key) {
+    debugger
+    let logo = document.getElementById("img_carrusel_" + id).files[0].name || "";
+    let url = 'http://www.claronetworks.openofficedospuntocero.info/images/claro-canal/section-home-vertical/' + logo;
+    editAttributeProgram(id, key, url);
 }
 
 function getContentHomeCinema(type) {

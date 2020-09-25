@@ -79085,7 +79085,6 @@ function getCarruselHome(landing) {
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_1___default()('.add-file-carrusel').click(function () {
-        debugger;
         var id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("id");
         var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.load-carrusel').attr("key");
         imgCarruselHome(id, key);
@@ -79110,12 +79109,20 @@ function viewImg(objFileInput, container, id, key) {
     };
 
     fileSrt.readAsDataURL(objFileInput.files[0]);
-    Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(id, key, objFileInput.files[0]);
   }
+
+  actualizarImgCarrusel(id, key);
 }
 
 function viewEdit() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.camera_carrusel').attr('src', './images/lapiz-acti.svg');
+}
+
+function actualizarImgCarrusel(id, key) {
+  debugger;
+  var logo = document.getElementById("img_carrusel_" + id).files[0].name || "";
+  var url = 'http://www.claronetworks.openofficedospuntocero.info/images/claro-canal/section-home-vertical/' + logo;
+  Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(id, key, url);
 }
 
 function getContentHomeCinema(type) {
