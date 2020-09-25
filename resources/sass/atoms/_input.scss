@@ -1,5 +1,6 @@
 @import "../base/typography";
 @import "../base/color";
+@import "../base/mixins";
 
 .input-basic {
     outline: none;
@@ -864,6 +865,17 @@ div .bootstrap-select>.dropdown-toggle:focus {
     background-color: black;
     border: none
 }
-.backwhite{
+
+
+.input-url-footer {
+    width: 112px;
+}
+
+
+.inpuut-footer-menu-item {
+    border-radius: 20px;
+}
+
+.backwhite {
     background: white
 }

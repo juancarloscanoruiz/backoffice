@@ -360,7 +360,8 @@ ul {
     }
 }
 
-.programming-slider-dots-canal-claro, .programming-slider-dots-cinema {
+.programming-slider-dots-canal-claro,
+.programming-slider-dots-cinema {
     .slick-dots {
         position: static;
         text-align: left;
@@ -378,6 +379,7 @@ ul {
         margin-bottom: 16px;
     }
 }
+
 .programming-slider-dots-sinopsis {
     .slick-dots {
         position: static;
@@ -555,6 +557,7 @@ ul {
 .current {
     background-color: #018292 !important;
 }
+
 .tv-list-programming {
     list-style: none;
     display: flex;
@@ -562,18 +565,34 @@ ul {
     padding: 0;
     margin-bottom: 9%;
     max-width: calc(100vw - 35px);
-    margin: 0 auto 9% auto;
+    margin: 0 auto 0 auto;
     width: 350px;
     z-index: 1;
-  }
-  .nav-li {
+}
+
+.nav-li {
     filter: grayscale(100%);
     opacity: 0.75;
     transition: all 0.6s ease;
     padding: 10px;
-  }
-  .active-navItem {
+}
+
+.active-navItem {
     position: relative;
     filter: none;
     opacity: 1;
-  }
+}
+
+.list-channel-active {
+    border-radius: 20px;
+    background: white;
+    filter: none !important;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.list-channel-item {
+    filter: grayscale(100%);
+    opacity: 0.75;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}

@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -73826,6 +73826,12 @@ var LandingController = /*#__PURE__*/function () {
       var data = landingModel.getContentHome();
       return data;
     }
+  }, {
+    key: "getContentFooter",
+    value: function getContentFooter() {
+      var data = landingModel.getContentFooter();
+      return data;
+    }
   }]);
 
   return LandingController;
@@ -74132,6 +74138,41 @@ var LandingModel = /*#__PURE__*/function () {
       }
 
       return getContentHome;
+    }()
+  }, {
+    key: "getContentFooter",
+    value: function () {
+      var _getContentFooter = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return fetch("landing/getContentFooter");
+
+              case 2:
+                response = _context2.sent;
+                _context2.next = 5;
+                return response.json();
+
+              case 5:
+                data = _context2.sent;
+                return _context2.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getContentFooter() {
+        return _getContentFooter.apply(this, arguments);
+      }
+
+      return getContentFooter;
     }()
   }]);
 
@@ -74517,8 +74558,8 @@ function eventsGrilla() {
   }
 
   var LandingSinopsis = {
-    //remote: `${baseURL}sinopsis-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -81951,6 +81992,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing.js */ "./resources/js/controllers/landing.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -82078,6 +82121,314 @@ var LandingView = /*#__PURE__*/function () {
         }
       });
     }
+  }, {
+    key: "renderFooterClaroNetworks",
+    value: function renderFooterClaroNetworks() {
+      var that = this;
+      var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
+      var FooterClaroNetworks = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-edition.php",
+        container: document.getElementById("claro-networks-programing"),
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              case "footer-claro-networks":
+                that.renderContentFooter("footer-claro-networks");
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroNetworks) {
+        var socketFooterClaroNetworks = new easyXDM.Socket(FooterClaroNetworks);
+      }
+    }
+  }, {
+    key: "renderFooterClaroCanal",
+    value: function renderFooterClaroCanal() {
+      var that = this;
+      var containerFooterClaroCanal = document.getElementById("claro-canal-programing");
+      var FooterClaroCanalOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php",
+        container: containerFooterClaroCanal,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            switch (json.type) {
+              case "footer-canal-claro":
+                that.renderContentFooter("footer-canal-claro");
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCanal) {
+        var socketFooterClaroCanal = new easyXDM.Socket(FooterClaroCanalOptions);
+      }
+    }
+  }, {
+    key: "renderFooterConcertChannel",
+    value: function renderFooterConcertChannel() {
+      var that = this;
+      var containerFooterConcertChannel = document.getElementById("concert-channel-programing");
+      var FooterConcertChannelOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php",
+        container: containerFooterConcertChannel,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            switch (json.type) {
+              case "footer-concert-channel":
+                that.renderContentFooter("footer-concert-channel");
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterConcertChannel) {
+        var socketFooterConcertChannel = new easyXDM.Socket(FooterConcertChannelOptions);
+      }
+    }
+  }, {
+    key: "renderFooterClaroCinema",
+    value: function renderFooterClaroCinema() {
+      var that = this;
+      var containerFooterClaroCinema = document.getElementById("claro-cinema-programing");
+      var FooterClaroCinemaOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php",
+        container: containerFooterClaroCinema,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              case "footer-claro-cinema":
+                that.renderContentFooter("footer-claro-cinema");
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCinema) {
+        var socketFooterClaroCinema = new easyXDM.Socket(FooterClaroCinemaOptions);
+      }
+    }
+  }, {
+    key: "renderContentFooter",
+    value: function renderContentFooter(landingFooter) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var data = landingController.getContentFooter();
+      data.then(function (data) {
+        if (data.code == 200) {
+          var socialMedia = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media'); //Instagram
+
+          var socialMedia2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-2'); //Twitter
+
+          var socialMedia3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3'); //youtube
+
+          var socialMedia4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-4'); //evaluamos cuál footer es
+
+          switch (landingFooter) {
+            case "footer-claro-networks":
+              socialMedia.hide();
+              break;
+
+            case "footer-canal-claro":
+              socialMedia.show();
+              socialMedia2.show();
+              socialMedia4.show(); //Social media 1
+
+              var iconSocialMediaCanalClaro1 = data.data.facebook_canal_claro_icon;
+              var linkSocialMediaCanalClaro1 = data.data.facebook_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaCanalClaro1); //Social media 2
+
+              var iconSocialMediaCanalClaro2 = data.data.instagram_canal_claro_icon;
+              var linkSocialMediaCanalClaro2 = data.data.instagram_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-2').attr("src", iconSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').val(linkSocialMediaCanalClaro2); //Social media 3
+
+              var iconSocialMediaCanalClaro3 = data.data.twitter_canal_claro_icon;
+              var linkSocialMediaCanalClaro3 = data.data.twitter_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaCanalClaro3); //Social media 4
+
+              var iconSocialMediaCanalClaro4 = data.data.youtube_canal_claro_icon;
+              var linkSocialMediaCanalClaro4 = data.data.youtube_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-4').attr("src", iconSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').val(linkSocialMediaCanalClaro4);
+              break;
+
+            case "footer-concert-channel":
+              socialMedia.show();
+              socialMedia2.hide();
+              socialMedia4.hide(); //Social media 1
+
+              var iconSocialMediaConcertChannel1 = data.data.facebook_concert_channel_icon;
+              var linkSocialMediaConcertChannel1 = data.data.facebook_concert_channel_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaConcertChannel1); //Social media 3
+
+              var iconSocialMediaConcertChannel3 = data.data.twitter_concert_channel_icon;
+              var linkSocialMediaConcertChannel3 = data.data.twitter_concert_channel_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaConcertChannel3);
+              break;
+
+            case "footer-claro-cinema":
+              socialMedia.hide();
+              break;
+
+            default:
+              break;
+          }
+
+          var imageRight = data.data.image_right;
+          var imageLeft = data.data.image_left; //Imágenes de arriba
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').attr("src", imageRight);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').attr("src", imageLeft); //Menu 1
+          //Opción 1
+
+          var optionTitle1 = data.data.menu_1_opcion_1_title;
+          var optionLink1 = data.data.menu_1_opcion_1_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-title').val(optionTitle1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1); //Opción 2
+
+          var optionTitle2 = data.data.menu_1_opcion_2_title;
+          var optionLink2 = data.data.menu_1_opcion_2_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink2); //Opción 3
+
+          var optionTitle3 = data.data.menu_1_opcion_3_title;
+          var optionLink3 = data.data.menu_1_opcion_3_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-title').val(optionTitle3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').val(optionLink3); //Opción 4
+
+          var optionTitle4 = data.data.menu_1_opcion_4_title;
+          var optionLink4 = data.data.menu_1_opcion_4_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-title').val(optionTitle4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').val(optionLink4); //Opción 5
+
+          var optionTitle5 = data.data.menu_1_opcion_5_title;
+          var optionLink5 = data.data.menu_1_opcion_5_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink5); //Opción 6
+
+          var optionTitle6 = data.data.menu_1_opcion_6_title;
+          var optionLink6 = data.data.menu_1_opcion_6_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-title').val(optionTitle6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').val(optionLink6); //Icon claro networks footer
+
+          var iconClaroNetworksFooter = data.data.about_icon;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-about-icon').attr("src", iconClaroNetworksFooter); //rights legend
+
+          var rightsLegend = data.data.about_legend;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-rights-legend').val(rightsLegend); //Footer terms legend
+
+          var termsLegend = data.data.about_link_1_title; //privacy legend
+
+          var privacyLegend = data.data.about_link_2_title;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-privacy').text(privacyLegend);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-terms').text(termsLegend); //Footer icon 1
+
+          var footerIcon1 = data.data.menu_2_opcion_1_icon;
+          var footerIconLink1 = data.data.menu_2_opcion_1_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-1").attr("src", footerIcon1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").val(footerIconLink1); //Footer icon 2
+
+          var footerIcon2 = data.data.menu_2_opcion_2_icon;
+          var footerIconLink2 = data.data.menu_2_opcion_2_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-2").attr("src", footerIcon2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2); //Footer icon 3
+
+          var footerIcon3 = data.data.menu_2_opcion_3_icon;
+          var footerIconLink3 = data.data.menu_2_opcion_3_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-3").attr("src", footerIcon3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3); //Footer icon 4
+
+          var footerIcon4 = data.data.menu_2_opcion_4_icon;
+          var footerIconLink4 = data.data.menu_2_opcion_4_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-4").attr("src", footerIcon4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4); //Footer icon 5
+
+          var footerIcon5 = data.data.menu_2_opcion_5_icon;
+          var footerIconLink5 = data.data.menu_2_opcion_5_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-5").attr("src", footerIcon5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5); //Footer icon 6
+
+          var footerIcon6 = data.data.menu_2_opcion_6_icon;
+          var footerIconLink6 = data.data.menu_2_opcion_6_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-6").attr("src", footerIcon6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6); //Footer icon 7
+
+          var footerIcon7 = data.data.menu_2_opcion_7_icon;
+          var footerIconLink7 = data.data.menu_2_opcion_7_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-7").attr("src", footerIcon7);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").val(footerIconLink7);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-footer').modal("show");
+        }
+      });
+    }
+  }, {
+    key: "goToLandingFooter",
+    value: function goToLandingFooter() {
+      var iconsLandingFooter = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list-channel-item');
+      var footersContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers');
+      footersContainer.hide();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers:first').show();
+      var that = this;
+      iconsLandingFooter.click(function () {
+        iconsLandingFooter.removeClass('list-channel-active');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('list-channel-active');
+        var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
+        footersContainer.hide();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + rel).show();
+      });
+    }
   }]);
 
   return LandingView;
@@ -82149,8 +82500,8 @@ var ProgramView = /*#__PURE__*/function () {
     value: function renderPrevSynopsis() {
       var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
       var options = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php",
+        remote: "".concat(baseURL, "sinopsis-prev.php"),
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -82510,7 +82861,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

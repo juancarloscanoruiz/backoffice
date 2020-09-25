@@ -568,3 +568,37 @@
     border: 4px solid $coolGray;
     border-style: dashed;
 }
+
+
+.footer-image {
+    width: 445px;
+    height: 335px;
+}
+
+
+.oval-icon-social-media {
+    width: 82px;
+    height: 82px;
+    border: solid 2px $silver;
+    background-color: $whiteTwo;
+    border-radius: 50%;
+}
+
+
+.label-footer {
+    .add-photo {
+        width: 25px;
+    }
+}
+
+.label-footer-icon {
+    .add-photo {
+        width: 37px;
+    }
+}
+
+.label-footer-option {
+    .add-photo {
+        width: 37px;
+    }
+}

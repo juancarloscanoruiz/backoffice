@@ -35,8 +35,8 @@ export default class ProgramView {
 
         const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let options = {
-            //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
+            remote: `${baseURL}sinopsis-prev.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
             container: document.getElementById("sinopsis-container"),
             onMessage: function (message, origin) {
                 this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
