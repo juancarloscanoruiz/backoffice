@@ -60,3 +60,4 @@
 @include('partials.adm-CN.modal-generic.advertencia')
 @include('partials.adm-CN.modal-generic.url')
 @include('partials.adm-CN.modal-footer.terminosycondiciones')
+@include('partials.adm-CN.modal-footer.edit-footer')

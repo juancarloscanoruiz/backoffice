@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -77363,7 +77363,9 @@ function eventsGrilla() {
     // getCarruselHome(landing);
     // landingView.renderHomeHeaderClaroCinema();
     // getContentHomeCinema('claro-home-header');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
+    // $('#modal-terminos-footer').modal('show');
+    // $('.modal-footer').modal('show');
+    landingView.renderContentFooter("footer-concert-channel");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
     var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
@@ -77384,7 +77386,26 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-logo-home').modal('hide');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('hide');
+  }); // FOOTER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp_url').click(function () {
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('free');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr('free', type);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").addClass(type);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-url").click(function () {
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-url-modal').attr('free');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tericon').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
+  }); // FOOTER
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
     var logo = document.getElementById("logo_home").files[0] || "";
@@ -82128,7 +82149,8 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
       var FooterClaroNetworks = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost:8888/MaquetaCNetworks/footer-edition.php",
+        // remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
+        remote: "http://localhost/MaquetaCNetworks/footer-edition.php",
         container: document.getElementById("claro-networks-programing"),
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -82258,6 +82280,7 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "renderContentFooter",
     value: function renderContentFooter(landingFooter) {
+      debugger;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
       var data = landingController.getContentFooter();
       data.then(function (data) {
@@ -82283,22 +82306,34 @@ var LandingView = /*#__PURE__*/function () {
               var iconSocialMediaCanalClaro1 = data.data.facebook_canal_claro_icon;
               var linkSocialMediaCanalClaro1 = data.data.facebook_canal_claro_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaCanalClaro1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaCanalClaro1); //Social media 2
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 2
 
               var iconSocialMediaCanalClaro2 = data.data.instagram_canal_claro_icon;
               var linkSocialMediaCanalClaro2 = data.data.instagram_canal_claro_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-2').attr("src", iconSocialMediaCanalClaro2);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').val(linkSocialMediaCanalClaro2); //Social media 3
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').val(linkSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').addClass('media-link-2');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').attr('free', 'media-link-2');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-2').attr('free', 'media-link-2'); //Social media 3
 
               var iconSocialMediaCanalClaro3 = data.data.twitter_canal_claro_icon;
               var linkSocialMediaCanalClaro3 = data.data.twitter_canal_claro_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaCanalClaro3);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaCanalClaro3); //Social media 4
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3'); //Social media 4
 
               var iconSocialMediaCanalClaro4 = data.data.youtube_canal_claro_icon;
               var linkSocialMediaCanalClaro4 = data.data.youtube_canal_claro_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-4').attr("src", iconSocialMediaCanalClaro4);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').val(linkSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').addClass('media-link-4');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').attr('free', 'media-link-4');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-4').attr('free', 'media-link-4');
               break;
 
             case "footer-concert-channel":
@@ -82309,12 +82344,18 @@ var LandingView = /*#__PURE__*/function () {
               var iconSocialMediaConcertChannel1 = data.data.facebook_concert_channel_icon;
               var linkSocialMediaConcertChannel1 = data.data.facebook_concert_channel_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaConcertChannel1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaConcertChannel1); //Social media 3
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 3
 
               var iconSocialMediaConcertChannel3 = data.data.twitter_concert_channel_icon;
               var linkSocialMediaConcertChannel3 = data.data.twitter_concert_channel_url;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaConcertChannel3);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3');
               break;
 
             case "footer-claro-cinema":
@@ -82335,32 +82376,51 @@ var LandingView = /*#__PURE__*/function () {
           var optionTitle1 = data.data.menu_1_opcion_1_title;
           var optionLink1 = data.data.menu_1_opcion_1_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-title').val(optionTitle1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1); //Opción 2
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').addClass('opcion1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').attr('free', 'opcion1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion1-link').attr('free', 'opcion1'); //Opción 2
 
           var optionTitle2 = data.data.menu_1_opcion_2_title;
           var optionLink2 = data.data.menu_1_opcion_2_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle2);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink2); //Opción 3
+          debugger;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').addClass('opcion2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').attr('free', 'opcion2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion2-link').attr('free', 'opcion2'); //Opción 3
 
           var optionTitle3 = data.data.menu_1_opcion_3_title;
           var optionLink3 = data.data.menu_1_opcion_3_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-title').val(optionTitle3);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').val(optionLink3); //Opción 4
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').val(optionLink3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').addClass('opcion3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').attr('free', 'opcion3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion3-link').attr('free', 'opcion3'); //Opción 4
 
           var optionTitle4 = data.data.menu_1_opcion_4_title;
           var optionLink4 = data.data.menu_1_opcion_4_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-title').val(optionTitle4);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').val(optionLink4); //Opción 5
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').val(optionLink4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').addClass('opcion4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').attr('free', 'opcion4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion4-link').attr('free', 'opcion4'); //Opción 5
 
           var optionTitle5 = data.data.menu_1_opcion_5_title;
           var optionLink5 = data.data.menu_1_opcion_5_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle5);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink5); //Opción 6
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-title').val(optionTitle5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').val(optionLink5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').addClass('opcion5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').attr('free', 'opcion5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion5-link').attr('free', 'opcion5'); //Opción 6
 
           var optionTitle6 = data.data.menu_1_opcion_6_title;
           var optionLink6 = data.data.menu_1_opcion_6_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-title').val(optionTitle6);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').val(optionLink6); //Icon claro networks footer
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').val(optionLink6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').addClass('opcion6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').attr('free', 'opcion6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion6-link').attr('free', 'opcion6'); //Icon claro networks footer
 
           var iconClaroNetworksFooter = data.data.about_icon;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-about-icon').attr("src", iconClaroNetworksFooter); //rights legend
@@ -82377,37 +82437,58 @@ var LandingView = /*#__PURE__*/function () {
           var footerIcon1 = data.data.menu_2_opcion_1_icon;
           var footerIconLink1 = data.data.menu_2_opcion_1_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-1").attr("src", footerIcon1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").val(footerIconLink1); //Footer icon 2
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").val(footerIconLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").addClass('link-1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").attr('free', 'link-1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-1").attr('free', 'link-1'); //Footer icon 2
 
           var footerIcon2 = data.data.menu_2_opcion_2_icon;
           var footerIconLink2 = data.data.menu_2_opcion_2_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-2").attr("src", footerIcon2);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2); //Footer icon 3
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").addClass('link-2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").attr('free', 'link-2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-2").attr('free', 'link-2'); //Footer icon 3
 
           var footerIcon3 = data.data.menu_2_opcion_3_icon;
           var footerIconLink3 = data.data.menu_2_opcion_3_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-3").attr("src", footerIcon3);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3); //Footer icon 4
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").addClass('link-3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").attr('free', 'link-3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-3").attr('free', 'link-3'); //Footer icon 4
 
           var footerIcon4 = data.data.menu_2_opcion_4_icon;
           var footerIconLink4 = data.data.menu_2_opcion_4_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-4").attr("src", footerIcon4);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4); //Footer icon 5
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").addClass('link-4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").attr('free', 'link-4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-4").attr('free', 'link-4'); //Footer icon 5
 
           var footerIcon5 = data.data.menu_2_opcion_5_icon;
           var footerIconLink5 = data.data.menu_2_opcion_5_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-5").attr("src", footerIcon5);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5); //Footer icon 6
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").addClass('link-5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").attr('free', 'link-5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-5").attr('free', 'link-5'); //Footer icon 6
 
           var footerIcon6 = data.data.menu_2_opcion_6_icon;
           var footerIconLink6 = data.data.menu_2_opcion_6_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-6").attr("src", footerIcon6);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6); //Footer icon 7
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").addClass('link-6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").attr('free', 'link-6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-6").attr('free', 'link-6'); //Footer icon 7
 
           var footerIcon7 = data.data.menu_2_opcion_7_icon;
           var footerIconLink7 = data.data.menu_2_opcion_7_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-7").attr("src", footerIcon7);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").val(footerIconLink7);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").addClass('link-7');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").attr('free', 'link-7');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-7").attr('free', 'link-7');
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-footer').modal("show");
         }
@@ -82861,7 +82942,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

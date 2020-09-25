@@ -27,8 +27,8 @@
                         <div class="text-right m-0">
                             <button id="dinamic_btn" class="btn-camales">VER <span class="h3 ml-2">+</span></button>
                             <div class="mt-4">
-                                <img class="cursor-pointer" id="modal_url" src="./images/basic-icons/link.svg" style="width: 40px;">
-                                <input id="inp_url" class="input-url width-url a-text-bold-warm text-normal" placeholder="Enlace o URL" type="text">
+                                <img class="cursor-pointer modal_url" id="modal_url" src="./images/basic-icons/link.svg" style="width: 40px;">
+                                <input id="inp_url" class="inp_url input-url width-url a-text-bold-warm text-normal" placeholder="Enlace o URL" type="text">
                             </div>
                         </div>
                     </div>

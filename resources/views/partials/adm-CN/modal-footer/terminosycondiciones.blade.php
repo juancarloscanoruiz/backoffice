@@ -1,4 +1,4 @@
-<div id="modal-terminos-footer" class="modal" style="overflow: auto;">
+<div id="modal-terminos-footer" class="modal" style="overflow: auto; z-index: 9998;">
     <div class="modal-dialog-centered modal-dialog modal-terminos-footer-width">
         <div class="modal-content modal-terminos-footer">
             <!-- TEXTO -->

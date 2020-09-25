@@ -4911,7 +4911,9 @@ function eventsGrilla() {
         // getCarruselHome(landing);
         // landingView.renderHomeHeaderClaroCinema();
         // getContentHomeCinema('claro-home-header');
-        $('#modal-terminos-footer').modal('show');
+        // $('#modal-terminos-footer').modal('show');
+        // $('.modal-footer').modal('show');
+        landingView.renderContentFooter("footer-concert-channel")
     });
 
     $('#modal_url').click(function () {
@@ -4934,6 +4936,26 @@ function eventsGrilla() {
         $('#modal-carrusel-home').modal('hide')
         $('#modal-terminos-footer').modal('hide')
     })
+
+    // FOOTER
+    $('.inp_url').click(function () {
+        let type = $(this).attr('free');
+        let url = $("." + type).val();
+        $("#inp_url_modal").val(url);
+        $("#inp_url_modal").attr('free', type);
+        $("#inp_url_modal").addClass(type);
+        $('#url').modal('show');
+    });
+    $(".btn-url").click(function () {
+        let type = $('.input-url-modal').attr('free');
+        let url = $("#inp_url_modal").val();
+        $("." + type).val(url);
+        $("#url").modal("hide");
+    });
+    $('.tericon').click(function () {
+        $('#modal-terminos-footer').modal('show');
+    });
+    // FOOTER
 
     $("#acepta_canales_home").click(function () {
 
