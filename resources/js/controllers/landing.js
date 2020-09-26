@@ -6,4 +6,9 @@ export default class LandingController {
         let data = landingModel.getContentHome();
         return data;
     }
+
+    getContentFooter() {
+        let data = landingModel.getContentFooter();
+        return data;
+    }
 }

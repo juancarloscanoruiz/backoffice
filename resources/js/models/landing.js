@@ -6,4 +6,10 @@ export default class LandingModel {
         let data = await response.json();
         return data;
     }
+
+    async getContentFooter() {
+        let response = await fetch("landing/getContentFooter");
+        let data = await response.json();
+        return data;
+    }
 }

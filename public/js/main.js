@@ -12374,9 +12374,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
+  * Bootstrap v4.5.2 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -12402,53 +12402,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
 
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
       }
-    }
 
-    return target;
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -12459,8 +12428,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -12640,7 +12609,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.0';
+  var VERSION = '4.5.2';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -12796,7 +12765,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.0';
+  var VERSION$1 = '4.5.2';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -12931,11 +12900,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
-        event.preventDefault(); // work around event sent to label and input
+      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
+        Button._jQueryInterface.call($(button), 'toggle');
       }
-
-      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -12991,7 +12958,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.0';
+  var VERSION$2 = '4.5.2';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -13178,7 +13145,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default), config);
+      config = _extends({}, Default, config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -13468,10 +13435,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
+        var _config = _extends({}, Default, $(this).data());
 
         if (typeof config === 'object') {
-          _config = _objectSpread2(_objectSpread2({}, _config), config);
+          _config = _extends({}, _config, config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -13509,7 +13476,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+      var config = _extends({}, $(target).data(), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -13578,7 +13545,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.0';
+  var VERSION$3 = '4.5.2';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -13793,7 +13760,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$1), config);
+      config = _extends({}, Default$1, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -13847,7 +13814,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -13927,7 +13894,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.0';
+  var VERSION$4 = '4.5.2';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -14154,7 +14121,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
+      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -14199,7 +14166,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -14229,7 +14196,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         };
       }
 
-      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
+      return _extends({}, popperConfig, this._config.popperConfig);
     } // Static
     ;
 
@@ -14441,7 +14408,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.0';
+  var VERSION$5 = '4.5.2';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -14633,7 +14600,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$3), config);
+      config = _extends({}, Default$3, config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -14649,11 +14616,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return;
         }
 
+        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+        if (!isModalOverflowing) {
+          this._element.style.overflowY = 'hidden';
+        }
+
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
+        $(this._element).off(Util.TRANSITION_END);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
+
+          if (!isModalOverflowing) {
+            $(_this3._element).one(Util.TRANSITION_END, function () {
+              _this3._element.style.overflowY = '';
+            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
+          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -14678,6 +14658,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
+
+      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -14765,6 +14747,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
+
+      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -14947,7 +14931,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -14997,7 +14981,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -15034,8 +15018,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -15160,7 +15144,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.0';
+  var VERSION$6 = '4.5.2';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -15548,7 +15532,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
+      return _extends({}, defaultBsConfig, this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -15558,7 +15542,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -15613,7 +15597,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
+        this.config = _extends({}, this.config, {
           trigger: 'manual',
           selector: ''
         });
@@ -15713,7 +15697,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           delete dataAttributes[dataAttr];
         }
       });
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
+      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -15872,21 +15856,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.0';
+  var VERSION$7 = '4.5.2';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
+  var Default$5 = _extends({}, Tooltip.Default, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
+  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
     content: '(string|element|function)'
   });
 
@@ -16052,7 +16036,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.0';
+  var VERSION$8 = '4.5.2';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -16166,7 +16150,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -16344,7 +16328,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.0';
+  var VERSION$9 = '4.5.2';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -16570,7 +16554,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.0';
+  var VERSION$a = '4.5.2';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -16623,6 +16607,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
+      this._clearTimeout();
+
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -16671,8 +16657,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto.dispose = function dispose() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
+      this._clearTimeout();
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -16686,7 +16671,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -16716,6 +16701,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       } else {
         complete();
       }
+    };
+
+    _proto._clearTimeout = function _clearTimeout() {
+      clearTimeout(this._timeout);
+      this._timeout = null;
     } // Static
     ;
 
@@ -51616,7 +51606,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -88732,6 +88722,12 @@ var LandingController = /*#__PURE__*/function () {
       var data = landingModel.getContentHome();
       return data;
     }
+  }, {
+    key: "getContentFooter",
+    value: function getContentFooter() {
+      var data = landingModel.getContentFooter();
+      return data;
+    }
   }]);
 
   return LandingController;
@@ -88996,6 +88992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_form_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./form/form.js */ "./resources/js/form/form.js");
 /* harmony import */ var _services_user_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/user.js */ "./resources/js/services/user.js");
 /* harmony import */ var _vendor_lozad_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./vendor/lozad.js */ "./resources/js/vendor/lozad.js");
+/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/landing */ "./resources/js/views/landing.js");
 //JQUERY
  //BOOTSTRAP
 
@@ -89021,32 +89018,20 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   },
   cache: false
 });
+
+var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_12__["default"]();
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  /*     OverlayScrollbars(document.querySelector("#rempla-claro-canal"), {
-          className: "os-theme-dark",
-          resize: "both",
-          sizeAutoCapable: true,
-          paddingAbsolute: true,
-          scrollbars: {
-              clickScrolling: true
-          }
-      }); */
+  landingView.goToLandingFooter();
+  landingView.renderFooterClaroNetworks();
+  landingView.renderFooterClaroCanal();
+  landingView.renderFooterConcertChannel();
+  landingView.renderFooterClaroCinema();
   var options = {
     load: function load(el) {
       el.classList.add("fade-grilla");
     }
   };
-  Object(_vendor_lozad_js__WEBPACK_IMPORTED_MODULE_11__["createLazyLoad"])(".contenedor-fila", options); //cerrar los dos modales
-
-  /*     $("#close_modals-claro").click(function () {
-          $(".modal").modal("hide");
-      }); */
-
-  /*     $("#close_modals").click(function () {
-          $(".modal").modal("hide");
-          console.log("noin");
-      }); */
-  //loader, images
+  Object(_vendor_lozad_js__WEBPACK_IMPORTED_MODULE_11__["createLazyLoad"])(".contenedor-fila", options); //loader, images
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-picture").on("click", function () {
     var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"../images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
@@ -89829,6 +89814,41 @@ var LandingModel = /*#__PURE__*/function () {
 
       return getContentHome;
     }()
+  }, {
+    key: "getContentFooter",
+    value: function () {
+      var _getContentFooter = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return fetch("landing/getContentFooter");
+
+              case 2:
+                response = _context2.sent;
+                _context2.next = 5;
+                return response.json();
+
+              case 5:
+                data = _context2.sent;
+                return _context2.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function getContentFooter() {
+        return _getContentFooter.apply(this, arguments);
+      }
+
+      return getContentFooter;
+    }()
   }]);
 
   return LandingModel;
@@ -90198,56 +90218,6 @@ function eventsGrilla() {
     getHeaderLanding();
   });
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  var LandingHomeClaro = {
-    remote: "".concat(baseURL, "home-edi-claro.php"),
-    //remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
-    container: document.getElementById("navbar-prev-home"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        switch (json.type) {
-          case "home-claro-carrousel-main":
-            var date = new Date();
-            var day = ("0" + date.getUTCDate()).slice(-2);
-            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-            var _year = date.getUTCFullYear();
-
-            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day);
-
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", 'home');
-            break;
-
-          case "slider-pagination":
-            landingView.renderHomeBanner();
-            break;
-
-          case "claro-home-header":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
-            break;
-
-          case "claro-home-slider":
-            var landing = 'Canal Claro';
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
-
-  if (NavbarHomeClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
-    new easyXDM.Socket(LandingHomeClaro);
-  }
-
   var LandingHomeCinema = {
     remote: "".concat(baseURL, "home-edi-cinema.php"),
     container: document.getElementById("navbar-prev-home-cinema"),
@@ -90287,8 +90257,8 @@ function eventsGrilla() {
   }
 
   var LandingSinopsis = {
-    //remote: `${baseURL}sinopsis-edi.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php",
+    remote: "".concat(baseURL, "sinopsis-edi.php"),
+    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
     container: document.getElementById("sinopsis-container"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -90507,12 +90477,12 @@ function eventsGrilla() {
             var day = ("0" + date.getUTCDate()).slice(-2);
             var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-            var _year2 = date.getUTCFullYear();
+            var _year = date.getUTCFullYear();
 
-            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
+            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
 
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "canal-claro", '');
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", '');
             break;
 
           case "header-landing-cinema":
@@ -90581,11 +90551,11 @@ function eventsGrilla() {
             var day = ("0" + date.getUTCDate()).slice(-2);
             var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-            var _year3 = date.getUTCFullYear();
+            var _year2 = date.getUTCFullYear();
 
-            var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day);
+            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "concert-channel", '');
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel", '');
             break;
 
           case "header-landing-concert":
@@ -90765,13 +90735,13 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-canal-claro", function () {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, 'concert-channel');
   }); //Pencil Canal
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId);
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, 'canal-claro');
   }); //Modal de link para botón
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("show.bs.modal", function () {
@@ -93085,16 +93055,9 @@ function eventsGrilla() {
     // getCarruselHome(landing);
     // landingView.renderHomeHeaderClaroCinema();
     // getContentHomeCinema('claro-home-header');
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-      var date = new Date();
-      var day = ("0" + date.getUTCDate()).slice(-2);
-      var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-      var year = date.getUTCFullYear();
-      var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro", '');
-    }, 3000);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    // $('#modal-terminos-footer').modal('show');
+    // $('.modal-footer').modal('show');
+    landingView.renderContentFooter("footer-concert-channel");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal_url').click(function () {
     var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
@@ -93114,7 +93077,27 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close_all_modal').click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-logo-home').modal('hide');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('hide');
+  }); // FOOTER
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp_url').click(function () {
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('free');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr('free', type);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").addClass(type);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-url").click(function () {
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-url-modal').attr('free');
+    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val(url);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tericon').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
+  }); // FOOTER
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
     var logo = document.getElementById("logo_home").files[0] || "";
@@ -93148,7 +93131,8 @@ function eventsGrilla() {
   /* MVC */
 
   var LandingHomeConcert = {
-    remote: "".concat(baseURL, "home-edi-concert.php"),
+    // remote: `${baseURL}home-edi-concert.php`,
+    remote: "http://localhost/MaquetaCNetworks/home-edi-concert.php",
     container: document.getElementById("navbar-prev-home-concert"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
@@ -93157,6 +93141,19 @@ function eventsGrilla() {
         switch (json.type) {
           case "slider-pagination":
             landingView.renderHomeBanner();
+            break;
+
+          case "home-claro-carrousel-main":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year3 = date.getUTCFullYear();
+
+            var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "concert channel", 'home');
+
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
             break;
 
           case "concert-home-header":
@@ -93182,6 +93179,55 @@ function eventsGrilla() {
   if (NavbarHomeConcert) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
     new easyXDM.Socket(LandingHomeConcert);
+  }
+
+  var LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php"),
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            landingView.renderHomeBanner();
+            break;
+
+          case "home-claro-carrousel-main":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year4 = date.getUTCFullYear();
+
+            var _currentDate4 = "".concat(_year4, "-").concat(month, "-").concat(day);
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "canal-claro");
+            break;
+
+          case "claro-home-header":
+            landingView.renderHomeHeaderCanalClaro();
+            break;
+
+          case "claro-home-slider":
+            var landing = 'Canal Claro';
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#navbar-prev-home iframe').remove();
+    new easyXDM.Socket(LandingHomeClaro);
   }
   /* MVC */
 
@@ -93792,7 +93838,7 @@ function updateImageProgramOfLanding(data) {
   });
 }
 
-function getChapterInfo(data) {
+function getChapterInfo(data, landing) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     url: "landing/get-chapter-info/" + data,
@@ -93802,7 +93848,22 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      var capsule = "\n                <div class=\"d-flex justify-content-center my-5\">\n                    <div class=\"position-relative d-inline-block mx-auto\">\n                        <div class=\"row no-gutters col-12\">\n                            <ul class=\"d-flex list-progra pl-0\">\n                                <!--Logo canal claro-->\n                                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                                <!--Logo concert channel-->\n                                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                                            <!--class to update image-->\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                                <!--Logo claro cinema-->\n                                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                                            </label>\n                                        </div>\n                                    </li>\n                                </div>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            ";
+      var capsule = '';
+
+      switch (landing) {
+        case 'canal-claro':
+          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
+          break;
+
+        case 'concert-channel':
+          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel capsule\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
+          break;
+
+        case 'claro-cinema':
+          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema capsule\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
+          break;
+      }
+
       var data = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
@@ -94794,7 +94855,6 @@ function getCarruselHome(landing) {
       }
 
       jquery__WEBPACK_IMPORTED_MODULE_1___default()('.add-file-carrusel').click(function () {
-        debugger;
         var id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("id");
         var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.load-carrusel').attr("key");
         imgCarruselHome(id, key);
@@ -94819,12 +94879,20 @@ function viewImg(objFileInput, container, id, key) {
     };
 
     fileSrt.readAsDataURL(objFileInput.files[0]);
-    Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(id, key, objFileInput.files[0]);
   }
+
+  actualizarImgCarrusel(id, key);
 }
 
 function viewEdit() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.camera_carrusel').attr('src', './images/lapiz-acti.svg');
+}
+
+function actualizarImgCarrusel(id, key) {
+  debugger;
+  var logo = document.getElementById("img_carrusel_" + id).files[0].name || "";
+  var url = 'http://www.claronetworks.openofficedospuntocero.info/images/claro-canal/section-home-vertical/' + logo;
+  Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["editAttributeProgram"])(id, key, url);
 }
 
 function getContentHomeCinema(type) {
@@ -95293,7 +95361,7 @@ function editPromoLandingCinema(data) {
 } //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 
 
-function getProgrammingLanding(date, landing, cj) {
+function getProgrammingLanding(date, landing) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     beforeSend: function beforeSend() {
@@ -95310,7 +95378,6 @@ function getProgrammingLanding(date, landing, cj) {
       if (json.code == 200) {
         var programming = "";
         var landingClass = "";
-        var _cj = "";
 
         switch (landing) {
           case "canal-claro":
@@ -97701,6 +97768,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing.js */ "./resources/js/controllers/landing.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -97718,6 +97787,32 @@ var LandingView = /*#__PURE__*/function () {
   }
 
   _createClass(LandingView, [{
+    key: "renderHomeHeaderCanalClaro",
+    value: function renderHomeHeaderCanalClaro() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+      var data = landingController.getContentHome();
+      data.then(function (data) {
+        if (data.code == 200) {
+          // Add name
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Canal Claro'); //Add a class to the button
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home-claro'); //Set the width of the container
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home-claro');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(data.data.block_3_icon_channel_url); //Change the logo
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_3_icon_channel); //Modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show"); // Remove loader
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }
+      });
+    }
+  }, {
     key: "renderHomeHeaderConcertChannel",
     value: function renderHomeHeaderConcertChannel() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
@@ -97802,6 +97897,374 @@ var LandingView = /*#__PURE__*/function () {
         }
       });
     }
+  }, {
+    key: "renderFooterClaroNetworks",
+    value: function renderFooterClaroNetworks() {
+      var that = this;
+      var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
+      var FooterClaroNetworks = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        // remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
+        remote: "http://localhost/MaquetaCNetworks/footer-edition.php",
+        container: document.getElementById("claro-networks-programing"),
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              case "footer-claro-networks":
+                that.renderContentFooter("footer-claro-networks");
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroNetworks) {
+        var socketFooterClaroNetworks = new easyXDM.Socket(FooterClaroNetworks);
+      }
+    }
+  }, {
+    key: "renderFooterClaroCanal",
+    value: function renderFooterClaroCanal() {
+      var that = this;
+      var containerFooterClaroCanal = document.getElementById("claro-canal-programing");
+      var FooterClaroCanalOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php",
+        container: containerFooterClaroCanal,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            switch (json.type) {
+              case "footer-canal-claro":
+                that.renderContentFooter("footer-canal-claro");
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCanal) {
+        var socketFooterClaroCanal = new easyXDM.Socket(FooterClaroCanalOptions);
+      }
+    }
+  }, {
+    key: "renderFooterConcertChannel",
+    value: function renderFooterConcertChannel() {
+      var that = this;
+      var containerFooterConcertChannel = document.getElementById("concert-channel-programing");
+      var FooterConcertChannelOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php",
+        container: containerFooterConcertChannel,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            switch (json.type) {
+              case "footer-concert-channel":
+                that.renderContentFooter("footer-concert-channel");
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterConcertChannel) {
+        var socketFooterConcertChannel = new easyXDM.Socket(FooterConcertChannelOptions);
+      }
+    }
+  }, {
+    key: "renderFooterClaroCinema",
+    value: function renderFooterClaroCinema() {
+      var that = this;
+      var containerFooterClaroCinema = document.getElementById("claro-cinema-programing");
+      var FooterClaroCinemaOptions = {
+        //remote: `${baseURL}sinopsis-edi.php`,
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php",
+        container: containerFooterClaroCinema,
+        onMessage: function onMessage(message, origin) {
+          var json = JSON.parse(message);
+
+          if (_typeof(json) == "object") {
+            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
+
+            switch (json.type) {
+              case "footer-claro-cinema":
+                that.renderContentFooter("footer-claro-cinema");
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      };
+
+      if (containerFooterClaroCinema) {
+        var socketFooterClaroCinema = new easyXDM.Socket(FooterClaroCinemaOptions);
+      }
+    }
+  }, {
+    key: "renderContentFooter",
+    value: function renderContentFooter(landingFooter) {
+      debugger;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var data = landingController.getContentFooter();
+      data.then(function (data) {
+        if (data.code == 200) {
+          var socialMedia = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media'); //Instagram
+
+          var socialMedia2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-2'); //Twitter
+
+          var socialMedia3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3'); //youtube
+
+          var socialMedia4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-4'); //evaluamos cuál footer es
+
+          switch (landingFooter) {
+            case "footer-claro-networks":
+              socialMedia.hide();
+              break;
+
+            case "footer-canal-claro":
+              socialMedia.show();
+              socialMedia2.show();
+              socialMedia4.show(); //Social media 1
+
+              var iconSocialMediaCanalClaro1 = data.data.facebook_canal_claro_icon;
+              var linkSocialMediaCanalClaro1 = data.data.facebook_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 2
+
+              var iconSocialMediaCanalClaro2 = data.data.instagram_canal_claro_icon;
+              var linkSocialMediaCanalClaro2 = data.data.instagram_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-2').attr("src", iconSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').val(linkSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').addClass('media-link-2');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').attr('free', 'media-link-2');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-2').attr('free', 'media-link-2'); //Social media 3
+
+              var iconSocialMediaCanalClaro3 = data.data.twitter_canal_claro_icon;
+              var linkSocialMediaCanalClaro3 = data.data.twitter_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3'); //Social media 4
+
+              var iconSocialMediaCanalClaro4 = data.data.youtube_canal_claro_icon;
+              var linkSocialMediaCanalClaro4 = data.data.youtube_canal_claro_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-4').attr("src", iconSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').val(linkSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').addClass('media-link-4');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').attr('free', 'media-link-4');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-4').attr('free', 'media-link-4');
+              break;
+
+            case "footer-concert-channel":
+              socialMedia.show();
+              socialMedia2.hide();
+              socialMedia4.hide(); //Social media 1
+
+              var iconSocialMediaConcertChannel1 = data.data.facebook_concert_channel_icon;
+              var linkSocialMediaConcertChannel1 = data.data.facebook_concert_channel_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 3
+
+              var iconSocialMediaConcertChannel3 = data.data.twitter_concert_channel_icon;
+              var linkSocialMediaConcertChannel3 = data.data.twitter_concert_channel_url;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3');
+              break;
+
+            case "footer-claro-cinema":
+              socialMedia.hide();
+              break;
+
+            default:
+              break;
+          }
+
+          var imageRight = data.data.image_right;
+          var imageLeft = data.data.image_left; //Imágenes de arriba
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').attr("src", imageRight);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').attr("src", imageLeft); //Menu 1
+          //Opción 1
+
+          var optionTitle1 = data.data.menu_1_opcion_1_title;
+          var optionLink1 = data.data.menu_1_opcion_1_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-title').val(optionTitle1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').addClass('opcion1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').attr('free', 'opcion1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion1-link').attr('free', 'opcion1'); //Opción 2
+
+          var optionTitle2 = data.data.menu_1_opcion_2_title;
+          var optionLink2 = data.data.menu_1_opcion_2_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle2);
+          debugger;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').addClass('opcion2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').attr('free', 'opcion2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion2-link').attr('free', 'opcion2'); //Opción 3
+
+          var optionTitle3 = data.data.menu_1_opcion_3_title;
+          var optionLink3 = data.data.menu_1_opcion_3_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-title').val(optionTitle3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').val(optionLink3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').addClass('opcion3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').attr('free', 'opcion3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion3-link').attr('free', 'opcion3'); //Opción 4
+
+          var optionTitle4 = data.data.menu_1_opcion_4_title;
+          var optionLink4 = data.data.menu_1_opcion_4_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-title').val(optionTitle4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').val(optionLink4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').addClass('opcion4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').attr('free', 'opcion4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion4-link').attr('free', 'opcion4'); //Opción 5
+
+          var optionTitle5 = data.data.menu_1_opcion_5_title;
+          var optionLink5 = data.data.menu_1_opcion_5_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-title').val(optionTitle5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').val(optionLink5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').addClass('opcion5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').attr('free', 'opcion5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion5-link').attr('free', 'opcion5'); //Opción 6
+
+          var optionTitle6 = data.data.menu_1_opcion_6_title;
+          var optionLink6 = data.data.menu_1_opcion_6_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-title').val(optionTitle6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').val(optionLink6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').addClass('opcion6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').attr('free', 'opcion6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion6-link').attr('free', 'opcion6'); //Icon claro networks footer
+
+          var iconClaroNetworksFooter = data.data.about_icon;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-about-icon').attr("src", iconClaroNetworksFooter); //rights legend
+
+          var rightsLegend = data.data.about_legend;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-rights-legend').val(rightsLegend); //Footer terms legend
+
+          var termsLegend = data.data.about_link_1_title; //privacy legend
+
+          var privacyLegend = data.data.about_link_2_title;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-privacy').text(privacyLegend);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-terms').text(termsLegend); //Footer icon 1
+
+          var footerIcon1 = data.data.menu_2_opcion_1_icon;
+          var footerIconLink1 = data.data.menu_2_opcion_1_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-1").attr("src", footerIcon1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").val(footerIconLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").addClass('link-1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").attr('free', 'link-1');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-1").attr('free', 'link-1'); //Footer icon 2
+
+          var footerIcon2 = data.data.menu_2_opcion_2_icon;
+          var footerIconLink2 = data.data.menu_2_opcion_2_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-2").attr("src", footerIcon2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").addClass('link-2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").attr('free', 'link-2');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-2").attr('free', 'link-2'); //Footer icon 3
+
+          var footerIcon3 = data.data.menu_2_opcion_3_icon;
+          var footerIconLink3 = data.data.menu_2_opcion_3_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-3").attr("src", footerIcon3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").addClass('link-3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").attr('free', 'link-3');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-3").attr('free', 'link-3'); //Footer icon 4
+
+          var footerIcon4 = data.data.menu_2_opcion_4_icon;
+          var footerIconLink4 = data.data.menu_2_opcion_4_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-4").attr("src", footerIcon4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").addClass('link-4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").attr('free', 'link-4');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-4").attr('free', 'link-4'); //Footer icon 5
+
+          var footerIcon5 = data.data.menu_2_opcion_5_icon;
+          var footerIconLink5 = data.data.menu_2_opcion_5_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-5").attr("src", footerIcon5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").addClass('link-5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").attr('free', 'link-5');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-5").attr('free', 'link-5'); //Footer icon 6
+
+          var footerIcon6 = data.data.menu_2_opcion_6_icon;
+          var footerIconLink6 = data.data.menu_2_opcion_6_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-6").attr("src", footerIcon6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").addClass('link-6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").attr('free', 'link-6');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-6").attr('free', 'link-6'); //Footer icon 7
+
+          var footerIcon7 = data.data.menu_2_opcion_7_icon;
+          var footerIconLink7 = data.data.menu_2_opcion_7_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-7").attr("src", footerIcon7);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").val(footerIconLink7);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").addClass('link-7');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").attr('free', 'link-7');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-7").attr('free', 'link-7');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-footer').modal("show");
+        }
+      });
+    }
+  }, {
+    key: "goToLandingFooter",
+    value: function goToLandingFooter() {
+      var iconsLandingFooter = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list-channel-item');
+      var footersContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers');
+      footersContainer.hide();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers:first').show();
+      var that = this;
+      iconsLandingFooter.click(function () {
+        iconsLandingFooter.removeClass('list-channel-active');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('list-channel-active');
+        var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
+        footersContainer.hide();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + rel).show();
+      });
+    }
   }]);
 
   return LandingView;
@@ -97873,8 +98336,8 @@ var ProgramView = /*#__PURE__*/function () {
     value: function renderPrevSynopsis() {
       var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
       var options = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php",
+        remote: "".concat(baseURL, "sinopsis-prev.php"),
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -98168,8 +98631,8 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

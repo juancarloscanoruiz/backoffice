@@ -182,49 +182,6 @@ function eventsGrilla() {
 
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
-    let LandingHomeClaro = {
-        remote: `${baseURL}home-edi-claro.php`,
-        //remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
-        container: document.getElementById("navbar-prev-home"),
-        onMessage: function (message, origin) {
-            let json = JSON.parse(message);
-            if (typeof json == "object") {
-                switch (json.type) {
-                    case "home-claro-carrousel-main":
-                        let date = new Date();
-                        let day = ("0" + date.getUTCDate()).slice(-2);
-                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-                        let year = date.getUTCFullYear();
-                        let currentDate = `${year}-${month}-${day}`;
-                        getProgrammingLanding(currentDate, "canal-claro", 'home');
-                        break;
-                    case "slider-pagination":
-                        landingView.renderHomeBanner();
-                        break;
-                    case "claro-home-header":
-                        getContentHomeHeader(json.type);
-                        break;
-                    case "claro-home-slider":
-                        let landing = 'Canal Claro';
-                        getCarruselHome(landing);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-    };
-
-    let NavbarHomeClaro = document.getElementById("navbar-prev-home");
-    if (NavbarHomeClaro) {
-        $('#navbar-prev-home iframe').remove();
-        new easyXDM.Socket(LandingHomeClaro);
-    }
-
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
@@ -264,8 +221,8 @@ function eventsGrilla() {
 
 
     let LandingSinopsis = {
-        //remote: `${baseURL}sinopsis-edi.php`,
-        remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
         container: document.getElementById("sinopsis-container"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -918,7 +875,7 @@ function eventsGrilla() {
         function () {
             let chapterId = $(this).attr("chapter_id");
             $(".modal-programming-landing").modal("hide");
-            getChapterInfo(chapterId);
+            getChapterInfo(chapterId, 'concert-channel');
         }
     );
     //Pencil Canal
@@ -928,7 +885,7 @@ function eventsGrilla() {
         function () {
             let chapterId = $(this).attr("chapter_id");
             $(".modal-programming-landing").modal("hide");
-            getChapterInfo(chapterId);
+            getChapterInfo(chapterId, 'canal-claro');
         }
     );
 
@@ -4937,18 +4894,9 @@ function eventsGrilla() {
         // getCarruselHome(landing);
         // landingView.renderHomeHeaderClaroCinema();
         // getContentHomeCinema('claro-home-header');
-        setTimeout(function () {
-            $("body").append(LOADER);
-            let date = new Date();
-            let day = ("0" + date.getUTCDate()).slice(-2);
-            let month = ("0" + (date.getUTCMonth() + 1)).slice(
-                -2
-            );
-            let year = date.getUTCFullYear();
-            let currentDate = `${year}-${month}-${day}`;
-            getProgrammingLanding(currentDate, "canal-claro", '');
-        }, 3000);
-        $("#loader1").remove();
+        // $('#modal-terminos-footer').modal('show');
+        // $('.modal-footer').modal('show');
+        landingView.renderContentFooter("footer-concert-channel")
     });
 
     $('#modal_url').click(function () {
@@ -4969,10 +4917,31 @@ function eventsGrilla() {
     $('#close_all_modal').click(function () {
         $('#modal-logo-home').modal('hide')
         $('#modal-carrusel-home').modal('hide')
+        $('#modal-terminos-footer').modal('hide')
     })
 
+    // FOOTER
+    $('.inp_url').click(function () {
+        let type = $(this).attr('free');
+        let url = $("." + type).val();
+        $("#inp_url_modal").val(url);
+        $("#inp_url_modal").attr('free', type);
+        $("#inp_url_modal").addClass(type);
+        $('#url').modal('show');
+    });
+    $(".btn-url").click(function () {
+        let type = $('.input-url-modal').attr('free');
+        let url = $("#inp_url_modal").val();
+        $("." + type).val(url);
+        $("#url").modal("hide");
+    });
+    $('.tericon').click(function () {
+        $('#modal-terminos-footer').modal('show');
+    });
+    // FOOTER
+
     $("#acepta_canales_home").click(function () {
-       
+
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -5006,14 +4975,15 @@ function eventsGrilla() {
             $("#loader1").remove();
             console.log("si lo borra");
         }, 2000);
-        
+
     });
-       
+
 
     /* MVC */
 
     let LandingHomeConcert = {
-        remote: `${baseURL}home-edi-concert.php`,
+        // remote: `${baseURL}home-edi-concert.php`,
+        remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -5021,6 +4991,15 @@ function eventsGrilla() {
                 switch (json.type) {
                     case "slider-pagination":
                         landingView.renderHomeBanner();
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        // getProgrammingLanding(currentDate, "concert channel", 'home');
+                        getProgrammingLanding(currentDate, "canal-claro");
                         break;
                     case "concert-home-header":
                         landingView.renderHomeHeaderConcertChannel();
@@ -5043,6 +5022,49 @@ function eventsGrilla() {
     if (NavbarHomeConcert) {
         $("#navbar-prev-home-concert iframe").remove();
         new easyXDM.Socket(LandingHomeConcert);
+    }
+
+    let LandingHomeClaro = {
+        remote: `${baseURL}home-edi-claro.php`,
+        container: document.getElementById("navbar-prev-home"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro");
+                        break;
+
+                    case "claro-home-header":
+                        landingView.renderHomeHeaderCanalClaro();
+                        break;
+                    case "claro-home-slider":
+                        let landing = 'Canal Claro';
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let NavbarHomeClaro = document.getElementById("navbar-prev-home");
+    if (NavbarHomeClaro) {
+        $('#navbar-prev-home iframe').remove();
+        new easyXDM.Socket(LandingHomeClaro);
     }
 
     /* MVC */

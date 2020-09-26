@@ -922,6 +922,14 @@ class landingController extends Controller
             )]
         );
         echo ($response->getBody()->getContents());
-     
+
+    }
+
+    function getContentFooter(){
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/footer"
+        );
+        return $response->getBody()->getContents();
     }
 }

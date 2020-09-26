@@ -7,6 +7,8 @@
                     CARRUSEL 2</h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
+                <div class="cj"></div>
+                
                 <div class="col-11 mx-auto">
                     <div class="float-right">
                         <div class="d-flex pl-5 ">

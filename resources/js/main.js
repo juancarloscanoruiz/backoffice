@@ -65,19 +65,16 @@ $.ajaxSetup({
     cache: false
 });
 
+import LandingView from "./views/landing";
+let landingView = new LandingView();
+
 $(document).ready(function () {
 
-    
-
-    /*     OverlayScrollbars(document.querySelector("#rempla-claro-canal"), {
-            className: "os-theme-dark",
-            resize: "both",
-            sizeAutoCapable: true,
-            paddingAbsolute: true,
-            scrollbars: {
-                clickScrolling: true
-            }
-        }); */
+    landingView.goToLandingFooter();
+    landingView.renderFooterClaroNetworks();
+    landingView.renderFooterClaroCanal();
+    landingView.renderFooterConcertChannel();
+    landingView.renderFooterClaroCinema()
 
     let options = {
         load: function (el) {
@@ -85,14 +82,7 @@ $(document).ready(function () {
         },
     }
     createLazyLoad(".contenedor-fila", options);
-    //cerrar los dos modales
-    /*     $("#close_modals-claro").click(function () {
-            $(".modal").modal("hide");
-        }); */
-    /*     $("#close_modals").click(function () {
-            $(".modal").modal("hide");
-            console.log("noin");
-        }); */
+
     //loader, images
     $(".load-picture").on("click", function () {
         const loader = `
