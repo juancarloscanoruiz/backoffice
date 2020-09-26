@@ -4,7 +4,8 @@ import $ from "jquery";
 import {
     editAttributeProgram
 } from "./generalSchedule.js";
-
+import LandingView from "../views/landing";
+let landingView = new LandingView();
 //Configraciones para la librería de Cleave JS
 import {
     cleaveConfig,
@@ -22,6 +23,11 @@ import {
     createCalendarDays
 } from "../vendor/slick.js";
 
+import {
+   
+    addImagesModalIcons
+    
+} from "../services/generalSchedule.js";
 function getMonth(idMonth) {
     let date = new Date();
     let month = date.getUTCMonth() + idMonth;
@@ -1674,11 +1680,13 @@ function getCarruselHome(landing) {
                 </div>
                 <!-- SINOPSIS -->
                 <div class="col-12">
-                    <section class="mb-5 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                    <section class=" edit-program-data-container" chapter_id="${chapter.chapter.id}">
                         <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                         <!--Textarea-->
                         <textarea chapter_id="${chapter.chapter.id}" key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                    </section>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <div class="clearfix"></div>
+                        </section>
                 </div>
                 <div class="col-12">
                     <div class="row">
@@ -1686,7 +1694,7 @@ function getCarruselHome(landing) {
                         <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode season</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.season}" type="text" key="season" class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="00">
                                 </div>
                             </div>
@@ -1695,7 +1703,7 @@ function getCarruselHome(landing) {
                         <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program episode number</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program_episode_number}" type="text" key="program_episode_number" class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase" placeholder="000">
                                 </div>
                             </div>
@@ -1704,7 +1712,7 @@ function getCarruselHome(landing) {
                         <div class="col-4 edit-program-data-container" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program year produced</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program.year}" type="text" key="program_year_produced" class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase" placeholder="YYYY">
                                 </div>
                             </div>
@@ -1736,7 +1744,7 @@ function getCarruselHome(landing) {
                         <div class="col-4 edit-program-data-container mt-3" chapter_id="${chapter.chapter.id}">
                             <div class="edit-data-container">
                                 <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Schedule item rating code</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.program.rating}" type="text" key="rating" class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code" placeholder="PG-00">
                                 </div>
                             </div>
@@ -1746,7 +1754,7 @@ function getCarruselHome(landing) {
                             <div class="edit-data-container d-flex flex-column justify-content-between h-100">
                                 <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log date</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                     <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}" type="text" key="day" class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="DD:MM:YY">
                                 </div>
@@ -1757,7 +1765,7 @@ function getCarruselHome(landing) {
                             <div class="edit-data-container h-100 d-flex flex-column justify-content-between">
                                 <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log time (gmt)</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.hour}" type="text" key="programing" class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                 </div>
@@ -1768,7 +1776,7 @@ function getCarruselHome(landing) {
                             <div class="edit-data-container d-flex flex-column justify-content-between h-100">
                                 <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated schedule item duration</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.duration}" type="text" key="duration" class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                 </div>
@@ -1946,7 +1954,7 @@ function getContentHomeCinema(type) {
 
 function getContentHomeHeader(type) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         cache: false,
         beforeSend: function () {
             $("body").append(
@@ -2768,11 +2776,16 @@ function getModalsCanalClaro(type) {
                                 infinite: false,
                                 customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
+                                    
                                     return (
+                                        
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) +
+                                        (i + 1) + "</br>"+
                                         "</p>"
+
                                     );
+                              
+
                                 }
                             });
                         } catch (error) {
@@ -3141,12 +3154,12 @@ function getPromotionalsProgramsCarousel(
                     console.log(chapter.chapter.in_landing_begin);
 
                     inLandingDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                 placeholder="00-00-0000" key="in_landing_begin" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
@@ -3154,12 +3167,12 @@ function getPromotionalsProgramsCarousel(
                     `;
 
                     inLandingTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input chapter_id="${chapter.chapter.id}" type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="${timeBegin}" placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container py-3">
+                    <div class="text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" value="${timeExpiration}" placeholder="00:00:00"></span>
@@ -3182,24 +3195,24 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inLandingTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text chapter_id="${chapter.chapter.id}" a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="" placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container py-3">
+                    <div class="text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text  a-text-bold-warm text-uppercase edit-landing-time-end" chapter_id="${chapter.chapter.id}"
                                 key="in_landing_expiration" value="" placeholder="00:00:00"></span>
                     </div>
                     `;
                     inLandingDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                 placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                 key="in_landing_expiration" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
@@ -3257,13 +3270,13 @@ function getPromotionalsProgramsCarousel(
                     }
 
                     inHomeDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value="${dateHomeBegin}"
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                             placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-4 text-center edit-rectangle-small-container  backwhite py-3">
                         <span class="a-text-bold-warm">Fin:
                             <input type="text" key="in_home_expiration"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"
@@ -3271,13 +3284,13 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inHomeTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value="${timeHomeBegin}" chapter_id="${chapter.chapter.id}"
                             class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                             placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container py-3">
+                    <div class="text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration" chapter_id="${chapter.chapter.id}"
                                 class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
                                 placeholder="00:00:00"></span>
@@ -3301,13 +3314,13 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inHomeDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                             placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin:
                             <input type="text" key="in_home_expiration"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value=""
@@ -3315,13 +3328,13 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inHomeTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
                             class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
                             placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container py-3">
+                    <div class="text-center edit-rectangle-small-container backwhite py-3">
                         <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration"
                                 class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end" value=""
                                 placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
@@ -3574,7 +3587,7 @@ function getPromotionalsProgramsCarousel(
                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                         Fecha
                                     </p>
-                                    <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center"
+                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center"
                                         style="margin-bottom: 81px">
                                         <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                         <span class="a-text-bold-warm mt-3">
@@ -3588,7 +3601,7 @@ function getPromotionalsProgramsCarousel(
                                     Hora
                                 </p>
                                 <div
-                                    class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                    class="text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2">
                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                     <span class="a-text-bold-warm mt-3"><input type="text"
                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -3599,12 +3612,14 @@ function getPromotionalsProgramsCarousel(
                     </div>
                 </section>
                 <!--Sinopsis-->
-                <section class="mb-5 edit-program-data-container" chapter_id="${chapter.chapter.id}">
+                <section class="edit-program-data-container" chapter_id="${chapter.chapter.id}">
                     <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                     <!--Textarea-->
                     <textarea chapter_id="${chapter.chapter.id}" key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                         id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <div class="clearfix"></div>
                 </section>
                 <section class="mb-3">
                     <div class="row">
@@ -3615,7 +3630,7 @@ function getPromotionalsProgramsCarousel(
                                     episode
                                     season
                                 </p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input type="text" key="season" value="${chapter.chapter.season}"
                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                         placeholder="00" chapter_id="${chapter.chapter.id}">
@@ -3629,7 +3644,7 @@ function getPromotionalsProgramsCarousel(
                                     episode
                                     number
                                 </p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input type="text" key="program_episode_number" value="${chapter.chapter.program_episode_number}"
                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                         placeholder="000" chapter_id="${chapter.chapter.id}">
@@ -3643,7 +3658,7 @@ function getPromotionalsProgramsCarousel(
                                     year
                                     produced
                                 </p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input type="text" key="program_year_produced" ${chapter.chapter.program.year}
                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                         placeholder="YYYY" chapter_id="${chapter.chapter.id}">
@@ -3694,7 +3709,7 @@ function getPromotionalsProgramsCarousel(
                                     rating
                                     code
                                 </p>
-                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                     <input type="text" key="rating" value="${chapter.chapter.program.rating}"
                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                         placeholder="PG-00" chapter_id="${chapter.chapter.id}">
@@ -3718,7 +3733,7 @@ function getPromotionalsProgramsCarousel(
                                     ">Fecha
                                     </p>
                                     <div
-                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="day" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"
                                             class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -3739,7 +3754,7 @@ function getPromotionalsProgramsCarousel(
                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                     </p>
                                     <div
-                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="programing" value="${chapter.chapter.hour}"
                                             class="edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -3759,7 +3774,7 @@ function getPromotionalsProgramsCarousel(
                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                     </p>
                                     <div
-                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                         <input type="text" key="duration" value="${chapter.chapter.duration}"
                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -4667,11 +4682,49 @@ async function updateImagesSynopsis(images) {
 
 function confLandingHome(baseURL) {
     let confLandingHome = {
-        remote: `${baseURL}home-edi-claro.php`,
+        remote: `${baseURL}home-edi.php`,
         container: document.getElementById("navbar_prev_home_landing"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
-            console.log(json);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-logos":                       
+                            addImagesModalIcons();
+                            $(".modal-edit-icons").modal("show");
+
+                        break;
+                    case "home-carrousel-main":
+                        getChapterInfo(json.chapterId);
+                        break;
+                        case "claro-home-header":
+                            getContentHomeHeader(json.type);
+                            break;
+                        case "claro-home-slider":
+                            let landingclaro = 'Canal Claro';
+                            getCarruselHome(landingclaro);
+                            break;
+                        case "channel-home-header":
+                            landingView.renderHomeHeaderConcertChannel();
+                             break;
+                         case "channel-home-slider":
+                                let landingconcert= 'Concert Channel';
+                                getCarruselHome(landingconcert);
+                                break;
+                        case "cinema-home-header":
+                             getContentHomeHeaderCinema();
+                             break;
+                    case "cinema-home-slider":
+                        let landingcinema = 'Claro Cinema';
+                        getCarruselHome(landingcinema);
+                        break;
+                    default:
+                        break;
+                }
+            }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
@@ -4684,6 +4737,8 @@ function confLandingHome(baseURL) {
         new easyXDM.Socket(confLandingHome);
     }
 }
+
+
 
 // HOME
 
