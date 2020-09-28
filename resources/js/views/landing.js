@@ -719,11 +719,21 @@ export default class LandingView {
         });
     }
 
-    uploadImageFooter() {
+    uploadImageFooter(sockets) {
         $(".footer-input-image").change(function () {
             let currentInput = this.files[0]
             let key = $(this).attr("key");
-            landingController.uploadImageFooter(currentInput, key);
+            let response = landingController.uploadImageFooter(currentInput, key);
+            response.then(data => {
+                if (data.code == 200) {
+                    return landingController.getContentFooter();
+                }
+            }).then(data => {
+                let dataStringified = JSON.stringify(data)
+                for (const socket of sockets) {
+                    socket.postMessage(dataStringified);
+                }
+            })
         });
     }
 
@@ -741,8 +751,9 @@ export default class LandingView {
                 }
             }).then(data => {
                 if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data)
                     for (const socket of sockets) {
-                        socket.postMessage("hola");
+                        socket.postMessage(dataStringified);
                     }
                 }
             })
@@ -777,7 +788,7 @@ export default class LandingView {
         })
     }
 
-    updateInfoTermsAndPrivacy() {
+    updateInfoTermsAndPrivacy(sockets) {
         //Botón del modal de términos y condiciones
         $('#acepta_terminos-footer').click(function () {
             $("body").append(
@@ -791,10 +802,18 @@ export default class LandingView {
             let response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
             response.then(data => {
                 if (data.code == 200) {
-                    console.log(data);
-                    $('#modal-terminos-footer').modal('hide');
+                    return landingController.getContentFooter();
                 }
                 $('.loader-view-container').remove();
+            }).then(data => {
+                if (data.code == 200) {
+                    $('#modal-terminos-footer').modal('hide');
+                    $('.loader-view-container').remove();
+                    let dataStringified = JSON.stringify(data)
+                    for (const socket of sockets) {
+                        socket.postMessage(dataStringified);
+                    }
+                }
             })
         })
 
