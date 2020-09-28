@@ -1507,6 +1507,10 @@ body {
   z-index: 1;
 }
 
+.label-footer span {
+  z-index: 1;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -3221,6 +3225,10 @@ body {
   border-radius: 50%;
 }
 
+.label-footer-main-image .add-photo {
+  width: 80px;
+}
+
 .label-footer .add-photo {
   width: 25px;
 }
@@ -3231,6 +3239,15 @@ body {
 
 .label-footer-option .add-photo {
   width: 37px;
+}
+
+.mask-white {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: white;
+  opacity: 0.5;
 }
 
 @font-face {
@@ -5840,6 +5857,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .label-footer-option span {
+  z-index: 1;
+}
+
+.label-footer span {
   z-index: 1;
 }
 

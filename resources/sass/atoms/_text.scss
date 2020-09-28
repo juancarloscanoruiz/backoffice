@@ -17,9 +17,11 @@
 .text-normal {
     font-size: 16px;
 }
-.h1{
+
+.h1 {
     font-size: 21px !important;
 }
+
 .text-small {
     font-size: 14px;
 }
@@ -1104,6 +1106,12 @@
 }
 
 .label-footer-option {
+    span {
+        z-index: 1;
+    }
+}
+
+.label-footer {
     span {
         z-index: 1;
     }
