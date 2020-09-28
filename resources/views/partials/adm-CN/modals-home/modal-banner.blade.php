@@ -1,3 +1,6 @@
+@extends('layaout.app')
+
+@section('content')
 <div class="modal modal-home-encabezado p-0 m-0" tabindex="-1" role="dialog" id="">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style=" max-width: 1178px;">
         <div class="modal-content  align-item-center centro " >
@@ -13,8 +16,8 @@
                  <!--Calendar-->
                  <div class="col-12 mx-auto">
                 
-                <div class="d-flex align-items-center float-right  mt-4 mb-4 mr-4">
-               <!--<div class="d-flex">
+                <div class="d-flex align-items-center justify-content-around  mt-4 mb-4 mr-4">
+                <div class="d-flex">
                  <form action="" name="bannermovil" id="bannermovil" class="">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                         <input type="radio" name="pc" id="pc" checked />
@@ -27,7 +30,7 @@
                         </label>
                     </div>
                 </form>
-                </div>-->
+                </div>
 
                 <div class="d-flex">
                         <div>
@@ -53,82 +56,65 @@
                         </label>
                     </div>
 </div>
-<div class="clearfix"></div>
 <div class="pc">
                         <!-- parte del home-->
                         <div class="d-flex col-12 mb-5 mx-auto">
-                        <div class="mr-5">
-                        <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4">
-                        <!--navbar-->
-                        <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
-                            <div>
-                                <a href="" class="navbar-link text-decoration-none">
-                                    <p class="navbar-item-black text-semibold">Canal Claro</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="" class="navbar-link text-decoration-none">
-                                    <p class="navbar-item-black text-semibold">Concert Channel</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="" class="navbar-link text-decoration-none">
-                                    <p class="navbar-item-black text-semibold">Claro Cinema</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a target="_blank" href="" class="navbar-link text-decoration-none">
-                                    <p class="navbar-item-black text-semibold">Nuestra Visión</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="" target="_blank" class="navbar-link text-decoration-none">
-                                    <p class="navbar-item-black text-semibold">Claro Sports</p>
-                                </a>
-                            </div>
-                            <!-- <div>
-                        <a href="programacion.php" class="navbar-link text-decoration-none">
-                            <p class="navbar-item">Programación</p>
-                        </a>
+                        <div class="mr-5 mx-auto">
+                        <div class="d-flex">
+                        <!--dots-->
+                        <div class="programming-slider-dots-home mt-5 mb-5"></div>
+                        <!--add slide-->
+                        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
+                    </div>
+                  <!--  <div class="shadowblack position-absolute">
+                        <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
                         </div>-->
-                        </div>
-                        <!--<div class="login">
-                            <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
-                        </div>-->
+                    <div class="programming-slider-home mx-auto ">
+                       
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+                        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text"> 472px X 295px </span>
+                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
 
-                        <!--inputs-->
-                        <input type="text" name="" id="" class="input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex" placeholder="TITULO">
-                        <input type="text" name="" id="" class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex" placeholder="SUBTITULO">
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+                        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
 
-                        </div>
-                        <div class=" d-flex justify-content-around ">
-                         
-                        <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
-                            accept="video/*">
-                            <label for="video-promo-header-home"
-                                class="mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header">
-                               <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
-                                <img src="./images/synopsis/home-video.svg" class="">
-                                <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
-                                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />                        
-                                <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6" >Añade tu archivo
-                                    jpg 472px X 295px </span>
-                                     
-                            </label>
-                           <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
-                        <label for="image-promo-header-home"
-                            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
-                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                class="add-photo promo-icon cursor-pointer" style="width:95px" />
-                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
-                                jpg 472px X 295px </span>
-                        </label>-->
-                        </div>
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+                        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                    </div>
+
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+                        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+                            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                        </label>
+                        
+                    </div>
+                    </div>
+                   
+                      
                         
                        
                         </div>
                         </div>
-                        <div class="float-right mr-5 mb-3">
+                        <div class="d-flex mr-5 mb-3">
                         <span
                         class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
                         </div>

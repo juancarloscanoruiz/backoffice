@@ -5107,10 +5107,90 @@ function eventsGrilla() {
         new easyXDM.Socket(LandingHomeClaro);
     }
 
+   
+  
     /* MVC */
     $("#movil").click(function () {
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $(".pc").html("");
+        $(".pc").html(`
+       
+        <!-- parte del home-->
+        <div class="d-flex col-12 mb-5 mx-auto">
+        <div class="mr-5 mx-auto">
+        <div class="d-flex">
+        <!--dots-->
+        <div class="programming-slider-dots-home mt-5 mb-5"></div>
+        <!--add slide-->
+        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
+    </div>
+  <!--  <div class="shadowblack position-absolute">
+        <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
+        </div>-->
+    <div class="programming-slider-home mx-auto ">
+       
+    <div class="bor thumbnail-image-program position-relative h-100">
+        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+            <span class="a-text-bold-warm text-plus mt-3 banner-text"> 472px X 295px </span>
+            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+        </label>
+    </div>
+
+    <div class="bor thumbnail-image-program position-relative h-100">
+        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+        </label>
+    </div>
+
+    <div class="bor thumbnail-image-program position-relative h-100">
+        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+        </label>
+    </div>
+
+    <div class="bor thumbnail-image-program position-relative h-100">
+        <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
+        <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
+            <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
+            <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+        </label>
+        
+    </div>
+    </div>
+  
+        </div>
+        </div>
+        <div class="d-flex mr-5 mb-3">
+        <span
+        class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
+        </div>
+        <div class="clearfix"></div>
+
+<div class="text-center  mb-4 d-flex justify-content-center pb-2">
+            <button
+                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
+            <a href="#delete-info-encabezado-home" role="button"
+                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                data-toggle="modal">CANCELAR</a>
+
+        </div>
+</div>
+</div>
+</div>
+</div>
+
+
+        `);
 
        // new easyXDM.Socket(confIframe);
     });

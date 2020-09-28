@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50">
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g>
+                        <g transform="translate(-1258 -386) translate(567 338) translate(691 48)">
+                            <ellipse cx="25.5" cy="25" stroke="#FFF" stroke-width="2" rx="24.5" ry="24"/>
+                        </g>
+                        <g stroke="#FFF" stroke-width="2" transform="translate(-1258 -386) translate(567 338) translate(691 48) translate(10.929 10.714)">
+                            <ellipse cx="14.571" cy="14.286" rx="14.571" ry="14.286"/>
+                            <path d="M14.329 28.571c2.682 0 4.857-6.396 4.857-14.285C19.186 6.396 17.01 0 14.329 0 11.646 0 9.47 6.396 9.47 14.286S11.646 28.57 14.33 28.57z"/>
+                            <ellipse cx="14.571" cy="14.048" rx="4.762" ry="14.571" transform="rotate(90 14.571 14.048)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -70,6 +70,7 @@ let landingView = new LandingView();
 
 $(document).ready(function () {
 
+    
     landingView.goToLandingFooter();
     let optionsFooterClaroNetworks = landingView.renderFooterClaroNetworks();
     if (optionsFooterClaroNetworks) {

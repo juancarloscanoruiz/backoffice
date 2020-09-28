@@ -133,7 +133,7 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('partials.adm-CN.sinopsis');
+    return view('partials.adm-CN.modals-home.modal-banner');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {

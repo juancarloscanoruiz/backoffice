@@ -2124,7 +2124,29 @@ function getContentHomeHeader(type) {
                                  </video>`);
                             }
                         }
-
+                        $(".programming-slider-home").slick({
+                            slidesToShow: 1,
+                            dots: true,
+                            appendDots: $(
+                                ".programming-slider-dots-home"
+                            ),
+                            initialSlide: 0,
+                            
+                            arrows: true,
+                            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+                            nextArrow: '<img src="./images/next.png" class="arrow-next" />',
+                            infinite: false,
+                            customPaging: function (slider, i) {
+                                var thumb = $(
+                                    slider.$slides[i]
+                                ).data();
+                                return (
+                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                    (i + 1) +
+                                    "</p>"
+                                );
+                            }
+                        });
 
                         //Mostramos el modal
                         $(".modal-home-encabezado").modal("show");
