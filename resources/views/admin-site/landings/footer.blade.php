@@ -4,7 +4,6 @@
 @section('content')
 
     <body>
-
         @include('partials.headers.headerPrograGeneral')
         <div id="title" class="mt-3">
             <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">

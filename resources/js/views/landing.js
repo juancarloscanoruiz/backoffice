@@ -131,12 +131,13 @@ export default class LandingView {
 
     renderFooterClaroNetworks() {
         let that = this;
+        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroNetworks = document.getElementById(
             "claro-networks-programing"
         );
         let FooterClaroNetworks = {
-            //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
+            remote: `${baseURL}footer-edition.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
             container: document.getElementById("claro-networks-programing"),
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -169,12 +170,13 @@ export default class LandingView {
 
     renderFooterClaroCanal() {
         let that = this;
+        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroCanal = document.getElementById(
             "claro-canal-programing"
         );
         let FooterClaroCanalOptions = {
-            //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php`,
+            remote: `${baseURL}footer-claro-edi.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php`,
             container: containerFooterClaroCanal,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -207,12 +209,13 @@ export default class LandingView {
 
     renderFooterConcertChannel() {
         let that = this;
+        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterConcertChannel = document.getElementById(
             "concert-channel-programing"
         );
         let FooterConcertChannelOptions = {
-            //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php`,
+            remote: `${baseURL}footer-concert-edi.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php`,
             container: containerFooterConcertChannel,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -246,12 +249,13 @@ export default class LandingView {
 
     renderFooterClaroCinema() {
         let that = this;
+        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroCinema = document.getElementById(
             "claro-cinema-programing"
         );
         let FooterClaroCinemaOptions = {
-            //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
+            remote: `${baseURL}footer-cinema-edi.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
             container: containerFooterClaroCinema,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -285,11 +289,12 @@ export default class LandingView {
     }
 
     renderFooterPrev(sockets) {
+        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         $('#prev-footer').click(function () {
             $(".navbar-prev-footers iframe").remove();
             let footerClaroNetoworksPrev = {
-                //remote: `${baseURL}concert-channel.php`,
-                remote: `http://localhost:8888/MaquetaCNetworks/footer-prev.php`,
+                remote: `${baseURL}footer-prev.php`,
+                //remote: `http://localhost:8888/MaquetaCNetworks/footer-prev.php`,
                 container: document.getElementById(
                     "claro-networks-programing"
                 ),
@@ -305,8 +310,8 @@ export default class LandingView {
                 }
             }
             let footerCanalClaroPrev = {
-                //remote: `${baseURL}concert-channel.php`,
-                remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php`,
+                remote: `${baseURL}footer-claro-prev.php`,
+                //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php`,
                 container: document.getElementById("claro-canal-programing"),
                 onMessage: function (message, origin) {
                     console.log(message);
@@ -320,8 +325,8 @@ export default class LandingView {
                 }
             }
             let footerConcertChannelPrev = {
-                //remote: `${baseURL}concert-channel.php`,
-                remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-prev.php`,
+                remote: `${baseURL}footer-concert-prev.php`,
+                //remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-prev.php`,
                 container: document.getElementById("concert-channel-programing"),
                 onMessage: function (message, origin) {
                     console.log(message);
@@ -335,8 +340,8 @@ export default class LandingView {
                 }
             }
             let footerClaroCinemaPrev = {
-                //remote: `${baseURL}concert-channel.php`,
-                remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-prev.php`,
+                remote: `${baseURL}footer-cinema-prev.php`,
+                //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-prev.php`,
                 container: document.getElementById("claro-cinema-programing"),
                 onMessage: function (message, origin) {
                     console.log(message);
