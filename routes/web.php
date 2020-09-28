@@ -107,6 +107,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/updateInfoFooter", "landingController@updateInfoFooter");
     Route::get("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
+    Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
     // MODAL CLARO
 });
 

@@ -108,6 +108,37 @@ class landingController extends Controller
         var_dump($response->getBody()->getContents());
     }
 
+    public function captureImagesForChapter(Request $request)
+    {
+        $name = str_replace(" ", "", $request->input('name'));
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $pathImageVertical = $this->storeImages($name, $request->file('thumbnail_list_vertical'), "public/carrusel-home/vertical");
+
+        $response = $client->post(
+            $this->url . "program/CaptureImagesForChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    "thumbnail_list_horizontal" => "",
+                    "thumbnail_list_vertical" => "$pathImageVertical",
+                    "image_synopsis" => "",
+                    "image_synopsis_frame_1" => "",
+                    "image_synopsis_frame_2" => "",
+                    "image_synopsis_frame_3" => "",
+                    "image_background_1" => "",
+                    "image_background_2" => "",
+                    "image_background_3" => ""
+                ]
+            )]
+        );
+
+        var_dump($response->getBody()->getContents());
+    }
+
     public function updateProgramminSliderImages(Request $request)
     {
         //Imágene que subió el usuario
