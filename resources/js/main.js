@@ -95,9 +95,11 @@ $(document).ready(function () {
     }
     let sockets = [socketFooterClaroNetworks, socketFooterCanalClaro, socketFooterConcertChannel, socketFooterClaroCinema]
     landingView.getContentTerms();
-    landingView.updateInfoTermsAndPrivacy();
-    landingView.uploadImageFooter();
+    landingView.updateInfoTermsAndPrivacy(sockets);
+    landingView.uploadImageFooter(sockets);
     landingView.updateInfoFooter(sockets)
+    landingView.renderFooterPrev(sockets);
+    landingView.renderFooterEdit(sockets);
 
     let options = {
         load: function (el) {

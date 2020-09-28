@@ -20,12 +20,12 @@
             <div class="d-flex float-right mb-4 mr-5 ">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                        <input type="radio" name="sexo" id="edit" checked />
-                        <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <input type="radio" name="sexo" id="edit-footer" checked />
+                        <label for="edit-footer" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
-                        <input type="radio" name="sexo" id="prev" />
-                        <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                        <input type="radio" name="sexo" id="prev-footer" />
+                        <label for="prev-footer" class="hombre-estilo pl-2 pt-3">
                             <p class=" a-prev-title ">PREVISUALIZAR</p>
                         </label>
                     </div>
