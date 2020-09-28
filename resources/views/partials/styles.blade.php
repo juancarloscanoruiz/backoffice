@@ -13,10 +13,6 @@
 {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.css"> --}}
 <!-- Bootstrap Select -->
 <link href="{{ asset('bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" />
-<!-- Bootstrap -->
-<!-- <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" /> -->
-<!-- Bootstrap Select Core -->
-<link href="{{ asset('bootstrap-select/dist/js/bootstrap-select.min.js') }}" rel="stylesheet" />
 
 <!--
 @section('styles')

@@ -394,6 +394,7 @@
     @include('partials.adm-CN.modal-generic.advertencia');
     @include('partials.adm-CN.modal-generic.url');
     @include('partials.adm-CN.modals-concert.carrusel');
+    @include('partials.adm-CN.modal-home.carrusel')
 
 
 </body>
