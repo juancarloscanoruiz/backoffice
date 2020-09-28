@@ -336,7 +336,7 @@ export default class LandingView {
             }
             let footerClaroCinemaPrev = {
                 //remote: `${baseURL}concert-channel.php`,
-                remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
+                remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-prev.php`,
                 container: document.getElementById("claro-cinema-programing"),
                 onMessage: function (message, origin) {
                     console.log(message);
@@ -897,10 +897,12 @@ export default class LandingView {
             );
             let text = $('.footer-textarea-ter').val();
             let title = $('.footer-title-ter').val();
+
             let landing = "terms";
             let response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
             response.then(data => {
                 if (data.code == 200) {
+                    $('#footer-legend-terms').text(title);
                     return landingController.getContentFooter();
                 }
                 $('.loader-view-container').remove();
@@ -924,14 +926,25 @@ export default class LandingView {
             );
             let text = $('.footer-title-privacy').val();
             let title = $('.footer-title-privacy').val();
+
             let landing = "about";
             let response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
             response.then(data => {
                 if (data.code == 200) {
                     console.log(data);
-                    $('#modal-privacy-footer').modal('hide');
+                    $('#footer-legend-privacy').text(title)
+                    return landingController.getContentFooter();
+
                 }
-                $('.loader-view-container').remove();
+            }).then(data => {
+                if (data.code == 200) {
+                    $('#modal-privacy-footer').modal('hide');
+                    $('.loader-view-container').remove();
+                    let dataStringified = JSON.stringify(data)
+                    for (const socket of sockets) {
+                        socket.postMessage(dataStringified);
+                    }
+                }
             })
         })
     }
@@ -949,7 +962,7 @@ export default class LandingView {
                 $('.footer-textarea-ter').val(data.data.terms_text);
                 $('.footer-title-ter').val(data.data.terms_title);
                 $('.footer-textarea-privacy').val(data.data.about_text);
-                $('.footer-textarea-title').val(data.data.about_title);
+                $('.footer-title-privacy').val(data.data.about_title);
             }
         })
     }
