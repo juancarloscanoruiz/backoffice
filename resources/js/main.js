@@ -71,10 +71,33 @@ let landingView = new LandingView();
 $(document).ready(function () {
 
     landingView.goToLandingFooter();
-    landingView.renderFooterClaroNetworks();
-    landingView.renderFooterClaroCanal();
-    landingView.renderFooterConcertChannel();
-    landingView.renderFooterClaroCinema()
+    let optionsFooterClaroNetworks = landingView.renderFooterClaroNetworks();
+    if (optionsFooterClaroNetworks) {
+        var socketFooterClaroNetworks = new easyXDM.Socket(
+            optionsFooterClaroNetworks);
+    }
+    let optionsFooterCanalClaro = landingView.renderFooterClaroCanal();
+    if (optionsFooterCanalClaro) {
+        var socketFooterCanalClaro = new easyXDM.Socket(
+            optionsFooterCanalClaro);
+    }
+
+    let optionsFooterConcertChannel = landingView.renderFooterConcertChannel();
+    if (optionsFooterConcertChannel) {
+        var socketFooterConcertChannel = new easyXDM.Socket(
+            optionsFooterConcertChannel);
+    }
+
+    let optionsFooterClaroCinema = landingView.renderFooterClaroCinema();
+    if (optionsFooterClaroCinema) {
+        var socketFooterClaroCinema = new easyXDM.Socket(
+            optionsFooterClaroCinema);
+    }
+    let sockets = [socketFooterClaroNetworks, socketFooterCanalClaro, socketFooterConcertChannel, socketFooterClaroCinema]
+    landingView.getContentTerms();
+    landingView.updateInfoTermsAndPrivacy();
+    landingView.uploadImageFooter();
+    landingView.updateInfoFooter(sockets)
 
     let options = {
         load: function (el) {

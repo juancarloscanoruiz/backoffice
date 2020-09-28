@@ -922,13 +922,110 @@ class landingController extends Controller
             )]
         );
         echo ($response->getBody()->getContents());
-
     }
 
-    function getContentFooter(){
+    function getContentFooter()
+    {
         $client = new Client();
         $response = $client->get(
             $this->url . "section/footer"
+        );
+        return $response->getBody()->getContents();
+    }
+
+    function updateInfoFooter(Request $request)
+    {
+        $value = "";
+        switch ($request->input('key')) {
+            case 'image_right':
+                $value = $this->storeImages("imageRight", $request->file('image'), "public/footer/imageRight");
+                break;
+            case 'image_left':
+                $value = $this->storeImages("imageLeft", $request->file('image'), "public/footer/imageLeft");
+                break;
+            case 'facebook_canal_claro_icon':
+                $value = $this->storeImages("facebookCanalClaroIcon", $request->file('image'), "public/footer/canal-claro/icons");
+                break;
+            case 'instagram_canal_claro_icon':
+                $value = $this->storeImages("instagramCanalClaroIcon", $request->file('image'), "public/footer/canal-claro/icons");
+                break;
+            case 'twitter_canal_claro_icon':
+                $value = $this->storeImages("twitterCanalClaroIcon", $request->file('image'), "public/footer/canal-claro/icons");
+                break;
+            case 'youtube_canal_claro_icon':
+                $value = $this->storeImages("youtubeCanalClaroIcon", $request->file('image'), "public/footer/canal-claro/icons");
+                break;
+            case 'facebook_concert_channel_icon':
+                $value = $this->storeImages("facebookConcertChannelIcon", $request->file('image'), "public/footer/concert-channel/icons");
+                break;
+            case 'twitter_concert_channel_icon':
+                $value = $this->storeImages("twitterConcertChannelIcon", $request->file('image'), "public/footer/concert-channel/icons");
+                break;
+            case 'about_icon':
+                $value = $this->storeImages("aboutIcon", $request->file('image'), "public/footer/");
+                break;
+            case 'menu_2_opcion_1_icon':
+                $value = $this->storeImages("option1", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_2_icon':
+                $value = $this->storeImages("option2", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_3_icon':
+                $value = $this->storeImages("option3", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_4_icon':
+                $value = $this->storeImages("option4", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_5_icon':
+                $value = $this->storeImages("option5", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_6_icon':
+                $value = $this->storeImages("option6", $request->file('image'), "public/footer/menu2/");
+                break;
+            case 'menu_2_opcion_7_icon':
+                $value = $this->storeImages("option7", $request->file('image'), "public/footer/menu2/");
+                break;
+            default:
+                $value = $request->input('text');
+                break;
+        }
+
+        $client = new Client(['headers' => ['Content-Type' => 'application/json']]);
+        $response = $client->post(
+            $this->url . "section/editFooter",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "key" => $request->input('key'),
+                    "value" => $value,
+                ]
+            )]
+        );
+        return $response->getBody()->getContents();
+    }
+
+    function getContentRights()
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/about"
+        );
+        return $response->getBody()->getContents();
+    }
+
+    function updateInfoTermsAndPrivacy(Request $request)
+    {
+        $client = new Client(['headers' => ['Content-Type' => 'application/json']]);
+        $response = $client->post(
+            $this->url . "section/editAbout",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "title" => $request->input('title'),
+                    "text" => $request->input("text"),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
         );
         return $response->getBody()->getContents();
     }

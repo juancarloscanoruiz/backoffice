@@ -105,5 +105,7 @@
         @include('partials.adm-CN.modal-generic.url')
         <!--Términos y condiciones-->
         @include('partials.adm-CN.modal-footer.terminosycondiciones')
+        <!--Aviso de privacidad-->
+        @include('partials.adm-CN.modal-footer.privacy')
     </body>
 @endsection

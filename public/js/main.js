@@ -12374,9 +12374,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.2 (https://getbootstrap.com/)
+  * Bootstrap v4.5.0 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -12402,22 +12402,53 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     return Constructor;
   }
 
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
+    }
 
-      return target;
-    };
-
-    return _extends.apply(this, arguments);
+    return target;
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -12428,8 +12459,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -12609,7 +12640,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.2';
+  var VERSION = '4.5.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -12765,7 +12796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.2';
+  var VERSION$1 = '4.5.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -12900,9 +12931,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
-        Button._jQueryInterface.call($(button), 'toggle');
+      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
+        event.preventDefault(); // work around event sent to label and input
       }
+
+      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -12958,7 +12991,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.2';
+  var VERSION$2 = '4.5.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -13145,7 +13178,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default, config);
+      config = _objectSpread2(_objectSpread2({}, Default), config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -13435,10 +13468,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _extends({}, Default, $(this).data());
+        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
 
         if (typeof config === 'object') {
-          _config = _extends({}, _config, config);
+          _config = _objectSpread2(_objectSpread2({}, _config), config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -13476,7 +13509,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      var config = _extends({}, $(target).data(), $(this).data());
+      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -13545,7 +13578,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.2';
+  var VERSION$3 = '4.5.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -13760,7 +13793,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$1, config);
+      config = _objectSpread2(_objectSpread2({}, Default$1), config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -13814,7 +13847,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -13894,7 +13927,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.2';
+  var VERSION$4 = '4.5.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -14121,7 +14154,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -14166,7 +14199,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -14196,7 +14229,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         };
       }
 
-      return _extends({}, popperConfig, this._config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
     } // Static
     ;
 
@@ -14408,7 +14441,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.2';
+  var VERSION$5 = '4.5.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -14600,7 +14633,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$3, config);
+      config = _objectSpread2(_objectSpread2({}, Default$3), config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -14616,24 +14649,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return;
         }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-
-        if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
-        }
-
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $(this._element).off(Util.TRANSITION_END);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $(_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -14658,8 +14678,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
-
-      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -14747,8 +14765,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
-
-      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -14931,7 +14947,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -14981,7 +14997,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -15018,8 +15034,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -15144,7 +15160,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.2';
+  var VERSION$6 = '4.5.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -15532,7 +15548,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _extends({}, defaultBsConfig, this.config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -15542,7 +15558,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -15597,7 +15613,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _extends({}, this.config, {
+        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
           trigger: 'manual',
           selector: ''
         });
@@ -15697,7 +15713,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           delete dataAttributes[dataAttr];
         }
       });
-      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -15856,21 +15872,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.2';
+  var VERSION$7 = '4.5.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _extends({}, Tooltip.Default, {
+  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
+  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
     content: '(string|element|function)'
   });
 
@@ -16036,7 +16052,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.2';
+  var VERSION$8 = '4.5.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -16150,7 +16166,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -16328,7 +16344,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.2';
+  var VERSION$9 = '4.5.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -16554,7 +16570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.2';
+  var VERSION$a = '4.5.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -16607,8 +16623,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      this._clearTimeout();
-
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -16657,7 +16671,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto.dispose = function dispose() {
-      this._clearTimeout();
+      clearTimeout(this._timeout);
+      this._timeout = null;
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -16671,7 +16686,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -16701,11 +16716,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       } else {
         complete();
       }
-    };
-
-    _proto._clearTimeout = function _clearTimeout() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
     } // Static
     ;
 
@@ -51606,7 +51616,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -88727,6 +88737,40 @@ var LandingController = /*#__PURE__*/function () {
       var data = landingModel.getContentFooter();
       return data;
     }
+  }, {
+    key: "uploadImageFooter",
+    value: function uploadImageFooter(image, key) {
+      var data = new FormData();
+      data.append("image", image);
+      data.append("key", key);
+      var response = landingModel.updateInfoFooter(data);
+      return response;
+    }
+  }, {
+    key: "updateInfoFooter",
+    value: function updateInfoFooter(text, key) {
+      var data = new FormData();
+      data.append("text", text);
+      data.append("key", key);
+      var response = landingModel.updateInfoFooter(data);
+      return response;
+    }
+  }, {
+    key: "getContentRights",
+    value: function getContentRights() {
+      var data = landingModel.getContentTerms();
+      return data;
+    }
+  }, {
+    key: "updateInfoTermsAndPrivacy",
+    value: function updateInfoTermsAndPrivacy(text, title, landing) {
+      var data = new FormData();
+      data.append("text", text);
+      data.append("title", title);
+      data.append("landing", landing);
+      var response = landingModel.updateInfoTermsAndPrivacy(data);
+      return response;
+    }
   }]);
 
   return LandingController;
@@ -89021,10 +89065,35 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_12__["default"]();
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   landingView.goToLandingFooter();
-  landingView.renderFooterClaroNetworks();
-  landingView.renderFooterClaroCanal();
-  landingView.renderFooterConcertChannel();
-  landingView.renderFooterClaroCinema();
+  var optionsFooterClaroNetworks = landingView.renderFooterClaroNetworks();
+
+  if (optionsFooterClaroNetworks) {
+    var socketFooterClaroNetworks = new easyXDM.Socket(optionsFooterClaroNetworks);
+  }
+
+  var optionsFooterCanalClaro = landingView.renderFooterClaroCanal();
+
+  if (optionsFooterCanalClaro) {
+    var socketFooterCanalClaro = new easyXDM.Socket(optionsFooterCanalClaro);
+  }
+
+  var optionsFooterConcertChannel = landingView.renderFooterConcertChannel();
+
+  if (optionsFooterConcertChannel) {
+    var socketFooterConcertChannel = new easyXDM.Socket(optionsFooterConcertChannel);
+  }
+
+  var optionsFooterClaroCinema = landingView.renderFooterClaroCinema();
+
+  if (optionsFooterClaroCinema) {
+    var socketFooterClaroCinema = new easyXDM.Socket(optionsFooterClaroCinema);
+  }
+
+  var sockets = [socketFooterClaroNetworks, socketFooterCanalClaro, socketFooterConcertChannel, socketFooterClaroCinema];
+  landingView.getContentTerms();
+  landingView.updateInfoTermsAndPrivacy();
+  landingView.uploadImageFooter();
+  landingView.updateInfoFooter(sockets);
   var options = {
     load: function load(el) {
       el.classList.add("fade-grilla");
@@ -89848,6 +89917,125 @@ var LandingModel = /*#__PURE__*/function () {
 
       return getContentFooter;
     }()
+  }, {
+    key: "updateInfoFooter",
+    value: function () {
+      var _updateInfoFooter = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dataFooter) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: dataFooter,
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context3.next = 3;
+                return fetch("landing/updateInfoFooter", options);
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context3.sent;
+                return _context3.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function updateInfoFooter(_x) {
+        return _updateInfoFooter.apply(this, arguments);
+      }
+
+      return updateInfoFooter;
+    }()
+  }, {
+    key: "getContentTerms",
+    value: function () {
+      var _getContentTerms = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return fetch("landing/getContentRights");
+
+              case 2:
+                response = _context4.sent;
+                _context4.next = 5;
+                return response.json();
+
+              case 5:
+                data = _context4.sent;
+                return _context4.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function getContentTerms() {
+        return _getContentTerms.apply(this, arguments);
+      }
+
+      return getContentTerms;
+    }()
+  }, {
+    key: "updateInfoTermsAndPrivacy",
+    value: function () {
+      var _updateInfoTermsAndPrivacy = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(dataTermsPrivacy) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: dataTermsPrivacy,
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context5.next = 3;
+                return fetch("landing/updateInfoTermsAndPrivacy", options);
+
+              case 3:
+                response = _context5.sent;
+                _context5.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context5.sent;
+                return _context5.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function updateInfoTermsAndPrivacy(_x2) {
+        return _updateInfoTermsAndPrivacy.apply(this, arguments);
+      }
+
+      return updateInfoTermsAndPrivacy;
+    }()
   }]);
 
   return LandingModel;
@@ -90590,9 +90778,9 @@ function eventsGrilla() {
           customPaging: function (slider, i) {
           var thumb = $(slider.$slides[i]).data();
           return (
-           "<p class='a-text-bold-teal slider-pagination-item'>" +
-           (i + 1) +
-           "</p>"
+          "<p class='a-text-bold-teal slider-pagination-item'>" +
+          (i + 1) +
+          "</p>"
           );
           }
           });
@@ -90612,9 +90800,9 @@ function eventsGrilla() {
           customPaging: function (slider, i) {
           var thumb = $(slider.$slides[i]).data();
           return (
-           "<p class='a-text-bold-teal slider-pagination-item'>" +
-           (i + 1) +
-           "</p>"
+          "<p class='a-text-bold-teal slider-pagination-item'>" +
+          (i + 1) +
+          "</p>"
           );
           }
           });
@@ -93084,24 +93272,7 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-carrusel-home').modal('hide');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('hide');
   }); // FOOTER
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp_url').click(function () {
-    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('free');
-    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr('free', type);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").addClass(type);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-url").click(function () {
-    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-url-modal').attr('free');
-    var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val(url);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tericon').click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
-  }); // FOOTER
+  // FOOTER
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
@@ -97710,6 +97881,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing.js */ "./resources/js/controllers/landing.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -97718,6 +97895,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+//jQuery
+ //Controller
 
 
 var landingController = new _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
@@ -97736,17 +97915,17 @@ var LandingView = /*#__PURE__*/function () {
       data.then(function (data) {
         if (data.code == 200) {
           // Add name
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Canal Claro'); //Add a class to the button
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr("value", "Canal Claro"); //Add a class to the button
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass("btn-red"); //set the width of the image
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home-claro'); //Set the width of the container
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass("img-logo-home-claro"); //Set the width of the container
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home-claro');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass("modal-img-home-claro");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val(data.data.block_3_subtitle);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(data.data.block_3_icon_channel_url); //Change the logo
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_3_icon_channel); //Modal
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr("src", data.data.block_3_icon_channel); //Modal
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show"); // Remove loader
 
@@ -97762,17 +97941,17 @@ var LandingView = /*#__PURE__*/function () {
       data.then(function (data) {
         if (data.code == 200) {
           // Add name
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Concert Channel'); //Add a class to the button
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr("value", "Concert Channel"); //Add a class to the button
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-pink'); //set the width of the image
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass("btn-pink"); //set the width of the image
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home'); //Set the width of the container
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass("img-logo-home"); //Set the width of the container
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_canales_subtitulo').val(data.data.block_4_subtitle);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').val(data.data.block_4_icon_channel_url); //Change the logo
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass("modal-img-home");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val(data.data.block_4_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(data.data.block_4_icon_channel_url); //Change the logo
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_4_icon_channel); //Modal
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr("src", data.data.block_4_icon_channel); //Modal
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show"); // Remove loader
 
@@ -97788,17 +97967,17 @@ var LandingView = /*#__PURE__*/function () {
       data.then(function (data) {
         if (data.code == 200) {
           // Add name
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr('value', 'Claro Cinema'); //Add a class to the button
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").attr("value", "Claro Cinema"); //Add a class to the button
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass('btn-red'); //set the width of the image
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_btn").addClass("btn-red"); //set the width of the image
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass('img-logo-home'); //Set the width of the container
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").addClass("img-logo-home"); //Set the width of the container
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass('modal-img-home');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_canales_subtitulo').val(data.data.block_5_subtitle);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#inp_url').val(data.data.block_5_icon_channel_url); //Change the logo
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#dinamic_width").addClass("modal-img-home");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val(data.data.block_5_subtitle);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(data.data.block_5_icon_channel_url); //Change the logo
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr('src', data.data.block_5_icon_channel); //Modal
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-logo-home").attr("src", data.data.block_5_icon_channel); //Modal
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("show"); // Remove loader
 
@@ -97846,15 +98025,12 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
       var FooterClaroNetworks = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        // remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
-        remote: "http://localhost/MaquetaCNetworks/footer-edition.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-edition.php",
         container: document.getElementById("claro-networks-programing"),
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
 
           if (_typeof(json) == "object") {
-            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
-
             switch (json.type) {
               case "footer-claro-networks":
                 that.renderContentFooter("footer-claro-networks");
@@ -97871,7 +98047,10 @@ var LandingView = /*#__PURE__*/function () {
       };
 
       if (containerFooterClaroNetworks) {
-        var socketFooterClaroNetworks = new easyXDM.Socket(FooterClaroNetworks);
+        /*             var socketFooterClaroNetworks = new easyXDM.Socket(
+                        FooterClaroNetworks
+                    ); */
+        return FooterClaroNetworks;
       }
     }
   }, {
@@ -97903,7 +98082,10 @@ var LandingView = /*#__PURE__*/function () {
       };
 
       if (containerFooterClaroCanal) {
-        var socketFooterClaroCanal = new easyXDM.Socket(FooterClaroCanalOptions);
+        return FooterClaroCanalOptions;
+        /*             var socketFooterClaroCanal = new easyXDM.Socket(
+                        FooterClaroCanalOptions
+                    ); */
       }
     }
   }, {
@@ -97936,7 +98118,10 @@ var LandingView = /*#__PURE__*/function () {
       };
 
       if (containerFooterConcertChannel) {
-        var socketFooterConcertChannel = new easyXDM.Socket(FooterConcertChannelOptions);
+        return FooterConcertChannelOptions;
+        /*             var socketFooterConcertChannel = new easyXDM.Socket(
+                        FooterConcertChannelOptions
+                    ); */
       }
     }
   }, {
@@ -97952,8 +98137,6 @@ var LandingView = /*#__PURE__*/function () {
           var json = JSON.parse(message);
 
           if (_typeof(json) == "object") {
-            var loader = "\n                            <div class=\"loader-view-container\" id=\"loader1\">\n                                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                            </div>\n                                ";
-
             switch (json.type) {
               case "footer-claro-cinema":
                 that.renderContentFooter("footer-claro-cinema");
@@ -97971,24 +98154,27 @@ var LandingView = /*#__PURE__*/function () {
       };
 
       if (containerFooterClaroCinema) {
-        var socketFooterClaroCinema = new easyXDM.Socket(FooterClaroCinemaOptions);
+        return FooterClaroCinemaOptions;
+        /*
+                    var socketFooterClaroCinema = new easyXDM.Socket(
+                        FooterClaroCinemaOptions
+                    ); */
       }
     }
   }, {
     key: "renderContentFooter",
     value: function renderContentFooter(landingFooter) {
-      debugger;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
       var data = landingController.getContentFooter();
       data.then(function (data) {
         if (data.code == 200) {
-          var socialMedia = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media'); //Instagram
+          var socialMedia = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media"); //Instagram
 
-          var socialMedia2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-2'); //Twitter
+          var socialMedia2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-2"); //Twitter
 
-          var socialMedia3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3'); //youtube
+          var socialMedia3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-3"); //youtube
 
-          var socialMedia4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-4'); //evaluamos cuál footer es
+          var socialMedia4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-4"); //evaluamos cuál footer es
 
           switch (landingFooter) {
             case "footer-claro-networks":
@@ -98002,35 +98188,63 @@ var LandingView = /*#__PURE__*/function () {
 
               var iconSocialMediaCanalClaro1 = data.data.facebook_canal_claro_icon;
               var linkSocialMediaCanalClaro1 = data.data.facebook_canal_claro_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaCanalClaro1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaCanalClaro1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 2
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-1").attr("src", iconSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").val(linkSocialMediaCanalClaro1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").addClass("media-link-1");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").attr({
+                "free": "media-link-1",
+                "key": "facebook_canal_claro_url"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-1-input').attr("key", "facebook_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-1").attr({
+                "free": "media-link-1",
+                "key": "facebook_canal_claro_url"
+              }); //Social media 2
 
               var iconSocialMediaCanalClaro2 = data.data.instagram_canal_claro_icon;
               var linkSocialMediaCanalClaro2 = data.data.instagram_canal_claro_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-2').attr("src", iconSocialMediaCanalClaro2);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').val(linkSocialMediaCanalClaro2);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').addClass('media-link-2');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-2').attr('free', 'media-link-2');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-2').attr('free', 'media-link-2'); //Social media 3
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-2").attr("src", iconSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").val(linkSocialMediaCanalClaro2);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").addClass("media-link-2");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").attr({
+                "free": "media-link-2",
+                "key": "instagram_canal_claro_url"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-2-input').attr("key", "instagram_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-2").attr({
+                "free": "media-link-2",
+                "key": "instagram_canal_claro_url"
+              }); //Social media 3
 
               var iconSocialMediaCanalClaro3 = data.data.twitter_canal_claro_icon;
               var linkSocialMediaCanalClaro3 = data.data.twitter_canal_claro_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaCanalClaro3);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaCanalClaro3);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3'); //Social media 4
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-3").attr("src", iconSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").val(linkSocialMediaCanalClaro3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").addClass("media-link-3");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").attr({
+                "free": "media-link-3",
+                "key": "twitter_canal_claro_url"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3-input').attr("key", "twitter_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-3").attr({
+                "free": "media-link-3",
+                "key": "twitter_canal_claro_url"
+              }); //Social media 4
 
               var iconSocialMediaCanalClaro4 = data.data.youtube_canal_claro_icon;
               var linkSocialMediaCanalClaro4 = data.data.youtube_canal_claro_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-4').attr("src", iconSocialMediaCanalClaro4);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').val(linkSocialMediaCanalClaro4);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').addClass('media-link-4');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-4').attr('free', 'media-link-4');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-4').attr('free', 'media-link-4');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-4").attr("src", iconSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").val(linkSocialMediaCanalClaro4);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").addClass("media-link-4");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").attr({
+                "free": "media-link-4",
+                "key": "youtube_canal_claro_url"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-4-input').attr("key", "youtube_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-4").attr({
+                "free": "media-link-4",
+                "key": "youtube_canal_claro_url"
+              });
               break;
 
             case "footer-concert-channel":
@@ -98040,19 +98254,33 @@ var LandingView = /*#__PURE__*/function () {
 
               var iconSocialMediaConcertChannel1 = data.data.facebook_concert_channel_icon;
               var linkSocialMediaConcertChannel1 = data.data.facebook_concert_channel_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-1').attr("src", iconSocialMediaConcertChannel1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').val(linkSocialMediaConcertChannel1);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').addClass('media-link-1');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-1').attr('free', 'media-link-1');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-1').attr('free', 'media-link-1'); //Social media 3
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-1").attr("src", iconSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").val(linkSocialMediaConcertChannel1);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").addClass("media-link-1");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").attr({
+                "free": "media-link-1",
+                "key": "facebook_concert_channel_icon"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-1-input').attr("key", "facebook_concert_channel_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-1").attr({
+                "free": "media-link-1",
+                "key": "facebook_concert_channel_icon"
+              }); //Social media 3
 
               var iconSocialMediaConcertChannel3 = data.data.twitter_concert_channel_icon;
               var linkSocialMediaConcertChannel3 = data.data.twitter_concert_channel_url;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-icon-3').attr("src", iconSocialMediaConcertChannel3);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').val(linkSocialMediaConcertChannel3);
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').addClass('media-link-3');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-social-media-link-3').attr('free', 'media-link-3');
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#media-link-3').attr('free', 'media-link-3');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-icon-3").attr("src", iconSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").val(linkSocialMediaConcertChannel3);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").addClass("media-link-3");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").attr({
+                "free": "media-link-3",
+                "key": "twitter_concert_channel_url"
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3-input').attr("key", "twitter_concert_channel_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-3").attr({
+                "free": "media-link-3",
+                "key": "twitter_concert_channel_url"
+              });
               break;
 
             case "footer-claro-cinema":
@@ -98064,147 +98292,376 @@ var LandingView = /*#__PURE__*/function () {
           }
 
           var imageRight = data.data.image_right;
-          var imageLeft = data.data.image_left; //Imágenes de arriba
+          var imageLeft = data.data.image_left;
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').attr("src", imageRight);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').attr("src", imageLeft); //Menu 1
-          //Opción 1
+          if (imageRight) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+          } else {
+            imageRight = "./images/synopsis/image-synopsis-horizontal.png";
+          }
+
+          if (imageLeft) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+          } else {
+            imageLeft = "./images/synopsis/image-synopsis-horizontal.png";
+          } //Imágenes de arriba
+
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-image-right").attr("src", imageRight);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-image-left").attr("src", imageLeft); //Menu 1
+          //¿Quiénes Somos?
 
           var optionTitle1 = data.data.menu_1_opcion_1_title;
           var optionLink1 = data.data.menu_1_opcion_1_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-title').val(optionTitle1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').val(optionLink1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').addClass('opcion1');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion1-link').attr('free', 'opcion1');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion1-link').attr('free', 'opcion1'); //Opción 2
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-title").val(optionTitle1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").val(optionLink1);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").addClass("opcion1");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").attr({
+            "free": "opcion1",
+            "key": "menu_1_opcion_1_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion1-link").attr({
+            "free": "opcion1",
+            "key": "menu_1_opcion_1_url"
+          }); //Canal Claro
 
           var optionTitle2 = data.data.menu_1_opcion_2_title;
           var optionLink2 = data.data.menu_1_opcion_2_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-title').val(optionTitle2);
-          debugger;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').val(optionLink2);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').addClass('opcion2');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion2-link').attr('free', 'opcion2');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion2-link').attr('free', 'opcion2'); //Opción 3
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-title").val(optionTitle2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").val(optionLink2);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").addClass("opcion2");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").attr({
+            "free": "opcion2",
+            "key": "menu_1_opcion_2_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion2-link").attr({
+            "free": "opcion2",
+            "key": "menu_1_opcion_2_url"
+          }); //Concert Channel
 
-          var optionTitle3 = data.data.menu_1_opcion_3_title;
-          var optionLink3 = data.data.menu_1_opcion_3_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-title').val(optionTitle3);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').val(optionLink3);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').addClass('opcion3');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion3-link').attr('free', 'opcion3');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion3-link').attr('free', 'opcion3'); //Opción 4
+          var optionTitle3 = data.data.menu_1_opcion_4_title;
+          var optionLink3 = data.data.menu_1_opcion_4_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-title").val(optionTitle3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").val(optionLink3);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").addClass("opcion3");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").attr({
+            "free": "opcion3",
+            "key": "menu_1_opcion_4_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion3-link").attr({
+            "free": "opcion3",
+            "key": "menu_1_opcion_4_url"
+          }); //Claro Cinema
 
-          var optionTitle4 = data.data.menu_1_opcion_4_title;
-          var optionLink4 = data.data.menu_1_opcion_4_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-title').val(optionTitle4);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').val(optionLink4);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').addClass('opcion4');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion4-link').attr('free', 'opcion4');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion4-link').attr('free', 'opcion4'); //Opción 5
+          var optionTitle4 = data.data.menu_1_opcion_3_title;
+          var optionLink4 = data.data.menu_1_opcion_3_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-title").val(optionTitle4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").val(optionLink4);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").addClass("opcion4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").attr({
+            "free": "opcion4",
+            "key": "menu_1_opcion_3_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion4-link").attr({
+            "free": "opcion4",
+            "key": "menu_1_opcion_3_url"
+          }); //Nuestra Visión
 
-          var optionTitle5 = data.data.menu_1_opcion_5_title;
-          var optionLink5 = data.data.menu_1_opcion_5_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-title').val(optionTitle5);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').val(optionLink5);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').addClass('opcion5');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion5-link').attr('free', 'opcion5');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion5-link').attr('free', 'opcion5'); //Opción 6
+          var optionTitle5 = data.data.menu_1_opcion_6_title;
+          var optionLink5 = data.data.menu_1_opcion_6_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-title").val(optionTitle5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").val(optionLink5);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").addClass("opcion5");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").attr({
+            "free": "opcion5",
+            "key": "menu_1_opcion_6_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion5-link").attr({
+            "free": "opcion5",
+            "key": "menu_1_opcion_6_url"
+          }); //Claro Sports
 
-          var optionTitle6 = data.data.menu_1_opcion_6_title;
-          var optionLink6 = data.data.menu_1_opcion_6_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-title').val(optionTitle6);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').val(optionLink6);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').addClass('opcion6');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-menu-1-opcion6-link').attr('free', 'opcion6');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#opcion6-link').attr('free', 'opcion6'); //Icon claro networks footer
+          var optionTitle6 = data.data.menu_1_opcion_5_title;
+          var optionLink6 = data.data.menu_1_opcion_5_url;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-title").val(optionTitle6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").val(optionLink6);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").addClass("opcion6");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").attr({
+            "free": "opcion6",
+            "key": "menu_1_opcion_5_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion6-link").attr({
+            "free": "opcion6",
+            "key": "menu_1_opcion_5_url"
+          }); //Icon claro networks footer
 
           var iconClaroNetworksFooter = data.data.about_icon;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-about-icon').attr("src", iconClaroNetworksFooter); //rights legend
+          var footerAboutIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-about-icon");
+
+          if (iconClaroNetworksFooter) {
+            footerAboutIcon.prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+          } else {
+            iconClaroNetworksFooter = "./images/synopsis/image-synopsis-horizontal.png";
+          }
+
+          footerAboutIcon.attr("src", iconClaroNetworksFooter); //rights legend
 
           var rightsLegend = data.data.about_legend;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-rights-legend').val(rightsLegend); //Footer terms legend
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-rights-legend").val(rightsLegend); //Footer terms legend
 
           var termsLegend = data.data.about_link_1_title; //privacy legend
 
           var privacyLegend = data.data.about_link_2_title;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-privacy').text(privacyLegend);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-terms').text(termsLegend); //Footer icon 1
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-legend-privacy").text(privacyLegend);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-legend-terms").text(termsLegend); //Footer icon 1
+          //fuente de imagen
 
-          var footerIcon1 = data.data.menu_2_opcion_1_icon;
-          var footerIconLink1 = data.data.menu_2_opcion_1_url;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-1").attr("src", footerIcon1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").val(footerIconLink1);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").addClass('link-1');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1").attr('free', 'link-1');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-1").attr('free', 'link-1'); //Footer icon 2
+          var footerIcon1 = data.data.menu_2_opcion_1_icon; //url
+
+          var footerIconLink1 = data.data.menu_2_opcion_1_url; //Input
+
+          var footerIconLinkInput1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-1"); //Imagen
+
+          var footerIconImage1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-1");
+
+          if (footerIcon1) {
+            footerIconImage1.prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+          } else {
+            footerIcon1 = "./images/synopsis/image-synopsis-horizontal.png";
+          }
+
+          footerIconImage1.attr("src", footerIcon1);
+          footerIconLinkInput1.val(footerIconLink1);
+          footerIconLinkInput1.addClass("link-1");
+          footerIconLinkInput1.attr({
+            "free": "link-1",
+            "key": "menu_2_opcion_1_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-1").attr({
+            "free": "link-1",
+            "key": "menu_2_opcion_1_url"
+          }); //Footer icon 2
 
           var footerIcon2 = data.data.menu_2_opcion_2_icon;
           var footerIconLink2 = data.data.menu_2_opcion_2_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-2").attr("src", footerIcon2);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").addClass('link-2');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").attr('free', 'link-2');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-2").attr('free', 'link-2'); //Footer icon 3
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").addClass("link-2");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").attr({
+            "free": "link-2",
+            "key": "menu_2_opcion_2_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-2").attr({
+            "free": "link-2",
+            "key": "menu_2_opcion_2_url"
+          }); //Footer icon 3
 
           var footerIcon3 = data.data.menu_2_opcion_3_icon;
           var footerIconLink3 = data.data.menu_2_opcion_3_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-3").attr("src", footerIcon3);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").addClass('link-3');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").attr('free', 'link-3');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-3").attr('free', 'link-3'); //Footer icon 4
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").addClass("link-3");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").attr({
+            "free": "link-3",
+            "key": "menu_2_opcion_3_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-3").attr({
+            "free": "link-3",
+            "key": "menu_2_opcion_3_url"
+          }); //Footer icon 4
 
           var footerIcon4 = data.data.menu_2_opcion_4_icon;
           var footerIconLink4 = data.data.menu_2_opcion_4_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-4").attr("src", footerIcon4);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").addClass('link-4');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").attr('free', 'link-4');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-4").attr('free', 'link-4'); //Footer icon 5
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").addClass("link-4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").attr({
+            "free": "link-4",
+            "key": "menu_2_opcion_4_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-4").attr({
+            "free": "link-4",
+            "key": "menu_2_opcion_4_url"
+          }); //Footer icon 5
 
           var footerIcon5 = data.data.menu_2_opcion_5_icon;
           var footerIconLink5 = data.data.menu_2_opcion_5_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-5").attr("src", footerIcon5);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").addClass('link-5');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").attr('free', 'link-5');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-5").attr('free', 'link-5'); //Footer icon 6
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").addClass("link-5");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").attr({
+            "free": "link-5",
+            "key": "menu_2_opcion_5_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-5").attr({
+            "free": "link-5",
+            "key": "menu_2_opcion_5_url"
+          }); //Footer icon 6
 
           var footerIcon6 = data.data.menu_2_opcion_6_icon;
           var footerIconLink6 = data.data.menu_2_opcion_6_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-6").attr("src", footerIcon6);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").addClass('link-6');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").attr('free', 'link-6');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-6").attr('free', 'link-6'); //Footer icon 7
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").addClass("link-6");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").attr({
+            "free": "link-6",
+            "key": "menu_2_opcion_6_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-6").attr("free", "link-6"); //Footer icon 7
 
           var footerIcon7 = data.data.menu_2_opcion_7_icon;
           var footerIconLink7 = data.data.menu_2_opcion_7_url;
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-7").attr("src", footerIcon7);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").val(footerIconLink7);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").addClass('link-7');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").attr('free', 'link-7');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-7").attr('free', 'link-7');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-footer').modal("show");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").addClass("link-7");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").attr({
+            "free": "link-7",
+            "key": "menu_2_opcion_7_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-7").attr({
+            "free": "link-7",
+            "key": "menu_2_opcion_7_url"
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-footer").modal("show");
         }
       });
     }
   }, {
     key: "goToLandingFooter",
     value: function goToLandingFooter() {
-      var iconsLandingFooter = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.list-channel-item');
-      var footersContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers');
+      var iconsLandingFooter = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".list-channel-item");
+      var footersContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers");
       footersContainer.hide();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-footers:first').show();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers:first").show();
       var that = this;
       iconsLandingFooter.click(function () {
-        iconsLandingFooter.removeClass('list-channel-active');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('list-channel-active');
+        iconsLandingFooter.removeClass("list-channel-active");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("list-channel-active");
         var rel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("rel");
         footersContainer.hide();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + rel).show();
+      });
+    }
+  }, {
+    key: "uploadImageFooter",
+    value: function uploadImageFooter() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-input-image").change(function () {
+        var currentInput = this.files[0];
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        landingController.uploadImageFooter(currentInput, key);
+      });
+    }
+  }, {
+    key: "updateInfoFooter",
+    value: function updateInfoFooter(sockets) {
+      //Inputs
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-input-text').blur(function () {
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+        var response = landingController.updateInfoFooter(value, key);
+        response.then(function (data) {
+          if (data.code == 200) {
+            return landingController.getContentFooter();
+          }
+        }).then(function (data) {
+          if (data.code == 200) {
+            var _iterator = _createForOfIteratorHelper(sockets),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var socket = _step.value;
+                socket.postMessage("hola");
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+          }
+        });
+      }); //Eventos para modales de links
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp_url').click(function () {
+        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('free');
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-url').attr("key", key);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr('free', type);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").addClass(type);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+      }); //Cerrar modal y obtener valores
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-url").click(function () {
+        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-url-modal').attr('free');
+        var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val(url);
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        landingController.updateInfoFooter(url, key);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tericon').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#notice-privacy').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-footer').modal('show');
+      });
+    }
+  }, {
+    key: "updateInfoTermsAndPrivacy",
+    value: function updateInfoTermsAndPrivacy() {
+      //Botón del modal de términos y condiciones
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_terminos-footer').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val();
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val();
+        var landing = "terms";
+        var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
+        response.then(function (data) {
+          if (data.code == 200) {
+            console.log(data);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('hide');
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        });
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-button').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val();
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val();
+        var landing = "about";
+        var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
+        response.then(function (data) {
+          if (data.code == 200) {
+            console.log(data);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-footer').modal('hide');
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+        });
+      });
+    }
+  }, {
+    key: "editTextFooter",
+    value: function editTextFooter(input) {
+      var key = input.attr("key");
+      var value = input.val();
+      landingController.updateInfoFooter(value, key);
+    }
+  }, {
+    key: "getContentTerms",
+    value: function getContentTerms() {
+      var response = landingController.getContentRights();
+      response.then(function (data) {
+        if (data.code == 200) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val(data.data.terms_text);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val(data.data.terms_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val(data.data.about_text);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-title').val(data.data.about_title);
+        }
       });
     }
   }]);
@@ -98573,8 +99030,8 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

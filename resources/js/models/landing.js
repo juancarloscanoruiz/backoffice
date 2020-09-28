@@ -12,4 +12,36 @@ export default class LandingModel {
         let data = await response.json();
         return data;
     }
+
+    async updateInfoFooter(dataFooter) {
+        let options = {
+            method: "POST",
+            body: dataFooter,
+            headers: {
+                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+            }
+        };
+        let response = await fetch("landing/updateInfoFooter", options);
+        let data = await response.json();
+        return data;
+    }
+
+    async getContentTerms() {
+        let response = await fetch("landing/getContentRights");
+        let data = await response.json();
+        return data;
+    }
+
+    async updateInfoTermsAndPrivacy(dataTermsPrivacy) {
+        let options = {
+            method: "POST",
+            body: dataTermsPrivacy,
+            headers: {
+                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+            }
+        };
+        let response = await fetch("landing/updateInfoTermsAndPrivacy", options);
+        let data = await response.json();
+        return data;
+    }
 }

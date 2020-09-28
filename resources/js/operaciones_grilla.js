@@ -252,16 +252,16 @@ function eventsGrilla() {
                                 while (true) {
                                     if (
                                         data.data[
-                                        `image_background_${index}`
+                                            `image_background_${index}`
                                         ] !== undefined
                                     ) {
                                         image =
                                             data.data[
-                                            `image_background_${index}`
+                                                `image_background_${index}`
                                             ];
                                         if (
                                             data.data[
-                                            `image_background_${index}`
+                                                `image_background_${index}`
                                             ] == null
                                         ) {
                                             image =
@@ -667,7 +667,7 @@ function eventsGrilla() {
                     case "header2":
                         getContentConcertChannelBlock4OTwo();
                         break;
-                    /* case "pencil-carrusel1":
+                        /* case "pencil-carrusel1":
      $("body").append(loader);
      setTimeout(function () {
          $(".modal-edit-program-carrusel").modal("show");
@@ -1387,8 +1387,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1406,8 +1406,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1426,8 +1426,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1445,8 +1445,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-home-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1465,8 +1465,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
 
@@ -1485,8 +1485,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1507,8 +1507,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel  .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1525,8 +1525,8 @@ function eventsGrilla() {
                             ).val()
                         ) {
                             let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
+                                    ".modal-edit-program-carrusel .edit-landing-date-end"
+                                )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1693,8 +1693,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1712,8 +1712,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1730,8 +1730,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-home-date-expiration"
-                        )
+                                ".modal-edit-program-carrusel .edit-home-date-expiration"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1749,8 +1749,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1767,8 +1767,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-begin"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1786,8 +1786,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
@@ -1803,8 +1803,8 @@ function eventsGrilla() {
                         ).val()
                     ) {
                         let date = $(
-                            ".modal-edit-program-carrusel .edit-landing-date-end"
-                        )
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1952,11 +1952,11 @@ function eventsGrilla() {
             .find(".slider-pagination")
             .addClass("slider-pagination-active") &
             $(this)
-                .find(".slider-pagination")
-                .addClass("a-text-bold-white") &
+            .find(".slider-pagination")
+            .addClass("a-text-bold-white") &
             $(this)
-                .find(".slider-pagination")
-                .removeClass("a-text-bold-teal");
+            .find(".slider-pagination")
+            .removeClass("a-text-bold-teal");
     });
     $("#edit-logos-button").click(function () {
         let data = new FormData();
@@ -3606,14 +3606,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo que estamos editando es el año de producción
+                    //Verificamos si el campo que estamos editando es el año de producción
                 case "program_year_produced":
                     //Convertimos el año a entero
                     keyValue = parseInt($(this).val());
                     //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //Verificamos si el campo editable, es el de programar publicación para Landing
+                    //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -3766,7 +3766,7 @@ function eventsGrilla() {
                 keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                 editAttributeProgram(chapterId, key, keyValue);
                 break;
-            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
             case "in_landing_publicacion":
                 let schedule = $(this)
                     .closest(".programar-schedule")
@@ -3939,8 +3939,8 @@ function eventsGrilla() {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
-                    .text()
-                    .substr(0, 200) + "...";
+                .text()
+                .substr(0, 200) + "...";
             $(this).text(text);
         }
     });
@@ -4550,8 +4550,8 @@ function eventsGrilla() {
                         "iframe"
                     )[0].style.height = message + "px";
                     this.container.getElementsByTagName(
-                        "iframe"
-                    )[0].style.boxShadow =
+                            "iframe"
+                        )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
             });
@@ -4938,23 +4938,7 @@ function eventsGrilla() {
     })
 
     // FOOTER
-    $('.inp_url').click(function () {
-        let type = $(this).attr('free');
-        let url = $("." + type).val();
-        $("#inp_url_modal").val(url);
-        $("#inp_url_modal").attr('free', type);
-        $("#inp_url_modal").addClass(type);
-        $('#url').modal('show');
-    });
-    $(".btn-url").click(function () {
-        let type = $('.input-url-modal').attr('free');
-        let url = $("#inp_url_modal").val();
-        $("." + type).val(url);
-        $("#url").modal("hide");
-    });
-    $('.tericon').click(function () {
-        $('#modal-terminos-footer').modal('show');
-    });
+
     // FOOTER
 
     $("#acepta_canales_home").click(function () {

@@ -104,7 +104,9 @@ Route::group(['prefix' => 'landing'], function () {
     Route::post("/homeCarrusel", "landingController@homeCarrusel");
     Route::post("/editHeaderHome", "landingController@editHeaderHome");
     Route::get("/getContentFooter", "landingController@getContentFooter");
-
+    Route::post("/updateInfoFooter", "landingController@updateInfoFooter");
+    Route::get("/getContentRights", "landingController@getContentRights");
+    Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     // MODAL CLARO
 });
 
