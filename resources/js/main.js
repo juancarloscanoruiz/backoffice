@@ -98,6 +98,8 @@ $(document).ready(function () {
     landingView.updateInfoTermsAndPrivacy(sockets);
     landingView.uploadImageFooter(sockets);
     landingView.updateInfoFooter(sockets)
+    landingView.renderFooterPrev(sockets);
+    landingView.renderFooterEdit(sockets);
 
     let options = {
         load: function (el) {

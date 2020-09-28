@@ -136,7 +136,7 @@ export default class LandingView {
         );
         let FooterClaroNetworks = {
             //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost/MaquetaCNetworks/footer-edition.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
             container: document.getElementById("claro-networks-programing"),
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -174,7 +174,7 @@ export default class LandingView {
         );
         let FooterClaroCanalOptions = {
             //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost/MaquetaCNetworks/footer-claro-edi.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php`,
             container: containerFooterClaroCanal,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -212,7 +212,7 @@ export default class LandingView {
         );
         let FooterConcertChannelOptions = {
             //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost/MaquetaCNetworks/footer-concert-edi.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php`,
             container: containerFooterConcertChannel,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -251,7 +251,7 @@ export default class LandingView {
         );
         let FooterClaroCinemaOptions = {
             //remote: `${baseURL}sinopsis-edi.php`,
-            remote: `http://localhost/MaquetaCNetworks/footer-cinema-edi.php`,
+            remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
             container: containerFooterClaroCinema,
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -284,6 +284,105 @@ export default class LandingView {
         }
     }
 
+    renderFooterPrev(sockets) {
+        $('#prev-footer').click(function () {
+            $(".navbar-prev-footers iframe").remove();
+            let footerClaroNetoworksPrev = {
+                //remote: `${baseURL}concert-channel.php`,
+                remote: `http://localhost:8888/MaquetaCNetworks/footer-prev.php`,
+                container: document.getElementById(
+                    "claro-networks-programing"
+                ),
+                onMessage: function (message, origin) {
+                    console.log(message);
+                    this.container.getElementsByTagName("iframe")[0].style.height =
+                        message + "px";
+                    this.container
+                        .getElementsByTagName("iframe")[0]
+                        .setAttribute("scrolling", "no");
+                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            }
+            let footerCanalClaroPrev = {
+                //remote: `${baseURL}concert-channel.php`,
+                remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php`,
+                container: document.getElementById("claro-canal-programing"),
+                onMessage: function (message, origin) {
+                    console.log(message);
+                    this.container.getElementsByTagName("iframe")[0].style.height =
+                        message + "px";
+                    this.container
+                        .getElementsByTagName("iframe")[0]
+                        .setAttribute("scrolling", "no");
+                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            }
+            let footerConcertChannelPrev = {
+                //remote: `${baseURL}concert-channel.php`,
+                remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-prev.php`,
+                container: document.getElementById("concert-channel-programing"),
+                onMessage: function (message, origin) {
+                    console.log(message);
+                    this.container.getElementsByTagName("iframe")[0].style.height =
+                        message + "px";
+                    this.container
+                        .getElementsByTagName("iframe")[0]
+                        .setAttribute("scrolling", "no");
+                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            }
+            let footerClaroCinemaPrev = {
+                //remote: `${baseURL}concert-channel.php`,
+                remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
+                container: document.getElementById("claro-cinema-programing"),
+                onMessage: function (message, origin) {
+                    console.log(message);
+                    this.container.getElementsByTagName("iframe")[0].style.height =
+                        message + "px";
+                    this.container
+                        .getElementsByTagName("iframe")[0]
+                        .setAttribute("scrolling", "no");
+                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            }
+
+            //Iframes
+            sockets[0] = new easyXDM.Socket(
+                footerClaroNetoworksPrev);
+            sockets[1] = new easyXDM.Socket(
+                footerCanalClaroPrev);
+            sockets[2] = new easyXDM.Socket(
+                footerConcertChannelPrev);
+            sockets[3] = new easyXDM.Socket(
+                footerClaroCinemaPrev);
+        })
+
+    }
+
+    renderFooterEdit(sockets) {
+        let that = this;
+        $('#edit-footer').click(function () {
+            $(".navbar-prev-footers iframe").remove();
+            let optionsFooterClaroNetworks = that.renderFooterClaroNetworks();
+            let optionsFooterCanalClaro = that.renderFooterClaroCanal();
+            let optionsFooterConcertChannel = that.renderFooterConcertChannel();
+            let optionsFooterClaroCinema = that.renderFooterClaroCinema();
+            //Iframes
+            sockets[0] = new easyXDM.Socket(
+                optionsFooterClaroNetworks);
+            sockets[1] = new easyXDM.Socket(
+                optionsFooterCanalClaro);
+            sockets[2] = new easyXDM.Socket(
+                optionsFooterConcertChannel);
+            sockets[3] = new easyXDM.Socket(
+                optionsFooterClaroCinema);
+        });
+
+    }
     renderContentFooter(landingFooter) {
         $("body").append(
             `<div class="loader-view-container pointer-none">

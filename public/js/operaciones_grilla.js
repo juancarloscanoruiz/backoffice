@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/Claro_Network/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -82353,7 +82353,7 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
       var FooterClaroNetworks = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost/MaquetaCNetworks/footer-edition.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-edition.php",
         container: document.getElementById("claro-networks-programing"),
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -82388,7 +82388,7 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterClaroCanal = document.getElementById("claro-canal-programing");
       var FooterClaroCanalOptions = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost/MaquetaCNetworks/footer-claro-edi.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php",
         container: containerFooterClaroCanal,
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -82423,7 +82423,7 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterConcertChannel = document.getElementById("concert-channel-programing");
       var FooterConcertChannelOptions = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost/MaquetaCNetworks/footer-concert-edi.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php",
         container: containerFooterConcertChannel,
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -82459,7 +82459,7 @@ var LandingView = /*#__PURE__*/function () {
       var containerFooterClaroCinema = document.getElementById("claro-cinema-programing");
       var FooterClaroCinemaOptions = {
         //remote: `${baseURL}sinopsis-edi.php`,
-        remote: "http://localhost/MaquetaCNetworks/footer-cinema-edi.php",
+        remote: "http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php",
         container: containerFooterClaroCinema,
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -82488,6 +82488,79 @@ var LandingView = /*#__PURE__*/function () {
                         FooterClaroCinemaOptions
                     ); */
       }
+    }
+  }, {
+    key: "renderFooterPrev",
+    value: function renderFooterPrev(sockets) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prev-footer').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers iframe").remove();
+        var footerClaroNetoworksPrev = {
+          //remote: `${baseURL}concert-channel.php`,
+          remote: "http://localhost:8888/MaquetaCNetworks/footer-prev.php",
+          container: document.getElementById("claro-networks-programing"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var footerCanalClaroPrev = {
+          //remote: `${baseURL}concert-channel.php`,
+          remote: "http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php",
+          container: document.getElementById("claro-canal-programing"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var footerConcertChannelPrev = {
+          //remote: `${baseURL}concert-channel.php`,
+          remote: "http://localhost:8888/MaquetaCNetworks/footer-concert-prev.php",
+          container: document.getElementById("concert-channel-programing"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var footerClaroCinemaPrev = {
+          //remote: `${baseURL}concert-channel.php`,
+          remote: "http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php",
+          container: document.getElementById("claro-cinema-programing"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        }; //Iframes
+
+        sockets[0] = new easyXDM.Socket(footerClaroNetoworksPrev);
+        sockets[1] = new easyXDM.Socket(footerCanalClaroPrev);
+        sockets[2] = new easyXDM.Socket(footerConcertChannelPrev);
+        sockets[3] = new easyXDM.Socket(footerClaroCinemaPrev);
+      });
+    }
+  }, {
+    key: "renderFooterEdit",
+    value: function renderFooterEdit(sockets) {
+      var that = this;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-footer').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers iframe").remove();
+        var optionsFooterClaroNetworks = that.renderFooterClaroNetworks();
+        var optionsFooterCanalClaro = that.renderFooterClaroCanal();
+        var optionsFooterConcertChannel = that.renderFooterConcertChannel();
+        var optionsFooterClaroCinema = that.renderFooterClaroCinema(); //Iframes
+
+        sockets[0] = new easyXDM.Socket(optionsFooterClaroNetworks);
+        sockets[1] = new easyXDM.Socket(optionsFooterCanalClaro);
+        sockets[2] = new easyXDM.Socket(optionsFooterConcertChannel);
+        sockets[3] = new easyXDM.Socket(optionsFooterClaroCinema);
+      });
     }
   }, {
     key: "renderContentFooter",
@@ -83466,7 +83539,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),
