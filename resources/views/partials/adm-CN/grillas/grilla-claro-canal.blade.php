@@ -37,13 +37,6 @@ $data_for_new_entry = json_encode([
 ?>
 
 
-@yield('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-@yield('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-
-
 <style>
     .bootstrap-select>.dropdown-toggle {
         position: relative;

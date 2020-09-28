@@ -860,7 +860,7 @@ function getChapterInfo(data, landing) {
                 $(".edit-audio5-yes").prop("checked", true);
             }
 
-            $('.cj').html(capsule);
+            // $('.cj').html(capsule);
 
             // $().addClass('capsule');
 

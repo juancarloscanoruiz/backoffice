@@ -4999,6 +4999,9 @@ function eventsGrilla() {
         if (landing == 'Claro Cinema') {
             resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
         }
+        if (landing == 'Concert Channel') {
+            resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+        }
 
     });
 
@@ -5023,7 +5026,7 @@ function eventsGrilla() {
 
     let LandingHomeConcert = {
         remote: `${baseURL}home-edi-concert.php`,
-       // remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
+    //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -5039,7 +5042,7 @@ function eventsGrilla() {
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
                         // getProgrammingLanding(currentDate, "concert channel", 'home');
-                        getProgrammingLanding(currentDate, "canal-claro");
+                        getProgrammingLanding(currentDate, "concert-channel");
                         break;
                     case "concert-home-header":
                         landingView.renderHomeHeaderConcertChannel();
@@ -5066,6 +5069,7 @@ function eventsGrilla() {
 
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
+        // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
         container: document.getElementById("navbar-prev-home"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
