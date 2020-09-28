@@ -1793,7 +1793,7 @@ function getCarruselHome(landing) {
                         <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                         <!--Textarea-->
                         <textarea chapter_id="${chapter.chapter.id}" key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                         <div class="clearfix"></div>
                         </section>
                 </div>
@@ -3753,7 +3753,7 @@ function getPromotionalsProgramsCarousel(
                     <textarea chapter_id="${chapter.chapter.id}" key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                         id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                         <div class="clearfix"></div>
                 </section>
                 <section class="mb-3">
@@ -4822,6 +4822,11 @@ function confLandingHome(baseURL) {
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                const loader = `
+                    <div class="loader-view-container" id="loader1">
+                      <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                    `;
                 switch (json.type) {
 
                     case "slider-pagination":
@@ -4830,10 +4835,29 @@ function confLandingHome(baseURL) {
                     case "home-logos":
                         addImagesModalIcons();
                         $(".modal-edit-icons").modal("show");
+                    
+                    
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-logos":   
+                    $("body").append(loader);
+
+                    setTimeout(function () {
+                        $("#loader1").remove();
+                        addImagesModalIcons();
+                        $(".modal-edit-icons").modal("show");
+                    }, 3000);                    
+                           
 
                         break;
                     case "home-carrousel-main":
-                        getChapterInfo(json.chapterId);
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro");
                         break;
                     case "claro-home-header":
                         getContentHomeHeader(json.type);

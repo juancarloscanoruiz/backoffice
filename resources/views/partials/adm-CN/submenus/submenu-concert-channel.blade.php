@@ -441,20 +441,19 @@
         </div>
 
     </div>
-    @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-concert',
-    "modalButtonClass" => "modal-program-concert-channel"))
-    @include('partials.adm-CN.modals-concert.programming')
-
+   
+    @include('partials.adm-CN.modals-claro.index');
     @include('partials.adm-CN.modals-concert.titulo')
-    @include('partials.adm-CN.modals-concert.promo-concert')
-    @include('partials.adm-CN.modals-concert.banner-concert')
+    @include('partials.adm-CN.sinopsis');
+    @include('partials.adm-CN.modals-concert.promo-concert')  
     @include('partials.adm-CN.modals-concert.encabezado')
-    @include('partials.adm-CN.modals-concert.carrusel')
-    @include('partials.adm-CN.modals-concert.carrusel2')
+    @include('partials.adm-CN.modals-concert.banner-concert');
 
     <!--HOME-->
     @include('partials.adm-CN.modals-home.home-encabezado');
-    @include('partials.adm-CN.modal-home.logo');
-    
-    @include('partials.adm-CN.modal-home.carrusel');
+    @include('partials.adm-CN.modal-home.logo');  
+    @include('partials.adm-CN.modals-concert.carrusel');
+    @include('partials.adm-CN.modals-concert.programming');
+
+
 </body>

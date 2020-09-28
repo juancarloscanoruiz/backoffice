@@ -83,7 +83,6 @@
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -319,233 +318,17 @@
     </main>
     <!--inicio de modales para edición-->
 
-    <!--menu de logos-->
-    <div class="modal  modal-edit-icons pr-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered m-0" role="document">
-            <div class="modal-content align-item-center centro " style="width: 100%">
-                <div class="modal-body ">
-                    <h2 class="h2 text-center a-text-black-brown-two mt-2 ">MENÚ DE CANALES</h2>
-                    <hr class="d-flex align-content-center separationhr mb-4 col-12">
-                    <!--div padre-->
-                    <form>
-                        <div class="d-flex justify-content-around col-11 mb-5 mt-5">
-                            <!--Div primer logo-->
-                            <div class="d-flex justify-content-center  slider-logo mt-5">
-                                <!--pagination-->
-                                <div class=" d-flex programming-dots ">
-                                    <p class=' a-text-bold-white slider-pagination slider-pagination-logo slider-pagination-active '>
-                                        1</p>
-                                </div>
-                                <div class="centro position-relative logo-lading-container mb-3">
-                                    <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
-                                        <input type="file" name="image-icon1" id="image-icon1" class="input-image-program logo-landing d-none">
-                                        <label for="image-icon1" class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo " style="z-index:10000" />
-                                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
-                                                295px</span>
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                        </label>
-                                    </div>
-
-                                    <!--Div de los url-->
-                                    <div class="mt-5 d-flex justify-content-center">
-                                        <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                        <input type="text" name="links" id="link-logo-canal-claro" class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center   slider-logo mt-5">
-                                <!--pagination-->
-                                <div class=" d-flex programming-dots ">
-                                    <p class='a-text-bold-teal slider-pagination slider-pagination-logo pag'>2</p>
-                                </div>
-                                <!--cargar imagenes-->
-                                <div class="centro position-relative mb-3 logo-lading-container">
-                                    <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
-                                        <input type="file" name="image-icon2" id="image-icon2" class="input-image-program logo-landing d-none">
-                                        <label for="image-icon2" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo " style="z-index:10000" />
-                                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
-                                                295px</span>
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                        </label>
-                                    </div>
-                                    <!--div urls-->
-                                    <div class="mt-5 d-flex justify-content-center">
-                                        <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                        <input type="text" name="links" id="link-logo-concert-channel" class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center slider-logo mt-5 ">
-                                <!--pagination-->
-                                <div class=" programming-dots ">
-                                    <p class='a-text-bold-teal slider-pagination slider-pagination-logo '>3 </p>
-                                </div>
-                                <!--cargar imagenes-->
-                                <div class="centro position-relative mb-3 logo-lading-container">
-                                    <div class="bor mx-auto position-relative thumbnail-image-program" id="thumbnail-home-horizontal">
-                                        <input type="file" name="image-icon3" id="image-icon3" class="input-image-program logo-landing d-none">
-                                        <label for="image-icon3" class="mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo " style="z-index:10000" />
-                                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow" style="z-index:10000">472px X
-                                                295px</span>
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                        </label>
-                                    </div>
-                                    <!--div urls-->
-                                    <div class="mt-5 d-flex justify-content-center">
-                                        <img src="{{ asset('/images/basic-icons/link.svg') }}" alt="logo-link" class="mr-3">
-                                        <input type="text" name="links" id="link-logo-claro-cinema" class="urls a-text-bold-warm text-normal" placeholder=" Enlace o URL">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--div botones-->
-                        <div class="text-center  mb-4 d-flex justify-content-center pb-2">
-                            <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
-                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
-
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    @include('admin-site.landings.edit-program.edit-program', array('style' => 'thumbnail-header-cinema',
-    "modalButtonClass" => "modal-program-claro-cinema"))
-    <div class="modal modal-programming-carousel pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important">
-        <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
-            <div class="modal-content">
-                <div class="modal-body">
-
-
-                    <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
-                    <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                    <!--Slider pagination-->
-                    <div class="dots-container mx-auto d-flex justify-content-between">
-                        <div class="d-flex">
-                            <!--dots-->
-                            <div class="programming-slider-dots mt-5 mb-5"></div>
-                            <!--add slide-->
-                            <img src="{{ asset('images/add-icon.svg') }}" class="add-programming-image cursor-pointer">
-                        </div>
-                        <!--Calendar-->
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
-                            </div>
-
-                            <input type="text" id="programming-carrusel-calendar " class="d-none">
-                            <label for="programming-carrusel-calendar" class="ml-4 mb-0 date-button date-start-table d-flex align-items-center  pl-3 pr-3" id="date-start-table">
-                                <img src="./images/calendario.svg" alt="">
-                                <div class="ml-3">
-                                    <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Inicio</p>
-                                    <p class="text-normal mb-0 a-text-bold-charcoal" id="start-date-text">DD-MM-YYYY</p>
-                                </div>
-                            </label>
-
-                            <!--Fecha de fin de calendario-->
-                            <label for="programming-carrusel-calendar" class="mb-0 ml-4 date-button date-end-table d-flex align-items-center pl-3 pr-3">
-                                <img src="./images/calendario.svg" alt="">
-                                <div class="ml-3">
-                                    <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
-                                    <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">DD-MM-YYYY</p>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!--Slider-->
-                    <div class="programming-slider mx-auto">
-                        <!--Slide
-                  <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
-                      <label for="image_programming_1"
-                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo " />
-                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
-                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                      </label>
-                  </div>
-                  Slide
-                  <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_2" class="input-image-program d-none image_programming " data-index="2">
-                      <label for="image_programming_2"
-                          class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
-                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo " />
-                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
-                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                      </label>
-                  </div>
-                Slide
-                  <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
-                      <label for="image_programming_3"
-                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
-                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
-                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
-                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                      </label>
-                  </div>
-                   Slide
-                   <div class="bor thumbnail-image-program position-relative h-100">
-                      <input type="file" name="image_programming[]" id="image_programming_3" class="input-image-program d-none image_programming" data-index="3">
-                      <label for="image_programming_3"
-                          class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
-                          <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                              class=" cursor-pointer add-photo" />
-                          <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                          <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
-                              class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                      </label>
-                  </div>
-
-
-              End slider-->
-                    </div>
-                    <!--Buttons-->
-                    <div class="text-center mb-3 d-flex justify-content-center">
-                        <button class="edit-landing-modal-button d-flex mr-3 text-uppercase  m-0 btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="image-programming-button" landin="canal claro">aceptar</button>
-                        <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
-
-                        <!-- <button
-                      class="d-inline-block text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal" data-toggle="modal"   >cancelar</button>-->
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
     <!--HOME-->
-  
+   
+    @include('partials.adm-CN.modals-claro.index');
+
     @include('partials.adm-CN.modals-home.home-encabezado');
     @include('partials.adm-CN.modal-home.logo');
-    @include('partials.adm-CN.modal-home.carrusel');
-    @include('partials.adm-CN.modal-generic.advertencia');
-    @include('partials.adm-CN.modal-generic.url');
-
+    @include('partials.adm-CN.sinopsis');
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
     @include('partials.adm-CN.modals-cinema.promo-cinema')
     @include('partials.adm-CN.modals-cinema.banner-cinema')
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
-    @include('partials.adm-CN.modals-cinema.titulo-carrusel1')
     @include('partials.adm-CN.modals-concert.carrusel');
-
-
     @include('partials.adm-CN.modals-cinema.programming');
 </body>

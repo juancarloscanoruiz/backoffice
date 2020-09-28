@@ -235,7 +235,7 @@
                                 <textarea key="synopsis"
                                     class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                     id="prog_sinopsis"></textarea>
-                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                                 <div class="clearfix"></div>
                             </section>
                             <section class="mb-3">
@@ -673,7 +673,7 @@
                                 <textarea key="synopsis"
                                     class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                     id="prog_sinopsis"></textarea>
-                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center " ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                                 <div class="clearfix"></div>
                             </section>
                             <section class="mb-3">
@@ -1114,7 +1114,7 @@
                                 <textarea key="synopsis"
                                     class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                     id="prog_sinopsis"></textarea>
-                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                                 <div class="clearfix"></div>
                             </section>
                             <section class="mb-3">
