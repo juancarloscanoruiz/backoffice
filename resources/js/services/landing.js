@@ -24,9 +24,9 @@ import {
 } from "../vendor/slick.js";
 
 import {
-   
+
     addImagesModalIcons
-    
+
 } from "../services/generalSchedule.js";
 function getMonth(idMonth) {
     let date = new Date();
@@ -1768,12 +1768,12 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}">
+                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
                             <!-- INPUTS -->
-                            <input class="d-none load-carrusel" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical">
+                            <input class="d-none load-carrusel" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical" program="${chapter.chapter.title}">
                             <!-- LABEL -->
                             <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
                                 <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
@@ -1793,7 +1793,7 @@ function getCarruselHome(landing) {
                         <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                         <!--Textarea-->
                         <textarea chapter_id="${chapter.chapter.id}" key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                         <div class="clearfix"></div>
                         </section>
                 </div>
@@ -1991,21 +1991,21 @@ function getCarruselHome(landing) {
             $('.add-file-carrusel').click(function () {
                 let id = $(this).attr("id");
                 let key = $('.load-carrusel').attr("key");
-                imgCarruselHome(id, key);
-
+                let name = $('.load-carrusel').attr("program");
+                imgCarruselHome(id, key, name);
             })
         }
     });
 }
 
-function imgCarruselHome(id, key) {
+function imgCarruselHome(id, key, name) {
     $("#img_carrusel_" + id).change(function () {
-        viewImg(this, "#img-carrusel-home-" + id, id, key);
+        viewImg(this, "#img-carrusel-home-" + id, id, key, name);
         viewEdit();
     });
 }
 
-function viewImg(objFileInput, container, id, key) {
+function viewImg(objFileInput, container, id, key, name) {
     let fileSrt = new FileReader();
     if (objFileInput.files[0]) {
         fileSrt.onload = function (e) {
@@ -2013,18 +2013,39 @@ function viewImg(objFileInput, container, id, key) {
         };
         fileSrt.readAsDataURL(objFileInput.files[0]);
     }
-    actualizarImgCarrusel(id, key);
+    cargarImgCarruselHome(id, key, objFileInput.files[0], name);
 }
+
+function cargarImgCarruselHome(id, k, img, nombre) {
+    let image = img;
+    let chapter_id = id;
+    let name = nombre 
+    
+    let data = new FormData();
+    data.append("thumbnail_list_vertical", image);
+    data.append("chapter_id", chapter_id);
+    data.append("name", name);
+
+    captureImagesForChapter(data);
+
+}
+
+function captureImagesForChapter(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        cache: false,
+        url: "landing/captureImagesForChapter",
+        success: function (result) {
+            console.log(result);
+        }
+    });
+}
+
 function viewEdit() {
     $('.camera_carrusel').attr('src', './images/lapiz-acti.svg')
-}
-
-
-function actualizarImgCarrusel(id, key) {
-    debugger
-    let logo = document.getElementById("img_carrusel_" + id).files[0].name || "";
-    let url = 'http://www.claronetworks.openofficedospuntocero.info/images/claro-canal/section-home-vertical/' + logo;
-    editAttributeProgram(id, key, url);
 }
 
 function getContentHomeCinema(type) {
@@ -2890,15 +2911,15 @@ function getModalsCanalClaro(type) {
                                 infinite: false,
                                 customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
-                                    
+
                                     return (
-                                        
+
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                        (i + 1) + "</br>"+
+                                        (i + 1) + "</br>" +
                                         "</p>"
 
                                     );
-                              
+
 
                                 }
                             });
@@ -3732,7 +3753,7 @@ function getPromotionalsProgramsCarousel(
                     <textarea chapter_id="${chapter.chapter.id}" key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                         id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                         <div class="clearfix"></div>
                 </section>
                 <section class="mb-3">
@@ -4801,36 +4822,60 @@ function confLandingHome(baseURL) {
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                const loader = `
+                    <div class="loader-view-container" id="loader1">
+                      <img src="./images/loader.gif" class="loader" alt="">
+                    </div>
+                    `;
                 switch (json.type) {
+
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-logos":
+                        addImagesModalIcons();
+                        $(".modal-edit-icons").modal("show");
+                    
                     
                     case "slider-pagination":
                         landingView.renderHomeBanner();
                         break;
-                    case "home-logos":                       
-                            addImagesModalIcons();
-                            $(".modal-edit-icons").modal("show");
+                    case "home-logos":   
+                    $("body").append(loader);
+
+                    setTimeout(function () {
+                        $("#loader1").remove();
+                        addImagesModalIcons();
+                        $(".modal-edit-icons").modal("show");
+                    }, 3000);                    
+                           
 
                         break;
                     case "home-carrousel-main":
-                        getChapterInfo(json.chapterId);
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro");
                         break;
-                        case "claro-home-header":
-                            getContentHomeHeader(json.type);
-                            break;
-                        case "claro-home-slider":
-                            let landingclaro = 'Canal Claro';
-                            getCarruselHome(landingclaro);
-                            break;
-                        case "channel-home-header":
-                            landingView.renderHomeHeaderConcertChannel();
-                             break;
-                         case "channel-home-slider":
-                                let landingconcert= 'Concert Channel';
-                                getCarruselHome(landingconcert);
-                                break;
-                        case "cinema-home-header":
-                             getContentHomeHeaderCinema();
-                             break;
+                    case "claro-home-header":
+                        getContentHomeHeader(json.type);
+                        break;
+                    case "claro-home-slider":
+                        let landingclaro = 'Canal Claro';
+                        getCarruselHome(landingclaro);
+                        break;
+                    case "channel-home-header":
+                        landingView.renderHomeHeaderConcertChannel();
+                        break;
+                    case "channel-home-slider":
+                        let landingconcert = 'Concert Channel';
+                        getCarruselHome(landingconcert);
+                        break;
+                    case "cinema-home-header":
+                        getContentHomeHeaderCinema();
+                        break;
                     case "cinema-home-slider":
                         let landingcinema = 'Claro Cinema';
                         getCarruselHome(landingcinema);

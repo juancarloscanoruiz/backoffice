@@ -391,8 +391,9 @@
     @include('partials.adm-CN.sinopsis');
 
     @include('partials.adm-CN.modal-home.logo');
-    @include('partials.adm-CN.modal-home.carrusel');
     @include('partials.adm-CN.modal-generic.advertencia');
     @include('partials.adm-CN.modal-generic.url');
+    @include('partials.adm-CN.modals-concert.carrusel');
+
 
 </body>

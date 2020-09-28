@@ -20,10 +20,9 @@
                     <div id="title" class="mt-3">
                         <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
                             <div class="d-flex  ">
-                                <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
-                                        cambios</span></button>
-                                <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar
-                                        cambios</span></button>
+                            <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                            cambios</span></button>
+                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
                             </div>
                         </div>
                         <div class="d-flex float-right mb-4 mr-5 ">
@@ -41,17 +40,17 @@
                                 </div>
                             </form>
                             <div class="pt-2">
-                                <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3" alt="mobile" id="prev-mobile">
-                                <img src="./images/tablet.svg" class="a-prev-image" alt="tablet" id="prev-tablet">
-                                <img src="./images/pc.svg" class="a-prev-image ml-3" alt="pc" id="prev-desktop">
+                            <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="ml-5 float-left ">
-                            <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">septiembre
-                                        17 2019</span> </span></div>
-                            <span class="a-text-black-light text-plus">Editado por: <label class="zona"> Antonio Pérez López
-                                    (<label class="zona ">Usuario aprobador</label>)</label></span>
+                        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona date-edit" id="date-edit">septiembre 17
+                            2019</span> </span></div>
+                <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label
+                            class="zona ">{{ session('rol_name') }}</label>)</label></span>
                         </div>
 
                         <div class=" mr-5 d-flex float-right ">
