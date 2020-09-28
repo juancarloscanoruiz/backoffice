@@ -764,6 +764,7 @@ function addImagesModalBanner() {
             result = JSON.parse(result);
             let slider = ""
             let counter = 1;
+            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
 
             while (true) {
                 try {
@@ -807,9 +808,13 @@ function addImagesModalBanner() {
                         "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
                         (i + 1) +
                         "</p>"
+                       
                     );
+
+
                 }
             }
+            
             const programmingSlider = $('.programming-slider');
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
             programmingSlider.html(""); //agregar la información al slider
@@ -817,9 +822,40 @@ function addImagesModalBanner() {
             try {
                 programmingSlider.slick("unslick");
                 programmingSlider.slick(conf);
+            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
+
             } catch (error) {
                 programmingSlider.slick(conf);
+            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
             }
+
+            $(".add-programming-image").click(function () {
+
+                //Cada vez que se haga click, el contador incrementa
+                let slideIndex = $(".load-programming-carousel").length + 1;
+        
+                //Agregamos un slide al slider de programación
+                $(".programming-slider").slick(
+                    "slickAdd",
+                    `
+                    <div class="slick-slide">
+                        <div>
+                            <div class="bor thumbnail-image-program position-relative h-100">
+                            <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                                <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                    <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                    <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                );
+                $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
+
+            });
+
             $(".input-image-program").change(function () {
 
                 let currentInput = $(this);
@@ -837,6 +873,7 @@ function addImagesModalBanner() {
                 }
             });
         }
+        
     });
 }
 export {

@@ -2654,6 +2654,12 @@ body {
   background: #ff00d2;
 }
 
+.btn-actual {
+  width: 197px;
+  height: 40px;
+  transform: translate(-8px, -72px);
+}
+
 .add-images-icon {
   position: absolute;
   left: 50%;

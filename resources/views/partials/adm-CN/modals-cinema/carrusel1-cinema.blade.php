@@ -116,13 +116,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                                                 placeholder="00-00-0000"
                                                                 key="in_landing_begin" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Fin: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                                                 key="in_landing_expiration"
@@ -130,12 +130,12 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                                                             key="in_landing_begin" placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                                             key="in_landing_expiration" placeholder="00:00:00"></span>
@@ -168,13 +168,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input
                                                                 key="in_home_begin" type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                                                                 placeholder="00-00-0000" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Fin:
                                                             <input type="text" key="in_home_expiration"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
@@ -182,13 +182,13 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                                                             type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                             placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                             placeholder="00:00:00"></span>
@@ -205,7 +205,7 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center"
+                                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center"
                                                         style="margin-bottom: 81px">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
@@ -220,7 +220,7 @@
                                                     Hora
                                                 </p>
                                                 <div
-                                                    class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                                    class="text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2">
                                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                     <span class="a-text-bold-warm mt-3"><input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -231,12 +231,14 @@
                                     </div>
                                 </section>
                                 <!--Sinopsis-->
-                                <section class="mb-5 edit-program-data-container">
+                                <section class=" edit-program-data-container">
                                     <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                                     <!--Textarea-->
                                     <textarea key="synopsis"
                                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                         id="prog_sinopsis"></textarea>
+                                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                <div class="clearfix"></div>
                                 </section>
                                 <section class="mb-3">
                                     <div class="row">
@@ -247,7 +249,7 @@
                                                     episode
                                                     season
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="season"
                                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="00">
@@ -261,7 +263,7 @@
                                                     episode
                                                     number
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_episode_number"
                                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="000">
@@ -275,7 +277,7 @@
                                                     year
                                                     produced
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_year_produced"
                                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                                         placeholder="YYYY">
@@ -293,7 +295,7 @@
                                                     title
                                                     alternate
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container p-3">
+                                                <div class="mb-3 edit-rectangle-container  backwhite p-3">
                                                     <input type="text" key="subtitle"
                                                         class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
                                                         placeholder="Program Title Alternate">
@@ -308,7 +310,7 @@
                                                     genre
                                                     list
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container ">
+                                                <div class="mb-3 edit-rectangle-container backwhite">
                                                     <select
                                                         class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
                                                         id="edit-program-genres" title="Genere list" multiple
@@ -326,7 +328,7 @@
                                                     rating
                                                     code
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="rating"
                                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                                         placeholder="PG-00">
@@ -350,7 +352,7 @@
                                                 ">Fecha
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
                                                         <input type="text" key="day"
@@ -372,7 +374,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="programing"
                                                             class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -392,7 +394,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="duration"
                                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -560,13 +562,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                                                 placeholder="00-00-0000"
                                                                 key="in_landing_begin" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Fin: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                                                 key="in_landing_expiration"
@@ -574,12 +576,12 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                                                             key="in_landing_begin" placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                                             key="in_landing_expiration" placeholder="00:00:00"></span>
@@ -612,13 +614,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input
                                                                 key="in_home_begin" type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                                                                 placeholder="00-00-0000" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Fin:
                                                             <input type="text" key="in_home_expiration"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
@@ -626,13 +628,13 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                                                             type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                             placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                             placeholder="00:00:00"></span>
@@ -649,7 +651,7 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center"
+                                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center"
                                                         style="margin-bottom: 81px">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
@@ -664,7 +666,7 @@
                                                     Hora
                                                 </p>
                                                 <div
-                                                    class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                                    class="text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2">
                                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                     <span class="a-text-bold-warm mt-3"><input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -675,12 +677,14 @@
                                     </div>
                                 </section>
                                 <!--Sinopsis-->
-                                <section class="mb-5 edit-program-data-container">
+                                <section class=" edit-program-data-container">
                                     <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                                     <!--Textarea-->
                                     <textarea key="synopsis"
                                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                         id="prog_sinopsis"></textarea>
+                                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                <div class="clearfix"></div>
                                 </section>
                                 <section class="mb-3">
                                     <div class="row">
@@ -691,7 +695,7 @@
                                                     episode
                                                     season
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="season"
                                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="00">
@@ -705,7 +709,7 @@
                                                     episode
                                                     number
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_episode_number"
                                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="000">
@@ -719,7 +723,7 @@
                                                     year
                                                     produced
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_year_produced"
                                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                                         placeholder="YYYY">
@@ -737,7 +741,7 @@
                                                     title
                                                     alternate
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container p-3">
+                                                <div class="mb-3 edit-rectangle-container backwhite p-3">
                                                     <input type="text" key="subtitle"
                                                         class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
                                                         placeholder="Program Title Alternate">
@@ -752,7 +756,7 @@
                                                     genre
                                                     list
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container ">
+                                                <div class="mb-3 edit-rectangle-container backwhite">
                                                     <select
                                                         class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
                                                         id="edit-program-genres" title="Genere list" multiple
@@ -770,7 +774,7 @@
                                                     rating
                                                     code
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="rating"
                                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                                         placeholder="PG-00">
@@ -794,7 +798,7 @@
                     ">Fecha
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
                                                         <input type="text" key="day"
@@ -816,7 +820,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="programing"
                                                             class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -836,7 +840,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="duration"
                                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -1005,13 +1009,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                                                 placeholder="00-00-0000"
                                                                 key="in_landing_begin" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Fin: <input type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                                                 key="in_landing_expiration"
@@ -1019,12 +1023,12 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                                                             key="in_landing_begin" placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                                             key="in_landing_expiration" placeholder="00:00:00"></span>
@@ -1057,13 +1061,13 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                         <span class="a-text-bold-warm">Inicio: <input
                                                                 key="in_home_begin" type="text"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                                                                 placeholder="00-00-0000" /></span>
                                                     </div>
-                                                    <div class="mb-4 text-center edit-rectangle-small-container py-3">
+                                                    <div class="mb-4 text-center edit-rectangle-small-container backwhite  py-3">
                                                         <span class="a-text-bold-warm">Fin:
                                                             <input type="text" key="in_home_expiration"
                                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
@@ -1071,13 +1075,13 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                                                             type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                             placeholder="00:00:00"></span>
                                                 </div>
-                                                <div class="text-center edit-rectangle-small-container py-3">
+                                                <div class="text-center edit-rectangle-small-container backwhite py-3">
                                                     <span class="a-text-bold-warm">Fin: <input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                             placeholder="00:00:00"></span>
@@ -1094,7 +1098,7 @@
                                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                         Fecha
                                                     </p>
-                                                    <div class="text-center edit-rectangle-small-container py-2 d-flex align-content-center justify-content-center"
+                                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center"
                                                         style="margin-bottom: 81px">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
@@ -1109,7 +1113,7 @@
                                                     Hora
                                                 </p>
                                                 <div
-                                                    class="text-center edit-rectangle-small-container d-flex align-content-center justify-content-center py-2">
+                                                    class="text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2">
                                                     <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                     <span class="a-text-bold-warm mt-3"><input type="text"
                                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
@@ -1120,12 +1124,14 @@
                                     </div>
                                 </section>
                                 <!--Sinopsis-->
-                                <section class="mb-5 edit-program-data-container">
+                                <section class=" edit-program-data-container">
                                     <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                                     <!--Textarea-->
                                     <textarea key="synopsis"
                                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                                         id="prog_sinopsis"></textarea>
+                                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                <div class="clearfix"></div>
                                 </section>
                                 <section class="mb-3">
                                     <div class="row">
@@ -1136,7 +1142,7 @@
                                                     episode
                                                     season
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="season"
                                                         class="edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="00">
@@ -1150,7 +1156,7 @@
                                                     episode
                                                     number
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_episode_number"
                                                         class="text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase"
                                                         placeholder="000">
@@ -1164,7 +1170,7 @@
                                                     year
                                                     produced
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="program_year_produced"
                                                         class="year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase"
                                                         placeholder="YYYY">
@@ -1182,7 +1188,7 @@
                                                     title
                                                     alternate
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container p-3">
+                                                <div class="mb-3 edit-rectangle-container backwhite p-3">
                                                     <input type="text" key="subtitle"
                                                         class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm"
                                                         placeholder="Program Title Alternate">
@@ -1197,7 +1203,7 @@
                                                     genre
                                                     list
                                                 </p>
-                                                <div class="mb-3 edit-rectangle-container ">
+                                                <div class="mb-3 edit-rectangle-container backwhite">
                                                     <select
                                                         class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick"
                                                         id="edit-program-genres" title="Genere list" multiple
@@ -1215,7 +1221,7 @@
                                                     rating
                                                     code
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
                                                     <input type="text" key="rating"
                                                         class="text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code"
                                                         placeholder="PG-00">
@@ -1239,7 +1245,7 @@
                     ">Fecha
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/calendario.svg') }}" alt=""
                                                             class="mr-3">
                                                         <input type="text" key="day"
@@ -1261,7 +1267,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="programing"
                                                             class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
@@ -1281,7 +1287,7 @@
                                                     <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA
                                                     </p>
                                                     <div
-                                                        class="mb-3 text-center edit-rectangle-small-container py-3 d-flex align-items-center justify-content-center">
+                                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
                                                         <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
                                                         <input type="text" key="duration"
                                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"

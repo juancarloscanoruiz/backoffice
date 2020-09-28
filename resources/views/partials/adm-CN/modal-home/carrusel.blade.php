@@ -234,10 +234,12 @@
                                     </div>
                                     <!-- SINOPSIS -->
                                     <div class="col-12">
-                                        <section class="mb-5 edit-program-data-container">
+                                        <section class=" edit-program-data-container">
                                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                                             <!--Textarea-->
                                             <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
+                                            <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                <div class="clearfix"></div>
                                         </section>
                                     </div>
                                     <div class="col-12">
@@ -273,7 +275,7 @@
                                             <div class="col-4 edit-program-data-container mt-3">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program title alternate</p>
-                                                    <div class="mb-3 edit-rectangle-container p-3">
+                                                    <div class="mb-3 edit-rectangle-container backwhite p-3">
                                                         <input type="text" key="subtitle" class="w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm" placeholder="Program Title Alternate">
                                                     </div>
                                                 </div>
@@ -282,7 +284,7 @@
                                             <div class="col-4 edit-program-data-container position-relative mt-3" id="edit-genre-container">
                                                 <div class="edit-data-container">
                                                     <p class="mb-3 text-plus text-uppercase a-text-bold-brown-two">Program genre list</p>
-                                                    <div class="mb-3 edit-rectangle-container ">
+                                                    <div class="mb-3 edit-rectangle-container backwhite ">
                                                         <select class="list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick" id="edit-program-genres" title="Genere list" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List" data-dropup-auto="false" key="genre">
                                                         </select>
                                                     </div>
