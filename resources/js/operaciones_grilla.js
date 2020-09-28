@@ -4918,6 +4918,8 @@ function eventsGrilla() {
         $('#modal-logo-home').modal('hide')
         $('#modal-carrusel-home').modal('hide')
         $('#modal-terminos-footer').modal('hide')
+        $('#modal-privacy-footer').modal('hide')
+        $('#url').modal('hide')
     })
 
     // FOOTER

@@ -107,5 +107,7 @@
         @include('partials.adm-CN.modal-footer.terminosycondiciones')
         <!--Aviso de privacidad-->
         @include('partials.adm-CN.modal-footer.privacy')
+        <!-- Modal de Advertencia -->
+        @include('partials.adm-CN.modal-generic.advertencia')
     </body>
 @endsection
