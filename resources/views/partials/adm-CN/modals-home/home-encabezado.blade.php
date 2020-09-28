@@ -12,6 +12,20 @@
 
                  <!--Calendar-->
                  <div class="col-12 mx-auto">
+                     <div class="d-flex ml-6">
+                 <form action="" name="bannermovil" id="bannermovil" class="">
+                    <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
+                        <input type="radio" name="pc" id="pc" checked />
+                        <label for="pc" id="pc" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                            <p class=" a-prev-title">PC</p>
+                        </label>
+                        <input type="radio" name="pc" id="movil" />
+                        <label for="movil" id="movil" class="hombre-estilo pl-2 pt-3">
+                            <p class=" a-prev-title ">MÓVIL</p>
+                        </label>
+                    </div>
+                </form>
+                </div>
                 <div class="d-flex align-items-center float-right mt-4 mb-4 mr-4">
                         <div>
                             <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
@@ -36,7 +50,7 @@
                         </label>
                     </div>
               <div class="clearfix"></div>
-
+<div class="pc">
                         <!-- parte del home-->
                         <div class="d-flex col-12 mb-5 mx-auto">
                         <div class="mr-5">
@@ -126,7 +140,7 @@
 
                         </div>
       </div>
-      
+      </div>
     </div>
   </div>
 </div>

@@ -136,6 +136,26 @@ function eventsGrilla() {
             getProgrammingSynopsis("canal-claro", $(this).attr("date"));
         }
     );
+    $(".calendar-sinopsis-slider").on(
+        "click",
+        ".synopsis-calendar-item",
+        function () {
+            $(".synopsis-calendar-item").removeClass("programming-item-active");
+            $(this).addClass("programming-item-active");
+            console.log($(this).attr("date"));
+            getProgrammingSynopsis("concert-channel", $(this).attr("date"));
+        }
+    );
+    $(".calendar-sinopsis-slider").on(
+        "click",
+        ".synopsis-calendar-item",
+        function () {
+            $(".synopsis-calendar-item").removeClass("programming-item-active");
+            $(this).addClass("programming-item-active");
+            console.log($(this).attr("date"));
+            getProgrammingSynopsis("claro-cinema", $(this).attr("date"));
+        }
+    );
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
     $("#video-promo-file").change(function () {
@@ -529,6 +549,40 @@ function eventsGrilla() {
         $("#sinopsis-container iframe").remove();
         var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
         $("#synopsis-table-canal-claro").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function () {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
+            }
+        );
+    }
+    if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-concert-channel").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function () {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
+            }
+        );
+    }
+    if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-claro-cinema").on(
             "click",
             ".edit-synopsis-pencil",
             function () {
@@ -2238,7 +2292,7 @@ function eventsGrilla() {
     <textarea key="synopsis"
         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
         id="prog_sinopsis"></textarea>
-        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
         <div class="clearfix"></div>
 </section>
 <section class="mb-3">
@@ -2685,7 +2739,7 @@ function eventsGrilla() {
                 <textarea key="synopsis"
                     class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                     id="prog_sinopsis"></textarea>
-                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                    <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
                     <div class="clearfix"></div>
             </section>
             <section class="mb-3">
@@ -4982,8 +5036,8 @@ function eventsGrilla() {
     /* MVC */
 
     let LandingHomeConcert = {
-        // remote: `${baseURL}home-edi-concert.php`,
-        remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
+        remote: `${baseURL}home-edi-concert.php`,
+       // remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -5068,6 +5122,98 @@ function eventsGrilla() {
     }
 
     /* MVC */
+    $("#movil").click(function () {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        $(".pc").html("");
+
+       // new easyXDM.Socket(confIframe);
+    });
+    $("#pc").click(function () {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        $(".pc").html("");
+        $(".pc").html(`
+        <!-- parte del home-->
+        <div class="d-flex col-12 mb-5 mx-auto">
+        <div class="mr-5">
+        <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4">
+        <!--navbar-->
+        <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
+            <div>
+                <a href="" class="navbar-link text-decoration-none">
+                    <p class="navbar-item-black text-semibold">Canal Claro</p>
+                </a>
+            </div>
+            <div>
+                <a href="" class="navbar-link text-decoration-none">
+                    <p class="navbar-item-black text-semibold">Concert Channel</p>
+                </a>
+            </div>
+            <div>
+                <a href="" class="navbar-link text-decoration-none">
+                    <p class="navbar-item-black text-semibold">Claro Cinema</p>
+                </a>
+            </div>
+            <div>
+                <a target="_blank" href="" class="navbar-link text-decoration-none">
+                    <p class="navbar-item-black text-semibold">Nuestra Visión</p>
+                </a>
+            </div>
+            <div>
+                <a href="" target="_blank" class="navbar-link text-decoration-none">
+                    <p class="navbar-item-black text-semibold">Claro Sports</p>
+                </a>
+            </div>
+            <!-- <div>
+        <a href="programacion.php" class="navbar-link text-decoration-none">
+            <p class="navbar-item">Programación</p>
+        </a>
+        </div>-->
+        </div>
+        <!--<div class="login">
+            <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
+        </div>-->
+
+        <!--inputs-->
+        <input type="text" name="" id="" class="input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex" placeholder="TITULO">
+        <input type="text" name="" id="" class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex" placeholder="SUBTITULO">
+
+        </div>
+        <div class=" d-flex justify-content-around ">
+         
+        <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
+            accept="video/*">
+            <label for="video-promo-header-home"
+                class="mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header">
+               <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
+                <img src="./images/synopsis/home-video.svg" class="">
+                <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
+                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />                        
+                <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6" >Añade tu archivo
+                    jpg 472px X 295px </span>
+                     
+            </label>
+           <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
+        <label for="image-promo-header-home"
+            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                class="add-photo promo-icon cursor-pointer" style="width:95px" />
+            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
+                jpg 472px X 295px </span>
+        </label>-->
+        </div>
+        
+       
+        </div>
+        </div>
+        <div class="float-right mr-5 mb-3">
+        <span
+        class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
+        </div>
+        <div class="clearfix"></div>
+
+</div>`);
+       // new easyXDM.Socket(confIframe);
+    });
 }
 
 export {
