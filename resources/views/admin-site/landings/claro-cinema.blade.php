@@ -1,6 +1,7 @@
 @extends('layaout.app')
 
 @section('content')
+
 <body>
     @include('partials.headers.headerPrograGeneral')
     <div id="title" class="mt-3">
@@ -23,20 +24,19 @@
                     </label>
                 </div>
             </form>
-            <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac" alt="tablet" id="prev-tablet">
+            <div id="device-size">
+                <div class="pt-2">
                     <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
                 </div>
+            </div>
         </div>
         <div class="clearfix"></div>
         <div class="ml-5 float-left mb-4">
-        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit">septiembre 17
-                            2019</span> </span></div>
-                <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label
-                            class="zona ">{{ session('rol_name') }}</label>)</label></span>
-            </div>
-         
+            <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit">septiembre 17
+                        2019</span> </span></div>
+            <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label class="zona ">{{ session('rol_name') }}</label>)</label></span>
+        </div>
+
 
         <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg" class="Icon_paises1" style="width:32px" /></button>

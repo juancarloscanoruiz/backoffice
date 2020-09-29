@@ -54,10 +54,10 @@
                         </label>
                     </div>
                 </form>
-                <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc" id="prev-desktop">
+                <div id="device-size">
+                    <div class="pt-2">
+                        <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    </div>
                 </div>
             </div>
             <div class="float-left ml-5 mb-4 ">
@@ -319,7 +319,7 @@
     <!--inicio de modales para edición-->
 
     <!--HOME-->
-   
+
     @include('partials.adm-CN.modals-claro.index');
 
     @include('partials.adm-CN.modal-home.carrusel')
@@ -333,7 +333,7 @@
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.modals-cinema.programming');
-    
+
     @include('partials.adm-CN.modal-generic.advertencia');
     @include('partials.adm-CN.modal-generic.url');
 </body>

@@ -92,6 +92,10 @@ import {
     getMonthAndYearmin
 } from "./vendor/slick.js";
 
+import {
+    previewPage
+} from "./preview/prev.js";
+
 function eventsGrilla() {
 
 
@@ -3240,11 +3244,17 @@ function eventsGrilla() {
         $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $("#navbar-prev-programacion iframe").remove();
+            $('#device-size').load('imports #device-size-edit');
             new easyXDM.Socket(confIframe);
         });
     }
     $("#prev").click(function () {
         $("#navbar-prev-programacion iframe").remove();
+        $('#device-size').load('imports #device-size-prev', function(){
+            $('.a-prev-image').click(function(){
+                previewPage($(this));
+            });
+        });
         new easyXDM.Socket({
             remote: `${baseURL}programacion.php`,
             container: document.getElementById("navbar-prev-programacion"),
@@ -4579,6 +4589,11 @@ function eventsGrilla() {
         new easyXDM.Socket(landingCanalClaro);
         $("#prev").click(function () {
             $("#navbar-prev-canal-claro iframe").remove();
+            $('#device-size').load('imports #device-size-prev', function(){
+                $('.a-prev-image').click(function(){
+                    previewPage($(this));
+                });
+            });
             new easyXDM.Socket({
                 remote: `${baseURL}claro-canal.php`,
                 container: document.getElementById("navbar-prev-canal-claro"),
@@ -4597,6 +4612,7 @@ function eventsGrilla() {
         $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $("#navbar-prev-canal-claro iframe").remove();
+            $('#device-size').load('imports #device-size-edit');
             new easyXDM.Socket(landingCanalClaro);
         });
     }
