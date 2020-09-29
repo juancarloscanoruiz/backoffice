@@ -848,15 +848,12 @@ function eventsGrilla() {
         }
     };
     let confPrevConcert = {
-        remote: `${baseURL}concert-channel.php`,
+        remote: `${baseURL}concert-channel-prev.php`,
         container: document.getElementById("navbar-prev-concert-channel"),
         onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
-            this.container
-                .getElementsByTagName("iframe")[0]
-                .setAttribute("scrolling", "no");
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
@@ -3015,7 +3012,7 @@ function eventsGrilla() {
             `
         );
     });
-   
+
     /*function preloader() {
         console.log("si entra al metodo desde submenu");
         document.getElementById("loader-view").style.display = "none";
@@ -3246,7 +3243,7 @@ function eventsGrilla() {
     $("#prev").click(function () {
         $("#navbar-prev-programacion iframe").remove();
         new easyXDM.Socket({
-            remote: `${baseURL}programacion.php`,
+            remote: `${baseURL}programacion-prev.php`,
             container: document.getElementById("navbar-prev-programacion"),
             onMessage: function (message, origin) {
                 this.container.getElementsByTagName("iframe")[0].style.height =
@@ -4580,7 +4577,7 @@ function eventsGrilla() {
         $("#prev").click(function () {
             $("#navbar-prev-canal-claro iframe").remove();
             new easyXDM.Socket({
-                remote: `${baseURL}claro-canal.php`,
+                remote: `${baseURL}claro-canal-prev.php`,
                 container: document.getElementById("navbar-prev-canal-claro"),
                 onMessage: function (message, origin) {
                     this.container.getElementsByTagName(
@@ -5026,7 +5023,7 @@ function eventsGrilla() {
 
     let LandingHomeConcert = {
         remote: `${baseURL}home-edi-concert.php`,
-    //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
+        //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
@@ -5111,14 +5108,14 @@ function eventsGrilla() {
         new easyXDM.Socket(LandingHomeClaro);
     }
 
-   
-  
+
+
     /* MVC */
     $("#movil").click(function () {
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
         $(".pc").html("");
         $(".pc").html(`
-       
+
         <!-- parte del home-->
         <div class="d-flex col-12 mb-5 mx-auto">
         <div class="mr-5 mx-auto">
@@ -5132,7 +5129,7 @@ function eventsGrilla() {
         <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
         </div>-->
     <div class="programming-slider-home mx-auto ">
-       
+
     <div class="bor thumbnail-image-program position-relative h-100">
         <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
         <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
@@ -5167,10 +5164,10 @@ function eventsGrilla() {
             <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
         </label>
-        
+
     </div>
     </div>
-  
+
         </div>
         </div>
         <div class="d-flex mr-5 mb-3">
@@ -5196,7 +5193,7 @@ function eventsGrilla() {
 
         `);
 
-       // new easyXDM.Socket(confIframe);
+        // new easyXDM.Socket(confIframe);
     });
     $("#pc").click(function () {
         //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
@@ -5249,7 +5246,7 @@ function eventsGrilla() {
 
         </div>
         <div class=" d-flex justify-content-around ">
-         
+
         <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
             accept="video/*">
             <label for="video-promo-header-home"
@@ -5257,10 +5254,10 @@ function eventsGrilla() {
                <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
                 <img src="./images/synopsis/home-video.svg" class="">
                 <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
-                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />                        
+                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />
                 <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6" >Añade tu archivo
                     jpg 472px X 295px </span>
-                     
+
             </label>
            <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
         <label for="image-promo-header-home"
@@ -5271,8 +5268,8 @@ function eventsGrilla() {
                 jpg 472px X 295px </span>
         </label>-->
         </div>
-        
-       
+
+
         </div>
         </div>
         <div class="float-right mr-5 mb-3">
@@ -5282,7 +5279,7 @@ function eventsGrilla() {
         <div class="clearfix"></div>
 
 </div>`);
-       // new easyXDM.Socket(confIframe);
+        // new easyXDM.Socket(confIframe);
     });
 }
 

@@ -72,7 +72,7 @@ Route::get("/programacion", "landingController@showProgramacionLanding")->name('
 Route::get("/home", "landingController@showHomeLanding")->name('home');
 Route::get("/footer", "landingController@showFooterLanding")->name('footer');
 
-Route::group(['prefix' => 'landing'], function () {
+Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");
     Route::get("/get-chapter-info/{id}", "landingController@getChapterInfo");
     Route::get("/programming-carrusel", "landingController@showProgrammingSlider");
@@ -117,11 +117,11 @@ Route::group(['prefix' => 'landing'], function () {
 //RUTA PARA CARGAR CONTENIDO HTML
 Route::post('/view', "ViewsController@index")->middleware('session_user');
 
-Route::get('/upimage/{idimages}', "ProgramacionGeneralController@getImages")->name('upimage');
+Route::get('/upimage/{idimages}', "ProgramacionGeneralController@getImages")->name('upimage')->middleware('session_user');
 
 
 //RUTA PARA EDITAR ATRIBUTOS DE PROGRAMAS EN GRILLA
-Route::group(['prefix' => 'program'], function () {
+Route::group(['prefix' => 'program', 'middleware' => 'session_user'], function () {
     Route::post('editAttribute', "ProgramacionGeneralController@editAttribute")->name("editAttribute");
     Route::post('logout', "AuthController@signOut")->name("logout");
     Route::post('exit', "AuthController@exit")->name('exit');

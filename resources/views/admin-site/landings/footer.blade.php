@@ -57,7 +57,7 @@
             <div class="centro ">
                 <!--menu-->
                 <div class="row no-gutters">
-                    <ul class="tv-list-programming col-md-9 mt-5 mb-5">
+                    <ul class="tv-list-programming col-11 mt-5 mb-5">
                         <div class="col-md centro no-gap border-r d-flex justify-content-center">
                             <li rel="claro-networks-programing"
                                 class="list-channel-item px-5 py-4 list-channel-active d-flex align-content-center">
