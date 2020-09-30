@@ -128,7 +128,7 @@ export default class LandingView {
                         ".programming-slider-dots-home"
                     ),
                     initialSlide: 0,
-                    
+
                     arrows: true,
                     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
                     nextArrow: '<img src="./images/next.png" class="arrow-next" />',
@@ -159,8 +159,8 @@ export default class LandingView {
             "claro-networks-programing"
         );
         let FooterClaroNetworks = {
-            // remote: `${baseURL}footer-edition.php`,
-            remote: `http://localhost/MaquetaCNetworks/footer-edition.php`,
+            remote: `${baseURL}footer-edition.php`,
+            //remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
             container: document.getElementById("claro-networks-programing"),
             onMessage: function (message, origin) {
                 let json = JSON.parse(message);
@@ -388,8 +388,8 @@ export default class LandingView {
             sockets[3] = new easyXDM.Socket(
                 footerClaroCinemaPrev);
 
-                $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-                $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+            $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+            $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
         })
 
     }
@@ -412,11 +412,11 @@ export default class LandingView {
             sockets[3] = new easyXDM.Socket(
                 optionsFooterClaroCinema);
 
-                $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-                $("#prev-mobile").css("opacity", "0.4");
-                $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-                $("#prev-tablet").css("opacity", "0.4");
-                $("#prev-desktop").css("opacity", "1");
+            $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-mobile").css("opacity", "0.4");
+            $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-tablet").css("opacity", "0.4");
+            $("#prev-desktop").css("opacity", "1");
         });
 
     }
@@ -1007,12 +1007,12 @@ export default class LandingView {
         })
     }
 
-    test(valor){
+    test(valor) {
         $('.footer-textarea-ter').keydown(function (e) {
             let Final;
             let texto;
             if (e.which === 13 && !e.shiftKey) {
-                texto = document.getElementById("textTerminos").value+='\n';
+                texto = document.getElementById("textTerminos").value += '\n';
                 $('.footer-textarea-ter').attr('name', texto)
                 // valor = $('.footer-textarea-ter').attr('name');
                 // valor.attr(valor + '<br>');
@@ -1026,7 +1026,7 @@ export default class LandingView {
                 // texto = $('.footer-textarea-ter').attr('name');
                 // Final += texto;
                 // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
-    
+
             }
         });
     }
