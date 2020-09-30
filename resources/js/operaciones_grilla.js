@@ -863,7 +863,7 @@ function eventsGrilla() {
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
         );
-        resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+
 
         $("#prev-mobile")
             .removeClass("cursor-pointer")
@@ -881,7 +881,7 @@ function eventsGrilla() {
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
         );
-
+        resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
         $("#prev-mobile")
             .removeClass("cursor-pointer")
             .addClass("pointer-none");
