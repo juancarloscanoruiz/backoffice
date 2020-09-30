@@ -117,25 +117,31 @@
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                     Fecha
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                                <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-2"> 
+
                                                     <span class="a-text-bold-warm">Inicio: <input type="text"
                                                             class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                                             placeholder="00-00-0000" key="in_landing_begin" /></span>
                                                 </div>
-                                                <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
-                                                    <span class="a-text-bold-warm">Fin: <input type="text"
+                                                <div class="mb-4 text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                                <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3"> 
+                                                    <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                                             class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                                             key="in_landing_expiration" placeholder="00-00-0000"></span>
                                                 </div>
                                             </div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container backwhite  py-3">
-                                                <span class="a-text-bold-warm">Inicio: <input type="text"
+                                            <div class="mb-3 text-center edit-rectangle-small-container backwhite  py-2 align-items-center">
+                                            <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-2">
+                                                <span class="a-text-bold-warm ">Inicio: <input type="text"
                                                         class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                                                         key="in_landing_begin" placeholder="00:00:00"></span>
                                             </div>
-                                            <div class="text-center edit-rectangle-small-container backwhite py-3">
-                                                <span class="a-text-bold-warm">Fin: <input type="text"
+                                            <div class="text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                            <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+
+                                                <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                                         class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                                         key="in_landing_expiration" placeholder="00:00:00"></span>
                                             </div>
@@ -167,28 +173,32 @@
                                                 <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                                     Fecha
                                                 </p>
-                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                                                <div class="mb-3 text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                                <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-2"> 
                                                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                                                             type="text"
                                                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                                                             placeholder="00-00-0000" /></span>
                                                 </div>
-                                                <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
-                                                    <span class="a-text-bold-warm">Fin:
+                                                <div class="mb-4 text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                                <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3"> 
+                                                    <span class="a-text-bold-warm pr-2">Fin:
                                                         <input type="text" key="in_home_expiration"
                                                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text"
                                                             placeholder="00-00-0000"></span>
                                                 </div>
                                             </div>
                                             <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">Hora</p>
-                                            <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                                            <div class="mb-3 text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                            <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-2">
                                                 <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                                                         type="text"
                                                         class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                                                         placeholder="00:00:00"></span>
                                             </div>
-                                            <div class="text-center edit-rectangle-small-container backwhite py-3">
-                                                <span class="a-text-bold-warm">Fin: <input type="text"
+                                            <div class="text-center edit-rectangle-small-container backwhite py-2 align-items-center">
+                                            <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                                <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                                         class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end"
                                                         placeholder="00:00:00"></span>
                                             </div>

@@ -17,6 +17,9 @@ import {
 import {
     calendarSlick
 } from "../config/slick.js";
+import {
+    resetIframe
+} from "../vendor/easyXDM.js";
 
 import {
     createSlickSlider,
@@ -1864,7 +1867,7 @@ function getCarruselHome(landing) {
                                 <p class="text-plus text-uppercase a-text-bold-brown-two">Schedule item log date</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase">Fecha</p>
                                 <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                    <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
+                                    <img src="images/calendario.svg" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}" type="text" key="day" class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="DD:MM:YY">
                                 </div>
                             </div>
@@ -1875,7 +1878,7 @@ function getCarruselHome(landing) {
                                 <p class="text-plus text-uppercase a-text-bold-brown-two pb-4">Schedule item log time (gmt)</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
                                 <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                    <img src="images/reloj.svg" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.hour}" type="text" key="programing" class="edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                 </div>
                             </div>
@@ -1886,7 +1889,7 @@ function getCarruselHome(landing) {
                                 <p class=" text-plus text-uppercase a-text-bold-brown-two">estimated schedule item duration</p>
                                 <p class="a-text-medium-brown-two text-plus text-uppercase ">HORA</p>
                                 <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                    <img src="images/reloj.svg" alt="" class="mr-3">
                                     <input chapter_id="${chapter.chapter.id}" value="${chapter.chapter.duration}" type="text" key="duration" class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase" placeholder="00:00:00">
                                 </div>
                             </div>
@@ -3311,26 +3314,30 @@ function getPromotionalsProgramsCarousel(
                     console.log(chapter.chapter.in_landing_begin);
 
                     inLandingDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-2">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                 placeholder="00-00-0000" key="in_landing_begin" chapter_id="${chapter.chapter.id}" value="${dateBeginLanding}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
+                    <div class="mb-4 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" placeholder="00-00-0000" value="${dateExpirationLanding}"></span>
                     </div>
                     `;
 
                     inLandingTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input chapter_id="${chapter.chapter.id}" type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="${timeBegin}" placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
+                    <div class="text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end"
                                 key="in_landing_expiration" chapter_id="${chapter.chapter.id}" value="${timeExpiration}" placeholder="00:00:00"></span>
                     </div>
@@ -3352,25 +3359,29 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inLandingTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input type="text"
                             class="time-seconds-input input-basic edit-program-input edit-program-attribute-text chapter_id="${chapter.chapter.id}" a-text-bold-warm text-uppercase edit-landing-time-begin"
                             key="in_landing_begin" value="" placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
+                    <div class="text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                 class="time-seconds-input input-basic edit-program-input edit-program-attribute-text  a-text-bold-warm text-uppercase edit-landing-time-end" chapter_id="${chapter.chapter.id}"
                                 key="in_landing_expiration" value="" placeholder="00:00:00"></span>
                     </div>
                     `;
                     inLandingDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-2">
                         <span class="a-text-bold-warm">Inicio: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin"
                                 placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" key="in_landing_begin" value="" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text"
+                    <div class="mb-4 text-center edit-rectangle-small-container  d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text"
                                 class="input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end"
                                 key="in_landing_expiration" placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" value=""></span>
                     </div>`;
@@ -3427,28 +3438,32 @@ function getPromotionalsProgramsCarousel(
                     }
 
                     inHomeDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value="${dateHomeBegin}"
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                             placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container  backwhite py-3">
-                        <span class="a-text-bold-warm">Fin:
+                    <div class="mb-4 text-center edit-rectangle-small-container d-flex justify-content-center  backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin:
                             <input type="text" key="in_home_expiration"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value="${dateHomeExpiration}"
                                 placeholder="00-00-0000"></span>
                     </div>
                     `;
                     inHomeTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value="${timeHomeBegin}" chapter_id="${chapter.chapter.id}"
                             class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin"
                             placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration" chapter_id="${chapter.chapter.id}"
+                    <div class="text-center edit-rectangle-small-container backwhite  d-flex justify-content-center py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text" key="in_home_expiration" chapter_id="${chapter.chapter.id}"
                                 class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end" value="${timeHomeExpiration}"
                                 placeholder="00:00:00"></span>
                     </div>
@@ -3471,28 +3486,32 @@ function getPromotionalsProgramsCarousel(
                     </div>
                     `;
                     inHomeDates = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
                             class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text"
                             placeholder="00-00-0000" chapter_id="${chapter.chapter.id}" /></span>
                     </div>
-                    <div class="mb-4 text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin:
+                    <div class="mb-4 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/calendario.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin:
                             <input type="text" key="in_home_expiration"
                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text" chapter_id="${chapter.chapter.id}" value=""
                                 placeholder="00-00-0000"></span>
                     </div>
                     `;
                     inHomeTimes = `
-                    <div class="mb-3 text-center edit-rectangle-small-container backwhite py-3">
+                    <div class="mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-2">
                     <span class="a-text-bold-warm">Inicio: <input key="in_home_begin"
                             type="text" value=""
                             class="time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin" chapter_id="${chapter.chapter.id}"
                             placeholder="00:00:00"></span>
                     </div>
-                    <div class="text-center edit-rectangle-small-container backwhite py-3">
-                        <span class="a-text-bold-warm">Fin: <input type="text" key="in_home_expiration"
+                    <div class="text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center">
+                    <img src="images/reloj.svg" alt="" class="mr-3">
+                        <span class="a-text-bold-warm pr-2">Fin: <input type="text" key="in_home_expiration"
                                 class="time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end" value=""
                                 placeholder="00:00:00" chapter_id="${chapter.chapter.id}"></span>
                     </div>
@@ -3744,10 +3763,10 @@ function getPromotionalsProgramsCarousel(
                                     <p class="mb-3 text-plus a-text-medium-coolgray text-uppercase">
                                         Fecha
                                     </p>
-                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center"
+                                    <div class="text-center edit-rectangle-small-container backwhite py-2 d-flex align-items-center justify-content-center"
                                         style="margin-bottom: 81px">
-                                        <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
-                                        <span class="a-text-bold-warm mt-3">
+                                        <img src="images/calendario.svg" alt="" class="mr-3">
+                                        <span class="a-text-bold-warm ">
 
                                             <input key="" type=" text"
                                                 class="input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date"
@@ -3758,9 +3777,9 @@ function getPromotionalsProgramsCarousel(
                                     Hora
                                 </p>
                                 <div
-                                    class="text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2">
-                                    <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
-                                    <span class="a-text-bold-warm mt-3"><input type="text"
+                                    class="text-center edit-rectangle-small-container backwhite d-flex align-items-center justify-content-center py-2">
+                                    <img src="images/reloj.svg" alt="" class="mr-3">
+                                    <span class="a-text-bold-warm "><input type="text"
                                             class="time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase"
                                             placeholder="00:00:00" value="${chapter.chapter.hour}"></span>
                                 </div>
@@ -3775,7 +3794,7 @@ function getPromotionalsProgramsCarousel(
                     <textarea chapter_id="${chapter.chapter.id}" key="synopsis"
                         class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3"
                         id="prog_sinopsis">${chapter.chapter.synopsis}</textarea>
-                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                        <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt="" class="mr-2"> ACTUALIZAR</button>
                         <div class="clearfix"></div>
                 </section>
                 <section class="mb-3">
@@ -3890,8 +3909,8 @@ function getPromotionalsProgramsCarousel(
                                     ">Fecha
                                     </p>
                                     <div
-                                        class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                        <img src="{{ asset('images/calendario.svg') }}" alt="" class="mr-3">
+                                        class="mb-3 text-center edit-rectangle-small-container   backwhite py-3 d-flex align-items-center justify-content-center">
+                                        <img src="images/calendario.svg" alt="" class="mr-3">
                                         <input type="text" key="day" value="${scheduleDate[2]}-${scheduleDate[1]}-${scheduleDate[0]}"
                                             class="edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="DD:MM:YY" chapter_id="${chapter.chapter.id}">
@@ -3912,7 +3931,7 @@ function getPromotionalsProgramsCarousel(
                                     </p>
                                     <div
                                         class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                        <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                        <img src="images/reloj.svg" alt="" class="mr-3">
                                         <input type="text" key="programing" value="${chapter.chapter.hour}"
                                             class="edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="00:00:00" chapter_id="${chapter.chapter.id}">
@@ -3932,7 +3951,7 @@ function getPromotionalsProgramsCarousel(
                                     </p>
                                     <div
                                         class="mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center">
-                                        <img src="{{ asset('images/reloj.svg') }}" alt="" class="mr-3">
+                                        <img src="images/reloj.svg" alt="" class="mr-3">
                                         <input type="text" key="duration" value="${chapter.chapter.duration}"
                                             class="edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase"
                                             placeholder="00:00:00" chapter_id="${chapter.chapter.id}">
@@ -4911,14 +4930,59 @@ function confLandingHome(baseURL) {
         }
     }
 
+   
+    ////////////
+ 
     let navbarPrevHome = document.getElementById("navbar_prev_home_landing");
     if (navbarPrevHome) {
-        console.log('Llamando iframe')
         $("#navbar_prev_home_landing iframe").remove();
         new easyXDM.Socket(confLandingHome);
     }
+   
+    
+    /////////////
+    let confPrevHomeGrilla = {
+        remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/home.php`,
+        container: document.getElementById("navbar_prev_home_landing"),
+        onMessage: function (message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container
+                .getElementsByTagName("iframe")[0]
+               
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+        
+    };
+    $("#prev-landing-home-grilla").click(function () {
+        //Landing canal claro
+        resetIframe($("#navbar_prev_home_landing iframe"), confPrevHomeGrilla);
+        $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+        $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+      
+    });
+    $("#edit-landing-home-grilla").click(function () {
+       
+    
+       resetIframe($("#navbar_prev_home_landing iframe"), confLandingHome);
+       $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+       $("#prev-mobile").css("opacity", "0.4");
+       $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+       $("#prev-tablet").css("opacity", "0.4");
+       $("#prev-desktop").css("opacity", "1");
+    });
 }
 
+   
+ 
+
+ 
+
+ 
+   
+   
 
 
 // HOME

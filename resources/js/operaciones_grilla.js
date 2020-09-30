@@ -98,7 +98,7 @@ import {
 
 function eventsGrilla() {
 
-
+   
     //Sacamos la fecha actual para ponerla en el calendario
     let currentDate1 = new Date();
 
@@ -234,14 +234,45 @@ function eventsGrilla() {
         }
     };
 
-
-    let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
-    if (NavbarHomeCinema) {
-        $(".loader-view-container").remove();
-        $('#navbar-prev-home-cinema iframe').remove();
-        new easyXDM.Socket(LandingHomeCinema);
-    }
-
+       ////////////
+       let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
+       if (NavbarHomeCinema) {
+           $("#navbar-prev-home-cinema  iframe").remove();
+           new easyXDM.Socket(LandingHomeCinema);
+       }
+       let confPrevHomeCinema = {
+           remote: `${baseURL}home.php`,
+           container: document.getElementById("navbar-prev-home-cinema"),
+           onMessage: function (message, origin) {
+               console.log(message);
+               this.container.getElementsByTagName("iframe")[0].style.height =
+                   message + "px";
+               this.container
+                   .getElementsByTagName("iframe")[0]
+                  
+               this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                   "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+           }
+       };
+       
+       //previsualizar canal claro
+       $("#prev-landing-cinema").click(function () {
+           //Landing canal claro
+           resetIframe($("#navbar-prev-home-cinema iframe"), confPrevHomeCinema);
+           $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+           $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+       });
+       $("#edit-landing-cinema").click(function () {
+           resetIframe($("#navbar-prev-home-cinema iframe"),LandingHomeCinema);
+       
+           $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-mobile").css("opacity", "0.4");
+           $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-tablet").css("opacity", "0.4");
+           $("#prev-desktop").css("opacity", "1");
+       });
+       
+       /////////////
 
 
     let LandingSinopsis = {
@@ -2996,12 +3027,7 @@ function eventsGrilla() {
     window.onload = preloader;*/
 
     //Landing de programación de claro cinema
-    let navbarPrograContainerCinema = document.getElementById(
-        "navbar-prev-programacion-cinema"
-    );
-    let iframeProgramacionCinema = $(
-        "#navbar-prev-programacion-cinema iframe"
-    );
+   
 
     let confProgramacionClaroCinema = {
         remote: `${baseURL}programacion-edi-cinema.php`,
@@ -3057,10 +3083,47 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    if (navbarPrograContainerCinema) {
-        iframeProgramacionCinema.remove();
-        new easyXDM.Socket(confProgramacionClaroCinema);
+    
+  
+    ////////////
+    let navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
+if (navbarPrograContainerCinema) {
+    $("#navbar-prev-programacion-cinema iframe").remove();
+    new easyXDM.Socket(confProgramacionClaroCinema);
+}
+let confPrevProgramacionCinema = {
+    remote: `${baseURL}programacion-cinema.php`,
+    container: document.getElementById("navbar-prev-programacion-cinema"),
+    onMessage: function (message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height =
+            message + "px";
+        this.container
+            .getElementsByTagName("iframe")[0]
+           
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
+};
+
+//previsualizar canal claro
+$("#prev-landing-cinema").click(function () {
+    //Landing canal claro
+    resetIframe($("#navbar-prev-programacion-cinema iframe"), confPrevProgramacionCinema);
+    $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+});
+$("#edit-landing-cinema").click(function () {
+    resetIframe($("#navbar-prev-programacion-cinema iframe"),confProgramacionClaroCinema);
+
+    $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    $("#prev-mobile").css("opacity", "0.4");
+    $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    $("#prev-tablet").css("opacity", "0.4");
+    $("#prev-desktop").css("opacity", "1");
+});
+
+/////////////
 
     $(".modal-program-claro-cinema").click(function () {
         resetIframe(
@@ -3070,12 +3133,7 @@ function eventsGrilla() {
     });
 
     //Landing de programacion de concert channel
-    let navbarPrograContainerConcert = document.getElementById(
-        "navbar-prev-programacion-concert"
-    );
-    let iframeProgramacionConcert = $(
-        "#navbar-prev-programacion-concert iframe"
-    );
+   
     let confProgramacionConcertChannel = {
         remote: `${baseURL}programacion-edi-concert.php`,
         container: document.getElementById("navbar-prev-programacion-concert"),
@@ -3128,10 +3186,47 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    if (navbarPrograContainerConcert) {
-        iframeProgramacionConcert.remove();
-        new easyXDM.Socket(confProgramacionConcertChannel);
-    }
+   
+
+       ////////////
+       let navbarPrograContainerConcert  = document.getElementById("navbar-prev-programacion-concert");
+       if (navbarPrograContainerConcert) {
+           $("#navbar-prev-programacion-concert iframe").remove();
+           new easyXDM.Socket(confProgramacionConcertChannel);
+       }
+       let confPrevProgramacionConcert = {
+           remote: `${baseURL}programacion-concert.php`,
+           container: document.getElementById("navbar-prev-programacion-concert"),
+           onMessage: function (message, origin) {
+               console.log(message);
+               this.container.getElementsByTagName("iframe")[0].style.height =
+                   message + "px";
+               this.container
+                   .getElementsByTagName("iframe")[0]
+                  
+               this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                   "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+           }
+       };
+       
+       //previsualizar canal claro
+       $("#prev-landing-concert").click(function () {
+           //Landing canal claro
+           resetIframe($("#navbar-prev-programacion-concert iframe"), confPrevProgramacionConcert);
+           $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+           $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+       });
+       $("#edit-landing-concert").click(function () {
+           resetIframe($("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+       
+           $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-mobile").css("opacity", "0.4");
+           $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-tablet").css("opacity", "0.4");
+           $("#prev-desktop").css("opacity", "1");
+       });
+       
+       /////////////
 
     $(".modal-program-concert-channel").click(function () {
         resetIframe(
@@ -4855,11 +4950,47 @@ let navbarPrograContainer = document.getElementById("navbar-prev-programacion");
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
-    if (NavbarHomeConcert) {
-        $("#navbar-prev-home-concert iframe").remove();
-        new easyXDM.Socket(LandingHomeConcert);
-    }
+ 
+
+       ////////////
+       let NavbarHomeConcert  = document.getElementById("navbar-prev-home-concert");
+       if (NavbarHomeConcert) {
+           $("#navbar-prev-home-concert iframe").remove();
+           new easyXDM.Socket(LandingHomeConcert);
+       }
+       let confPrevHomeConcert = {
+           remote: `${baseURL}home.php`,
+           container: document.getElementById("navbar-prev-home-concert"),
+           onMessage: function (message, origin) {
+               console.log(message);
+               this.container.getElementsByTagName("iframe")[0].style.height =
+                   message + "px";
+               this.container
+                   .getElementsByTagName("iframe")[0]
+                  
+               this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                   "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+           }
+       };
+       
+       //previsualizar canal claro
+       $("#prev-landing-concert").click(function () {
+           //Landing canal claro
+           resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+           $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+           $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+       });
+       $("#edit-landing-concert").click(function () {
+           resetIframe($("#navbar-prev-home-concert iframe"),LandingHomeConcert);
+       
+           $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-mobile").css("opacity", "0.4");
+           $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+           $("#prev-tablet").css("opacity", "0.4");
+           $("#prev-desktop").css("opacity", "1");
+       });
+       
+       /////////////
 
     let LandingHomeClaro = {
         remote: `${baseURL}home-edi-claro.php`,
