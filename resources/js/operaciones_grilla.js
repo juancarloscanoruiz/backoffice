@@ -3301,29 +3301,24 @@ case "header2":
     };
 
     //previsualizar canal claro
-    $("#prev").click(function () {
-        $("#navbar-prev-programacion iframe").remove();
-        $('#device-size').load('imports #device-size-prev', function () {
-            $('.a-prev-image').click(function () {
-                previewPage($(this));
-            });
-        });
-        new easyXDM.Socket({
-            remote: `${baseURL}programacion.php`,
-            container: document.getElementById("navbar-prev-programacion"),
-            onMessage: function (message, origin) {
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        });
-        //Landing canal claro
-        resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
-        $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-        $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-    });
+    // $("#prev").click(function () {
+    //     $("#navbar-prev-programacion iframe").remove();
+    //     new easyXDM.Socket({
+    //         remote: `${baseURL}programacion.php`,
+    //         container: document.getElementById("navbar-prev-programacion"),
+    //         onMessage: function (message, origin) {
+    //             this.container.getElementsByTagName("iframe")[0].style.height =
+    //                 message + "px";
+    //             this.container.getElementsByTagName(
+    //                 "iframe"
+    //             )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    //         }
+    //     });
+    //     //Landing canal claro
+    //     resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
+    //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+    // });
     $("#edit").click(function () {
         resetIframe($("#navbar-prev-programacion iframe"), confIframe);
 
@@ -4346,11 +4341,11 @@ case "header2":
         new easyXDM.Socket(landingCanalClaro);
         $("#prev").click(function () {
             $("#navbar-prev-canal-claro iframe").remove();
-            $('#device-size').load('imports #device-size-prev', function () {
-                $('.a-prev-image').click(function () {
-                    previewPage($(this));
-                });
-            });
+            // $('#device-size').load('imports #device-size-prev', function () {
+            //     $('.a-prev-image').click(function () {
+            //         previewPage($(this));
+            //     });
+            // });
             new easyXDM.Socket({
                 remote: `${baseURL}claro-canal.php`,
                 container: document.getElementById("navbar-prev-canal-claro"),
