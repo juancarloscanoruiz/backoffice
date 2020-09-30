@@ -6,27 +6,27 @@
     <div id="title" class="mt-3">
         <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
             <div class="d-flex  ">
-                <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
+                <button class="btn-apro  a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                <button class="btn-recha   a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
             </div>
         </div>
         <div class="d-flex float-right mb-4 mr-5 ">
             <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                 <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                    <input type="radio" name="sexo" id="edit" checked />
-                    <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                    <input type="radio" name="sexo" id="edit-landing-cinema" checked />
+                    <label for="edit-landing-cinema" id="edit-landing-cinema" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                         <p class=" a-prev-title">EDITAR</p>
                     </label>
-                    <input type="radio" name="sexo" id="prev" />
-                    <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                    <input type="radio" name="sexo" id="prev-landing-cinema" />
+                    <label for="prev-landing-cinema" id="prev-landing-cinema" class="hombre-estilo pl-2 pt-3">
                         <p class=" a-prev-title ">PREVISUALIZAR</p>
                     </label>
                 </div>
             </form>
             <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
                 </div>
         </div>
         <div class="clearfix"></div>
