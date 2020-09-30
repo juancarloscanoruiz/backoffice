@@ -71,6 +71,7 @@ Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('c
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
 Route::get("/footer", "landingController@showFooterLanding")->name('footer');
+Route::get("/sinopsis", "landingController@showSinopsisLanding")->name('sinopsis');
 
 Route::group(['prefix' => 'landing'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");

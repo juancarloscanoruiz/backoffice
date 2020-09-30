@@ -98209,8 +98209,8 @@ var LandingView = /*#__PURE__*/function () {
       var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
       var containerFooterClaroNetworks = document.getElementById("claro-networks-programing");
       var FooterClaroNetworks = {
-        remote: "".concat(baseURL, "footer-edition.php"),
-        //remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
+        // remote: `${baseURL}footer-edition.php`,
+        remote: "http://localhost/MaquetaCNetworks/footer-edition.php",
         container: document.getElementById("claro-networks-programing"),
         onMessage: function onMessage(message, origin) {
           var json = JSON.parse(message);
@@ -98900,7 +98900,8 @@ var LandingView = /*#__PURE__*/function () {
       //Botón del modal de términos y condiciones
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_terminos-footer').click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val();
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val(); // let text = $('.footer-textarea-ter').attr('name');
+
         var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val();
         var landing = "terms";
         var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
@@ -98978,6 +98979,8 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "getContentTerms",
     value: function getContentTerms() {
+      var _this = this;
+
       var response = landingController.getContentRights();
       response.then(function (data) {
         if (data.code == 200) {
@@ -98985,6 +98988,31 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val(data.data.terms_title);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val(data.data.about_text);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val(data.data.about_title);
+
+          _this.test(data.data.terms_text);
+        }
+      });
+    }
+  }, {
+    key: "test",
+    value: function test(valor) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').keydown(function (e) {
+        var Final;
+        var texto;
+
+        if (e.which === 13 && !e.shiftKey) {
+          texto = document.getElementById("textTerminos").value += '\n';
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').attr('name', texto); // valor = $('.footer-textarea-ter').attr('name');
+          // valor.attr(valor + '<br>');
+          // debugger
+          // $('.footer-textarea-ter').click(function(){
+          //      valor = $('.footer-textarea-ter').val()
+          // })
+          // alert(valor);
+          // $('.footer-textarea-ter').attr('name', $('.footer-textarea-ter').val()+ '<br>')
+          // texto = $('.footer-textarea-ter').attr('name');
+          // Final += texto;
+          // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
         }
       });
     }

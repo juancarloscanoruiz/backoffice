@@ -10,8 +10,7 @@
                         <!-- TEXT AREA -->
                         <div class="txa-tercon">
                             <input class="footer-title-ter a-text-black-brown-two" type="text" placeholder="TITULO">
-                            <textarea class="footer-textarea-ter a-text-black-brown-two mt-3"
-                                placeholder="Texto"></textarea>
+                            <textarea class="footer-textarea-ter a-text-black-brown-two mt-3" id="textTerminos" name="textTerminos" placeholder="Texto"></textarea>
                         </div>
                     </div>
                 </div>
@@ -19,11 +18,8 @@
             <!-- BOTONES -->
             <div class="content mt-4">
                 <div class="d-flex justify-content-center">
-                    <button id="acepta_terminos-footer"
-                        class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                    <a href="#delete-info" role="button"
-                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
+                    <button id="acepta_terminos-footer" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                    <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>
         </div>
