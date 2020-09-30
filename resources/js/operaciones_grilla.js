@@ -92,6 +92,10 @@ import {
     getMonthAndYearmin
 } from "./vendor/slick.js";
 
+import {
+    previewPage
+} from "./preview/prev.js";
+
 function eventsGrilla() {
 
 

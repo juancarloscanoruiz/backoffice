@@ -1,17 +1,15 @@
-
 <div class="grilla-home">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 pl-0">
                 <!-- ULTIMA EDICION -->
                 <div class="ml-5">
-                <div><span class="a-text-black-light text-plus">Última edición : <span class="zona date-edit" id="date-edit">
+                    <div><span class="a-text-black-light text-plus">Última edición : <span class="zona date-edit" id="date-edit">
                             </span> </span></div>
-                <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label
-                            class="zona ">{{ session('rol_name') }}</label>)</label></span>
-            </div>
-            
-               
+                    <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label class="zona ">{{ session('rol_name') }}</label>)</label></span>
+                </div>
+
+
             </div>
             <div class="col-12 col-md-6 pr-0">
                 <!--Editar o previsualizar-->
@@ -29,10 +27,10 @@
                         </div>
                     </form>
                     <!--Iconos para previsualizar en diferentes tamaños-->
-                    <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    <div id="device-size">
+                        <div class="pt-2">
+                            <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,10 +38,10 @@
                 <!--Buttons-->
                 <div class="float-left ml-5 mb-4 ">
                     <div class="d-flex">
-                    <button class="btn-apro a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
-                            cambios</span></button>
-                    <button class="btn-recha a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
-                            cambios</span></button>
+                        <button class="btn-apro a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                                cambios</span></button>
+                        <button class="btn-recha a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
+                                cambios</span></button>
                     </div>
                 </div>
             </div>
@@ -58,7 +56,7 @@
     <!--iframe de home-->
     <div class="centro">
         <div class="navbar-progra-content my-5" id="navbar_prev_home_landing">
-            
+
         </div>
     </div>
 
@@ -71,4 +69,4 @@
 @include('partials.adm-CN.modals-claro.index');
 
 
-    </div>
+</div>

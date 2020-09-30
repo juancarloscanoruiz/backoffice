@@ -74581,6 +74581,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config/slick.js */ "./resources/js/config/slick.js");
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -74603,6 +74604,7 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
 
  //Config
+
 
 
 
@@ -76105,9 +76107,18 @@ function eventsGrilla() {
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
 
+<<<<<<< HEAD
   if (navbarPrograContainer) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
     new easyXDM.Socket(confIframe);
+=======
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
+      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#device-size').load('imports #device-size-edit');
+      new easyXDM.Socket(confIframe);
+    });
+>>>>>>> c7f82889d54d745cb472d96a5b1e08bf42b67657
   }
 
   var confPrevProgramacion = {
@@ -76122,10 +76133,27 @@ function eventsGrilla() {
   }; //previsualizar canal claro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+<<<<<<< HEAD
     //Landing canal claro
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+=======
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#device-size').load('imports #device-size-prev', function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.a-prev-image').click(function () {
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      });
+    });
+    new easyXDM.Socket({
+      remote: "".concat(baseURL, "programacion.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    });
+>>>>>>> c7f82889d54d745cb472d96a5b1e08bf42b67657
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
@@ -76996,6 +77024,7 @@ function eventsGrilla() {
   if (navbarLandingCanalClaro) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
     new easyXDM.Socket(landingCanalClaro);
+<<<<<<< HEAD
   }
 
   var confPrevClaroCanal = {
@@ -77008,6 +77037,31 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   }; //previsualizar canal claro
+=======
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#device-size').load('imports #device-size-prev', function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.a-prev-image').click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
+      new easyXDM.Socket({
+        remote: "".concat(baseURL, "claro-canal.php"),
+        container: document.getElementById("navbar-prev-canal-claro"),
+        onMessage: function onMessage(message, origin) {
+          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+      });
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
+      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#device-size').load('imports #device-size-edit');
+      new easyXDM.Socket(landingCanalClaro);
+    });
+  } // BTN MODAL URL ENCABEZADO
+>>>>>>> c7f82889d54d745cb472d96a5b1e08bf42b67657
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
     //Landing canal claro

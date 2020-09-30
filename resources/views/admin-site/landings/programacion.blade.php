@@ -41,17 +41,30 @@
             <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1"style="width:32px" /></button>
         </div>
-        <div class="clearfix"></div> 
-        <div class="centro ">
-                <div class="load-view pointer-none" id="loader-view"> </div>
-                <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()'
-                    id="navbar-prev-programacion" style="display:none;">
-                </div>
-            </div>
+      </form>
+     
+    </div>
+    <div class="clearfix"></div>
+    <div class="ml-5 float-left mb-4">
+      <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit">septiembre 17
+            2019</span> </span></div>
+      <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label class="zona ">{{ session('rol_name') }}</label>)</label></span>
+    </div>
 
 
-    </body>
-    @include('partials.adm-CN.modals-claro.banner-claro')
-    @include('partials.adm-CN.modals-claro.index')
-    @include('partials.adm-CN.modals-concert.carrusel');
+    <div class=" mr-5 d-flex float-right ">
+      <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg" class="Icon_paises1" style="width:32px" /></button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="centro ">
+      <div class="load-view pointer-none" id="loader-view"> </div>
+      <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()' id="navbar-prev-programacion" style="display:none;">
+      </div>
+    </div>
+
+
+</body>
+@include('partials.adm-CN.modals-claro.banner-claro')
+@include('partials.adm-CN.modals-claro.index')
+@include('partials.adm-CN.modals-concert.carrusel');
 @endsection
