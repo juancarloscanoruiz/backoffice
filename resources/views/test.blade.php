@@ -26,8 +26,8 @@
     <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ asset('/fonts/Montserrat-Regular/Montserrat-Regular.woff2') }}">
     <link href="{{ asset('css/app.css') }}?t=<?php echo time(); ?>" rel="stylesheet">
 
-    <!-- <link href="{{ asset('bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('bootstrap-select/dist/js/bootstrap-select.min.js') }}" ></script> -->
+    <link href="{{ asset('bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('bootstrap-select/dist/js/bootstrap-select.min.js') }}" ></script>
 
     <title>Pruebas</title>
 

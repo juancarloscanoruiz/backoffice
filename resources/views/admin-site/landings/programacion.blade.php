@@ -8,8 +8,8 @@
     <div id="title" class="mt-3">
         <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
         <div class="d-flex  ">
-                    <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                    <button class="btn-recha  text-grilla lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
+                    <button class="btn-apro   a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
+                    <button class="btn-recha   a-text-MBlack text-normal lan-claro" id="btn-landing" ><span>Rechazar cambios</span></button>
                 </div>
             </div>                   
             <div class="d-flex float-right mb-4 mr-5 ">
@@ -24,9 +24,9 @@
                     </div>
                   </form>
                   <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
                 </div>
             </div>  
             <div class="clearfix"></div>
@@ -41,17 +41,19 @@
             <div class=" mr-5 d-flex float-right ">
             <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg"  class="Icon_paises1"style="width:32px" /></button>
         </div>
-        <div class="clearfix"></div> 
-        <div class="centro ">
-                <div class="load-view pointer-none" id="loader-view"> </div>
-                <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " onload='preloader()'
-                    id="navbar-prev-programacion" style="display:none;">
-                </div>
-            </div>
+      </form>
+     
+    </div>
+  
+    <div class="centro ">
+  
+      <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion "  id="navbar-prev-programacion" >
+      </div>
+    </div>
 
 
-    </body>
-    @include('partials.adm-CN.modals-claro.banner-claro')
-    @include('partials.adm-CN.modals-claro.index')
-    @include('partials.adm-CN.modals-concert.carrusel');
+</body>
+@include('partials.adm-CN.modals-claro.banner-claro')
+@include('partials.adm-CN.modals-claro.index')
+@include('partials.adm-CN.modals-concert.carrusel');
 @endsection

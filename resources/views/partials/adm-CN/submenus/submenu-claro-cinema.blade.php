@@ -44,20 +44,20 @@
             <div class="d-flex float-right mb-4 pb-2 mr-5">
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                        <input type="radio" name="sexo" id="edit" class="edi-cinema" checked />
-                        <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <input type="radio" name="sexo" id="edit-landing-cinema" class="edi-cinema" checked />
+                        <label for="edit-landing-cinema" id="edit-landing-cinema" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
-                        <input type="radio" name="sexo" id="prev" class="prev-cinema" />
-                        <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                        <input type="radio" name="sexo" id="prev-landing-cinema" class="prev-cinema" />
+                        <label for="prev-landing-cinema" id="prev-landing-cinema" class="hombre-estilo pl-2 pt-3">
                             <p class=" a-prev-title ">PREVISUALIZAR</p>
                         </label>
                     </div>
                 </form>
-                <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 cursor-pointer op-inac" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image cursor-pointer op-inac" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 cursor-pointer op-ac" alt="pc" id="prev-desktop">
+                <div id="device-size">
+                    <div class="pt-2">
+                        <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    </div>
                 </div>
             </div>
             <div class="float-left ml-5 mb-4 ">
@@ -319,7 +319,7 @@
     <!--inicio de modales para edición-->
 
     <!--HOME-->
-   
+
     @include('partials.adm-CN.modals-claro.index');
 
     @include('partials.adm-CN.modal-home.carrusel')
@@ -333,7 +333,7 @@
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.modals-cinema.programming');
-    
+
     @include('partials.adm-CN.modal-generic.advertencia');
     @include('partials.adm-CN.modal-generic.url');
 </body>

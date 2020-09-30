@@ -71,6 +71,7 @@ Route::get("/claro-cinema", "landingController@showClaroCinemaLanding")->name('c
 Route::get("/programacion", "landingController@showProgramacionLanding")->name('programacion');
 Route::get("/home", "landingController@showHomeLanding")->name('home');
 Route::get("/footer", "landingController@showFooterLanding")->name('footer');
+Route::get("/sinopsis", "landingController@showSinopsisLanding")->name('sinopsis');
 
 Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function () {
     Route::get('edit-program', "landingController@showEditProgramView");
@@ -141,6 +142,5 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
 // MODALES
-Route::get('/test',  function () {
-    return view('test');
-});
+Route::get('/test',  function () {return view('test');});
+Route::get('/imports',  function () {return view('admin-site.imports.device-size');});
