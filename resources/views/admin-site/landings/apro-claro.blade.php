@@ -1,14 +1,15 @@
 @extends('layaout.app')
 
 @section('content')
-
-<body>
-    @include('partials.headers.headerPrograGeneral')
-    <div id="title" class="mt-3">
-        <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
-            <div class="d-flex">
-                <button class="btn-apro  text-grilla mr-3 gril-claro" id="btn-grilla"><span>Aprobar cambios</span></button>
-                <button class="btn-recha  text-grilla lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
+    <body>
+        @include('partials.headers.headerPrograGeneral')
+        <div id="title" class="mt-3">
+            <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
+                <div class="d-flex">
+                    <button class="btn-apro  a-text-MBlack text-normal mr-3 gril-claro" id="btn-grilla"><span>Aprobar
+                            cambios</span></button>
+                    <button class="btn-recha   a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar cambios</span></button>
+                </div>
             </div>
         </div>
         <div class="d-flex float-right mb-4 mr-5 ">
@@ -26,7 +27,9 @@
             </form>
             <div id="device-size">
                 <div class="pt-2">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
                 </div>
             </div>
         </div>

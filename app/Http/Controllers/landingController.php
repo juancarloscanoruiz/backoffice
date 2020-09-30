@@ -35,6 +35,8 @@ class landingController extends Controller
     public function showHomeLanding()
     {
         return view('admin-site.landings.home');
+      // return view('partials.adm-CN.grillas.grilla-home');
+
     }
     public function showFooterLanding()
     {

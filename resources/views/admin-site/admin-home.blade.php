@@ -13,21 +13,25 @@
             <!--Contenido de la tabla-->
             <div class="pd-5">PROGRAMACIÓN GENERAL</div>
             <div class="justify-content-center">
-                <a href="general-program"><input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus  load-photo" /></a>
-                <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus"></input>
-                <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus"></input>
+                <a href="general-program"><input type="image" src="./images/lapiz-acti.svg" alt=""
+                        class="ml-3 btn-focus  load-photo" /></a>
+                <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
+                <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
             <div class="pd-5">PROGRAMACIÓN</div>
             <div class="justify-content-center">
                 <a href="{{ route('programacion') }}">
                     <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
-                <input type="image" src="./images/historial-inac.svg" alt="" class="ml-3 btn-focus "></input>
-                <input type="image" src="./images/noti-inac.svg" alt="" class="ml-3 btn-focus "></input>
+                <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
+                <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
-            <div class="pd-5 text-sexo">HOME</div>
+            <div class="pd-5">HOME</div>
             <div class="justify-content-center">
                 <input type="image" src="./images/lapiz-no.svg" alt="" class="ml-3 btn-focus "></input>
+            <a href="{{ route('home') }}">
+            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+            </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
@@ -71,7 +75,7 @@
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
-            <div class="pd-5 text-sexo">FOOTER</div>
+            <div class="pd-5 ">FOOTER</div>
             <div class="justify-content-center">
                 <a href="{{ route('footer') }}">
                     <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
@@ -85,6 +89,9 @@
                 <a href="{{ route('sinopsis') }}">
                     <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
+            <div class="pd-5 ">SINÓPSIS</div>
+            <div class="justify-content-center">
+                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 

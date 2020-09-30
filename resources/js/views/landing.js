@@ -387,6 +387,9 @@ export default class LandingView {
                 footerConcertChannelPrev);
             sockets[3] = new easyXDM.Socket(
                 footerClaroCinemaPrev);
+
+                $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+                $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
         })
 
     }
@@ -408,6 +411,12 @@ export default class LandingView {
                 optionsFooterConcertChannel);
             sockets[3] = new easyXDM.Socket(
                 optionsFooterClaroCinema);
+
+                $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+                $("#prev-mobile").css("opacity", "0.4");
+                $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+                $("#prev-tablet").css("opacity", "0.4");
+                $("#prev-desktop").css("opacity", "1");
         });
 
     }
