@@ -75124,6 +75124,80 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4OTwo"])();
             break;
 
+          /* case "pencil-carrusel1":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-edit-program-carrusel").modal("show");
+          //slider para carrusel concert-channel
+          $(".carrusel1-slider").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel1-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+          var thumb = $(slider.$slides[i]).data();
+          return (
+          "<p class='a-text-bold-teal slider-pagination-item'>" +
+          (i + 1) +
+          "</p>"
+          );
+          }
+          });
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-carrusel2":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-edit-program-carrusel2").modal("show");
+          $(".carrusel2-slider").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: $(".carrusel2-slider-dots1"),
+          initialSlide: 0,
+          infinite: false,
+          customPaging: function (slider, i) {
+          var thumb = $(slider.$slides[i]).data();
+          return (
+          "<p class='a-text-bold-teal slider-pagination-item'>" +
+          (i + 1) +
+          "</p>"
+          );
+          }
+          });
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-header":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-video":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-promos-concert").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "pencil-header1":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;
+          case "header2":
+          $("body").append(loader);
+          setTimeout(function () {
+          $(".modal-titles").modal("show");
+          $("#loader1").remove();
+          }, 3000);
+          break;*/
+
           case "pencil-carrusel1":
             var landing = "Concert Channel";
             var id = 1;
@@ -75166,12 +75240,11 @@ function eventsGrilla() {
     }
   };
   var confPrevConcert = {
-    remote: "".concat(baseURL, "concert-channel.php"),
+    remote: "".concat(baseURL, "concert-channel-prev.php"),
     container: document.getElementById("navbar-prev-concert-channel"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   }; //previsualizar concert channel
@@ -76207,11 +76280,43 @@ function eventsGrilla() {
   }; //previsualizar canal claro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-    //Landing canal claro
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#device-size').load('imports #device-size-prev', function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.a-prev-image').click(function () {
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      });
+    });
+    new easyXDM.Socket({
+      remote: "".concat(baseURL, "programacion-prev.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }); //Landing canal claro
+
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
+  }); // $("#prev").click(function () {
+  //     $("#navbar-prev-programacion iframe").remove();
+  //     new easyXDM.Socket({
+  //         remote: `${baseURL}programacion.php`,
+  //         container: document.getElementById("navbar-prev-programacion"),
+  //         onMessage: function (message, origin) {
+  //             this.container.getElementsByTagName("iframe")[0].style.height =
+  //                 message + "px";
+  //             this.container.getElementsByTagName(
+  //                 "iframe"
+  //             )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+  //         }
+  //     });
+  //     //Landing canal claro
+  //     resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
+  //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+  //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+  // });
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
@@ -77348,39 +77453,41 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
     FilePromoImg(this);
   }); // IMG DE PROMO CARGAR
-
-  function FilePromoImg(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-    if (objFileInput.files[0]) {
-      fileSrt.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<img src="' + e.target.result + '" alt="" class="d-flex w-100" id="promo-image-concert">');
-      };
-    }
-
-    fileSrt.readAsDataURL(objFileInput.files[0]);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-  } // VIDEO DE PROMO
-
+  // function FilePromoImg(objFileInput) {
+  //     $("body").append(LOADER);
+  //     if (objFileInput.files[0]) {
+  //         fileSrt.onload = function (e) {
+  //             $("#cinema-promo-container").html(
+  //                 '<img src="' +
+  //                 e.target.result +
+  //                 '" alt="" class="d-flex w-100" id="promo-image-concert">'
+  //             );
+  //         };
+  //     }
+  //     fileSrt.readAsDataURL(objFileInput.files[0]);
+  //     $(".loader-view-container").remove();
+  // }
+  // VIDEO DE PROMO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
     FilePromoVideo(this);
   }); // VIDEO DE PROMO CARGAR
-
-  function FilePromoVideo(objFileInput) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-    if (objFileInput.files[0]) {
-      fileSrt.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html('<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' + e.target.result + '" type="video/mp4"> </video>');
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      };
-
-      fileSrt.readAsDataURL(objFileInput.files[0]);
-    }
-  } // HEADER EDIT CANAL CLARO
+  // function FilePromoVideo(objFileInput) {
+  //     $("body").append(LOADER);
+  //     if (objFileInput.files[0]) {
+  //         fileSrt.onload = function (e) {
+  //             $("#cinema-promo-container").html(
+  //                 '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
+  //                 e.target.result +
+  //                 '" type="video/mp4"> </video>'
+  //             );
+  //             $(".loader-view-container").remove();
+  //         };
+  //         fileSrt.readAsDataURL(objFileInput.files[0]);
+  //     }
+  // }
   // HEADER EDIT CANAL CLARO
-
+  // HEADER EDIT CANAL CLARO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-promo-cinema").click(function () {
     var file = "";
@@ -77497,6 +77604,160 @@ function eventsGrilla() {
       console.log("si lo borra");
     }, 2000);
   });
+  /* MVC */
+
+  var LandingHomeClaro = {
+    remote: "".concat(baseURL, "home-edi-claro.php"),
+    // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            landingView.renderHomeBanner();
+            break;
+
+          case "home-claro-carrousel-main":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year3 = date.getUTCFullYear();
+
+            var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day);
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
+            break;
+
+          case "claro-home-header":
+            landingView.renderHomeHeaderCanalClaro();
+            break;
+
+          case "claro-home-slider":
+            var landing = 'Canal Claro';
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var navbarHomeCanalClaro = document.getElementById("navbar-prev-home");
+
+  if (navbarHomeCanalClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
+    new easyXDM.Socket(LandingHomeClaro);
+  }
+
+  var confHomeClaroCanal = {
+    remote: "".concat(baseURL, "home.php"),
+    container: document.getElementById("navbar-prev-home"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0];
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  }; //previsualizar canal claro
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+    //Landing canal claro
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), confHomeClaroCanal);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+  });
+  var LandingHomeConcert = {
+    remote: "".concat(baseURL, "home-edi-concert.php"),
+    //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
+    container: document.getElementById("navbar-prev-home-concert"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            landingView.renderHomeBanner();
+            break;
+
+          case "home-claro-carrousel-main":
+            var date = new Date();
+            var day = ("0" + date.getUTCDate()).slice(-2);
+            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+
+            var _year4 = date.getUTCFullYear();
+
+            var _currentDate4 = "".concat(_year4, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "concert channel", 'home');
+
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "concert-channel");
+            break;
+
+          case "concert-home-header":
+            landingView.renderHomeHeaderConcertChannel();
+            break;
+
+          case "concert-home-slider":
+            var landing = 'Concert Channel';
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+
+  if (NavbarHomeConcert) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
+    new easyXDM.Socket(LandingHomeConcert);
+  } ////////////
+
+
+  var confPrevHomeConcert = {
+    remote: "".concat(baseURL, "home.php"),
+    container: document.getElementById("navbar-prev-home-concert"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0];
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  }; //previsualizar canal claro
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+    //Landing canal claro
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+  });
   var LandingHome = {
     remote: "".concat(baseURL, "home-edi.php"),
     container: document.getElementById("navbar-prev-home-landing"),
@@ -77504,7 +77765,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                    <div class=\"loader-view-container\" id=\"loader1\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
+        var loader = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
 
         switch (json.type) {
           case "slider-pagination":
@@ -77525,11 +77786,11 @@ function eventsGrilla() {
             var day = ("0" + date.getUTCDate()).slice(-2);
             var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-            var _year3 = date.getUTCFullYear();
+            var _year5 = date.getUTCFullYear();
 
-            var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day);
+            var _currentDate5 = "".concat(_year5, "-").concat(month, "-").concat(day);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "canal-claro");
             break;
 
           case "claro-home-header":
@@ -77596,173 +77857,19 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
     });
   }
-  /* MVC */
 
-
-  var LandingHomeConcert = {
-    remote: "".concat(baseURL, "home-edi-concert.php"),
-    //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
-    container: document.getElementById("navbar-prev-home-concert"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        switch (json.type) {
-          case "slider-pagination":
-            landingView.renderHomeBanner();
-            break;
-
-          case "home-claro-carrousel-main":
-            var date = new Date();
-            var day = ("0" + date.getUTCDate()).slice(-2);
-            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-            var _year4 = date.getUTCFullYear();
-
-            var _currentDate4 = "".concat(_year4, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "concert channel", 'home');
-
-
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "concert-channel");
-            break;
-
-          case "concert-home-header":
-            landingView.renderHomeHeaderConcertChannel();
-            break;
-
-          case "concert-home-slider":
-            var landing = 'Concert Channel';
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; ////////////
-
-  var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
-
-  if (NavbarHomeConcert) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
-    new easyXDM.Socket(LandingHomeConcert);
-  }
-
-  var confPrevHomeConcert = {
-    remote: "".concat(baseURL, "home.php"),
-    container: document.getElementById("navbar-prev-home-concert"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //previsualizar canal claro
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
-    //Landing canal claro
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  }); /////////////
-
-  var LandingHomeClaro = {
-    remote: "".concat(baseURL, "home-edi-claro.php"),
-    // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
-    container: document.getElementById("navbar-prev-home"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        switch (json.type) {
-          case "slider-pagination":
-            landingView.renderHomeBanner();
-            break;
-
-          case "home-claro-carrousel-main":
-            var date = new Date();
-            var day = ("0" + date.getUTCDate()).slice(-2);
-            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-            var _year5 = date.getUTCFullYear();
-
-            var _currentDate5 = "".concat(_year5, "-").concat(month, "-").concat(day);
-
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "canal-claro");
-            break;
-
-          case "claro-home-header":
-            landingView.renderHomeHeaderCanalClaro();
-            break;
-
-          case "claro-home-slider":
-            var landing = 'Canal Claro';
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var navbarHomeCanalClaro = document.getElementById("navbar-prev-home");
-
-  if (navbarHomeCanalClaro) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-    new easyXDM.Socket(LandingHomeClaro);
-  }
-
-  var confHomeClaroCanal = {
-    remote: "".concat(baseURL, "home.php"),
-    container: document.getElementById("navbar-prev-home"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //previsualizar canal claro
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-    //Landing canal claro
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), confHomeClaroCanal);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  });
+  ;
   /* MVC */
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
     //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n       \n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5 mx-auto\">\n        <div class=\"d-flex\">\n        <!--dots-->\n        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n        <!--add slide-->\n        <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n    </div>\n  <!--  <div class=\"shadowblack position-absolute\">\n        <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n        </div>-->\n    <div class=\"programming-slider-home mx-auto \">\n       \n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n        \n    </div>\n    </div>\n  \n        </div>\n        </div>\n        <div class=\"d-flex mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n<div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n\n        </div>\n</div>\n</div>\n</div>\n</div>\n\n\n        "); // new easyXDM.Socket(confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5 mx-auto\">\n        <div class=\"d-flex\">\n        <!--dots-->\n        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n        <!--add slide-->\n        <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n    </div>\n  <!--  <div class=\"shadowblack position-absolute\">\n        <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n        </div>-->\n    <div class=\"programming-slider-home mx-auto \">\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n\n    </div>\n    </div>\n\n        </div>\n        </div>\n        <div class=\"d-flex mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n<div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n\n        </div>\n</div>\n</div>\n</div>\n</div>\n\n\n        "); // new easyXDM.Socket(confIframe);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").click(function () {
     //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n         \n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />                        \n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n                     \n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n        \n       \n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>"); // new easyXDM.Socket(confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n\n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n\n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n\n\n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>"); // new easyXDM.Socket(confIframe);
   });
 }
 
@@ -83263,7 +83370,8 @@ var LandingView = /*#__PURE__*/function () {
       //Botón del modal de términos y condiciones
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_terminos-footer').click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val();
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val(); // let text = $('.footer-textarea-ter').attr('name');
+
         var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val();
         var landing = "terms";
         var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
@@ -83341,6 +83449,8 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "getContentTerms",
     value: function getContentTerms() {
+      var _this = this;
+
       var response = landingController.getContentRights();
       response.then(function (data) {
         if (data.code == 200) {
@@ -83348,6 +83458,31 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val(data.data.terms_title);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val(data.data.about_text);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val(data.data.about_title);
+
+          _this.test(data.data.terms_text);
+        }
+      });
+    }
+  }, {
+    key: "test",
+    value: function test(valor) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').keydown(function (e) {
+        var Final;
+        var texto;
+
+        if (e.which === 13 && !e.shiftKey) {
+          texto = document.getElementById("textTerminos").value += '\n';
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').attr('name', texto); // valor = $('.footer-textarea-ter').attr('name');
+          // valor.attr(valor + '<br>');
+          // debugger
+          // $('.footer-textarea-ter').click(function(){
+          //      valor = $('.footer-textarea-ter').val()
+          // })
+          // alert(valor);
+          // $('.footer-textarea-ter').attr('name', $('.footer-textarea-ter').val()+ '<br>')
+          // texto = $('.footer-textarea-ter').attr('name');
+          // Final += texto;
+          // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
         }
       });
     }

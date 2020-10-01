@@ -13,8 +13,7 @@
             <!--Contenido de la tabla-->
             <div class="pd-5">PROGRAMACIÓN GENERAL</div>
             <div class="justify-content-center">
-                <a href="general-program"><input type="image" src="./images/lapiz-acti.svg" alt=""
-                        class="ml-3 btn-focus  load-photo" /></a>
+                <a href="general-program"><input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus  load-photo" /></a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
             </div>
@@ -28,35 +27,35 @@
             </div>
             <div class="pd-5">HOME</div>
             <div class="justify-content-center">
-            <a href="{{ route('home') }}">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
-            </a>
+                <a href="{{ route('home') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
             <div class="pd-5 ">CANAL CLARO</div>
             <div class="justify-content-center">
-            <a href="{{ route('canal-claro') }}">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
-            </a>
+                <a href="{{ route('canal-claro') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
             <div class="pd-5 ">CONCERT CHANNEL</div>
             <div class="justify-content-center">
-            <a href="{{ route('concert-channel') }}">
-            <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
-            </a>
+                <a href="{{ route('concert-channel') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
             <div class="pd-5 ">CLARO CINEMA</div>
             <div class="justify-content-center">
-            <a href="{{ route('claro-cinema') }}">
-                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                <a href="{{ route('claro-cinema') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
@@ -76,21 +75,22 @@
             </div>
             <div class="pd-5 ">FOOTER</div>
             <div class="justify-content-center">
-            <a href="{{ route('footer') }}">
-                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                <a href="{{ route('footer') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5 ">SINÓPSIS</div>
+            <div class="pd-5">SINÓPSIS</div>
             <div class="justify-content-center">
-                <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus "></input>
+                <a href="{{ route('sinopsis') }}">
+                    <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
+                </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-
         </div>
 
     </div>
