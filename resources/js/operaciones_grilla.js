@@ -3395,8 +3395,9 @@ break;*/
         }
     };
 
-    // PREV CHIDA
     $("#prev").click(function () {
+        let id = $('.navbar-progra-content').attr('id')
+
         let canalClaro = '#navbar-prev-canal-claro';
         let programacion = '#navbar-prev-programacion';
 
@@ -3408,23 +3409,53 @@ break;*/
                 previewPage($(this));
             });
         });
-        if (canalClaro) {
-            resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
-        }
-        else if (programacion) {
-            resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
+
+        switch ('#' + id) {
+            case programacion:
+                resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
+                break
+            case canalClaro:
+                resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+                break
         }
     });
 
     $("#edit").click(function () {
-        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        let id = $('.navbar-progra-content').attr('id')
 
-        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
+        let canalClaro = '#navbar-prev-canal-claro';
+        let programacion = '#navbar-prev-programacion';
+
+        $("#navbar-prev-canal-claro iframe").remove();
+        $("#navbar-prev-programacion iframe").remove();
+
+        $('#device-size').load('imports #device-size-edit', function () {
+            $('.a-prev-image').click(function () {
+                previewPage($(this));
+            });
+        });
+
+        switch ('#' + id) {
+            case programacion:
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+                break
+            case canalClaro:
+                resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+                break
+        }
     });
+
+
+
+    // $("#edit").click(function () {
+    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
 
     /////////////
     $(".input-image-program").change(function () {
@@ -4462,18 +4493,18 @@ break;*/
     //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
     //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
     // });
-    $("#edit").click(function () {
-        resetIframe(
-            $("#navbar-prev-canal-claro iframe"),
-            landingCanalClaro
-        );
+    // $("#edit").click(function () {
+    //     resetIframe(
+    //         $("#navbar-prev-canal-claro iframe"),
+    //         landingCanalClaro
+    //     );
 
-        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
-    });
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
 
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
@@ -4966,18 +4997,18 @@ break;*/
     //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
     //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
     // });
-    $("#edit").click(function () {
-        resetIframe(
-            $("#navbar-prev-home iframe"),
-            LandingHomeClaro
-        );
+    // $("#edit").click(function () {
+    //     resetIframe(
+    //         $("#navbar-prev-home iframe"),
+    //         LandingHomeClaro
+    //     );
 
-        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
-    });
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
 
     let LandingHomeConcert = {
         remote: `${baseURL}home-edi-concert.php`,
