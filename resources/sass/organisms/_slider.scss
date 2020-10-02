@@ -64,7 +64,6 @@
             transform: translate(-50%, -95%);
         }
 
-
         .slick-active p {
             color: $white !important;
         }
@@ -164,10 +163,14 @@
     }
 }
 
-.programming-slider-home{
+.programming-slider-home {
     width: 787px !important;
-  height: 471px !important;
+    height: 471px !important;
+    div {
+        height: 100%;
+    }
 }
+
 .programming-slider,
 .programming-slider-concert-channel {
     .slick-slide {

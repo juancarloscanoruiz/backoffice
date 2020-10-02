@@ -146,7 +146,11 @@ export default class LandingView {
                 //Eliminamos
                 $(".loader-view-container").remove();
                 this.renderHomeMobile();
-                this.renderHomePC(title, subtitle);
+                this.renderHomePC(
+                    title,
+                    subtitle,
+                    data.data.block_1_video_name
+                );
             }
         });
     }
@@ -156,169 +160,294 @@ export default class LandingView {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $(".pc").html("");
             $(".pc").html(`
-            <!-- parte del home-->
             <div class="d-flex col-12 mb-5 mx-auto">
             <div class="mr-5 mx-auto">
-            <div class="d-flex">
-            <!--dots-->
-            <div class="programming-slider-dots-home mt-5 mb-5"></div>
-            <!--add slide-->
-            <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
-        </div>
-      <!--  <div class="shadowblack position-absolute">
-            <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
-            </div>-->
-        <div class="programming-slider-home mx-auto ">
+              <div class="d-flex">
+                <!--dots-->
+                <div class="programming-slider-dots-home mt-5 mb-5"></div>
+                <!--add slide-->
+                <img
+                  src="./images/add-icon.svg"
+                  class="add-banner-image cursor-pointer mb-3"
+                />
+              </div>
+              <!--  <div class="shadowblack position-absolute">
+              <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
+              </div>-->
+              <div class="programming-slider-home mx-auto">
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text">
+                      472px X 295px
+                    </span>
+                    <img
+                      src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
 
-        <div class="bor thumbnail-image-program position-relative h-100">
-            <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
-            <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
-                <span class="a-text-bold-warm text-plus mt-3 banner-text"> 472px X 295px </span>
-                <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-            </label>
-        </div>
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
 
-        <div class="bor thumbnail-image-program position-relative h-100">
-            <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
-            <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
-                <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
-                <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-            </label>
-        </div>
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
 
-        <div class="bor thumbnail-image-program position-relative h-100">
-            <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
-            <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
-                <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
-                <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-            </label>
-        </div>
-
-        <div class="bor thumbnail-image-program position-relative h-100">
-            <input type="file" name="image_programming[]" id="image_programming_1" class="input-image-program d-none image_programming " data-index="1">
-            <label for="image_programming_1" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class=" cursor-pointer add-photo " />
-                <span class="a-text-bold-warm text-plus mt-3 banner-text">472px X 295px </span>
-                <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-            </label>
-
-        </div>
-        </div>
-
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
-            </div>
-            <div class="d-flex mr-5 mb-3">
-            <span
-            class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
-            </div>
-            <div class="clearfix"></div>
+          </div>
+          <div class="d-flex mr-5 mb-3">
+            <span class="a-text-bold-brown-two text-normal"
+              >Nombre_Promoción_ConcertChannel_20200709.mp4</span
+            >
+          </div>
+          <div class="clearfix"></div>
 
-    <div class="text-center  mb-4 d-flex justify-content-center pb-2">
-                <button
-                    class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                    id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
-                <a href="#delete-info-encabezado-home" role="button"
-                    class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                    data-toggle="modal">CANCELAR</a>
-
-            </div>
-    </div>
-    </div>
-    </div>
-    </div>
             `);
+            let programmingSliderHome = $(".programming-slider-home");
+            try {
+                programmingSliderHome.slick("unslick");
+                programmingSliderHome.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".programming-slider-dots-home"),
+                    initialSlide: 0,
+
+                    arrows: true,
+                    prevArrow:
+                        '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow:
+                        '<img src="./images/next.png" class="arrow-next" />',
+                    infinite: false,
+                    customPaging: function(slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            } catch (error) {
+                programmingSliderHome.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".programming-slider-dots-home"),
+                    initialSlide: 0,
+
+                    arrows: true,
+                    prevArrow:
+                        '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow:
+                        '<img src="./images/next.png" class="arrow-next" />',
+                    infinite: false,
+                    customPaging: function(slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            }
         });
     }
 
-    renderHomePC(title, subtitle) {
+    renderHomePC(title, subtitle, media) {
         $("#pc").click(function() {
-            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            //Hacemos una validación para saber si es imagen o es un video
+            let file = "";
+            if (media) {
+                //Verificamos si la url es de una imagen
+                if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                    file = `<img src="${media}" alt="" class="d-flex w-100" id="image-promo-header-home">`;
+                } else {
+                    file = `
+                    <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width: 62px; position: absolute; transform: translate(215px, -112px);" />
+                    <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute " style="transform: translate(207px, -40px);">Añade tu archivo <br> jpg 472px X 295px </span>
+                    <video class="w-100 h-100 home-video" id="video-promo-header-home d-block" controls muted autoplay>
+                        <source src="${media}" type="video/mp4">
+                    </video>`;
+                }
+            }
             $(".pc").html("");
             $(".pc").html(`
-        <!-- parte del home-->
-        <div class="d-flex col-12 mb-5 mx-auto">
-        <div class="mr-5">
-        <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4">
-        <!--navbar-->
-        <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
-            <div>
-                <a href="" class="navbar-link text-decoration-none">
-                    <p class="navbar-item-black text-semibold">Canal Claro</p>
-                </a>
+            <!-- parte del home-->
+            <div class="d-flex col-12 mb-5 mx-auto">
+              <div class="mr-5">
+                <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4" />
+                <!--navbar-->
+                <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Canal Claro</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Concert Channel</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Claro Cinema</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a target="_blank" href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Nuestra Visión</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" target="_blank" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Claro Sports</p>
+                    </a>
+                  </div>
+                  <!-- <div>
+                        <a href="programacion.php" class="navbar-link text-decoration-none">
+                            <p class="navbar-item">Programación</p>
+                        </a>
+                        </div>-->
+                </div>
+                <!--<div class="login">
+                            <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
+                        </div>-->
+
+                <!--inputs-->
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex"
+                  placeholder="TITULO"
+                  value="${title}"/>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex"
+                  placeholder="SUBTITULO"
+                  value="${subtitle}"/>
+              </div>
+              <div class="d-flex justify-content-around">
+                <input
+                  type="file"
+                  name=""
+                  id="video-promo-header-home"
+                  class="d-none file-video"
+                  accept="video/*"/>
+                <label
+                  for="video-promo-header-home"
+                  class="mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header">
+                    ${file}
+                </label>
+                <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
+                        <label for="image-promo-header-home"
+                            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                                class="add-photo promo-icon cursor-pointer" style="width:95px" />
+                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
+                                jpg 472px X 295px </span>
+                        </label>-->
+              </div>
             </div>
-            <div>
-                <a href="" class="navbar-link text-decoration-none">
-                    <p class="navbar-item-black text-semibold">Concert Channel</p>
-                </a>
+
+            <div class="float-right mr-5 mb-3">
+                <span class="a-text-bold-brown-two text-normal">
+                    Nombre_Promoción_ConcertChannel_20200709.mp4
+                </span>
             </div>
-            <div>
-                <a href="" class="navbar-link text-decoration-none">
-                    <p class="navbar-item-black text-semibold">Claro Cinema</p>
-                </a>
-            </div>
-            <div>
-                <a target="_blank" href="" class="navbar-link text-decoration-none">
-                    <p class="navbar-item-black text-semibold">Nuestra Visión</p>
-                </a>
-            </div>
-            <div>
-                <a href="" target="_blank" class="navbar-link text-decoration-none">
-                    <p class="navbar-item-black text-semibold">Claro Sports</p>
-                </a>
-            </div>
-            <!-- <div>
-        <a href="programacion.php" class="navbar-link text-decoration-none">
-            <p class="navbar-item">Programación</p>
-        </a>
-        </div>-->
-        </div>
-        <!--<div class="login">
-            <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
-        </div>-->
-
-        <!--inputs-->
-        <input type="text" name="" id="" class="input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex" placeholder="TITULO" value="${title}">
-        <input type="text" name="" id="" class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex" placeholder="SUBTITULO" value="${subtitle}">
-
-        </div>
-        <div class=" d-flex justify-content-around ">
-
-        <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
-            accept="video/*">
-            <label for="video-promo-header-home"
-                class="mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header">
-               <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
-                <img src="./images/synopsis/home-video.svg" class="">
-                <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
-                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />
-                <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6" >Añade tu archivo
-                    jpg 472px X 295px </span>
-
-            </label>
-           <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
-        <label for="image-promo-header-home"
-            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
-            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                class="add-photo promo-icon cursor-pointer" style="width:95px" />
-            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
-                jpg 472px X 295px </span>
-        </label>-->
-        </div>
-
-
-        </div>
-        </div>
-        <div class="float-right mr-5 mb-3">
-        <span
-        class="a-text-bold-brown-two text-normal">Nombre_Promoción_ConcertChannel_20200709.mp4</span>
-        </div>
-        <div class="clearfix"></div>
-
-</div>`);
-            // new easyXDM.Socket(confIframe);
+            <div class="clearfix"></div>`);
         });
     }
 

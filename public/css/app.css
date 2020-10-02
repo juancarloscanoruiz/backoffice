@@ -8293,6 +8293,10 @@ select:focus {
   height: 471px !important;
 }
 
+.programming-slider-home div {
+  height: 100%;
+}
+
 .programming-slider .slick-slide,
 .programming-slider-concert-channel .slick-slide {
   height: 342px !important;
