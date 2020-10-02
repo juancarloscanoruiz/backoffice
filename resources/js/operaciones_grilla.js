@@ -84,26 +84,364 @@ import {
 import { previewPage } from "./preview/prev.js";
 
 function eventsGrilla() {
-    //Sacamos la fecha actual para ponerla en el calendario
-    let currentDate1 = new Date();
+    const baseURL =
+        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
-    //obtenemos el mes
-    let calendarMonth1 = currentDate1.getMonth();
-    //Obtenemos el día
-    let calendarDay1 = currentDate1.getDate();
-    let hora =
-        currentDate1.getHours() +
-        ":" +
-        currentDate1.getMinutes() +
-        ":" +
-        currentDate1.getSeconds() +
-        " GMT";
+    let landingSinopsis = $("#prev-sinopsis-landing");
+    if (landingSinopsis) {
+        let date = new Date();
+        let day = ("0" + date.getUTCDate()).slice(-2);
+        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+        let year = date.getUTCFullYear();
+        getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
+    }
+    $(".sinopsis-master").on("click", ".edit-synopsis-pencil", function() {
+        $(".sinopsis-cont").html("");
 
-    let daymonth = getDayName(calendarMonth1, calendarDay1);
-    let monthday = getMonthAndYearmin(calendarMonth1);
-    let fulldatelanding = `${calendarDay1} ${monthday},  ${hora}`;
-    $("#date-edit").text(fulldatelanding);
-    console.log(fulldatelanding);
+        $("#estSis").load("imports #sisEst", function() {
+            $(".siestado-landing").click(function() {
+                previewPage($(this));
+            });
+            $(".noestado-landing").click(function() {
+                previewPage($(this));
+            });
+        });
+        var socketSynopsis = new easyXDM.Socket(SinopsisLanding);
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
+        let id = $(this).attr("chapter_id");
+        programView.renderSynopsis(id, socketSynopsis);
+    });
+    //Prev
+
+    let SinopsisLanding = {
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        container: document.getElementById("sinopsis-cont"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        let data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let programminfSliderSynopsis = $(
+                                    ".programming-slider-sinopsis"
+                                );
+                                let index = 1;
+                                let slide = "";
+                                let image = "";
+                                while (true) {
+                                    if (
+                                        data.data[
+                                            `image_background_${index}`
+                                        ] !== undefined
+                                    ) {
+                                        image =
+                                            data.data[
+                                                `image_background_${index}`
+                                            ];
+                                        if (
+                                            data.data[
+                                                `image_background_${index}`
+                                            ] == null
+                                        ) {
+                                            image =
+                                                "./images/synopsis/image-synopsis-carrusel.jpg";
+                                        }
+                                        slide += `
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                            <input type="file" id="image_banner_synopsis_${index}"
+                                            class="input-image-program d-none input-banner-synopsis" data-index="1">
+                                            <label for="image_banner_synopsis_${index}"
+                                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                            <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                            class=" cursor-pointer add-photo " />
+                                            <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
+                                            <img src="${image}"
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            </label>
+                                        </div>
+                                        `;
+                                        index++;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                programminfSliderSynopsis.html(slide);
+                                $(
+                                    ".modal-programming-sinopsis .input-banner-synopsis"
+                                ).val("");
+                                $(".modal-programming-sinopsis").modal("show");
+                                try {
+                                    programminfSliderSynopsis.slick("unslick");
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function(slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                } catch (error) {
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function(slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                }
+                                let buttonSynopsisBannerModal = $(
+                                    "#banner-sinopsis-modal-button"
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                //Previsualizar una imagen en el banner
+                                $(
+                                    ".modal-programming-sinopsis .input-image-program"
+                                ).change(function() {
+                                    let currentInput = $(this);
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            currentInput
+                                                .next()
+                                                .children(".prev-image-program")
+                                                .attr("src", e.target.result)
+                                                .addClass("h-100 w-100")
+                                                .css("z-index", "2");
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        buttonSynopsisBannerModal.removeClass([
+                                            "disabled-btn",
+                                            "a-text-bold-teal",
+                                            "btn-landing"
+                                        ]);
+                                        buttonSynopsisBannerModal.addClass([
+                                            "btn-grilla",
+                                            "a-text-bold-white"
+                                        ]);
+                                    }
+                                });
+                            }
+                            $(".loader-view-container").remove();
+                        });
+
+                        break;
+                    case "synopsis-main-image":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Verificamos si tiene una imagen
+                                let image =
+                                    data.data.image_synopsis ||
+                                    "./images/synopsis/image-synopsis.svg";
+                                $(".loader-view-container").remove();
+                                //Limpiamos input
+                                $("#image-synopsis").val();
+                                //Button
+                                $("#upload-image-synopsis").attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                //Para el botón le agregamos un atributo
+                                $("#upload-image-synopsis").attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                $(".image-synopsis-modal").attr("src", image);
+                                $(".modal-image-synopsis").modal("show");
+                            }
+                        });
+                        $(".modal-image-synopsis .input-image-program").change(
+                            function() {
+                                let currentInput = $(this);
+                                if (this.files && this.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        currentInput
+                                            .next()
+                                            .children(".prev-image-program")
+                                            .attr("src", e.target.result)
+                                            .addClass("h-100 w-100")
+                                            .css("z-index", "2");
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                }
+                            }
+                        );
+
+                        break;
+
+                    case "synopsis-description-container":
+                        programView.renderDescriptionSynopsis(json.id);
+                        break;
+                    case "synopsis-images-container":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        let buttonImageSynopsisModal = $(
+                            "#images-synopsis-modal-button"
+                        );
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Limpiar inputs
+                                $(".image-synopsis-input").val();
+
+                                let imageSynopsisFrame1 =
+                                    data.data.image_synopsis_frame_1 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame2 =
+                                    data.data.image_synopsis_frame_2 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame3 =
+                                    data.data.image_synopsis_frame_3 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                $(".image-synopsis-frame-1").attr(
+                                    "src",
+                                    imageSynopsisFrame1
+                                );
+                                $(".image-synopsis-frame-2").attr(
+                                    "src",
+                                    imageSynopsisFrame2
+                                );
+                                $(".image-synopsis-frame-3").attr(
+                                    "src",
+                                    imageSynopsisFrame3
+                                );
+                                $(".modal-synopsis-images-container").modal(
+                                    "show"
+                                );
+                                $(".loader-view-container").remove();
+                            }
+                            buttonImageSynopsisModal.attr(
+                                "landing_id",
+                                data.data.landing_id
+                            );
+                            buttonImageSynopsisModal.attr(
+                                "chapter_id",
+                                data.data.chapter_id
+                            );
+                        });
+
+                        $(
+                            ".modal-synopsis-images-container .input-image-program"
+                        ).change(function() {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+                                reader.readAsDataURL(this.files[0]);
+
+                                buttonImageSynopsisModal.removeClass([
+                                    "disabled-btn",
+                                    "a-text-bold-teal",
+                                    "btn-landing"
+                                ]);
+                                buttonImageSynopsisModal.addClass([
+                                    "btn-grilla",
+                                    "a-text-bold-white"
+                                ]);
+                            }
+                        });
+                        break;
+                    case "synopsis-datails-container":
+                        programView.renderDetailsSynopsis(json.id);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let SinopsisLandingPrev = {
+        remote: `${baseURL}sinopsis-prev.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
+        container: document.getElementById("sinopsis-container"),
+        onMessage: function(message, origin) {
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    $(".btn-sis").click(function() {
+        let key = $(this).attr("key");
+        let date = new Date();
+        let day = ("0" + date.getUTCDate()).slice(-2);
+        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+        let year = date.getUTCFullYear();
+        $(".content-table").html(" ");
+        getProgrammingSynopsis(key, `${year}-${month}-${day}`);
+    });
+
     //calendario de sinopsis
     let calendarsinopsis = $(".calendar-sinopsis-slider");
     $(".calendar-sinopsis-slider").slick({
@@ -195,9 +533,6 @@ function eventsGrilla() {
         getHeaderLanding();
     });
 
-    const baseURL =
-        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
@@ -226,92 +561,101 @@ function eventsGrilla() {
         }
     };
 
+    ////////////
     let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
     if (NavbarHomeCinema) {
-        $(".loader-view-container").remove();
-        $("#navbar-prev-home-cinema iframe").remove();
+        $("#navbar-prev-home-cinema  iframe").remove();
         new easyXDM.Socket(LandingHomeCinema);
+    }
+    let confPrevHomeCinema = {
+        remote: `${baseURL}home-prev.php`,
+        container: document.getElementById("navbar-prev-home-cinema"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-        const baseURL =
-            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-
-        let landingSinopsis = $("#prev-sinopsis-landing");
-        if (landingSinopsis) {
-            let date = new Date();
-            let day = ("0" + date.getUTCDate()).slice(-2);
-            let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-            let year = date.getUTCFullYear();
-            getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        $(".sinopsis-master").on("click", ".edit-synopsis-pencil", function() {
-            $(".sinopsis-cont").html("");
+    };
 
-            $("#estSis").load("imports #sisEst", function() {
-                $(".siestado-landing").click(function() {
-                    previewPage($(this));
-                });
-                $(".noestado-landing").click(function() {
-                    previewPage($(this));
-                });
-            });
-            var socketSynopsis = new easyXDM.Socket(SinopsisLanding);
-            $("body").append(
-                `<div class="loader-view-container pointer-none">
-                <img src="./images/loader.gif" class="loader"/>
-            </div>`
-            );
-            let id = $(this).attr("chapter_id");
-            programView.renderSynopsis(id, socketSynopsis);
-        });
+    //previsualizar canal claro
+    $("#prev-landing-cinema").click(function() {
+        //Landing canal claro
+        resetIframe($("#navbar-prev-home-cinema iframe"), confPrevHomeCinema);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-cinema").click(function() {
+        resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
 
-        let SinopsisLanding = {
-            remote: `${baseURL}sinopsis-edi.php`,
-            //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
-            container: document.getElementById("sinopsis-cont"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
+
+    /////////////
+
+    let LandingSinopsis = {
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        container: document.getElementById("sinopsis-container"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
 
-                    switch (json.type) {
-                        case "slider-pagination":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
                                 <img src="./images/loader.gif" class="loader"/>
                             </div>`
-                            );
-                            let data = getSynopsis(json.id);
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    let programminfSliderSynopsis = $(
-                                        ".programming-slider-sinopsis"
-                                    );
-                                    let index = 1;
-                                    let slide = "";
-                                    let image = "";
-                                    while (true) {
+                        );
+                        let data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let programminfSliderSynopsis = $(
+                                    ".programming-slider-sinopsis"
+                                );
+                                let index = 1;
+                                let slide = "";
+                                let image = "";
+                                while (true) {
+                                    if (
+                                        data.data[
+                                            `image_background_${index}`
+                                        ] !== undefined
+                                    ) {
+                                        image =
+                                            data.data[
+                                                `image_background_${index}`
+                                            ];
                                         if (
                                             data.data[
                                                 `image_background_${index}`
-                                            ] !== undefined
+                                            ] == null
                                         ) {
                                             image =
-                                                data.data[
-                                                    `image_background_${index}`
-                                                ];
-                                            if (
-                                                data.data[
-                                                    `image_background_${index}`
-                                                ] == null
-                                            ) {
-                                                image =
-                                                    "./images/synopsis/image-synopsis-carrusel.jpg";
-                                            }
-                                            slide += `
+                                                "./images/synopsis/image-synopsis-carrusel.jpg";
+                                        }
+                                        slide += `
                                         <div class="bor thumbnail-image-program position-relative h-100">
                                             <input type="file" id="image_banner_synopsis_${index}"
                                             class="input-image-program d-none input-banner-synopsis" data-index="1">
@@ -325,222 +669,133 @@ function eventsGrilla() {
                                             </label>
                                         </div>
                                         `;
-                                            index++;
-                                        } else {
-                                            break;
-                                        }
+                                        index++;
+                                    } else {
+                                        break;
                                     }
-                                    programminfSliderSynopsis.html(slide);
-                                    $(
-                                        ".modal-programming-sinopsis .input-banner-synopsis"
-                                    ).val("");
-                                    $(".modal-programming-sinopsis").modal(
-                                        "show"
-                                    );
-                                    try {
-                                        programminfSliderSynopsis.slick(
-                                            "unslick"
-                                        );
-                                        programminfSliderSynopsis.slick({
-                                            slidesToShow: 1,
-                                            dots: true,
-                                            appendDots: $(
-                                                ".programming-slider-dots-sinopsis"
-                                            ),
-                                            initialSlide: 0,
-                                            infinite: false,
-                                            customPaging: function(slider, i) {
-                                                var thumb = $(
-                                                    slider.$slides[i]
-                                                ).data();
-                                                return (
-                                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                                    (i + 1) +
-                                                    "</p>"
-                                                );
-                                            }
-                                        });
-                                    } catch (error) {
-                                        programminfSliderSynopsis.slick({
-                                            slidesToShow: 1,
-                                            dots: true,
-                                            appendDots: $(
-                                                ".programming-slider-dots-sinopsis"
-                                            ),
-                                            initialSlide: 0,
-                                            infinite: false,
-                                            customPaging: function(slider, i) {
-                                                var thumb = $(
-                                                    slider.$slides[i]
-                                                ).data();
-                                                return (
-                                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                                    (i + 1) +
-                                                    "</p>"
-                                                );
-                                            }
-                                        });
-                                    }
-                                    let buttonSynopsisBannerModal = $(
-                                        "#banner-sinopsis-modal-button"
-                                    );
-                                    buttonSynopsisBannerModal.attr(
-                                        "landing_id",
-                                        data.data.landing_id
-                                    );
-                                    buttonSynopsisBannerModal.attr(
-                                        "chapter_id",
-                                        data.data.chapter_id
-                                    );
-                                    //Previsualizar una imagen en el banner
-                                    $(
-                                        ".modal-programming-sinopsis .input-image-program"
-                                    ).change(function() {
-                                        let currentInput = $(this);
-                                        if (this.files && this.files[0]) {
-                                            var reader = new FileReader();
-                                            reader.onload = function(e) {
-                                                currentInput
-                                                    .next()
-                                                    .children(
-                                                        ".prev-image-program"
-                                                    )
-                                                    .attr(
-                                                        "src",
-                                                        e.target.result
-                                                    )
-                                                    .addClass("h-100 w-100")
-                                                    .css("z-index", "2");
-                                            };
-                                            reader.readAsDataURL(this.files[0]);
-                                            buttonSynopsisBannerModal.removeClass(
-                                                [
-                                                    "disabled-btn",
-                                                    "a-text-bold-teal",
-                                                    "btn-landing"
-                                                ]
+                                }
+                                programminfSliderSynopsis.html(slide);
+                                $(
+                                    ".modal-programming-sinopsis .input-banner-synopsis"
+                                ).val("");
+                                $(".modal-programming-sinopsis").modal("show");
+                                try {
+                                    programminfSliderSynopsis.slick("unslick");
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function(slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
                                             );
-                                            buttonSynopsisBannerModal.addClass([
-                                                "btn-grilla",
-                                                "a-text-bold-white"
-                                            ]);
+                                        }
+                                    });
+                                } catch (error) {
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function(slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
                                         }
                                     });
                                 }
-                                $(".loader-view-container").remove();
-                            });
-
-                            break;
-                        case "synopsis-main-image":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                            );
-                            data = getSynopsis(json.id);
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    //Verificamos si tiene una imagen
-                                    let image =
-                                        data.data.image_synopsis ||
-                                        "./images/synopsis/image-synopsis.svg";
-                                    $(".loader-view-container").remove();
-                                    //Limpiamos input
-                                    $("#image-synopsis").val();
-                                    //Button
-                                    $("#upload-image-synopsis").attr(
-                                        "landing_id",
-                                        data.data.landing_id
-                                    );
-                                    //Para el botón le agregamos un atributo
-                                    $("#upload-image-synopsis").attr(
-                                        "chapter_id",
-                                        data.data.chapter_id
-                                    );
-                                    $(".image-synopsis-modal").attr(
-                                        "src",
-                                        image
-                                    );
-                                    $(".modal-image-synopsis").modal("show");
-                                }
-                            });
-                            $(
-                                ".modal-image-synopsis .input-image-program"
-                            ).change(function() {
-                                let currentInput = $(this);
-                                if (this.files && this.files[0]) {
-                                    var reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        currentInput
-                                            .next()
-                                            .children(".prev-image-program")
-                                            .attr("src", e.target.result)
-                                            .addClass("h-100 w-100")
-                                            .css("z-index", "2");
-                                    };
-                                    reader.readAsDataURL(this.files[0]);
-                                }
-                            });
-
-                            break;
-
-                        case "synopsis-description-container":
-                            programView.renderDescriptionSynopsis(json.id);
-                            break;
-                        case "synopsis-images-container":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                            );
-                            data = getSynopsis(json.id);
-                            let buttonImageSynopsisModal = $(
-                                "#images-synopsis-modal-button"
-                            );
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    //Limpiar inputs
-                                    $(".image-synopsis-input").val();
-
-                                    let imageSynopsisFrame1 =
-                                        data.data.image_synopsis_frame_1 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    let imageSynopsisFrame2 =
-                                        data.data.image_synopsis_frame_2 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    let imageSynopsisFrame3 =
-                                        data.data.image_synopsis_frame_3 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    $(".image-synopsis-frame-1").attr(
-                                        "src",
-                                        imageSynopsisFrame1
-                                    );
-                                    $(".image-synopsis-frame-2").attr(
-                                        "src",
-                                        imageSynopsisFrame2
-                                    );
-                                    $(".image-synopsis-frame-3").attr(
-                                        "src",
-                                        imageSynopsisFrame3
-                                    );
-                                    $(".modal-synopsis-images-container").modal(
-                                        "show"
-                                    );
-                                    $(".loader-view-container").remove();
-                                }
-                                buttonImageSynopsisModal.attr(
+                                let buttonSynopsisBannerModal = $(
+                                    "#banner-sinopsis-modal-button"
+                                );
+                                buttonSynopsisBannerModal.attr(
                                     "landing_id",
                                     data.data.landing_id
                                 );
-                                buttonImageSynopsisModal.attr(
+                                buttonSynopsisBannerModal.attr(
                                     "chapter_id",
                                     data.data.chapter_id
                                 );
-                            });
+                                //Previsualizar una imagen en el banner
+                                $(
+                                    ".modal-programming-sinopsis .input-image-program"
+                                ).change(function() {
+                                    let currentInput = $(this);
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            currentInput
+                                                .next()
+                                                .children(".prev-image-program")
+                                                .attr("src", e.target.result)
+                                                .addClass("h-100 w-100")
+                                                .css("z-index", "2");
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        buttonSynopsisBannerModal.removeClass([
+                                            "disabled-btn",
+                                            "a-text-bold-teal",
+                                            "btn-landing"
+                                        ]);
+                                        buttonSynopsisBannerModal.addClass([
+                                            "btn-grilla",
+                                            "a-text-bold-white"
+                                        ]);
+                                    }
+                                });
+                            }
+                            $(".loader-view-container").remove();
+                        });
 
-                            $(
-                                ".modal-synopsis-images-container .input-image-program"
-                            ).change(function() {
+                        break;
+                    case "synopsis-main-image":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Verificamos si tiene una imagen
+                                let image =
+                                    data.data.image_synopsis ||
+                                    "./images/synopsis/image-synopsis.svg";
+                                $(".loader-view-container").remove();
+                                //Limpiamos input
+                                $("#image-synopsis").val();
+                                //Button
+                                $("#upload-image-synopsis").attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                //Para el botón le agregamos un atributo
+                                $("#upload-image-synopsis").attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                $(".image-synopsis-modal").attr("src", image);
+                                $(".modal-image-synopsis").modal("show");
+                            }
+                        });
+                        $(".modal-image-synopsis .input-image-program").change(
+                            function() {
                                 let currentInput = $(this);
                                 if (this.files && this.files[0]) {
                                     var reader = new FileReader();
@@ -553,1264 +808,883 @@ function eventsGrilla() {
                                             .css("z-index", "2");
                                     };
                                     reader.readAsDataURL(this.files[0]);
-
-                                    buttonImageSynopsisModal.removeClass([
-                                        "disabled-btn",
-                                        "a-text-bold-teal",
-                                        "btn-landing"
-                                    ]);
-                                    buttonImageSynopsisModal.addClass([
-                                        "btn-grilla",
-                                        "a-text-bold-white"
-                                    ]);
                                 }
-                            });
-                            break;
-                        case "synopsis-datails-container":
-                            programView.renderDetailsSynopsis(json.id);
-                            break;
+                            }
+                        );
 
-                        default:
-                            break;
-                    }
+                        break;
+
+                    case "synopsis-description-container":
+                        programView.renderDescriptionSynopsis(json.id);
+                        break;
+                    case "synopsis-images-container":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        let buttonImageSynopsisModal = $(
+                            "#images-synopsis-modal-button"
+                        );
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Limpiar inputs
+                                $(".image-synopsis-input").val();
+
+                                let imageSynopsisFrame1 =
+                                    data.data.image_synopsis_frame_1 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame2 =
+                                    data.data.image_synopsis_frame_2 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame3 =
+                                    data.data.image_synopsis_frame_3 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                $(".image-synopsis-frame-1").attr(
+                                    "src",
+                                    imageSynopsisFrame1
+                                );
+                                $(".image-synopsis-frame-2").attr(
+                                    "src",
+                                    imageSynopsisFrame2
+                                );
+                                $(".image-synopsis-frame-3").attr(
+                                    "src",
+                                    imageSynopsisFrame3
+                                );
+                                $(".modal-synopsis-images-container").modal(
+                                    "show"
+                                );
+                                $(".loader-view-container").remove();
+                            }
+                            buttonImageSynopsisModal.attr(
+                                "landing_id",
+                                data.data.landing_id
+                            );
+                            buttonImageSynopsisModal.attr(
+                                "chapter_id",
+                                data.data.chapter_id
+                            );
+                        });
+
+                        $(
+                            ".modal-synopsis-images-container .input-image-program"
+                        ).change(function() {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+                                reader.readAsDataURL(this.files[0]);
+
+                                buttonImageSynopsisModal.removeClass([
+                                    "disabled-btn",
+                                    "a-text-bold-teal",
+                                    "btn-landing"
+                                ]);
+                                buttonImageSynopsisModal.addClass([
+                                    "btn-grilla",
+                                    "a-text-bold-white"
+                                ]);
+                            }
+                        });
+                        break;
+                    case "synopsis-datails-container":
+                        programView.renderDetailsSynopsis(json.id);
+                        break;
+
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-
-        $(".btn-sis").click(function() {
-            let key = $(this).attr("key");
-            let date = new Date();
-            let day = ("0" + date.getUTCDate()).slice(-2);
-            let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-            let year = date.getUTCFullYear();
-            $(".content-table").html(" ");
-            getProgrammingSynopsis(key, `${year}-${month}-${day}`);
-        });
-
-        //calendario de sinopsis
-        let calendarsinopsis = $(".calendar-sinopsis-slider");
-        $(".calendar-sinopsis-slider").slick({
-            slidesToShow: 11,
-            slidesToScroll: 11,
-            infinite: true,
-            dots: false,
-            centerMode: false,
-            arrows: true,
-            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-        });
-        calendarsinopsis.slick("unslick");
-        createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
-
-        createSlickSlider(calendarsinopsis, calendarSlick);
-
-        $(".calendar-sinopsis-slider").on(
-            "click",
-            ".synopsis-calendar-item",
-            function() {
-                alert("botando");
-                $(".synopsis-calendar-item").removeClass(
-                    "programming-item-active"
-                );
-                $(this).addClass("programming-item-active");
-                console.log($(this).attr("date"));
-                getProgrammingSynopsis("canal-claro", $(this).attr("date"));
-            }
-        );
-        $(".calendar-sinopsis-slider").on(
-            "click",
-            ".synopsis-calendar-item",
-            function() {
-                $(".synopsis-calendar-item").removeClass(
-                    "programming-item-active"
-                );
-                $(this).addClass("programming-item-active");
-                console.log($(this).attr("date"));
-                getProgrammingSynopsis("concert-channel", $(this).attr("date"));
-            }
-        );
-        $(".calendar-sinopsis-slider").on(
-            "click",
-            ".synopsis-calendar-item",
-            function() {
-                $(".synopsis-calendar-item").removeClass(
-                    "programming-item-active"
-                );
-                $(this).addClass("programming-item-active");
-                console.log($(this).attr("date"));
-                getProgrammingSynopsis("claro-cinema", $(this).attr("date"));
-            }
-        );
-
-        //Previsualizar el video que subió el usuario en el landing de concert channel
-        $("#video-promo-file").change(function() {
-            if (this.files && this.files[0]) {
-                let file = this.files[0];
-                var reader = new FileReader();
-                reader.readAsArrayBuffer(file);
-                reader.onload = function(e) {
-                    // The file reader gives us an ArrayBuffer:
-                    let buffer = e.target.result;
-
-                    // We have to convert the buffer to a blob:
-                    let videoBlob = new Blob([new Uint8Array(buffer)], {
-                        type: "video/mp4"
-                    });
-
-                    // The blob gives us a URL to the video file:
-                    let url = window.URL.createObjectURL(videoBlob);
-                    $("#concert-promo-container video").remove();
-                    $("#concert-promo-container").append(
-                        `
-                    <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
-                        <source src="${url}" type="video/mp4">
-                    </video>
-                    `
-                    );
-                };
-            }
-        });
-
-        //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-        $(".carrusel2-slider").on("afterChange", function(slick, currentSlide) {
-            $(".current-slide-number").text(currentSlide.currentSlide + 1);
-        });
-
-        //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-        $(".carrusel1-slider").on("afterChange", function(slick, currentSlide) {
-            $(".current-slide-number").text(currentSlide.currentSlide + 1);
-        });
-
-        $(".btn-prueba").click(function() {
-            getHeaderLanding();
-        });
-
-        let LandingHomeCinema = {
-            remote: `${baseURL}home-edi-cinema.php`,
-            container: document.getElementById("navbar-prev-home-cinema"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    switch (json.type) {
-                        case "slider-pagination":
-                            landingView.renderHomeBanner();
-                            break;
-                        case "cinema-home-header":
-                            getContentHomeHeaderCinema();
-                            break;
-                        case "cinema-home-slider":
-                            let landing = "Claro Cinema";
-                            getCarruselHome(landing);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
-
-        ////////////
-        let NavbarHomeCinema = document.getElementById(
-            "navbar-prev-home-cinema"
-        );
-        if (NavbarHomeCinema) {
-            $("#navbar-prev-home-cinema  iframe").remove();
-            new easyXDM.Socket(LandingHomeCinema);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        let confPrevHomeCinema = {
-            remote: `${baseURL}home.php`,
-            container: document.getElementById("navbar-prev-home-cinema"),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
+    };
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    let LandingSinopsisPrev = {
+        remote: `${baseURL}sinopsis-prev.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
+        container: document.getElementById("sinopsis-container"),
+        onMessage: function(message, origin) {
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+    // let sinopsisLanding = $('.sinopsis-container');
+    if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-canal-claro").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
             }
-        };
+        );
+        $("#synopsis-table-canal-claro").on(
+            "click",
+            ".prev-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                $("#sinopsis-container iframe").remove();
+                let id = $(this).attr("chapter_id");
+                socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
+                programView.renderSynopsis(id, socketSynopsis);
+                $("#prev-synopsis").prop("checked", true);
+            }
+        );
+    }
 
-        //previsualizar canal claro
-        $("#prev-landing-cinema").click(function() {
-            //Landing canal claro
-            resetIframe(
-                $("#navbar-prev-home-cinema iframe"),
-                confPrevHomeCinema
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        $("#edit-landing-cinema").click(function() {
-            resetIframe(
-                $("#navbar-prev-home-cinema iframe"),
-                LandingHomeCinema
-            );
+    if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-concert-channel").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
+            }
+        );
+        $("#synopsis-table-concert-channel").on(
+            "click",
+            ".prev-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                $("#sinopsis-container iframe").remove();
+                let id = $(this).attr("chapter_id");
+                socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
+                programView.renderSynopsis(id, socketSynopsis);
+                $("#prev-synopsis").prop("checked", true);
+            }
+        );
+    }
+    if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-claro-cinema").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
+            }
+        );
+        $("#synopsis-table-claro-cinema").on(
+            "click",
+            ".prev-synopsis-pencil",
+            function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                $("#sinopsis-container iframe").remove();
+                socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
+                programView.renderSynopsis(id, socketSynopsis);
+                $("#prev-synopsis").prop("checked", true);
+            }
+        );
+    }
+    //Editar información de sinopsis
+    programView.editDetailsSynopsis(socketSynopsis);
+    programView.editAttributesSynopsis(socketSynopsis);
+    programView.renderPrevSynopsis();
+    programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
+    programView.editImagesSynopsis(socketSynopsis);
+    programView.editImageSynopsis(socketSynopsis);
+    programView.editImagesBanner(socketSynopsis);
 
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
-
-        /////////////
-
-        let LandingSinopsis = {
-            remote: `${baseURL}sinopsis-edi.php`,
-            //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
-            container: document.getElementById("sinopsis-container"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    let confLandingClaroCinema = {
+        remote: `${baseURL}claro-cinema-edi.php`,
+        // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
+        container: document.getElementById("navbar-prev-claro-cinema"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
 
-                    switch (json.type) {
-                        case "slider-pagination":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                            );
-                            let data = getSynopsis(json.id);
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    let programminfSliderSynopsis = $(
-                                        ".programming-slider-sinopsis"
-                                    );
-                                    let index = 1;
-                                    let slide = "";
-                                    let image = "";
-                                    while (true) {
-                                        if (
-                                            data.data[
-                                                `image_background_${index}`
-                                            ] !== undefined
-                                        ) {
-                                            image =
-                                                data.data[
-                                                    `image_background_${index}`
-                                                ];
-                                            if (
-                                                data.data[
-                                                    `image_background_${index}`
-                                                ] == null
-                                            ) {
-                                                image =
-                                                    "./images/synopsis/image-synopsis-carrusel.jpg";
-                                            }
-                                            slide += `
-                                        <div class="bor thumbnail-image-program position-relative h-100">
-                                            <input type="file" id="image_banner_synopsis_${index}"
-                                            class="input-image-program d-none input-banner-synopsis" data-index="1">
-                                            <label for="image_banner_synopsis_${index}"
-                                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
-                                            <img src="./images/synopsis/camara.svg" alt="add-photo"
-                                            class=" cursor-pointer add-photo " />
-                                            <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
-                                            <img src="${image}"
-                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
-                                            </label>
-                                        </div>
-                                        `;
-                                            index++;
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                    programminfSliderSynopsis.html(slide);
-                                    $(
-                                        ".modal-programming-sinopsis .input-banner-synopsis"
-                                    ).val("");
-                                    $(".modal-programming-sinopsis").modal(
-                                        "show"
-                                    );
-                                    try {
-                                        programminfSliderSynopsis.slick(
-                                            "unslick"
-                                        );
-                                        programminfSliderSynopsis.slick({
-                                            slidesToShow: 1,
-                                            dots: true,
-                                            appendDots: $(
-                                                ".programming-slider-dots-sinopsis"
-                                            ),
-                                            initialSlide: 0,
-                                            infinite: false,
-                                            customPaging: function(slider, i) {
-                                                var thumb = $(
-                                                    slider.$slides[i]
-                                                ).data();
-                                                return (
-                                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                                    (i + 1) +
-                                                    "</p>"
-                                                );
-                                            }
-                                        });
-                                    } catch (error) {
-                                        programminfSliderSynopsis.slick({
-                                            slidesToShow: 1,
-                                            dots: true,
-                                            appendDots: $(
-                                                ".programming-slider-dots-sinopsis"
-                                            ),
-                                            initialSlide: 0,
-                                            infinite: false,
-                                            customPaging: function(slider, i) {
-                                                var thumb = $(
-                                                    slider.$slides[i]
-                                                ).data();
-                                                return (
-                                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                                    (i + 1) +
-                                                    "</p>"
-                                                );
-                                            }
-                                        });
-                                    }
-                                    let buttonSynopsisBannerModal = $(
-                                        "#banner-sinopsis-modal-button"
-                                    );
-                                    buttonSynopsisBannerModal.attr(
-                                        "landing_id",
-                                        data.data.landing_id
-                                    );
-                                    buttonSynopsisBannerModal.attr(
-                                        "chapter_id",
-                                        data.data.chapter_id
-                                    );
-                                    //Previsualizar una imagen en el banner
-                                    $(
-                                        ".modal-programming-sinopsis .input-image-program"
-                                    ).change(function() {
-                                        let currentInput = $(this);
-                                        if (this.files && this.files[0]) {
-                                            var reader = new FileReader();
-                                            reader.onload = function(e) {
-                                                currentInput
-                                                    .next()
-                                                    .children(
-                                                        ".prev-image-program"
-                                                    )
-                                                    .attr(
-                                                        "src",
-                                                        e.target.result
-                                                    )
-                                                    .addClass("h-100 w-100")
-                                                    .css("z-index", "2");
-                                            };
-                                            reader.readAsDataURL(this.files[0]);
-                                            buttonSynopsisBannerModal.removeClass(
-                                                [
-                                                    "disabled-btn",
-                                                    "a-text-bold-teal",
-                                                    "btn-landing"
-                                                ]
-                                            );
-                                            buttonSynopsisBannerModal.addClass([
-                                                "btn-grilla",
-                                                "a-text-bold-white"
-                                            ]);
-                                        }
-                                    });
-                                }
-                                $(".loader-view-container").remove();
-                            });
-
-                            break;
-                        case "synopsis-main-image":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                            );
-                            data = getSynopsis(json.id);
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    //Verificamos si tiene una imagen
-                                    let image =
-                                        data.data.image_synopsis ||
-                                        "./images/synopsis/image-synopsis.svg";
-                                    $(".loader-view-container").remove();
-                                    //Limpiamos input
-                                    $("#image-synopsis").val();
-                                    //Button
-                                    $("#upload-image-synopsis").attr(
-                                        "landing_id",
-                                        data.data.landing_id
-                                    );
-                                    //Para el botón le agregamos un atributo
-                                    $("#upload-image-synopsis").attr(
-                                        "chapter_id",
-                                        data.data.chapter_id
-                                    );
-                                    $(".image-synopsis-modal").attr(
-                                        "src",
-                                        image
-                                    );
-                                    $(".modal-image-synopsis").modal("show");
-                                }
-                            });
-                            $(
-                                ".modal-image-synopsis .input-image-program"
-                            ).change(function() {
-                                let currentInput = $(this);
-                                if (this.files && this.files[0]) {
-                                    var reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        currentInput
-                                            .next()
-                                            .children(".prev-image-program")
-                                            .attr("src", e.target.result)
-                                            .addClass("h-100 w-100")
-                                            .css("z-index", "2");
-                                    };
-                                    reader.readAsDataURL(this.files[0]);
-                                }
-                            });
-
-                            break;
-
-                        case "synopsis-description-container":
-                            programView.renderDescriptionSynopsis(json.id);
-                            break;
-                        case "synopsis-images-container":
-                            $("body").append(
-                                `<div class="loader-view-container pointer-none">
-                                <img src="./images/loader.gif" class="loader"/>
-                            </div>`
-                            );
-                            data = getSynopsis(json.id);
-                            let buttonImageSynopsisModal = $(
-                                "#images-synopsis-modal-button"
-                            );
-                            data.then(data => {
-                                if (data.code == 200) {
-                                    //Limpiar inputs
-                                    $(".image-synopsis-input").val();
-
-                                    let imageSynopsisFrame1 =
-                                        data.data.image_synopsis_frame_1 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    let imageSynopsisFrame2 =
-                                        data.data.image_synopsis_frame_2 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    let imageSynopsisFrame3 =
-                                        data.data.image_synopsis_frame_3 ||
-                                        "./images/synopsis/image-synopsis-horizontal.png";
-                                    $(".image-synopsis-frame-1").attr(
-                                        "src",
-                                        imageSynopsisFrame1
-                                    );
-                                    $(".image-synopsis-frame-2").attr(
-                                        "src",
-                                        imageSynopsisFrame2
-                                    );
-                                    $(".image-synopsis-frame-3").attr(
-                                        "src",
-                                        imageSynopsisFrame3
-                                    );
-                                    $(".modal-synopsis-images-container").modal(
-                                        "show"
-                                    );
-                                    $(".loader-view-container").remove();
-                                }
-                                buttonImageSynopsisModal.attr(
-                                    "landing_id",
-                                    data.data.landing_id
-                                );
-                                buttonImageSynopsisModal.attr(
-                                    "chapter_id",
-                                    data.data.chapter_id
-                                );
-                            });
-
-                            $(
-                                ".modal-synopsis-images-container .input-image-program"
-                            ).change(function() {
-                                let currentInput = $(this);
-                                if (this.files && this.files[0]) {
-                                    var reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        currentInput
-                                            .next()
-                                            .children(".prev-image-program")
-                                            .attr("src", e.target.result)
-                                            .addClass("h-100 w-100")
-                                            .css("z-index", "2");
-                                    };
-                                    reader.readAsDataURL(this.files[0]);
-
-                                    buttonImageSynopsisModal.removeClass([
-                                        "disabled-btn",
-                                        "a-text-bold-teal",
-                                        "btn-landing"
-                                    ]);
-                                    buttonImageSynopsisModal.addClass([
-                                        "btn-grilla",
-                                        "a-text-bold-white"
-                                    ]);
-                                }
-                            });
-                            break;
-                        case "synopsis-datails-container":
-                            programView.renderDetailsSynopsis(json.id);
-                            break;
-
-                        default:
-                            break;
-                    }
+                switch (json.type) {
+                    case "slider-pagination":
+                        getContentClaroCinema("slider-pagination");
+                        break;
+                    case "current-programming-cinema":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        // getProgrammingLanding(currentDate, "claro-cinema");
+                        getProgrammingLanding(currentDate, "canal-claro", "");
+                        break;
+                    case "header-landing-cinema":
+                        getContentClaroCinema("header-landing-cinema");
+                        break;
+                    case "title-cinema":
+                        getContentClaroCinema("title-cinema");
+                        break;
+                    case "promo-cinema":
+                        getContentClaroCinema("promo-cinema");
+                        break;
+                    case "title-carrusel1":
+                        getContentClaroCinema("title-carrusel1");
+                        break;
+                    case "carrusel1":
+                        let landing = "Claro Cinema";
+                        let id = 1;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background thumbnail-header-cinema"
+                        );
+                        break;
+                    case "title-carrusel2":
+                        getContentClaroCinema("title-carrusel2");
+                        break;
+                    case "carrusel2":
+                        landing = "Claro Cinema";
+                        id = 2;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background thumbnail-header-cinema"
+                        );
+                        break;
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-
-        let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
-        // let sinopsisLanding = $('.sinopsis-container');
-        if (navbarPrevSINOPSIS) {
-            $("#sinopsis-container iframe").remove();
-            var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-            $("#synopsis-table-canal-claro").on(
-                "click",
-                ".edit-synopsis-pencil",
-                function() {
-                    $("body").append(
-                        `<div class="loader-view-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
-                    );
-                    let id = $(this).attr("chapter_id");
-                    programView.renderSynopsis(id, socketSynopsis);
-                }
-            );
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        if (navbarPrevSINOPSIS) {
-            $("#sinopsis-container iframe").remove();
-            var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-            $("#synopsis-table-concert-channel").on(
-                "click",
-                ".edit-synopsis-pencil",
-                function() {
-                    $("body").append(
-                        `<div class="loader-view-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
-                    );
-                    let id = $(this).attr("chapter_id");
-                    programView.renderSynopsis(id, socketSynopsis);
-                }
-            );
+    };
+    //Landing de claro cinema
+
+    let navbarLandingClaroCinema = document.getElementById(
+        "navbar-prev-claro-cinema"
+    );
+    if (navbarLandingClaroCinema) {
+        $("#navbar-prev-claro-cinema iframe").remove();
+        new easyXDM.Socket(confLandingClaroCinema);
+    }
+    let confPrevClaroCinema = {
+        remote: `${baseURL}claro-cinema-prev.php`,
+        container: document.getElementById("navbar-prev-claro-cinema"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
+
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        if (navbarPrevSINOPSIS) {
-            $("#sinopsis-container iframe").remove();
-            var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-            $("#synopsis-table-claro-cinema").on(
-                "click",
-                ".edit-synopsis-pencil",
-                function() {
-                    $("body").append(
-                        `<div class="loader-view-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
-                    );
-                    let id = $(this).attr("chapter_id");
-                    programView.renderSynopsis(id, socketSynopsis);
-                }
-            );
-        }
-        //Editar información de sinopsis
-        programView.editDetailsSynopsis(socketSynopsis);
-        programView.editAttributesSynopsis(socketSynopsis);
-        programView.renderPrevSynopsis();
-        programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
-        programView.editImagesSynopsis(socketSynopsis);
-        programView.editImageSynopsis(socketSynopsis);
-        programView.editImagesBanner(socketSynopsis);
+    };
 
-        let confLandingClaroCinema = {
-            remote: `${baseURL}claro-cinema-edi.php`,
-            // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
-            container: document.getElementById("navbar-prev-claro-cinema"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
-                        <div class="loader-view-container" id="loader1">
-                            <img src="./images/loader.gif" class="loader" alt="">
-                        </div>
-                            `;
-
-                    switch (json.type) {
-                        case "slider-pagination":
-                            getContentClaroCinema("slider-pagination");
-                            break;
-                        case "current-programming-cinema":
-                            let date = new Date();
-                            let day = ("0" + date.getUTCDate()).slice(-2);
-                            let month = ("0" + (date.getUTCMonth() + 1)).slice(
-                                -2
-                            );
-                            let year = date.getUTCFullYear();
-                            let currentDate = `${year}-${month}-${day}`;
-                            // getProgrammingLanding(currentDate, "claro-cinema");
-                            getProgrammingLanding(
-                                currentDate,
-                                "canal-claro",
-                                ""
-                            );
-                            break;
-                        case "header-landing-cinema":
-                            getContentClaroCinema("header-landing-cinema");
-                            break;
-                        case "title-cinema":
-                            getContentClaroCinema("title-cinema");
-                            break;
-                        case "promo-cinema":
-                            getContentClaroCinema("promo-cinema");
-                            break;
-                        case "title-carrusel1":
-                            getContentClaroCinema("title-carrusel1");
-                            break;
-                        case "carrusel1":
-                            let landing = "Claro Cinema";
-                            let id = 1;
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "header-background thumbnail-header-cinema"
-                            );
-                            break;
-                        case "title-carrusel2":
-                            getContentClaroCinema("title-carrusel2");
-                            break;
-                        case "carrusel2":
-                            landing = "Claro Cinema";
-                            id = 2;
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "header-background thumbnail-header-cinema"
-                            );
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
-        //Landing de claro cinema
-
-        let navbarLandingClaroCinema = document.getElementById(
-            "navbar-prev-claro-cinema"
+    //previsualizar concert channel
+    $("#prev-landing-cinema").click(function() {
+        //Landing concert channel
+        resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-cinema").click(function() {
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
         );
-        if (navbarLandingClaroCinema) {
-            $("#navbar-prev-claro-cinema iframe").remove();
-            new easyXDM.Socket(confLandingClaroCinema);
-        }
-        let confPrevClaroCinema = {
-            remote: `${baseURL}claro-cinema.php`,
-            container: document.getElementById("navbar-prev-claro-cinema"),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
 
-        //previsualizar concert channel
-        $("#prev-landing-cinema").click(function() {
-            //Landing concert channel
-            resetIframe(
-                $("#navbar-prev-claro-cinema iframe"),
-                confPrevClaroCinema
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        $("#edit-landing-cinema").click(function() {
-            resetIframe(
-                $("#navbar-prev-claro-cinema iframe"),
-                confLandingClaroCinema
-            );
-
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
-
-        /* Concert channel */
-        let confLandingConcertChannel = {
-            remote: `${baseURL}concert-channel-edi.php`,
-            //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
-            container: document.getElementById("navbar-prev-concert-channel"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    /* Concert channel */
+    let confLandingConcertChannel = {
+        remote: `${baseURL}concert-channel-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
+        container: document.getElementById("navbar-prev-concert-channel"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                                 `;
-                    switch (json.type) {
-                        case "current-programming-concert":
-                            let date = new Date();
-                            let day = ("0" + date.getUTCDate()).slice(-2);
-                            let month = ("0" + (date.getUTCMonth() + 1)).slice(
-                                -2
-                            );
-                            let year = date.getUTCFullYear();
-                            let currentDate = `${year}-${month}-${day}`;
-                            getProgrammingLanding(
-                                currentDate,
-                                "concert-channel",
-                                ""
-                            );
-                            break;
-                        case "header-landing-concert":
-                            getContentConcertChannelHeader();
-                            break;
-                        case "pencil-header":
-                            getContentConcertChannelBlockHeader3();
-                            break;
-                        case "pencil-video":
-                            getConcertChannelPromo();
-                            break;
-                        case "pencil-header1":
-                            getContentConcertChannelBlock4One();
-                            break;
-                        case "header2":
-                            getContentConcertChannelBlock4OTwo();
-                            break;
+                switch (json.type) {
+                    case "current-programming-concert":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(
+                            currentDate,
+                            "concert-channel",
+                            ""
+                        );
+                        break;
+                    case "header-landing-concert":
+                        getContentConcertChannelHeader();
+                        break;
+                    case "pencil-header":
+                        getContentConcertChannelBlockHeader3();
+                        break;
+                    case "pencil-video":
+                        getConcertChannelPromo();
+                        break;
+                    case "pencil-header1":
+                        getContentConcertChannelBlock4One();
+                        break;
+                    case "header2":
+                        getContentConcertChannelBlock4OTwo();
+                        break;
+                    /* case "pencil-carrusel1":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-edit-program-carrusel").modal("show");
+ //slider para carrusel concert-channel
+ $(".carrusel1-slider").slick({
+     slidesToShow: 1,
+     dots: true,
+     appendDots: $(".carrusel1-slider-dots1"),
+     initialSlide: 0,
+     infinite: false,
+     customPaging: function (slider, i) {
+         var thumb = $(slider.$slides[i]).data();
+         return (
+             "<p class='a-text-bold-teal slider-pagination-item'>" +
+             (i + 1) +
+             "</p>"
+         );
+     }
+ });
+ $("#loader1").remove();
+}, 3000);
+break;
+case "pencil-carrusel2":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-edit-program-carrusel2").modal("show");
+ $(".carrusel2-slider").slick({
+     slidesToShow: 1,
+     dots: true,
+     appendDots: $(".carrusel2-slider-dots1"),
+     initialSlide: 0,
+     infinite: false,
+     customPaging: function (slider, i) {
+         var thumb = $(slider.$slides[i]).data();
+         return (
+             "<p class='a-text-bold-teal slider-pagination-item'>" +
+             (i + 1) +
+             "</p>"
+         );
+     }
+ });
+ $("#loader1").remove();
+}, 3000);
 
-                        case "pencil-carrusel1":
-                            let landing = "Concert Channel";
-                            let id = 1;
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "header-background-blue thumbnail-header-concert"
-                            );
-                            break;
-                        case "pencil-carrusel2":
-                            landing = "Concert Channel";
-                            id = 2;
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "header-background-blue thumbnail-header-concert"
-                            );
-                            break;
-                        case "slider-pagination":
-                            getContentConcertChannel("slider-pagination");
-                            break;
-                        case "pencil-header1":
-                            $("body").append(loader);
-                            setTimeout(function() {
-                                $(".modal-titles").modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
+break;
+case "pencil-header":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-titles").modal("show");
+ $("#loader1").remove();
+}, 3000);
 
-                            break;
-                        case "header2":
-                            $("body").append(loader);
-                            setTimeout(function() {
-                                $(".modal-titles").modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
+break;
+case "pencil-video":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-promos-concert").modal("show");
+ $("#loader1").remove();
+}, 3000);
 
-                            break;
+break;
+case "pencil-header1":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-titles").modal("show");
+ $("#loader1").remove();
+}, 3000);
 
-                        default:
-                            break;
-                    }
+break;
+case "header2":
+$("body").append(loader);
+setTimeout(function () {
+ $(".modal-titles").modal("show");
+ $("#loader1").remove();
+}, 3000);
+
+break;*/
+
+                    case "pencil-carrusel1":
+                        let landing = "Concert Channel";
+                        let id = 1;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background-blue thumbnail-header-concert"
+                        );
+                        break;
+                    case "pencil-carrusel2":
+                        landing = "Concert Channel";
+                        id = 2;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background-blue thumbnail-header-concert"
+                        );
+                        break;
+                    case "slider-pagination":
+                        getContentConcertChannel("slider-pagination");
+                        break;
+                    case "pencil-header1":
+                        $("body").append(loader);
+                        setTimeout(function() {
+                            $(".modal-titles").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+                    case "header2":
+                        $("body").append(loader);
+                        setTimeout(function() {
+                            $(".modal-titles").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+
+                        break;
+
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-        let confPrevConcert = {
-            //remote: `${baseURL}concert-channel.php`,
-            remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-prev.php`,
-            container: document.getElementById("navbar-prev-concert-channel"),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let confPrevConcert = {
+        remote: `${baseURL}concert-channel-prev.php`,
+        container: document.getElementById("navbar-prev-concert-channel"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-        //previsualizar concert channel
-        $("#prev-landing-concert").click(function() {
-            //Landing concert channel
-            resetIframe(
-                $("#navbar-prev-concert-channel iframe"),
-                confPrevConcert
-            );
-            resetIframe(
-                $("#navbar-prev-programacion-concert iframe"),
-                confPrevProgramacionConcert
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        //previsualizar concert channel
-        $("#admin-prev-concert").click(function() {
-            //Landing concert channel
-            resetIframe(
-                $("#navbar-prev-concert-channel iframe"),
-                confPrevConcert
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        $("#edit-landing-concert").click(function() {
-            resetIframe(
-                $("#navbar-prev-concert-channel iframe"),
-                confLandingConcertChannel
-            );
+    //previsualizar concert channel
+    $("#prev-landing-concert").click(function() {
+        //Landing concert channel
+        resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-concert").click(function() {
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
 
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
-        //Botón de editar en grilla
-        $("#edit-concert").click(function() {
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
+    $(".button-modal-concert-channel").click(function() {
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
+    });
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".button-modal-concert-channel",
+        function() {
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
             );
-            resetIframe(
-                $("#navbar-prev-programacion-concert iframe"),
-                confProgramacionConcertChannel
-            );
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
-        $(".button-modal-concert-channel").click(function() {
+        }
+    );
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".modal-button-landing-concert",
+        function() {
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
             );
-        });
-        $(".modal-edit-program-carrusel").on(
-            "click",
-            ".button-modal-concert-channel",
-            function() {
-                resetIframe(
-                    $("#navbar-prev-concert-channel iframe"),
-                    confLandingConcertChannel
-                );
-            }
-        );
-        $(".modal-edit-program-carrusel").on(
-            "click",
-            ".modal-button-landing-concert",
-            function() {
-                resetIframe(
-                    $("#navbar-prev-concert-channel iframe"),
-                    confLandingConcertChannel
-                );
-            }
-        );
+        }
+    );
 
-        $(".calendar-slider2").on(
-            "click",
-            ".programming-concert-landing",
-            function() {
-                $(".programming-concert-landing").removeClass(
-                    "programming-item-active"
-                );
-                $(this).addClass("programming-item-active");
-                getProgramsLanding($(this).attr("date"), "concert-channel");
-            }
-        );
-        $(".calendar-slider2").on(
-            "click",
-            ".programming-canal-landing",
-            function() {
-                $(".programming-canal-landing").removeClass(
-                    "programming-item-active"
-                );
-                $(this).addClass("programming-item-active");
-                console.log($(this).attr("date"));
-                getProgramsLanding($(this).attr("date"), "canal-claro");
-            }
-        );
-        //Pencil Chanel
-        $(".modal-programming-landing").on(
-            "click",
-            ".programming-pencil-canal-claro",
-            function() {
-                let chapterId = $(this).attr("chapter_id");
-                $(".modal-programming-landing").modal("hide");
-                getChapterInfo(chapterId, "concert-channel");
-            }
-        );
-        //Pencil Canal
-        $(".modal-programming-landing").on(
-            "click",
-            ".programming-pencil-concert-channel",
-            function() {
-                let chapterId = $(this).attr("chapter_id");
-                $(".modal-programming-landing").modal("hide");
-                getChapterInfo(chapterId, "canal-claro");
-            }
-        );
-
-        //Modal de link para botón
-        $("#url-encabezado-concert").on("show.bs.modal", function() {
-            let link = $(
-                ".modal-header-concert-channel .modal-header-button-link"
-            ).val();
-            $("#link-button-concert-channel").val(link);
-        });
-        $("#url-encabezado-concert").on("hidden.bs.modal", function() {
-            let link = $("#link-button-concert-channel").val();
-            $(".modal-header-concert-channel .modal-header-button-link").val(
-                link
+    $(".calendar-slider2").on(
+        "click",
+        ".programming-concert-landing",
+        function() {
+            $(".programming-concert-landing").removeClass(
+                "programming-item-active"
             );
-        });
+            $(this).addClass("programming-item-active");
+            getProgramsLanding($(this).attr("date"), "concert-channel");
+        }
+    );
+    $(".calendar-slider2").on(
+        "click",
+        ".programming-canal-landing",
+        function() {
+            $(".programming-canal-landing").removeClass(
+                "programming-item-active"
+            );
+            $(this).addClass("programming-item-active");
+            console.log($(this).attr("date"));
+            getProgramsLanding($(this).attr("date"), "canal-claro");
+        }
+    );
+    //Pencil Chanel
+    $(".modal-programming-landing").on(
+        "click",
+        ".programming-pencil-canal-claro",
+        function() {
+            let chapterId = $(this).attr("chapter_id");
+            $(".modal-programming-landing").modal("hide");
+            getChapterInfo(chapterId, "concert-channel");
+        }
+    );
+    //Pencil Canal
+    $(".modal-programming-landing").on(
+        "click",
+        ".programming-pencil-concert-channel",
+        function() {
+            let chapterId = $(this).attr("chapter_id");
+            $(".modal-programming-landing").modal("hide");
+            getChapterInfo(chapterId, "canal-claro");
+        }
+    );
 
-        //Concert channel promo
-        $("#upload-concert-promo-button").click(function() {
-            let file = "";
-            if (document.getElementById("video-promo-file-concert").files[0]) {
-                file = document.getElementById("video-promo-file-concert")
-                    .files[0];
-            } else if (
-                document.getElementById("image-promo-concert").files[0]
-            ) {
-                file = document.getElementById("image-promo-concert").files[0];
-            } else {
-                file = $("#link-promo-concert").val();
-            }
+    //Modal de link para botón
+    $("#url-encabezado-concert").on("show.bs.modal", function() {
+        let link = $(
+            ".modal-header-concert-channel .modal-header-button-link"
+        ).val();
+        $("#link-button-concert-channel").val(link);
+    });
+    $("#url-encabezado-concert").on("hidden.bs.modal", function() {
+        let link = $("#link-button-concert-channel").val();
+        $(".modal-header-concert-channel .modal-header-button-link").val(link);
+    });
 
-            let landing = "Concert Channel";
-            let data = new FormData();
-            let key = $(this).attr("key");
-            data.append("promo", file);
-            data.append("landing", landing);
-            data.append("key", key);
-            editPromoLanding(data);
-        });
+    //Concert channel promo
+    $("#upload-concert-promo-button").click(function() {
+        let file = "";
+        if (document.getElementById("video-promo-file-concert").files[0]) {
+            file = document.getElementById("video-promo-file-concert").files[0];
+        } else if (document.getElementById("image-promo-concert").files[0]) {
+            file = document.getElementById("image-promo-concert").files[0];
+        } else {
+            file = $("#link-promo-concert").val();
+        }
 
-        //Concert Channel Header
-        $("#edit-header-landing-concert").click(function() {
-            let landing = "Concert Channel";
-            let title1 =
-                $(
-                    ".modal-header-concert-channel .modal-header-title-1"
-                ).val() || "";
-            let title2 =
-                $(
-                    ".modal-header-concert-channel .modal-header-title-2"
-                ).val() || "";
-            let logo =
-                document.getElementById("header-lading-concert-logo")
-                    .files[0] || "";
-            let link = $(
-                ".modal-header-concert-channel .modal-header-button-link"
-            ).val();
-            let data = new FormData();
-            data.append("landing", landing);
-            data.append("title1", title1);
-            data.append("title2", title2);
-            data.append("logo", logo);
-            data.append("link", link);
-            editHeaderLanding(data);
-        });
+        let landing = "Concert Channel";
+        let data = new FormData();
+        let key = $(this).attr("key");
+        data.append("promo", file);
+        data.append("landing", landing);
+        data.append("key", key);
+        editPromoLanding(data);
+    });
 
-        //Edicion del header del home
+    //Concert Channel Header
+    $("#edit-header-landing-concert").click(function() {
+        let landing = "Concert Channel";
+        let title1 =
+            $(".modal-header-concert-channel .modal-header-title-1").val() ||
+            "";
+        let title2 =
+            $(".modal-header-concert-channel .modal-header-title-2").val() ||
+            "";
+        let logo =
+            document.getElementById("header-lading-concert-logo").files[0] ||
+            "";
+        let link = $(
+            ".modal-header-concert-channel .modal-header-button-link"
+        ).val();
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        editHeaderLanding(data);
+    });
 
-        $("#edit-home-encabezado").click(function() {
-            let videoimage =
-                document.getElementById("video-promo-header-home").files[0] ||
-                "";
+    //Edicion del header del home
 
-            let title = $(".modal-home-encabezado .header-title-1").val() || "";
-            let subtitle =
-                $(".modal-home-encabezado .header-title-2").val() || "";
+    $("#edit-home-encabezado").click(function() {
+        let videoimage =
+            document.getElementById("video-promo-header-home").files[0] || "";
 
-            let data = new FormData();
+        let title = $(".modal-home-encabezado .header-title-1").val() || "";
+        let subtitle = $(".modal-home-encabezado .header-title-2").val() || "";
 
-            data.append("video", videoimage);
-            data.append("title", title);
-            data.append("subtitle", subtitle);
-            editHomeHeader(data);
-            resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-        });
+        let data = new FormData();
 
-        //Previsualizar el video que subió el usuario en el landing de home
-        $("#video-promo-header-home").change(function() {
-            if (this.files && this.files[0]) {
-                let file = this.files[0];
-                var reader = new FileReader();
-                reader.readAsArrayBuffer(file);
-                reader.onload = function(e) {
-                    // The file reader gives us an ArrayBuffer:
-                    let buffer = e.target.result;
+        data.append("video", videoimage);
+        data.append("title", title);
+        data.append("subtitle", subtitle);
+        editHomeHeader(data);
+        resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+    });
 
-                    // We have to convert the buffer to a blob:
-                    let videoBlob = new Blob([new Uint8Array(buffer)], {
-                        type: "video/mp4"
-                    });
+    //Previsualizar el video que subió el usuario en el landing de home
+    $("#video-promo-header-home").change(function() {
+        if (this.files && this.files[0]) {
+            let file = this.files[0];
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function(e) {
+                // The file reader gives us an ArrayBuffer:
+                let buffer = e.target.result;
 
-                    // The blob gives us a URL to the video file:
-                    let url = window.URL.createObjectURL(videoBlob);
-                    $("#video-promo-header-home").html(
-                        `
+                // We have to convert the buffer to a blob:
+                let videoBlob = new Blob([new Uint8Array(buffer)], {
+                    type: "video/mp4"
+                });
+
+                // The blob gives us a URL to the video file:
+                let url = window.URL.createObjectURL(videoBlob);
+                $("#video-promo-header-home").html(
+                    `
                 <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                 <source src="${url}" type="video/mp4">
 
                  </video>
 
                 `
-                    );
-                };
-            }
-        });
-
-        $("#edit-titles-landing-concert").click(function() {
-            //Title
-
-            let value = $(".modal-concert-title").val();
-            let key = $(".modal-concert-title").attr("key");
-            let landing = "Concert Channel";
-            editElementLanding({
-                value: value,
-                key: key,
-                landing: landing
-            });
-
-            //Subtitle
-            let valueSub = $(".modal-concert-subtitle").val();
-            let keySub = $(".modal-concert-subtitle").attr("key");
-            editElementLanding({
-                value: valueSub,
-                key: keySub,
-                landing: landing
-            });
-        });
-
-        function checkURL(url) {
-            return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+                );
+            };
         }
+    });
 
-        //Previsualizar el video que subió el usuario en el landing de concert channel
-        let videoPromoInput = $("#video-promo-file-concert");
-        $("#video-promo-file-concert").change(function() {
-            $("#image-promo-concert").val("");
-            if (this.files && this.files[0]) {
-                let file = this.files[0];
-                var reader = new FileReader();
-                reader.readAsArrayBuffer(file);
-                reader.onload = function(e) {
-                    // The file reader gives us an ArrayBuffer:
-                    let buffer = e.target.result;
+    $("#edit-titles-landing-concert").click(function() {
+        //Title
 
-                    // We have to convert the buffer to a blob:
-                    let videoBlob = new Blob([new Uint8Array(buffer)], {
-                        type: "video/mp4"
-                    });
+        let value = $(".modal-concert-title").val();
+        let key = $(".modal-concert-title").attr("key");
+        let landing = "Concert Channel";
+        editElementLanding({
+            value: value,
+            key: key,
+            landing: landing
+        });
 
-                    // The blob gives us a URL to the video file:
-                    let url = window.URL.createObjectURL(videoBlob);
+        //Subtitle
+        let valueSub = $(".modal-concert-subtitle").val();
+        let keySub = $(".modal-concert-subtitle").attr("key");
+        editElementLanding({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+    });
 
-                    $("#concert-promo-container").html(
-                        `
+    function checkURL(url) {
+        return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    }
+
+    //Previsualizar el video que subió el usuario en el landing de concert channel
+    let videoPromoInput = $("#video-promo-file-concert");
+    $("#video-promo-file-concert").change(function() {
+        $("#image-promo-concert").val("");
+        if (this.files && this.files[0]) {
+            let file = this.files[0];
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function(e) {
+                // The file reader gives us an ArrayBuffer:
+                let buffer = e.target.result;
+
+                // We have to convert the buffer to a blob:
+                let videoBlob = new Blob([new Uint8Array(buffer)], {
+                    type: "video/mp4"
+                });
+
+                // The blob gives us a URL to the video file:
+                let url = window.URL.createObjectURL(videoBlob);
+
+                $("#concert-promo-container").html(
+                    `
                         <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
                             <source src="${url}" type="video/mp4">
                         </video>
                         `
-                    );
-                };
-            }
-        });
+                );
+            };
+        }
+    });
 
-        $("#image-promo-concert").change(function() {
-            videoPromoInput.val("");
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $("#concert-promo-container").html(`
+    $("#image-promo-concert").change(function() {
+        videoPromoInput.val("");
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#concert-promo-container").html(`
                 <img src="${e.target.result}" alt="" class="d-flex w-100" id="promo-image-concert">
                 `);
-                };
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
+            };
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
 
-        $("#close-modal-promos-concert").click(function() {
-            $("#link-promo-concert").val("");
-        });
+    $("#close-modal-promos-concert").click(function() {
+        $("#link-promo-concert").val("");
+    });
 
-        $("#url-promo-concert-button").on("click", function() {
-            let link = $("#link-promo-concert").val();
-            let prevContainer = $("#concert-promo-container");
-            let videoInput = $("#video-promo-file-concert");
-            let imageInput = $("#image-promo-concert");
-            if (checkURL(link)) {
-                //Insertamos una nueva imagen con el link
-                prevContainer.html(`
+    $("#url-promo-concert-button").on("click", function() {
+        let link = $("#link-promo-concert").val();
+        let prevContainer = $("#concert-promo-container");
+        let videoInput = $("#video-promo-file-concert");
+        let imageInput = $("#image-promo-concert");
+        if (checkURL(link)) {
+            //Insertamos una nueva imagen con el link
+            prevContainer.html(`
             <img src="${link}" alt="" class="d-flex w-100" id="promo-image-concert">
             `);
-                //Limpiamos los input
-                videoInput.val("");
-                imageInput.val("");
-            } else {
-                prevContainer.html(
-                    `
+            //Limpiamos los input
+            videoInput.val("");
+            imageInput.val("");
+        } else {
+            prevContainer.html(
+                `
                 <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
                     <source src="${link}" type="video/mp4">
                 </video>
                 `
-                );
-                //Limpiamos input
-                videoInput.val("");
-                imageInput.val("");
-            }
-        });
-
-        //Landing de concert channel
-        let navbarPrevConcertChannel = document.getElementById(
-            "navbar-prev-concert-channel"
-        );
-        if (navbarPrevConcertChannel) {
-            $("#navbar-prev-concert-channel iframe").remove();
-            new easyXDM.Socket(confLandingConcertChannel);
+            );
+            //Limpiamos input
+            videoInput.val("");
+            imageInput.val("");
         }
+    });
 
-        //loader, antes de subir un archivo
-        $(".upload-files").on("click", function() {
-            const loader = `
+    //Landing de concert channel
+    let navbarPrevConcertChannel = document.getElementById(
+        "navbar-prev-concert-channel"
+    );
+    if (navbarPrevConcertChannel) {
+        $("#navbar-prev-concert-channel iframe").remove();
+        new easyXDM.Socket(confLandingConcertChannel);
+    }
+
+    //loader, antes de subir un archivo
+    $(".upload-files").on("click", function() {
+        const loader = `
         <div class="loader-view-container" id="loader2">
           <img src="./images/loader.gif" class="loader" alt="">
         </div>
         `;
-            $("body").append(loader);
-            setTimeout(function() {
-                $("#loader2").remove();
-            }, 3000);
-        });
+        $("body").append(loader);
+        setTimeout(function() {
+            $("#loader2").remove();
+        }, 3000);
+    });
 
-        //Evento para cuando cerramos el selectpicker
+    //Evento para cuando cerramos el selectpicker
 
-        $(".calendar-slider").on("click", ".programming-item", function() {
-            $(".programming-item").removeClass("programming-item-active");
-            $(this).addClass("programming-item-active");
-            let date = $(this).attr("date");
-            let section = $(this).attr("section_id");
-            let time = $(".current").attr("schedule");
-            getProgramming(date, section, time);
-        });
+    $(".calendar-slider").on("click", ".programming-item", function() {
+        $(".programming-item").removeClass("programming-item-active");
+        $(this).addClass("programming-item-active");
+        let date = $(this).attr("date");
+        let section = $(this).attr("section_id");
+        let time = $(".current").attr("schedule");
+        getProgramming(date, section, time);
+    });
 
-        $(".thermometer-schedule-list").on("click", ".unavailable", function() {
-            let chapter_id = $(this).attr("chapter_id");
-            getChapterInfo(chapter_id);
-        });
+    $(".thermometer-schedule-list").on("click", ".unavailable", function() {
+        let chapter_id = $(this).attr("chapter_id");
+        getChapterInfo(chapter_id);
+    });
 
-        $(".modal-edit-program-carrusel").on(
-            "change",
-            ".edit-image-carrusel",
-            function() {
-                let image = this.files[0];
-                let name = $(this).attr("program");
-                let landing = $(this).attr("landing");
-                let chapter_id = $(this).attr("chapter_id");
-                console.log(landing, name, chapter_id);
-                let data = new FormData();
-
-                data.append("image-horizontal", image);
-                data.append("landing", landing);
-                data.append("chapter_id", chapter_id);
-                data.append("name", name);
-                updateImageProgramOfLanding(data);
-            }
-        );
-
-        $("#edit-image-horizontal").on("change", function() {
+    $(".modal-edit-program-carrusel").on(
+        "change",
+        ".edit-image-carrusel",
+        function() {
             let image = this.files[0];
-            let editProgramDataContainer = $(".edit-program-data-container");
-            let name = editProgramDataContainer.attr("program");
-            let landing = editProgramDataContainer.attr("section");
-            let chapter_id = editProgramDataContainer.attr("chapter_id");
-
+            let name = $(this).attr("program");
+            let landing = $(this).attr("landing");
+            let chapter_id = $(this).attr("chapter_id");
+            console.log(landing, name, chapter_id);
             let data = new FormData();
 
             data.append("image-horizontal", image);
@@ -1818,35 +1692,256 @@ function eventsGrilla() {
             data.append("chapter_id", chapter_id);
             data.append("name", name);
             updateImageProgramOfLanding(data);
-        });
+        }
+    );
 
-        $(".edit-program-attribute-text").keydown(function(e) {
+    $("#edit-image-horizontal").on("change", function() {
+        let image = this.files[0];
+        let editProgramDataContainer = $(".edit-program-data-container");
+        let name = editProgramDataContainer.attr("program");
+        let landing = editProgramDataContainer.attr("section");
+        let chapter_id = editProgramDataContainer.attr("chapter_id");
+
+        let data = new FormData();
+
+        data.append("image-horizontal", image);
+        data.append("landing", landing);
+        data.append("chapter_id", chapter_id);
+        data.append("name", name);
+        updateImageProgramOfLanding(data);
+    });
+
+    $(".edit-program-attribute-text").keydown(function(e) {
+        if (e.which === 13 && !e.shiftKey) {
+            let key = $(this).attr("key");
+            let chapter_id = $(".edit-program-data-container").attr(
+                "chapter_id"
+            );
+            console.log($(".edit-program-data-container-s").attr("chapter_id"));
+            let value = $(this).val();
+            switch (key) {
+                case "in_home_begin":
+                    if (
+                        $(".edit-home-date-begin").val() &&
+                        $(".edit-home-time-begin").val()
+                    ) {
+                        value = `${$(this).val()} ${$(
+                            ".edit-home-time-begin"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".edit-home-date-begin").val() &&
+                        !$(".edit-home-time-begin").val()
+                    ) {
+                        let date = $(this)
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_home_expiration":
+                    if (
+                        $(".edit-home-date-expiration").val() &&
+                        $(".edit-home-time-expiration").val()
+                    ) {
+                        let date = $(".edit-home-date-expiration")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".edit-home-time-expiration"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".edit-home-date-expiration").val() &&
+                        !$(".edit-home-time-expiration").val()
+                    ) {
+                        let date = $(".edit-home-date-expiration")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_landing_begin":
+                    if (
+                        $(".edit-landing-date-begin").val() &&
+                        $(".edit-landing-time-begin").val()
+                    ) {
+                        let date = $(".edit-landing-date-begin")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".edit-landing-time-begin"
+                        ).val()}`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".edit-landing-date-begin").val() &&
+                        !$(".edit-landing-time-begin").val()
+                    ) {
+                        let date = $(".edit-landing-date-begin")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                case "in_landing_expiration":
+                    if (
+                        $(".edit-landing-date-end").val() &&
+                        $(".edit-landing-time-end").val()
+                    ) {
+                        let date = $(".edit-landing-date-end")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".edit-landing-time-end"
+                        ).val()}`;
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    } else if (
+                        $(".edit-landing-date-end").val() &&
+                        !$(".edit-landing-time-end").val()
+                    ) {
+                        let date = $(".edit-landing-date-end")
+                            .val()
+                            .split("-");
+                        value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+
+                        editAttributeProgram(chapter_id, key, value);
+                        $(this).blur();
+                    }
+
+                    break;
+                default:
+                    editAttributeProgram(chapter_id, key, value);
+                    $(this).blur();
+                    break;
+            }
+
+            //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+            //$("#navbar-prev-programacion iframe").attr("src", iframe);
+        }
+    });
+    $(".modal-programming-carousel-claro").on(
+        "change",
+        ".input-image-program",
+        function() {
+            let currentInput = $(this);
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    currentInput
+                        .next()
+                        .children(".prev-image-program")
+                        .attr("src", e.target.result)
+                        .addClass("h-100 w-100")
+                        .css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+    );
+    $(".modal-programming-carousel-concert").on(
+        "change",
+        ".input-image-program",
+        function() {
+            let currentInput = $(this);
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    currentInput
+                        .next()
+                        .children(".prev-image-program")
+                        .attr("src", e.target.result)
+                        .addClass("h-100 w-100")
+                        .css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+    );
+    $(".modal-edit-program-carrusel").on(
+        "change",
+        ".input-image-program",
+        function() {
+            let currentInput = $(this);
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    currentInput
+                        .next()
+                        .children(".prev-image-program")
+                        .attr("src", e.target.result)
+                        .addClass("h-100 w-100")
+                        .css("z-index", "2");
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+    );
+
+    //Editar datos de un programa de un carrusel en el landing
+    $(".modal-edit-program-carrusel").on(
+        "keydown",
+        ".edit-program-attribute-text",
+
+        function(e) {
             if (e.which === 13 && !e.shiftKey) {
+                debugger;
                 let key = $(this).attr("key");
-                let chapter_id = $(".edit-program-data-container").attr(
-                    "chapter_id"
-                );
-                console.log(
-                    $(".edit-program-data-container-s").attr("chapter_id")
-                );
+                let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
+
                 switch (key) {
                     case "in_home_begin":
                         if (
-                            $(".edit-home-date-begin").val() &&
-                            $(".edit-home-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
                         ) {
-                            value = `${$(this).val()} ${$(
-                                ".edit-home-time-begin"
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
+                                .val()
+                                .split("-");
+                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
                             ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
                             $(this).blur();
                         } else if (
-                            $(".edit-home-date-begin").val() &&
-                            !$(".edit-home-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-begin"
+                            ).val()
                         ) {
-                            let date = $(this)
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-home-date-begin"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1857,23 +1952,35 @@ function eventsGrilla() {
                         break;
                     case "in_home_expiration":
                         if (
-                            $(".edit-home-date-expiration").val() &&
-                            $(".edit-home-time-expiration").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
                         ) {
-                            let date = $(".edit-home-date-expiration")
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".edit-home-time-expiration"
+                                ".modal-edit-program-carrusel .edit-home-time-end"
                             ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
                             $(this).blur();
                         } else if (
-                            $(".edit-home-date-expiration").val() &&
-                            !$(".edit-home-time-expiration").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-home-time-end"
+                            ).val()
                         ) {
-                            let date = $(".edit-home-date-expiration")
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-home-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1884,23 +1991,36 @@ function eventsGrilla() {
                         break;
                     case "in_landing_begin":
                         if (
-                            $(".edit-landing-date-begin").val() &&
-                            $(".edit-landing-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
                         ) {
-                            let date = $(".edit-landing-date-begin")
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                                 .val()
                                 .split("-");
+
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".edit-landing-time-begin"
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
                             ).val()}`;
 
                             editAttributeProgram(chapter_id, key, value);
                             $(this).blur();
                         } else if (
-                            $(".edit-landing-date-begin").val() &&
-                            !$(".edit-landing-time-begin").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-begin"
+                            ).val()
                         ) {
-                            let date = $(".edit-landing-date-begin")
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-landing-date-begin"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1911,23 +2031,36 @@ function eventsGrilla() {
 
                         break;
                     case "in_landing_expiration":
+                        //Si se escribió la hora y la fecha
                         if (
-                            $(".edit-landing-date-end").val() &&
-                            $(".edit-landing-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
                         ) {
-                            let date = $(".edit-landing-date-end")
+                            let date = $(
+                                ".modal-edit-program-carrusel  .edit-landing-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".edit-landing-time-end"
+                                ".modal-edit-program-carrusel  .edit-landing-time-end"
                             ).val()}`;
                             editAttributeProgram(chapter_id, key, value);
                             $(this).blur();
                         } else if (
-                            $(".edit-landing-date-end").val() &&
-                            !$(".edit-landing-time-end").val()
+                            $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            ).val() &&
+                            !$(
+                                ".modal-edit-program-carrusel .edit-landing-time-end"
+                            ).val()
                         ) {
-                            let date = $(".edit-landing-date-end")
+                            let date = $(
+                                ".modal-edit-program-carrusel .edit-landing-date-end"
+                            )
                                 .val()
                                 .split("-");
                             value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -1946,276 +2079,155 @@ function eventsGrilla() {
                 //let iframe = $("#navbar-prev-programacion iframe").attr("src");
                 //$("#navbar-prev-programacion iframe").attr("src", iframe);
             }
-        });
-        $(".modal-programming-carousel-claro").on(
-            "change",
-            ".input-image-program",
-            function() {
-                let currentInput = $(this);
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        currentInput
-                            .next()
-                            .children(".prev-image-program")
-                            .attr("src", e.target.result)
-                            .addClass("h-100 w-100")
-                            .css("z-index", "2");
-                    };
+        }
+    );
 
-                    reader.readAsDataURL(this.files[0]);
+    $(".edit-program-attribute-text").blur(function(e) {
+        console.log("blur");
+        let key = $(this).attr("key");
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        switch (key) {
+            case "in_home_begin":
+                if (
+                    $(".edit-home-date-begin").val() &&
+                    $(".edit-home-time-begin").val()
+                ) {
+                    value = `${$(this).val()} ${$(
+                        ".edit-home-time-begin"
+                    ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".edit-home-date-begin").val() &&
+                    !$(".edit-home-time-begin").val()
+                ) {
+                    let date = $(this)
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
                 }
-            }
-        );
-        $(".modal-programming-carousel-concert").on(
-            "change",
-            ".input-image-program",
-            function() {
-                let currentInput = $(this);
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        currentInput
-                            .next()
-                            .children(".prev-image-program")
-                            .attr("src", e.target.result)
-                            .addClass("h-100 w-100")
-                            .css("z-index", "2");
-                    };
 
-                    reader.readAsDataURL(this.files[0]);
+                break;
+            case "in_home_expiration":
+                if (
+                    $(".edit-home-date-expiration").val() &&
+                    $(".edit-home-time-expiration").val()
+                ) {
+                    let date = $(".edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".edit-home-time-expiration"
+                    ).val()}`;
+
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".edit-home-date-expiration").val() &&
+                    !$(".edit-home-time-expiration").val()
+                ) {
+                    let date = $(".edit-home-date-expiration")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
                 }
-            }
-        );
-        $(".modal-edit-program-carrusel").on(
-            "change",
-            ".input-image-program",
-            function() {
-                let currentInput = $(this);
 
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        currentInput
-                            .next()
-                            .children(".prev-image-program")
-                            .attr("src", e.target.result)
-                            .addClass("h-100 w-100")
-                            .css("z-index", "2");
-                    };
+                break;
+            case "in_landing_begin":
+                if (
+                    $(".edit-landing-date-begin").val() &&
+                    $(".edit-landing-time-begin").val()
+                ) {
+                    let date = $(".edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".edit-landing-time-begin"
+                    ).val()}`;
 
-                    reader.readAsDataURL(this.files[0]);
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".edit-landing-date-begin").val() &&
+                    !$(".edit-landing-time-begin").val()
+                ) {
+                    let date = $(".edit-landing-date-begin")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
+                    editAttributeProgram(chapter_id, key, value);
                 }
-            }
-        );
 
-        //Editar datos de un programa de un carrusel en el landing
-        $(".modal-edit-program-carrusel").on(
-            "keydown",
-            ".edit-program-attribute-text",
+                break;
+            case "in_landing_expiration":
+                if (
+                    $(".edit-landing-date-end").val() &&
+                    $(".edit-landing-time-end").val()
+                ) {
+                    let date = $(".edit-landing-date-end")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                        ".edit-landing-time-end"
+                    ).val()}`;
+                    editAttributeProgram(chapter_id, key, value);
+                } else if (
+                    $(".edit-landing-date-end").val() &&
+                    !$(".edit-landing-time-end").val()
+                ) {
+                    let date = $(".edit-landing-date-end")
+                        .val()
+                        .split("-");
+                    value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
 
-            function(e) {
-                if (e.which === 13 && !e.shiftKey) {
-                    debugger;
-                    let key = $(this).attr("key");
-                    let chapter_id = $(this).attr("chapter_id");
-                    let value = $(this).val();
-
-                    switch (key) {
-                        case "in_home_begin":
-                            if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                ).val() &&
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-time-begin"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-home-time-begin"
-                                ).val()}`;
-
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            } else if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                ).val() &&
-                                !$(
-                                    ".modal-edit-program-carrusel .edit-home-time-begin"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-begin"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            }
-
-                            break;
-                        case "in_home_expiration":
-                            if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                ).val() &&
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-time-end"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-home-time-end"
-                                ).val()}`;
-
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            } else if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                ).val() &&
-                                !$(
-                                    ".modal-edit-program-carrusel .edit-home-time-end"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-home-date-end"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            }
-
-                            break;
-                        case "in_landing_begin":
-                            if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                ).val() &&
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-time-begin"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                )
-                                    .val()
-                                    .split("-");
-
-                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel .edit-landing-time-begin"
-                                ).val()}`;
-
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            } else if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                ).val() &&
-                                !$(
-                                    ".modal-edit-program-carrusel .edit-landing-time-begin"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-begin"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            }
-
-                            break;
-                        case "in_landing_expiration":
-                            //Si se escribió la hora y la fecha
-                            if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-end"
-                                ).val() &&
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-time-end"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel  .edit-landing-date-end"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                    ".modal-edit-program-carrusel  .edit-landing-time-end"
-                                ).val()}`;
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            } else if (
-                                $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-end"
-                                ).val() &&
-                                !$(
-                                    ".modal-edit-program-carrusel .edit-landing-time-end"
-                                ).val()
-                            ) {
-                                let date = $(
-                                    ".modal-edit-program-carrusel .edit-landing-date-end"
-                                )
-                                    .val()
-                                    .split("-");
-                                value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-
-                                editAttributeProgram(chapter_id, key, value);
-                                $(this).blur();
-                            }
-
-                            break;
-                        default:
-                            editAttributeProgram(chapter_id, key, value);
-                            $(this).blur();
-                            break;
-                    }
-
-                    //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-                    //$("#navbar-prev-programacion iframe").attr("src", iframe);
+                    editAttributeProgram(chapter_id, key, value);
                 }
-            }
-        );
+                break;
+            default:
+                editAttributeProgram(chapter_id, key, value);
+                break;
+        }
 
-        $(".edit-program-attribute-text").blur(function(e) {
-            console.log("blur");
+        //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
+    });
+    $(".modal-edit-program-carrusel").on(
+        "blur",
+        ".edit-program-attribute-text",
+        function(e) {
             let key = $(this).attr("key");
-            let chapter_id = $(".edit-program-data-container").attr(
-                "chapter_id"
-            );
+            let chapter_id = $(this).attr("chapter_id");
             let value = $(this).val();
             switch (key) {
                 case "in_home_begin":
                     if (
-                        $(".edit-home-date-begin").val() &&
-                        $(".edit-home-time-begin").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-date-begin"
+                        ).val() &&
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-time-begin"
+                        ).val()
                     ) {
-                        value = `${$(this).val()} ${$(
-                            ".edit-home-time-begin"
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-home-date-begin"
+                        ).val();
+                        value = `${date[2]}-${date[1]}-${date[0]} ${$(
+                            ".modal-edit-program-carrusel .edit-home-time-begin"
                         ).val()}`;
 
-                        editAttributeProgram(chapter_id, key, value);
+                        chapter_id, key, value;
                     } else if (
-                        $(".edit-home-date-begin").val() &&
-                        !$(".edit-home-time-begin").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-date-begin"
+                        ).val() &&
+                        !$(
+                            ".modal-edit-program-carrusel .edit-home-time-begin"
+                        ).val()
                     ) {
-                        let date = $(this)
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-home-date-begin"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -2225,22 +2237,34 @@ function eventsGrilla() {
                     break;
                 case "in_home_expiration":
                     if (
-                        $(".edit-home-date-expiration").val() &&
-                        $(".edit-home-time-expiration").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-date-expiration"
+                        ).val() &&
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-time-expiration"
+                        ).val()
                     ) {
-                        let date = $(".edit-home-date-expiration")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-home-date-expiration"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                            ".edit-home-time-expiration"
+                            ".modal-edit-program-carrusel .edit-home-time-expiration"
                         ).val()}`;
-
+                        console.log(date);
                         editAttributeProgram(chapter_id, key, value);
                     } else if (
-                        $(".edit-home-date-expiration").val() &&
-                        !$(".edit-home-time-expiration").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-home-date-expiration"
+                        ).val() &&
+                        !$(
+                            ".modal-edit-program-carrusel .edit-home-time-expiration"
+                        ).val()
                     ) {
-                        let date = $(".edit-home-date-expiration")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-home-date-expiration"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -2250,22 +2274,34 @@ function eventsGrilla() {
                     break;
                 case "in_landing_begin":
                     if (
-                        $(".edit-landing-date-begin").val() &&
-                        $(".edit-landing-time-begin").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-date-begin"
+                        ).val() &&
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-time-begin"
+                        ).val()
                     ) {
-                        let date = $(".edit-landing-date-begin")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-landing-date-begin"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                            ".edit-landing-time-begin"
+                            ".modal-edit-program-carrusel .edit-landing-time-begin"
                         ).val()}`;
 
                         editAttributeProgram(chapter_id, key, value);
                     } else if (
-                        $(".edit-landing-date-begin").val() &&
-                        !$(".edit-landing-time-begin").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-date-begin"
+                        ).val() &&
+                        !$(
+                            ".modal-edit-program-carrusel .edit-landing-time-begin"
+                        ).val()
                     ) {
-                        let date = $(".edit-landing-date-begin")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-landing-date-begin"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -2275,21 +2311,33 @@ function eventsGrilla() {
                     break;
                 case "in_landing_expiration":
                     if (
-                        $(".edit-landing-date-end").val() &&
-                        $(".edit-landing-time-end").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-date-end"
+                        ).val() &&
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-time-end"
+                        ).val()
                     ) {
-                        let date = $(".edit-landing-date-end")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-landing-date-end"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                            ".edit-landing-time-end"
+                            ".modal-edit-program-carrusel .edit-landing-time-end"
                         ).val()}`;
                         editAttributeProgram(chapter_id, key, value);
                     } else if (
-                        $(".edit-landing-date-end").val() &&
-                        !$(".edit-landing-time-end").val()
+                        $(
+                            ".modal-edit-program-carrusel .edit-landing-date-end"
+                        ).val() &&
+                        !$(
+                            ".modal-edit-program-carrusel .edit-landing-time-end"
+                        ).val()
                     ) {
-                        let date = $(".edit-landing-date-end")
+                        let date = $(
+                            ".modal-edit-program-carrusel .edit-landing-date-end"
+                        )
                             .val()
                             .split("-");
                         value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
@@ -2304,214 +2352,74 @@ function eventsGrilla() {
 
             //let iframe = $("#navbar-prev-programacion iframe").attr("src");
             //$("#navbar-prev-programacion iframe").attr("src", iframe);
-        });
-        $(".modal-edit-program-carrusel").on(
-            "blur",
-            ".edit-program-attribute-text",
-            function(e) {
-                let key = $(this).attr("key");
-                let chapter_id = $(this).attr("chapter_id");
-                let value = $(this).val();
-                switch (key) {
-                    case "in_home_begin":
-                        if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            ).val() &&
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-time-begin"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            ).val();
-                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".modal-edit-program-carrusel .edit-home-time-begin"
-                            ).val()}`;
+        }
+    );
 
-                            chapter_id, key, value;
-                        } else if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            ).val() &&
-                            !$(
-                                ".modal-edit-program-carrusel .edit-home-time-begin"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-begin"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                            editAttributeProgram(chapter_id, key, value);
-                        }
-
-                        break;
-                    case "in_home_expiration":
-                        if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-date-expiration"
-                            ).val() &&
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-time-expiration"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-expiration"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".modal-edit-program-carrusel .edit-home-time-expiration"
-                            ).val()}`;
-                            console.log(date);
-                            editAttributeProgram(chapter_id, key, value);
-                        } else if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-home-date-expiration"
-                            ).val() &&
-                            !$(
-                                ".modal-edit-program-carrusel .edit-home-time-expiration"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-home-date-expiration"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                            editAttributeProgram(chapter_id, key, value);
-                        }
-
-                        break;
-                    case "in_landing_begin":
-                        if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            ).val() &&
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-time-begin"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".modal-edit-program-carrusel .edit-landing-time-begin"
-                            ).val()}`;
-
-                            editAttributeProgram(chapter_id, key, value);
-                        } else if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            ).val() &&
-                            !$(
-                                ".modal-edit-program-carrusel .edit-landing-time-begin"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-begin"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-                            editAttributeProgram(chapter_id, key, value);
-                        }
-
-                        break;
-                    case "in_landing_expiration":
-                        if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            ).val() &&
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-time-end"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} ${$(
-                                ".modal-edit-program-carrusel .edit-landing-time-end"
-                            ).val()}`;
-                            editAttributeProgram(chapter_id, key, value);
-                        } else if (
-                            $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            ).val() &&
-                            !$(
-                                ".modal-edit-program-carrusel .edit-landing-time-end"
-                            ).val()
-                        ) {
-                            let date = $(
-                                ".modal-edit-program-carrusel .edit-landing-date-end"
-                            )
-                                .val()
-                                .split("-");
-                            value = `${date[2]}-${date[1]}-${date[0]} 00:00:00`;
-
-                            editAttributeProgram(chapter_id, key, value);
-                        }
-                        break;
-                    default:
-                        editAttributeProgram(chapter_id, key, value);
-                        break;
-                }
-
-                //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-                //$("#navbar-prev-programacion iframe").attr("src", iframe);
-            }
-        );
-
-        $(".edit-program-switch").click(function() {
+    $(".edit-program-switch").click(function() {
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        editAttributeProgram(chapter_id, key, value);
+    });
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".edit-program-switch",
+        function() {
             let value = $(this).val();
             let key = $(this).attr("key");
-            let chapter_id = $(".edit-program-data-container").attr(
-                "chapter_id"
-            );
+            let chapter_id = $(this).attr("chapter_id");
             editAttributeProgram(chapter_id, key, value);
-        });
-        $(".modal-edit-program-carrusel").on(
-            "click",
-            ".edit-program-switch",
-            function() {
-                let value = $(this).val();
-                let key = $(this).attr("key");
-                let chapter_id = $(this).attr("chapter_id");
-                editAttributeProgram(chapter_id, key, value);
-            }
-        );
+        }
+    );
 
-        $(".edit-switch-home").click(function() {
+    $(".edit-switch-home").click(function() {
+        if ($(this).val() == 0) {
+            $(".edit-home-date-end").val("");
+            $(".edit-home-date-begin").val("");
+            $(".edit-home-time-end").val("");
+            $(".edit-home-time-begin").val("");
+        }
+    });
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".edit-switch-home",
+        function() {
             if ($(this).val() == 0) {
                 $(".edit-home-date-end").val("");
                 $(".edit-home-date-begin").val("");
                 $(".edit-home-time-end").val("");
                 $(".edit-home-time-begin").val("");
             }
-        });
-        $(".modal-edit-program-carrusel").on(
-            "click",
-            ".edit-switch-home",
-            function() {
-                if ($(this).val() == 0) {
-                    $(".edit-home-date-end").val("");
-                    $(".edit-home-date-begin").val("");
-                    $(".edit-home-time-end").val("");
-                    $(".edit-home-time-begin").val("");
-                }
-            }
-        );
+        }
+    );
 
-        $(".edit-switch-landing").click(function() {
-            let chapter_id = $(".edit-program-data-container").attr(
-                "chapter_id"
-            );
+    $(".edit-switch-landing").click(function() {
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        if ($(this).val() == 0) {
+            $(".edit-landing-date-end").val("");
+            $(".edit-landing-date-begin").val("");
+            $(".edit-landing-time-end").val("");
+            $(".edit-landing-time-begin").val("");
+            $("#landing-section-1").prop("checked", false);
+            $("#landing-section-1").attr("disabled", true);
+            $("#landing-section-2").prop("checked", false);
+            $("#landing-section-2").attr("disabled", true);
+            editAttributeProgram(chapter_id, key, value);
+        } else {
+            $("#landing-section-1").attr("disabled", false);
+            $("#landing-section-2").attr("disabled", false);
+        }
+    });
+    //
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".edit-switch-landing",
+        function() {
+            let chapter_id = $(
+                ".modal-edit-program-carrusel .edit-program-data-container"
+            ).attr("chapter_id");
             let value = $(this).val();
             let key = $(this).attr("key");
             if ($(this).val() == 0) {
@@ -2527,156 +2435,131 @@ function eventsGrilla() {
             } else {
                 $("#landing-section-1").attr("disabled", false);
                 $("#landing-section-2").attr("disabled", false);
+                editAttributeProgram(chapter_id, key, value);
             }
-        });
-        //
-        $(".modal-edit-program-carrusel").on(
-            "click",
-            ".edit-switch-landing",
-            function() {
-                let chapter_id = $(
-                    ".modal-edit-program-carrusel .edit-program-data-container"
-                ).attr("chapter_id");
-                let value = $(this).val();
-                let key = $(this).attr("key");
-                if ($(this).val() == 0) {
-                    $(".edit-landing-date-end").val("");
-                    $(".edit-landing-date-begin").val("");
-                    $(".edit-landing-time-end").val("");
-                    $(".edit-landing-time-begin").val("");
-                    $("#landing-section-1").prop("checked", false);
-                    $("#landing-section-1").attr("disabled", true);
-                    $("#landing-section-2").prop("checked", false);
-                    $("#landing-section-2").attr("disabled", true);
-                    editAttributeProgram(chapter_id, key, value);
-                } else {
-                    $("#landing-section-1").attr("disabled", false);
-                    $("#landing-section-2").attr("disabled", false);
-                    editAttributeProgram(chapter_id, key, value);
-                }
-            }
+        }
+    );
+    //loader, antes de subir un archivo
+    $(".load-modales").click(function() {
+        $(".modal-edit-icons .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
+            <img src="./images/loader.gif" class="loader"/>
+        </div>`
         );
-        //loader, antes de subir un archivo
-        $(".load-modales").click(function() {
-            $(".modal-edit-icons .modal-content").append(
-                `<div class="loader-view-container pointer-none" >
+
+        setTimeout(function() {
+            $(".loader-view-container").remove();
+        }, 3000);
+    });
+    //loader, antes de subir un archivo
+    $(".load-modal-programming").click(function() {
+        $(".modal-edit-program .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
-            );
+        );
 
-            setTimeout(function() {
-                $(".loader-view-container").remove();
-            }, 3000);
-        });
-        //loader, antes de subir un archivo
-        $(".load-modal-programming").click(function() {
-            $(".modal-edit-program .modal-content").append(
-                `<div class="loader-view-container pointer-none" >
+        setTimeout(function() {
+            $(".loader-view-container").remove();
+        }, 3000);
+    });
+    //loader, antes de subir un archivo
+    $(".load-programming-carousel").click(function() {
+        $(".modal-programming-carousel .modal-content").append(
+            `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
-            );
+        );
+        setTimeout(function() {
+            $(".loader-view-container").remove();
+        }, 3000);
+    });
 
-            setTimeout(function() {
-                $(".loader-view-container").remove();
-            }, 3000);
-        });
-        //loader, antes de subir un archivo
-        $(".load-programming-carousel").click(function() {
-            $(".modal-programming-carousel .modal-content").append(
-                `<div class="loader-view-container pointer-none" >
-            <img src="./images/loader.gif" class="loader"/>
-        </div>`
-            );
-            setTimeout(function() {
-                $(".loader-view-container").remove();
-            }, 3000);
-        });
+    //activacion de paginacion
+    $(".slider-logo").click(function() {
+        $(".slider-pagination").removeClass("slider-pagination-active") &
+            $(".slider-pagination").removeClass("a-text-bold-white");
+        $(" .slider-pagination").addClass("a-text-bold-teal");
 
-        //activacion de paginacion
-        $(".slider-logo").click(function() {
-            $(".slider-pagination").removeClass("slider-pagination-active") &
-                $(".slider-pagination").removeClass("a-text-bold-white");
-            $(" .slider-pagination").addClass("a-text-bold-teal");
-
+        $(this)
+            .find(".slider-pagination")
+            .addClass("slider-pagination-active") &
             $(this)
                 .find(".slider-pagination")
-                .addClass("slider-pagination-active") &
-                $(this)
-                    .find(".slider-pagination")
-                    .addClass("a-text-bold-white") &
-                $(this)
-                    .find(".slider-pagination")
-                    .removeClass("a-text-bold-teal");
-        });
-        $("#edit-logos-button").click(function() {
-            let data = new FormData();
-            //Canal claro
-            let logoUrlCanalClaro =
-                document.getElementById("image-icon1").files[0] || "";
-            data.append("logoCanalClaro", logoUrlCanalClaro);
-            let urlCanalClaro = $("#link-logo-canal-claro").val() || "";
-            data.append("urlCanalClaro", urlCanalClaro);
+                .addClass("a-text-bold-white") &
+            $(this)
+                .find(".slider-pagination")
+                .removeClass("a-text-bold-teal");
+    });
+    $("#edit-logos-button").click(function() {
+        let data = new FormData();
+        //Canal claro
+        let logoUrlCanalClaro =
+            document.getElementById("image-icon1").files[0] || "";
+        data.append("logoCanalClaro", logoUrlCanalClaro);
+        let urlCanalClaro = $("#link-logo-canal-claro").val() || "";
+        data.append("urlCanalClaro", urlCanalClaro);
 
-            //Concert channel
-            let logoUrlConcertChannel =
-                document.getElementById("image-icon2").files[0] || "";
-            data.append("logoConcertChannel", logoUrlConcertChannel);
-            let urlConertChannel = $("#link-logo-concert-channel").val() || "";
-            data.append("urlConcertChannel", urlConertChannel);
+        //Concert channel
+        let logoUrlConcertChannel =
+            document.getElementById("image-icon2").files[0] || "";
+        data.append("logoConcertChannel", logoUrlConcertChannel);
+        let urlConertChannel = $("#link-logo-concert-channel").val() || "";
+        data.append("urlConcertChannel", urlConertChannel);
 
-            //Claro cinema
-            let logoUrlClaroCinema =
-                document.getElementById("image-icon3").files[0] || "";
-            data.append("logoClaroCinema", logoUrlClaroCinema);
-            let urlClaroCinema = $("#link-logo-claro-cinema").val() || "";
-            data.append("urlClaroCinema", urlClaroCinema);
-            updateLogosOfLanding(data);
-        });
+        //Claro cinema
+        let logoUrlClaroCinema =
+            document.getElementById("image-icon3").files[0] || "";
+        data.append("logoClaroCinema", logoUrlClaroCinema);
+        let urlClaroCinema = $("#link-logo-claro-cinema").val() || "";
+        data.append("urlClaroCinema", urlClaroCinema);
+        updateLogosOfLanding(data);
+    });
 
-        $("#image-programming-button").click(function() {
-            /*
+    $("#image-programming-button").click(function() {
+        /*
             Arreglo para saber la posición de las imágenes que cargo el usuario
             es decir, saber si subió la 1 y 3, o 2,3 etc.
         */
-            let imagesPositions = [];
-            //Arreglo para guardar imágenes de los usuarios
-            let imagesProgramming = [];
-            //Recorremos cada input para obtener las imágenes
-            $(".image_programming").each(function() {
-                if (this.files[0]) {
-                    imagesPositions.push($(this).attr("data-index"));
-                }
-
-                imagesProgramming.push(this.files[0]);
-            });
-
-            let data = new FormData();
-
-            //Hacemos un for para mandar file1, file2, etc. en el form data
-            for (let index = 0; index < imagesProgramming.length; index++) {
-                let file = "file" + (index + 1).toString();
-                file = file.toString();
-                data.append(file, imagesProgramming[index]);
+        let imagesPositions = [];
+        //Arreglo para guardar imágenes de los usuarios
+        let imagesProgramming = [];
+        //Recorremos cada input para obtener las imágenes
+        $(".image_programming").each(function() {
+            if (this.files[0]) {
+                imagesPositions.push($(this).attr("data-index"));
             }
-            //Posiciones de las imágenes
-            data.append("positions", imagesPositions);
 
-            //Hora inicio y fin
-            data.append("date", $("#date-start-input").val());
-
-            updateImagesOfProgrammingSlider(data);
+            imagesProgramming.push(this.files[0]);
         });
 
-        //para agregar un slider más en cinema
-        $(".add-programming-image").click(function() {
-            console.log("pato");
-            let slideIndex = $(".load-programming-carousel").length + 1;
-            //Cada vez que se haga click, el contador incrementa
+        let data = new FormData();
 
-            //Agregamos un slide al slider de programación
-            $(".programming-slider-claro-cinema").slick(
-                "slickAdd",
-                `
+        //Hacemos un for para mandar file1, file2, etc. en el form data
+        for (let index = 0; index < imagesProgramming.length; index++) {
+            let file = "file" + (index + 1).toString();
+            file = file.toString();
+            data.append(file, imagesProgramming[index]);
+        }
+        //Posiciones de las imágenes
+        data.append("positions", imagesPositions);
+
+        //Hora inicio y fin
+        data.append("date", $("#date-start-input").val());
+
+        updateImagesOfProgrammingSlider(data);
+    });
+
+    //para agregar un slider más en cinema
+    $(".add-programming-image").click(function() {
+        console.log("pato");
+        let slideIndex = $(".load-programming-carousel").length + 1;
+        //Cada vez que se haga click, el contador incrementa
+
+        //Agregamos un slide al slider de programación
+        $(".programming-slider-claro-cinema").slick(
+            "slickAdd",
+            `
             <div class="slick-slide">
                 <div>
                 <div class="bor thumbnail-image-program position-relative h-100">
@@ -2690,15 +2573,15 @@ function eventsGrilla() {
                 </div>
             </div>
             `
-            );
-        });
+        );
+    });
 
-        //para agregar un slider más en carrusel2-concert
-        $(".add-programming-image").click(function() {
-            let sliderIndex = $(".load-programming-carousel").length + 1;
-            $(".carrusel2-slider").slick(
-                "slickAdd",
-                `
+    //para agregar un slider más en carrusel2-concert
+    $(".add-programming-image").click(function() {
+        let sliderIndex = $(".load-programming-carousel").length + 1;
+        $(".carrusel2-slider").slick(
+            "slickAdd",
+            `
         <!--otro slider-->
 <div>
 
@@ -3136,17 +3019,17 @@ function eventsGrilla() {
 
        <!--fin del otro slider-->
 `
-            );
-        });
-        //para agregar un slider más en carrusel1-concert
-        $(".add-programming-image").click(function() {
-            let slideIndex = $(".load-programming-carousel").length + 1;
-            //Cada vez que se haga click, el contador incrementa
+        );
+    });
+    //para agregar un slider más en carrusel1-concert
+    $(".add-programming-image").click(function() {
+        let slideIndex = $(".load-programming-carousel").length + 1;
+        //Cada vez que se haga click, el contador incrementa
 
-            //Agregamos un slide al slider de programación
-            $(".carrusel1-slider").slick(
-                "slickAdd",
-                `
+        //Agregamos un slide al slider de programación
+        $(".carrusel1-slider").slick(
+            "slickAdd",
+            `
             <div class="slick-slide">
                 <div>
 
@@ -3582,20 +3465,20 @@ function eventsGrilla() {
 
             </div>
             `
-            );
-        });
+        );
+    });
 
-        //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+    //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
-        //Añadimos un slide al slider de imágenes de programación
-        $(".add-banner-image").click(function() {
-            //Cada vez que se haga click, el contador incrementa
-            let slideIndex = $(".load-programming-carousel").length + 1;
+    //Añadimos un slide al slider de imágenes de programación
+    $(".add-banner-image").click(function() {
+        //Cada vez que se haga click, el contador incrementa
+        let slideIndex = $(".load-programming-carousel").length + 1;
 
-            //Agregamos un slide al slider de programación
-            $(".programming-slider-canal-claro").slick(
-                "slickAdd",
-                `
+        //Agregamos un slide al slider de programación
+        $(".programming-slider-canal-claro").slick(
+            "slickAdd",
+            `
             <div class="slick-slide">
                 <div>
                     <div class="bor thumbnail-image-program position-relative h-100">
@@ -3609,10 +3492,10 @@ function eventsGrilla() {
                 </div>
             </div>
             `
-            );
-        });
+        );
+    });
 
-        /*function preloader() {
+    /*function preloader() {
         console.log("si entra al metodo desde submenu");
         document.getElementById("loader-view").style.display = "none";
         document.getElementById("navbar-prev-programacion").style.display =
@@ -3620,943 +3503,767 @@ function eventsGrilla() {
     }
     window.onload = preloader;*/
 
-        //Landing de programación de claro cinema
+    //Landing de programación de claro cinema
 
-        let confProgramacionClaroCinema = {
-            remote: `${baseURL}programacion-edi-cinema.php`,
-            container: document.getElementById(
-                "navbar-prev-programacion-cinema"
-            ),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    let confProgramacionClaroCinema = {
+        remote: `${baseURL}programacion-edi-cinema.php`,
+        container: document.getElementById("navbar-prev-programacion-cinema"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-                    switch (json.type) {
-                        case "program":
-                            getChapterInfo(json.chapterId);
-                            break;
-                        case "slider-pagination":
-                            $("body").append(loader);
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
 
-                            setTimeout(function() {
-                                $(".modal-programming-carousel").modal("show");
-                                $("#loader1").remove();
+                        setTimeout(function() {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
 
-                                addImagesModalBanner();
-                            }, 3000);
+                            addImagesModalBanner();
+                        }, 3000);
 
-                            break;
-                        case "synopsis":
-                            document
-                                .querySelector("body")
-                                .insertAdjacentHTML("beforeend", loader);
-                            window.location.href =
-                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                            break;
-                        case "menu-logos":
-                            $("body").append(loader);
-                            setTimeout(function() {
-                                addImagesModalIcons();
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function() {
+                            addImagesModalIcons();
 
-                                $(".modal-edit-icons").modal("show");
+                            $(".modal-edit-icons").modal("show");
 
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
 
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-        let navbarPrograContainerCinema = document.getElementById(
-            "navbar-prev-programacion-cinema"
-        );
-        if (navbarPrograContainerCinema) {
-            $("#navbar-prev-programacion-cinema iframe").remove();
-            new easyXDM.Socket(confProgramacionClaroCinema);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        let confPrevProgramacionCinema = {
-            remote: `${baseURL}programacion-cinema.php`,
-            container: document.getElementById(
-                "navbar-prev-programacion-cinema"
-            ),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
+    };
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
+    ////////////
+    let navbarPrograContainerCinema = document.getElementById(
+        "navbar-prev-programacion-cinema"
+    );
+    if (navbarPrograContainerCinema) {
+        $("#navbar-prev-programacion-cinema iframe").remove();
+        new easyXDM.Socket(confProgramacionClaroCinema);
+    }
+    let confPrevProgramacionCinema = {
+        remote: `${baseURL}programacion-cinema.php`,
+        container: document.getElementById("navbar-prev-programacion-cinema"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-        //previsualizar canal claro
-        $("#prev-landing-cinema").click(function() {
-            //Landing canal claro
-            resetIframe(
-                $("#navbar-prev-programacion-cinema iframe"),
-                confPrevProgramacionCinema
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        $("#edit-landing-cinema").click(function() {
-            resetIframe(
-                $("#navbar-prev-programacion-cinema iframe"),
-                confProgramacionClaroCinema
-            );
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
+    //previsualizar canal claro
+    $("#prev-landing-cinema").click(function() {
+        //Landing canal claro
+        resetIframe(
+            $("#navbar-prev-programacion-cinema iframe"),
+            confPrevProgramacionCinema
+        );
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-cinema").click(function() {
+        resetIframe(
+            $("#navbar-prev-programacion-cinema iframe"),
+            confProgramacionClaroCinema
+        );
 
-        /////////////
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
 
-        $(".modal-program-claro-cinema").click(function() {
-            resetIframe(
-                $("#navbar-prev-programacion-cinema iframe"),
-                confProgramacionClaroCinema
-            );
-        });
+    /////////////
 
-        //Landing de programacion de concert channel
+    $(".modal-program-claro-cinema").click(function() {
+        resetIframe(
+            $("#navbar-prev-programacion-cinema iframe"),
+            confProgramacionClaroCinema
+        );
+    });
 
-        let confProgramacionConcertChannel = {
-            remote: `${baseURL}programacion-edi-concert.php`,
-            container: document.getElementById(
-                "navbar-prev-programacion-concert"
-            ),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    //Landing de programacion de concert channel
+
+    let confProgramacionConcertChannel = {
+        remote: `${baseURL}programacion-edi-concert.php`,
+        container: document.getElementById("navbar-prev-programacion-concert"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-                    switch (json.type) {
-                        case "program":
-                            getChapterInfo(json.chapterId);
-                            break;
-                        case "slider-pagination":
-                            $("body").append(loader);
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
 
-                            setTimeout(function() {
-                                $(".modal-programming-carousel").modal("show");
-                                $("#loader1").remove();
+                        setTimeout(function() {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
 
-                                addImagesModalBanner();
-                            }, 3000);
+                            addImagesModalBanner();
+                        }, 3000);
 
-                            break;
-                        case "synopsis":
-                            document
-                                .querySelector("body")
-                                .insertAdjacentHTML("beforeend", loader);
-                            window.location.href =
-                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                            break;
-                        case "menu-logos":
-                            $("body").append(loader);
-                            setTimeout(function() {
-                                addImagesModalIcons();
-                                $(".modal-edit-icons").modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function() {
+                            addImagesModalIcons();
+                            $(".modal-edit-icons").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
 
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-
-        ////////////
-        let navbarPrograContainerConcert = document.getElementById(
-            "navbar-prev-programacion-concert"
-        );
-        if (navbarPrograContainerConcert) {
-            $("#navbar-prev-programacion-concert iframe").remove();
-            new easyXDM.Socket(confProgramacionConcertChannel);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        let confPrevProgramacionConcert = {
-            remote: `${baseURL}programacion-concert.php`,
-            container: document.getElementById(
-                "navbar-prev-programacion-concert"
-            ),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
+    };
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
+    ////////////
+    let navbarPrograContainerConcert = document.getElementById(
+        "navbar-prev-programacion-concert"
+    );
+    if (navbarPrograContainerConcert) {
+        $("#navbar-prev-programacion-concert iframe").remove();
+        new easyXDM.Socket(confProgramacionConcertChannel);
+    }
+    let confPrevProgramacionConcert = {
+        remote: `${baseURL}programacion-concert.php`,
+        container: document.getElementById("navbar-prev-programacion-concert"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-        //previsualizar canal claro
-        $("#prev-landing-concert").click(function() {
-            //Landing canal claro
-            resetIframe(
-                $("#navbar-prev-programacion-concert iframe"),
-                confPrevProgramacionConcert
-            );
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-        });
-        $("#edit-landing-concert").click(function() {
-            resetIframe(
-                $("#navbar-prev-programacion-concert iframe"),
-                confProgramacionConcertChannel
-            );
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-        });
+    //previsualizar canal claro
+    $("#prev-landing-concert").click(function() {
+        //Landing canal claro
+        resetIframe(
+            $("#navbar-prev-programacion-concert iframe"),
+            confPrevProgramacionConcert
+        );
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-concert").click(function() {
+        resetIframe(
+            $("#navbar-prev-programacion-concert iframe"),
+            confProgramacionConcertChannel
+        );
 
-        /////////////
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
 
-        $(".modal-program-concert-channel").click(function() {
-            resetIframe(
-                $("#navbar-prev-programacion-concert iframe"),
-                confProgramacionConcertChannel
-            );
-        });
+    /////////////
 
-        //Landing de programación de claro canal
-        //Canal claro
+    $(".modal-program-concert-channel").click(function() {
+        resetIframe(
+            $("#navbar-prev-programacion-concert iframe"),
+            confProgramacionConcertChannel
+        );
+    });
 
-        let confIframe = {
-            remote: `${baseURL}programacion-edi.php`,
-            container: document.getElementById("navbar-prev-programacion"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
-                if (typeof json == "object") {
-                    let loader = `
+    //Landing de programación de claro canal
+    //Canal claro
+
+    let confIframe = {
+        remote: `${baseURL}programacion-edi.php`,
+        container: document.getElementById("navbar-prev-programacion"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
                         <div class="loader-view-container" id="loader1">
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-                    switch (json.type) {
-                        case "program":
-                            getChapterInfo(json.chapterId);
-                            break;
-                        case "slider-pagination":
-                            $("body").append(loader);
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
 
-                            setTimeout(function() {
-                                $(".modal-programming-carousel").modal("show");
+                        setTimeout(function() {
+                            $(".modal-programming-carousel").modal("show");
 
-                                $("#loader1").remove();
+                            $("#loader1").remove();
 
-                                addImagesModalBanner();
-                            }, 3000);
+                            addImagesModalBanner();
+                        }, 3000);
 
-                            break;
-                        case "synopsis":
-                            document
-                                .querySelector("body")
-                                .insertAdjacentHTML("beforeend", loader);
-                            window.location.href =
-                                "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-                            break;
-                        case "menu-logos":
-                            $("body").append(loader);
-                            setTimeout(function() {
-                                addImagesModalIcons();
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function() {
+                            addImagesModalIcons();
 
-                                $(".modal-edit-icons").modal("show");
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
+                            $(".modal-edit-icons").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
 
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-        $(".edit-landing-modal-button").click(function() {
-            resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-        });
-        ////////////
-        let navbarPrograContainer = document.getElementById(
-            "navbar-prev-programacion"
-        );
-        if (navbarPrograContainer) {
-            $("#navbar-prev-programacion iframe").remove();
-            new easyXDM.Socket(confIframe);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        let confPrevProgramacion = {
-            remote: `${baseURL}programacion.php`,
-            container: document.getElementById("navbar-prev-programacion"),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
+    };
+    $(".edit-landing-modal-button").click(function() {
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    });
+    ////////////
+    let navbarPrograContainer = document.getElementById(
+        "navbar-prev-programacion"
+    );
+    if (navbarPrograContainer) {
+        $("#navbar-prev-programacion iframe").remove();
+        new easyXDM.Socket(confIframe);
+    }
+    let confPrevProgramacion = {
+        remote: `${baseURL}programacion-prev.php`,
+        container: document.getElementById("navbar-prev-programacion"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            }
-        };
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-        $("#prev").click(function() {
-            let id = $(".navbar-progra-content").attr("id");
+    $("#prev").click(function() {
+        let id = $(".navbar-progra-content").attr("id");
 
-            let canalClaro = "#navbar-prev-canal-claro";
-            let programacion = "#navbar-prev-programacion";
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
 
-            $("#navbar-prev-canal-claro iframe").remove();
-            $("#navbar-prev-programacion iframe").remove();
+        $("#navbar-prev-canal-claro iframe").remove();
+        $("#navbar-prev-programacion iframe").remove();
 
-            $("#device-size").load("imports #device-size-prev", function() {
-                $(".a-prev-image").click(function() {
-                    previewPage($(this));
-                });
+        $("#device-size").load("imports #device-size-prev", function() {
+            $(".a-prev-image").click(function() {
+                previewPage($(this));
             });
-
-            switch ("#" + id) {
-                case programacion:
-                    resetIframe(
-                        $("#navbar-prev-programacion iframe"),
-                        confPrevProgramacion
-                    );
-                    break;
-                case canalClaro:
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        confPrevClaroCanal
-                    );
-                    break;
-            }
         });
 
-        $("#edit").click(function() {
-            let id = $(".navbar-progra-content").attr("id");
+        switch ("#" + id) {
+            case programacion:
+                resetIframe(
+                    $("#navbar-prev-programacion iframe"),
+                    confPrevProgramacion
+                );
+                break;
+            case canalClaro:
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    confPrevClaroCanal
+                );
+                break;
+        }
+    });
 
-            $("#prev-mobile")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet")
-                .removeClass("cursor-pointer")
-                .addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
+    $("#edit").click(function() {
+        let id = $(".navbar-progra-content").attr("id");
+
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
+
+        $("#navbar-prev-canal-claro iframe").remove();
+        $("#navbar-prev-programacion iframe").remove();
+
+        $("#device-size").load("imports #device-size-edit", function() {
+            $(".a-prev-image").click(function() {
+                previewPage($(this));
+            });
         });
 
-        // $("#edit").click(function () {
-        //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        switch ("#" + id) {
+            case programacion:
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+                break;
+            case canalClaro:
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    landingCanalClaro
+                );
+                break;
+        }
+    });
 
-        //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        //     $("#prev-mobile").css("opacity", "0.4");
-        //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        //     $("#prev-tablet").css("opacity", "0.4");
-        //     $("#prev-desktop").css("opacity", "1");
-        // });
+    // $("#edit").click(function () {
+    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
 
-        /////////////
-        $(".input-image-program").change(function() {
-            let currentInput = $(this);
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    currentInput
-                        .next()
-                        .children(".prev-image-program")
-                        .attr("src", e.target.result)
-                        .addClass("h-100 w-100")
-                        .css("z-index", "2");
-                };
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
 
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+    /////////////
+    $(".input-image-program").change(function() {
+        let currentInput = $(this);
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                currentInput
+                    .next()
+                    .children(".prev-image-program")
+                    .attr("src", e.target.result)
+                    .addClass("h-100 w-100")
+                    .css("z-index", "2");
+            };
 
-        $(".select-carrusel").selectpicker({
-            filter: true,
-            multipleSeparator: ", "
-        });
-        let imageTriangle = `
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    $(".select-carrusel").selectpicker({
+        filter: true,
+        multipleSeparator: ", "
+    });
+    let imageTriangle = `
     <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
 `;
-        $(".edit-program-image .bootstrap-select").append(imageTriangle);
-        //selectpicker para el campo de género en un programa
-        $(".selectpicker").selectpicker({
-            filter: true,
-            multipleSeparator: ", "
-        });
+    $(".edit-program-image .bootstrap-select").append(imageTriangle);
+    //selectpicker para el campo de género en un programa
+    $(".selectpicker").selectpicker({
+        filter: true,
+        multipleSeparator: ", "
+    });
 
-        /*
+    /*
         Obtener el valor de las cateogrías seleccionadas y colocarlas
         en un string
     */
-        let genres = "";
-        let selectpicker = $(".selectpicker");
-        //Verificamos si el usuario ha seleccionado un género o categoría
-        selectpicker.on("change", function() {
-            //Obtenemos los valores del selectpicker
-            let selected = $(this).val();
-            //Obtenemos el número de valores que hemos obtenido del arreglo
-            let selectedLength = selected.length;
-            genres = "";
-            for (let index = 0; index < selectedLength; index++) {
-                //Si es la primera palabra o la última, no agregamos una coma
-                if (selectedLength - 1 == index) {
-                    genres += `${selected[index]}`;
-                } else {
-                    genres += `${selected[index]},`;
-                }
-            }
-        });
-        //Evento para cuando cerramos el selectpicker
-        selectpicker.on("hide.bs.select", function() {
-            //Seleccionamos la columna en la que estamos
-            let currentColumn = $(this).closest(".contenedor-columna");
-            //Obtenemos el cahpter_id de la columna
-            let chapterId = currentColumn.attr("chapter_id");
-            //Obtenemos la key
-            let key = currentColumn.attr("key");
-            //Obtenemos los géneros que pudo haber seleccionado el usuario
-            let keyValue = genres;
-            //Hacemos la petición
-
-            editAttributeProgram(chapterId, key, keyValue);
-        });
-
-        $("button[id=btn-landing]").click(function() {
-            if (
-                $(this).hasClass("btn-landing") &
-                $(this).hasClass("a-text-semi-brown-two")
-            ) {
-                $(this)
-                    .removeClass("btn-landing")
-                    .addClass("btn-grilla");
-                $(this)
-                    .removeClass("a-text-semi-brown-two")
-                    .addClass("a-text-MBlack");
-                $("button[id=btn-grilla]")
-                    .addClass("btn-landing")
-                    .removeClass("btn-grilla");
-                $("button[id=btn-grilla]")
-                    .addClass("a-text-semi-brown-two")
-                    .removeClass("a-text-MBlack");
-            }
-        });
-        //Al momento de dar click en el boton de grilla
-        $("button[id=btn-grilla]").click(function() {
-            if (
-                $(this).hasClass("btn-landing") &
-                $(this).hasClass("a-text-semi-brown-two")
-            ) {
-                $(this)
-                    .addClass("btn-grilla")
-                    .removeClass("btn-landing");
-                $(this)
-                    .addClass("a-text-MBlack") //text-grilla
-                    .removeClass("a-text-semi-brown-two"); //text-landing
-                $("button[id=btn-landing]")
-                    .addClass("btn-landing")
-                    .removeClass("btn-grilla");
-                $("button[id=btn-landing]")
-                    .addClass("a-text-semi-brown-two")
-                    .removeClass("a-text-MBlack");
-            }
-        });
-
-        //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-
-        /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-        $(".switch-landing").click(function() {
-            let currentColumn = $(this).closest(".contenedor-columna");
-            let landingOptionsChecks = currentColumn.children(
-                ".establecer-options"
-            );
-
-            //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
-            if ($(this).val() == 1) {
-                landingOptionsChecks.css("pointer-events", "all");
-                currentColumn
-                    .next()
-                    .children(".programar-content")
-                    .css("pointer-events", "all");
+    let genres = "";
+    let selectpicker = $(".selectpicker");
+    //Verificamos si el usuario ha seleccionado un género o categoría
+    selectpicker.on("change", function() {
+        //Obtenemos los valores del selectpicker
+        let selected = $(this).val();
+        //Obtenemos el número de valores que hemos obtenido del arreglo
+        let selectedLength = selected.length;
+        genres = "";
+        for (let index = 0; index < selectedLength; index++) {
+            //Si es la primera palabra o la última, no agregamos una coma
+            if (selectedLength - 1 == index) {
+                genres += `${selected[index]}`;
             } else {
-                landingOptionsChecks.css("pointer-events", "none");
-                //Hacemos que no se pueda escribir en los campos siguientes
-                currentColumn
-                    .next()
-                    .children(".programar-content")
-                    .css("pointer-events", "none");
-
-                //"Vaciar" inputs al momento de que el usuario da click en "No"
-                currentColumn
-                    .next()
-                    .find("input")
-                    .val("");
-                currentColumn
-                    .children(".establecer-options")
-                    .find("input")
-                    .prop("checked", false);
+                genres += `${selected[index]},`;
             }
-        });
-
-        /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-        $(".switch-home").click(function() {
-            let currentColumn = $(this).closest(".contenedor-columna");
-
-            if ($(this).val() == 1) {
-                currentColumn
-                    .next()
-                    .children(".programar-content")
-                    .css("pointer-events", "all");
-            } else {
-                //Hacemos que no se pueda escribir en los campos siguientes
-                currentColumn
-                    .next()
-                    .children(".programar-content")
-                    .css("pointer-events", "none");
-
-                //"Vaciar" inputs al momento de que el usuario da click en "No"
-                currentColumn
-                    .next()
-                    .find("input")
-                    .val("");
-                currentColumn
-                    .children(".establecer-options")
-                    .find("input")
-                    .prop("checked", false);
-            }
-        });
-        //Mostrar la sinópsis completa en modal
-        $(".see-more").click(function() {
-            let currentColumn = $(this).closest(".contenedor-columna");
-            //Sinopsis actual del programa sin tener el texto truncado con "..."
-            let synopsis = currentColumn.attr("synopsis");
-            let chapterId = currentColumn.attr("chapter_id");
-            //Id del programa actual
-            let program = $(this)
-                .prev()
-                .attr("id");
-            let key = currentColumn.attr("key");
-            //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
-            $(".edit-synopsis-button").attr({
-                chapter_id: chapterId,
-                key: key,
-                synopsis: synopsis,
-                program: program
-            });
-            //Pasamos al textarea del modal la sinopsis actual del programa
-            $(".modal-textarea").val(synopsis);
-            //Ponemos el título del programa en el header del modal
-            $(".modal-program-title").text($(this).attr("program_title"));
-            //Hacemos aparecer el modal
-            $(".modal-synopsis").modal("show");
-        });
-
-        //botón de modal de edición de de sinopsis
-        $(".edit-synopsis-button").click(function() {
-            let chapterId = $(this).attr("chapter_id");
-            let key = $(this).attr("key");
-            //Obtenemos la sinopsis nueva del textarea del modal
-            let keyValue = $("#synopsis-content").val();
-            //Programa del cual se está actualizando al sinopsis
-            let program = $(this).attr("program");
-            //Cambiamos el atributo "sinopsis" en el programa de la grilla
-            $("#" + program)
-                .closest(".contenedor-columna")
-                .attr("synopsis", keyValue);
-            //Truncamos el texto en grilla con tres puntos...
-            if (keyValue.length > 200) {
-                let text = keyValue.substr(0, 200) + "...";
-                $("#" + program).text(text);
-            } else {
-                $("#" + program).text(keyValue);
-            }
-            //Hacemos la petición para cambiar la sinopsis
-            editAttributeProgram(chapterId, key, keyValue);
-            //Ocultamos el modal
-            $(".modal-synopsis").modal("hide");
-        });
-        //Removemos las instancias de litepicker que sobran
-        $(".litepicker").remove();
-        $(".date-modal").remove();
-        //Sacamos la fecha actual para ponerla en el calendario
-        let currentDate = new Date();
-        //Obtenemos el año
-        let calendarYear = currentDate.getFullYear();
-        //obtenemos el mes
-        let calendarMonth = currentDate.getMonth() + 1;
-        //Obtenemos el día
-        let calendarDay = currentDate.getDate();
-        let dateStartInput = document.getElementById("date-start-input");
-        if (dateStartInput) {
-            //Iniciamos el calendario Litepicker
-            let picker = new Litepicker({
-                element: document.getElementById("date-start-input"),
-                format: "YYYY-MM-DD",
-                delimiter: ",",
-                minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
-                //Al aparecer, aplicamos estilos parecidos a los de un modal
-                onShow: function() {
-                    picker.picker.style.left = "50%";
-                    picker.picker.style.top = "50%";
-                    picker.picker.style.transform = "translate(-50%, -50%)";
-                    $(".litepicker").wrap(
-                        "<div class='date-modal' id='modal-container'></div>"
-                    );
-                    $("#modal-container").css("display", "block");
-                },
-                //Evento que utilizamos cada vez que el calendario se oculta
-                onHide: function() {
-                    $("#modal-container").css("display", "none");
-                },
-                onSelect: function() {
-                    //Separamos las dos fechas
-                    let fullDate = document
-                        .getElementById("date-start-input")
-                        .value.split(",");
-                    //  Fecha inicial del datepicker
-                    let startDate = fullDate[0];
-                    //Separamos la primer fecha
-                    let startDateSplit = startDate.split("-");
-                    //Creamos una nueva fecha empezando por año
-                    let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
-                    $("#start-date-text").text(startDateFull);
-
-                    //   Fecha final del datepicker
-
-                    let landing = $("#date-start-input").attr("landing");
-
-                    let endDate = fullDate[1];
-                    filterDates(startDate, endDate, landing);
-                    let endDateSplit = endDate.split("-");
-                    let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
-                    $("#end-date-text").text(endDateFull);
-                },
-                numberOfMonths: 1,
-                numberOfColumns: 1,
-                singleMode: false
-            });
         }
+    });
+    //Evento para cuando cerramos el selectpicker
+    selectpicker.on("hide.bs.select", function() {
+        //Seleccionamos la columna en la que estamos
+        let currentColumn = $(this).closest(".contenedor-columna");
+        //Obtenemos el cahpter_id de la columna
+        let chapterId = currentColumn.attr("chapter_id");
+        //Obtenemos la key
+        let key = currentColumn.attr("key");
+        //Obtenemos los géneros que pudo haber seleccionado el usuario
+        let keyValue = genres;
+        //Hacemos la petición
 
-        let programmingCarruselPicker = document.getElementById(
-            "programming-carrusel-calendar"
+        editAttributeProgram(chapterId, key, keyValue);
+    });
+
+    $("button[id=btn-landing]").click(function() {
+        if (
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
+        ) {
+            $(this)
+                .removeClass("btn-landing")
+                .addClass("btn-grilla");
+            $(this)
+                .removeClass("a-text-semi-brown-two")
+                .addClass("a-text-MBlack");
+            $("button[id=btn-grilla]")
+                .addClass("btn-landing")
+                .removeClass("btn-grilla");
+            $("button[id=btn-grilla]")
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
+        }
+    });
+    //Al momento de dar click en el boton de grilla
+    $("button[id=btn-grilla]").click(function() {
+        if (
+            $(this).hasClass("btn-landing") &
+            $(this).hasClass("a-text-semi-brown-two")
+        ) {
+            $(this)
+                .addClass("btn-grilla")
+                .removeClass("btn-landing");
+            $(this)
+                .addClass("a-text-MBlack") //text-grilla
+                .removeClass("a-text-semi-brown-two"); //text-landing
+            $("button[id=btn-landing]")
+                .addClass("btn-landing")
+                .removeClass("btn-grilla");
+            $("button[id=btn-landing]")
+                .addClass("a-text-semi-brown-two")
+                .removeClass("a-text-MBlack");
+        }
+    });
+
+    //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
+
+    /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
+    $(".switch-landing").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let landingOptionsChecks = currentColumn.children(
+            ".establecer-options"
         );
 
-        if (programmingCarruselPicker) {
-            //Iniciamos el calendario Litepicker
-            let picker = new Litepicker({
-                element: programmingCarruselPicker,
-                format: "YYYY-MM-DD",
-                delimiter: ",",
-                minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
-                //Al aparecer, aplicamos estilos parecidos a los de un modal
-                onShow: function() {
-                    picker.picker.style.left = "50%";
-                    picker.picker.style.top = "50%";
-                    picker.picker.style.transform = "translate(-50%, -50%)";
-                    $(".litepicker").wrap(
-                        "<div class='date-modal' id='modal-container'></div>"
-                    );
-                    $("#modal-container").css("display", "block");
-                },
-                //Evento que utilizamos cada vez que el calendario se oculta
-                onHide: function() {
-                    $("#modal-container").css("display", "none");
-                },
-                onSelect: function() {
-                    //Separamos las dos fechas
-                    let fullDate = document
-                        .getElementById("programming-carrusel-calendar")
-                        .value.split(",");
-                    //  Fecha inicial del datepicker
-                    let startDate = fullDate[0];
-                    //Separamos la primer fecha
-                    let startDateSplit = startDate.split("-");
-                    //Creamos una nueva fecha empezando por año
-                    let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
-                    $("#start-date-text").text(startDateFull);
-                    //   Fecha final del datepicker
-                    let endDate = fullDate[1];
-                    let endDateSplit = endDate.split("-");
-                    let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
-                    $("#end-date-text").text(endDateFull);
-                },
-                numberOfMonths: 1,
-                numberOfColumns: 1,
-                singleMode: false
-            });
+        //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
+        if ($(this).val() == 1) {
+            landingOptionsChecks.css("pointer-events", "all");
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "all");
+        } else {
+            landingOptionsChecks.css("pointer-events", "none");
+            //Hacemos que no se pueda escribir en los campos siguientes
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "none");
+
+            //"Vaciar" inputs al momento de que el usuario da click en "No"
+            currentColumn
+                .next()
+                .find("input")
+                .val("");
+            currentColumn
+                .children(".establecer-options")
+                .find("input")
+                .prop("checked", false);
         }
+    });
 
-        $("#close_modals").click(function() {
-            console.log("cerrar");
-            $(".modal").modal("hide");
-            $("#modaledi").modal("hide");
-            $(".modal").modal("hide");
+    /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
+    $(".switch-home").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
 
-            // $(".modal-delete-user").modal("hide");
-            //$(".modal-edit-icons").modal("hide");
-            // $(".modal-edit-program").modal("hide");
-        });
-        $(".close-modal-concert").click(function() {
-            $(".modal").modal("hide");
-        });
-        //cerrar los dos modales
-        $("#close_modals-claro").click(function() {
-            $(".modal").modal("hide");
-        });
-        $("#close_modals-sinopsis").click(function() {
-            $("#delete-info-sinopsis").modal("hide");
-            $(".modal-programming-sinopsis").modal("hide");
-            $(".delete-image-sinopsis").modal("hide");
-            $(".modal-image-synopsis").modal("hide");
-            $(".delete-sinopsis").modal("hide");
-            $(".modal-edit-synopsis").modal("hide");
-        });
+        if ($(this).val() == 1) {
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "all");
+        } else {
+            //Hacemos que no se pueda escribir en los campos siguientes
+            currentColumn
+                .next()
+                .children(".programar-content")
+                .css("pointer-events", "none");
 
-        /* Al dar "enter" cancelamos el salto de línea,
+            //"Vaciar" inputs al momento de que el usuario da click en "No"
+            currentColumn
+                .next()
+                .find("input")
+                .val("");
+            currentColumn
+                .children(".establecer-options")
+                .find("input")
+                .prop("checked", false);
+        }
+    });
+    //Mostrar la sinópsis completa en modal
+    $(".see-more").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        //Sinopsis actual del programa sin tener el texto truncado con "..."
+        let synopsis = currentColumn.attr("synopsis");
+        let chapterId = currentColumn.attr("chapter_id");
+        //Id del programa actual
+        let program = $(this)
+            .prev()
+            .attr("id");
+        let key = currentColumn.attr("key");
+        //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
+        $(".edit-synopsis-button").attr({
+            chapter_id: chapterId,
+            key: key,
+            synopsis: synopsis,
+            program: program
+        });
+        //Pasamos al textarea del modal la sinopsis actual del programa
+        $(".modal-textarea").val(synopsis);
+        //Ponemos el título del programa en el header del modal
+        $(".modal-program-title").text($(this).attr("program_title"));
+        //Hacemos aparecer el modal
+        $(".modal-synopsis").modal("show");
+    });
+
+    //botón de modal de edición de de sinopsis
+    $(".edit-synopsis-button").click(function() {
+        let chapterId = $(this).attr("chapter_id");
+        let key = $(this).attr("key");
+        //Obtenemos la sinopsis nueva del textarea del modal
+        let keyValue = $("#synopsis-content").val();
+        //Programa del cual se está actualizando al sinopsis
+        let program = $(this).attr("program");
+        //Cambiamos el atributo "sinopsis" en el programa de la grilla
+        $("#" + program)
+            .closest(".contenedor-columna")
+            .attr("synopsis", keyValue);
+        //Truncamos el texto en grilla con tres puntos...
+        if (keyValue.length > 200) {
+            let text = keyValue.substr(0, 200) + "...";
+            $("#" + program).text(text);
+        } else {
+            $("#" + program).text(keyValue);
+        }
+        //Hacemos la petición para cambiar la sinopsis
+        editAttributeProgram(chapterId, key, keyValue);
+        //Ocultamos el modal
+        $(".modal-synopsis").modal("hide");
+    });
+    //Removemos las instancias de litepicker que sobran
+    $(".litepicker").remove();
+    $(".date-modal").remove();
+    //Sacamos la fecha actual para ponerla en el calendario
+    let currentDate = new Date();
+    //Obtenemos el año
+    let calendarYear = currentDate.getFullYear();
+    //obtenemos el mes
+    let calendarMonth = currentDate.getMonth() + 1;
+    //Obtenemos el día
+    let calendarDay = currentDate.getDate();
+    let dateStartInput = document.getElementById("date-start-input");
+    if (dateStartInput) {
+        //Iniciamos el calendario Litepicker
+        let picker = new Litepicker({
+            element: document.getElementById("date-start-input"),
+            format: "YYYY-MM-DD",
+            delimiter: ",",
+            minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
+            //Al aparecer, aplicamos estilos parecidos a los de un modal
+            onShow: function() {
+                picker.picker.style.left = "50%";
+                picker.picker.style.top = "50%";
+                picker.picker.style.transform = "translate(-50%, -50%)";
+                $(".litepicker").wrap(
+                    "<div class='date-modal' id='modal-container'></div>"
+                );
+                $("#modal-container").css("display", "block");
+            },
+            //Evento que utilizamos cada vez que el calendario se oculta
+            onHide: function() {
+                $("#modal-container").css("display", "none");
+            },
+            onSelect: function() {
+                //Separamos las dos fechas
+                let fullDate = document
+                    .getElementById("date-start-input")
+                    .value.split(",");
+                //  Fecha inicial del datepicker
+                let startDate = fullDate[0];
+                //Separamos la primer fecha
+                let startDateSplit = startDate.split("-");
+                //Creamos una nueva fecha empezando por año
+                let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+                $("#start-date-text").text(startDateFull);
+
+                //   Fecha final del datepicker
+
+                let landing = $("#date-start-input").attr("landing");
+
+                let endDate = fullDate[1];
+                filterDates(startDate, endDate, landing);
+                let endDateSplit = endDate.split("-");
+                let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+                $("#end-date-text").text(endDateFull);
+            },
+            numberOfMonths: 1,
+            numberOfColumns: 1,
+            singleMode: false
+        });
+    }
+
+    let programmingCarruselPicker = document.getElementById(
+        "programming-carrusel-calendar"
+    );
+
+    if (programmingCarruselPicker) {
+        //Iniciamos el calendario Litepicker
+        let picker = new Litepicker({
+            element: programmingCarruselPicker,
+            format: "YYYY-MM-DD",
+            delimiter: ",",
+            minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
+            //Al aparecer, aplicamos estilos parecidos a los de un modal
+            onShow: function() {
+                picker.picker.style.left = "50%";
+                picker.picker.style.top = "50%";
+                picker.picker.style.transform = "translate(-50%, -50%)";
+                $(".litepicker").wrap(
+                    "<div class='date-modal' id='modal-container'></div>"
+                );
+                $("#modal-container").css("display", "block");
+            },
+            //Evento que utilizamos cada vez que el calendario se oculta
+            onHide: function() {
+                $("#modal-container").css("display", "none");
+            },
+            onSelect: function() {
+                //Separamos las dos fechas
+                let fullDate = document
+                    .getElementById("programming-carrusel-calendar")
+                    .value.split(",");
+                //  Fecha inicial del datepicker
+                let startDate = fullDate[0];
+                //Separamos la primer fecha
+                let startDateSplit = startDate.split("-");
+                //Creamos una nueva fecha empezando por año
+                let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+                $("#start-date-text").text(startDateFull);
+                //   Fecha final del datepicker
+                let endDate = fullDate[1];
+                let endDateSplit = endDate.split("-");
+                let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+                $("#end-date-text").text(endDateFull);
+            },
+            numberOfMonths: 1,
+            numberOfColumns: 1,
+            singleMode: false
+        });
+    }
+
+    $("#close_modals").click(function() {
+        console.log("cerrar");
+        $(".modal").modal("hide");
+        $("#modaledi").modal("hide");
+        $(".modal").modal("hide");
+
+        // $(".modal-delete-user").modal("hide");
+        //$(".modal-edit-icons").modal("hide");
+        // $(".modal-edit-program").modal("hide");
+    });
+    $(".close-modal-concert").click(function() {
+        $(".modal").modal("hide");
+    });
+    //cerrar los dos modales
+    $("#close_modals-claro").click(function() {
+        $(".modal").modal("hide");
+    });
+    $("#close_modals-sinopsis").click(function() {
+        $("#delete-info-sinopsis").modal("hide");
+        $(".modal-programming-sinopsis").modal("hide");
+        $(".delete-image-sinopsis").modal("hide");
+        $(".modal-image-synopsis").modal("hide");
+        $(".delete-sinopsis").modal("hide");
+        $(".modal-edit-synopsis").modal("hide");
+    });
+
+    /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla
         y hacemos la petición
     */
-        let editableAttribute = $(".editable-attribute");
-        editableAttribute.keydown(function(e) {
-            //Si la tecla que presionamos fue "Enter"
-            if (e.which === 13 && !e.shiftKey) {
-                let key = $(this)
-                    .closest(".contenedor-columna")
-                    .attr("key");
-                let keyValue = "";
-                let chapterId = $(this)
-                    .closest(".contenedor-columna")
-                    .attr("chapter_id");
-                switch (key) {
-                    //Verificamos si lo que estamos editando es Schedule Item Long Date
-                    case "day":
-                        //Seperamos la fecha
-                        let date = $(this)
-                            .val()
-                            .split("-");
-                        //Volvemos a unir la fecha empezando por el año y mandamos la petición
-                        keyValue = `${date[2]}-${date[1]}-${date[0]}`;
-                        editAttributeProgram(chapterId, key, keyValue);
-                        break;
-                    //Verificamos si el campo que estamos editando es el año de producción
-                    case "program_year_produced":
-                        //Convertimos el año a entero
-                        keyValue = parseInt($(this).val());
-                        //Hacemos la petición
-                        editAttributeProgram(chapterId, key, keyValue);
-                        break;
-                    //Verificamos si el campo editable, es el de programar publicación para Landing
-                    case "in_landing_publicacion":
-                        let schedule = $(this)
-                            .closest(".programar-schedule")
-                            .attr("key");
-                        let parent = $(this).closest(".programar-schedule");
-                        //Verificamos si es la fecha de inicio
-                        if (schedule == "in_landing_begin") {
-                            //Obtenemos el div padre para saber qué horario y fecha andamos modificando
-
-                            //Obteemos la fecha y la dividimos
-                            let date = parent
-                                .find(".landing-start-day")
-                                .val()
-                                .split("-");
-                            //Re hacemos la fecha
-                            let day = `${date[2]}-${date[1]}-${date[0]}`;
-                            let hours = parent
-                                .find(".landing-start-hours")
-                                .val(); //Obtenemos hora
-
-                            //En caso de tener ambos valores, hacemos al petición
-                            if (day != "" && hours != "") {
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    schedule,
-                                    keyValue
-                                );
-                            }
-                            //En caso de solo tener el día, mandamos la hora en 0
-                            else if (day != "" && hours == "") {
-                                hours = "00:00:00";
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    schedule,
-                                    keyValue
-                                );
-                            }
-                        }
-                        //Verificamos si es la fecha fin
-                        else if (schedule == "in_landing_expiration") {
-                            let date = parent
-                                .find(".landing-expiration-day")
-                                .val()
-                                .split("-"); //Obtenemos fecha
-                            let hours = parent
-                                .find(".landing-expiration-hours")
-                                .val(); //Obtenemos hora
-                            let day = `${date[2]}-${date[1]}-${date[0]}`;
-                            //En caso de tener ambos valores, hacemos la petición
-
-                            if (date != "" && hours != "") {
-                                let day = `${date[2]}-${date[1]}-${date[0]}`;
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    schedule,
-                                    keyValue
-                                );
-                            }
-                            //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-                            else if (date != "" && hours == "") {
-                                hours = "00:00:00";
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    schedule,
-                                    keyValue
-                                );
-                            }
-                        }
-
-                        break;
-                    case "in_home_publicacion":
-                        let scheduleHome = $(this)
-                            .closest(".programar-schedule")
-                            .attr("key");
-
-                        //Verificamos si es la fecha de inicio del home
-                        if (scheduleHome == "in_home_begin") {
-                            //Obtenemos la fecha
-                            let date = $(".home-start-day")
-                                .val()
-                                .split("-");
-                            let day = `${date[2]}-${date[1]}-${date[0]}`;
-                            //Obtenemos la hora
-                            let hours = $(".home-start-hours").val();
-                            //Si ambos no están vacíos, hacemos la petición
-                            if (date != "" && hours != "") {
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    scheduleHome,
-                                    keyValue
-                                );
-                            }
-                            //En caso de que la hora venga vacía, la igualamos a 0
-                            else if (date != "" && hours == "") {
-                                hours = "00:00:00";
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    scheduleHome,
-                                    keyValue
-                                );
-                            }
-                        } else if (scheduleHome == "in_home_expiration") {
-                            //Obtenemos la fecha
-                            let date = $(".home-expiration-day")
-                                .val()
-                                .split("-");
-                            let day = `${date[2]}-${date[1]}-${date[0]}`;
-                            //Obtenemos la hora
-                            let hours = $(".home-expiration-hours").val();
-
-                            //Si ambos no están vacíos, hacemos la petición
-                            if (date != "" && hours != "") {
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    scheduleHome,
-                                    keyValue
-                                );
-                            }
-                            //En caso de que la hora venga vacía, la igualamos a 0
-                            else if (date != "" && hours == "") {
-                                hours = "00:00:00";
-                                keyValue = `${day} ${hours}`;
-                                editAttributeProgram(
-                                    chapterId,
-                                    scheduleHome,
-                                    keyValue
-                                );
-                            }
-                        }
-                        break;
-                    default:
-                        //Si no es ninguno de los casos, sacamos el valor del campo directamente
-                        keyValue = $(this).val();
-                        //Hacemos la petición
-                        editAttributeProgram(chapterId, key, keyValue);
-                        break;
-                }
-                //Quitamos el comportamiento por defecto
-                e.preventDefault();
-                //Después de dar click, "sacamos" al usuario del input
-                $(this).blur();
-                return false;
-            }
-        });
-
-        //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-        editableAttribute.blur(function() {
-            let currentColumn = $(this).closest(".contenedor-columna");
-            let key = currentColumn.attr("key");
-            let keyValue = $(this).val();
-            let chapterId = currentColumn.attr("chapter_id");
-            //Verificamos el campo que estamos editando
+    let editableAttribute = $(".editable-attribute");
+    editableAttribute.keydown(function(e) {
+        //Si la tecla que presionamos fue "Enter"
+        if (e.which === 13 && !e.shiftKey) {
+            let key = $(this)
+                .closest(".contenedor-columna")
+                .attr("key");
+            let keyValue = "";
+            let chapterId = $(this)
+                .closest(".contenedor-columna")
+                .attr("chapter_id");
             switch (key) {
                 //Verificamos si lo que estamos editando es Schedule Item Long Date
                 case "day":
@@ -4568,7 +4275,14 @@ function eventsGrilla() {
                     keyValue = `${date[2]}-${date[1]}-${date[0]}`;
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
-                //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+                //Verificamos si el campo que estamos editando es el año de producción
+                case "program_year_produced":
+                    //Convertimos el año a entero
+                    keyValue = parseInt($(this).val());
+                    //Hacemos la petición
+                    editAttributeProgram(chapterId, key, keyValue);
+                    break;
+                //Verificamos si el campo editable, es el de programar publicación para Landing
                 case "in_landing_publicacion":
                     let schedule = $(this)
                         .closest(".programar-schedule")
@@ -4629,17 +4343,16 @@ function eventsGrilla() {
                     let scheduleHome = $(this)
                         .closest(".programar-schedule")
                         .attr("key");
-                    let parentHome = $(this).closest(".programar-schedule");
+
                     //Verificamos si es la fecha de inicio del home
                     if (scheduleHome == "in_home_begin") {
                         //Obtenemos la fecha
-                        let date = parentHome
-                            .find(".home-start-day")
+                        let date = $(".home-start-day")
                             .val()
                             .split("-");
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         //Obtenemos la hora
-                        let hours = parentHome.find(".home-start-hours").val();
+                        let hours = $(".home-start-hours").val();
                         //Si ambos no están vacíos, hacemos la petición
                         if (date != "" && hours != "") {
                             keyValue = `${day} ${hours}`;
@@ -4661,19 +4374,15 @@ function eventsGrilla() {
                         }
                     } else if (scheduleHome == "in_home_expiration") {
                         //Obtenemos la fecha
-                        let date = parentHome
-                            .find(".home-expiration-day")
+                        let date = $(".home-expiration-day")
                             .val()
                             .split("-");
                         let day = `${date[2]}-${date[1]}-${date[0]}`;
                         //Obtenemos la hora
-                        let hours = parentHome
-                            .find(".home-expiration-hours")
-                            .val();
+                        let hours = $(".home-expiration-hours").val();
 
                         //Si ambos no están vacíos, hacemos la petición
                         if (date != "" && hours != "") {
-                            day = `${date[2]}-${date[1]}-${date[0]}`;
                             keyValue = `${day} ${hours}`;
                             editAttributeProgram(
                                 chapterId,
@@ -4692,1243 +4401,1259 @@ function eventsGrilla() {
                             );
                         }
                     }
-
                     break;
                 default:
+                    //Si no es ninguno de los casos, sacamos el valor del campo directamente
+                    keyValue = $(this).val();
+                    //Hacemos la petición
                     editAttributeProgram(chapterId, key, keyValue);
                     break;
             }
-        });
+            //Quitamos el comportamiento por defecto
+            e.preventDefault();
+            //Después de dar click, "sacamos" al usuario del input
+            $(this).blur();
+            return false;
+        }
+    });
 
-        //Sacar los valores de los switches en la grilla
-        $(".switch-table").click(function() {
-            let currentColumn = $(this).closest(".contenedor-columna");
-            //Sacamos el valor del switch o radio button
-            let keyValue = $(this).val();
-            //De la columna, sacamos el chapter_id
-            let chapterId = currentColumn.attr("chapter_id");
-            //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
-            let key = currentColumn.attr("key");
-            //Hacemos la petición
-            editAttributeProgram(chapterId, key, keyValue);
-        });
-        //Sacar los valores de los switches en el modal de edicion
-        $(".switch-table-edit").click(function() {
-            let chapter_id = $(".edit-program-data-container").attr(
-                "chapter_id"
-            );
-            let value = $(this).val();
-            let key = $(this).attr("key");
-            //Hacemos la petición
-            editAttributeProgram(chapter_id, key, value);
-        });
+    //Se ejecuta cuando editamos un campo y damos click "fuera" del input
+    editableAttribute.blur(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        let key = currentColumn.attr("key");
+        let keyValue = $(this).val();
+        let chapterId = currentColumn.attr("chapter_id");
+        //Verificamos el campo que estamos editando
+        switch (key) {
+            //Verificamos si lo que estamos editando es Schedule Item Long Date
+            case "day":
+                //Seperamos la fecha
+                let date = $(this)
+                    .val()
+                    .split("-");
+                //Volvemos a unir la fecha empezando por el año y mandamos la petición
+                keyValue = `${date[2]}-${date[1]}-${date[0]}`;
+                editAttributeProgram(chapterId, key, keyValue);
+                break;
+            //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+            case "in_landing_publicacion":
+                let schedule = $(this)
+                    .closest(".programar-schedule")
+                    .attr("key");
+                let parent = $(this).closest(".programar-schedule");
+                //Verificamos si es la fecha de inicio
+                if (schedule == "in_landing_begin") {
+                    //Obtenemos el div padre para saber qué horario y fecha andamos modificando
 
-        /*
+                    //Obteemos la fecha y la dividimos
+                    let date = parent
+                        .find(".landing-start-day")
+                        .val()
+                        .split("-");
+                    //Re hacemos la fecha
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    let hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+
+                    //En caso de tener ambos valores, hacemos al petición
+                    if (day != "" && hours != "") {
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                    //En caso de solo tener el día, mandamos la hora en 0
+                    else if (day != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                }
+                //Verificamos si es la fecha fin
+                else if (schedule == "in_landing_expiration") {
+                    let date = parent
+                        .find(".landing-expiration-day")
+                        .val()
+                        .split("-"); //Obtenemos fecha
+                    let hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    //En caso de tener ambos valores, hacemos la petición
+
+                    if (date != "" && hours != "") {
+                        let day = `${date[2]}-${date[1]}-${date[0]}`;
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                    //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, schedule, keyValue);
+                    }
+                }
+
+                break;
+            case "in_home_publicacion":
+                let scheduleHome = $(this)
+                    .closest(".programar-schedule")
+                    .attr("key");
+                let parentHome = $(this).closest(".programar-schedule");
+                //Verificamos si es la fecha de inicio del home
+                if (scheduleHome == "in_home_begin") {
+                    //Obtenemos la fecha
+                    let date = parentHome
+                        .find(".home-start-day")
+                        .val()
+                        .split("-");
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    //Obtenemos la hora
+                    let hours = parentHome.find(".home-start-hours").val();
+                    //Si ambos no están vacíos, hacemos la petición
+                    if (date != "" && hours != "") {
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                    //En caso de que la hora venga vacía, la igualamos a 0
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                } else if (scheduleHome == "in_home_expiration") {
+                    //Obtenemos la fecha
+                    let date = parentHome
+                        .find(".home-expiration-day")
+                        .val()
+                        .split("-");
+                    let day = `${date[2]}-${date[1]}-${date[0]}`;
+                    //Obtenemos la hora
+                    let hours = parentHome.find(".home-expiration-hours").val();
+
+                    //Si ambos no están vacíos, hacemos la petición
+                    if (date != "" && hours != "") {
+                        day = `${date[2]}-${date[1]}-${date[0]}`;
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                    //En caso de que la hora venga vacía, la igualamos a 0
+                    else if (date != "" && hours == "") {
+                        hours = "00:00:00";
+                        keyValue = `${day} ${hours}`;
+                        editAttributeProgram(chapterId, scheduleHome, keyValue);
+                    }
+                }
+
+                break;
+            default:
+                editAttributeProgram(chapterId, key, keyValue);
+                break;
+        }
+    });
+
+    //Sacar los valores de los switches en la grilla
+    $(".switch-table").click(function() {
+        let currentColumn = $(this).closest(".contenedor-columna");
+        //Sacamos el valor del switch o radio button
+        let keyValue = $(this).val();
+        //De la columna, sacamos el chapter_id
+        let chapterId = currentColumn.attr("chapter_id");
+        //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+        let key = currentColumn.attr("key");
+        //Hacemos la petición
+        editAttributeProgram(chapterId, key, keyValue);
+    });
+    //Sacar los valores de los switches en el modal de edicion
+    $(".switch-table-edit").click(function() {
+        let chapter_id = $(".edit-program-data-container").attr("chapter_id");
+        let value = $(this).val();
+        let key = $(this).attr("key");
+        //Hacemos la petición
+        editAttributeProgram(chapter_id, key, value);
+    });
+
+    /*
     Permite a todos los campos de Schedule item log time tener el formato
     tiempo en hh:mm
     */
-        $(".schedule-time-input")
-            .toArray()
-            .forEach(scheduleTime => {
-                new Cleave(scheduleTime, scheduleTimeConfig);
-            });
-        /*
+    $(".schedule-time-input")
+        .toArray()
+        .forEach(scheduleTime => {
+            new Cleave(scheduleTime, scheduleTimeConfig);
+        });
+    /*
     Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
     */
-        $(".schedule-date-input")
-            .toArray()
-            .forEach(scheduleDate => {
-                new Cleave(scheduleDate, cleaveConfig);
-            });
-        /*
+    $(".schedule-date-input")
+        .toArray()
+        .forEach(scheduleDate => {
+            new Cleave(scheduleDate, cleaveConfig);
+        });
+    /*
     Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
     */
-        $(".time-seconds-input")
-            .toArray()
-            .forEach(timeInput => {
-                new Cleave(timeInput, timeWithSeconds);
-            });
+    $(".time-seconds-input")
+        .toArray()
+        .forEach(timeInput => {
+            new Cleave(timeInput, timeWithSeconds);
+        });
 
-        /*
+    /*
     Permite a todos los input con la clase year-input tener el formato YYYY
     */
-        $(".year-input")
-            .toArray()
-            .forEach(yearInput => {
-                new Cleave(yearInput, year);
-            });
-
-        //Truncar texto de sinópsis con "..."
-        $(".lb-synopsis").each(function(index, element) {
-            if ($(this).text().length > 200) {
-                let text =
-                    $(this)
-                        .text()
-                        .substr(0, 200) + "...";
-                $(this).text(text);
-            }
+    $(".year-input")
+        .toArray()
+        .forEach(yearInput => {
+            new Cleave(yearInput, year);
         });
 
-        $(".listcinema").selectpicker({
+    //Truncar texto de sinópsis con "..."
+    $(".lb-synopsis").each(function(index, element) {
+        if ($(this).text().length > 200) {
+            let text =
+                $(this)
+                    .text()
+                    .substr(0, 200) + "...";
+            $(this).text(text);
+        }
+    });
+
+    $(".listcinema").selectpicker({
+        multipleSeparator: " ",
+        filter: true
+    });
+    //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
+    $(".edit-row-pencil").click(selectRow);
+    //Al dar click en una columna, aplicamos estilos
+    $(".selectable-column").click(selectColumn);
+
+    $(".selectpicker")
+        .selectpicker({
             multipleSeparator: " ",
             filter: true
+        })
+        .on("changed.bs.select", function() {
+            $(this).selectpicker("refresh");
         });
-        //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
-        $(".edit-row-pencil").click(selectRow);
-        //Al dar click en una columna, aplicamos estilos
-        $(".selectable-column").click(selectColumn);
 
-        $(".selectpicker")
-            .selectpicker({
-                multipleSeparator: " ",
-                filter: true
-            })
-            .on("changed.bs.select", function() {
-                $(this).selectpicker("refresh");
-            });
-
-        $("#inp_programing").on("change", function() {
-            /**
-             * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
-             * esto para no caursar poroblemas mayores se manda a null e value del form
-             * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
-             */
-            try {
-                var file = this.files[0];
-                var filename = this.files[0].name;
-
-                if (filename != null) {
-                    var splName = filename.split(".");
-                    var fileFormat = splName[splName.length - 1];
-                    if (fileFormat != "xlsx" && fileFormat != "xls") {
-                        $(".load-file").modal("show");
-                    } else {
-                        var data_for_api = $(this).attr("api");
-                        sendFilePHP(file, data_for_api);
-                        console.log(this.files[0].name);
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
-            this.value = null; //aqui para evitar que se hagan registros dobles
-        });
+    $("#inp_programing").on("change", function() {
         /**
-         * Eviar archivo mediante ajax a un "controlador" php
+         * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+         * esto para no caursar poroblemas mayores se manda a null e value del form
+         * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
          */
+        try {
+            var file = this.files[0];
+            var filename = this.files[0].name;
 
-        function updateGrill(landing) {
-            let canal = "canal-claro";
-            switch (landing) {
-                case 1:
-                    canal = "canal-claro";
-                    break;
-                case 2:
-                    canal = "concert-channel";
-                    break;
-                case 3:
-                    canal = "claro-cinema";
-                    break;
-                default:
-                    break;
+            if (filename != null) {
+                var splName = filename.split(".");
+                var fileFormat = splName[splName.length - 1];
+                if (fileFormat != "xlsx" && fileFormat != "xls") {
+                    $(".load-file").modal("show");
+                } else {
+                    var data_for_api = $(this).attr("api");
+                    sendFilePHP(file, data_for_api);
+                    console.log(this.files[0].name);
+                }
             }
-            $.ajax({
-                type: "POST",
-                url: "view",
-                data: {
-                    view: "grilla-" + canal + "-button"
-                },
-                beforeSend: function() {
-                    const loader = `
+        } catch (error) {
+            console.log(error);
+        }
+        this.value = null; //aqui para evitar que se hagan registros dobles
+    });
+    /**
+     * Eviar archivo mediante ajax a un "controlador" php
+     */
+
+    function updateGrill(landing) {
+        let canal = "canal-claro";
+        switch (landing) {
+            case 1:
+                canal = "canal-claro";
+                break;
+            case 2:
+                canal = "concert-channel";
+                break;
+            case 3:
+                canal = "claro-cinema";
+                break;
+            default:
+                break;
+        }
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: {
+                view: "grilla-" + canal + "-button"
+            },
+            beforeSend: function() {
+                const loader = `
                 <div class="loader-view-container">
                 <img src="./images/loader.gif" class="loader" alt="">
                 </div>
                 `;
-                    $("body").append(loader);
-                },
-                success: function(result) {
-                    console.log("grilla de canal claro");
-                    console.log(result);
-                    $("#general-programming").html("");
-                    $("#general-programming").html(result);
-                    eventsGrilla();
-                    $(".loader-view-container").remove();
-                }
-            });
-        }
+                $("body").append(loader);
+            },
+            success: function(result) {
+                console.log("grilla de canal claro");
+                console.log(result);
+                $("#general-programming").html("");
+                $("#general-programming").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
+            }
+        });
+    }
 
-        function sendFilePHP(file, data_for_api) {
-            console.log("enviando a php");
-            //creamos un dato de formulario para pasarlo en el ajax
-            let data = new FormData();
-            data.append("file", file);
-            data.append("datos", data_for_api);
+    function sendFilePHP(file, data_for_api) {
+        console.log("enviando a php");
+        //creamos un dato de formulario para pasarlo en el ajax
+        let data = new FormData();
+        data.append("file", file);
+        data.append("datos", data_for_api);
 
-            //Realizamos el ajax
-            $.ajax({
-                type: "POST",
-                data: data,
-                processData: false, //esto es para poder pasar el archivo
-                contentType: false, //esto es para poder pasar el archivo
-                url: "general-program/captureExcel",
-                beforeSend: function() {
-                    $("body").append(
-                        `<div class="loader-view-container pointer-none">
+        //Realizamos el ajax
+        $.ajax({
+            type: "POST",
+            data: data,
+            processData: false, //esto es para poder pasar el archivo
+            contentType: false, //esto es para poder pasar el archivo
+            url: "general-program/captureExcel",
+            beforeSend: function() {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
-                    );
-                },
-                success: function(result) {
-                    var existe_programacion = JSON.parse(result);
-                    if (existe_programacion.data == 1) {
-                        $(".loader-view-container").remove();
+                );
+            },
+            success: function(result) {
+                var existe_programacion = JSON.parse(result);
+                if (existe_programacion.data == 1) {
+                    $(".loader-view-container").remove();
 
-                        console.log("Preguntamos al usuario");
-                        $("#programas_procesados_por_el_excel").val(result);
-                        $(".modal-information").modal("show");
+                    console.log("Preguntamos al usuario");
+                    $("#programas_procesados_por_el_excel").val(result);
+                    $(".modal-information").modal("show");
+                } else {
+                    $(".loader-view-container").remove();
+
+                    if (existe_programacion.data == -1) {
+                        console.log("es de un dia anterior");
+                        $(".modal-before").modal("show");
                     } else {
+                        console.log("se agregó la programación");
+                        let landing = JSON.parse(data_for_api).landing_id;
+
+                        updateGrill(landing);
                         $(".loader-view-container").remove();
-
-                        if (existe_programacion.data == -1) {
-                            console.log("es de un dia anterior");
-                            $(".modal-before").modal("show");
-                        } else {
-                            console.log("se agregó la programación");
-                            let landing = JSON.parse(data_for_api).landing_id;
-
-                            updateGrill(landing);
-                            $(".loader-view-container").remove();
-                        }
                     }
                 }
-            }).fail(function(e) {
-                $(".loader-view-container").remove();
-                console.log(e);
-            });
-        }
-        $("#acccion-programacion-remplaza").click(function() {
-            console.log("Se remplaza la programacion");
-            let data = JSON.parse(
-                $("#programas_procesados_por_el_excel").val()
-            );
-            console.log(data);
+            }
+        }).fail(function(e) {
+            $(".loader-view-container").remove();
+            console.log(e);
+        });
+    }
+    $("#acccion-programacion-remplaza").click(function() {
+        console.log("Se remplaza la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
 
-            $.ajax({
-                type: "POST",
-                data: data,
-                url: "general-program/changePrograming",
-                beforeSend: function() {
-                    $(".modal-information .modal-content").prepend(
-                        `<div class="loader-container pointer-none">
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/changePrograming",
+            beforeSend: function() {
+                $(".modal-information .modal-content").prepend(
+                    `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
-                    );
-                },
+                );
+            },
 
-                success: function(result) {
-                    updateGrill(data.landing_id);
-                    $(".loader-container").remove();
-                    $(".modal-information").modal("hide");
-                    console.log(JSON.parse(result));
-                }
-            }).fail(function(e) {
-                console.log(e);
+            success: function(result) {
+                updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
-            });
-        });
-
-        $("#acccion-programacion-agrega").click(function() {
-            console.log("Se agrega la programacion");
-            let data = JSON.parse(
-                $("#programas_procesados_por_el_excel").val()
-            );
-            console.log(data);
-            $.ajax({
-                type: "POST",
-                data: data,
-                url: "general-program/addPrograming",
-                beforeSend: function() {
-                    $(".modal-information .modal-con tent").prepend(
-                        `<div class="loader-container pointer-none">
-                        <img src="./images/loader.gif" class="loader"/>
-                    </div>`
-                    );
-                },
-                success: function(result) {
-                    updateGrill(data.landing_id);
-                    $(".loader-container").remove();
-                    $(".modal-information").modal("hide");
-                    console.log(JSON.parse(result));
-                }
-            }).fail(function(e) {
-                console.log(e);
-                $(".loader-container").remove();
-                $(".modal-information").modal("hide");
-            });
-        });
-        $("#acccion-programacion-cancela").click(function() {
-            console.log("Se cancela la programacion");
-            $("#programas_procesados_por_el_excel").val(" ");
-            let programas = $("#programas_procesados_por_el_excel").val();
-            console.log(programas);
+                console.log(JSON.parse(result));
+            }
+        }).fail(function(e) {
+            console.log(e);
+            $(".loader-container").remove();
             $(".modal-information").modal("hide");
         });
+    });
 
-        // CANAL CLARO
-        const LOADER = `<div class="loader-view-container" id="loader1">
+    $("#acccion-programacion-agrega").click(function() {
+        console.log("Se agrega la programacion");
+        let data = JSON.parse($("#programas_procesados_por_el_excel").val());
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "general-program/addPrograming",
+            beforeSend: function() {
+                $(".modal-information .modal-con tent").prepend(
+                    `<div class="loader-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+            },
+            success: function(result) {
+                updateGrill(data.landing_id);
+                $(".loader-container").remove();
+                $(".modal-information").modal("hide");
+                console.log(JSON.parse(result));
+            }
+        }).fail(function(e) {
+            console.log(e);
+            $(".loader-container").remove();
+            $(".modal-information").modal("hide");
+        });
+    });
+    $("#acccion-programacion-cancela").click(function() {
+        console.log("Se cancela la programacion");
+        $("#programas_procesados_por_el_excel").val(" ");
+        let programas = $("#programas_procesados_por_el_excel").val();
+        console.log(programas);
+        $(".modal-information").modal("hide");
+    });
+
+    // CANAL CLARO
+    const LOADER = `<div class="loader-view-container" id="loader1">
             <img src="./images/loader.gif" class="loader" alt="">
             </div>`;
 
-        let landingCanalClaro = {
-            remote: `${baseURL}claro-canal-edi.php`,
-            // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
-            container: document.getElementById("navbar-prev-canal-claro"),
-            onMessage: function(message, origin) {
-                let json = JSON.parse(message);
+    let landingCanalClaro = {
+        remote: `${baseURL}claro-canal-edi.php`,
+        // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
+        container: document.getElementById("navbar-prev-canal-claro"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
 
-                if (typeof json == "object") {
-                    switch (json.type) {
-                        case "claro-header":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "claro-programacion":
-                            $("body").append(LOADER);
-                            setTimeout(function() {
-                                let date = new Date();
-                                let day = ("0" + date.getUTCDate()).slice(-2);
-                                let month = (
-                                    "0" +
-                                    (date.getUTCMonth() + 1)
-                                ).slice(-2);
-                                let year = date.getUTCFullYear();
-                                let currentDate = `${year}-${month}-${day}`;
-                                getProgrammingLanding(
-                                    currentDate,
-                                    "canal-claro",
-                                    ""
-                                );
-                                $("#loader1").remove();
-                            }, 3000);
-                            break;
-                        case "claro-title":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "claro-promo":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "claro-carrusel1":
-                            let id = 1;
-                            let landing = "Canal Claro";
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "thumbnail-header-claro"
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "claro-header":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-programacion":
+                        $("body").append(LOADER);
+                        setTimeout(function() {
+                            let date = new Date();
+                            let day = ("0" + date.getUTCDate()).slice(-2);
+                            let month = ("0" + (date.getUTCMonth() + 1)).slice(
+                                -2
                             );
+                            let year = date.getUTCFullYear();
+                            let currentDate = `${year}-${month}-${day}`;
+                            getProgrammingLanding(
+                                currentDate,
+                                "canal-claro",
+                                ""
+                            );
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "claro-title":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-promo":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-carrusel1":
+                        let id = 1;
+                        let landing = "Canal Claro";
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "thumbnail-header-claro"
+                        );
 
-                            break;
-                        case "claro-carrusel2":
-                            id = 2;
-                            landing = "Canal Claro";
-                            getPromotionalsProgramsCarousel(
-                                id,
-                                landing,
-                                "thumbnail-header-claro "
-                            );
-                            break;
-                        case "claro-carrusel-title":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "claro-carrusel-title2":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "btn-redirect-header":
-                            getModalsCanalClaro(json.type);
-                            break;
-                        case "slider-pagination":
-                            getModalsCanalClaro("slider-pagination");
-                            break;
-                    }
+                        break;
+                    case "claro-carrusel2":
+                        id = 2;
+                        landing = "Canal Claro";
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "thumbnail-header-claro "
+                        );
+                        break;
+                    case "claro-carrusel-title":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-carrusel-title2":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "btn-redirect-header":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "slider-pagination":
+                        getModalsCanalClaro("slider-pagination");
+                        break;
                 }
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName(
-                    "iframe"
-                )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
             }
-        };
-
-        //Landing de claro canal
-
-        let navbarLandingCanalClaro = document.getElementById(
-            "navbar-prev-canal-claro"
-        );
-        if (navbarLandingCanalClaro) {
-            $("#navbar-prev-canal-claro iframe").remove();
-            new easyXDM.Socket(landingCanalClaro);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
-        let confPrevClaroCanal = {
-            remote: `${baseURL}claro-canal.php`,
-            container: document.getElementById("navbar-prev-canal-claro"),
-            onMessage: function(message, origin) {
-                console.log(message);
-                this.container.getElementsByTagName("iframe")[0].style.height =
-                    message + "px";
-                this.container.getElementsByTagName("iframe")[0];
+    };
 
-                let navbarLandingCanalClaro = document.getElementById(
-                    "navbar-prev-canal-claro"
+    //Landing de claro canal
+
+    let navbarLandingCanalClaro = document.getElementById(
+        "navbar-prev-canal-claro"
+    );
+    if (navbarLandingCanalClaro) {
+        $("#navbar-prev-canal-claro iframe").remove();
+        new easyXDM.Socket(landingCanalClaro);
+    }
+    let confPrevClaroCanal = {
+        remote: `${baseURL}claro-canal-prev.php`,
+        container: document.getElementById("navbar-prev-canal-claro"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
+
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    //Landing de claro canal
+
+    //previsualizar canal claro
+    $("#prev").click(function() {
+        //     //Landing canal claro
+        resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit").click(function() {
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
+
+    // BTN MODAL URL ENCABEZADO
+    $("#url-encabezado").click(function() {
+        $("#modal-url").modal("show");
+    });
+    // BTN MODAL URL PROMO
+    $("#url-promo").click(function() {
+        $("#modal-url").modal("show");
+    });
+    // BTN BANNER
+    $("#banner-claro").change(function() {
+        File(this);
+    });
+    // BTN BANNER
+    $("#btn-acepta-url").click(function() {
+        $("#modal-url").modal("hide");
+        let url = $(".input-url-modal").val() || "";
+        $("#inp-text-modal-4").val(url);
+    });
+    // FILE PARA BANNER
+    var fileSrt = new FileReader();
+
+    var fileReader = new FileReader();
+
+    function File(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $("#" + objFileInput.name).html(
+                    '<img class="img-claro-back" src="' +
+                        e.target.result +
+                        '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
                 );
-                if (navbarLandingCanalClaro) {
-                    $("#navbar-prev-canal-claro iframe").remove();
-                    new easyXDM.Socket(landingCanalClaro);
-                }
-                let confPrevClaroCanal = {
-                    remote: `${baseURL}claro-canal.php`,
-                    container: document.getElementById(
-                        "navbar-prev-canal-claro"
-                    ),
-                    onMessage: function(message, origin) {
-                        console.log(message);
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName("iframe")[0];
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+        }
+        $("#loader1").remove();
+    }
+    // CARGAR IMG HEADER
+    $("#img-header").change(function() {
+        FileHeader(this);
+    });
 
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
-
-                //previsualizar canal claro
-                $("#prev").click(function() {
-                    //Landing canal claro
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        confPrevClaroCanal
-                    );
-                    $("#prev-mobile")
-                        .removeClass("pointer-none")
-                        .addClass("cursor-pointer");
-                    $("#prev-tablet")
-                        .removeClass("pointer-none")
-                        .addClass("cursor-pointer");
-                });
-                $("#edit").click(function() {
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        landingCanalClaro
-                    );
-
-                    $("#prev-mobile")
-                        .removeClass("cursor-pointer")
-                        .addClass("pointer-none");
-                    $("#prev-mobile").css("opacity", "0.4");
-                    $("#prev-tablet")
-                        .removeClass("cursor-pointer")
-                        .addClass("pointer-none");
-                    $("#prev-tablet").css("opacity", "0.4");
-                    $("#prev-desktop").css("opacity", "1");
-                });
-
-                // BTN MODAL URL ENCABEZADO
-                $("#url-encabezado").click(function() {
-                    $("#modal-url").modal("show");
-                });
-                // BTN MODAL URL PROMO
-                $("#url-promo").click(function() {
-                    $("#modal-url").modal("show");
-                });
-                // BTN BANNER
-                $("#banner-claro").change(function() {
-                    File(this);
-                });
-                // BTN BANNER
-                $("#btn-acepta-url").click(function() {
-                    $("#modal-url").modal("hide");
-                    let url = $(".input-url-modal").val() || "";
-                    $("#inp-text-modal-4").val(url);
-                });
-                // FILE PARA BANNER
-                var fileSrt = new FileReader();
-
-                var fileReader = new FileReader();
-
-                function File(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $("#" + objFileInput.name).html(
-                                '<img class="img-claro-back" src="' +
-                                    e.target.result +
-                                    '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
-                            );
-                        };
-                        fileSrt.readAsDataURL(objFileInput.files[0]);
-                    }
-                    $("#loader1").remove();
-                }
-                // CARGAR IMG HEADER
-                $("#img-header").change(function() {
-                    FileHeader(this);
-                });
-
-                // FILE HEADER
-                function FileHeader(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $("#img-header-claro").html(
-                                '<img src="' + e.target.result + '" />'
-                            );
-                        };
-                        fileSrt.readAsDataURL(objFileInput.files[0]);
-                        $("#loader1").remove();
-                    }
-                }
-                // IMG DE PROMO
-                $("#promo-claro-img").change(function() {
-                    FilePromoImg(this);
-                });
-                // IMG DE PROMO CARGAR
-                function FilePromoImg(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $("#back-promo-claro").html(
-                                '<img class="img-back-modal img-promo" src="' +
-                                    e.target.result +
-                                    '" />'
-                            );
-                        };
-                    }
-                    fileSrt.readAsDataURL(objFileInput.files[0]);
-                    $(".loader-view-container").remove();
-                }
-                // VIDEO DE PROMO
-                $("#promo-claro-video").change(function() {
-                    FilePromoVideo(this);
-                });
-                // VIDEO DE PROMO CARGAR
-                function FilePromoVideo(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $("#back-promo-claro").html(
-                                '<video autoplay controls class="img-back-modal img-promo" src="' +
-                                    e.target.result +
-                                    '" /></video>'
-                            );
-                            $(".loader-view-container").remove();
-                        };
-                        fileSrt.readAsDataURL(objFileInput.files[0]);
-                    }
-                }
-                // IMG DE CARRUSEL 1
-                $("#carrusel1-claro-img").change(function() {
-                    FileCarrusel1Img(this);
-                });
-                // IMG DE CARRUSEL 1 CARGAR
-                function FileCarrusel1Img(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $("#back-carrusel1-claro").html(
-                                '<img class="img-back-modal img-carrusel" src="' +
-                                    e.target.result +
-                                    '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />'
-                            );
-                        };
-                    }
-                    fileSrt.readAsDataURL(objFileInput.files[0]);
-                    $(".loader-view-container").remove();
-                }
-
-                //CLARO CANAL POST HEADER
-                // HEADER EDIT CANAL CLARO
-                $("#btn-acepta-modal-header").click(function() {
-                    let landing = "Canal Claro";
-                    let title1 = $(".inp-text-modal-1").val() || "";
-                    let title2 = $(".inp-text-modal-2").val() || "";
-                    let logo =
-                        document.getElementById("img-header").files[0] || "";
-                    let link = $("#inp-text-modal-4").val() || "";
-                    let data = new FormData();
-                    data.append("landing", landing);
-                    data.append("title1", title1);
-                    data.append("title2", title2);
-                    data.append("logo", logo);
-                    data.append("link", link);
-                    editHeaderLandingClaro(data);
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        landingCanalClaro
-                    );
-                });
-
-                $(".button-modal-canal-claro").click(function() {
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        landingCanalClaro
-                    );
-                });
-
-                $(".modal-edit-program-carrusel").on(
-                    "click",
-                    ".button-modal-canal-claro",
-                    function() {
-                        resetIframe(
-                            $("#navbar-prev-canal-claro iframe"),
-                            landingCanalClaro
-                        );
-                    }
+    // FILE HEADER
+    function FileHeader(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $("#img-header-claro").html(
+                    '<img src="' + e.target.result + '" />'
                 );
-                // HEADER EDIT CANAL CLARO
-                // TITLE EDIT CANAL CLARO
-                $("#btn-acepta-modal-title").click(function() {
-                    // TITULO
-                    let value = $(".inp-title-modal").val();
-                    let key = $(".inp-title-modal").attr("key");
-                    let landing = "Canal Claro";
-                    editElementLandingClaro({
-                        value: value,
-                        key: key,
-                        landing: landing
-                    });
-                    // SUB TITULO
-                    let valueSub = $(".inp-sub-title-modal").val();
-                    // let keySub = "block_3_subtitle";
-                    let keySub = $(".inp-sub-title-modal").attr("key");
-                    editElementLandingClaro({
-                        value: valueSub,
-                        key: keySub,
-                        landing: landing
-                    });
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        landingCanalClaro
-                    );
-                });
-                // TITLE EDIT CANAL CLARO
-                // HEADER EDIT CANAL CLARO
-                $("#btn-acepta-modal-promo").click(function() {
-                    let landing = "Canal Claro";
-                    let img =
-                        document.getElementById("promo-claro-img").files[0] ||
-                        "";
-                    let video =
-                        document.getElementById("promo-claro-video").files[0] ||
-                        "";
-                    let key = "block_3_video_url";
-                    let data = new FormData();
-                    data.append("landing", landing);
-                    data.append("img", img);
-                    data.append("video", video);
-                    data.append("key", key);
-                    editPromoLandingClaro(data);
-                    resetIframe(
-                        $("#navbar-prev-canal-claro iframe"),
-                        landingCanalClaro
-                    );
-                });
-                // HEADER EDIT CANAL CLARO
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            $("#loader1").remove();
+        }
+    }
+    // IMG DE PROMO
+    $("#promo-claro-img").change(function() {
+        FilePromoImg(this);
+    });
+    // IMG DE PROMO CARGAR
+    function FilePromoImg(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $("#back-promo-claro").html(
+                    '<img class="img-back-modal img-promo" src="' +
+                        e.target.result +
+                        '" />'
+                );
+            };
+        }
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+        $(".loader-view-container").remove();
+    }
+    // VIDEO DE PROMO
+    $("#promo-claro-video").change(function() {
+        FilePromoVideo(this);
+    });
+    // VIDEO DE PROMO CARGAR
+    function FilePromoVideo(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $("#back-promo-claro").html(
+                    '<video autoplay controls class="img-back-modal img-promo" src="' +
+                        e.target.result +
+                        '" /></video>'
+                );
+                $(".loader-view-container").remove();
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+        }
+    }
+    // IMG DE CARRUSEL 1
+    $("#carrusel1-claro-img").change(function() {
+        FileCarrusel1Img(this);
+    });
+    // IMG DE CARRUSEL 1 CARGAR
+    function FileCarrusel1Img(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $("#back-carrusel1-claro").html(
+                    '<img class="img-back-modal img-carrusel" src="' +
+                        e.target.result +
+                        '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />'
+                );
+            };
+        }
+        fileSrt.readAsDataURL(objFileInput.files[0]);
+        $(".loader-view-container").remove();
+    }
 
-                // CANAL CLARO
+    //CLARO CANAL POST HEADER
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-header").click(function() {
+        let landing = "Canal Claro";
+        let title1 = $(".inp-text-modal-1").val() || "";
+        let title2 = $(".inp-text-modal-2").val() || "";
+        let logo = document.getElementById("img-header").files[0] || "";
+        let link = $("#inp-text-modal-4").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        editHeaderLandingClaro(data);
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
 
-                // CARGAR IMG HEADER
-                $("#image-icon1").change(function() {
-                    FileHeaderCinema(this);
-                });
+    $(".button-modal-canal-claro").click(function() {
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
 
-                // FILE HEADER
-                function FileHeaderCinema(objFileInput) {
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $(".logo-header-claro-cinema").attr(
-                                "src",
-                                e.target.result
-                            );
-                        };
-                        fileSrt.readAsDataURL(objFileInput.files[0]);
-                        $("#loader1").remove();
-                    }
-                }
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".button-modal-canal-claro",
+        function() {
+            resetIframe(
+                $("#navbar-prev-canal-claro iframe"),
+                landingCanalClaro
+            );
+        }
+    );
+    // HEADER EDIT CANAL CLARO
+    // TITLE EDIT CANAL CLARO
+    $("#btn-acepta-modal-title").click(function() {
+        // TITULO
+        let value = $(".inp-title-modal").val();
+        let key = $(".inp-title-modal").attr("key");
+        let landing = "Canal Claro";
+        editElementLandingClaro({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        // SUB TITULO
+        let valueSub = $(".inp-sub-title-modal").val();
+        // let keySub = "block_3_subtitle";
+        let keySub = $(".inp-sub-title-modal").attr("key");
+        editElementLandingClaro({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
+    // TITLE EDIT CANAL CLARO
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-promo").click(function() {
+        let landing = "Canal Claro";
+        let img = document.getElementById("promo-claro-img").files[0] || "";
+        let video = document.getElementById("promo-claro-video").files[0] || "";
+        let key = "block_3_video_url";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("img", img);
+        data.append("video", video);
+        data.append("key", key);
+        editPromoLandingClaro(data);
+        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    });
+    // HEADER EDIT CANAL CLARO
 
-                // HEADER EDIT CANAL CLARO
-                $("#btn-acepta-modal-header-cinema").click(function() {
-                    let landing = "Claro Cinema";
-                    let title1 = $("#ipt-heade").val() || "";
-                    let title2 = $("#ipt-heade-1").val() || "";
-                    let logo =
-                        document.getElementById("image-icon1").files[0] || "";
-                    let link = $("#inp-text-modal-4").val() || "";
-                    let data = new FormData();
-                    data.append("landing", landing);
-                    data.append("title1", title1);
-                    data.append("title2", title2);
-                    data.append("logo", logo);
-                    data.append("link", link);
-                    editHeaderLandingClaro(data);
-                    resetIframe(
-                        $("#navbar-prev-claro-cinema iframe"),
-                        confLandingClaroCinema
-                    );
-                });
-                // HEADER EDIT CANAL CLARO
-                // TITLE EDIT CANAL CLARO
-                $("#edit-titulos-cinema").click(function() {
-                    // TITULO
-                    let value = $("#ipt-titulo-cinema-1").val();
-                    let key = $("#ipt-titulo-cinema-1").attr("key");
-                    let landing = "Claro Cinema";
-                    editElementLandingClaro({
-                        value: value,
-                        key: key,
-                        landing: landing
-                    });
-                    // SUB TITULO
-                    let valueSub = $("#ipt-titulo-cinema-2").val();
-                    let keySub = $("#ipt-titulo-cinema-2").attr("key");
-                    editElementLandingClaro({
-                        value: valueSub,
-                        key: keySub,
-                        landing: landing
-                    });
-                    // SUB TITULO 2
-                    let valueSub2 = $("#ipt-titulo-cinema-3").val();
-                    let keySub2 = $("#ipt-titulo-cinema-3").attr("key");
-                    editElementLandingClaro({
-                        value: valueSub2,
-                        key: keySub2,
-                        landing: landing
-                    });
-                    resetIframe(
-                        $("#navbar-prev-claro-cinema iframe"),
-                        confLandingClaroCinema
-                    );
-                });
-                // TITLE EDIT CANAL CLARO
-                // IMG DE PROMO
-                $("#image-promo-concert").change(function() {
-                    FilePromoImg(this);
-                });
-                // IMG DE PROMO CARGAR
-                // function FilePromoImg(objFileInput) {
-                //     $("body").append(LOADER);
-                //     if (objFileInput.files[0]) {
-                //         fileSrt.onload = function (e) {
-                //             $("#cinema-promo-container").html(
-                //                 '<img src="' +
-                //                 e.target.result +
-                //                 '" alt="" class="d-flex w-100" id="promo-image-concert">'
-                //             );
-                //         };
-                //     }
-                //     fileSrt.readAsDataURL(objFileInput.files[0]);
-                //     $(".loader-view-container").remove();
-                // }
-                // VIDEO DE PROMO
-                $("#video-promo-file-concert").change(function() {
-                    FilePromoVideo(this);
-                });
-                // VIDEO DE PROMO CARGAR
-                // function FilePromoVideo(objFileInput) {
-                //     $("body").append(LOADER);
-                //     if (objFileInput.files[0]) {
-                //         fileSrt.onload = function (e) {
-                //             $("#cinema-promo-container").html(
-                //                 '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
-                //                 e.target.result +
-                //                 '" type="video/mp4"> </video>'
-                //             );
-                //             $(".loader-view-container").remove();
-                //         };
-                //         fileSrt.readAsDataURL(objFileInput.files[0]);
-                //     }
-                // }
-                // HEADER EDIT CANAL CLARO
-                // HEADER EDIT CANAL CLARO
-                $("#btn-acepta-promo-cinema").click(function() {
-                    let file = "";
-                    if (
-                        document.getElementById("video-promo-file-concert")
-                            .files[0]
-                    ) {
-                        file = document.getElementById(
-                            "video-promo-file-concert"
-                        ).files[0];
-                    } else if (
-                        document.getElementById("image-promo-concert").files[0]
-                    ) {
-                        file = document.getElementById("image-promo-concert")
-                            .files[0];
-                    } else {
-                        file = $("#link-promo-concert").val();
-                    }
+    // CANAL CLARO
 
-                    let landing = "Claro Cinema";
-                    let data = new FormData();
-                    let key = "block_3_video_url";
-                    data.append("promo", file);
-                    data.append("landing", landing);
-                    data.append("key", key);
-                    editPromoLandingCinema(data);
-                    resetIframe(
-                        $("#navbar-prev-claro-cinema iframe"),
-                        confLandingClaroCinema
-                    );
-                });
+    // CARGAR IMG HEADER
+    $("#image-icon1").change(function() {
+        FileHeaderCinema(this);
+    });
 
-                // HOME
-                $("#logo_home").change(function() {
-                    viewImg(this, "#img-logo-home");
-                    viewEdit();
-                });
+    // FILE HEADER
+    function FileHeaderCinema(objFileInput) {
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $(".logo-header-claro-cinema").attr("src", e.target.result);
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            $("#loader1").remove();
+        }
+    }
 
-                function viewImg(objFileInput, container) {
-                    debugger;
-                    $("body").append(LOADER);
-                    if (objFileInput.files[0]) {
-                        fileSrt.onload = function(e) {
-                            $(container).attr("src", e.target.result);
-                        };
-                        fileSrt.readAsDataURL(objFileInput.files[0]);
-                        $("#loader1").remove();
-                    }
-                }
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-modal-header-cinema").click(function() {
+        let landing = "Claro Cinema";
+        let title1 = $("#ipt-heade").val() || "";
+        let title2 = $("#ipt-heade-1").val() || "";
+        let logo = document.getElementById("image-icon1").files[0] || "";
+        let link = $("#inp-text-modal-4").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        editHeaderLandingClaro(data);
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
+    });
+    // HEADER EDIT CANAL CLARO
+    // TITLE EDIT CANAL CLARO
+    $("#edit-titulos-cinema").click(function() {
+        // TITULO
+        let value = $("#ipt-titulo-cinema-1").val();
+        let key = $("#ipt-titulo-cinema-1").attr("key");
+        let landing = "Claro Cinema";
+        editElementLandingClaro({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        // SUB TITULO
+        let valueSub = $("#ipt-titulo-cinema-2").val();
+        let keySub = $("#ipt-titulo-cinema-2").attr("key");
+        editElementLandingClaro({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+        // SUB TITULO 2
+        let valueSub2 = $("#ipt-titulo-cinema-3").val();
+        let keySub2 = $("#ipt-titulo-cinema-3").attr("key");
+        editElementLandingClaro({
+            value: valueSub2,
+            key: keySub2,
+            landing: landing
+        });
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
+    });
+    // TITLE EDIT CANAL CLARO
+    // IMG DE PROMO
+    $("#image-promo-concert").change(function() {
+        FilePromoImg(this);
+    });
+    // IMG DE PROMO CARGAR
+    // function FilePromoImg(objFileInput) {
+    //     $("body").append(LOADER);
+    //     if (objFileInput.files[0]) {
+    //         fileSrt.onload = function (e) {
+    //             $("#cinema-promo-container").html(
+    //                 '<img src="' +
+    //                 e.target.result +
+    //                 '" alt="" class="d-flex w-100" id="promo-image-concert">'
+    //             );
+    //         };
+    //     }
+    //     fileSrt.readAsDataURL(objFileInput.files[0]);
+    //     $(".loader-view-container").remove();
+    // }
+    // VIDEO DE PROMO
+    $("#video-promo-file-concert").change(function() {
+        FilePromoVideo(this);
+    });
+    // VIDEO DE PROMO CARGAR
+    // function FilePromoVideo(objFileInput) {
+    //     $("body").append(LOADER);
+    //     if (objFileInput.files[0]) {
+    //         fileSrt.onload = function (e) {
+    //             $("#cinema-promo-container").html(
+    //                 '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
+    //                 e.target.result +
+    //                 '" type="video/mp4"> </video>'
+    //             );
+    //             $(".loader-view-container").remove();
+    //         };
+    //         fileSrt.readAsDataURL(objFileInput.files[0]);
+    //     }
+    // }
+    // HEADER EDIT CANAL CLARO
+    // HEADER EDIT CANAL CLARO
+    $("#btn-acepta-promo-cinema").click(function() {
+        let file = "";
+        if (document.getElementById("video-promo-file-concert").files[0]) {
+            file = document.getElementById("video-promo-file-concert").files[0];
+        } else if (document.getElementById("image-promo-concert").files[0]) {
+            file = document.getElementById("image-promo-concert").files[0];
+        } else {
+            file = $("#link-promo-concert").val();
+        }
 
-                function viewEdit() {
-                    $("#camera").attr("src", "./images/lapiz-acti.svg");
-                }
+        let landing = "Claro Cinema";
+        let data = new FormData();
+        let key = "block_3_video_url";
+        data.append("promo", file);
+        data.append("landing", landing);
+        data.append("key", key);
+        editPromoLandingCinema(data);
+        resetIframe(
+            $("#navbar-prev-claro-cinema iframe"),
+            confLandingClaroCinema
+        );
+    });
 
-                $("#btn_pruebas").click(function() {
-                    // getContentHomeHeader('claro-home-header');
-                    // let landing = 'Canal Claro';
-                    // getCarruselHome(landing);
-                    // landingView.renderHomeHeaderClaroCinema();
-                    // getContentHomeCinema('claro-home-header');
-                    // $('#modal-terminos-footer').modal('show');
-                    // $('.modal-footer').modal('show');
-                    landingView.renderContentFooter("footer-concert-channel");
-                });
+    // HOME
+    $("#logo_home").change(function() {
+        viewImg(this, "#img-logo-home");
+        viewEdit();
+    });
 
-                $("#modal_url").click(function() {
-                    let url = $("#inp_url").val();
-                    $("#inp_url_modal").val(url);
-                    $("#url").modal("show");
-                });
-                $("#inp_url").click(function() {
-                    let url = $("#inp_url").val();
-                    $("#inp_url_modal").val(url);
-                    $("#url").modal("show");
-                });
-                $("#btn-url").click(function() {
-                    let url = $("#inp_url_modal").val();
-                    $("#inp_url").val(url);
-                    $("#url").modal("hide");
-                });
-                $("#close_all_modal").click(function() {
-                    $("#delete-info").modal("hide");
-                    $(".modal-programming-carousel").modal("hide");
-                    $(".modal-edit-icons").modal("hide");
-                    $("#modal-logo-home").modal("hide");
-                    $("#modal-carrusel-home").modal("hide");
-                    $("#modal-terminos-footer").modal("hide");
-                    $("#modal-privacy-footer").modal("hide");
-                    $("#url").modal("hide");
-                });
+    function viewImg(objFileInput, container) {
+        debugger;
+        $("body").append(LOADER);
+        if (objFileInput.files[0]) {
+            fileSrt.onload = function(e) {
+                $(container).attr("src", e.target.result);
+            };
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            $("#loader1").remove();
+        }
+    }
 
-                // FOOTER
+    function viewEdit() {
+        $("#camera").attr("src", "./images/lapiz-acti.svg");
+    }
 
-                // FOOTER
+    $("#btn_pruebas").click(function() {
+        // getContentHomeHeader('claro-home-header');
+        // let landing = 'Canal Claro';
+        // getCarruselHome(landing);
+        // landingView.renderHomeHeaderClaroCinema();
+        // getContentHomeCinema('claro-home-header');
+        // $('#modal-terminos-footer').modal('show');
+        // $('.modal-footer').modal('show');
+        landingView.renderContentFooter("footer-concert-channel");
+    });
 
-                $("#acepta_canales_home").click(function() {
-                    let landing = $("#landing_name").val();
-                    let logo =
-                        document.getElementById("logo_home").files[0] || "";
-                    let subtitle = $("#inp_canales_subtitulo").val() || "";
-                    let link = $("#inp_url").val() || "";
-                    let data = new FormData();
-                    data.append("landing", landing);
-                    console.log(landing);
-                    data.append("logo", logo);
-                    data.append("subtitle", subtitle);
-                    data.append("link", link);
-                    editHeaderHome(data);
-                    if (landing == "Canal Claro") {
-                        resetIframe(
-                            $("#navbar-prev-home iframe"),
-                            LandingHomeClaro
-                        );
-                    }
-                    if (landing == "Claro Cinema") {
-                        resetIframe(
-                            $("#navbar-prev-home-cinema iframe"),
-                            LandingHomeCinema
-                        );
-                    }
-                    if (landing == "Concert Channel") {
-                        resetIframe(
-                            $("#navbar-prev-home-concert iframe"),
-                            LandingHomeConcert
-                        );
-                    }
-                });
+    $("#modal_url").click(function() {
+        let url = $("#inp_url").val();
+        $("#inp_url_modal").val(url);
+        $("#url").modal("show");
+    });
+    $("#inp_url").click(function() {
+        let url = $("#inp_url").val();
+        $("#inp_url_modal").val(url);
+        $("#url").modal("show");
+    });
+    $("#btn-url").click(function() {
+        let url = $("#inp_url_modal").val();
+        $("#inp_url").val(url);
+        $("#url").modal("hide");
+    });
+    $("#close_all_modal").click(function() {
+        $("#delete-info").modal("hide");
+        $(".modal-programming-carousel").modal("hide");
+        $(".modal-edit-icons").modal("hide");
+        $("#modal-logo-home").modal("hide");
+        $("#modal-carrusel-home").modal("hide");
+        $("#modal-terminos-footer").modal("hide");
+        $("#modal-privacy-footer").modal("hide");
+        $("#url").modal("hide");
+    });
 
-                // HOME
-                $(".acepta_carrusel_home").click(function() {
-                    const loader = `
+    // FOOTER
+
+    // FOOTER
+
+    $("#acepta_canales_home").click(function() {
+        let landing = $("#landing_name").val();
+        let logo = document.getElementById("logo_home").files[0] || "";
+        let subtitle = $("#inp_canales_subtitulo").val() || "";
+        let link = $("#inp_url").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        console.log(landing);
+        data.append("logo", logo);
+        data.append("subtitle", subtitle);
+        data.append("link", link);
+        editHeaderHome(data);
+        if (landing == "Canal Claro") {
+            resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+        }
+        if (landing == "Claro Cinema") {
+            resetIframe(
+                $("#navbar-prev-home-cinema iframe"),
+                LandingHomeCinema
+            );
+        }
+        if (landing == "Concert Channel") {
+            resetIframe(
+                $("#navbar-prev-home-concert iframe"),
+                LandingHomeConcert
+            );
+        }
+    });
+
+    // HOME
+    $(".acepta_carrusel_home").click(function() {
+        const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="./images/loader.gif" class="loader" alt="">
         </div>
         `;
-                    $("body").append(loader);
+        $("body").append(loader);
 
-                    setTimeout(function() {
-                        $("#loader1").remove();
-                        console.log("si lo borra");
-                    }, 2000);
-                });
+        setTimeout(function() {
+            $("#loader1").remove();
+            console.log("si lo borra");
+        }, 2000);
+    });
 
-                /* MVC */
+    /* MVC */
 
-                let LandingHomeClaro = {
-                    remote: `${baseURL}home-edi-claro.php`,
-                    // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
-                    container: document.getElementById("navbar-prev-home"),
-                    onMessage: function(message, origin) {
-                        let json = JSON.parse(message);
-                        if (typeof json == "object") {
-                            switch (json.type) {
-                                case "slider-pagination":
-                                    landingView.renderHomeBanner();
-                                    break;
-                                case "home-claro-carrousel-main":
-                                    let date = new Date();
-                                    let day = ("0" + date.getUTCDate()).slice(
-                                        -2
-                                    );
-                                    let month = (
-                                        "0" +
-                                        (date.getUTCMonth() + 1)
-                                    ).slice(-2);
-                                    let year = date.getUTCFullYear();
-                                    let currentDate = `${year}-${month}-${day}`;
-                                    getProgrammingLanding(
-                                        currentDate,
-                                        "canal-claro"
-                                    );
-                                    break;
+    let LandingHomeClaro = {
+        remote: `${baseURL}home-edi-claro.php`,
+        // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
+        container: document.getElementById("navbar-prev-home"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro");
+                        break;
 
-                                case "claro-home-header":
-                                    landingView.renderHomeHeaderCanalClaro();
-                                    break;
-                                case "claro-home-slider":
-                                    let landing = "Canal Claro";
-                                    getCarruselHome(landing);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
-                let navbarHomeCanalClaro = document.getElementById(
-                    "navbar-prev-home"
-                );
-                if (navbarHomeCanalClaro) {
-                    $("#navbar-prev-home iframe").remove();
-                    new easyXDM.Socket(LandingHomeClaro);
+                    case "claro-home-header":
+                        landingView.renderHomeHeaderCanalClaro();
+                        break;
+                    case "claro-home-slider":
+                        let landing = "Canal Claro";
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
                 }
-                let confHomeClaroCanal = {
-                    remote: `${baseURL}home.php`,
-                    container: document.getElementById("navbar-prev-home"),
-                    onMessage: function(message, origin) {
-                        console.log(message);
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName("iframe")[0];
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let confHomeClaroCanal = {
+        remote: `${baseURL}home-prev.php`,
+        container: document.getElementById("navbar-prev-home"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
 
-                //previsualizar canal claro
-                // $("#prev").click(function () {
-                //     //Landing canal claro
-                //     resetIframe($("#navbar-prev-home iframe"), confHomeClaroCanal);
-                //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-                //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-                // });
-                // $("#edit").click(function () {
-                //     resetIframe(
-                //         $("#navbar-prev-home iframe"),
-                //         LandingHomeClaro
-                //     );
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-                //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-                //     $("#prev-mobile").css("opacity", "0.4");
-                //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-                //     $("#prev-tablet").css("opacity", "0.4");
-                //     $("#prev-desktop").css("opacity", "1");
-                // });
+    //previsualizar canal claro
+    $("#prev").click(function() {
+        //Landing canal claro
+        resetIframe($("#navbar-prev-home iframe"), confHomeClaroCanal);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit").click(function() {
+        resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
 
-                let LandingHomeConcert = {
-                    //remote: `${baseURL}home-edi-concert.php`,
-                    remote: `http://localhost:8888/MaquetaCNetworks/home-edi-concert.php`,
-                    container: document.getElementById(
-                        "navbar-prev-home-concert"
-                    ),
-                    onMessage: function(message, origin) {
-                        let json = JSON.parse(message);
-                        if (typeof json == "object") {
-                            switch (json.type) {
-                                case "slider-pagination":
-                                    landingView.renderHomeBanner();
-                                    break;
-                                case "home-claro-carrousel-main":
-                                    let date = new Date();
-                                    let day = ("0" + date.getUTCDate()).slice(
-                                        -2
-                                    );
-                                    let month = (
-                                        "0" +
-                                        (date.getUTCMonth() + 1)
-                                    ).slice(-2);
-                                    let year = date.getUTCFullYear();
-                                    let currentDate = `${year}-${month}-${day}`;
-                                    // getProgrammingLanding(currentDate, "concert channel", 'home');
-                                    getProgrammingLanding(
-                                        currentDate,
-                                        "concert-channel"
-                                    );
-                                    break;
-                                case "concert-home-header":
-                                    landingView.renderHomeHeaderConcertChannel();
-                                    break;
-                                case "concert-home-slider":
-                                    let landing = "Concert Channel";
-                                    getCarruselHome(landing);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
 
-                let NavbarHomeConcert = document.getElementById(
-                    "navbar-prev-home-concert"
-                );
-                if (NavbarHomeConcert) {
-                    $("#navbar-prev-home-concert iframe").remove();
-                    new easyXDM.Socket(LandingHomeConcert);
+    let LandingHomeConcert = {
+        remote: `${baseURL}home-edi-concert.php`,
+        //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
+        container: document.getElementById("navbar-prev-home-concert"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        // getProgrammingLanding(currentDate, "concert channel", 'home');
+                        getProgrammingLanding(currentDate, "concert-channel");
+                        break;
+                    case "concert-home-header":
+                        landingView.renderHomeHeaderConcertChannel();
+                        break;
+                    case "concert-home-slider":
+                        let landing = "Concert Channel";
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
                 }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-                ////////////
+    let NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+    if (NavbarHomeConcert) {
+        $("#navbar-prev-home-concert iframe").remove();
+        new easyXDM.Socket(LandingHomeConcert);
+    }
 
-                let confPrevHomeConcert = {
-                    remote: `${baseURL}home.php`,
-                    container: document.getElementById(
-                        "navbar-prev-home-concert"
-                    ),
-                    onMessage: function(message, origin) {
-                        console.log(message);
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName("iframe")[0];
+    ////////////
 
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
+    let confPrevHomeConcert = {
+        remote: `${baseURL}home-prev.php`,
+        container: document.getElementById("navbar-prev-home-concert"),
+        onMessage: function(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0];
 
-                //previsualizar canal claro
-                $("#prev-landing-concert").click(function() {
-                    //Landing canal claro
-                    resetIframe(
-                        $("#navbar-prev-home-concert iframe"),
-                        confPrevHomeConcert
-                    );
-                    $("#prev-mobile")
-                        .removeClass("pointer-none")
-                        .addClass("cursor-pointer");
-                    $("#prev-tablet")
-                        .removeClass("pointer-none")
-                        .addClass("cursor-pointer");
-                });
-                $("#edit-landing-concert").click(function() {
-                    resetIframe(
-                        $("#navbar-prev-home-concert iframe"),
-                        LandingHomeConcert
-                    );
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-                    $("#prev-mobile")
-                        .removeClass("cursor-pointer")
-                        .addClass("pointer-none");
-                    $("#prev-mobile").css("opacity", "0.4");
-                    $("#prev-tablet")
-                        .removeClass("cursor-pointer")
-                        .addClass("pointer-none");
-                    $("#prev-tablet").css("opacity", "0.4");
-                    $("#prev-desktop").css("opacity", "1");
-                });
-                let LandingHome = {
-                    remote: `${baseURL}home-edi.php`,
-                    container: document.getElementById(
-                        "navbar-prev-home-landing"
-                    ),
-                    onMessage: function(message, origin) {
-                        let json = JSON.parse(message);
-                        if (typeof json == "object") {
-                            const loader = `
+    //previsualizar canal claro
+    $("#prev-landing-concert").click(function() {
+        //Landing canal claro
+        resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+        $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+    });
+    $("#edit-landing-concert").click(function() {
+        resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
+    let LandingHome = {
+        remote: `${baseURL}home-edi.php`,
+        container: document.getElementById("navbar-prev-home-landing"),
+        onMessage: function(message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                const loader = `
                 <div class="loader-view-container" id="loader1">
                   <img src="./images/loader.gif" class="loader" alt="">
                 </div>
                 `;
-                            switch (json.type) {
-                                case "slider-pagination":
-                                    landingView.renderHomeBanner();
-                                    break;
+                switch (json.type) {
+                    case "slider-pagination":
+                        landingView.renderHomeBanner();
+                        break;
 
-                                case "home-logos":
-                                    $("body").append(loader);
+                    case "home-logos":
+                        $("body").append(loader);
 
-                                    setTimeout(function() {
-                                        $("#loader1").remove();
-                                        addImagesModalIcons();
-                                        $(".modal-edit-icons").modal("show");
-                                    }, 3000);
+                        setTimeout(function() {
+                            $("#loader1").remove();
+                            addImagesModalIcons();
+                            $(".modal-edit-icons").modal("show");
+                        }, 3000);
 
-                                    break;
-                                case "home-carrousel-main":
-                                    let date = new Date();
-                                    let day = ("0" + date.getUTCDate()).slice(
-                                        -2
-                                    );
-                                    let month = (
-                                        "0" +
-                                        (date.getUTCMonth() + 1)
-                                    ).slice(-2);
-                                    let year = date.getUTCFullYear();
-                                    let currentDate = `${year}-${month}-${day}`;
-                                    getProgrammingLanding(
-                                        currentDate,
-                                        "canal-claro"
-                                    );
-                                    break;
-                                case "claro-home-header":
-                                    getContentHomeHeader(json.type);
-                                    break;
-                                case "claro-home-slider":
-                                    let landingclaro = "Canal Claro";
-                                    getCarruselHome(landingclaro);
-                                    break;
-                                case "channel-home-header":
-                                    landingView.renderHomeHeaderConcertChannel();
-                                    break;
-                                case "channel-home-slider":
-                                    let landingconcert = "Concert Channel";
-                                    getCarruselHome(landingconcert);
-                                    break;
-                                case "cinema-home-header":
-                                    getContentHomeHeaderCinema();
-                                    break;
-                                case "cinema-home-slider":
-                                    let landingcinema = "Claro Cinema";
-                                    getCarruselHome(landingcinema);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.height = message + "px";
-                        this.container.getElementsByTagName(
-                            "iframe"
-                        )[0].style.boxShadow =
-                            "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                    }
-                };
-
-                let navbarHome = document.getElementById(
-                    "navbar-prev-home-landing"
-                );
-                if (navbarHome) {
-                    new easyXDM.Socket(LandingHome);
-                    $("#prev").click(function() {
-                        $("#navbar-prev-home-landing iframe").remove();
-                        new easyXDM.Socket({
-                            remote: `${baseURL}home.php`,
-                            container: document.getElementById(
-                                "navbar-prev-home-landing"
-                            ),
-                            onMessage: function(message, origin) {
-                                this.container.getElementsByTagName(
-                                    "iframe"
-                                )[0].style.height = message + "px";
-                                this.container.getElementsByTagName(
-                                    "iframe"
-                                )[0].style.boxShadow =
-                                    "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                            }
-                        });
-
-                        $("#prev-mobile")
-                            .removeClass("pointer-none")
-                            .addClass("cursor-pointer");
-                        $("#prev-tablet")
-                            .removeClass("pointer-none")
-                            .addClass("cursor-pointer");
-                    });
-
-                    $("#editar").click(function() {
-                        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-                        $("#navbar-prev-home-landing iframe").remove();
-                        new easyXDM.Socket(LandingHome);
-
-                        $("#prev-mobile")
-                            .removeClass("cursor-pointer")
-                            .addClass("pointer-none");
-                        $("#prev-mobile").css("opacity", "0.4");
-                        $("#prev-tablet")
-                            .removeClass("cursor-pointer")
-                            .addClass("pointer-none");
-                        $("#prev-tablet").css("opacity", "0.4");
-                        $("#prev-desktop").css("opacity", "1");
-                    });
+                        break;
+                    case "home-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "canal-claro");
+                        break;
+                    case "claro-home-header":
+                        getContentHomeHeader(json.type);
+                        break;
+                    case "claro-home-slider":
+                        let landingclaro = "Canal Claro";
+                        getCarruselHome(landingclaro);
+                        break;
+                    case "channel-home-header":
+                        landingView.renderHomeHeaderConcertChannel();
+                        break;
+                    case "channel-home-slider":
+                        let landingconcert = "Concert Channel";
+                        getCarruselHome(landingconcert);
+                        break;
+                    case "cinema-home-header":
+                        getContentHomeHeaderCinema();
+                        break;
+                    case "cinema-home-slider":
+                        let landingcinema = "Claro Cinema";
+                        getCarruselHome(landingcinema);
+                        break;
+                    default:
+                        break;
                 }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
 
-                /* MVC */
-                $("#movil").click(function() {
-                    //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-                    $(".pc").html("");
-                    $(".pc").html(`
+    let navbarHome = document.getElementById("navbar-prev-home-landing");
+    if (navbarHome) {
+        new easyXDM.Socket(LandingHome);
+        $("#prev").click(function() {
+            $("#navbar-prev-home-landing iframe").remove();
+            new easyXDM.Socket({
+                remote: `${baseURL}home-prev.php`,
+                container: document.getElementById("navbar-prev-home-landing"),
+                onMessage: function(message, origin) {
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
+                        "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+                }
+            });
+
+            $("#prev-mobile")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+            $("#prev-tablet")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+        });
+
+        $("#editar").click(function() {
+            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            $("#navbar-prev-home-landing iframe").remove();
+            new easyXDM.Socket(LandingHome);
+
+            $("#prev-mobile")
+                .removeClass("cursor-pointer")
+                .addClass("pointer-none");
+            $("#prev-mobile").css("opacity", "0.4");
+            $("#prev-tablet")
+                .removeClass("cursor-pointer")
+                .addClass("pointer-none");
+            $("#prev-tablet").css("opacity", "0.4");
+            $("#prev-desktop").css("opacity", "1");
+        });
+    }
+
+    /* MVC */
+    $("#movil").click(function() {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        $(".pc").html("");
+        $(".pc").html(`
 
         <!-- parte del home-->
         <div class="d-flex col-12 mb-5 mx-auto">
@@ -6007,12 +5732,12 @@ function eventsGrilla() {
 
         `);
 
-                    // new easyXDM.Socket(confIframe);
-                });
-                $("#pc").click(function() {
-                    //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-                    $(".pc").html("");
-                    $(".pc").html(`
+        // new easyXDM.Socket(confIframe);
+    });
+    $("#pc").click(function() {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        $(".pc").html("");
+        $(".pc").html(`
         <!-- parte del home-->
         <div class="d-flex col-12 mb-5 mx-auto">
         <div class="mr-5">
@@ -6093,11 +5818,8 @@ function eventsGrilla() {
         <div class="clearfix"></div>
 
 </div>`);
-                    // new easyXDM.Socket(confIframe);
-                });
-            }
-        };
-    }
+        // new easyXDM.Socket(confIframe);
+    });
 }
 
 export { eventsGrilla };
