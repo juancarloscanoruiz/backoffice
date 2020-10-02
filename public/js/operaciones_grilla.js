@@ -74616,9 +74616,10 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 function eventsGrilla() {
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  var landingSinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-sinopsis-landing");
+  var landingSinopsis = document.getElementById("prev-sinopsis-landing");
 
   if (landingSinopsis) {
+    console.log("Found you");
     var date = new Date();
     var day = ("0" + date.getUTCDate()).slice(-2);
     var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
@@ -78124,17 +78125,6 @@ function eventsGrilla() {
   }
   /* MVC */
 
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
-    //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5 mx-auto\">\n        <div class=\"d-flex\">\n        <!--dots-->\n        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n        <!--add slide-->\n        <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n    </div>\n  <!--  <div class=\"shadowblack position-absolute\">\n        <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n        </div>-->\n    <div class=\"programming-slider-home mx-auto \">\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n\n    </div>\n    </div>\n\n        </div>\n        </div>\n        <div class=\"d-flex mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n<div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n\n        </div>\n</div>\n</div>\n</div>\n</div>\n\n\n        "); // new easyXDM.Socket(confIframe);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").click(function () {
-    //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n\n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n\n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n\n\n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>"); // new easyXDM.Socket(confIframe);
-  });
 }
 
 
@@ -82877,6 +82867,9 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "renderHomeBanner",
     value: function renderHomeBanner() {
+      var _this = this;
+
+      var that = this;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
       var data = landingController.getContentHome();
       data.then(function (data) {
@@ -82884,7 +82877,9 @@ var LandingView = /*#__PURE__*/function () {
           //Título en header de home
           var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1"); //Subtítulo de home
 
-          var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2"); //let headerVideo = $(".modal-home-encabezado .video-header");
+          var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2");
+          var title = data.data.block_1_title;
+          var subtitle = data.data.block_1_subtitle; //let headerVideo = $(".modal-home-encabezado .video-header");
 
           headerTitle1.val(data.data.block_1_title);
           headerTitle2.val(data.data.block_1_subtitle); // headerVideo.val(data.data.block_1_video_name);
@@ -82918,7 +82913,29 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("show"); //Eliminamos
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+
+          _this.renderHomeMobile();
+
+          _this.renderHomePC(title, subtitle);
         }
+      });
+    }
+  }, {
+    key: "renderHomeMobile",
+    value: function renderHomeMobile() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n            <!-- parte del home-->\n            <div class=\"d-flex col-12 mb-5 mx-auto\">\n            <div class=\"mr-5 mx-auto\">\n            <div class=\"d-flex\">\n            <!--dots-->\n            <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n            <!--add slide-->\n            <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n        </div>\n      <!--  <div class=\"shadowblack position-absolute\">\n            <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n            </div>-->\n        <div class=\"programming-slider-home mx-auto \">\n\n        <div class=\"bor thumbnail-image-program position-relative h-100\">\n            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n            <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n                <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n            </label>\n        </div>\n\n        <div class=\"bor thumbnail-image-program position-relative h-100\">\n            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n            <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n                <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n            </label>\n        </div>\n\n        <div class=\"bor thumbnail-image-program position-relative h-100\">\n            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n            <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n                <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n            </label>\n        </div>\n\n        <div class=\"bor thumbnail-image-program position-relative h-100\">\n            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n            <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n                <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n            </label>\n\n        </div>\n        </div>\n\n            </div>\n            </div>\n            <div class=\"d-flex mr-5 mb-3\">\n            <span\n            class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n            </div>\n            <div class=\"clearfix\"></div>\n\n    <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                <button\n                    class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                    id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n                <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                    class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                    data-toggle=\"modal\">CANCELAR</a>\n\n            </div>\n    </div>\n    </div>\n    </div>\n    </div>\n            ");
+      });
+    }
+  }, {
+    key: "renderHomePC",
+    value: function renderHomePC(title, subtitle) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").click(function () {
+        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\" value=\"".concat(title, "\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\" value=\"").concat(subtitle, "\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n\n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n\n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n\n\n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>")); // new easyXDM.Socket(confIframe);
       });
     }
   }, {
@@ -83072,7 +83089,7 @@ var LandingView = /*#__PURE__*/function () {
     key: "renderFooterPrev",
     value: function renderFooterPrev(sockets) {
       var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#prev-footer').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-footer").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers iframe").remove();
         var footerClaroNetoworksPrev = {
           remote: "".concat(baseURL, "footer-prev.php"),
@@ -83131,7 +83148,7 @@ var LandingView = /*#__PURE__*/function () {
     key: "renderFooterEdit",
     value: function renderFooterEdit(sockets) {
       var that = this;
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-footer').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-footer").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-prev-footers iframe").remove();
         var optionsFooterClaroNetworks = that.renderFooterClaroNetworks();
         var optionsFooterCanalClaro = that.renderFooterClaroCanal();
@@ -83180,13 +83197,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").val(linkSocialMediaCanalClaro1);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").addClass("media-link-1");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").attr({
-                "free": "media-link-1",
-                "key": "facebook_canal_claro_url"
+                free: "media-link-1",
+                key: "facebook_canal_claro_url"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-1-input').attr("key", "facebook_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-1-input").attr("key", "facebook_canal_claro_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-1").attr({
-                "free": "media-link-1",
-                "key": "facebook_canal_claro_url"
+                free: "media-link-1",
+                key: "facebook_canal_claro_url"
               }); //Social media 2
 
               var iconSocialMediaCanalClaro2 = data.data.instagram_canal_claro_icon;
@@ -83195,13 +83212,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").val(linkSocialMediaCanalClaro2);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").addClass("media-link-2");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-2").attr({
-                "free": "media-link-2",
-                "key": "instagram_canal_claro_url"
+                free: "media-link-2",
+                key: "instagram_canal_claro_url"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-2-input').attr("key", "instagram_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-2-input").attr("key", "instagram_canal_claro_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-2").attr({
-                "free": "media-link-2",
-                "key": "instagram_canal_claro_url"
+                free: "media-link-2",
+                key: "instagram_canal_claro_url"
               }); //Social media 3
 
               var iconSocialMediaCanalClaro3 = data.data.twitter_canal_claro_icon;
@@ -83210,13 +83227,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").val(linkSocialMediaCanalClaro3);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").addClass("media-link-3");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").attr({
-                "free": "media-link-3",
-                "key": "twitter_canal_claro_url"
+                free: "media-link-3",
+                key: "twitter_canal_claro_url"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3-input').attr("key", "twitter_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-3-input").attr("key", "twitter_canal_claro_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-3").attr({
-                "free": "media-link-3",
-                "key": "twitter_canal_claro_url"
+                free: "media-link-3",
+                key: "twitter_canal_claro_url"
               }); //Social media 4
 
               var iconSocialMediaCanalClaro4 = data.data.youtube_canal_claro_icon;
@@ -83225,13 +83242,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").val(linkSocialMediaCanalClaro4);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").addClass("media-link-4");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-4").attr({
-                "free": "media-link-4",
-                "key": "youtube_canal_claro_url"
+                free: "media-link-4",
+                key: "youtube_canal_claro_url"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-4-input').attr("key", "youtube_canal_claro_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-4-input").attr("key", "youtube_canal_claro_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-4").attr({
-                "free": "media-link-4",
-                "key": "youtube_canal_claro_url"
+                free: "media-link-4",
+                key: "youtube_canal_claro_url"
               });
               break;
 
@@ -83246,13 +83263,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").val(linkSocialMediaConcertChannel1);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").addClass("media-link-1");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-1").attr({
-                "free": "media-link-1",
-                "key": "facebook_concert_channel_icon"
+                free: "media-link-1",
+                key: "facebook_concert_channel_icon"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-1-input').attr("key", "facebook_concert_channel_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-1-input").attr("key", "facebook_concert_channel_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-1").attr({
-                "free": "media-link-1",
-                "key": "facebook_concert_channel_icon"
+                free: "media-link-1",
+                key: "facebook_concert_channel_icon"
               }); //Social media 3
 
               var iconSocialMediaConcertChannel3 = data.data.twitter_concert_channel_icon;
@@ -83261,13 +83278,13 @@ var LandingView = /*#__PURE__*/function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").val(linkSocialMediaConcertChannel3);
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").addClass("media-link-3");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-social-media-link-3").attr({
-                "free": "media-link-3",
-                "key": "twitter_concert_channel_url"
+                free: "media-link-3",
+                key: "twitter_concert_channel_url"
               });
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('#social-media-3-input').attr("key", "twitter_concert_channel_icon");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#social-media-3-input").attr("key", "twitter_concert_channel_icon");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#media-link-3").attr({
-                "free": "media-link-3",
-                "key": "twitter_concert_channel_url"
+                free: "media-link-3",
+                key: "twitter_concert_channel_url"
               });
               break;
 
@@ -83283,13 +83300,13 @@ var LandingView = /*#__PURE__*/function () {
           var imageLeft = data.data.image_left;
 
           if (imageRight) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-right').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-image-right").closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
           } else {
             imageRight = "./images/synopsis/image-synopsis-horizontal.png";
           }
 
           if (imageLeft) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-image-left').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-image-left").closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
           } else {
             imageLeft = "./images/synopsis/image-synopsis-horizontal.png";
           } //Imágenes de arriba
@@ -83305,12 +83322,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").val(optionLink1);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").addClass("opcion1");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion1-link").attr({
-            "free": "opcion1",
-            "key": "menu_1_opcion_1_url"
+            free: "opcion1",
+            key: "menu_1_opcion_1_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion1-link").attr({
-            "free": "opcion1",
-            "key": "menu_1_opcion_1_url"
+            free: "opcion1",
+            key: "menu_1_opcion_1_url"
           }); //Canal Claro
 
           var optionTitle2 = data.data.menu_1_opcion_2_title;
@@ -83319,12 +83336,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").val(optionLink2);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").addClass("opcion2");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion2-link").attr({
-            "free": "opcion2",
-            "key": "menu_1_opcion_2_url"
+            free: "opcion2",
+            key: "menu_1_opcion_2_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion2-link").attr({
-            "free": "opcion2",
-            "key": "menu_1_opcion_2_url"
+            free: "opcion2",
+            key: "menu_1_opcion_2_url"
           }); //Concert Channel
 
           var optionTitle3 = data.data.menu_1_opcion_4_title;
@@ -83333,12 +83350,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").val(optionLink3);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").addClass("opcion3");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion3-link").attr({
-            "free": "opcion3",
-            "key": "menu_1_opcion_4_url"
+            free: "opcion3",
+            key: "menu_1_opcion_4_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion3-link").attr({
-            "free": "opcion3",
-            "key": "menu_1_opcion_4_url"
+            free: "opcion3",
+            key: "menu_1_opcion_4_url"
           }); //Claro Cinema
 
           var optionTitle4 = data.data.menu_1_opcion_3_title;
@@ -83347,12 +83364,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").val(optionLink4);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").addClass("opcion4");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion4-link").attr({
-            "free": "opcion4",
-            "key": "menu_1_opcion_3_url"
+            free: "opcion4",
+            key: "menu_1_opcion_3_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion4-link").attr({
-            "free": "opcion4",
-            "key": "menu_1_opcion_3_url"
+            free: "opcion4",
+            key: "menu_1_opcion_3_url"
           }); //Nuestra Visión
 
           var optionTitle5 = data.data.menu_1_opcion_6_title;
@@ -83361,12 +83378,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").val(optionLink5);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").addClass("opcion5");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion5-link").attr({
-            "free": "opcion5",
-            "key": "menu_1_opcion_6_url"
+            free: "opcion5",
+            key: "menu_1_opcion_6_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion5-link").attr({
-            "free": "opcion5",
-            "key": "menu_1_opcion_6_url"
+            free: "opcion5",
+            key: "menu_1_opcion_6_url"
           }); //Claro Sports
 
           var optionTitle6 = data.data.menu_1_opcion_5_title;
@@ -83375,12 +83392,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").val(optionLink6);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").addClass("opcion6");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-menu-1-opcion6-link").attr({
-            "free": "opcion6",
-            "key": "menu_1_opcion_5_url"
+            free: "opcion6",
+            key: "menu_1_opcion_5_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#opcion6-link").attr({
-            "free": "opcion6",
-            "key": "menu_1_opcion_5_url"
+            free: "opcion6",
+            key: "menu_1_opcion_5_url"
           }); //Icon claro networks footer
 
           var iconClaroNetworksFooter = data.data.about_icon;
@@ -83422,12 +83439,12 @@ var LandingView = /*#__PURE__*/function () {
           footerIconLinkInput1.val(footerIconLink1);
           footerIconLinkInput1.addClass("link-1");
           footerIconLinkInput1.attr({
-            "free": "link-1",
-            "key": "menu_2_opcion_1_url"
+            free: "link-1",
+            key: "menu_2_opcion_1_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-1").attr({
-            "free": "link-1",
-            "key": "menu_2_opcion_1_url"
+            free: "link-1",
+            key: "menu_2_opcion_1_url"
           }); //Footer icon 2
 
           var footerIcon2 = data.data.menu_2_opcion_2_icon;
@@ -83436,12 +83453,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").val(footerIconLink2);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").addClass("link-2");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-2").attr({
-            "free": "link-2",
-            "key": "menu_2_opcion_2_url"
+            free: "link-2",
+            key: "menu_2_opcion_2_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-2").attr({
-            "free": "link-2",
-            "key": "menu_2_opcion_2_url"
+            free: "link-2",
+            key: "menu_2_opcion_2_url"
           }); //Footer icon 3
 
           var footerIcon3 = data.data.menu_2_opcion_3_icon;
@@ -83450,12 +83467,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").val(footerIconLink3);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").addClass("link-3");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-3").attr({
-            "free": "link-3",
-            "key": "menu_2_opcion_3_url"
+            free: "link-3",
+            key: "menu_2_opcion_3_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-3").attr({
-            "free": "link-3",
-            "key": "menu_2_opcion_3_url"
+            free: "link-3",
+            key: "menu_2_opcion_3_url"
           }); //Footer icon 4
 
           var footerIcon4 = data.data.menu_2_opcion_4_icon;
@@ -83464,12 +83481,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").val(footerIconLink4);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").addClass("link-4");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-4").attr({
-            "free": "link-4",
-            "key": "menu_2_opcion_4_url"
+            free: "link-4",
+            key: "menu_2_opcion_4_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-4").attr({
-            "free": "link-4",
-            "key": "menu_2_opcion_4_url"
+            free: "link-4",
+            key: "menu_2_opcion_4_url"
           }); //Footer icon 5
 
           var footerIcon5 = data.data.menu_2_opcion_5_icon;
@@ -83478,12 +83495,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").val(footerIconLink5);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").addClass("link-5");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-5").attr({
-            "free": "link-5",
-            "key": "menu_2_opcion_5_url"
+            free: "link-5",
+            key: "menu_2_opcion_5_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-5").attr({
-            "free": "link-5",
-            "key": "menu_2_opcion_5_url"
+            free: "link-5",
+            key: "menu_2_opcion_5_url"
           }); //Footer icon 6
 
           var footerIcon6 = data.data.menu_2_opcion_6_icon;
@@ -83492,8 +83509,8 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").val(footerIconLink6);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").addClass("link-6");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-6").attr({
-            "free": "link-6",
-            "key": "menu_2_opcion_6_url"
+            free: "link-6",
+            key: "menu_2_opcion_6_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-6").attr("free", "link-6"); //Footer icon 7
 
@@ -83503,12 +83520,12 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").val(footerIconLink7);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").addClass("link-7");
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-icon-link-7").attr({
-            "free": "link-7",
-            "key": "menu_2_opcion_7_url"
+            free: "link-7",
+            key: "menu_2_opcion_7_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-7").attr({
-            "free": "link-7",
-            "key": "menu_2_opcion_7_url"
+            free: "link-7",
+            key: "menu_2_opcion_7_url"
           });
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-footer").modal("show");
@@ -83565,7 +83582,7 @@ var LandingView = /*#__PURE__*/function () {
     key: "updateInfoFooter",
     value: function updateInfoFooter(sockets) {
       //Inputs
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-input-text').blur(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-input-text").blur(function () {
         var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
         var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
         var response = landingController.updateInfoFooter(value, key);
@@ -83594,54 +83611,54 @@ var LandingView = /*#__PURE__*/function () {
         });
       }); //Eventos para modales de links
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.inp_url').click(function () {
-        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('free');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp_url").click(function () {
+        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("free");
         var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
         var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-url').attr("key", key);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-url").attr("key", key);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr('free', type);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").attr("free", type);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").addClass(type);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#url').modal('show');
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
       }); //Cerrar modal y obtener valores
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-url").click(function () {
-        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.input-url-modal').attr('free');
+        var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").attr("free");
         var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("." + type).val(url);
         var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
         landingController.updateInfoFooter(url, key);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.tericon').click(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('show');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".tericon").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("show");
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#notice-privacy').click(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-footer').modal('show');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#notice-privacy").click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("show");
       });
     }
   }, {
     key: "updateInfoTermsAndPrivacy",
     value: function updateInfoTermsAndPrivacy(sockets) {
       //Botón del modal de términos y condiciones
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_terminos-footer').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_terminos-footer").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val(); // let text = $('.footer-textarea-ter').attr('name');
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").val(); // let text = $('.footer-textarea-ter').attr('name');
 
-        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val();
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-ter").val();
         var landing = "terms";
         var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
         response.then(function (data) {
           if (data.code == 200) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-terms').text(title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-legend-terms").text(title);
             return landingController.getContentFooter();
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
         }).then(function (data) {
           if (data.code == 200) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-terminos-footer').modal('hide');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("hide");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             var dataStringified = JSON.stringify(data);
 
             var _iterator3 = _createForOfIteratorHelper(sockets),
@@ -83660,23 +83677,23 @@ var LandingView = /*#__PURE__*/function () {
           }
         });
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-button').click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-button").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
         debugger;
-        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val();
-        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val();
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val();
+        var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val();
         var landing = "about";
         var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
         response.then(function (data) {
           if (data.code == 200) {
             console.log(data);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#footer-legend-privacy').text(title);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#footer-legend-privacy").text(title);
             return landingController.getContentFooter();
           }
         }).then(function (data) {
           if (data.code == 200) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-footer').modal('hide');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.loader-view-container').remove();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("hide");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
             var dataStringified = JSON.stringify(data);
 
             var _iterator4 = _createForOfIteratorHelper(sockets),
@@ -83706,30 +83723,30 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "getContentTerms",
     value: function getContentTerms() {
-      var _this = this;
+      var _this2 = this;
 
       var response = landingController.getContentRights();
       response.then(function (data) {
         if (data.code == 200) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').val(data.data.terms_text);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-ter').val(data.data.terms_title);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val(data.data.about_text);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val(data.data.about_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").val(data.data.terms_text);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-ter").val(data.data.terms_title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val(data.data.about_text);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val(data.data.about_title);
 
-          _this.test(data.data.terms_text);
+          _this2.test(data.data.terms_text);
         }
       });
     }
   }, {
     key: "test",
     value: function test(valor) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').keydown(function (e) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").keydown(function (e) {
         var Final;
         var texto;
 
         if (e.which === 13 && !e.shiftKey) {
-          texto = document.getElementById("textTerminos").value += '\n';
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-ter').attr('name', texto); // valor = $('.footer-textarea-ter').attr('name');
+          texto = document.getElementById("textTerminos").value += "\n";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").attr("name", texto); // valor = $('.footer-textarea-ter').attr('name');
           // valor.attr(valor + '<br>');
           // debugger
           // $('.footer-textarea-ter').click(function(){

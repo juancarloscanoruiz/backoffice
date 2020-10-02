@@ -8,13 +8,13 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">HOME - ENCABEZADO </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
-            
+
 
                  <!--Calendar-->
                  <div class="col-12 mx-auto">
-                
+
                 <div class="d-flex align-items-center float-right  mt-4 mb-4 mr-4">
-               <!--<div class="d-flex">
+               <div class="d-flex">
                  <form action="" name="bannermovil" id="bannermovil" class="">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                         <input type="radio" name="pc" id="pc" checked />
@@ -27,7 +27,7 @@
                         </label>
                     </div>
                 </form>
-                </div>-->
+                </div>
 
                 <div class="d-flex">
                         <div>
@@ -102,7 +102,7 @@
 
                         </div>
                         <div class=" d-flex justify-content-around ">
-                         
+
                         <input type="file" name="" id="video-promo-header-home" class="d-none file-video"
                             accept="video/*">
                             <label for="video-promo-header-home"
@@ -110,10 +110,10 @@
                                <div class="black-shadow d-flex align-items-center position-absolute" style="transform: translate(240%, -500%);"><img src="./images/basic-icons/user.svg" alt="" class="mr-2 ml-3"><img src="./images/basic-icons/gtm-gris.svg" alt="" > </div>
                                 <img src="./images/synopsis/home-video.svg" class="">
                                 <img src="{{ asset('/images/basic-icons/video.svg') }}" alt="add-photo"
-                                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />                        
+                                    class="add-photo promo-icon cursor-pointer position-absolute pb-3" style="width:80px; " />
                                 <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6" >Añade tu archivo
                                     jpg 472px X 295px </span>
-                                     
+
                             </label>
                            <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
                         <label for="image-promo-header-home"
@@ -124,8 +124,8 @@
                                 jpg 472px X 295px </span>
                         </label>-->
                         </div>
-                        
-                       
+
+
                         </div>
                         </div>
                         <div class="float-right mr-5 mb-3">
