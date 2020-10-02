@@ -11230,6 +11230,7 @@ $(".arrow-left").click(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/Claro_Network/backoffice/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /Applications/mampstack-7.3.13-0/apache2/htdocs/backoffice/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })

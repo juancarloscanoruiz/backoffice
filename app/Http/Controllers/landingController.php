@@ -14,33 +14,44 @@ class landingController extends Controller
 
     public function showCanalClaroLanding()
     {
-        return view('admin-site.landings.apro-claro');
+        $data['edited']=$this->getSectionBack('Canal Claro');
+
+        return view('admin-site.landings.apro-claro',$data);
     }
 
     public function showConcertChannelLanding()
     {
-        return view('admin-site.landings.apro-concert');
+        $data['edited']=$this->getSectionBack('Concert Channel');
+
+        return view('admin-site.landings.apro-concert',$data);
     }
 
     public function showClaroCinemaLanding()
     {
-        return view('admin-site.landings.claro-cinema');
+        $data['edited']=$this->getSectionBack('Claro Cinema');
+
+        return view('admin-site.landings.claro-cinema',$data);
     }
 
     public function showProgramacionLanding()
     {
-        return view('admin-site.landings.programacion');
+        $data['edited']=$this->getSectionBack('Programation');
+
+        return view('admin-site.landings.programacion',$data);
     }
 
     public function showHomeLanding()
     {
-        return view('admin-site.landings.home');
+        $data['edited']=$this->getSectionBack('Home');
+
+        return view('admin-site.landings.home',$data);
       // return view('partials.adm-CN.grillas.grilla-home');
 
     }
     public function showFooterLanding()
     {
-        return view('admin-site.landings.footer');
+        $data['edited']=$this->getSectionBack('Footer');
+        return view('admin-site.landings.footer',$data);
     }
     public function showSinopsisLanding()
     {
@@ -113,7 +124,36 @@ class landingController extends Controller
 
         var_dump($response->getBody()->getContents());
     }
+    public function getSectionBack($landing)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "sectionBack/GetLastEdition/" . $landing
+        );
 
+        $respuesta =  json_decode($response->getBody());
+        try {
+            if($respuesta->code == 200){
+                $respuesta = [
+                    "last_edition"=>$respuesta->data->last_edition,
+                    "edited_for"=>$respuesta->data->edited_for,
+                    "rol"=>$respuesta->data->rol,
+                ];
+                return $respuesta;
+    
+            }else{
+                $respuesta = [
+                    "last_edition"=>"",
+                    "edited_for"=>"",
+                    "rol"=>"",
+                ];
+                return $respuesta;
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+       
+    }
     public function captureImagesForChapter(Request $request)
     {
         $name = str_replace(" ", "", $request->input('name'));

@@ -90562,19 +90562,7 @@ function eventsGrilla() {
     var year = date.getUTCFullYear();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.content-table').html(' ');
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])(key, "".concat(year, "-").concat(month, "-").concat(day));
-  }); //Sacamos la fecha actual para ponerla en el calendario
-
-  var currentDate1 = new Date(); //obtenemos el mes
-
-  var calendarMonth1 = currentDate1.getMonth(); //Obtenemos el día
-
-  var calendarDay1 = currentDate1.getDate();
-  var hora = currentDate1.getHours() + ":" + currentDate1.getMinutes() + ":" + currentDate1.getSeconds() + " GMT";
-  var daymonth = Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["getDayName"])(calendarMonth1, calendarDay1);
-  var monthday = Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["getMonthAndYearmin"])(calendarMonth1);
-  var fulldatelanding = "".concat(calendarDay1, " ").concat(monthday, ",  ").concat(hora);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-edit").text(fulldatelanding);
-  console.log(fulldatelanding); //calendario de sinopsis
+  }); //calendario de sinopsis
 
   var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({

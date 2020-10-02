@@ -36,10 +36,10 @@
     </div>
     <div class="clearfix"></div>
     <div class="ml-5 float-left mb-4">
-      <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit">septiembre 17
-            2019</span> </span></div>
-      <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label class="zona ">{{ session('rol_name') }}</label>)</label></span>
-    </div>
+      <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit"><?php echo $edited['last_edition']?></span> </span></div>
+      <span class="a-text-black-light text-plus">Editado por: <?php echo $edited['edited_for']?> <label class="zona"> (<label
+                  class="zona "><?php echo $edited['rol']?></label>)</label></span>
+  </div>
 
 
     <div class=" mr-5 d-flex float-right ">
