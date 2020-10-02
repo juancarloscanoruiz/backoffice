@@ -12,3 +12,16 @@
         <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc">
     </div>
 </div>
+
+
+<div class="mr-5 float-right" id="sisEst">
+    <div class="d-flex  align-items-center justify-content-center mb-2 mt-2">
+        <span class="a-text-semibold-black text-normal mr-3">Establecer sinopsis como:</span>
+        <input type="radio" id="yes-program" name="program-chapter" value="1" class="program-chpater-synopsis" />
+        <label for="yes-program" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label width-program">
+            Programa</label>
+        <input type="radio" id="yes-chapter" name="program-chapter" value="0" class="program-chpater-synopsis" checked />
+        <label for="yes-chapter" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label width-program">
+            Capítulo</label>
+    </div>
+</div>

@@ -68,9 +68,18 @@ $.ajaxSetup({
 import LandingView from "./views/landing";
 let landingView = new LandingView();
 
+import {
+    calendarSlick
+} from "./config/slick.js";
+
+import {
+    createSlickSlider,
+    createCalendarDays
+} from "./vendor/slick.js";
+
 $(document).ready(function () {
 
-    
+
     landingView.goToLandingFooter();
     let optionsFooterClaroNetworks = landingView.renderFooterClaroNetworks();
     if (optionsFooterClaroNetworks) {
@@ -829,7 +838,7 @@ $(document).ready(function () {
             let data = new FormData();
             data.append("file", file);
             data.append("datos", data_for_api);
-
+    
             //Realizamos el ajax
             $.ajax({
                 type: "POST",
@@ -869,7 +878,7 @@ $(document).ready(function () {
             console.log("Se remplaza la programacion");
             let data = JSON.parse($("#programas_procesados_por_el_excel").val());
             console.log(data);
-
+    
             $.ajax({
                 type: "POST",
                 data: data,
@@ -890,7 +899,7 @@ $(document).ready(function () {
                 console.log(e);
             });
         });
-
+    
         $("#acccion-programacion-agrega").click(function () {
             console.log("Se agrega la programacion");
             let data = JSON.parse($("#programas_procesados_por_el_excel").val());

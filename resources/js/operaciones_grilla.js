@@ -5,7 +5,8 @@ import $, {
 //Métodos para aplicar ciertos estilos a las filas y columnas
 import {
     selectRow,
-    selectColumn
+    selectColumn,
+    showLandingSchedule
 } from "./UI/UI.js";
 
 //View
@@ -98,6 +99,351 @@ import {
 
 function eventsGrilla() {
 
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+
+    let landingSinopsis = $('#prev-sinopsis-landing');
+    if (landingSinopsis) {
+        let date = new Date();
+        let day = ('0' + date.getUTCDate()).slice(-2);
+        let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+        let year = date.getUTCFullYear();
+        getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
+    }
+    $('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
+        $(".sinopsis-cont").html('');
+
+        $('#estSis').load('imports #sisEst', function () {
+            $('.siestado-landing').click(function () {
+                previewPage($(this));
+            });
+            $('.noestado-landing').click(function () {
+                previewPage($(this));
+            });
+        });
+        var socketSynopsis = new easyXDM.Socket(SinopsisLanding);
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                <img src="./images/loader.gif" class="loader"/>
+            </div>`
+        );
+        let id = $(this).attr("chapter_id");
+        programView.renderSynopsis(id, socketSynopsis);
+    })
+
+
+    let SinopsisLanding = {
+        remote: `${baseURL}sinopsis-edi.php`,
+        //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+        container: document.getElementById("sinopsis-cont"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
+
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        let data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                let programminfSliderSynopsis = $(
+                                    ".programming-slider-sinopsis"
+                                );
+                                let index = 1;
+                                let slide = "";
+                                let image = "";
+                                while (true) {
+                                    if (
+                                        data.data[
+                                        `image_background_${index}`
+                                        ] !== undefined
+                                    ) {
+                                        image =
+                                            data.data[
+                                            `image_background_${index}`
+                                            ];
+                                        if (
+                                            data.data[
+                                            `image_background_${index}`
+                                            ] == null
+                                        ) {
+                                            image =
+                                                "./images/synopsis/image-synopsis-carrusel.jpg";
+                                        }
+                                        slide += `
+                                        <div class="bor thumbnail-image-program position-relative h-100">
+                                            <input type="file" id="image_banner_synopsis_${index}"
+                                            class="input-image-program d-none input-banner-synopsis" data-index="1">
+                                            <label for="image_banner_synopsis_${index}"
+                                            class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
+                                            <img src="./images/synopsis/camara.svg" alt="add-photo"
+                                            class=" cursor-pointer add-photo " />
+                                            <span class="a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2">1191px X 471px</span>
+                                            <img src="${image}"
+                                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                                            </label>
+                                        </div>
+                                        `;
+                                        index++;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                programminfSliderSynopsis.html(slide);
+                                $(
+                                    ".modal-programming-sinopsis .input-banner-synopsis"
+                                ).val("");
+                                $(".modal-programming-sinopsis").modal("show");
+                                try {
+                                    programminfSliderSynopsis.slick("unslick");
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                } catch (error) {
+                                    programminfSliderSynopsis.slick({
+                                        slidesToShow: 1,
+                                        dots: true,
+                                        appendDots: $(
+                                            ".programming-slider-dots-sinopsis"
+                                        ),
+                                        initialSlide: 0,
+                                        infinite: false,
+                                        customPaging: function (slider, i) {
+                                            var thumb = $(
+                                                slider.$slides[i]
+                                            ).data();
+                                            return (
+                                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                                (i + 1) +
+                                                "</p>"
+                                            );
+                                        }
+                                    });
+                                }
+                                let buttonSynopsisBannerModal = $(
+                                    "#banner-sinopsis-modal-button"
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                buttonSynopsisBannerModal.attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                //Previsualizar una imagen en el banner
+                                $(
+                                    ".modal-programming-sinopsis .input-image-program"
+                                ).change(function () {
+                                    let currentInput = $(this);
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            currentInput
+                                                .next()
+                                                .children(".prev-image-program")
+                                                .attr("src", e.target.result)
+                                                .addClass("h-100 w-100")
+                                                .css("z-index", "2");
+                                        };
+                                        reader.readAsDataURL(this.files[0]);
+                                        buttonSynopsisBannerModal.removeClass([
+                                            "disabled-btn",
+                                            "a-text-bold-teal",
+                                            "btn-landing"
+                                        ]);
+                                        buttonSynopsisBannerModal.addClass([
+                                            "btn-grilla",
+                                            "a-text-bold-white"
+                                        ]);
+                                    }
+                                });
+                            }
+                            $(".loader-view-container").remove();
+                        });
+
+                        break;
+                    case "synopsis-main-image":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Verificamos si tiene una imagen
+                                let image =
+                                    data.data.image_synopsis ||
+                                    "./images/synopsis/image-synopsis.svg";
+                                $(".loader-view-container").remove();
+                                //Limpiamos input
+                                $('#image-synopsis').val();
+                                //Button
+                                $("#upload-image-synopsis").attr(
+                                    "landing_id",
+                                    data.data.landing_id
+                                );
+                                //Para el botón le agregamos un atributo
+                                $("#upload-image-synopsis").attr(
+                                    "chapter_id",
+                                    data.data.chapter_id
+                                );
+                                $(".image-synopsis-modal").attr("src", image);
+                                $(".modal-image-synopsis").modal("show");
+                            }
+                        });
+                        $(".modal-image-synopsis .input-image-program").change(
+                            function () {
+                                let currentInput = $(this);
+                                if (this.files && this.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        currentInput
+                                            .next()
+                                            .children(".prev-image-program")
+                                            .attr("src", e.target.result)
+                                            .addClass("h-100 w-100")
+                                            .css("z-index", "2");
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                }
+                            }
+                        );
+
+                        break;
+
+                    case "synopsis-description-container":
+                        programView.renderDescriptionSynopsis(json.id)
+                        break;
+                    case "synopsis-images-container":
+                        $("body").append(
+                            `<div class="loader-view-container pointer-none">
+                                <img src="./images/loader.gif" class="loader"/>
+                            </div>`
+                        );
+                        data = getSynopsis(json.id);
+                        let buttonImageSynopsisModal = $(
+                            "#images-synopsis-modal-button"
+                        );
+                        data.then(data => {
+                            if (data.code == 200) {
+                                //Limpiar inputs
+                                $('.image-synopsis-input').val();
+
+                                let imageSynopsisFrame1 =
+                                    data.data.image_synopsis_frame_1 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame2 =
+                                    data.data.image_synopsis_frame_2 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                let imageSynopsisFrame3 =
+                                    data.data.image_synopsis_frame_3 ||
+                                    "./images/synopsis/image-synopsis-horizontal.png";
+                                $(".image-synopsis-frame-1").attr(
+                                    "src",
+                                    imageSynopsisFrame1
+                                );
+                                $(".image-synopsis-frame-2").attr(
+                                    "src",
+                                    imageSynopsisFrame2
+                                );
+                                $(".image-synopsis-frame-3").attr(
+                                    "src",
+                                    imageSynopsisFrame3
+                                );
+                                $(".modal-synopsis-images-container").modal(
+                                    "show"
+                                );
+                                $(".loader-view-container").remove();
+                            }
+                            buttonImageSynopsisModal.attr(
+                                "landing_id",
+                                data.data.landing_id
+                            );
+                            buttonImageSynopsisModal.attr(
+                                "chapter_id",
+                                data.data.chapter_id
+                            );
+                        });
+
+                        $(
+                            ".modal-synopsis-images-container .input-image-program"
+                        ).change(function () {
+                            let currentInput = $(this);
+                            if (this.files && this.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    currentInput
+                                        .next()
+                                        .children(".prev-image-program")
+                                        .attr("src", e.target.result)
+                                        .addClass("h-100 w-100")
+                                        .css("z-index", "2");
+                                };
+                                reader.readAsDataURL(this.files[0]);
+
+                                buttonImageSynopsisModal.removeClass([
+                                    "disabled-btn",
+                                    "a-text-bold-teal",
+                                    "btn-landing"
+                                ]);
+                                buttonImageSynopsisModal.addClass([
+                                    "btn-grilla",
+                                    "a-text-bold-white"
+                                ]);
+                            }
+                        });
+                        break;
+                    case "synopsis-datails-container":
+                        programView.renderDetailsSynopsis(json.id);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+
+    $('.btn-sis').click(function () {
+        let key = $(this).attr('key')
+        let date = new Date();
+        let day = ('0' + date.getUTCDate()).slice(-2);
+        let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+        let year = date.getUTCFullYear();
+        $('.content-table').html(' ');
+        getProgrammingSynopsis(key, `${year}-${month}-${day}`);
+    })
 
     //Sacamos la fecha actual para ponerla en el calendario
     let currentDate1 = new Date();
@@ -134,6 +480,7 @@ function eventsGrilla() {
         "click",
         ".synopsis-calendar-item",
         function () {
+            alert('botando');
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
@@ -203,8 +550,6 @@ function eventsGrilla() {
     $(".btn-prueba").click(function () {
         getHeaderLanding();
     });
-
-    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
@@ -578,8 +923,8 @@ function eventsGrilla() {
         }
     };
 
-
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
+    // let sinopsisLanding = $('.sinopsis-container');
     if (navbarPrevSINOPSIS) {
         $("#sinopsis-container iframe").remove();
         var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
