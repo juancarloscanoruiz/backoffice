@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script src="{{ asset('/js/lib/bootstrap.min.js') }}" defer></script>
     <link href="{{ asset('css/bootstrap-4.4.1/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -27,7 +27,7 @@
     <link href="{{ asset('css/app.css') }}?t=<?php echo time(); ?>" rel="stylesheet">
 
     <link href="{{ asset('bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('bootstrap-select/dist/js/bootstrap-select.min.js') }}" ></script>
+    <script src="{{ asset('bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
 
     <title>Pruebas</title>
 
@@ -35,7 +35,9 @@
 
 <body class="bg-dark contenedor">
     <div>
-        <button id="btn_pruebas" class="btn btn-outline-success btn-lg">Click</button>
+        <button id="btn-sinopsis" class="btn btn-outline-success btn-lg">Click</button>
+        <!-- <button id="btn_pruebas" class="btn btn-outline-success btn-lg">Click</button> -->
+        <div class="mb-5 calendar-sinopsis-slider"></div>
     </div>
 </body>
 

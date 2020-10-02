@@ -962,7 +962,9 @@ export default class LandingView {
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
-            let text = $('.footer-title-privacy').val();
+
+            debugger
+            let text = $('.footer-textarea-privacy').val();
             let title = $('.footer-title-privacy').val();
 
             let landing = "about";
