@@ -16,24 +16,26 @@
                 <div class="d-flex float-right mb-4 pb-2 mr-5">
                     <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                         <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                            <input type="radio" name="sexo" id="edit-landing-concert" class="edi-concert" checked />
-                            <label for="edit-landing-concert" id="edit-landing-concert" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                            <input type="radio" name="sexo" id="edit-landing-home-grilla" class="edi-concert" checked />
+                            <label for="edit-landing-home-grilla" id="edit-landing-home-grilla" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                                 <p class=" a-prev-title">EDITAR</p>
                             </label>
-                            <input type="radio" name="sexo" id="prev-landing-concert" class="prev-concert" onload="preloader()" />
-                            <label for="prev-landing-concert" id="previsualiza" class="hombre-estilo pl-2 pt-3">
+                            <input type="radio" name="sexo" id="prev-landing-home-grilla" class="prev-concert" onload="preloader()" />
+                            <label for="prev-landing-home-grilla" id="prev-landing-home-grilla" class="hombre-estilo pl-2 pt-3">
                                 <p class=" a-prev-title ">PREVISUALIZAR</p>
                             </label>
                         </div>
                     </form>
                     <!--Iconos para previsualizar en diferentes tamaños-->
-                    <div id="device-size">
-                        <div class="pt-2">
-                            <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
-                        </div>
-                    </div>
+                    
+                    <div class="pt-2">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
                 </div>
             </div>
+</div>
+        <div class="clearfix"></div>
             <div class="col-12 col-md-6 pl-0">
                 <!--Buttons-->
                 <div class="float-left ml-5 mb-4 ">

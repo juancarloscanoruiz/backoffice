@@ -73560,6 +73560,11 @@ function showLandingSchedule(id) {
           var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"; // let baseURL = "https://localhost/MaquetaCNetworks/"
 
           Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["confLandingHome"])(baseURL);
+          var prevImage = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".a-prev-image");
+          prevImage.click(function () {
+            var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_3___default()("iframe");
+            Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_1__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this));
+          });
           Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__["eventsGrilla"])();
         }
       });
@@ -74721,2477 +74726,431 @@ function eventsGrilla() {
   var NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
 
   if (NavbarHomeCinema) {
+    var checkURL = function checkURL(url) {
+      return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    }; //Previsualizar el video que subió el usuario en el landing de concert channel
+
+
+    /**
+     * Eviar archivo mediante ajax a un "controlador" php
+     */
+    var updateGrill = function updateGrill(landing) {
+      var canal = "canal-claro";
+
+      switch (landing) {
+        case 1:
+          canal = "canal-claro";
+          break;
+
+        case 2:
+          canal = "concert-channel";
+          break;
+
+        case 3:
+          canal = "claro-cinema";
+          break;
+
+        default:
+          break;
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        type: "POST",
+        url: "view",
+        data: {
+          view: "grilla-" + canal + "-button"
+        },
+        beforeSend: function beforeSend() {
+          var loader = "\n                <div class=\"loader-view-container\">\n                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+        },
+        success: function success(result) {
+          console.log("grilla de canal claro");
+          console.log(result);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
+          eventsGrilla();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        }
+      });
+    };
+
+    var sendFilePHP = function sendFilePHP(file, data_for_api) {
+      console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
+
+      var data = new FormData();
+      data.append("file", file);
+      data.append("datos", data_for_api); //Realizamos el ajax
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        type: "POST",
+        data: data,
+        processData: false,
+        //esto es para poder pasar el archivo
+        contentType: false,
+        //esto es para poder pasar el archivo
+        url: "general-program/captureExcel",
+        beforeSend: function beforeSend() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        },
+        success: function success(result) {
+          var existe_programacion = JSON.parse(result);
+
+          if (existe_programacion.data == 1) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+            console.log("Preguntamos al usuario");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
+          } else {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+
+            if (existe_programacion.data == -1) {
+              console.log("es de un dia anterior");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
+            } else {
+              console.log("se agregó la programación");
+              var landing = JSON.parse(data_for_api).landing_id;
+              updateGrill(landing);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+            }
+          }
+        }
+      }).fail(function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        console.log(e);
+      });
+    };
+
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe").remove();
-    new easyXDM.Socket(LandingHomeCinema);
-  }
+    new easyXDM.Socket(_LandingHomeCinema);
+    var _baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+    var landingSinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-sinopsis-landing");
 
-  var LandingSinopsis = {
-    remote: "".concat(baseURL, "sinopsis-edi.php"),
-    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
-    container: document.getElementById("sinopsis-container"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
+    if (landingSinopsis) {
+      var date = new Date();
+      var day = ("0" + date.getUTCDate()).slice(-2);
+      var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
 
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+      var _year = date.getUTCFullYear();
 
-        switch (json.type) {
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
-                var index = 1;
-                var slide = "";
-                var image = "";
-
-                while (true) {
-                  if (data.data["image_background_".concat(index)] !== undefined) {
-                    image = data.data["image_background_".concat(index)];
-
-                    if (data.data["image_background_".concat(index)] == null) {
-                      image = "./images/synopsis/image-synopsis-carrusel.jpg";
-                    }
-
-                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
-                    index++;
-                  } else {
-                    break;
-                  }
-                }
-
-                programminfSliderSynopsis.html(slide);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
-
-                try {
-                  programminfSliderSynopsis.slick("unslick");
-                  programminfSliderSynopsis.slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
-                    initialSlide: 0,
-                    infinite: false,
-                    customPaging: function customPaging(slider, i) {
-                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                    }
-                  });
-                } catch (error) {
-                  programminfSliderSynopsis.slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
-                    initialSlide: 0,
-                    infinite: false,
-                    customPaging: function customPaging(slider, i) {
-                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                    }
-                  });
-                }
-
-                var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
-                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
-                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
-                  var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-                  if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                      currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                    };
-
-                    reader.readAsDataURL(this.files[0]);
-                    buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
-                    buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
-                  }
-                });
-              }
-
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-            });
-            break;
-
-          case "synopsis-main-image":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                //Verificamos si tiene una imagen
-                var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-synopsis").val(); //Button
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
-              }
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
-              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-              if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                };
-
-                reader.readAsDataURL(this.files[0]);
-              }
-            });
-            break;
-
-          case "synopsis-description-container":
-            programView.renderDescriptionSynopsis(json.id);
-            break;
-
-          case "synopsis-images-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
-            data.then(function (data) {
-              if (data.code == 200) {
-                //Limpiar inputs
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-input").val();
-                var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
-                var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
-                var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }
-
-              buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
-              buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
-              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-              if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                };
-
-                reader.readAsDataURL(this.files[0]);
-                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
-                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
-              }
-            });
-            break;
-
-          case "synopsis-datails-container":
-            programView.renderDetailsSynopsis(json.id);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
-
-  if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      programView.renderSynopsis(id, socketSynopsis);
-    });
-  }
-
-  if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-concert-channel").on("click", ".edit-synopsis-pencil", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      programView.renderSynopsis(id, socketSynopsis);
-    });
-  }
-
-  if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-claro-cinema").on("click", ".edit-synopsis-pencil", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      programView.renderSynopsis(id, socketSynopsis);
-    });
-  } //Editar información de sinopsis
-
-
-  programView.editDetailsSynopsis(socketSynopsis);
-  programView.editAttributesSynopsis(socketSynopsis);
-  programView.renderPrevSynopsis();
-  programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
-  programView.editImagesSynopsis(socketSynopsis);
-  programView.editImageSynopsis(socketSynopsis);
-  programView.editImagesBanner(socketSynopsis);
-  var confLandingClaroCinema = {
-    remote: "".concat(baseURL, "claro-cinema-edi.php"),
-    // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
-    container: document.getElementById("navbar-prev-claro-cinema"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("slider-pagination");
-            break;
-
-          case "current-programming-cinema":
-            var date = new Date();
-            var day = ("0" + date.getUTCDate()).slice(-2);
-            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-            var _year = date.getUTCFullYear();
-
-            var _currentDate = "".concat(_year, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "claro-cinema");
-
-
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", "");
-            break;
-
-          case "header-landing-cinema":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("header-landing-cinema");
-            break;
-
-          case "title-cinema":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-cinema");
-            break;
-
-          case "promo-cinema":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("promo-cinema");
-            break;
-
-          case "title-carrusel1":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel1");
-            break;
-
-          case "carrusel1":
-            var landing = "Claro Cinema";
-            var id = 1;
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
-            break;
-
-          case "title-carrusel2":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel2");
-            break;
-
-          case "carrusel2":
-            landing = "Claro Cinema";
-            id = 2;
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //Landing de claro cinema
-
-  var navbarLandingClaroCinema = document.getElementById("navbar-prev-claro-cinema");
-
-  if (navbarLandingClaroCinema) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe").remove();
-    new easyXDM.Socket(confLandingClaroCinema);
-  }
-
-  var confPrevClaroCinema = {
-    remote: "".concat(baseURL, "claro-cinema.php"),
-    container: document.getElementById("navbar-prev-claro-cinema"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //previsualizar concert channel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-cinema").click(function () {
-    //Landing concert channel
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-cinema").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  });
-  /* Concert channel */
-
-  var confLandingConcertChannel = {
-    remote: "".concat(baseURL, "concert-channel-edi.php"),
-    //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
-    container: document.getElementById("navbar-prev-concert-channel"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
-
-        switch (json.type) {
-          case "current-programming-concert":
-            var date = new Date();
-            var day = ("0" + date.getUTCDate()).slice(-2);
-            var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-            var _year2 = date.getUTCFullYear();
-
-            var _currentDate2 = "".concat(_year2, "-").concat(month, "-").concat(day);
-
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel", "");
-            break;
-
-          case "header-landing-concert":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelHeader"])();
-            break;
-
-          case "pencil-header":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlockHeader3"])();
-            break;
-
-          case "pencil-video":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getConcertChannelPromo"])();
-            break;
-
-          case "pencil-header1":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4One"])();
-            break;
-
-          case "header2":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4OTwo"])();
-            break;
-
-          case "pencil-carrusel1":
-            var landing = "Concert Channel";
-            var id = 1;
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
-            break;
-
-          case "pencil-carrusel2":
-            landing = "Concert Channel";
-            id = 2;
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
-            break;
-
-          case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannel"])("slider-pagination");
-            break;
-
-          case "pencil-header1":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "header2":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var confPrevConcert = {
-    //remote: `${baseURL}concert-channel.php`,
-    remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-prev.php",
-    container: document.getElementById("navbar-prev-concert-channel"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //previsualizar concert channel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
-    //Landing concert channel
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confPrevProgramacionConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  }); //previsualizar concert channel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-prev-concert").click(function () {
-    //Landing concert channel
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  }); //Botón de editar en grilla
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-concert").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-concert-channel", function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-concert-landing", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "concert-channel");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-canal-landing", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-canal-landing").removeClass("programming-item-active");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "canal-claro");
-  }); //Pencil Chanel
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-canal-claro", function () {
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, "concert-channel");
-  }); //Pencil Canal
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, "canal-claro");
-  }); //Modal de link para botón
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("show.bs.modal", function () {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val(link);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("hidden.bs.modal", function () {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(link);
-  }); //Concert channel promo
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").click(function () {
-    var file = "";
-
-    if (document.getElementById("video-promo-file-concert").files[0]) {
-      file = document.getElementById("video-promo-file-concert").files[0];
-    } else if (document.getElementById("image-promo-concert").files[0]) {
-      file = document.getElementById("image-promo-concert").files[0];
-    } else {
-      file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("canal-claro", "".concat(_year, "-").concat(month, "-").concat(day));
     }
 
-    var landing = "Concert Channel";
-    var data = new FormData();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    data.append("promo", file);
-    data.append("landing", landing);
-    data.append("key", key);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLanding"])(data);
-  }); //Concert Channel Header
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
-    var landing = "Concert Channel";
-    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
-    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2").val() || "";
-    var logo = document.getElementById("header-lading-concert-logo").files[0] || "";
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
-    var data = new FormData();
-    data.append("landing", landing);
-    data.append("title1", title1);
-    data.append("title2", title2);
-    data.append("logo", logo);
-    data.append("link", link);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLanding"])(data);
-  }); //Edicion del header del home
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
-    var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
-    var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
-    var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
-    var data = new FormData();
-    data.append("video", videoimage);
-    data.append("title", title);
-    data.append("subtitle", subtitle);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHomeHeader"])(data);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-  }); //Previsualizar el video que subió el usuario en el landing de home
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
-    if (this.files && this.files[0]) {
-      var file = this.files[0];
-      var reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-
-      reader.onload = function (e) {
-        // The file reader gives us an ArrayBuffer:
-        var buffer = e.target.result; // We have to convert the buffer to a blob:
-
-        var videoBlob = new Blob([new Uint8Array(buffer)], {
-          type: "video/mp4"
-        }); // The blob gives us a URL to the video file:
-
-        var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").html("\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                <source src=\"".concat(url, "\" type=\"video/mp4\">\n\n                 </video>\n\n                "));
-      };
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
-    //Title
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
-    var landing = "Concert Channel";
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
-      value: value,
-      key: key,
-      landing: landing
-    }); //Subtitle
-
-    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").val();
-    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").attr("key");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
-      value: valueSub,
-      key: keySub,
-      landing: landing
-    });
-  });
-
-  function checkURL(url) {
-    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-  } //Previsualizar el video que subió el usuario en el landing de concert channel
-
-
-  var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").val("");
-
-    if (this.files && this.files[0]) {
-      var file = this.files[0];
-      var reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-
-      reader.onload = function (e) {
-        // The file reader gives us an ArrayBuffer:
-        var buffer = e.target.result; // We have to convert the buffer to a blob:
-
-        var videoBlob = new Blob([new Uint8Array(buffer)], {
-          type: "video/mp4"
-        }); // The blob gives us a URL to the video file:
-
-        var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
-      };
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
-    videoPromoInput.val("");
-
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
-      };
-    }
-
-    reader.readAsDataURL(this.files[0]);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close-modal-promos-concert").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val("");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo-concert-button").on("click", function () {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
-    var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container");
-    var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
-    var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert");
-
-    if (checkURL(link)) {
-      //Insertamos una nueva imagen con el link
-      prevContainer.html("\n            <img src=\"".concat(link, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n            ")); //Limpiamos los input
-
-      videoInput.val("");
-      imageInput.val("");
-    } else {
-      prevContainer.html("\n                <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(link, "\" type=\"video/mp4\">\n                </video>\n                ")); //Limpiamos input
-
-      videoInput.val("");
-      imageInput.val("");
-    }
-  }); //Landing de concert channel
-
-  var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
-
-  if (navbarPrevConcertChannel) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe").remove();
-    new easyXDM.Socket(confLandingConcertChannel);
-  } //loader, antes de subir un archivo
-
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-files").on("click", function () {
-    var loader = "\n        <div class=\"loader-view-container\" id=\"loader2\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
-    }, 3000);
-  }); //Evento para cuando cerramos el selectpicker
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").on("click", ".programming-item", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-item").removeClass("programming-item-active");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
-    var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
-    var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current").attr("schedule");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramming"])(date, section, time);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapter_id);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".edit-image-carrusel", function () {
-    var image = this.files[0];
-    var name = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
-    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    console.log(landing, name, chapter_id);
-    var data = new FormData();
-    data.append("image-horizontal", image);
-    data.append("landing", landing);
-    data.append("chapter_id", chapter_id);
-    data.append("name", name);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
-    var image = this.files[0];
-    var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
-    var name = editProgramDataContainer.attr("program");
-    var landing = editProgramDataContainer.attr("section");
-    var chapter_id = editProgramDataContainer.attr("chapter_id");
-    var data = new FormData();
-    data.append("image-horizontal", image);
-    data.append("landing", landing);
-    data.append("chapter_id", chapter_id);
-    data.append("name", name);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
-    if (e.which === 13 && !e.shiftKey) {
-      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container-s").attr("chapter_id"));
-      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-
-      switch (key) {
-        case "in_home_begin":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-            value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-            var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
-            value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_home_expiration":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-            var _date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
-
-            value = "".concat(_date[2], "-").concat(_date[1], "-").concat(_date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-            var _date2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
-
-            value = "".concat(_date2[2], "-").concat(_date2[1], "-").concat(_date2[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_landing_begin":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-            var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
-
-            value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
-
-            value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_landing_expiration":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
-
-            value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-            var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
-
-            value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        default:
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          break;
-      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-      //$("#navbar-prev-programacion iframe").attr("src", iframe);
-
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").on("change", ".input-image-program", function () {
-    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-      };
-
-      reader.readAsDataURL(this.files[0]);
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").on("change", ".input-image-program", function () {
-    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-      };
-
-      reader.readAsDataURL(this.files[0]);
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".input-image-program", function () {
-    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-      };
-
-      reader.readAsDataURL(this.files[0]);
-    }
-  }); //Editar datos de un programa de un carrusel en el landing
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
-    if (e.which === 13 && !e.shiftKey) {
-      debugger;
-      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-
-      switch (key) {
-        case "in_home_begin":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-            var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
-            value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-            var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
-
-            value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_home_expiration":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-            var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
-
-            value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-            var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
-
-            value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_landing_begin":
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-            var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
-
-            value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-            var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
-
-            value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        case "in_landing_expiration":
-          //Si se escribió la hora y la fecha
-          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-            var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
-
-            value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-            var _date13 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
-
-            value = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0], " 00:00:00");
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          }
-
-          break;
-
-        default:
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-          break;
-      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-      //$("#navbar-prev-programacion iframe").attr("src", iframe);
-
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
-    console.log("blur");
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-
-    switch (key) {
-      case "in_home_begin":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-          value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
-          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_home_expiration":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-          var _date14 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-          var _date15 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date15[2], "-").concat(_date15[1], "-").concat(_date15[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_landing_begin":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-          var _date16 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date16[2], "-").concat(_date16[1], "-").concat(_date16[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-          var _date17 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_landing_expiration":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-          var _date18 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-          var _date19 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date19[2], "-").concat(_date19[1], "-").concat(_date19[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      default:
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        break;
-    } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-    //$("#navbar-prev-programacion iframe").attr("src", iframe);
-
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("blur", ".edit-program-attribute-text", function (e) {
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-
-    switch (key) {
-      case "in_home_begin":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val();
-          value = "".concat(date[2], "-").concat(date[1], "-").concat(date[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
-          chapter_id, key, value;
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-          var _date20 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
-
-          value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_home_expiration":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
-          var _date21 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date21[2], "-").concat(_date21[1], "-").concat(_date21[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val());
-          console.log(_date21);
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
-          var _date22 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_landing_begin":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-          var _date23 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-          var _date24 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      case "in_landing_expiration":
-        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-          var _date25 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-          var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " 00:00:00");
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        }
-
-        break;
-
-      default:
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        break;
-    } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
-    //$("#navbar-prev-programacion iframe").attr("src", iframe);
-
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-program-switch", function () {
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-home").click(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-home", function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
-      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
-    }
-  }); //
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-landing", function () {
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-data-container").attr("chapter_id");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
-      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
-      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-    }
-  }); //loader, antes de subir un archivo
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modales").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    }, 3000);
-  }); //loader, antes de subir un archivo
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modal-programming").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    }, 3000);
-  }); //loader, antes de subir un archivo
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    }, 3000);
-  }); //activacion de paginacion
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("a-text-bold-white");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").addClass("a-text-bold-teal");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").removeClass("a-text-bold-teal");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
-    var data = new FormData(); //Canal claro
-
-    var logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
-    data.append("logoCanalClaro", logoUrlCanalClaro);
-    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
-    data.append("urlCanalClaro", urlCanalClaro); //Concert channel
-
-    var logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
-    data.append("logoConcertChannel", logoUrlConcertChannel);
-    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
-    data.append("urlConcertChannel", urlConertChannel); //Claro cinema
-
-    var logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
-    data.append("logoClaroCinema", logoUrlClaroCinema);
-    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
-    data.append("urlClaroCinema", urlClaroCinema);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateLogosOfLanding"])(data);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
-    /*
-        Arreglo para saber la posición de las imágenes que cargo el usuario
-        es decir, saber si subió la 1 y 3, o 2,3 etc.
-    */
-    var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
-
-    var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
-      if (this.files[0]) {
-        imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
-      }
-
-      imagesProgramming.push(this.files[0]);
-    });
-    var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
-
-    for (var index = 0; index < imagesProgramming.length; index++) {
-      var file = "file" + (index + 1).toString();
-      file = file.toString();
-      data.append(file, imagesProgramming[index]);
-    } //Posiciones de las imágenes
-
-
-    data.append("positions", imagesPositions); //Hora inicio y fin
-
-    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImagesOfProgrammingSlider"])(data);
-  }); //para agregar un slider más en cinema
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    console.log("pato");
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
-    //Agregamos un slide al slider de programación
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
-  }); //para agregar un slider más en carrusel2-concert
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var sliderIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1;
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick("slickAdd", "\n        <!--otro slider-->\n<div>\n\n<section class=\"edit-program-image\">\n    <select\n        class=\".header-background1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n        title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n        data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n        name=\"thumbnail-header1\" key=\"title\">\n    </select>\n    <!--Imagen del programa--->\n    <div class=\"edit-thumbnail position-relative\">\n\n        <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n            class=\"input-image-program d-none \">\n        <label for=\"edit-image-horizontal\"\n            class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n            <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                alt=\"heart-icon\" />\n            <div class=\"edit-program-camera text-center\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                    class=\"edit-program-icon-image\" alt=\"camera\" />\n                <p\n                    class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                    472\n                    x 245px</p>\n            </div>\n\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n        </label>\n    </div>\n    <!--Nombre de la imagen-->\n    <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n</section>\n<!--Establecer en landing, home, schedule item date time-->\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Landing-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en landing\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center mb-3\">\n                    <input type=\"radio\"  id=\"yes-landing-carrusel\" value=\"3\"\n                        class=\"edit-switch-landing edit-landing-yes\" key=\"in_landing\" />\n                    <label for=\"yes-landing-carrusel\" id=\"siestado-landing\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-landing-carrusel\" value=\"0\"\n                        class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                         checked/>\n                    <label for=\"no-landing-carrusel\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <!--Inputs radio-->\n                <div class=\"d-flex align-items-center mb-3\">\n\n                    <span\n                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                        2</span>\n\n\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                            key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <!--Home-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en home\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center edit-switches-home-container\">\n                    <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                        class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                        checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container  backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p\n                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Schedule Item Date time\n                </p>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center\"\n                        style=\"margin-bottom: 81px\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                class=\"mr-3\">\n                        <span class=\"a-text-bold-warm mt-3\">\n\n                            <input key=\"\" type=\" text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                </p>\n                <div\n                    class=\"text-center edit-rectangle-small-container  backwhite d-flex align-content-center justify-content-center py-2\">\n                    <img\n                            src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                    <span class=\"a-text-bold-warm mt-3\"><input\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Sinopsis-->\n<section class=\" edit-program-data-container\">\n    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n    <!--Textarea-->\n    <textarea key=\"synopsis\"\n        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n        id=\"prog_sinopsis\"></textarea>\n        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n        <div class=\"clearfix\"></div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program episode season-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    season\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"season\"\n                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"00\">\n                </div>\n            </div>\n        </div>\n        <!--Program episode number-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    number\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                    <input type=\"text\" key=\"program_episode_number\"\n                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"000\">\n                </div>\n            </div>\n        </div>\n        <!--Program year produced-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                    produced\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"program_year_produced\"\n                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                        placeholder=\"YYYY\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program title alternate-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                    alternate\n                </p>\n                <div class=\"mb-3 edit-rectangle-container p-3\">\n                    <input type=\"text\" key=\"subtitle\"\n                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                        placeholder=\"Program Title Alternate\">\n                </div>\n            </div>\n        </div>\n        <!--Program genre list-->\n        <div class=\"col-4 edit-program-data-container position-relative\"\n            id=\"edit-genre-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                    list\n                </p>\n                <div class=\"mb-3 edit-rectangle-container \">\n                    <select\n                        class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                        id=\"edit-program-genres\" title=\"Genere list\" multiple\n                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                    </select>\n                </div>\n            </div>\n        </div>\n        <!---->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                    rating\n                    code\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"rating\"\n                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                        placeholder=\"PG-00\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                    date\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                    \">Fecha\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"day\"\n                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"DD:MM:YY\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                    item log\n                    time (gmt)\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"programing\"\n                            class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                    schedule item duration\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"duration\"\n                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    subbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                        key=\"subbed\" />\n                    <label for=\"yes-subbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                        key=\"subbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    dubbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                        key=\"dubbed\" />\n                    <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                        key=\"dubbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                    available\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                        key=\"audio5\" />\n                    <label for=\"yes-audio5\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                        key=\"audio5\" />\n                    <label for=\"no-audio5\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<div class=\" d-flex justify-content-center\">\n<section class=\"text-center mb-3 d-flex justify-content-center\">\n<button\n    class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n    data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n</section>\n\n</div>\n</div>\n\n       <!--fin del otro slider-->\n");
-  }); //para agregar un slider más en carrusel1-concert
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
-    //Agregamos un slide al slider de programación
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n\n                <section class=\"edit-program-image\">\n                <select\n                    class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                    title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                    data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                    name=\"thumbnail-header1\" key=\"title\">\n                </select>\n                <!--Imagen del programa--->\n                <div class=\"edit-thumbnail position-relative\">\n\n                    <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n                        class=\"input-image-program d-none \">\n                    <label for=\"edit-image-horizontal\"\n                        class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                        <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                            alt=\"heart-icon\" />\n                        <div class=\"edit-program-camera text-center\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                                class=\"edit-program-icon-image\" alt=\"camera\" />\n                            <p\n                                class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                472\n                                x 245px</p>\n                        </div>\n\n                        <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                            class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n                    </label>\n                </div>\n                <!--Nombre de la imagen-->\n                <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n            </section>\n            <!--Establecer en landing, home, schedule item date time-->\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Landing-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en landing\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center mb-3\">\n                                <input type=\"radio\"  id=\"yes-landing-carrusel1\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\"  />\n                                <label for=\"yes-landing-carrusel1\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing-carrusel1\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                                    checked />\n                                <label for=\"no-landing-carrusel1\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <!--Inputs radio-->\n                            <div class=\"d-flex align-items-center mb-3\">\n\n                                <span\n                                    class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                    1</span>\n\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                            placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                            key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                                        key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                        key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <!--Home-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en home\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center edit-switches-home-container\">\n                                <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                                    class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                                    checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                            type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container  backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin:\n                                        <input type=\"text\" key=\"in_home_expiration\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p\n                                class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Schedule Item Date time\n                            </p>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center\"\n                                    style=\"margin-bottom: 81px\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                            class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\">\n\n                                        <input key=\"\" type=\" text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                            </p>\n                            <div\n                                class=\"text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2\">\n                                <img\n                                        src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\"><input\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <!--Sinopsis-->\n            <section class=\" edit-program-data-container\">\n                <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                <!--Textarea-->\n                <textarea key=\"synopsis\"\n                    class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                    id=\"prog_sinopsis\"></textarea>\n                    <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                    <div class=\"clearfix\"></div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program episode season-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                season\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                                <input type=\"text\" key=\"season\"\n                                    class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"00\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program episode number-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                number\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite  py-3\">\n                                <input type=\"text\" key=\"program_episode_number\"\n                                    class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"000\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program year produced-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                                produced\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <input type=\"text\" key=\"program_year_produced\"\n                                    class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                    placeholder=\"YYYY\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program title alternate-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                                alternate\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container p-3\">\n                                <input type=\"text\" key=\"subtitle\"\n                                    class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                    placeholder=\"Program Title Alternate\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program genre list-->\n                    <div class=\"col-4 edit-program-data-container position-relative\"\n                        id=\"edit-genre-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                                list\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container \">\n                                <select\n                                    class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                    id=\"edit-program-genres\" title=\"Genere list\" multiple\n                                    data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                    data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                    <!---->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                rating\n                                code\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <input type=\"text\" key=\"rating\"\n                                    class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                    placeholder=\"PG-00\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                                date\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                \">Fecha\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"day\"\n                                        class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                item log\n                                time (gmt)\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"programing\"\n                                        class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                schedule item duration\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"duration\"\n                                        class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                subbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                                    key=\"subbed\" />\n                                <label for=\"yes-subbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                                    key=\"subbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                dubbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                                    key=\"dubbed\" />\n                                <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                                    key=\"dubbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                                available\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                                    key=\"audio5\" />\n                                <label for=\"yes-audio5\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                                    key=\"audio5\" />\n                                <label for=\"no-audio5\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <div class=\" d-flex justify-content-center\">\n        <section class=\"text-center mb-3 d-flex justify-content-center\">\n            <button\n                class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n        </section>\n\n    </div>\n\n            </div>\n            ");
-  }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
-  //Añadimos un slide al slider de imágenes de programación
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image").click(function () {
-    //Cada vez que se haga click, el contador incrementa
-    var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
-  });
-  /*function preloader() {
-      console.log("si entra al metodo desde submenu");
-      document.getElementById("loader-view").style.display = "none";
-      document.getElementById("navbar-prev-programacion").style.display =
-          "block";
-  }
-  window.onload = preloader;*/
-  //Landing de programación de claro cinema
-
-  var navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
-  var iframeProgramacionCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe");
-  var confProgramacionClaroCinema = {
-    remote: "".concat(baseURL, "programacion-edi-cinema.php"),
-    container: document.getElementById("navbar-prev-programacion-cinema"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "program":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
-            break;
-
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
-            break;
-
-          case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-            break;
-
-          case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-
-  if (navbarPrograContainerCinema) {
-    iframeProgramacionCinema.remove();
-    new easyXDM.Socket(confProgramacionClaroCinema);
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
-  }); //Landing de programacion de concert channel
-
-  var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
-  var iframeProgramacionConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe");
-  var confProgramacionConcertChannel = {
-    remote: "".concat(baseURL, "programacion-edi-concert.php"),
-    container: document.getElementById("navbar-prev-programacion-concert"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "program":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
-            break;
-
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
-            break;
-
-          case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-            break;
-
-          case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-
-  if (navbarPrograContainerConcert) {
-    iframeProgramacionConcert.remove();
-    new easyXDM.Socket(confProgramacionConcertChannel);
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
-  }); //Landing de programación de claro canal
-  //Canal claro
-
-  var confIframe = {
-    remote: "".concat(baseURL, "programacion-edi.php"),
-    container: document.getElementById("navbar-prev-programacion"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "program":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
-            break;
-
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
-            break;
-
-          case "synopsis":
-            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
-            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-            break;
-
-          case "menu-logos":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-  }); ////////////
-
-  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
-
-  if (navbarPrograContainer) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    new easyXDM.Socket(confIframe);
-  }
-
-  var confPrevProgramacion = {
-    remote: "".concat(baseURL, "programacion.php"),
-    container: document.getElementById("navbar-prev-programacion"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var confPrevProgramacionConcert = {
-    remote: "".concat(baseURL, "programacion-concert.php"),
-    container: document.getElementById("navbar-prev-programacion-concert"),
-    onMessage: function onMessage(message, origin) {
-      console.log(message);
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0];
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  }; //previsualizar canal claro
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-master").on("click", ".edit-synopsis-pencil", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-cont").html("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#estSis").load("imports #sisEst", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".siestado-landing").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".noestado-landing").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
       });
+      var socketSynopsis = new easyXDM.Socket(SinopsisLanding);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
+      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      programView.renderSynopsis(id, socketSynopsis);
     });
-    new easyXDM.Socket({
-      remote: "".concat(baseURL, "programacion-prev.php"),
-      container: document.getElementById("navbar-prev-programacion"),
+    var SinopsisLanding = {
+      remote: "".concat(_baseURL, "sinopsis-edi.php"),
+      //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+      container: document.getElementById("sinopsis-cont"),
       onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+          switch (json.type) {
+            case "slider-pagination":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              data.then(function (data) {
+                if (data.code == 200) {
+                  var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
+                  var index = 1;
+                  var slide = "";
+                  var image = "";
+
+                  while (true) {
+                    if (data.data["image_background_".concat(index)] !== undefined) {
+                      image = data.data["image_background_".concat(index)];
+
+                      if (data.data["image_background_".concat(index)] == null) {
+                        image = "./images/synopsis/image-synopsis-carrusel.jpg";
+                      }
+
+                      slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
+                      index++;
+                    } else {
+                      break;
+                    }
+                  }
+
+                  programminfSliderSynopsis.html(slide);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
+
+                  try {
+                    programminfSliderSynopsis.slick("unslick");
+                    programminfSliderSynopsis.slick({
+                      slidesToShow: 1,
+                      dots: true,
+                      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                      initialSlide: 0,
+                      infinite: false,
+                      customPaging: function customPaging(slider, i) {
+                        var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                      }
+                    });
+                  } catch (error) {
+                    programminfSliderSynopsis.slick({
+                      slidesToShow: 1,
+                      dots: true,
+                      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                      initialSlide: 0,
+                      infinite: false,
+                      customPaging: function customPaging(slider, i) {
+                        var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                      }
+                    });
+                  }
+
+                  var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
+                  buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
+                  buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
+                    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                    if (this.files && this.files[0]) {
+                      var reader = new FileReader();
+
+                      reader.onload = function (e) {
+                        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                      };
+
+                      reader.readAsDataURL(this.files[0]);
+                      buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                      buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                    }
+                  });
+                }
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              });
+              break;
+
+            case "synopsis-main-image":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              data.then(function (data) {
+                if (data.code == 200) {
+                  //Verificamos si tiene una imagen
+                  var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-synopsis").val(); //Button
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
+                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                if (this.files && this.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                  };
+
+                  reader.readAsDataURL(this.files[0]);
+                }
+              });
+              break;
+
+            case "synopsis-description-container":
+              programView.renderDescriptionSynopsis(json.id);
+              break;
+
+            case "synopsis-images-container":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
+              data.then(function (data) {
+                if (data.code == 200) {
+                  //Limpiar inputs
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-input").val();
+                  var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
+                  var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
+                  var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+                }
+
+                buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
+                buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
+                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                if (this.files && this.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                  };
+
+                  reader.readAsDataURL(this.files[0]);
+                  buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                  buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                }
+              });
+              break;
+
+            case "synopsis-datails-container":
+              programView.renderDetailsSynopsis(json.id);
+              break;
+
+            default:
+              break;
+          }
+        }
+
         this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
-    }); //Landing canal claro
-
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  }); // $("#prev").click(function () {
-  //     $("#navbar-prev-programacion iframe").remove();
-  //     new easyXDM.Socket({
-  //         remote: `${baseURL}programacion.php`,
-  //         container: document.getElementById("navbar-prev-programacion"),
-  //         onMessage: function (message, origin) {
-  //             this.container.getElementsByTagName("iframe")[0].style.height =
-  //                 message + "px";
-  //             this.container.getElementsByTagName(
-  //                 "iframe"
-  //             )[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-  //         }
-  //     });
-  //     //Landing canal claro
-  //     resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
-  //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-  //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  // });
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-  }); /////////////
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
-    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-    if (this.files && this.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-      };
-
-      reader.readAsDataURL(this.files[0]);
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select-carrusel").selectpicker({
-    filter: true,
-    multipleSeparator: ", "
-  });
-  var imageTriangle = "\n    <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle); //selectpicker para el campo de género en un programa
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
-    filter: true,
-    multipleSeparator: ", "
-  });
-  /*
-      Obtener el valor de las cateogrías seleccionadas y colocarlas
-      en un string
-  */
-
-  var genres = "";
-  var selectpicker = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker"); //Verificamos si el usuario ha seleccionado un género o categoría
-
-  selectpicker.on("change", function () {
-    //Obtenemos los valores del selectpicker
-    var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
-
-    var selectedLength = selected.length;
-    genres = "";
-
-    for (var index = 0; index < selectedLength; index++) {
-      //Si es la primera palabra o la última, no agregamos una coma
-      if (selectedLength - 1 == index) {
-        genres += "".concat(selected[index]);
-      } else {
-        genres += "".concat(selected[index], ",");
-      }
-    }
-  }); //Evento para cuando cerramos el selectpicker
-
-  selectpicker.on("hide.bs.select", function () {
-    //Seleccionamos la columna en la que estamos
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Obtenemos el cahpter_id de la columna
-
-    var chapterId = currentColumn.attr("chapter_id"); //Obtenemos la key
-
-    var key = currentColumn.attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
-
-    var keyValue = genres; //Hacemos la petición
-
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
-    }
-  }); //Al momento de dar click en el boton de grilla
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
-      .removeClass("a-text-semi-brown-two"); //text-landing
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
-    }
-  }); //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
-
-  /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
-    var landingOptionsChecks = currentColumn.children(".establecer-options"); //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
-      landingOptionsChecks.css("pointer-events", "all");
-      currentColumn.next().children(".programar-content").css("pointer-events", "all");
-    } else {
-      landingOptionsChecks.css("pointer-events", "none"); //Hacemos que no se pueda escribir en los campos siguientes
-
-      currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
-
-      currentColumn.next().find("input").val("");
-      currentColumn.children(".establecer-options").find("input").prop("checked", false);
-    }
-  });
-  /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-home").click(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
-
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
-      currentColumn.next().children(".programar-content").css("pointer-events", "all");
-    } else {
-      //Hacemos que no se pueda escribir en los campos siguientes
-      currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
-
-      currentColumn.next().find("input").val("");
-      currentColumn.children(".establecer-options").find("input").prop("checked", false);
-    }
-  }); //Mostrar la sinópsis completa en modal
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".see-more").click(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sinopsis actual del programa sin tener el texto truncado con "..."
-
-    var synopsis = currentColumn.attr("synopsis");
-    var chapterId = currentColumn.attr("chapter_id"); //Id del programa actual
-
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().attr("id");
-    var key = currentColumn.attr("key"); //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").attr({
-      chapter_id: chapterId,
-      key: key,
-      synopsis: synopsis,
-      program: program
-    }); //Pasamos al textarea del modal la sinopsis actual del programa
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-textarea").val(synopsis); //Ponemos el título del programa en el header del modal
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-title").text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program_title")); //Hacemos aparecer el modal
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("show");
-  }); //botón de modal de edición de de sinopsis
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").click(function () {
-    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Obtenemos la sinopsis nueva del textarea del modal
-
-    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-content").val(); //Programa del cual se está actualizando al sinopsis
-
-    var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program"); //Cambiamos el atributo "sinopsis" en el programa de la grilla
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).closest(".contenedor-columna").attr("synopsis", keyValue); //Truncamos el texto en grilla con tres puntos...
-
-    if (keyValue.length > 200) {
-      var text = keyValue.substr(0, 200) + "...";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(text);
-    } else {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(keyValue);
-    } //Hacemos la petición para cambiar la sinopsis
-
-
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue); //Ocultamos el modal
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("hide");
-  }); //Removemos las instancias de litepicker que sobran
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove(); //Sacamos la fecha actual para ponerla en el calendario
-
-  var currentDate = new Date(); //Obtenemos el año
-
-  var calendarYear = currentDate.getFullYear(); //obtenemos el mes
-
-  var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
-
-  var calendarDay = currentDate.getDate();
-  var dateStartInput = document.getElementById("date-start-input");
-
-  if (dateStartInput) {
-    //Iniciamos el calendario Litepicker
-    var picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
-      element: document.getElementById("date-start-input"),
-      format: "YYYY-MM-DD",
-      delimiter: ",",
-      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
-      //Al aparecer, aplicamos estilos parecidos a los de un modal
-      onShow: function onShow() {
-        picker.picker.style.left = "50%";
-        picker.picker.style.top = "50%";
-        picker.picker.style.transform = "translate(-50%, -50%)";
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
-      },
-      //Evento que utilizamos cada vez que el calendario se oculta
-      onHide: function onHide() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
-      },
-      onSelect: function onSelect() {
-        //Separamos las dos fechas
-        var fullDate = document.getElementById("date-start-input").value.split(","); //  Fecha inicial del datepicker
-
-        var startDate = fullDate[0]; //Separamos la primer fecha
-
-        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
-
-        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
-
-        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
-        var endDate = fullDate[1];
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["filterDates"])(startDate, endDate, landing);
-        var endDateSplit = endDate.split("-");
-        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
-      },
-      numberOfMonths: 1,
-      numberOfColumns: 1,
-      singleMode: false
-    });
-  }
-
-  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
-
-  if (programmingCarruselPicker) {
-    //Iniciamos el calendario Litepicker
-    var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
-      element: programmingCarruselPicker,
-      format: "YYYY-MM-DD",
-      delimiter: ",",
-      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
-      //Al aparecer, aplicamos estilos parecidos a los de un modal
-      onShow: function onShow() {
-        _picker.picker.style.left = "50%";
-        _picker.picker.style.top = "50%";
-        _picker.picker.style.transform = "translate(-50%, -50%)";
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
-      },
-      //Evento que utilizamos cada vez que el calendario se oculta
-      onHide: function onHide() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
-      },
-      onSelect: function onSelect() {
-        //Separamos las dos fechas
-        var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
-
-        var startDate = fullDate[0]; //Separamos la primer fecha
-
-        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
-
-        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
-
-        var endDate = fullDate[1];
-        var endDateSplit = endDate.split("-");
-        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
-      },
-      numberOfMonths: 1,
-      numberOfColumns: 1,
-      singleMode: false
-    });
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
-    console.log("cerrar");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
-    //$(".modal-edit-icons").modal("hide");
-    // $(".modal-edit-program").modal("hide");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".close-modal-concert").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
-  }); //cerrar los dos modales
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-sinopsis").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info-sinopsis").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-image-sinopsis").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-sinopsis").modal("hide");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
-  });
-  /* Al dar "enter" cancelamos el salto de línea,
-      conseguimos el valor del campo de la grilla
-      y hacemos la petición
-  */
-
-  var editableAttribute = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".editable-attribute");
-  editableAttribute.keydown(function (e) {
-    //Si la tecla que presionamos fue "Enter"
-    if (e.which === 13 && !e.shiftKey) {
-      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("key");
-      var keyValue = "";
-      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("chapter_id");
-
-      switch (key) {
-        //Verificamos si lo que estamos editando es Schedule Item Long Date
-        case "day":
-          //Seperamos la fecha
-          var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
-
-          keyValue = "".concat(date[2], "-").concat(date[1], "-").concat(date[0]);
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-          break;
-        //Verificamos si el campo que estamos editando es el año de producción
-
-        case "program_year_produced":
-          //Convertimos el año a entero
-          keyValue = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()); //Hacemos la petición
-
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-          break;
-        //Verificamos si el campo editable, es el de programar publicación para Landing
-
-        case "in_landing_publicacion":
-          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
-          var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
-
-          if (schedule == "in_landing_begin") {
-            //Obtenemos el div padre para saber qué horario y fecha andamos modificando
-            //Obteemos la fecha y la dividimos
-            var _date27 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
-
-
-            var day = "".concat(_date27[2], "-").concat(_date27[1], "-").concat(_date27[0]);
-            var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-            //En caso de tener ambos valores, hacemos al petición
-
-            if (day != "" && hours != "") {
-              keyValue = "".concat(day, " ").concat(hours);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-            } //En caso de solo tener el día, mandamos la hora en 0
-            else if (day != "" && hours == "") {
-                hours = "00:00:00";
-                keyValue = "".concat(day, " ").concat(hours);
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-              }
-          } //Verificamos si es la fecha fin
-          else if (schedule == "in_landing_expiration") {
-              var _date28 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
-
-
-              var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
-
-
-              var _day = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0]); //En caso de tener ambos valores, hacemos la petición
-
-
-              if (_date28 != "" && _hours != "") {
-                var _day2 = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0]);
-
-                keyValue = "".concat(_day2, " ").concat(_hours);
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-              } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-              else if (_date28 != "" && _hours == "") {
-                  _hours = "00:00:00";
-                  keyValue = "".concat(_day, " ").concat(_hours);
-                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-                }
-            }
-
-          break;
-
-        case "in_home_publicacion":
-          var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio del home
-
-          if (scheduleHome == "in_home_begin") {
-            //Obtenemos la fecha
-            var _date29 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
-
-            var _day3 = "".concat(_date29[2], "-").concat(_date29[1], "-").concat(_date29[0]); //Obtenemos la hora
-
-
-            var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
-
-
-            if (_date29 != "" && _hours2 != "") {
-              keyValue = "".concat(_day3, " ").concat(_hours2);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-            } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date29 != "" && _hours2 == "") {
-                _hours2 = "00:00:00";
-                keyValue = "".concat(_day3, " ").concat(_hours2);
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-              }
-          } else if (scheduleHome == "in_home_expiration") {
-            //Obtenemos la fecha
-            var _date30 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
-
-            var _day4 = "".concat(_date30[2], "-").concat(_date30[1], "-").concat(_date30[0]); //Obtenemos la hora
-
-
-            var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
-
-
-            if (_date30 != "" && _hours3 != "") {
-              keyValue = "".concat(_day4, " ").concat(_hours3);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-            } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date30 != "" && _hours3 == "") {
-                _hours3 = "00:00:00";
-                keyValue = "".concat(_day4, " ").concat(_hours3);
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-              }
-          }
-
-          break;
-
-        default:
-          //Si no es ninguno de los casos, sacamos el valor del campo directamente
-          keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Hacemos la petición
-
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-          break;
-      } //Quitamos el comportamiento por defecto
-
-
-      e.preventDefault(); //Después de dar click, "sacamos" al usuario del input
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
-      return false;
-    }
-  }); //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-
-  editableAttribute.blur(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
-    var key = currentColumn.attr("key");
-    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var chapterId = currentColumn.attr("chapter_id"); //Verificamos el campo que estamos editando
-
-    switch (key) {
-      //Verificamos si lo que estamos editando es Schedule Item Long Date
-      case "day":
-        //Seperamos la fecha
-        var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
-
-        keyValue = "".concat(date[2], "-").concat(date[1], "-").concat(date[0]);
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-        break;
-      //En caso de que el campo que estemos editando, sea el de programar publicación para landing
-
-      case "in_landing_publicacion":
-        var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
-        var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
-
-        if (schedule == "in_landing_begin") {
-          //Obtenemos el div padre para saber qué horario y fecha andamos modificando
-          //Obteemos la fecha y la dividimos
-          var _date31 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
-
-
-          var day = "".concat(_date31[2], "-").concat(_date31[1], "-").concat(_date31[0]);
-          var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
-          //En caso de tener ambos valores, hacemos al petición
-
-          if (day != "" && hours != "") {
-            keyValue = "".concat(day, " ").concat(hours);
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-          } //En caso de solo tener el día, mandamos la hora en 0
-          else if (day != "" && hours == "") {
-              hours = "00:00:00";
-              keyValue = "".concat(day, " ").concat(hours);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-            }
-        } //Verificamos si es la fecha fin
-        else if (schedule == "in_landing_expiration") {
-            var _date32 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
-
-
-            var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
-
-
-            var _day5 = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0]); //En caso de tener ambos valores, hacemos la petición
-
-
-            if (_date32 != "" && _hours4 != "") {
-              var _day6 = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0]);
-
-              keyValue = "".concat(_day6, " ").concat(_hours4);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-            } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-            else if (_date32 != "" && _hours4 == "") {
-                _hours4 = "00:00:00";
-                keyValue = "".concat(_day5, " ").concat(_hours4);
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
-              }
-          }
-
-        break;
-
-      case "in_home_publicacion":
-        var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
-        var parentHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio del home
-
-        if (scheduleHome == "in_home_begin") {
-          //Obtenemos la fecha
-          var _date33 = parentHome.find(".home-start-day").val().split("-");
-
-          var _day7 = "".concat(_date33[2], "-").concat(_date33[1], "-").concat(_date33[0]); //Obtenemos la hora
-
-
-          var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
-
-
-          if (_date33 != "" && _hours5 != "") {
-            keyValue = "".concat(_day7, " ").concat(_hours5);
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-          } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date33 != "" && _hours5 == "") {
-              _hours5 = "00:00:00";
-              keyValue = "".concat(_day7, " ").concat(_hours5);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-            }
-        } else if (scheduleHome == "in_home_expiration") {
-          //Obtenemos la fecha
-          var _date34 = parentHome.find(".home-expiration-day").val().split("-");
-
-          var _day8 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]); //Obtenemos la hora
-
-
-          var _hours6 = parentHome.find(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
-
-
-          if (_date34 != "" && _hours6 != "") {
-            _day8 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]);
-            keyValue = "".concat(_day8, " ").concat(_hours6);
-            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-          } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date34 != "" && _hours6 == "") {
-              _hours6 = "00:00:00";
-              keyValue = "".concat(_day8, " ").concat(_hours6);
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
-            }
-        }
-
-        break;
-
-      default:
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-        break;
-    }
-  }); //Sacar los valores de los switches en la grilla
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
-    var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sacamos el valor del switch o radio button
-
-    var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //De la columna, sacamos el chapter_id
-
-    var chapterId = currentColumn.attr("chapter_id"); //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
-
-    var key = currentColumn.attr("key"); //Hacemos la petición
-
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
-  }); //Sacar los valores de los switches en el modal de edicion
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table-edit").click(function () {
-    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
-    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Hacemos la petición
-
-    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-  });
-  /*
-  Permite a todos los campos de Schedule item log time tener el formato
-  tiempo en hh:mm
-  */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
-    new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["scheduleTimeConfig"]);
-  });
-  /*
-  Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
-  */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
-    new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["cleaveConfig"]);
-  });
-  /*
-  Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
-  */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
-    new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["timeWithSeconds"]);
-  });
-  /*
-  Permite a todos los input con la clase year-input tener el formato YYYY
-  */
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".year-input").toArray().forEach(function (yearInput) {
-    new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["year"]);
-  }); //Truncar texto de sinópsis con "..."
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
-    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().length > 200) {
-      var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".listcinema").selectpicker({
-    multipleSeparator: " ",
-    filter: true
-  }); //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]); //Al dar click en una columna, aplicamos estilos
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
-    multipleSeparator: " ",
-    filter: true
-  }).on("changed.bs.select", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing").on("change", function () {
-    /**
-     * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
-     * esto para no caursar poroblemas mayores se manda a null e value del form
-     * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
-     */
-    try {
-      var file = this.files[0];
-      var filename = this.files[0].name;
-
-      if (filename != null) {
-        var splName = filename.split(".");
-        var fileFormat = splName[splName.length - 1];
-
-        if (fileFormat != "xlsx" && fileFormat != "xls") {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-file").modal("show");
-        } else {
-          var data_for_api = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("api");
-          sendFilePHP(file, data_for_api);
-          console.log(this.files[0].name);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    this.value = null; //aqui para evitar que se hagan registros dobles
-  });
-  /**
-   * Eviar archivo mediante ajax a un "controlador" php
-   */
-
-  function updateGrill(landing) {
-    var canal = "canal-claro";
-
-    switch (landing) {
-      case 1:
-        canal = "canal-claro";
-        break;
-
-      case 2:
-        canal = "concert-channel";
-        break;
-
-      case 3:
-        canal = "claro-cinema";
-        break;
-
-      default:
-        break;
-    }
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      url: "view",
-      data: {
-        view: "grilla-" + canal + "-button"
-      },
-      beforeSend: function beforeSend() {
-        var loader = "\n                <div class=\"loader-view-container\">\n                <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-      },
-      success: function success(result) {
-        console.log("grilla de canal claro");
-        console.log(result);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#general-programming").html(result);
-        eventsGrilla();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      }
-    });
-  }
-
-  function sendFilePHP(file, data_for_api) {
-    console.log("enviando a php"); //creamos un dato de formulario para pasarlo en el ajax
-
-    var data = new FormData();
-    data.append("file", file);
-    data.append("datos", data_for_api); //Realizamos el ajax
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      data: data,
-      processData: false,
-      //esto es para poder pasar el archivo
-      contentType: false,
-      //esto es para poder pasar el archivo
-      url: "general-program/captureExcel",
-      beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      },
-      success: function success(result) {
-        var existe_programacion = JSON.parse(result);
-
-        if (existe_programacion.data == 1) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-          console.log("Preguntamos al usuario");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(result);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("show");
-        } else {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-
-          if (existe_programacion.data == -1) {
-            console.log("es de un dia anterior");
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-before").modal("show");
-          } else {
-            console.log("se agregó la programación");
-            var landing = JSON.parse(data_for_api).landing_id;
-            updateGrill(landing);
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-          }
-        }
-      }
-    }).fail(function (e) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      console.log(e);
-    });
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-remplaza").click(function () {
-    console.log("Se remplaza la programacion");
-    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
-    console.log(data);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      data: data,
-      url: "general-program/changePrograming",
-      beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      },
-      success: function success(result) {
-        updateGrill(data.landing_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-        console.log(JSON.parse(result));
-      }
-    }).fail(function (e) {
-      console.log(e);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-    });
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-agrega").click(function () {
-    console.log("Se agrega la programacion");
-    var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
-    console.log(data);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
-      type: "POST",
-      data: data,
-      url: "general-program/addPrograming",
-      beforeSend: function beforeSend() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-con tent").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      },
-      success: function success(result) {
-        updateGrill(data.landing_id);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-        console.log(JSON.parse(result));
-      }
-    }).fail(function (e) {
-      console.log(e);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-    });
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-cancela").click(function () {
-    console.log("Se cancela la programacion");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(" ");
-    var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
-    console.log(programas);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
-  }); // CANAL CLARO
-
-  var LOADER = "<div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>";
-  var landingCanalClaro = {
-    remote: "".concat(baseURL, "claro-canal-edi.php"),
-    // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
-    container: document.getElementById("navbar-prev-canal-claro"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        switch (json.type) {
-          case "claro-header":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "claro-programacion":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            setTimeout(function () {
-              var date = new Date();
-              var day = ("0" + date.getUTCDate()).slice(-2);
-              var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-              var year = date.getUTCFullYear();
-              var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro", "");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-            }, 3000);
-            break;
-
-          case "claro-title":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "claro-promo":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "claro-carrusel1":
-            var id = 1;
-            var landing = "Canal Claro";
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro");
-            break;
-
-          case "claro-carrusel2":
-            id = 2;
-            landing = "Canal Claro";
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro ");
-            break;
-
-          case "claro-carrusel-title":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "claro-carrusel-title2":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "btn-redirect-header":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
-            break;
-
-          case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])("slider-pagination");
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
-  var menuClaroCanal = document.getElementById("navbar-prev-canal-claro");
-
-  if (menuClaroCanal) {
-    var File = function File(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
-        };
-
-        fileSrt.readAsDataURL(objFileInput.files[0]);
-      }
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-    }; // CARGAR IMG HEADER
-
-
-    // FILE HEADER
-    var FileHeader = function FileHeader(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + e.target.result + '" />');
-        };
-
-        fileSrt.readAsDataURL(objFileInput.files[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-      }
-    }; // IMG DE PROMO
-
-
-    // IMG DE PROMO CARGAR
-    var FilePromoImg = function FilePromoImg(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
-        };
-      }
-
-      fileSrt.readAsDataURL(objFileInput.files[0]);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    }; // VIDEO DE PROMO
-
-
-    // VIDEO DE PROMO CARGAR
-    var FilePromoVideo = function FilePromoVideo(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-        };
-
-        fileSrt.readAsDataURL(objFileInput.files[0]);
-      }
-    }; // IMG DE CARRUSEL 1
-
-
-    // IMG DE CARRUSEL 1 CARGAR
-    var FileCarrusel1Img = function FileCarrusel1Img(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-carrusel1-claro").html('<img class="img-back-modal img-carrusel" src="' + e.target.result + '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />');
-        };
-      }
-
-      fileSrt.readAsDataURL(objFileInput.files[0]);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-    }; //CLARO CANAL POST HEADER
-    // HEADER EDIT CANAL CLARO
-
-
-    // FILE HEADER
-    var FileHeaderCinema = function FileHeaderCinema(objFileInput) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", e.target.result);
-        };
-
-        fileSrt.readAsDataURL(objFileInput.files[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-      }
-    }; // HEADER EDIT CANAL CLARO
-
-
-    var viewImg = function viewImg(objFileInput, container) {
-      debugger;
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-
-      if (objFileInput.files[0]) {
-        fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr("src", e.target.result);
-        };
-
-        fileSrt.readAsDataURL(objFileInput.files[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-      }
     };
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-sis").click(function () {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var date = new Date();
+      var day = ("0" + date.getUTCDate()).slice(-2);
+      var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+      var year = date.getUTCFullYear();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".content-table").html(" ");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])(key, "".concat(year, "-").concat(month, "-").concat(day));
+    }); //calendario de sinopsis
 
-    var viewEdit = function viewEdit() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#camera").attr("src", "./images/lapiz-acti.svg");
-    };
+    var _calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
 
-    new easyXDM.Socket(landingCanalClaro);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove(); // $('#device-size').load('imports #device-size-prev', function () {
-      //     $('.a-prev-image').click(function () {
-      //         previewPage($(this));
-      //     });
-      // });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
+      slidesToShow: 11,
+      slidesToScroll: 11,
+      infinite: true,
+      dots: false,
+      centerMode: false,
+      arrows: true,
+      prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+      nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
 
-      new easyXDM.Socket({
-        remote: "".concat(baseURL, "claro-canal-prev.php"),
-        container: document.getElementById("navbar-prev-canal-claro"),
-        onMessage: function onMessage(message, origin) {
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-          this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    _calendarsinopsis.slick("unslick");
+
+    Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(_calendarsinopsis, "synopsis-calendar-item");
+    Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(_calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
+      alert("botando");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("canal-claro", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("concert-channel", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("claro-cinema", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    }); //Previsualizar el video que subió el usuario en el landing de concert channel
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file").change(function () {
+      if (this.files && this.files[0]) {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+
+        reader.onload = function (e) {
+          // The file reader gives us an ArrayBuffer:
+          var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+          var videoBlob = new Blob([new Uint8Array(buffer)], {
+            type: "video/mp4"
+          }); // The blob gives us a URL to the video file:
+
+          var url = window.URL.createObjectURL(videoBlob);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container video").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").append("\n                    <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                        <source src=\"".concat(url, "\" type=\"video/mp4\">\n                    </video>\n                    "));
+        };
+      }
+    }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+    }); //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current-slide-number").text(currentSlide.currentSlide + 1);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-prueba").click(function () {
+      getHeaderLanding();
+    });
+    var _LandingHomeCinema = {
+      remote: "".concat(_baseURL, "home-edi-cinema.php"),
+      container: document.getElementById("navbar-prev-home-cinema"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          switch (json.type) {
+            case "slider-pagination":
+              landingView.renderHomeBanner();
+              break;
+
+            case "cinema-home-header":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeaderCinema"])();
+              break;
+
+            case "cinema-home-slider":
+              var landing = "Claro Cinema";
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+              break;
+
+            default:
+              break;
+          }
         }
-      });
-    }); //Landing de claro canal
 
-    var navbarLandingCanalClaro = document.getElementById("navbar-prev-canal-claro");
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; ////////////
 
-    if (navbarLandingCanalClaro) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-      new easyXDM.Socket(landingCanalClaro);
+    var _NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
+
+    if (_NavbarHomeCinema) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema  iframe").remove();
+      new easyXDM.Socket(_LandingHomeCinema);
     }
 
-    var confPrevClaroCanal = {
-      remote: "".concat(baseURL, "claro-canal.php"),
-      container: document.getElementById("navbar-prev-canal-claro"),
+    var confPrevHomeCinema = {
+      remote: "".concat(_baseURL, "home.php"),
+      container: document.getElementById("navbar-prev-home-cinema"),
       onMessage: function onMessage(message, origin) {
         console.log(message);
         this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -77200,205 +75159,519 @@ function eventsGrilla() {
       }
     }; //previsualizar canal claro
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-cinema").click(function () {
       //Landing canal claro
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), confPrevHomeCinema);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
     });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-cinema").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), _LandingHomeCinema);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-    }); // BTN MODAL URL ENCABEZADO
+    }); /////////////
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-    }); // BTN MODAL URL PROMO
+    var LandingSinopsis = {
+      remote: "".concat(_baseURL, "sinopsis-edi.php"),
+      //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
+      container: document.getElementById("sinopsis-container"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
-    }); // BTN BANNER
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-claro").change(function () {
-      File(this);
-    }); // BTN BANNER
+          switch (json.type) {
+            case "slider-pagination":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              data.then(function (data) {
+                if (data.code == 200) {
+                  var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
+                  var index = 1;
+                  var slide = "";
+                  var image = "";
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-url").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("hide");
-      var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val() || "";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(url);
-    }); // FILE PARA BANNER
+                  while (true) {
+                    if (data.data["image_background_".concat(index)] !== undefined) {
+                      image = data.data["image_background_".concat(index)];
 
-    var fileSrt = new FileReader();
-    var fileReader = new FileReader();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
-      FileHeader(this);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-img").change(function () {
-      FilePromoImg(this);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-video").change(function () {
-      FilePromoVideo(this);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#carrusel1-claro-img").change(function () {
-      FileCarrusel1Img(this);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header").click(function () {
-      var landing = "Canal Claro";
-      var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
-      var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
-      var logo = document.getElementById("img-header").files[0] || "";
-      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
-      var data = new FormData();
-      data.append("landing", landing);
-      data.append("title1", title1);
-      data.append("title2", title2);
-      data.append("logo", logo);
-      data.append("link", link);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-canal-claro").click(function () {
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    }); // HEADER EDIT CANAL CLARO
-    // TITLE EDIT CANAL CLARO
+                      if (data.data["image_background_".concat(index)] == null) {
+                        image = "./images/synopsis/image-synopsis-carrusel.jpg";
+                      }
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-title").click(function () {
-      // TITULO
-      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
-      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
-      var landing = "Canal Claro";
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
-        value: value,
-        key: key,
-        landing: landing
-      }); // SUB TITULO
+                      slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
+                      index++;
+                    } else {
+                      break;
+                    }
+                  }
 
-      var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(); // let keySub = "block_3_subtitle";
+                  programminfSliderSynopsis.html(slide);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
 
-      var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
-        value: valueSub,
-        key: keySub,
-        landing: landing
+                  try {
+                    programminfSliderSynopsis.slick("unslick");
+                    programminfSliderSynopsis.slick({
+                      slidesToShow: 1,
+                      dots: true,
+                      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                      initialSlide: 0,
+                      infinite: false,
+                      customPaging: function customPaging(slider, i) {
+                        var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                      }
+                    });
+                  } catch (error) {
+                    programminfSliderSynopsis.slick({
+                      slidesToShow: 1,
+                      dots: true,
+                      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
+                      initialSlide: 0,
+                      infinite: false,
+                      customPaging: function customPaging(slider, i) {
+                        var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+                        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+                      }
+                    });
+                  }
+
+                  var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
+                  buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
+                  buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
+                    var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                    if (this.files && this.files[0]) {
+                      var reader = new FileReader();
+
+                      reader.onload = function (e) {
+                        currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                      };
+
+                      reader.readAsDataURL(this.files[0]);
+                      buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                      buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                    }
+                  });
+                }
+
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+              });
+              break;
+
+            case "synopsis-main-image":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              data.then(function (data) {
+                if (data.code == 200) {
+                  //Verificamos si tiene una imagen
+                  var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-synopsis").val(); //Button
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
+
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
+                }
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
+                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                if (this.files && this.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                  };
+
+                  reader.readAsDataURL(this.files[0]);
+                }
+              });
+              break;
+
+            case "synopsis-description-container":
+              programView.renderDescriptionSynopsis(json.id);
+              break;
+
+            case "synopsis-images-container":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
+              data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
+              var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
+              data.then(function (data) {
+                if (data.code == 200) {
+                  //Limpiar inputs
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-input").val();
+                  var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
+                  var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
+                  var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+                }
+
+                buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
+                buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
+              });
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
+                var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+                if (this.files && this.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                    currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+                  };
+
+                  reader.readAsDataURL(this.files[0]);
+                  buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
+                  buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
+                }
+              });
+              break;
+
+            case "synopsis-datails-container":
+              programView.renderDetailsSynopsis(json.id);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    };
+    var navbarPrevSINOPSIS = document.getElementById("sinopsis-container"); // let sinopsisLanding = $('.sinopsis-container');
+
+    if (navbarPrevSINOPSIS) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+      var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        programView.renderSynopsis(id, socketSynopsis);
       });
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    }); // TITLE EDIT CANAL CLARO
-    // HEADER EDIT CANAL CLARO
+    }
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-promo").click(function () {
-      var landing = "Canal Claro";
-      var img = document.getElementById("promo-claro-img").files[0] || "";
-      var video = document.getElementById("promo-claro-video").files[0] || "";
-      var key = "block_3_video_url";
-      var data = new FormData();
-      data.append("landing", landing);
-      data.append("img", img);
-      data.append("video", video);
-      data.append("key", key);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingClaro"])(data);
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    }); // HEADER EDIT CANAL CLARO
-    // CANAL CLARO
-    // CARGAR IMG HEADER
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon1").change(function () {
-      FileHeaderCinema(this);
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header-cinema").click(function () {
-      var landing = "Claro Cinema";
-      var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade").val() || "";
-      var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade-1").val() || "";
-      var logo = document.getElementById("image-icon1").files[0] || "";
-      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
-      var data = new FormData();
-      data.append("landing", landing);
-      data.append("title1", title1);
-      data.append("title2", title2);
-      data.append("logo", logo);
-      data.append("link", link);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
-    }); // HEADER EDIT CANAL CLARO
-    // TITLE EDIT CANAL CLARO
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titulos-cinema").click(function () {
-      // TITULO
-      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").val();
-      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").attr("key");
-      var landing = "Claro Cinema";
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
-        value: value,
-        key: key,
-        landing: landing
-      }); // SUB TITULO
-
-      var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").val();
-      var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").attr("key");
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
-        value: valueSub,
-        key: keySub,
-        landing: landing
-      }); // SUB TITULO 2
-
-      var valueSub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").val();
-      var keySub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").attr("key");
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
-        value: valueSub2,
-        key: keySub2,
-        landing: landing
+    if (navbarPrevSINOPSIS) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+      var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-concert-channel").on("click", ".edit-synopsis-pencil", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        programView.renderSynopsis(id, socketSynopsis);
       });
+    }
+
+    if (navbarPrevSINOPSIS) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+      var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-claro-cinema").on("click", ".edit-synopsis-pencil", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        programView.renderSynopsis(id, socketSynopsis);
+      });
+    } //Editar información de sinopsis
+
+
+    programView.editDetailsSynopsis(socketSynopsis);
+    programView.editAttributesSynopsis(socketSynopsis);
+    programView.renderPrevSynopsis();
+    programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
+    programView.editImagesSynopsis(socketSynopsis);
+    programView.editImageSynopsis(socketSynopsis);
+    programView.editImagesBanner(socketSynopsis);
+    var confLandingClaroCinema = {
+      remote: "".concat(_baseURL, "claro-cinema-edi.php"),
+      // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
+      container: document.getElementById("navbar-prev-claro-cinema"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+          switch (json.type) {
+            case "slider-pagination":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("slider-pagination");
+              break;
+
+            case "current-programming-cinema":
+              var _date = new Date();
+
+              var _day = ("0" + _date.getUTCDate()).slice(-2);
+
+              var _month = ("0" + (_date.getUTCMonth() + 1)).slice(-2);
+
+              var _year2 = _date.getUTCFullYear();
+
+              var _currentDate = "".concat(_year2, "-").concat(_month, "-").concat(_day); // getProgrammingLanding(currentDate, "claro-cinema");
+
+
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", "");
+              break;
+
+            case "header-landing-cinema":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("header-landing-cinema");
+              break;
+
+            case "title-cinema":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-cinema");
+              break;
+
+            case "promo-cinema":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("promo-cinema");
+              break;
+
+            case "title-carrusel1":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel1");
+              break;
+
+            case "carrusel1":
+              var landing = "Claro Cinema";
+              var id = 1;
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
+              break;
+
+            case "title-carrusel2":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("title-carrusel2");
+              break;
+
+            case "carrusel2":
+              landing = "Claro Cinema";
+              id = 2;
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background thumbnail-header-cinema");
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; //Landing de claro cinema
+
+    var navbarLandingClaroCinema = document.getElementById("navbar-prev-claro-cinema");
+
+    if (navbarLandingClaroCinema) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe").remove();
+      new easyXDM.Socket(confLandingClaroCinema);
+    }
+
+    var confPrevClaroCinema = {
+      remote: "".concat(_baseURL, "claro-cinema.php"),
+      container: document.getElementById("navbar-prev-claro-cinema"),
+      onMessage: function onMessage(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0];
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; //previsualizar concert channel
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-cinema").click(function () {
+      //Landing concert channel
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-cinema").click(function () {
       Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
-    }); // TITLE EDIT CANAL CLARO
-    // IMG DE PROMO
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    });
+    /* Concert channel */
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
-      FilePromoImg(this);
-    }); // IMG DE PROMO CARGAR
-    // function FilePromoImg(objFileInput) {
-    //     $("body").append(LOADER);
-    //     if (objFileInput.files[0]) {
-    //         fileSrt.onload = function (e) {
-    //             $("#cinema-promo-container").html(
-    //                 '<img src="' +
-    //                 e.target.result +
-    //                 '" alt="" class="d-flex w-100" id="promo-image-concert">'
-    //             );
-    //         };
-    //     }
-    //     fileSrt.readAsDataURL(objFileInput.files[0]);
-    //     $(".loader-view-container").remove();
-    // }
-    // VIDEO DE PROMO
+    var confLandingConcertChannel = {
+      remote: "".concat(_baseURL, "concert-channel-edi.php"),
+      //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
+      container: document.getElementById("navbar-prev-concert-channel"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
-      FilePromoVideo(this);
-    }); // VIDEO DE PROMO CARGAR
-    // function FilePromoVideo(objFileInput) {
-    //     $("body").append(LOADER);
-    //     if (objFileInput.files[0]) {
-    //         fileSrt.onload = function (e) {
-    //             $("#cinema-promo-container").html(
-    //                 '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
-    //                 e.target.result +
-    //                 '" type="video/mp4"> </video>'
-    //             );
-    //             $(".loader-view-container").remove();
-    //         };
-    //         fileSrt.readAsDataURL(objFileInput.files[0]);
-    //     }
-    // }
-    // HEADER EDIT CANAL CLARO
-    // HEADER EDIT CANAL CLARO
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                                ";
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-promo-cinema").click(function () {
+          switch (json.type) {
+            case "current-programming-concert":
+              var _date2 = new Date();
+
+              var _day2 = ("0" + _date2.getUTCDate()).slice(-2);
+
+              var _month2 = ("0" + (_date2.getUTCMonth() + 1)).slice(-2);
+
+              var _year3 = _date2.getUTCFullYear();
+
+              var _currentDate2 = "".concat(_year3, "-").concat(_month2, "-").concat(_day2);
+
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel", "");
+              break;
+
+            case "header-landing-concert":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelHeader"])();
+              break;
+
+            case "pencil-header":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlockHeader3"])();
+              break;
+
+            case "pencil-video":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getConcertChannelPromo"])();
+              break;
+
+            case "pencil-header1":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4One"])();
+              break;
+
+            case "header2":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4OTwo"])();
+              break;
+
+            case "pencil-carrusel1":
+              var landing = "Concert Channel";
+              var id = 1;
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+              break;
+
+            case "pencil-carrusel2":
+              landing = "Concert Channel";
+              id = 2;
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+              break;
+
+            case "slider-pagination":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannel"])("slider-pagination");
+              break;
+
+            case "pencil-header1":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
+              break;
+
+            case "header2":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-titles").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    };
+    var confPrevConcert = {
+      //remote: `${baseURL}concert-channel.php`,
+      remote: "http://localhost:8888/MaquetaCNetworks/concert-channel-prev.php",
+      container: document.getElementById("navbar-prev-concert-channel"),
+      onMessage: function onMessage(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; //previsualizar concert channel
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+      //Landing concert channel
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confPrevProgramacionConcert);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+    }); //previsualizar concert channel
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#admin-prev-concert").click(function () {
+      //Landing concert channel
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    }); //Botón de editar en grilla
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-concert").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-concert-channel", function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-concert-landing", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-concert-landing").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "concert-channel");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider2").on("click", ".programming-canal-landing", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-canal-landing").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramsLanding"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), "canal-claro");
+    }); //Pencil Chanel
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-canal-claro", function () {
+      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, "concert-channel");
+    }); //Pencil Canal
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
+      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, "canal-claro");
+    }); //Modal de link para botón
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("show.bs.modal", function () {
+      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val(link);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado-concert").on("hidden.bs.modal", function () {
+      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-button-concert-channel").val();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val(link);
+    }); //Concert channel promo
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-concert-promo-button").click(function () {
       var file = "";
 
       if (document.getElementById("video-promo-file-concert").files[0]) {
@@ -77409,151 +75682,765 @@ function eventsGrilla() {
         file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
       }
 
-      var landing = "Claro Cinema";
+      var landing = "Concert Channel";
       var data = new FormData();
-      var key = "block_3_video_url";
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
       data.append("promo", file);
       data.append("landing", landing);
       data.append("key", key);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingCinema"])(data);
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
-    }); // HOME
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLanding"])(data);
+    }); //Concert Channel Header
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#logo_home").change(function () {
-      viewImg(this, "#img-logo-home");
-      viewEdit();
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn_pruebas").click(function () {
-      // getContentHomeHeader('claro-home-header');
-      // let landing = 'Canal Claro';
-      // getCarruselHome(landing);
-      // landingView.renderHomeHeaderClaroCinema();
-      // getContentHomeCinema('claro-home-header');
-      // $('#modal-terminos-footer').modal('show');
-      // $('.modal-footer').modal('show');
-      landingView.renderContentFooter("footer-concert-channel");
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal_url").click(function () {
-      var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").click(function () {
-      var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-url").click(function () {
-      var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(url);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_all_modal").click(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("hide");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
-    }); // FOOTER
-    // FOOTER
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
-      var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
-      var logo = document.getElementById("logo_home").files[0] || "";
-      var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val() || "";
-      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val() || "";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
+      var landing = "Concert Channel";
+      var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-1").val() || "";
+      var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-title-2").val() || "";
+      var logo = document.getElementById("header-lading-concert-logo").files[0] || "";
+      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-header-concert-channel .modal-header-button-link").val();
       var data = new FormData();
       data.append("landing", landing);
-      console.log(landing);
+      data.append("title1", title1);
+      data.append("title2", title2);
       data.append("logo", logo);
-      data.append("subtitle", subtitle);
       data.append("link", link);
-      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderHome"])(data);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLanding"])(data);
+    }); //Edicion del header del home
 
-      if (landing == "Canal Claro") {
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), _LandingHomeClaro);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
+      var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
+      var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
+      var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
+      var data = new FormData();
+      data.append("video", videoimage);
+      data.append("title", title);
+      data.append("subtitle", subtitle);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHomeHeader"])(data);
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    }); //Previsualizar el video que subió el usuario en el landing de home
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
+      if (this.files && this.files[0]) {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+
+        reader.onload = function (e) {
+          // The file reader gives us an ArrayBuffer:
+          var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+          var videoBlob = new Blob([new Uint8Array(buffer)], {
+            type: "video/mp4"
+          }); // The blob gives us a URL to the video file:
+
+          var url = window.URL.createObjectURL(videoBlob);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").html("\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                <source src=\"".concat(url, "\" type=\"video/mp4\">\n\n                 </video>\n\n                "));
+        };
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titles-landing-concert").click(function () {
+      //Title
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-title").attr("key");
+      var landing = "Concert Channel";
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
+        value: value,
+        key: key,
+        landing: landing
+      }); //Subtitle
+
+      var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").val();
+      var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-concert-subtitle").attr("key");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLanding"])({
+        value: valueSub,
+        key: keySub,
+        landing: landing
+      });
+    });
+    var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").val("");
+
+      if (this.files && this.files[0]) {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+
+        reader.onload = function (e) {
+          // The file reader gives us an ArrayBuffer:
+          var buffer = e.target.result; // We have to convert the buffer to a blob:
+
+          var videoBlob = new Blob([new Uint8Array(buffer)], {
+            type: "video/mp4"
+          }); // The blob gives us a URL to the video file:
+
+          var url = window.URL.createObjectURL(videoBlob);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
+        };
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
+      videoPromoInput.val("");
+
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                <img src=\"".concat(e.target.result, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                "));
+        };
       }
 
-      if (landing == "Claro Cinema") {
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
-      }
+      reader.readAsDataURL(this.files[0]);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close-modal-promos-concert").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val("");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo-concert-button").on("click", function () {
+      var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+      var prevContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container");
+      var videoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
+      var imageInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert");
 
-      if (landing == "Concert Channel") {
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
-      }
-    }); // HOME
+      if (checkURL(link)) {
+        //Insertamos una nueva imagen con el link
+        prevContainer.html("\n            <img src=\"".concat(link, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n            ")); //Limpiamos los input
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".acepta_carrusel_home").click(function () {
-      var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+        videoInput.val("");
+        imageInput.val("");
+      } else {
+        prevContainer.html("\n                <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(link, "\" type=\"video/mp4\">\n                </video>\n                ")); //Limpiamos input
+
+        videoInput.val("");
+        imageInput.val("");
+      }
+    }); //Landing de concert channel
+
+    var navbarPrevConcertChannel = document.getElementById("navbar-prev-concert-channel");
+
+    if (navbarPrevConcertChannel) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe").remove();
+      new easyXDM.Socket(confLandingConcertChannel);
+    } //loader, antes de subir un archivo
+
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".upload-files").on("click", function () {
+      var loader = "\n        <div class=\"loader-view-container\" id=\"loader2\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
       setTimeout(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-        console.log("si lo borra");
-      }, 2000);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader2").remove();
+      }, 3000);
+    }); //Evento para cuando cerramos el selectpicker
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-slider").on("click", ".programming-item", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-item").removeClass("programming-item-active");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+      var date = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date");
+      var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("section_id");
+      var time = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".current").attr("schedule");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgramming"])(date, section, time);
     });
-    var LandingHome = {
-      remote: "".concat(baseURL, "home-edi.php"),
-      container: document.getElementById("navbar-prev-home-landing"),
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thermometer-schedule-list").on("click", ".unavailable", function () {
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapter_id);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".edit-image-carrusel", function () {
+      var image = this.files[0];
+      var name = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program");
+      var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("landing");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      console.log(landing, name, chapter_id);
+      var data = new FormData();
+      data.append("image-horizontal", image);
+      data.append("landing", landing);
+      data.append("chapter_id", chapter_id);
+      data.append("name", name);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-image-horizontal").on("change", function () {
+      var image = this.files[0];
+      var editProgramDataContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container");
+      var name = editProgramDataContainer.attr("program");
+      var landing = editProgramDataContainer.attr("section");
+      var chapter_id = editProgramDataContainer.attr("chapter_id");
+      var data = new FormData();
+      data.append("image-horizontal", image);
+      data.append("landing", landing);
+      data.append("chapter_id", chapter_id);
+      data.append("name", name);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImageProgramOfLanding"])(data);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").keydown(function (e) {
+      if (e.which === 13 && !e.shiftKey) {
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+        console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container-s").attr("chapter_id"));
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+        switch (key) {
+          case "in_home_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+              value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+              var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+
+              value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_home_expiration":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+              var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+              value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+              var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+              value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+              var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+              var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_expiration":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+              var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+              var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          default:
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            break;
+        } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-claro").on("change", ".input-image-program", function () {
+      var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+        };
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel-concert").on("change", ".input-image-program", function () {
+      var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+        };
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("change", ".input-image-program", function () {
+      var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+        };
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    }); //Editar datos de un programa de un carrusel en el landing
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
+      if (e.which === 13 && !e.shiftKey) {
+        debugger;
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+        var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+        var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+        switch (key) {
+          case "in_home_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+              var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+
+              value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+              var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+
+              value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_home_expiration":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+              var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+
+              value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
+              var _date13 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+
+              value = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_begin":
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+              var _date14 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+              var _date15 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+              value = "".concat(_date15[2], "-").concat(_date15[1], "-").concat(_date15[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          case "in_landing_expiration":
+            //Si se escribió la hora y la fecha
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+              var _date16 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date16[2], "-").concat(_date16[1], "-").concat(_date16[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+              var _date17 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+              value = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0], " 00:00:00");
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            }
+
+            break;
+
+          default:
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+            break;
+        } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+        //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-attribute-text").blur(function (e) {
+      console.log("blur");
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      switch (key) {
+        case "in_home_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+            value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
+            var _date18 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+
+            value = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_home_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+            var _date19 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date19[2], "-").concat(_date19[1], "-").concat(_date19[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+            var _date20 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_landing_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+            var _date21 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date21[2], "-").concat(_date21[1], "-").concat(_date21[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+            var _date22 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_landing_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+            var _date23 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+            var _date24 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        default:
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          break;
+      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+      //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("blur", ".edit-program-attribute-text", function (e) {
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      switch (key) {
+        case "in_home_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+            var _date25 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val();
+
+            value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+            chapter_id, key, value;
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
+            var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+
+            value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_home_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
+            var _date27 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date27[2], "-").concat(_date27[1], "-").concat(_date27[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val());
+            console.log(_date27);
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
+            var _date28 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
+
+            value = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_landing_begin":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+            var _date29 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date29[2], "-").concat(_date29[1], "-").concat(_date29[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+            var _date30 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+            value = "".concat(_date30[2], "-").concat(_date30[1], "-").concat(_date30[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        case "in_landing_expiration":
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+            var _date31 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date31[2], "-").concat(_date31[1], "-").concat(_date31[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val());
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+            var _date32 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+            value = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0], " 00:00:00");
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          }
+
+          break;
+
+        default:
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+          break;
+      } //let iframe = $("#navbar-prev-programacion iframe").attr("src");
+      //$("#navbar-prev-programacion iframe").attr("src", iframe);
+
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-switch").click(function () {
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-program-switch", function () {
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-home").click(function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-home", function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val("");
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-switch-landing").click(function () {
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
+      }
+    }); //
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".edit-switch-landing", function () {
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-program-data-container").attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").prop("checked", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", true);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").prop("checked", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", true);
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-1").attr("disabled", false);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing-section-2").attr("disabled", false);
+        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+      }
+    }); //loader, antes de subir un archivo
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modales").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+      setTimeout(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }, 3000);
+    }); //loader, antes de subir un archivo
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-modal-programming").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+      setTimeout(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }, 3000);
+    }); //loader, antes de subir un archivo
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel .modal-content").append("<div class=\"loader-view-container pointer-none\" >\n            <img src=\"./images/loader.gif\" class=\"loader\"/>\n        </div>");
+      setTimeout(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }, 3000);
+    }); //activacion de paginacion
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-logo").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-pagination").removeClass("a-text-bold-white");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(" .slider-pagination").addClass("a-text-bold-teal");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("slider-pagination-active") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").addClass("a-text-bold-white") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".slider-pagination").removeClass("a-text-bold-teal");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-logos-button").click(function () {
+      var data = new FormData(); //Canal claro
+
+      var logoUrlCanalClaro = document.getElementById("image-icon1").files[0] || "";
+      data.append("logoCanalClaro", logoUrlCanalClaro);
+      var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
+      data.append("urlCanalClaro", urlCanalClaro); //Concert channel
+
+      var logoUrlConcertChannel = document.getElementById("image-icon2").files[0] || "";
+      data.append("logoConcertChannel", logoUrlConcertChannel);
+      var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
+      data.append("urlConcertChannel", urlConertChannel); //Claro cinema
+
+      var logoUrlClaroCinema = document.getElementById("image-icon3").files[0] || "";
+      data.append("logoClaroCinema", logoUrlClaroCinema);
+      var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
+      data.append("urlClaroCinema", urlClaroCinema);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateLogosOfLanding"])(data);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-programming-button").click(function () {
+      /*
+      Arreglo para saber la posición de las imágenes que cargo el usuario
+      es decir, saber si subió la 1 y 3, o 2,3 etc.
+      */
+      var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+      var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image_programming").each(function () {
+        if (this.files[0]) {
+          imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+        }
+
+        imagesProgramming.push(this.files[0]);
+      });
+      var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+      for (var index = 0; index < imagesProgramming.length; index++) {
+        var file = "file" + (index + 1).toString();
+        file = file.toString();
+        data.append(file, imagesProgramming[index]);
+      } //Posiciones de las imágenes
+
+
+      data.append("positions", imagesPositions); //Hora inicio y fin
+
+      data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").val());
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["updateImagesOfProgrammingSlider"])(data);
+    }); //para agregar un slider más en cinema
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+      console.log("pato");
+      var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
+      //Agregamos un slide al slider de programación
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    }); //para agregar un slider más en carrusel2-concert
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+      var sliderIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel2-slider").slick("slickAdd", "\n        <!--otro slider-->\n<div>\n\n<section class=\"edit-program-image\">\n    <select\n        class=\".header-background1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n        title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n        data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n        name=\"thumbnail-header1\" key=\"title\">\n    </select>\n    <!--Imagen del programa--->\n    <div class=\"edit-thumbnail position-relative\">\n\n        <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n            class=\"input-image-program d-none \">\n        <label for=\"edit-image-horizontal\"\n            class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n            <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                alt=\"heart-icon\" />\n            <div class=\"edit-program-camera text-center\">\n                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                    class=\"edit-program-icon-image\" alt=\"camera\" />\n                <p\n                    class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                    472\n                    x 245px</p>\n            </div>\n\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n        </label>\n    </div>\n    <!--Nombre de la imagen-->\n    <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n</section>\n<!--Establecer en landing, home, schedule item date time-->\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Landing-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en landing\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center mb-3\">\n                    <input type=\"radio\"  id=\"yes-landing-carrusel\" value=\"3\"\n                        class=\"edit-switch-landing edit-landing-yes\" key=\"in_landing\" />\n                    <label for=\"yes-landing-carrusel\" id=\"siestado-landing\"\n                        class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-landing-carrusel\" value=\"0\"\n                        class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                         checked/>\n                    <label for=\"no-landing-carrusel\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <!--Inputs radio-->\n                <div class=\"d-flex align-items-center mb-3\">\n\n                    <span\n                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                        2</span>\n\n\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                            key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <!--Home-->\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Establecer\n                    en home\n                </p>\n                <!--Switch-->\n                <div class=\"d-flex align-items-center edit-switches-home-container\">\n                    <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                        class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                        checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                        key=\"in_home\" />\n                    <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container  backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n                <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n            <div class=\"edit-data-container h-100\">\n                <p\n                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                    Schedule Item Date time\n                </p>\n                <div>\n                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                    </p>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center\"\n                        style=\"margin-bottom: 81px\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                class=\"mr-3\">\n                        <span class=\"a-text-bold-warm mt-3\">\n\n                            <input key=\"\" type=\" text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                </div>\n                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                </p>\n                <div\n                    class=\"text-center edit-rectangle-small-container  backwhite d-flex align-content-center justify-content-center py-2\">\n                    <img\n                            src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                    <span class=\"a-text-bold-warm mt-3\"><input\n                            type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                            placeholder=\"00:00:00\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Sinopsis-->\n<section class=\" edit-program-data-container\">\n    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n    <!--Textarea-->\n    <textarea key=\"synopsis\"\n        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n        id=\"prog_sinopsis\"></textarea>\n        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n        <div class=\"clearfix\"></div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program episode season-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    season\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"season\"\n                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"00\">\n                </div>\n            </div>\n        </div>\n        <!--Program episode number-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                    episode\n                    number\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                    <input type=\"text\" key=\"program_episode_number\"\n                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                        placeholder=\"000\">\n                </div>\n            </div>\n        </div>\n        <!--Program year produced-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                    produced\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"program_year_produced\"\n                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                        placeholder=\"YYYY\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Program title alternate-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                    alternate\n                </p>\n                <div class=\"mb-3 edit-rectangle-container p-3\">\n                    <input type=\"text\" key=\"subtitle\"\n                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                        placeholder=\"Program Title Alternate\">\n                </div>\n            </div>\n        </div>\n        <!--Program genre list-->\n        <div class=\"col-4 edit-program-data-container position-relative\"\n            id=\"edit-genre-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                    list\n                </p>\n                <div class=\"mb-3 edit-rectangle-container \">\n                    <select\n                        class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                        id=\"edit-program-genres\" title=\"Genere list\" multiple\n                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                    </select>\n                </div>\n            </div>\n        </div>\n        <!---->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                    rating\n                    code\n                </p>\n                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <input type=\"text\" key=\"rating\"\n                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                        placeholder=\"PG-00\">\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-3\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                    date\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                    \">Fecha\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"day\"\n                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"DD:MM:YY\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                    item log\n                    time (gmt)\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"programing\"\n                            class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div\n                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                    schedule item duration\n                </p>\n                <div>\n                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                    </p>\n                    <div\n                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                        <input type=\"text\" key=\"duration\"\n                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                            placeholder=\"00:00:00\">\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<section class=\"mb-5\">\n    <div class=\"row\">\n        <!--Schedule item log date-->\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    subbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                        key=\"subbed\" />\n                    <label for=\"yes-subbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                        key=\"subbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                    version\n                    dubbed\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                        key=\"dubbed\" />\n                    <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                        key=\"dubbed\" />\n                    <label for=\"no-dubbed\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-4 edit-program-data-container\">\n            <div class=\"edit-data-container d-flex justify-content-between\">\n                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                    available\n                </p>\n                <div class=\"d-flex\">\n                    <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                        class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                        key=\"audio5\" />\n                    <label for=\"yes-audio5\" id=\"siestado-landing\"\n                        class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                        S\xED</label>\n                    <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                        class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                        key=\"audio5\" />\n                    <label for=\"no-audio5\" id=\"noestado-landing\"\n                        class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                        No</label>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</section>\n<div class=\" d-flex justify-content-center\">\n<section class=\"text-center mb-3 d-flex justify-content-center\">\n<button\n    class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n    data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n</section>\n\n</div>\n</div>\n\n       <!--fin del otro slider-->\n");
+    }); //para agregar un slider más en carrusel1-concert
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
+      var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
+      //Agregamos un slide al slider de programación
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".carrusel1-slider").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n\n                <section class=\"edit-program-image\">\n                <select\n                    class=\"thumbnail-header1 thumbnail-header thumbnail-header-claro w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                    title=\"T\xCDTULO DEL PROGRAMA\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                    data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                    name=\"thumbnail-header1\" key=\"title\">\n                </select>\n                <!--Imagen del programa--->\n                <div class=\"edit-thumbnail position-relative\">\n\n                    <input type=\"file\" name=\"image-horizontal\" id=\"edit-image-horizontal\"\n                        class=\"input-image-program d-none \">\n                    <label for=\"edit-image-horizontal\"\n                        class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                        <img src=\"{{ asset('/images/heart-icon.svg') }}\" class=\"thumbnail-heart-icon\"\n                            alt=\"heart-icon\" />\n                        <div class=\"edit-program-camera text-center\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\"\n                                class=\"edit-program-icon-image\" alt=\"camera\" />\n                            <p\n                                class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                472\n                                x 245px</p>\n                        </div>\n\n                        <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" alt=\"\"\n                            class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n                    </label>\n                </div>\n                <!--Nombre de la imagen-->\n                <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n            </section>\n            <!--Establecer en landing, home, schedule item date time-->\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Landing-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en landing\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center mb-3\">\n                                <input type=\"radio\"  id=\"yes-landing-carrusel1\" value=\"3\"\n                                    class=\"edit-switch-landing edit-landing-yes\"  />\n                                <label for=\"yes-landing-carrusel1\" id=\"siestado-landing\"\n                                    class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\" id=\"no-landing-carrusel1\" value=\"0\"\n                                    class=\"edit-switch-landing switch-table-edit edit-landing-no\"\n                                    checked />\n                                <label for=\"no-landing-carrusel1\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <!--Inputs radio-->\n                            <div class=\"d-flex align-items-center mb-3\">\n\n                                <span\n                                    class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                    1</span>\n\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                            placeholder=\"00-00-0000\" key=\"in_landing_begin\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                            key=\"in_landing_expiration\" placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                                        key=\"in_landing_begin\" placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                        key=\"in_landing_expiration\" placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <!--Home-->\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Establecer\n                                en home\n                            </p>\n                            <!--Switch-->\n                            <div class=\"d-flex align-items-center edit-switches-home-container\">\n                                <input type=\"radio\"  id=\"edit-in-home-yes\" value=\"1\"\n                                    class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-yes\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"edit-in-home-no\" value=\"0\"\n                                    checked class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                                    key=\"in_home\" />\n                                <label for=\"edit-in-home-no\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                            type=\"text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\" /></span>\n                                </div>\n                                <div class=\"mb-4 text-center edit-rectangle-small-container  backwhite py-3\">\n                                    <span class=\"a-text-bold-warm\">Fin:\n                                        <input type=\"text\" key=\"in_home_expiration\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                            <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                                <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container edit-data-container-large\">\n                        <div class=\"edit-data-container h-100\">\n                            <p\n                                class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                Schedule Item Date time\n                            </p>\n                            <div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha\n                                </p>\n                                <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center\"\n                                    style=\"margin-bottom: 81px\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\"\n                                            class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\">\n\n                                        <input key=\"\" type=\" text\"\n                                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                            placeholder=\"00-00-0000\"></span>\n                                </div>\n                            </div>\n                            <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">Hora\n                            </p>\n                            <div\n                                class=\"text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2\">\n                                <img\n                                        src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\"><input\n                                        type=\"text\"\n                                        class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                        placeholder=\"00:00:00\"></span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <!--Sinopsis-->\n            <section class=\" edit-program-data-container\">\n                <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                <!--Textarea-->\n                <textarea key=\"synopsis\"\n                    class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                    id=\"prog_sinopsis\"></textarea>\n                    <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                    <div class=\"clearfix\"></div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program episode season-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                season\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3\">\n                                <input type=\"text\" key=\"season\"\n                                    class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"00\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program episode number-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                episode\n                                number\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite  py-3\">\n                                <input type=\"text\" key=\"program_episode_number\"\n                                    class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                    placeholder=\"000\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program year produced-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year\n                                produced\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <input type=\"text\" key=\"program_year_produced\"\n                                    class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                    placeholder=\"YYYY\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Program title alternate-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title\n                                alternate\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container p-3\">\n                                <input type=\"text\" key=\"subtitle\"\n                                    class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                    placeholder=\"Program Title Alternate\">\n                            </div>\n                        </div>\n                    </div>\n                    <!--Program genre list-->\n                    <div class=\"col-4 edit-program-data-container position-relative\"\n                        id=\"edit-genre-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre\n                                list\n                            </p>\n                            <div class=\"mb-3 edit-rectangle-container \">\n                                <select\n                                    class=\"list1 mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                    id=\"edit-program-genres\" title=\"Genere list\" multiple\n                                    data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                    data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\">\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                    <!---->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                rating\n                                code\n                            </p>\n                            <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                <input type=\"text\" key=\"rating\"\n                                    class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                    placeholder=\"PG-00\">\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-3\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log\n                                date\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                \">Fecha\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"day\"\n                                        class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                            <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                item log\n                                time (gmt)\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container  backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"programing\"\n                                        class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div\n                            class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                            <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                schedule item duration\n                            </p>\n                            <div>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                </p>\n                                <div\n                                    class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input type=\"text\" key=\"duration\"\n                                        class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <section class=\"mb-5\">\n                <div class=\"row\">\n                    <!--Schedule item log date-->\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                subbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-subbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-subbed-yes\"\n                                    key=\"subbed\" />\n                                <label for=\"yes-subbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-subbed-no\"\n                                    key=\"subbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                version\n                                dubbed\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-dubbed\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-dubbed-yes\"\n                                    key=\"dubbed\" />\n                                <label for=\"yes-dubbed\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-dubbed\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-dubbed-no\"\n                                    key=\"dubbed\" />\n                                <label for=\"no-dubbed\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                    <div class=\"col-4 edit-program-data-container\">\n                        <div class=\"edit-data-container d-flex justify-content-between\">\n                            <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1<br>\n                                available\n                            </p>\n                            <div class=\"d-flex\">\n                                <input type=\"radio\"  id=\"yes-audio5\" value=\"1\"\n                                    class=\"edit-program-switch switch-landing edit-audio5-yes\"\n                                    key=\"audio5\" />\n                                <label for=\"yes-audio5\" id=\"siestado-landing\"\n                                    class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                                    S\xED</label>\n                                <input type=\"radio\"  id=\"no-audio5\" value=\"0\" checked\n                                    class=\"edit-program-switch switch-landing switch-table-edit edit-audio5-no\"\n                                    key=\"audio5\" />\n                                <label for=\"no-audio5\" id=\"noestado-landing\"\n                                    class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                                    No</label>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </section>\n            <div class=\" d-flex justify-content-center\">\n        <section class=\"text-center mb-3 d-flex justify-content-center\">\n            <button\n                class=\"d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n        </section>\n\n    </div>\n\n            </div>\n            ");
+    }); //Declaramos un contador para poder diferenciar los label de los slides que se van creando
+    //Añadimos un slide al slider de imágenes de programación
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-banner-image").click(function () {
+      //Cada vez que se haga click, el contador incrementa
+      var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    });
+    /*function preloader() {
+    console.log("si entra al metodo desde submenu");
+    document.getElementById("loader-view").style.display = "none";
+    document.getElementById("navbar-prev-programacion").style.display =
+        "block";
+    }
+    window.onload = preloader;*/
+    //Landing de programación de claro cinema
+
+    var confProgramacionClaroCinema = {
+      remote: "".concat(_baseURL, "programacion-edi-cinema.php"),
+      container: document.getElementById("navbar-prev-programacion-cinema"),
       onMessage: function onMessage(message, origin) {
         var json = JSON.parse(message);
 
         if (_typeof(json) == "object") {
-          var loader = "\n                    <div class=\"loader-view-container\" id=\"loader1\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
 
           switch (json.type) {
-            case "slider-pagination":
-              landingView.renderHomeBanner();
+            case "program":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
               break;
 
-            case "home-logos":
+            case "slider-pagination":
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
               setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
               }, 3000);
               break;
 
-            case "home-carrousel-main":
-              var date = new Date();
-              var day = ("0" + date.getUTCDate()).slice(-2);
-              var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-              var _year3 = date.getUTCFullYear();
-
-              var _currentDate3 = "".concat(_year3, "-").concat(month, "-").concat(day);
-
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
+            case "synopsis":
+              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
               break;
 
-            case "claro-home-header":
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
-              break;
-
-            case "claro-home-slider":
-              var landingclaro = "Canal Claro";
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingclaro);
-              break;
-
-            case "channel-home-header":
-              landingView.renderHomeHeaderConcertChannel();
-              break;
-
-            case "channel-home-slider":
-              var landingconcert = "Concert Channel";
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingconcert);
-              break;
-
-            case "cinema-home-header":
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeaderCinema"])();
-              break;
-
-            case "cinema-home-slider":
-              var landingcinema = "Claro Cinema";
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingcinema);
+            case "menu-logos":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
               break;
 
             default:
@@ -77565,141 +76452,16 @@ function eventsGrilla() {
         this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
       }
     };
-    var navbarHome = document.getElementById("navbar-prev-home-landing");
+    var navbarPrograContainerCinema = document.getElementById("navbar-prev-programacion-cinema");
 
-    if (navbarHome) {
-      new easyXDM.Socket(LandingHome);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe").remove();
-        new easyXDM.Socket({
-          remote: "".concat(baseURL, "home.php"),
-          container: document.getElementById("navbar-prev-home-landing"),
-          onMessage: function onMessage(message, origin) {
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-          }
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-      });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
-        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe").remove();
-        new easyXDM.Socket(LandingHome);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-      });
-    }
-    /* MVC */
-
-
-    var LandingHomeConcert = {
-      //remote: `${baseURL}home-edi-concert.php`,
-      remote: "http://localhost:8888/MaquetaCNetworks/home-edi-concert.php",
-      container: document.getElementById("navbar-prev-home-concert"),
-      onMessage: function onMessage(message, origin) {
-        var json = JSON.parse(message);
-
-        if (_typeof(json) == "object") {
-          switch (json.type) {
-            case "slider-pagination":
-              landingView.renderHomeBanner();
-              break;
-
-            case "home-claro-carrousel-main":
-              var date = new Date();
-              var day = ("0" + date.getUTCDate()).slice(-2);
-              var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-              var _year4 = date.getUTCFullYear();
-
-              var _currentDate4 = "".concat(_year4, "-").concat(month, "-").concat(day); // getProgrammingLanding(currentDate, "concert channel", 'home');
-
-
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "concert-channel");
-              break;
-
-            case "concert-home-header":
-              landingView.renderHomeHeaderConcertChannel();
-              break;
-
-            case "concert-home-slider":
-              var landing = "Concert Channel";
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-              break;
-
-            default:
-              break;
-          }
-        }
-
-        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      }
-    };
-    var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
-
-    if (NavbarHomeConcert) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
-      new easyXDM.Socket(LandingHomeConcert);
+    if (navbarPrograContainerCinema) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe").remove();
+      new easyXDM.Socket(confProgramacionClaroCinema);
     }
 
-    var _LandingHomeClaro = {
-      remote: "".concat(baseURL, "home-edi-claro.php"),
-      // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
-      container: document.getElementById("navbar-prev-home"),
-      onMessage: function onMessage(message, origin) {
-        var json = JSON.parse(message);
-
-        if (_typeof(json) == "object") {
-          switch (json.type) {
-            case "slider-pagination":
-              landingView.renderHomeBanner();
-              break;
-
-            case "home-claro-carrousel-main":
-              var date = new Date();
-              var day = ("0" + date.getUTCDate()).slice(-2);
-              var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-
-              var _year5 = date.getUTCFullYear();
-
-              var _currentDate5 = "".concat(_year5, "-").concat(month, "-").concat(day);
-
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "canal-claro");
-              break;
-
-            case "claro-home-header":
-              landingView.renderHomeHeaderCanalClaro();
-              break;
-
-            case "claro-home-slider":
-              var landing = "Canal Claro";
-              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
-              break;
-
-            default:
-              break;
-          }
-        }
-
-        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      }
-    };
-    var navbarHomeCanalClaro = document.getElementById("navbar-prev-home");
-
-    if (navbarHomeCanalClaro) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-      new easyXDM.Socket(_LandingHomeClaro);
-    }
-
-    var confHomeClaroCanal = {
-      remote: "".concat(baseURL, "home.php"),
-      container: document.getElementById("navbar-prev-home"),
+    var confPrevProgramacionCinema = {
+      remote: "".concat(_baseURL, "programacion-cinema.php"),
+      container: document.getElementById("navbar-prev-programacion-cinema"),
       onMessage: function onMessage(message, origin) {
         console.log(message);
         this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -77708,32 +76470,1698 @@ function eventsGrilla() {
       }
     }; //previsualizar canal claro
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-cinema").click(function () {
       //Landing canal claro
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), confHomeClaroCanal);
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confPrevProgramacionCinema);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
     });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), _LandingHomeClaro);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-cinema").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-    });
-    /* MVC */
+    }); /////////////
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
-      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5 mx-auto\">\n        <div class=\"d-flex\">\n        <!--dots-->\n        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n        <!--add slide-->\n        <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n    </div>\n  <!--  <div class=\"shadowblack position-absolute\">\n        <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n        </div>-->\n    <div class=\"programming-slider-home mx-auto \">\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n\n    </div>\n    </div>\n\n        </div>\n        </div>\n        <div class=\"d-flex mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n<div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n\n        </div>\n</div>\n</div>\n</div>\n</div>\n\n\n        "); // new easyXDM.Socket(confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-claro-cinema").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+    }); //Landing de programacion de concert channel
+
+    var confProgramacionConcertChannel = {
+      remote: "".concat(_baseURL, "programacion-edi-concert.php"),
+      container: document.getElementById("navbar-prev-programacion-concert"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+          switch (json.type) {
+            case "program":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+              break;
+
+            case "slider-pagination":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+              }, 3000);
+              break;
+
+            case "synopsis":
+              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+              break;
+
+            case "menu-logos":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; ////////////
+
+    var navbarPrograContainerConcert = document.getElementById("navbar-prev-programacion-concert");
+
+    if (navbarPrograContainerConcert) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe").remove();
+      new easyXDM.Socket(confProgramacionConcertChannel);
+    }
+
+    var confPrevProgramacionConcert = {
+      remote: "".concat(_baseURL, "programacion-concert.php"),
+      container: document.getElementById("navbar-prev-programacion-concert"),
+      onMessage: function onMessage(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0];
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; //previsualizar canal claro
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+      //Landing canal claro
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confPrevProgramacionConcert);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
     });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").click(function () {
-      //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n\n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n\n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n\n\n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>"); // new easyXDM.Socket(confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    }); /////////////
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-concert-channel").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
+    }); //Landing de programación de claro canal
+    //Canal claro
+
+    var confIframe = {
+      remote: "".concat(_baseURL, "programacion-edi.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+
+          switch (json.type) {
+            case "program":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+              break;
+
+            case "slider-pagination":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+              }, 3000);
+              break;
+
+            case "synopsis":
+              document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+              window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+              break;
+
+            case "menu-logos":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+              setTimeout(function () {
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    };
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    }); ////////////
+
+    var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+
+    if (navbarPrograContainer) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      new easyXDM.Socket(confIframe);
+    }
+
+    var confPrevProgramacion = {
+      remote: "".concat(_baseURL, "programacion.php"),
+      container: document.getElementById("navbar-prev-programacion"),
+      onMessage: function onMessage(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0];
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    };
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
+      var canalClaro = "#navbar-prev-canal-claro";
+      var programacion = "#navbar-prev-programacion";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
+
+      switch ("#" + id) {
+        case programacion:
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
+          break;
+
+        case canalClaro:
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+          break;
+      }
     });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    }); // $("#edit").click(function () {
+    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
+    /////////////
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+      var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+        };
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select-carrusel").selectpicker({
+      filter: true,
+      multipleSeparator: ", "
+    });
+    var imageTriangle = "\n    <img src=\"./images/triangle.svg\" alt=\"\" class=\"position-absolute cursor-pointer dropimg\">\n";
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-image .bootstrap-select").append(imageTriangle); //selectpicker para el campo de género en un programa
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+      filter: true,
+      multipleSeparator: ", "
+    });
+    /*
+    Obtener el valor de las cateogrías seleccionadas y colocarlas
+    en un string
+    */
+
+    var genres = "";
+    var selectpicker = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker"); //Verificamos si el usuario ha seleccionado un género o categoría
+
+    selectpicker.on("change", function () {
+      //Obtenemos los valores del selectpicker
+      var selected = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Obtenemos el número de valores que hemos obtenido del arreglo
+
+      var selectedLength = selected.length;
+      genres = "";
+
+      for (var index = 0; index < selectedLength; index++) {
+        //Si es la primera palabra o la última, no agregamos una coma
+        if (selectedLength - 1 == index) {
+          genres += "".concat(selected[index]);
+        } else {
+          genres += "".concat(selected[index], ",");
+        }
+      }
+    }); //Evento para cuando cerramos el selectpicker
+
+    selectpicker.on("hide.bs.select", function () {
+      //Seleccionamos la columna en la que estamos
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Obtenemos el cahpter_id de la columna
+
+      var chapterId = currentColumn.attr("chapter_id"); //Obtenemos la key
+
+      var key = currentColumn.attr("key"); //Obtenemos los géneros que pudo haber seleccionado el usuario
+
+      var keyValue = genres; //Hacemos la petición
+
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").click(function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("btn-landing").addClass("btn-grilla");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass("a-text-semi-brown-two").addClass("a-text-MBlack");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("btn-landing").removeClass("btn-grilla");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+      }
+    }); //Al momento de dar click en el boton de grilla
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-grilla]").click(function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("btn-landing") & jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("a-text-semi-brown-two")) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("btn-grilla").removeClass("btn-landing");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("a-text-MBlack") //text-grilla
+        .removeClass("a-text-semi-brown-two"); //text-landing
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("btn-landing").removeClass("btn-grilla");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("button[id=btn-landing]").addClass("a-text-semi-brown-two").removeClass("a-text-MBlack");
+      }
+    }); //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
+
+    /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-landing").click(function () {
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+      var landingOptionsChecks = currentColumn.children(".establecer-options"); //Si el switch de landing está activo, permitimos elegir la sección en donde se quiere publicar
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
+        landingOptionsChecks.css("pointer-events", "all");
+        currentColumn.next().children(".programar-content").css("pointer-events", "all");
+      } else {
+        landingOptionsChecks.css("pointer-events", "none"); //Hacemos que no se pueda escribir en los campos siguientes
+
+        currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
+
+        currentColumn.next().find("input").val("");
+        currentColumn.children(".establecer-options").find("input").prop("checked", false);
+      }
+    });
+    /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-home").click(function () {
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val() == 1) {
+        currentColumn.next().children(".programar-content").css("pointer-events", "all");
+      } else {
+        //Hacemos que no se pueda escribir en los campos siguientes
+        currentColumn.next().children(".programar-content").css("pointer-events", "none"); //"Vaciar" inputs al momento de que el usuario da click en "No"
+
+        currentColumn.next().find("input").val("");
+        currentColumn.children(".establecer-options").find("input").prop("checked", false);
+      }
+    }); //Mostrar la sinópsis completa en modal
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".see-more").click(function () {
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sinopsis actual del programa sin tener el texto truncado con "..."
+
+      var synopsis = currentColumn.attr("synopsis");
+      var chapterId = currentColumn.attr("chapter_id"); //Id del programa actual
+
+      var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).prev().attr("id");
+      var key = currentColumn.attr("key"); //Creamos los atributos en el botón del modal de sinopsis para saber qué programa estamos editando
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").attr({
+        chapter_id: chapterId,
+        key: key,
+        synopsis: synopsis,
+        program: program
+      }); //Pasamos al textarea del modal la sinopsis actual del programa
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-textarea").val(synopsis); //Ponemos el título del programa en el header del modal
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-program-title").text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program_title")); //Hacemos aparecer el modal
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("show");
+    }); //botón de modal de edición de de sinopsis
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-synopsis-button").click(function () {
+      var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Obtenemos la sinopsis nueva del textarea del modal
+
+      var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-content").val(); //Programa del cual se está actualizando al sinopsis
+
+      var program = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("program"); //Cambiamos el atributo "sinopsis" en el programa de la grilla
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).closest(".contenedor-columna").attr("synopsis", keyValue); //Truncamos el texto en grilla con tres puntos...
+
+      if (keyValue.length > 200) {
+        var text = keyValue.substr(0, 200) + "...";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(text);
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + program).text(keyValue);
+      } //Hacemos la petición para cambiar la sinopsis
+
+
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue); //Ocultamos el modal
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis").modal("hide");
+    }); //Removemos las instancias de litepicker que sobran
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove(); //Sacamos la fecha actual para ponerla en el calendario
+
+    var currentDate = new Date(); //Obtenemos el año
+
+    var calendarYear = currentDate.getFullYear(); //obtenemos el mes
+
+    var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
+
+    var calendarDay = currentDate.getDate();
+    var dateStartInput = document.getElementById("date-start-input");
+
+    if (dateStartInput) {
+      //Iniciamos el calendario Litepicker
+      var picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
+        element: document.getElementById("date-start-input"),
+        format: "YYYY-MM-DD",
+        delimiter: ",",
+        minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+        //Al aparecer, aplicamos estilos parecidos a los de un modal
+        onShow: function onShow() {
+          picker.picker.style.left = "50%";
+          picker.picker.style.top = "50%";
+          picker.picker.style.transform = "translate(-50%, -50%)";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+        },
+        //Evento que utilizamos cada vez que el calendario se oculta
+        onHide: function onHide() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+        },
+        onSelect: function onSelect() {
+          //Separamos las dos fechas
+          var fullDate = document.getElementById("date-start-input").value.split(","); //  Fecha inicial del datepicker
+
+          var startDate = fullDate[0]; //Separamos la primer fecha
+
+          var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+          var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+          var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
+          var endDate = fullDate[1];
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["filterDates"])(startDate, endDate, landing);
+          var endDateSplit = endDate.split("-");
+          var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+        },
+        numberOfMonths: 1,
+        numberOfColumns: 1,
+        singleMode: false
+      });
+    }
+
+    var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
+
+    if (programmingCarruselPicker) {
+      //Iniciamos el calendario Litepicker
+      var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
+        element: programmingCarruselPicker,
+        format: "YYYY-MM-DD",
+        delimiter: ",",
+        minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+        //Al aparecer, aplicamos estilos parecidos a los de un modal
+        onShow: function onShow() {
+          _picker.picker.style.left = "50%";
+          _picker.picker.style.top = "50%";
+          _picker.picker.style.transform = "translate(-50%, -50%)";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+        },
+        //Evento que utilizamos cada vez que el calendario se oculta
+        onHide: function onHide() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+        },
+        onSelect: function onSelect() {
+          //Separamos las dos fechas
+          var fullDate = document.getElementById("programming-carrusel-calendar").value.split(","); //  Fecha inicial del datepicker
+
+          var startDate = fullDate[0]; //Separamos la primer fecha
+
+          var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
+
+          var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
+
+          var endDate = fullDate[1];
+          var endDateSplit = endDate.split("-");
+          var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+        },
+        numberOfMonths: 1,
+        numberOfColumns: 1,
+        singleMode: false
+      });
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals").click(function () {
+      console.log("cerrar");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide"); // $(".modal-delete-user").modal("hide");
+      //$(".modal-edit-icons").modal("hide");
+      // $(".modal-edit-program").modal("hide");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".close-modal-concert").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    }); //cerrar los dos modales
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-claro").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_modals-sinopsis").click(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-image-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-sinopsis").modal("hide");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
+    });
+    /* Al dar "enter" cancelamos el salto de línea,
+    conseguimos el valor del campo de la grilla
+    y hacemos la petición
+    */
+
+    var editableAttribute = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".editable-attribute");
+    editableAttribute.keydown(function (e) {
+      //Si la tecla que presionamos fue "Enter"
+      if (e.which === 13 && !e.shiftKey) {
+        var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("key");
+        var keyValue = "";
+        var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna").attr("chapter_id");
+
+        switch (key) {
+          //Verificamos si lo que estamos editando es Schedule Item Long Date
+          case "day":
+            //Seperamos la fecha
+            var _date33 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+
+
+            keyValue = "".concat(_date33[2], "-").concat(_date33[1], "-").concat(_date33[0]);
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+            break;
+          //Verificamos si el campo que estamos editando es el año de producción
+
+          case "program_year_produced":
+            //Convertimos el año a entero
+            keyValue = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()); //Hacemos la petición
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+            break;
+          //Verificamos si el campo editable, es el de programar publicación para Landing
+
+          case "in_landing_publicacion":
+            var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+            var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
+
+            if (schedule == "in_landing_begin") {
+              //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+              //Obteemos la fecha y la dividimos
+              var _date34 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+
+
+              var _day3 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]);
+
+              var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+              //En caso de tener ambos valores, hacemos al petición
+
+              if (_day3 != "" && hours != "") {
+                keyValue = "".concat(_day3, " ").concat(hours);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              } //En caso de solo tener el día, mandamos la hora en 0
+              else if (_day3 != "" && hours == "") {
+                  hours = "00:00:00";
+                  keyValue = "".concat(_day3, " ").concat(hours);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+                }
+            } //Verificamos si es la fecha fin
+            else if (schedule == "in_landing_expiration") {
+                var _date35 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+
+
+                var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+
+
+                var _day4 = "".concat(_date35[2], "-").concat(_date35[1], "-").concat(_date35[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+                if (_date35 != "" && _hours != "") {
+                  var _day5 = "".concat(_date35[2], "-").concat(_date35[1], "-").concat(_date35[0]);
+
+                  keyValue = "".concat(_day5, " ").concat(_hours);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+                } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+                else if (_date35 != "" && _hours == "") {
+                    _hours = "00:00:00";
+                    keyValue = "".concat(_day4, " ").concat(_hours);
+                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+                  }
+              }
+
+            break;
+
+          case "in_home_publicacion":
+            var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key"); //Verificamos si es la fecha de inicio del home
+
+            if (scheduleHome == "in_home_begin") {
+              //Obtenemos la fecha
+              var _date36 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+
+              var _day6 = "".concat(_date36[2], "-").concat(_date36[1], "-").concat(_date36[0]); //Obtenemos la hora
+
+
+              var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+              if (_date36 != "" && _hours2 != "") {
+                keyValue = "".concat(_day6, " ").concat(_hours2);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              } //En caso de que la hora venga vacía, la igualamos a 0
+              else if (_date36 != "" && _hours2 == "") {
+                  _hours2 = "00:00:00";
+                  keyValue = "".concat(_day6, " ").concat(_hours2);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+                }
+            } else if (scheduleHome == "in_home_expiration") {
+              //Obtenemos la fecha
+              var _date37 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+
+              var _day7 = "".concat(_date37[2], "-").concat(_date37[1], "-").concat(_date37[0]); //Obtenemos la hora
+
+
+              var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+              if (_date37 != "" && _hours3 != "") {
+                keyValue = "".concat(_day7, " ").concat(_hours3);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              } //En caso de que la hora venga vacía, la igualamos a 0
+              else if (_date37 != "" && _hours3 == "") {
+                  _hours3 = "00:00:00";
+                  keyValue = "".concat(_day7, " ").concat(_hours3);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+                }
+            }
+
+            break;
+
+          default:
+            //Si no es ninguno de los casos, sacamos el valor del campo directamente
+            keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //Hacemos la petición
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+            break;
+        } //Quitamos el comportamiento por defecto
+
+
+        e.preventDefault(); //Después de dar click, "sacamos" al usuario del input
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
+        return false;
+      }
+    }); //Se ejecuta cuando editamos un campo y damos click "fuera" del input
+
+    editableAttribute.blur(function () {
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna");
+      var key = currentColumn.attr("key");
+      var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var chapterId = currentColumn.attr("chapter_id"); //Verificamos el campo que estamos editando
+
+      switch (key) {
+        //Verificamos si lo que estamos editando es Schedule Item Long Date
+        case "day":
+          //Seperamos la fecha
+          var _date38 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+
+
+          keyValue = "".concat(_date38[2], "-").concat(_date38[1], "-").concat(_date38[0]);
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+          break;
+        //En caso de que el campo que estemos editando, sea el de programar publicación para landing
+
+        case "in_landing_publicacion":
+          var schedule = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+          var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio
+
+          if (schedule == "in_landing_begin") {
+            //Obtenemos el div padre para saber qué horario y fecha andamos modificando
+            //Obteemos la fecha y la dividimos
+            var _date39 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+
+
+            var _day8 = "".concat(_date39[2], "-").concat(_date39[1], "-").concat(_date39[0]);
+
+            var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
+            //En caso de tener ambos valores, hacemos al petición
+
+            if (_day8 != "" && hours != "") {
+              keyValue = "".concat(_day8, " ").concat(hours);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+            } //En caso de solo tener el día, mandamos la hora en 0
+            else if (_day8 != "" && hours == "") {
+                hours = "00:00:00";
+                keyValue = "".concat(_day8, " ").concat(hours);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              }
+          } //Verificamos si es la fecha fin
+          else if (schedule == "in_landing_expiration") {
+              var _date40 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+
+
+              var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
+
+
+              var _day9 = "".concat(_date40[2], "-").concat(_date40[1], "-").concat(_date40[0]); //En caso de tener ambos valores, hacemos la petición
+
+
+              if (_date40 != "" && _hours4 != "") {
+                var _day10 = "".concat(_date40[2], "-").concat(_date40[1], "-").concat(_date40[0]);
+
+                keyValue = "".concat(_day10, " ").concat(_hours4);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+              } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
+              else if (_date40 != "" && _hours4 == "") {
+                  _hours4 = "00:00:00";
+                  keyValue = "".concat(_day9, " ").concat(_hours4);
+                  Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
+                }
+            }
+
+          break;
+
+        case "in_home_publicacion":
+          var scheduleHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule").attr("key");
+          var parentHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".programar-schedule"); //Verificamos si es la fecha de inicio del home
+
+          if (scheduleHome == "in_home_begin") {
+            //Obtenemos la fecha
+            var _date41 = parentHome.find(".home-start-day").val().split("-");
+
+            var _day11 = "".concat(_date41[2], "-").concat(_date41[1], "-").concat(_date41[0]); //Obtenemos la hora
+
+
+            var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+            if (_date41 != "" && _hours5 != "") {
+              keyValue = "".concat(_day11, " ").concat(_hours5);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            } //En caso de que la hora venga vacía, la igualamos a 0
+            else if (_date41 != "" && _hours5 == "") {
+                _hours5 = "00:00:00";
+                keyValue = "".concat(_day11, " ").concat(_hours5);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              }
+          } else if (scheduleHome == "in_home_expiration") {
+            //Obtenemos la fecha
+            var _date42 = parentHome.find(".home-expiration-day").val().split("-");
+
+            var _day12 = "".concat(_date42[2], "-").concat(_date42[1], "-").concat(_date42[0]); //Obtenemos la hora
+
+
+            var _hours6 = parentHome.find(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
+
+
+            if (_date42 != "" && _hours6 != "") {
+              _day12 = "".concat(_date42[2], "-").concat(_date42[1], "-").concat(_date42[0]);
+              keyValue = "".concat(_day12, " ").concat(_hours6);
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+            } //En caso de que la hora venga vacía, la igualamos a 0
+            else if (_date42 != "" && _hours6 == "") {
+                _hours6 = "00:00:00";
+                keyValue = "".concat(_day12, " ").concat(_hours6);
+                Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
+              }
+          }
+
+          break;
+
+        default:
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+          break;
+      }
+    }); //Sacar los valores de los switches en la grilla
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table").click(function () {
+      var currentColumn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).closest(".contenedor-columna"); //Sacamos el valor del switch o radio button
+
+      var keyValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(); //De la columna, sacamos el chapter_id
+
+      var chapterId = currentColumn.attr("chapter_id"); //De la columna, sacamos la "key" necesaria para saber qué campo estamos editando
+
+      var key = currentColumn.attr("key"); //Hacemos la petición
+
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
+    }); //Sacar los valores de los switches en el modal de edicion
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".switch-table-edit").click(function () {
+      var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-program-data-container").attr("chapter_id");
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key"); //Hacemos la petición
+
+      Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+    });
+    /*
+    Permite a todos los campos de Schedule item log time tener el formato
+    tiempo en hh:mm
+    */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-time-input").toArray().forEach(function (scheduleTime) {
+      new Cleave(scheduleTime, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["scheduleTimeConfig"]);
+    });
+    /*
+    Permite a todos los campos de Schedule item log date tener el formato YYYY-MM-DD
+    */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".schedule-date-input").toArray().forEach(function (scheduleDate) {
+      new Cleave(scheduleDate, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["cleaveConfig"]);
+    });
+    /*
+    Permite a todos los input con la clase time-seconds-input el formato de tiempo hh:mm:ss
+    */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".time-seconds-input").toArray().forEach(function (timeInput) {
+      new Cleave(timeInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["timeWithSeconds"]);
+    });
+    /*
+    Permite a todos los input con la clase year-input tener el formato YYYY
+    */
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".year-input").toArray().forEach(function (yearInput) {
+      new Cleave(yearInput, _config_config_js__WEBPACK_IMPORTED_MODULE_7__["year"]);
+    }); //Truncar texto de sinópsis con "..."
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".lb-synopsis").each(function (index, element) {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().length > 200) {
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text().substr(0, 200) + "...";
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).text(text);
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".listcinema").selectpicker({
+      multipleSeparator: " ",
+      filter: true
+    }); //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-row-pencil").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectRow"]); //Al dar click en una columna, aplicamos estilos
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectable-column").click(_UI_UI_js__WEBPACK_IMPORTED_MODULE_1__["selectColumn"]);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".selectpicker").selectpicker({
+      multipleSeparator: " ",
+      filter: true
+    }).on("changed.bs.select", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).selectpicker("refresh");
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_programing").on("change", function () {
+      /**
+       * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
+       * esto para no caursar poroblemas mayores se manda a null e value del form
+       * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
+       */
+      try {
+        var file = this.files[0];
+        var filename = this.files[0].name;
+
+        if (filename != null) {
+          var splName = filename.split(".");
+          var fileFormat = splName[splName.length - 1];
+
+          if (fileFormat != "xlsx" && fileFormat != "xls") {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-file").modal("show");
+          } else {
+            var data_for_api = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("api");
+            sendFilePHP(file, data_for_api);
+            console.log(this.files[0].name);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.value = null; //aqui para evitar que se hagan registros dobles
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-remplaza").click(function () {
+      console.log("Se remplaza la programacion");
+      var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+      console.log(data);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        type: "POST",
+        data: data,
+        url: "general-program/changePrograming",
+        beforeSend: function beforeSend() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-content").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        },
+        success: function success(result) {
+          updateGrill(data.landing_id);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+          console.log(JSON.parse(result));
+        }
+      }).fail(function (e) {
+        console.log(e);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+      });
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-agrega").click(function () {
+      console.log("Se agrega la programacion");
+      var data = JSON.parse(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val());
+      console.log(data);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+        type: "POST",
+        data: data,
+        url: "general-program/addPrograming",
+        beforeSend: function beforeSend() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information .modal-con tent").prepend("<div class=\"loader-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+        },
+        success: function success(result) {
+          updateGrill(data.landing_id);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+          console.log(JSON.parse(result));
+        }
+      }).fail(function (e) {
+        console.log(e);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+      });
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acccion-programacion-cancela").click(function () {
+      console.log("Se cancela la programacion");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val(" ");
+      var programas = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programas_procesados_por_el_excel").val();
+      console.log(programas);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-information").modal("hide");
+    }); // CANAL CLARO
+
+    var LOADER = "<div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n            </div>";
+    var landingCanalClaro = {
+      remote: "".concat(_baseURL, "claro-canal-edi.php"),
+      // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
+      container: document.getElementById("navbar-prev-canal-claro"),
+      onMessage: function onMessage(message, origin) {
+        var json = JSON.parse(message);
+
+        if (_typeof(json) == "object") {
+          switch (json.type) {
+            case "claro-header":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "claro-programacion":
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+              setTimeout(function () {
+                var date = new Date();
+                var day = ("0" + date.getUTCDate()).slice(-2);
+                var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                var year = date.getUTCFullYear();
+                var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+                Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(currentDate, "canal-claro", "");
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              }, 3000);
+              break;
+
+            case "claro-title":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "claro-promo":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "claro-carrusel1":
+              var id = 1;
+              var landing = "Canal Claro";
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro");
+              break;
+
+            case "claro-carrusel2":
+              id = 2;
+              landing = "Canal Claro";
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "thumbnail-header-claro ");
+              break;
+
+            case "claro-carrusel-title":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "claro-carrusel-title2":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "btn-redirect-header":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+              break;
+
+            case "slider-pagination":
+              Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])("slider-pagination");
+              break;
+          }
+        }
+
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      }
+    }; //Landing de claro canal
+
+    var navbarLandingCanalClaro = document.getElementById("navbar-prev-canal-claro");
+
+    if (navbarLandingCanalClaro) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+      new easyXDM.Socket(landingCanalClaro);
+    }
+
+    var confPrevClaroCanal = {
+      remote: "".concat(_baseURL, "claro-canal.php"),
+      container: document.getElementById("navbar-prev-canal-claro"),
+      onMessage: function onMessage(message, origin) {
+        console.log(message);
+        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+        this.container.getElementsByTagName("iframe")[0];
+        var navbarLandingCanalClaro = document.getElementById("navbar-prev-canal-claro");
+
+        if (navbarLandingCanalClaro) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+          new easyXDM.Socket(landingCanalClaro);
+        }
+
+        var confPrevClaroCanal = {
+          remote: "".concat(_baseURL, "claro-canal.php"),
+          container: document.getElementById("navbar-prev-canal-claro"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0];
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        }; //previsualizar canal claro
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+          //Landing canal claro
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+        }); // BTN MODAL URL ENCABEZADO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+        }); // BTN MODAL URL PROMO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-promo").click(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
+        }); // BTN BANNER
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-claro").change(function () {
+          File(this);
+        }); // BTN BANNER
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-url").click(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("hide");
+          var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-url-modal").val() || "";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(url);
+        }); // FILE PARA BANNER
+
+        var fileSrt = new FileReader();
+        var fileReader = new FileReader();
+
+        function File(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#" + objFileInput.name).html('<img class="img-claro-back" src="' + e.target.result + '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>');
+            };
+
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+          }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+        } // CARGAR IMG HEADER
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header").change(function () {
+          FileHeader(this);
+        }); // FILE HEADER
+
+        function FileHeader(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#img-header-claro").html('<img src="' + e.target.result + '" />');
+            };
+
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+          }
+        } // IMG DE PROMO
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-img").change(function () {
+          FilePromoImg(this);
+        }); // IMG DE PROMO CARGAR
+
+        function FilePromoImg(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<img class="img-back-modal img-promo" src="' + e.target.result + '" />');
+            };
+          }
+
+          fileSrt.readAsDataURL(objFileInput.files[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        } // VIDEO DE PROMO
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#promo-claro-video").change(function () {
+          FilePromoVideo(this);
+        }); // VIDEO DE PROMO CARGAR
+
+        function FilePromoVideo(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay controls class="img-back-modal img-promo" src="' + e.target.result + '" /></video>');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+            };
+
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+          }
+        } // IMG DE CARRUSEL 1
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#carrusel1-claro-img").change(function () {
+          FileCarrusel1Img(this);
+        }); // IMG DE CARRUSEL 1 CARGAR
+
+        function FileCarrusel1Img(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-carrusel1-claro").html('<img class="img-back-modal img-carrusel" src="' + e.target.result + '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />');
+            };
+          }
+
+          fileSrt.readAsDataURL(objFileInput.files[0]);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        } //CLARO CANAL POST HEADER
+        // HEADER EDIT CANAL CLARO
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header").click(function () {
+          var landing = "Canal Claro";
+          var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
+          var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
+          var logo = document.getElementById("img-header").files[0] || "";
+          var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+          var data = new FormData();
+          data.append("landing", landing);
+          data.append("title1", title1);
+          data.append("title2", title2);
+          data.append("logo", logo);
+          data.append("link", link);
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-canal-claro").click(function () {
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+        }); // HEADER EDIT CANAL CLARO
+        // TITLE EDIT CANAL CLARO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-title").click(function () {
+          // TITULO
+          var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
+          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
+          var landing = "Canal Claro";
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+            value: value,
+            key: key,
+            landing: landing
+          }); // SUB TITULO
+
+          var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(); // let keySub = "block_3_subtitle";
+
+          var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+          });
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+        }); // TITLE EDIT CANAL CLARO
+        // HEADER EDIT CANAL CLARO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-promo").click(function () {
+          var landing = "Canal Claro";
+          var img = document.getElementById("promo-claro-img").files[0] || "";
+          var video = document.getElementById("promo-claro-video").files[0] || "";
+          var key = "block_3_video_url";
+          var data = new FormData();
+          data.append("landing", landing);
+          data.append("img", img);
+          data.append("video", video);
+          data.append("key", key);
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingClaro"])(data);
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+        }); // HEADER EDIT CANAL CLARO
+        // CANAL CLARO
+        // CARGAR IMG HEADER
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-icon1").change(function () {
+          FileHeaderCinema(this);
+        }); // FILE HEADER
+
+        function FileHeaderCinema(objFileInput) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".logo-header-claro-cinema").attr("src", e.target.result);
+            };
+
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+          }
+        } // HEADER EDIT CANAL CLARO
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-header-cinema").click(function () {
+          var landing = "Claro Cinema";
+          var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade").val() || "";
+          var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-heade-1").val() || "";
+          var logo = document.getElementById("image-icon1").files[0] || "";
+          var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+          var data = new FormData();
+          data.append("landing", landing);
+          data.append("title1", title1);
+          data.append("title2", title2);
+          data.append("logo", logo);
+          data.append("link", link);
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLandingClaro"])(data);
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        }); // HEADER EDIT CANAL CLARO
+        // TITLE EDIT CANAL CLARO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-titulos-cinema").click(function () {
+          // TITULO
+          var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").val();
+          var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-1").attr("key");
+          var landing = "Claro Cinema";
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+            value: value,
+            key: key,
+            landing: landing
+          }); // SUB TITULO
+
+          var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").val();
+          var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-2").attr("key");
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+          }); // SUB TITULO 2
+
+          var valueSub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").val();
+          var keySub2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#ipt-titulo-cinema-3").attr("key");
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
+            value: valueSub2,
+            key: keySub2,
+            landing: landing
+          });
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        }); // TITLE EDIT CANAL CLARO
+        // IMG DE PROMO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").change(function () {
+          FilePromoImg(this);
+        }); // IMG DE PROMO CARGAR
+        // function FilePromoImg(objFileInput) {
+        //     $("body").append(LOADER);
+        //     if (objFileInput.files[0]) {
+        //         fileSrt.onload = function (e) {
+        //             $("#cinema-promo-container").html(
+        //                 '<img src="' +
+        //                 e.target.result +
+        //                 '" alt="" class="d-flex w-100" id="promo-image-concert">'
+        //             );
+        //         };
+        //     }
+        //     fileSrt.readAsDataURL(objFileInput.files[0]);
+        //     $(".loader-view-container").remove();
+        // }
+        // VIDEO DE PROMO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+          FilePromoVideo(this);
+        }); // VIDEO DE PROMO CARGAR
+        // function FilePromoVideo(objFileInput) {
+        //     $("body").append(LOADER);
+        //     if (objFileInput.files[0]) {
+        //         fileSrt.onload = function (e) {
+        //             $("#cinema-promo-container").html(
+        //                 '<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay> <source src="' +
+        //                 e.target.result +
+        //                 '" type="video/mp4"> </video>'
+        //             );
+        //             $(".loader-view-container").remove();
+        //         };
+        //         fileSrt.readAsDataURL(objFileInput.files[0]);
+        //     }
+        // }
+        // HEADER EDIT CANAL CLARO
+        // HEADER EDIT CANAL CLARO
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-promo-cinema").click(function () {
+          var file = "";
+
+          if (document.getElementById("video-promo-file-concert").files[0]) {
+            file = document.getElementById("video-promo-file-concert").files[0];
+          } else if (document.getElementById("image-promo-concert").files[0]) {
+            file = document.getElementById("image-promo-concert").files[0];
+          } else {
+            file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
+          }
+
+          var landing = "Claro Cinema";
+          var data = new FormData();
+          var key = "block_3_video_url";
+          data.append("promo", file);
+          data.append("landing", landing);
+          data.append("key", key);
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingCinema"])(data);
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+        }); // HOME
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#logo_home").change(function () {
+          viewImg(this, "#img-logo-home");
+          viewEdit();
+        });
+
+        function viewImg(objFileInput, container) {
+          debugger;
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+
+          if (objFileInput.files[0]) {
+            fileSrt.onload = function (e) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(container).attr("src", e.target.result);
+            };
+
+            fileSrt.readAsDataURL(objFileInput.files[0]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+          }
+        }
+
+        function viewEdit() {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#camera").attr("src", "./images/lapiz-acti.svg");
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn_pruebas").click(function () {
+          // getContentHomeHeader('claro-home-header');
+          // let landing = 'Canal Claro';
+          // getCarruselHome(landing);
+          // landingView.renderHomeHeaderClaroCinema();
+          // getContentHomeCinema('claro-home-header');
+          // $('#modal-terminos-footer').modal('show');
+          // $('.modal-footer').modal('show');
+          landingView.renderContentFooter("footer-concert-channel");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal_url").click(function () {
+          var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").click(function () {
+          var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val(url);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("show");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-url").click(function () {
+          var url = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url_modal").val();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val(url);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#close_all_modal").click(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+        }); // FOOTER
+        // FOOTER
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#acepta_canales_home").click(function () {
+          var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#landing_name").val();
+          var logo = document.getElementById("logo_home").files[0] || "";
+          var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_canales_subtitulo").val() || "";
+          var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp_url").val() || "";
+          var data = new FormData();
+          data.append("landing", landing);
+          console.log(landing);
+          data.append("logo", logo);
+          data.append("subtitle", subtitle);
+          data.append("link", link);
+          Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderHome"])(data);
+
+          if (landing == "Canal Claro") {
+            Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+          }
+
+          if (landing == "Claro Cinema") {
+            Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), _LandingHomeCinema);
+          }
+
+          if (landing == "Concert Channel") {
+            Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+          }
+        }); // HOME
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".acepta_carrusel_home").click(function () {
+          var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+          setTimeout(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            console.log("si lo borra");
+          }, 2000);
+        });
+        /* MVC */
+
+        var LandingHomeClaro = {
+          remote: "".concat(_baseURL, "home-edi-claro.php"),
+          // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
+          container: document.getElementById("navbar-prev-home"),
+          onMessage: function onMessage(message, origin) {
+            var json = JSON.parse(message);
+
+            if (_typeof(json) == "object") {
+              switch (json.type) {
+                case "slider-pagination":
+                  landingView.renderHomeBanner();
+                  break;
+
+                case "home-claro-carrousel-main":
+                  var _date43 = new Date();
+
+                  var _day13 = ("0" + _date43.getUTCDate()).slice(-2);
+
+                  var _month3 = ("0" + (_date43.getUTCMonth() + 1)).slice(-2);
+
+                  var _year4 = _date43.getUTCFullYear();
+
+                  var _currentDate3 = "".concat(_year4, "-").concat(_month3, "-").concat(_day13);
+
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
+                  break;
+
+                case "claro-home-header":
+                  landingView.renderHomeHeaderCanalClaro();
+                  break;
+
+                case "claro-home-slider":
+                  var landing = "Canal Claro";
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+                  break;
+
+                default:
+                  break;
+              }
+            }
+
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var navbarHomeCanalClaro = document.getElementById("navbar-prev-home");
+
+        if (navbarHomeCanalClaro) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
+          new easyXDM.Socket(LandingHomeClaro);
+        }
+
+        var confHomeClaroCanal = {
+          remote: "".concat(_baseURL, "home.php"),
+          container: document.getElementById("navbar-prev-home"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0];
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        }; //previsualizar canal claro
+        // $("#prev").click(function () {
+        //     //Landing canal claro
+        //     resetIframe($("#navbar-prev-home iframe"), confHomeClaroCanal);
+        //     $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+        //     $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+        // });
+        // $("#edit").click(function () {
+        //     resetIframe(
+        //         $("#navbar-prev-home iframe"),
+        //         LandingHomeClaro
+        //     );
+        //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+        //     $("#prev-mobile").css("opacity", "0.4");
+        //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+        //     $("#prev-tablet").css("opacity", "0.4");
+        //     $("#prev-desktop").css("opacity", "1");
+        // });
+
+        var LandingHomeConcert = {
+          //remote: `${baseURL}home-edi-concert.php`,
+          remote: "http://localhost:8888/MaquetaCNetworks/home-edi-concert.php",
+          container: document.getElementById("navbar-prev-home-concert"),
+          onMessage: function onMessage(message, origin) {
+            var json = JSON.parse(message);
+
+            if (_typeof(json) == "object") {
+              switch (json.type) {
+                case "slider-pagination":
+                  landingView.renderHomeBanner();
+                  break;
+
+                case "home-claro-carrousel-main":
+                  var _date44 = new Date();
+
+                  var _day14 = ("0" + _date44.getUTCDate()).slice(-2);
+
+                  var _month4 = ("0" + (_date44.getUTCMonth() + 1)).slice(-2);
+
+                  var _year5 = _date44.getUTCFullYear();
+
+                  var _currentDate4 = "".concat(_year5, "-").concat(_month4, "-").concat(_day14); // getProgrammingLanding(currentDate, "concert channel", 'home');
+
+
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "concert-channel");
+                  break;
+
+                case "concert-home-header":
+                  landingView.renderHomeHeaderConcertChannel();
+                  break;
+
+                case "concert-home-slider":
+                  var landing = "Concert Channel";
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landing);
+                  break;
+
+                default:
+                  break;
+              }
+            }
+
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var NavbarHomeConcert = document.getElementById("navbar-prev-home-concert");
+
+        if (NavbarHomeConcert) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
+          new easyXDM.Socket(LandingHomeConcert);
+        } ////////////
+
+
+        var confPrevHomeConcert = {
+          remote: "".concat(_baseURL, "home.php"),
+          container: document.getElementById("navbar-prev-home-concert"),
+          onMessage: function onMessage(message, origin) {
+            console.log(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0];
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        }; //previsualizar canal claro
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+          //Landing canal claro
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
+          Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+        });
+        var LandingHome = {
+          remote: "".concat(_baseURL, "home-edi.php"),
+          container: document.getElementById("navbar-prev-home-landing"),
+          onMessage: function onMessage(message, origin) {
+            var json = JSON.parse(message);
+
+            if (_typeof(json) == "object") {
+              var loader = "\n                <div class=\"loader-view-container\" id=\"loader1\">\n                  <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                </div>\n                ";
+
+              switch (json.type) {
+                case "slider-pagination":
+                  landingView.renderHomeBanner();
+                  break;
+
+                case "home-logos":
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+                  setTimeout(function () {
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+                    Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+                  }, 3000);
+                  break;
+
+                case "home-carrousel-main":
+                  var _date45 = new Date();
+
+                  var _day15 = ("0" + _date45.getUTCDate()).slice(-2);
+
+                  var _month5 = ("0" + (_date45.getUTCMonth() + 1)).slice(-2);
+
+                  var _year6 = _date45.getUTCFullYear();
+
+                  var _currentDate5 = "".concat(_year6, "-").concat(_month5, "-").concat(_day15);
+
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "canal-claro");
+                  break;
+
+                case "claro-home-header":
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeader"])(json.type);
+                  break;
+
+                case "claro-home-slider":
+                  var landingclaro = "Canal Claro";
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingclaro);
+                  break;
+
+                case "channel-home-header":
+                  landingView.renderHomeHeaderConcertChannel();
+                  break;
+
+                case "channel-home-slider":
+                  var landingconcert = "Concert Channel";
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingconcert);
+                  break;
+
+                case "cinema-home-header":
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentHomeHeaderCinema"])();
+                  break;
+
+                case "cinema-home-slider":
+                  var landingcinema = "Claro Cinema";
+                  Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getCarruselHome"])(landingcinema);
+                  break;
+
+                default:
+                  break;
+              }
+            }
+
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+          }
+        };
+        var navbarHome = document.getElementById("navbar-prev-home-landing");
+
+        if (navbarHome) {
+          new easyXDM.Socket(LandingHome);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe").remove();
+            new easyXDM.Socket({
+              remote: "".concat(_baseURL, "home.php"),
+              container: document.getElementById("navbar-prev-home-landing"),
+              onMessage: function onMessage(message, origin) {
+                this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+                this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+              }
+            });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#editar").click(function () {
+            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe").remove();
+            new easyXDM.Socket(LandingHome);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+          });
+        }
+        /* MVC */
+
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
+          //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5 mx-auto\">\n        <div class=\"d-flex\">\n        <!--dots-->\n        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n        <!--add slide-->\n        <img src=\"{{ asset('images/add-icon.svg') }}\" class=\"add-banner-image cursor-pointer mb-3\">\n    </div>\n  <!--  <div class=\"shadowblack position-absolute\">\n        <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n        </div>-->\n    <div class=\"programming-slider-home mx-auto \">\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"> 472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n    </div>\n\n    <div class=\"bor thumbnail-image-program position-relative h-100\">\n        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n        <label for=\"image_programming_1\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n            <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">472px X 295px </span>\n            <img src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n        </label>\n\n    </div>\n    </div>\n\n        </div>\n        </div>\n        <div class=\"d-flex mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n<div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n\n        </div>\n</div>\n</div>\n</div>\n</div>\n\n\n        "); // new easyXDM.Socket(confIframe);
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").click(function () {
+          //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n        <!-- parte del home-->\n        <div class=\"d-flex col-12 mb-5 mx-auto\">\n        <div class=\"mr-5\">\n        <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\">\n        <!--navbar-->\n        <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                </a>\n            </div>\n            <div>\n                <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                </a>\n            </div>\n            <div>\n                <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                    <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                </a>\n            </div>\n            <!-- <div>\n        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n            <p class=\"navbar-item\">Programaci\xF3n</p>\n        </a>\n        </div>-->\n        </div>\n        <!--<div class=\"login\">\n            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n        </div>-->\n\n        <!--inputs-->\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4  mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\" placeholder=\"TITULO\">\n        <input type=\"text\" name=\"\" id=\"\" class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\" placeholder=\"SUBTITULO\">\n\n        </div>\n        <div class=\" d-flex justify-content-around \">\n\n        <input type=\"file\" name=\"\" id=\"video-promo-header-home\" class=\"d-none file-video\"\n            accept=\"video/*\">\n            <label for=\"video-promo-header-home\"\n                class=\"mb-0 cursor-pointer circle-video  d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n               <div class=\"black-shadow d-flex align-items-center position-absolute\" style=\"transform: translate(240%, -500%);\"><img src=\"./images/basic-icons/user.svg\" alt=\"\" class=\"mr-2 ml-3\"><img src=\"./images/basic-icons/gtm-gris.svg\" alt=\"\" > </div>\n                <img src=\"./images/synopsis/home-video.svg\" class=\"\">\n                <img src=\"{{ asset('/images/basic-icons/video.svg') }}\" alt=\"add-photo\"\n                    class=\"add-photo promo-icon cursor-pointer position-absolute pb-3\" style=\"width:80px; \" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow position-absolute mt-6\" >A\xF1ade tu archivo\n                    jpg 472px X 295px </span>\n\n            </label>\n           <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n        <label for=\"image-promo-header-home\"\n            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                jpg 472px X 295px </span>\n        </label>-->\n        </div>\n\n\n        </div>\n        </div>\n        <div class=\"float-right mr-5 mb-3\">\n        <span\n        class=\"a-text-bold-brown-two text-normal\">Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span>\n        </div>\n        <div class=\"clearfix\"></div>\n\n</div>"); // new easyXDM.Socket(confIframe);
+        });
+      }
+    };
   }
 }
 
@@ -77761,7 +78189,12 @@ function previewPage(icon) {
   var iframeCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe");
   var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
   var iframeHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe");
+  var iframeHomeGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar_prev_home_landing iframe");
   var iframeClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe");
+  var iframeFooterCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#claro-cinema-programing iframe");
+  var iframeFooterConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-channel-programing iframe");
+  var iframeFooterClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#claro-canal-programing iframe");
+  var iframeFooterNetworks = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#claro-networks-programing iframe");
   var prevMobileIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile");
   var prevTabletIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet");
   var prevDesktopIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop"); //MOBILE
@@ -77773,9 +78206,14 @@ function previewPage(icon) {
     pageContainer.css("width", "375px");
     pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
     iframeHome.css("height", "4400px");
+    iframeHomeGrilla.css("height", "4400px");
     iframeProgramacion.css("height", "5000px");
     iframeCanalClaro.css("height", "2800px");
     iframeClaroCinema.css("height", "2600px");
+    iframeFooterClaro.css("height", "1050px");
+    iframeFooterConcert.css("height", "1050px");
+    iframeFooterCinema.css("height", "920px");
+    iframeFooterNetworks.css("height", "930px");
   } //TABLET
   else if (icon.is("#prev-tablet")) {
       prevMobileIcon.css("opacity", "0.4");
@@ -77784,8 +78222,13 @@ function previewPage(icon) {
       pageContainer.css("width", "1024px");
       pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
       iframeHome.css("height", "5100px");
+      iframeHomeGrilla.css("height", "5100px");
       iframeProgramacion.css("height", "12000px");
       iframeCanalClaro.css("height", "2800px");
+      iframeFooterCinema.css("height", "750px");
+      iframeFooterNetworks.css("height", "750px");
+      iframeFooterConcert.css("height", "950px");
+      iframeFooterClaro.css("height", "950px");
     } //PC
     else {
         pageContainer.css("width", "1200px");
@@ -77794,8 +78237,13 @@ function previewPage(icon) {
         prevDesktopIcon.css("opacity", "1");
         pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
         iframeHome.css("height", "4300px");
+        iframeHomeGrilla.css("height", "4300px");
         iframeProgramacion.css("height", "2700px");
         iframeCanalClaro.css("height", "2900px");
+        iframeFooterCinema.css("height", "790px");
+        iframeFooterNetworks.css("height", "850px");
+        iframeFooterConcert.css("height", "1050px");
+        iframeFooterClaro.css("height", "1050px");
       }
 }
 
@@ -78207,7 +78655,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/landing */ "./resources/js/views/landing.js");
 /* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../config/config.js */ "./resources/js/config/config.js");
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
-/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
+/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -78227,6 +78676,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); //Configraciones para la librería de Cleave JS
+
 
 
 
@@ -79265,7 +79715,7 @@ function getCarruselHome(landing) {
               inHomeTimes = "\n                    <div class=\"row\">\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_begin\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-end\" placeholder=\"00:00:00\" chapter_id=\"".concat(chapter.chapter.id, "\" key=\"in_landing_begin\" value=\"\"></span>\n                            </div>\n                        </div>\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_expiration\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-end\" placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\" key=\"in_landing_expiration\" value=\"\"></span>\n                            </div>\n                        </div>\n                    </div>");
             }
 
-            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.thumbnail_list_vertical, "\" chapter=\"").concat(chapter.chapter.id, "\" >\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input class=\"d-none load-carrusel\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\" program=\"").concat(chapter.chapter.title, "\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\" edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                        </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container borrando\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
+            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.thumbnail_list_vertical, "\" chapter=\"").concat(chapter.chapter.id, "\" >\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input class=\"d-none load-carrusel\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\" program=\"").concat(chapter.chapter.title, "\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\" edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                        </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container borrando\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
           }
         } catch (err) {
           _iterator.e(err);
@@ -79962,13 +80412,13 @@ function getProgrammingLanding(date, landing) {
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-landing").modal("show");
         var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider2");
-        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createCalendarDays"])(calendarSlider2, landingClass);
+        Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createCalendarDays"])(calendarSlider2, landingClass);
 
         try {
           calendarSlider2.slick("unslick");
-          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
         } catch (error) {
-          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
+          Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
         }
       }
 
@@ -80391,12 +80841,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
             }
 
             console.log(chapter.chapter.in_landing_begin);
-            inLandingDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" chapter_id=\"".concat(chapter.chapter.id, "\" value=\"").concat(dateBeginLanding, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\" placeholder=\"00-00-0000\" value=\"").concat(dateExpirationLanding, "\"></span>\n                    </div>\n                    ");
-            inLandingTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input chapter_id=\"".concat(chapter.chapter.id, "\" type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" value=\"").concat(timeBegin, "\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                key=\"in_landing_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(timeExpiration, "\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
+            inLandingDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-2\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" key=\"in_landing_begin\" chapter_id=\"".concat(chapter.chapter.id, "\" value=\"").concat(dateBeginLanding, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\" placeholder=\"00-00-0000\" value=\"").concat(dateExpirationLanding, "\"></span>\n                    </div>\n                    ");
+            inLandingTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input chapter_id=\"".concat(chapter.chapter.id, "\" type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" value=\"").concat(timeBegin, "\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\"\n                                class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase edit-landing-time-end\"\n                                key=\"in_landing_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(timeExpiration, "\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
           } else {
             inLandingSwitch = "\n                    <!--Switch-->\n                    <div class=\"d-flex align-items-center mb-3\">\n                        <input name=\"yes-landing-carrusel-".concat(chapter.chapter.id, "\" type=\"radio\" id=\"yes-landing-carrusel-").concat(chapter.chapter.id, "\" value=\"1\" chapter_id=\"").concat(chapter.chapter.id, "\" class=\"edit-switch-landing switch-table-edit edit-landing-yes\" key=\"in_landing\" />\n                        <label for=\"yes-landing-carrusel-").concat(chapter.chapter.id, "\" id=\"siestado-landing\"\n                            class=\"mb-0 si-estilo cursor-pointer switch-label\">\n                            S\xED</label>\n                        <input type=\"radio\" id=\"no-landing-carrusel-").concat(chapter.chapter.id, "\" value=\"0\"\n                            class=\"edit-switch-landing switch-table-edit edit-landing-no\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                            checked name=\"yes-landing-carrusel-").concat(chapter.chapter.id, "\" key=\"in_landing\"/>\n                        <label for=\"no-landing-carrusel-").concat(chapter.chapter.id, "\" id=\"noestado-landing\"\n                            class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                            No</label>\n                    </div>\n                    ");
-            inLandingTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text chapter_id=\"".concat(chapter.chapter.id, "\" a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" value=\"\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text  a-text-bold-warm text-uppercase edit-landing-time-end\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                                key=\"in_landing_expiration\" value=\"\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
-            inLandingDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" chapter_id=\"".concat(chapter.chapter.id, "\" key=\"in_landing_begin\" value=\"\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"\"></span>\n                    </div>");
+            inLandingTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                            class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text chapter_id=\"".concat(chapter.chapter.id, "\" a-text-bold-warm text-uppercase edit-landing-time-begin\"\n                            key=\"in_landing_begin\" value=\"\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\"\n                                class=\"time-seconds-input input-basic edit-program-input edit-program-attribute-text  a-text-bold-warm text-uppercase edit-landing-time-end\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                                key=\"in_landing_expiration\" value=\"\" placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
+            inLandingDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-2\">\n                        <span class=\"a-text-bold-warm\">Inicio: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-begin\"\n                                placeholder=\"00-00-0000\" chapter_id=\"".concat(chapter.chapter.id, "\" key=\"in_landing_begin\" value=\"\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container  d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\"\n                                class=\"input-basic edit-program-input a-text-bold-warm edit-program-attribute-text schedule-date-input edit-landing-date-end\"\n                                key=\"in_landing_expiration\" placeholder=\"00-00-0000\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"\"></span>\n                    </div>");
           } //HOME
 
 
@@ -80432,12 +80882,12 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
               timeHomeBegin = dateHomeTimeBegin[1];
             }
 
-            inHomeDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"".concat(dateHomeBegin, "\"\n                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                            placeholder=\"00-00-0000\" chapter_id=\"").concat(chapter.chapter.id, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container  backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(dateHomeExpiration, "\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                    ");
-            inHomeTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"".concat(timeHomeBegin, "\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                            class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\" key=\"in_home_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                                class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\" value=\"").concat(timeHomeExpiration, "\"\n                                placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
+            inHomeDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"".concat(dateHomeBegin, "\"\n                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                            placeholder=\"00-00-0000\" chapter_id=\"").concat(chapter.chapter.id, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container d-flex justify-content-center  backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(dateHomeExpiration, "\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                    ");
+            inHomeTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"".concat(timeHomeBegin, "\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                            class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\"\n                            placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container backwhite  d-flex justify-content-center py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\" key=\"in_home_expiration\" chapter_id=\"").concat(chapter.chapter.id, "\"\n                                class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-end\" value=\"").concat(timeHomeExpiration, "\"\n                                placeholder=\"00:00:00\"></span>\n                    </div>\n                    ");
           } else {
             inHomeSwitch = "\n                    <div class=\"d-flex align-items-center edit-switches-home-container\">\n                        <input type=\"radio\" name=\"switch-home-carrusel-".concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" id=\"edit-in-home-yes-").concat(chapter.chapter.id, "\" value=\"1\"\n                            class=\"edit-switch-home edit-program-switch edit-in-home-yes\"\n                            key=\"in_home\" />\n                        <label for=\"edit-in-home-yes-").concat(chapter.chapter.id, "\" id=\"siestado-landing\"\n                            class=\"si-estilo cursor-pointer mb-0 switch-label\">\n                            S\xED</label>\n                        <input type=\"radio\" name=\"switch-home-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" id=\"edit-in-home-no-").concat(chapter.chapter.id, "\" value=\"0\"\n                            class=\"edit-switch-home edit-program-switch edit-in-home-no\"\n                            key=\"in_home\" checked/>\n                        <label for=\"edit-in-home-no-").concat(chapter.chapter.id, "\" id=\"noestado-landing\"\n                            class=\"mb-0 no-estilo cursor-pointer switch-label\">\n                            No</label>\n                    </div>\n                    ");
-            inHomeDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"\"\n                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                            placeholder=\"00-00-0000\" chapter_id=\"".concat(chapter.chapter.id, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                    ");
-            inHomeTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"\"\n                            class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\" chapter_id=\"".concat(chapter.chapter.id, "\"\n                            placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container backwhite py-3\">\n                        <span class=\"a-text-bold-warm\">Fin: <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end\" value=\"\"\n                                placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\"></span>\n                    </div>\n                    ");
+            inHomeDates = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"\"\n                            class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-begin edit-program-attribute-text\"\n                            placeholder=\"00-00-0000\" chapter_id=\"".concat(chapter.chapter.id, "\" /></span>\n                    </div>\n                    <div class=\"mb-4 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin:\n                            <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-home-date-end edit-program-attribute-text\" chapter_id=\"").concat(chapter.chapter.id, "\" value=\"\"\n                                placeholder=\"00-00-0000\"></span>\n                    </div>\n                    ");
+            inHomeTimes = "\n                    <div class=\"mb-3 text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-2\">\n                    <span class=\"a-text-bold-warm\">Inicio: <input key=\"in_home_begin\"\n                            type=\"text\" value=\"\"\n                            class=\"time-seconds-input edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-home-time-begin\" chapter_id=\"".concat(chapter.chapter.id, "\"\n                            placeholder=\"00:00:00\"></span>\n                    </div>\n                    <div class=\"text-center edit-rectangle-small-container d-flex justify-content-center backwhite py-2 align-items-center\">\n                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                        <span class=\"a-text-bold-warm pr-2\">Fin: <input type=\"text\" key=\"in_home_expiration\"\n                                class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase edit-program-attribute-text edit-home-time-end\" value=\"\"\n                                placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\"></span>\n                    </div>\n                    ");
           }
 
           var scheduleDate = chapter.chapter.day.split("-");
@@ -80473,7 +80923,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
             carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        295\n                                        x 180px</p>\n                                </div>\n                                <img src=\"").concat(chapter.image_program, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
           }
 
-          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-content-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm mt-3\">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container backwhite d-flex align-content-center justify-content-center py-2\">\n                                    <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm mt-3\"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/calendario.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"{{ asset('images/reloj.svg') }}\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
+          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-items-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm \">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container backwhite d-flex align-items-center justify-content-center py-2\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm \"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\" class=\"mr-2\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container   backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
         } //Mostramos el modal
 
       } catch (err) {
@@ -80907,13 +81357,13 @@ function getContentClaroCinema(type) {
           case "current-programming-cinema":
             var calendarSlider2 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".calendar-slider2"); // $(".modal-programming-landing").modal("show");
 
-            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createCalendarDays"])(calendarSlider2);
+            Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createCalendarDays"])(calendarSlider2);
 
             try {
               calendarSlider2.slick("unslick");
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
             } catch (error) {
-              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
+              Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__["createSlickSlider"])(calendarSlider2, _config_slick_js__WEBPACK_IMPORTED_MODULE_5__["calendarSlick"]);
             }
 
             break;
@@ -81246,14 +81696,40 @@ function confLandingHome(baseURL) {
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  };
+  }; ////////////
+
   var navbarPrevHome = document.getElementById("navbar_prev_home_landing");
 
   if (navbarPrevHome) {
-    console.log('Llamando iframe');
     jquery__WEBPACK_IMPORTED_MODULE_1___default()("#navbar_prev_home_landing iframe").remove();
     new easyXDM.Socket(confLandingHome);
-  }
+  } /////////////
+
+
+  var confPrevHomeGrilla = {
+    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home.php",
+    container: document.getElementById("navbar_prev_home_landing"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0];
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-landing-home-grilla").click(function () {
+    //Landing canal claro
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#navbar_prev_home_landing iframe"), confPrevHomeGrilla);
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-landing-home-grilla").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#navbar_prev_home_landing iframe"), confLandingHome);
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#prev-desktop").css("opacity", "1");
+  });
 } // HOME
 
 
@@ -82267,7 +82743,7 @@ function createCalendarDays(container) {
           daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
         } else {
           //Días restantes
-          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                            <div class=\"\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                <p class=\"day-number\">").concat(i, "</p>\n                            </div>\n                            </li>\n\n                             ");
         }
       }
     } //Días del mes siguiente
@@ -82288,7 +82764,7 @@ function createCalendarDays(container) {
       if (_i2 == getDay()) {
         if (_i2 < 10) {
           //Día actual activo
-          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(_i2, "\" section_id=\"\">\n                                <div class=\"\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
         } else {
           //Día actual activo
           daysSlider += "\n                                <li class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                    <p class=\"day-number\">").concat(_i2, "</p>\n                                </div>\n                                </li>\n                            ");
@@ -82296,10 +82772,12 @@ function createCalendarDays(container) {
       } else {
         if (_i2 < 10) {
           //Días siguientes
-          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                            <div class=\"day\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
+          // SE QUITO LA CLASE day
+          daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                            <div class=\"\">\n                                <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                <p class=\"day-number\">").concat(_i2, "</p>\n                            </div>\n                            </li>\n                            ");
         } else {
           //Días siguientes
-          daysSlider += "\n                                    <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                                    <div class=\"day\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
+          // SE QUITO LA CLASE day
+          daysSlider += "\n                                    <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(("0" + _i2).slice(-2), "\" section_id=\"\">\n                                    <div class=\"\">\n                                        <p class=\"day-text\">").concat(getDayName(currentMonth, _i2), "</p>\n                                        <p class=\"day-number\">").concat(_i2, "</p>\n                                    </div>\n                                    </li>\n                                    ");
         }
       }
     }
@@ -83222,7 +83700,8 @@ var LandingView = /*#__PURE__*/function () {
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-privacy-button').click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val();
+        debugger;
+        var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-textarea-privacy').val();
         var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.footer-title-privacy').val();
         var landing = "about";
         var response = landingController.updateInfoTermsAndPrivacy(text, title, landing);

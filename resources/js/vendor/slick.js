@@ -146,7 +146,7 @@ function createCalendarDays(container, calendarClass = "") {
                     //Días restantes
                     daysSlider += `
                             <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="">
-                            <div class="day">
+                            <div class="">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
                             </div>
@@ -191,7 +191,7 @@ function createCalendarDays(container, calendarClass = "") {
                     //Día actual activo
                     daysSlider += `
                                 <li class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="">
-                                <div class="day">
+                                <div class="">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
@@ -213,9 +213,10 @@ function createCalendarDays(container, calendarClass = "") {
             } else {
                 if (i < 10) {
                     //Días siguientes
+                    // SE QUITO LA CLASE day
                     daysSlider += `
                             <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${("0" + i).slice(-2)}" section_id="">
-                            <div class="day">
+                            <div class="">
                                 <p class="day-text">${getDayName(currentMonth, i)}</p>
                                 <p class="day-number">${i}</p>
                             </div>
@@ -223,9 +224,10 @@ function createCalendarDays(container, calendarClass = "") {
                             `;
                 } else {
                     //Días siguientes
+                    // SE QUITO LA CLASE day
                     daysSlider += `
                                     <li class="${calendarClass} programming-item" date="${yearUTC}-${monthUTC}-${("0" + i).slice(-2)}" section_id="">
-                                    <div class="day">
+                                    <div class="">
                                         <p class="day-text">${getDayName(currentMonth, i)}</p>
                                         <p class="day-number">${i}</p>
                                     </div>

@@ -1,21 +1,3 @@
-{{-- <script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
-
-
-<script>
-    new easyXDM.Socket({
-        remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/home-edi.php",
-        container: "navbar-prev-home",
-        onMessage: function(message, origin) {
-            console.log(message);
-            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-            this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-
-        }
-    });
-
-</script> --}}
 
 <body>
     <main>
@@ -73,12 +55,15 @@
                     </div>
                 </form>
                 <!--Iconos para previsualizar en diferentes tamaños-->
-                <div id="device-size">
-                    <div class="pt-2">
-                        <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
-                    </div>
+
+                <div class="pt-2">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
                 </div>
+
             </div>
+
             <!--Buttons-->
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
@@ -98,9 +83,8 @@
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="load-view pointer-none" id="loader-view"></div>
-                <div class="navbar-progra-content mb-5 mt-5 navbar-prev-programacion" onload='preloader()'
-                    id="navbar-prev-programacion-concert" style="display:none;">
+
+                <div class="navbar-progra-content mb-5 mt-5 navbar-prev-programacion"  id="navbar-prev-programacion-concert" >
                 </div>
             </div>
             <!--sinopsis-->
