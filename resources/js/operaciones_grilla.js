@@ -241,7 +241,7 @@ function eventsGrilla() {
            new easyXDM.Socket(LandingHomeCinema);
        }
        let confPrevHomeCinema = {
-           remote: `${baseURL}home.php`,
+           remote: `${baseURL}home-prev.php`,
            container: document.getElementById("navbar-prev-home-cinema"),
            onMessage: function (message, origin) {
                console.log(message);
@@ -718,7 +718,7 @@ function eventsGrilla() {
         new easyXDM.Socket(confLandingClaroCinema);
     }
     let confPrevClaroCinema = {
-        remote: `${baseURL}claro-cinema.php`,
+        remote: `${baseURL}claro-cinema-prev.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
         onMessage: function (message, origin) {
             console.log(message);
@@ -3381,7 +3381,7 @@ $("#edit-landing-cinema").click(function () {
         new easyXDM.Socket(confIframe);
     }
     let confPrevProgramacion = {
-        remote: `${baseURL}programacion.php`,
+        remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
         onMessage: function (message, origin) {
             console.log(message);
@@ -4462,7 +4462,7 @@ $("#edit-landing-cinema").click(function () {
             new easyXDM.Socket(landingCanalClaro);
         }
         let confPrevClaroCanal = {
-            remote: `${baseURL}claro-canal.php`,
+            remote: `${baseURL}claro-canal-prev.php`,
             container: document.getElementById("navbar-prev-canal-claro"),
             onMessage: function (message, origin) {
                 console.log(message);
@@ -4966,7 +4966,7 @@ $("#edit-landing-cinema").click(function () {
             new easyXDM.Socket(LandingHomeClaro);
         }
         let confHomeClaroCanal = {
-            remote: `${baseURL}home.php`,
+            remote: `${baseURL}home-prev.php`,
             container: document.getElementById("navbar-prev-home"),
             onMessage: function (message, origin) {
                 console.log(message);
@@ -5047,7 +5047,7 @@ $("#edit-landing-cinema").click(function () {
     ////////////
    
     let confPrevHomeConcert = {
-        remote: `${baseURL}home.php`,
+        remote: `${baseURL}home-prev.php`,
         container: document.getElementById("navbar-prev-home-concert"),
         onMessage: function (message, origin) {
             console.log(message);
@@ -5149,7 +5149,7 @@ $("#edit-landing-cinema").click(function () {
         $("#prev").click(function () {
             $("#navbar-prev-home-landing iframe").remove();
             new easyXDM.Socket({
-                remote: `${baseURL}home.php`,
+                remote: `${baseURL}home-prev.php`,
                 container: document.getElementById("navbar-prev-home-landing"),
                 onMessage: function (message, origin) {
                     this.container.getElementsByTagName(

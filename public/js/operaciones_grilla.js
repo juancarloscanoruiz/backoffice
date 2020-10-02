@@ -74732,7 +74732,7 @@ function eventsGrilla() {
   }
 
   var confPrevHomeCinema = {
-    remote: "".concat(baseURL, "home.php"),
+    remote: "".concat(baseURL, "home-prev.php"),
     container: document.getElementById("navbar-prev-home-cinema"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -75055,7 +75055,7 @@ function eventsGrilla() {
   }
 
   var confPrevClaroCinema = {
-    remote: "".concat(baseURL, "claro-cinema.php"),
+    remote: "".concat(baseURL, "claro-cinema-prev.php"),
     container: document.getElementById("navbar-prev-claro-cinema"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -76269,7 +76269,7 @@ function eventsGrilla() {
   }
 
   var confPrevProgramacion = {
-    remote: "".concat(baseURL, "programacion.php"),
+    remote: "".concat(baseURL, "programacion-prev.php"),
     container: document.getElementById("navbar-prev-programacion"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -77189,7 +77189,7 @@ function eventsGrilla() {
   }
 
   var confPrevClaroCanal = {
-    remote: "".concat(baseURL, "claro-canal.php"),
+    remote: "".concat(baseURL, "claro-canal-prev.php"),
     container: document.getElementById("navbar-prev-canal-claro"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -77657,7 +77657,7 @@ function eventsGrilla() {
   }
 
   var confHomeClaroCanal = {
-    remote: "".concat(baseURL, "home.php"),
+    remote: "".concat(baseURL, "home-prev.php"),
     container: document.getElementById("navbar-prev-home"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -77734,7 +77734,7 @@ function eventsGrilla() {
 
 
   var confPrevHomeConcert = {
-    remote: "".concat(baseURL, "home.php"),
+    remote: "".concat(baseURL, "home-prev.php"),
     container: document.getElementById("navbar-prev-home-concert"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -77836,7 +77836,7 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe").remove();
       new easyXDM.Socket({
-        remote: "".concat(baseURL, "home.php"),
+        remote: "".concat(baseURL, "home-prev.php"),
         container: document.getElementById("navbar-prev-home-landing"),
         onMessage: function onMessage(message, origin) {
           this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
@@ -81337,14 +81337,6 @@ function confLandingHome(baseURL) {
         var loader = "\n                    <div class=\"loader-view-container\" id=\"loader1\">\n                      <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                    </div>\n                    ";
 
         switch (json.type) {
-          case "slider-pagination":
-            landingView.renderHomeBanner();
-            break;
-
-          case "home-logos":
-            Object(_generalSchedule_js__WEBPACK_IMPORTED_MODULE_2__["addImagesModalIcons"])();
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-icons").modal("show");
-
           case "slider-pagination":
             landingView.renderHomeBanner();
             break;

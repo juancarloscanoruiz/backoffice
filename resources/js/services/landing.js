@@ -4873,14 +4873,7 @@ function confLandingHome(baseURL) {
                     case "slider-pagination":
                         landingView.renderHomeBanner();
                         break;
-                    case "home-logos":
-                        addImagesModalIcons();
-                        $(".modal-edit-icons").modal("show");
-                    
-                    
-                    case "slider-pagination":
-                        landingView.renderHomeBanner();
-                        break;
+                   
                     case "home-logos":   
                     $("body").append(loader);
 

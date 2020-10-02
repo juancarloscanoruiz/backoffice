@@ -70,5 +70,6 @@
 @include('partials.adm-CN.modals-concert.programming')
 @include('partials.adm-CN.modals-claro.index');
 
-
+@include('partials.adm-CN.modal-generic.advertencia');
+    @include('partials.adm-CN.modal-generic.url');
 </div>
