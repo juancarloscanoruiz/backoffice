@@ -4,15 +4,11 @@ import $ from "jquery";
 import LandingController from "../controllers/landing.js";
 let landingController = new LandingController();
 
-
 const LOADER = `<div class="loader-view-container pointer-none">
     <img src="./images/loader.gif" class="loader"/>
 </div>`;
 
 export default class LandingView {
-
-
-
     renderHomeHeaderCanalClaro() {
         $("body").append(LOADER);
         let data = landingController.getContentHome();
@@ -88,6 +84,7 @@ export default class LandingView {
         });
     }
     renderHomeBanner() {
+        let that = this;
         $("body").append(LOADER);
         let data = landingController.getContentHome();
         data.then(data => {
@@ -96,6 +93,8 @@ export default class LandingView {
                 let headerTitle1 = $(".modal-home-encabezado .header-title-1");
                 //Subtítulo de home
                 let headerTitle2 = $(".modal-home-encabezado .header-title-2");
+                let title = data.data.block_1_title;
+                let subtitle = data.data.block_1_subtitle;
                 //let headerVideo = $(".modal-home-encabezado .video-header");
                 headerTitle1.val(data.data.block_1_title);
                 headerTitle2.val(data.data.block_1_subtitle);
@@ -124,19 +123,17 @@ export default class LandingView {
                 $(".programming-slider-home").slick({
                     slidesToShow: 1,
                     dots: true,
-                    appendDots: $(
-                        ".programming-slider-dots-home"
-                    ),
+                    appendDots: $(".programming-slider-dots-home"),
                     initialSlide: 0,
 
                     arrows: true,
-                    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-                    nextArrow: '<img src="./images/next.png" class="arrow-next" />',
+                    prevArrow:
+                        '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow:
+                        '<img src="./images/next.png" class="arrow-next" />',
                     infinite: false,
-                    customPaging: function (slider, i) {
-                        var thumb = $(
-                            slider.$slides[i]
-                        ).data();
+                    customPaging: function(slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
                         return (
                             "<p class='a-text-bold-teal slider-pagination-item'>" +
                             (i + 1) +
@@ -148,13 +145,316 @@ export default class LandingView {
                 $(".modal-home-encabezado").modal("show");
                 //Eliminamos
                 $(".loader-view-container").remove();
+                this.renderHomeMobile();
+                this.renderHomePC(
+                    title,
+                    subtitle,
+                    data.data.block_1_video_name
+                );
             }
+        });
+    }
+
+    renderHomeMobile() {
+        $("#movil").click(function() {
+            //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+            $(".pc").html("");
+            $(".pc").html(`
+            <div class="d-flex col-12 mb-5 mx-auto">
+            <div class="mr-5 mx-auto">
+              <div class="d-flex">
+                <!--dots-->
+                <div class="programming-slider-dots-home mt-5 mb-5"></div>
+                <!--add slide-->
+                <img
+                  src="./images/add-icon.svg"
+                  class="add-banner-image cursor-pointer mb-3"
+                />
+              </div>
+              <!--  <div class="shadowblack position-absolute">
+              <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
+              </div>-->
+              <div class="programming-slider-home mx-auto">
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text">
+                      472px X 295px
+                    </span>
+                    <img
+                      src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
+
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
+
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
+
+                <div class="bor thumbnail-image-program position-relative h-100">
+                  <input
+                    type="file"
+                    name="image_programming[]"
+                    id="image_programming_1"
+                    class="input-image-program d-none image_programming"
+                    data-index="1"
+                  />
+                  <label
+                    for="image_programming_1"
+                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                  >
+                    <img
+                      src="./images/synopsis/camara.svg"
+                      alt="add-photo"
+                      class="cursor-pointer add-photo"
+                    />
+                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                      >472px X 295px
+                    </span>
+                    <img
+                      src="./images/synopsis/image-synopsis-carrusel.jpg"
+                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex mr-5 mb-3">
+            <span class="a-text-bold-brown-two text-normal"
+              >Nombre_Promoción_ConcertChannel_20200709.mp4</span
+            >
+          </div>
+          <div class="clearfix"></div>
+
+            `);
+            let programmingSliderHome = $(".programming-slider-home");
+            try {
+                programmingSliderHome.slick("unslick");
+                programmingSliderHome.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".programming-slider-dots-home"),
+                    initialSlide: 0,
+
+                    arrows: true,
+                    prevArrow:
+                        '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow:
+                        '<img src="./images/next.png" class="arrow-next" />',
+                    infinite: false,
+                    customPaging: function(slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            } catch (error) {
+                programmingSliderHome.slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(".programming-slider-dots-home"),
+                    initialSlide: 0,
+
+                    arrows: true,
+                    prevArrow:
+                        '<img src="./images/prev.png" class="arrow-prev" />',
+                    nextArrow:
+                        '<img src="./images/next.png" class="arrow-next" />',
+                    infinite: false,
+                    customPaging: function(slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            }
+        });
+    }
+
+    renderHomePC(title, subtitle, media) {
+        $("#pc").click(function() {
+            //Hacemos una validación para saber si es imagen o es un video
+            let file = "";
+            if (media) {
+                //Verificamos si la url es de una imagen
+                if (media.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                    file = `<img src="${media}" alt="" class="d-flex w-100" id="image-promo-header-home">`;
+                } else {
+                    file = `
+                    <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width: 62px; position: absolute; transform: translate(215px, -112px);" />
+                    <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute " style="transform: translate(207px, -40px);">Añade tu archivo <br> jpg 472px X 295px </span>
+                    <video class="w-100 h-100 home-video" id="video-promo-header-home d-block" controls muted autoplay>
+                        <source src="${media}" type="video/mp4">
+                    </video>`;
+                }
+            }
+            $(".pc").html("");
+            $(".pc").html(`
+            <!-- parte del home-->
+            <div class="d-flex col-12 mb-5 mx-auto">
+              <div class="mr-5">
+                <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4" />
+                <!--navbar-->
+                <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Canal Claro</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Concert Channel</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Claro Cinema</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a target="_blank" href="" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Nuestra Visión</p>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="" target="_blank" class="navbar-link text-decoration-none">
+                      <p class="navbar-item-black text-semibold">Claro Sports</p>
+                    </a>
+                  </div>
+                  <!-- <div>
+                        <a href="programacion.php" class="navbar-link text-decoration-none">
+                            <p class="navbar-item">Programación</p>
+                        </a>
+                        </div>-->
+                </div>
+                <!--<div class="login">
+                            <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
+                        </div>-->
+
+                <!--inputs-->
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex"
+                  placeholder="TITULO"
+                  value="${title}"/>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex"
+                  placeholder="SUBTITULO"
+                  value="${subtitle}"/>
+              </div>
+              <div class="d-flex justify-content-around">
+                <input
+                  type="file"
+                  name=""
+                  id="video-promo-header-home"
+                  class="d-none file-video"
+                  accept="video/*"/>
+                <label
+                  for="video-promo-header-home"
+                  class="mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header">
+                    ${file}
+                </label>
+                <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
+                        <label for="image-promo-header-home"
+                            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                                class="add-photo promo-icon cursor-pointer" style="width:95px" />
+                            <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
+                                jpg 472px X 295px </span>
+                        </label>-->
+              </div>
+            </div>
+
+            <div class="float-right mr-5 mb-3">
+                <span class="a-text-bold-brown-two text-normal">
+                    Nombre_Promoción_ConcertChannel_20200709.mp4
+                </span>
+            </div>
+            <div class="clearfix"></div>`);
         });
     }
 
     renderFooterClaroNetworks() {
         let that = this;
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+        const baseURL =
+            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroNetworks = document.getElementById(
             "claro-networks-programing"
         );
@@ -162,7 +462,7 @@ export default class LandingView {
             remote: `${baseURL}footer-edition.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
             container: document.getElementById("claro-networks-programing"),
-            onMessage: function (message, origin) {
+            onMessage: function(message, origin) {
                 let json = JSON.parse(message);
 
                 if (typeof json == "object") {
@@ -193,7 +493,8 @@ export default class LandingView {
 
     renderFooterClaroCanal() {
         let that = this;
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+        const baseURL =
+            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroCanal = document.getElementById(
             "claro-canal-programing"
         );
@@ -201,7 +502,7 @@ export default class LandingView {
             remote: `${baseURL}footer-claro-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php`,
             container: containerFooterClaroCanal,
-            onMessage: function (message, origin) {
+            onMessage: function(message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -232,7 +533,8 @@ export default class LandingView {
 
     renderFooterConcertChannel() {
         let that = this;
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+        const baseURL =
+            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterConcertChannel = document.getElementById(
             "concert-channel-programing"
         );
@@ -240,7 +542,7 @@ export default class LandingView {
             remote: `${baseURL}footer-concert-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php`,
             container: containerFooterConcertChannel,
-            onMessage: function (message, origin) {
+            onMessage: function(message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -272,7 +574,8 @@ export default class LandingView {
 
     renderFooterClaroCinema() {
         let that = this;
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+        const baseURL =
+            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let containerFooterClaroCinema = document.getElementById(
             "claro-cinema-programing"
         );
@@ -280,7 +583,7 @@ export default class LandingView {
             remote: `${baseURL}footer-cinema-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
             container: containerFooterClaroCinema,
-            onMessage: function (message, origin) {
+            onMessage: function(message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -312,113 +615,124 @@ export default class LandingView {
     }
 
     renderFooterPrev(sockets) {
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-        $('#prev-footer').click(function () {
+        const baseURL =
+            "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+        $("#prev-footer").click(function() {
             $(".navbar-prev-footers iframe").remove();
             let footerClaroNetoworksPrev = {
                 remote: `${baseURL}footer-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-prev.php`,
-                container: document.getElementById(
-                    "claro-networks-programing"
-                ),
-                onMessage: function (message, origin) {
+                container: document.getElementById("claro-networks-programing"),
+                onMessage: function(message, origin) {
                     console.log(message);
-                    this.container.getElementsByTagName("iframe")[0].style.height =
-                        message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
                     this.container
                         .getElementsByTagName("iframe")[0]
                         .setAttribute("scrolling", "no");
-                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
-            }
+            };
             let footerCanalClaroPrev = {
                 remote: `${baseURL}footer-claro-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php`,
                 container: document.getElementById("claro-canal-programing"),
-                onMessage: function (message, origin) {
+                onMessage: function(message, origin) {
                     console.log(message);
-                    this.container.getElementsByTagName("iframe")[0].style.height =
-                        message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
                     this.container
                         .getElementsByTagName("iframe")[0]
                         .setAttribute("scrolling", "no");
-                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
-            }
+            };
             let footerConcertChannelPrev = {
                 remote: `${baseURL}footer-concert-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-prev.php`,
-                container: document.getElementById("concert-channel-programing"),
-                onMessage: function (message, origin) {
+                container: document.getElementById(
+                    "concert-channel-programing"
+                ),
+                onMessage: function(message, origin) {
                     console.log(message);
-                    this.container.getElementsByTagName("iframe")[0].style.height =
-                        message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
                     this.container
                         .getElementsByTagName("iframe")[0]
                         .setAttribute("scrolling", "no");
-                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
-            }
+            };
             let footerClaroCinemaPrev = {
                 remote: `${baseURL}footer-cinema-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-prev.php`,
                 container: document.getElementById("claro-cinema-programing"),
-                onMessage: function (message, origin) {
+                onMessage: function(message, origin) {
                     console.log(message);
-                    this.container.getElementsByTagName("iframe")[0].style.height =
-                        message + "px";
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.height = message + "px";
                     this.container
                         .getElementsByTagName("iframe")[0]
                         .setAttribute("scrolling", "no");
-                    this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                    this.container.getElementsByTagName(
+                        "iframe"
+                    )[0].style.boxShadow =
                         "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
                 }
-            }
+            };
 
             //Iframes
-            sockets[0] = new easyXDM.Socket(
-                footerClaroNetoworksPrev);
-            sockets[1] = new easyXDM.Socket(
-                footerCanalClaroPrev);
-            sockets[2] = new easyXDM.Socket(
-                footerConcertChannelPrev);
-            sockets[3] = new easyXDM.Socket(
-                footerClaroCinemaPrev);
+            sockets[0] = new easyXDM.Socket(footerClaroNetoworksPrev);
+            sockets[1] = new easyXDM.Socket(footerCanalClaroPrev);
+            sockets[2] = new easyXDM.Socket(footerConcertChannelPrev);
+            sockets[3] = new easyXDM.Socket(footerClaroCinemaPrev);
 
-            $("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-            $("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-        })
-
+            $("#prev-mobile")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+            $("#prev-tablet")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+        });
     }
 
     renderFooterEdit(sockets) {
         let that = this;
-        $('#edit-footer').click(function () {
+        $("#edit-footer").click(function() {
             $(".navbar-prev-footers iframe").remove();
             let optionsFooterClaroNetworks = that.renderFooterClaroNetworks();
             let optionsFooterCanalClaro = that.renderFooterClaroCanal();
             let optionsFooterConcertChannel = that.renderFooterConcertChannel();
             let optionsFooterClaroCinema = that.renderFooterClaroCinema();
             //Iframes
-            sockets[0] = new easyXDM.Socket(
-                optionsFooterClaroNetworks);
-            sockets[1] = new easyXDM.Socket(
-                optionsFooterCanalClaro);
-            sockets[2] = new easyXDM.Socket(
-                optionsFooterConcertChannel);
-            sockets[3] = new easyXDM.Socket(
-                optionsFooterClaroCinema);
+            sockets[0] = new easyXDM.Socket(optionsFooterClaroNetworks);
+            sockets[1] = new easyXDM.Socket(optionsFooterCanalClaro);
+            sockets[2] = new easyXDM.Socket(optionsFooterConcertChannel);
+            sockets[3] = new easyXDM.Socket(optionsFooterClaroCinema);
 
-            $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-mobile")
+                .removeClass("cursor-pointer")
+                .addClass("pointer-none");
             $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-tablet")
+                .removeClass("cursor-pointer")
+                .addClass("pointer-none");
             $("#prev-tablet").css("opacity", "0.4");
             $("#prev-desktop").css("opacity", "1");
         });
-
     }
     renderContentFooter(landingFooter) {
         $("body").append(
@@ -462,13 +776,16 @@ export default class LandingView {
                             "media-link-1"
                         );
                         $("#footer-social-media-link-1").attr({
-                            "free": "media-link-1",
-                            "key": "facebook_canal_claro_url"
+                            free: "media-link-1",
+                            key: "facebook_canal_claro_url"
                         });
-                        $('#social-media-1-input').attr("key", "facebook_canal_claro_icon")
+                        $("#social-media-1-input").attr(
+                            "key",
+                            "facebook_canal_claro_icon"
+                        );
                         $("#media-link-1").attr({
-                            "free": "media-link-1",
-                            "key": "facebook_canal_claro_url"
+                            free: "media-link-1",
+                            key: "facebook_canal_claro_url"
                         });
                         //Social media 2
                         let iconSocialMediaCanalClaro2 =
@@ -486,13 +803,16 @@ export default class LandingView {
                             "media-link-2"
                         );
                         $("#footer-social-media-link-2").attr({
-                            "free": "media-link-2",
-                            "key": "instagram_canal_claro_url"
+                            free: "media-link-2",
+                            key: "instagram_canal_claro_url"
                         });
-                        $('#social-media-2-input').attr("key", "instagram_canal_claro_icon")
+                        $("#social-media-2-input").attr(
+                            "key",
+                            "instagram_canal_claro_icon"
+                        );
                         $("#media-link-2").attr({
-                            "free": "media-link-2",
-                            "key": "instagram_canal_claro_url"
+                            free: "media-link-2",
+                            key: "instagram_canal_claro_url"
                         });
                         //Social media 3
                         let iconSocialMediaCanalClaro3 =
@@ -510,13 +830,16 @@ export default class LandingView {
                             "media-link-3"
                         );
                         $("#footer-social-media-link-3").attr({
-                            "free": "media-link-3",
-                            "key": "twitter_canal_claro_url"
+                            free: "media-link-3",
+                            key: "twitter_canal_claro_url"
                         });
-                        $('#social-media-3-input').attr("key", "twitter_canal_claro_icon")
+                        $("#social-media-3-input").attr(
+                            "key",
+                            "twitter_canal_claro_icon"
+                        );
                         $("#media-link-3").attr({
-                            "free": "media-link-3",
-                            "key": "twitter_canal_claro_url"
+                            free: "media-link-3",
+                            key: "twitter_canal_claro_url"
                         });
                         //Social media 4
                         let iconSocialMediaCanalClaro4 =
@@ -534,13 +857,16 @@ export default class LandingView {
                             "media-link-4"
                         );
                         $("#footer-social-media-link-4").attr({
-                            "free": "media-link-4",
-                            "key": "youtube_canal_claro_url"
+                            free: "media-link-4",
+                            key: "youtube_canal_claro_url"
                         });
-                        $('#social-media-4-input').attr("key", "youtube_canal_claro_icon")
+                        $("#social-media-4-input").attr(
+                            "key",
+                            "youtube_canal_claro_icon"
+                        );
                         $("#media-link-4").attr({
-                            "free": "media-link-4",
-                            "key": "youtube_canal_claro_url"
+                            free: "media-link-4",
+                            key: "youtube_canal_claro_url"
                         });
                         break;
                     case "footer-concert-channel":
@@ -563,13 +889,16 @@ export default class LandingView {
                             "media-link-1"
                         );
                         $("#footer-social-media-link-1").attr({
-                            "free": "media-link-1",
-                            "key": "facebook_concert_channel_icon"
+                            free: "media-link-1",
+                            key: "facebook_concert_channel_icon"
                         });
-                        $('#social-media-1-input').attr("key", "facebook_concert_channel_icon")
+                        $("#social-media-1-input").attr(
+                            "key",
+                            "facebook_concert_channel_icon"
+                        );
                         $("#media-link-1").attr({
-                            "free": "media-link-1",
-                            "key": "facebook_concert_channel_icon"
+                            free: "media-link-1",
+                            key: "facebook_concert_channel_icon"
                         });
                         //Social media 3
                         let iconSocialMediaConcertChannel3 =
@@ -587,13 +916,16 @@ export default class LandingView {
                             "media-link-3"
                         );
                         $("#footer-social-media-link-3").attr({
-                            "free": "media-link-3",
-                            "key": "twitter_concert_channel_url"
+                            free: "media-link-3",
+                            key: "twitter_concert_channel_url"
                         });
-                        $('#social-media-3-input').attr("key", "twitter_concert_channel_icon")
+                        $("#social-media-3-input").attr(
+                            "key",
+                            "twitter_concert_channel_icon"
+                        );
                         $("#media-link-3").attr({
-                            "free": "media-link-3",
-                            "key": "twitter_concert_channel_url"
+                            free: "media-link-3",
+                            key: "twitter_concert_channel_url"
                         });
                         break;
 
@@ -604,21 +936,33 @@ export default class LandingView {
                         break;
                 }
 
-                let imageRight =
-                    data.data.image_right;
+                let imageRight = data.data.image_right;
 
-                let imageLeft =
-                    data.data.image_left
+                let imageLeft = data.data.image_left;
                 if (imageRight) {
-                    $('.footer-image-right').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+                    $(".footer-image-right")
+                        .closest("label")
+                        .find(".add-photo")
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
                 } else {
-                    imageRight = "./images/synopsis/image-synopsis-horizontal.png";
+                    imageRight =
+                        "./images/synopsis/image-synopsis-horizontal.png";
                 }
 
                 if (imageLeft) {
-                    $('.footer-image-left').closest("label").find(".add-photo").attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+                    $(".footer-image-left")
+                        .closest("label")
+                        .find(".add-photo")
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
                 } else {
-                    imageLeft = "./images/synopsis/image-synopsis-horizontal.png";
+                    imageLeft =
+                        "./images/synopsis/image-synopsis-horizontal.png";
                 }
                 //Imágenes de arriba
                 $(".footer-image-right").attr("src", imageRight);
@@ -631,12 +975,12 @@ export default class LandingView {
                 $("#footer-menu-1-opcion1-link").val(optionLink1);
                 $("#footer-menu-1-opcion1-link").addClass("opcion1");
                 $("#footer-menu-1-opcion1-link").attr({
-                    "free": "opcion1",
-                    "key": "menu_1_opcion_1_url"
+                    free: "opcion1",
+                    key: "menu_1_opcion_1_url"
                 });
                 $("#opcion1-link").attr({
-                    "free": "opcion1",
-                    "key": "menu_1_opcion_1_url"
+                    free: "opcion1",
+                    key: "menu_1_opcion_1_url"
                 });
                 //Canal Claro
                 let optionTitle2 = data.data.menu_1_opcion_2_title;
@@ -646,12 +990,12 @@ export default class LandingView {
                 $("#footer-menu-1-opcion2-link").val(optionLink2);
                 $("#footer-menu-1-opcion2-link").addClass("opcion2");
                 $("#footer-menu-1-opcion2-link").attr({
-                    "free": "opcion2",
-                    "key": "menu_1_opcion_2_url"
+                    free: "opcion2",
+                    key: "menu_1_opcion_2_url"
                 });
                 $("#opcion2-link").attr({
-                    "free": "opcion2",
-                    "key": "menu_1_opcion_2_url"
+                    free: "opcion2",
+                    key: "menu_1_opcion_2_url"
                 });
                 //Concert Channel
                 let optionTitle3 = data.data.menu_1_opcion_4_title;
@@ -660,12 +1004,12 @@ export default class LandingView {
                 $("#footer-menu-1-opcion3-link").val(optionLink3);
                 $("#footer-menu-1-opcion3-link").addClass("opcion3");
                 $("#footer-menu-1-opcion3-link").attr({
-                    "free": "opcion3",
-                    "key": "menu_1_opcion_4_url"
+                    free: "opcion3",
+                    key: "menu_1_opcion_4_url"
                 });
                 $("#opcion3-link").attr({
-                    "free": "opcion3",
-                    "key": "menu_1_opcion_4_url"
+                    free: "opcion3",
+                    key: "menu_1_opcion_4_url"
                 });
                 //Claro Cinema
                 let optionTitle4 = data.data.menu_1_opcion_3_title;
@@ -674,12 +1018,12 @@ export default class LandingView {
                 $("#footer-menu-1-opcion4-link").val(optionLink4);
                 $("#footer-menu-1-opcion4-link").addClass("opcion4");
                 $("#footer-menu-1-opcion4-link").attr({
-                    "free": "opcion4",
-                    "key": "menu_1_opcion_3_url"
+                    free: "opcion4",
+                    key: "menu_1_opcion_3_url"
                 });
                 $("#opcion4-link").attr({
-                    "free": "opcion4",
-                    "key": "menu_1_opcion_3_url"
+                    free: "opcion4",
+                    key: "menu_1_opcion_3_url"
                 });
                 //Nuestra Visión
                 let optionTitle5 = data.data.menu_1_opcion_6_title;
@@ -688,12 +1032,12 @@ export default class LandingView {
                 $("#footer-menu-1-opcion5-link").val(optionLink5);
                 $("#footer-menu-1-opcion5-link").addClass("opcion5");
                 $("#footer-menu-1-opcion5-link").attr({
-                    "free": "opcion5",
-                    "key": "menu_1_opcion_6_url"
+                    free: "opcion5",
+                    key: "menu_1_opcion_6_url"
                 });
                 $("#opcion5-link").attr({
-                    "free": "opcion5",
-                    "key": "menu_1_opcion_6_url"
+                    free: "opcion5",
+                    key: "menu_1_opcion_6_url"
                 });
                 //Claro Sports
                 let optionTitle6 = data.data.menu_1_opcion_5_title;
@@ -702,20 +1046,26 @@ export default class LandingView {
                 $("#footer-menu-1-opcion6-link").val(optionLink6);
                 $("#footer-menu-1-opcion6-link").addClass("opcion6");
                 $("#footer-menu-1-opcion6-link").attr({
-                    "free": "opcion6",
-                    "key": "menu_1_opcion_5_url"
+                    free: "opcion6",
+                    key: "menu_1_opcion_5_url"
                 });
                 $("#opcion6-link").attr({
-                    "free": "opcion6",
-                    "key": "menu_1_opcion_5_url"
+                    free: "opcion6",
+                    key: "menu_1_opcion_5_url"
                 });
                 //Icon claro networks footer
                 let iconClaroNetworksFooter = data.data.about_icon;
                 let footerAboutIcon = $("#footer-about-icon");
                 if (iconClaroNetworksFooter) {
-                    footerAboutIcon.prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg");
+                    footerAboutIcon
+                        .prev()
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
                 } else {
-                    iconClaroNetworksFooter = "./images/synopsis/image-synopsis-horizontal.png"
+                    iconClaroNetworksFooter =
+                        "./images/synopsis/image-synopsis-horizontal.png";
                 }
                 footerAboutIcon.attr("src", iconClaroNetworksFooter);
 
@@ -738,20 +1088,26 @@ export default class LandingView {
                 //Imagen
                 let footerIconImage1 = $("#footer-icon-1");
                 if (footerIcon1) {
-                    footerIconImage1.prev().attr("src", "./images/basic-icons/pencil-edit-teal.svg")
+                    footerIconImage1
+                        .prev()
+                        .attr(
+                            "src",
+                            "./images/basic-icons/pencil-edit-teal.svg"
+                        );
                 } else {
-                    footerIcon1 = "./images/synopsis/image-synopsis-horizontal.png"
+                    footerIcon1 =
+                        "./images/synopsis/image-synopsis-horizontal.png";
                 }
                 footerIconImage1.attr("src", footerIcon1);
                 footerIconLinkInput1.val(footerIconLink1);
                 footerIconLinkInput1.addClass("link-1");
                 footerIconLinkInput1.attr({
-                    "free": "link-1",
-                    "key": "menu_2_opcion_1_url"
+                    free: "link-1",
+                    key: "menu_2_opcion_1_url"
                 });
                 $("#link-1").attr({
-                    "free": "link-1",
-                    "key": "menu_2_opcion_1_url"
+                    free: "link-1",
+                    key: "menu_2_opcion_1_url"
                 });
                 //Footer icon 2
                 let footerIcon2 = data.data.menu_2_opcion_2_icon;
@@ -760,12 +1116,12 @@ export default class LandingView {
                 $("#footer-icon-link-2").val(footerIconLink2);
                 $("#footer-icon-link-2").addClass("link-2");
                 $("#footer-icon-link-2").attr({
-                    "free": "link-2",
-                    "key": "menu_2_opcion_2_url"
+                    free: "link-2",
+                    key: "menu_2_opcion_2_url"
                 });
                 $("#link-2").attr({
-                    "free": "link-2",
-                    "key": "menu_2_opcion_2_url"
+                    free: "link-2",
+                    key: "menu_2_opcion_2_url"
                 });
                 //Footer icon 3
                 let footerIcon3 = data.data.menu_2_opcion_3_icon;
@@ -774,12 +1130,12 @@ export default class LandingView {
                 $("#footer-icon-link-3").val(footerIconLink3);
                 $("#footer-icon-link-3").addClass("link-3");
                 $("#footer-icon-link-3").attr({
-                    "free": "link-3",
-                    "key": "menu_2_opcion_3_url"
+                    free: "link-3",
+                    key: "menu_2_opcion_3_url"
                 });
                 $("#link-3").attr({
-                    "free": "link-3",
-                    "key": "menu_2_opcion_3_url"
+                    free: "link-3",
+                    key: "menu_2_opcion_3_url"
                 });
                 //Footer icon 4
                 let footerIcon4 = data.data.menu_2_opcion_4_icon;
@@ -788,12 +1144,12 @@ export default class LandingView {
                 $("#footer-icon-link-4").val(footerIconLink4);
                 $("#footer-icon-link-4").addClass("link-4");
                 $("#footer-icon-link-4").attr({
-                    "free": "link-4",
-                    "key": "menu_2_opcion_4_url"
+                    free: "link-4",
+                    key: "menu_2_opcion_4_url"
                 });
                 $("#link-4").attr({
-                    "free": "link-4",
-                    "key": "menu_2_opcion_4_url"
+                    free: "link-4",
+                    key: "menu_2_opcion_4_url"
                 });
                 //Footer icon 5
                 let footerIcon5 = data.data.menu_2_opcion_5_icon;
@@ -802,12 +1158,12 @@ export default class LandingView {
                 $("#footer-icon-link-5").val(footerIconLink5);
                 $("#footer-icon-link-5").addClass("link-5");
                 $("#footer-icon-link-5").attr({
-                    "free": "link-5",
-                    "key": "menu_2_opcion_5_url"
+                    free: "link-5",
+                    key: "menu_2_opcion_5_url"
                 });
                 $("#link-5").attr({
-                    "free": "link-5",
-                    "key": "menu_2_opcion_5_url"
+                    free: "link-5",
+                    key: "menu_2_opcion_5_url"
                 });
                 //Footer icon 6
                 let footerIcon6 = data.data.menu_2_opcion_6_icon;
@@ -816,8 +1172,8 @@ export default class LandingView {
                 $("#footer-icon-link-6").val(footerIconLink6);
                 $("#footer-icon-link-6").addClass("link-6");
                 $("#footer-icon-link-6").attr({
-                    "free": "link-6",
-                    "key": "menu_2_opcion_6_url"
+                    free: "link-6",
+                    key: "menu_2_opcion_6_url"
                 });
                 $("#link-6").attr("free", "link-6");
                 //Footer icon 7
@@ -827,12 +1183,12 @@ export default class LandingView {
                 $("#footer-icon-link-7").val(footerIconLink7);
                 $("#footer-icon-link-7").addClass("link-7");
                 $("#footer-icon-link-7").attr({
-                    "free": "link-7",
-                    "key": "menu_2_opcion_7_url"
+                    free: "link-7",
+                    key: "menu_2_opcion_7_url"
                 });
                 $("#link-7").attr({
-                    "free": "link-7",
-                    "key": "menu_2_opcion_7_url"
+                    free: "link-7",
+                    key: "menu_2_opcion_7_url"
                 });
                 $(".loader-view-container").remove();
                 $(".modal-footer").modal("show");
@@ -846,7 +1202,7 @@ export default class LandingView {
         footersContainer.hide();
         $(".navbar-prev-footers:first").show();
         let that = this;
-        iconsLandingFooter.click(function () {
+        iconsLandingFooter.click(function() {
             iconsLandingFooter.removeClass("list-channel-active");
             $(this).addClass("list-channel-active");
             let rel = $(this).attr("rel");
@@ -856,137 +1212,153 @@ export default class LandingView {
     }
 
     uploadImageFooter(sockets) {
-        $(".footer-input-image").change(function () {
-            let currentInput = this.files[0]
+        $(".footer-input-image").change(function() {
+            let currentInput = this.files[0];
             let key = $(this).attr("key");
-            let response = landingController.uploadImageFooter(currentInput, key);
-            response.then(data => {
-                if (data.code == 200) {
-                    return landingController.getContentFooter();
-                }
-            }).then(data => {
-                let dataStringified = JSON.stringify(data)
-                for (const socket of sockets) {
-                    socket.postMessage(dataStringified);
-                }
-            })
-        });
-    }
-
-
-    updateInfoFooter(sockets) {
-        //Inputs
-        $('.footer-input-text').blur(function () {
-            let key = $(this).attr("key");
-            let value = $(this).val();
-            let response = landingController.updateInfoFooter(value, key);
-            response.then(data => {
-                if (data.code == 200) {
-
-                    return landingController.getContentFooter();
-                }
-            }).then(data => {
-                if (data.code == 200) {
-                    let dataStringified = JSON.stringify(data)
+            let response = landingController.uploadImageFooter(
+                currentInput,
+                key
+            );
+            response
+                .then(data => {
+                    if (data.code == 200) {
+                        return landingController.getContentFooter();
+                    }
+                })
+                .then(data => {
+                    let dataStringified = JSON.stringify(data);
                     for (const socket of sockets) {
                         socket.postMessage(dataStringified);
                     }
-                }
-            })
-        })
+                });
+        });
+    }
+
+    updateInfoFooter(sockets) {
+        //Inputs
+        $(".footer-input-text").blur(function() {
+            let key = $(this).attr("key");
+            let value = $(this).val();
+            let response = landingController.updateInfoFooter(value, key);
+            response
+                .then(data => {
+                    if (data.code == 200) {
+                        return landingController.getContentFooter();
+                    }
+                })
+                .then(data => {
+                    if (data.code == 200) {
+                        let dataStringified = JSON.stringify(data);
+                        for (const socket of sockets) {
+                            socket.postMessage(dataStringified);
+                        }
+                    }
+                });
+        });
         //Eventos para modales de links
-        $('.inp_url').click(function () {
-            let type = $(this).attr('free');
+        $(".inp_url").click(function() {
+            let type = $(this).attr("free");
             let key = $(this).attr("key");
             let url = $("." + type).val();
-            $('#btn-url').attr("key", key);
+            $("#btn-url").attr("key", key);
             $("#inp_url_modal").val(url);
-            $("#inp_url_modal").attr('free', type);
+            $("#inp_url_modal").attr("free", type);
             $("#inp_url_modal").addClass(type);
-            $('#url').modal('show');
+            $("#url").modal("show");
         });
 
         //Cerrar modal y obtener valores
-        $(".btn-url").click(function () {
-            let type = $('.input-url-modal').attr('free');
+        $(".btn-url").click(function() {
+            let type = $(".input-url-modal").attr("free");
             let url = $("#inp_url_modal").val();
             $("." + type).val(url);
             let key = $(this).attr("key");
             landingController.updateInfoFooter(url, key);
             $("#url").modal("hide");
         });
-        $('.tericon').click(function () {
-            $('#modal-terminos-footer').modal('show');
+        $(".tericon").click(function() {
+            $("#modal-terminos-footer").modal("show");
         });
 
-        $('#notice-privacy').click(function () {
-            $('#modal-privacy-footer').modal('show');
-        })
+        $("#notice-privacy").click(function() {
+            $("#modal-privacy-footer").modal("show");
+        });
     }
 
     updateInfoTermsAndPrivacy(sockets) {
         //Botón del modal de términos y condiciones
-        $('#acepta_terminos-footer').click(function () {
+        $("#acepta_terminos-footer").click(function() {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
-            let text = $('.footer-textarea-ter').val();
+            let text = $(".footer-textarea-ter").val();
             // let text = $('.footer-textarea-ter').attr('name');
-            let title = $('.footer-title-ter').val();
+            let title = $(".footer-title-ter").val();
 
             let landing = "terms";
-            let response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
-            response.then(data => {
-                if (data.code == 200) {
-                    $('#footer-legend-terms').text(title);
-                    return landingController.getContentFooter();
-                }
-                $('.loader-view-container').remove();
-            }).then(data => {
-                if (data.code == 200) {
-                    $('#modal-terminos-footer').modal('hide');
-                    $('.loader-view-container').remove();
-                    let dataStringified = JSON.stringify(data)
-                    for (const socket of sockets) {
-                        socket.postMessage(dataStringified);
+            let response = landingController.updateInfoTermsAndPrivacy(
+                text,
+                title,
+                landing
+            );
+            response
+                .then(data => {
+                    if (data.code == 200) {
+                        $("#footer-legend-terms").text(title);
+                        return landingController.getContentFooter();
                     }
-                }
-            })
-        })
+                    $(".loader-view-container").remove();
+                })
+                .then(data => {
+                    if (data.code == 200) {
+                        $("#modal-terminos-footer").modal("hide");
+                        $(".loader-view-container").remove();
+                        let dataStringified = JSON.stringify(data);
+                        for (const socket of sockets) {
+                            socket.postMessage(dataStringified);
+                        }
+                    }
+                });
+        });
 
-        $('#modal-privacy-button').click(function () {
+        $("#modal-privacy-button").click(function() {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
 
-            debugger
-            let text = $('.footer-textarea-privacy').val();
-            let title = $('.footer-title-privacy').val();
+            debugger;
+            let text = $(".footer-textarea-privacy").val();
+            let title = $(".footer-title-privacy").val();
 
             let landing = "about";
-            let response = landingController.updateInfoTermsAndPrivacy(text, title, landing);
-            response.then(data => {
-                if (data.code == 200) {
-                    console.log(data);
-                    $('#footer-legend-privacy').text(title)
-                    return landingController.getContentFooter();
-
-                }
-            }).then(data => {
-                if (data.code == 200) {
-                    $('#modal-privacy-footer').modal('hide');
-                    $('.loader-view-container').remove();
-                    let dataStringified = JSON.stringify(data)
-                    for (const socket of sockets) {
-                        socket.postMessage(dataStringified);
+            let response = landingController.updateInfoTermsAndPrivacy(
+                text,
+                title,
+                landing
+            );
+            response
+                .then(data => {
+                    if (data.code == 200) {
+                        console.log(data);
+                        $("#footer-legend-privacy").text(title);
+                        return landingController.getContentFooter();
                     }
-                }
-            })
-        })
+                })
+                .then(data => {
+                    if (data.code == 200) {
+                        $("#modal-privacy-footer").modal("hide");
+                        $(".loader-view-container").remove();
+                        let dataStringified = JSON.stringify(data);
+                        for (const socket of sockets) {
+                            socket.postMessage(dataStringified);
+                        }
+                    }
+                });
+        });
     }
 
     editTextFooter(input) {
@@ -999,23 +1371,23 @@ export default class LandingView {
         let response = landingController.getContentRights();
         response.then(data => {
             if (data.code == 200) {
-                $('.footer-textarea-ter').val(data.data.terms_text);
-                $('.footer-title-ter').val(data.data.terms_title);
-                $('.footer-textarea-privacy').val(data.data.about_text);
-                $('.footer-title-privacy').val(data.data.about_title);
+                $(".footer-textarea-ter").val(data.data.terms_text);
+                $(".footer-title-ter").val(data.data.terms_title);
+                $(".footer-textarea-privacy").val(data.data.about_text);
+                $(".footer-title-privacy").val(data.data.about_title);
 
                 this.test(data.data.terms_text);
             }
-        })
+        });
     }
 
     test(valor) {
-        $('.footer-textarea-ter').keydown(function (e) {
+        $(".footer-textarea-ter").keydown(function(e) {
             let Final;
             let texto;
             if (e.which === 13 && !e.shiftKey) {
-                texto = document.getElementById("textTerminos").value += '\n';
-                $('.footer-textarea-ter').attr('name', texto)
+                texto = document.getElementById("textTerminos").value += "\n";
+                $(".footer-textarea-ter").attr("name", texto);
                 // valor = $('.footer-textarea-ter').attr('name');
                 // valor.attr(valor + '<br>');
                 // debugger
@@ -1028,10 +1400,7 @@ export default class LandingView {
                 // texto = $('.footer-textarea-ter').attr('name');
                 // Final += texto;
                 // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
-
             }
         });
     }
-
-
 }
