@@ -90360,7 +90360,7 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-cont").html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-sinopsis").modal('show');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#estSis').load('imports #sisEst', function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.siestado-landing').click(function () {
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
@@ -90579,7 +90579,6 @@ function eventsGrilla() {
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
   Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
-    alert('botando');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
     console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));

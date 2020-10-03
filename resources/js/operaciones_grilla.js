@@ -110,7 +110,7 @@ function eventsGrilla() {
         getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
     }
     $('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
-        $(".sinopsis-cont").html('');
+        $("#modal-sinopsis").modal('show');
 
         $('#estSis').load('imports #sisEst', function () {
             $('.siestado-landing').click(function () {
@@ -467,7 +467,6 @@ function eventsGrilla() {
         "click",
         ".synopsis-calendar-item",
         function () {
-            alert('botando');
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
