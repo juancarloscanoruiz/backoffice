@@ -3,6 +3,8 @@ import $ from "jquery";
 import ProgramController from "../controllers/program.js";
 let programController = new ProgramController();
 
+import { previewPage } from "../preview/prev.js";
+
 /**
  * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
  * y esuchcar eventos
@@ -54,6 +56,11 @@ export default class ProgramView {
                     let dataStringified = JSON.stringify(data);
                     socketSynopsis.postMessage(dataStringified);
                 }
+                $("#device-size").load("imports #device-size-prev", function () {
+                    $(".a-prev-image").click(function () {
+                        previewPage($(this));
+                    });
+                });
             })
         })
     }
@@ -81,6 +88,7 @@ export default class ProgramView {
                     that.editImageSynopsis(socketSynopsis);
                     that.editImagesBanner(socketSynopsis);
                 }
+                $("#device-size").load("imports #device-size-edit");
             })
         })
     }
@@ -218,19 +226,19 @@ export default class ProgramView {
             let response = programController.editAttributesSynopsis(chapterId, change, synopsis, title);
             //editamos primero la sinopsis
             response.then(data => {
-                    if (data.code == 200) {
-                        return programController.getSynopsis(chapterId);
-                    }
+                if (data.code == 200) {
+                    return programController.getSynopsis(chapterId);
+                }
 
-                }).then(data => {
-                    if (data.code == 200) {
-                        let dataStringified = JSON.stringify(data);
-                        socket.postMessage(dataStringified);
+            }).then(data => {
+                if (data.code == 200) {
+                    let dataStringified = JSON.stringify(data);
+                    socket.postMessage(dataStringified);
 
-                    }
-                    $(".modal-edit-synopsis").modal("hide");
-                    $(".loader-view-container").remove()
-                })
+                }
+                $(".modal-edit-synopsis").modal("hide");
+                $(".loader-view-container").remove()
+            })
                 .catch(err => {
                     console.log(err);
                 })

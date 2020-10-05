@@ -24,11 +24,7 @@
                                 </label>
                             </div>
                         </form>
-                        <div id="device-size">
-                            <div class="pt-2">
-                                <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
-                            </div>
-                        </div>
+                        <div id="device-size"></div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="ml-5 float-left ">
