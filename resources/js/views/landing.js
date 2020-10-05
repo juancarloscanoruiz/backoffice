@@ -89,6 +89,20 @@ export default class LandingView {
         let data = landingController.getContentHome();
         data.then(data => {
             if (data.code == 200) {
+                //Imágenes para móvil
+                let count = 1;
+                let imagesMobile = [];
+                while (true) {
+                    if (data.data[`block_1_image_background_${count}`]) {
+                        imagesMobile.push(
+                            data.data[`block_1_image_background_${count}`]
+                        );
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+
                 //Título en header de home
                 let headerTitle1 = $(".modal-home-encabezado .header-title-1");
                 //Subtítulo de home
@@ -145,7 +159,7 @@ export default class LandingView {
                 $(".modal-home-encabezado").modal("show");
                 //Eliminamos
                 $(".loader-view-container").remove();
-                this.renderHomeMobile();
+                this.renderHomeMobile(imagesMobile);
                 this.renderHomePC(
                     title,
                     subtitle,
@@ -155,8 +169,42 @@ export default class LandingView {
         });
     }
 
-    renderHomeMobile() {
+    renderHomeMobile(images) {
         $("#movil").click(function() {
+            let imagesArrayLength = images.length;
+            let imageMobile = "";
+            for (let index = 0; index < imagesArrayLength; index++) {
+                console.log(images[index]);
+                imageMobile = `
+                <div class="bor thumbnail-image-program position-relative h-100">
+                <input
+                  type="file"
+                  name="image_programming[]"
+                  id="image_programming_1"
+                  class="input-image-program d-none image_programming"
+                  data-index="1"
+                />
+                <label
+                  for="image_programming_1"
+                  class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                >
+                  <img
+                    src="./images/synopsis/camara.svg"
+                    alt="add-photo"
+                    class="cursor-pointer add-photo"
+                  />
+                  <span class="a-text-bold-warm text-plus mt-3 banner-text"
+                    >472px X 295px
+                  </span>
+                  <img
+                    src="${images[index]}"
+                    class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                  />
+                </label>
+              </div>
+                `;
+            }
+
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $(".pc").html("");
             $(".pc").html(`

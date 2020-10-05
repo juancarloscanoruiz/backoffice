@@ -82874,7 +82874,20 @@ var LandingView = /*#__PURE__*/function () {
       var data = landingController.getContentHome();
       data.then(function (data) {
         if (data.code == 200) {
-          //Título en header de home
+          //Imágenes para móvil
+          var count = 1;
+          var imagesMobile = [];
+
+          while (true) {
+            if (data.data["block_1_image_background_".concat(count)]) {
+              imagesMobile.push(data.data["block_1_image_background_".concat(count)]);
+              count++;
+            } else {
+              break;
+            }
+          } //Título en header de home
+
+
           var headerTitle1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1"); //Subtítulo de home
 
           var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2");
@@ -82914,7 +82927,7 @@ var LandingView = /*#__PURE__*/function () {
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 
-          _this.renderHomeMobile();
+          _this.renderHomeMobile(imagesMobile);
 
           _this.renderHomePC(title, subtitle, data.data.block_1_video_name);
         }
@@ -82922,9 +82935,17 @@ var LandingView = /*#__PURE__*/function () {
     }
   }, {
     key: "renderHomeMobile",
-    value: function renderHomeMobile() {
+    value: function renderHomeMobile(images) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
-        //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+        var imagesArrayLength = images.length;
+        var imageMobile = "";
+
+        for (var index = 0; index < imagesArrayLength; index++) {
+          console.log(images[index]);
+          imageMobile = "\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input\n                  type=\"file\"\n                  name=\"image_programming[]\"\n                  id=\"image_programming_1\"\n                  class=\"input-image-program d-none image_programming\"\n                  data-index=\"1\"\n                />\n                <label\n                  for=\"image_programming_1\"\n                  class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                >\n                  <img\n                    src=\"./images/synopsis/camara.svg\"\n                    alt=\"add-photo\"\n                    class=\"cursor-pointer add-photo\"\n                  />\n                  <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                    >472px X 295px\n                  </span>\n                  <img\n                    src=\"".concat(images[index], "\"\n                    class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                  />\n                </label>\n              </div>\n                ");
+        } //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
+
+
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n            <div class=\"d-flex col-12 mb-5 mx-auto\">\n            <div class=\"mr-5 mx-auto\">\n              <div class=\"d-flex\">\n                <!--dots-->\n                <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n                <!--add slide-->\n                <img\n                  src=\"./images/add-icon.svg\"\n                  class=\"add-banner-image cursor-pointer mb-3\"\n                />\n              </div>\n              <!--  <div class=\"shadowblack position-absolute\">\n              <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n              </div>-->\n              <div class=\"programming-slider-home mx-auto\">\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">\n                      472px X 295px\n                    </span>\n                    <img\n                      src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"d-flex mr-5 mb-3\">\n            <span class=\"a-text-bold-brown-two text-normal\"\n              >Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span\n            >\n          </div>\n          <div class=\"clearfix\"></div>\n\n            ");
         var programmingSliderHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home");
