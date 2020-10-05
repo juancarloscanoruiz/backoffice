@@ -1,17 +1,4 @@
 @section('scripts')
-<!--<script src="{{ asset('/js/lib/easyXDM.min.js') }}"></script>
-                            <script>
-                                new easyXDM.Socket({
-                                    remote: "http://www.claronetworks.openofficedospuntocero.info/v1.2/sinopsis-edi.php",
-                                    container: "sinopsis-container",
-                                    onMessage: function(message, origin) {
-                                        console.log(message);
-                                        this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-                                        this.container.getElementsByTagName("iframe")[0].setAttribute("scrolling", "no");
-                                        this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-                                    }
-                                });
-                            </script> -->
 <div class="modal modal-landing-sinopsis pr-0" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="padding: 0px !important; overflow: auto; ">
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
@@ -37,11 +24,7 @@
                                 </label>
                             </div>
                         </form>
-                        <div id="device-size">
-                            <div class="pt-2">
-                                <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac" alt="pc" id="prev-desktop">
-                            </div>
-                        </div>
+                        <div id="device-size"></div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="ml-5 float-left ">

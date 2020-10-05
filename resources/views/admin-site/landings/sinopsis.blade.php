@@ -25,12 +25,12 @@
             <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ session('name') }} (<label class="zona ">{{ session('rol_name') }}</label>)</label></span>
         </div>
 
-        <div id="estSis"></div>
+        <!-- <div id="estSis"></div> -->
 
         <div class="clearfix"></div>
         <h2 class="h2 text-center a-text-black-brown-two pt-3">SINOPSIS</h2>
         <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-        <div class="sinopsis-cont centro mt-5" id="sinopsis-cont">
+        <div class="sinopsis-cont centro mt-5">
             <div class="centro">
                 <!--menu-->
                 <div class="row no-gutters">
@@ -69,5 +69,7 @@
             </div>
         </div>
     </div>
+    @include('partials.adm-CN.sinopsis')
+    @endsection
 </body>
 @endsection

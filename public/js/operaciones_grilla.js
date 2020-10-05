@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -74629,202 +74629,19 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("canal-claro", "".concat(_year, "-").concat(month, "-").concat(day));
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-master").on("click", ".edit-synopsis-pencil", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-cont").html("");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#estSis").load("imports #sisEst", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".siestado-landing").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".noestado-landing").click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                 <img src=\"./images/loader.gif\" class=\"loader\"/>\n             </div>");
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    programView.renderSynopsis(id, socketSynopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
       });
     });
-    var socketSynopsis = new easyXDM.Socket(SinopsisLanding);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    programView.renderSynopsis(id, socketSynopsis);
   }); //Prev
 
-  var SinopsisLanding = {
-    remote: "".concat(baseURL, "sinopsis-edi.php"),
-    //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
-    container: document.getElementById("sinopsis-cont"),
-    onMessage: function onMessage(message, origin) {
-      var json = JSON.parse(message);
-
-      if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
-
-        switch (json.type) {
-          case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            var data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                var programminfSliderSynopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-sinopsis");
-                var index = 1;
-                var slide = "";
-                var image = "";
-
-                while (true) {
-                  if (data.data["image_background_".concat(index)] !== undefined) {
-                    image = data.data["image_background_".concat(index)];
-
-                    if (data.data["image_background_".concat(index)] == null) {
-                      image = "./images/synopsis/image-synopsis-carrusel.jpg";
-                    }
-
-                    slide += "\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" id=\"image_banner_synopsis_".concat(index, "\"\n                                            class=\"input-image-program d-none input-banner-synopsis\" data-index=\"1\">\n                                            <label for=\"image_banner_synopsis_").concat(index, "\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm text-plus mt-3 banner-text pl-4 pr-4 pt-2 pb-2\">1191px X 471px</span>\n                                            <img src=\"").concat(image, "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                                            </label>\n                                        </div>\n                                        ");
-                    index++;
-                  } else {
-                    break;
-                  }
-                }
-
-                programminfSliderSynopsis.html(slide);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-banner-synopsis").val("");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis").modal("show");
-
-                try {
-                  programminfSliderSynopsis.slick("unslick");
-                  programminfSliderSynopsis.slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
-                    initialSlide: 0,
-                    infinite: false,
-                    customPaging: function customPaging(slider, i) {
-                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                    }
-                  });
-                } catch (error) {
-                  programminfSliderSynopsis.slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-sinopsis"),
-                    initialSlide: 0,
-                    infinite: false,
-                    customPaging: function customPaging(slider, i) {
-                      var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-                      return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                    }
-                  });
-                }
-
-                var buttonSynopsisBannerModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#banner-sinopsis-modal-button");
-                buttonSynopsisBannerModal.attr("landing_id", data.data.landing_id);
-                buttonSynopsisBannerModal.attr("chapter_id", data.data.chapter_id); //Previsualizar una imagen en el banner
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-sinopsis .input-image-program").change(function () {
-                  var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-                  if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                      currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                    };
-
-                    reader.readAsDataURL(this.files[0]);
-                    buttonSynopsisBannerModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
-                    buttonSynopsisBannerModal.addClass(["btn-grilla", "a-text-bold-white"]);
-                  }
-                });
-              }
-
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-            });
-            break;
-
-          case "synopsis-main-image":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            data.then(function (data) {
-              if (data.code == 200) {
-                //Verificamos si tiene una imagen
-                var image = data.data.image_synopsis || "./images/synopsis/image-synopsis.svg";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); //Limpiamos input
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-synopsis").val(); //Button
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("landing_id", data.data.landing_id); //Para el botón le agregamos un atributo
-
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#upload-image-synopsis").attr("chapter_id", data.data.chapter_id);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-modal").attr("src", image);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis").modal("show");
-              }
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-image-synopsis .input-image-program").change(function () {
-              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-              if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                };
-
-                reader.readAsDataURL(this.files[0]);
-              }
-            });
-            break;
-
-          case "synopsis-description-container":
-            programView.renderDescriptionSynopsis(json.id);
-            break;
-
-          case "synopsis-images-container":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                                <img src=\"./images/loader.gif\" class=\"loader\"/>\n                            </div>");
-            data = Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getSynopsis"])(json.id);
-            var buttonImageSynopsisModal = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#images-synopsis-modal-button");
-            data.then(function (data) {
-              if (data.code == 200) {
-                //Limpiar inputs
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-input").val();
-                var imageSynopsisFrame1 = data.data.image_synopsis_frame_1 || "./images/synopsis/image-synopsis-horizontal.png";
-                var imageSynopsisFrame2 = data.data.image_synopsis_frame_2 || "./images/synopsis/image-synopsis-horizontal.png";
-                var imageSynopsisFrame3 = data.data.image_synopsis_frame_3 || "./images/synopsis/image-synopsis-horizontal.png";
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-1").attr("src", imageSynopsisFrame1);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-2").attr("src", imageSynopsisFrame2);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-synopsis-frame-3").attr("src", imageSynopsisFrame3);
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container").modal("show");
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-              }
-
-              buttonImageSynopsisModal.attr("landing_id", data.data.landing_id);
-              buttonImageSynopsisModal.attr("chapter_id", data.data.chapter_id);
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-synopsis-images-container .input-image-program").change(function () {
-              var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-
-              if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                  currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
-                };
-
-                reader.readAsDataURL(this.files[0]);
-                buttonImageSynopsisModal.removeClass(["disabled-btn", "a-text-bold-teal", "btn-landing"]);
-                buttonImageSynopsisModal.addClass(["btn-grilla", "a-text-bold-white"]);
-              }
-            });
-            break;
-
-          case "synopsis-datails-container":
-            programView.renderDetailsSynopsis(json.id);
-            break;
-
-          default:
-            break;
-        }
-      }
-
-      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
-      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    }
-  };
   var SinopsisLandingPrev = {
     remote: "".concat(baseURL, "sinopsis-prev.php"),
     //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
@@ -75164,13 +74981,21 @@ function eventsGrilla() {
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container"); // let sinopsisLanding = $('.sinopsis-container');
 
   if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      programView.renderSynopsis(id, socketSynopsis);
-    });
+    // $("#sinopsis-container iframe").remove();
+    // var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    // $("#synopsis-table-canal-claro").on(
+    //     "click",
+    //     ".edit-synopsis-pencil",
+    //     function () {
+    //         $("body").append(
+    //             `<div class="loader-view-container pointer-none">
+    //                 <img src="./images/loader.gif" class="loader"/>
+    //             </div>`
+    //         );
+    //         let id = $(this).attr("chapter_id");
+    //         programView.renderSynopsis(id, socketSynopsis);
+    //     }
+    // );
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".prev-synopsis-pencil", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
@@ -75178,6 +75003,11 @@ function eventsGrilla() {
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
     });
   }
 
@@ -75195,6 +75025,11 @@ function eventsGrilla() {
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
     });
   }
@@ -75213,6 +75048,11 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
     });
   } //Editar información de sinopsis
@@ -83848,6 +83688,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/program.js */ "./resources/js/controllers/program.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../preview/prev.js */ "./resources/js/preview/prev.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -83858,6 +83699,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
 /**
  * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
  * y esuchcar eventos
@@ -83914,6 +83756,12 @@ var ProgramView = /*#__PURE__*/function () {
             var dataStringified = JSON.stringify(data);
             socketSynopsis.postMessage(dataStringified);
           }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+              Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_2__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+            });
+          });
         });
       });
     }
@@ -83941,6 +83789,8 @@ var ProgramView = /*#__PURE__*/function () {
             that.editImageSynopsis(socketSynopsis);
             that.editImagesBanner(socketSynopsis);
           }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit");
         });
       });
     }
@@ -84258,7 +84108,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),
