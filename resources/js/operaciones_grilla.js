@@ -5112,6 +5112,12 @@ break;*/
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+    let NavbarHomeClaro = document.getElementById("navbar-prev-home");
+    if (NavbarHomeClaro) {
+        $("#navbar-prev-home iframe").remove();
+        new easyXDM.Socket(LandingHomeClaro);
+    }
+
     let confHomeClaroCanal = {
         remote: `${baseURL}home-prev.php`,
         container: document.getElementById("navbar-prev-home"),
