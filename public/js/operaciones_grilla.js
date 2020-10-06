@@ -77829,6 +77829,13 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
+  var NavbarHomeClaro = document.getElementById("navbar-prev-home");
+
+  if (NavbarHomeClaro) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
+    new easyXDM.Socket(LandingHomeClaro);
+  }
+
   var confHomeClaroCanal = {
     remote: "".concat(baseURL, "home-prev.php"),
     container: document.getElementById("navbar-prev-home"),

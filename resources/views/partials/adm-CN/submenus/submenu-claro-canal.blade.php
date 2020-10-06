@@ -34,7 +34,7 @@
 <body>
     <main>
         <div id="menu">
-            <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
+            <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5 mx-auto" id="option">
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
                     <div class="navbar-progra-item navbar-progra-item-border navbar-programacion   navbar-progra-active navbar-prev-programacion"

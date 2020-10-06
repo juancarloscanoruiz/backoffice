@@ -205,7 +205,7 @@ public function onlyday(Request $request)
         $fecha_del_documento = $fecha_del_documento->getValue();
 
         $objFecha = Date::excelToDateTimeObject($fecha_del_documento);
-        $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+        $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
 
         $fecha_del_documento = $cadena_nuevo_formato;
         $fecha_actual=date('Y-m-d');
@@ -259,7 +259,7 @@ public function onlyday(Request $request)
                                 # code...
                                 try {
                                     $objFecha = Date::excelToDateTimeObject($value);
-                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
                                 } catch (\Throwable $th) {
                                     $cadena_nuevo_formato = "2020-01-01";
                                 }
@@ -274,7 +274,7 @@ public function onlyday(Request $request)
                                 # code...
                                 try {
                                     $objFecha = Date::excelToDateTimeObject($value);
-                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
                                 } catch (\Throwable $th) {
                                     $cadena_nuevo_formato = "2020-01-01";
                                 }
@@ -283,7 +283,7 @@ public function onlyday(Request $request)
                             case 8:
                                 # code...
                                 $objFecha = Date::excelToDateTimeObject($value);
-                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');;
+                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');
 
 
                                 $programa['Schedule_Item_Date_Time'] = $cadena_nuevo_formato;
@@ -291,7 +291,7 @@ public function onlyday(Request $request)
                             case 9:
                                 # code...
                                 $objFecha = Date::excelToDateTimeObject($value);
-                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                                $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
 
                                 $programa['Schedule_Item_Long_Date'] = $cadena_nuevo_formato;
 

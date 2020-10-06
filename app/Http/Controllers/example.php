@@ -51,7 +51,7 @@ for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
                 case 5:
                     # code...
                     $objFecha = Date::excelToDateTimeObject($value);
-                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
 
                     $programa['Vigencia_home'] = $cadena_nuevo_formato;
                     break;
@@ -62,13 +62,13 @@ for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
                 case 7:
                     # code...
                     $objFecha = Date::excelToDateTimeObject($value);
-                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
                     $programa['Vigencia_landing'] = $cadena_nuevo_formato;
                     break;
                 case 8:
                     # code...
                     $objFecha = Date::excelToDateTimeObject($value);
-                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');;
+                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d H:i:s');
 
 
                     $programa['Schedule_Item_Date_Time'] = $cadena_nuevo_formato;
@@ -76,7 +76,7 @@ for ($indiceHoja = 0; $indiceHoja < $totalDeHojas; $indiceHoja++) {
                 case 9:
                     # code...
                     $objFecha = Date::excelToDateTimeObject($value);
-                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');;
+                    $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
 
                     $programa['Schedule_Item_Long_Date'] = $cadena_nuevo_formato;
                     break;

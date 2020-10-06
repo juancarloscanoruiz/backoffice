@@ -1343,6 +1343,7 @@
                             <div class="programming-slider-dots d-inline-block mt-5 mb-5">
                             </div>
                             <!--add slide--> 
+                            <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image d-none cursor-pointer mb-3">
 
                         </div>
                   
