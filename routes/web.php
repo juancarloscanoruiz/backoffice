@@ -104,6 +104,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/editPromoLandingCinema", "landingController@editPromoLandingCinema");
     Route::post("/homeCarrusel", "landingController@homeCarrusel");
     Route::post("/editHeaderHome", "landingController@editHeaderHome");
+    Route::post("/editHomeHeader", "landingController@editHomeHeader");
     Route::get("/getContentFooter", "landingController@getContentFooter");
     Route::post("/updateInfoFooter", "landingController@updateInfoFooter");
     Route::post("/getContentRights", "landingController@getContentRights");
@@ -142,5 +143,9 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
 // MODALES
-Route::get('/test',  function () {return view('test');});
-Route::get('/imports',  function () {return view('imports.device-size');});
+Route::get('/test',  function () {
+    return view('test');
+});
+Route::get('/imports',  function () {
+    return view('imports.device-size');
+});

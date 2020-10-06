@@ -1,10 +1,13 @@
+//jQuery
+import $ from "jquery";
+
 export default class PrevImageHelper {
-    prevUploadedImage() {
-        $(".input-image-program").change(function () {
+    static prevUploadedImage() {
+        $(".input-image-program").change(function() {
             let currentInput = $(this);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     currentInput
                         .next()
                         .children(".prev-image-program")

@@ -1,0 +1,11 @@
+.menu-mobile {
+    height: 218px;
+    background-image: linear-gradient(to bottom, #000000, rgba(0, 0, 0, 0));
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    padding: 24px;
+    .menu-mobile__logo {
+        width: 126px;
+    }
+}

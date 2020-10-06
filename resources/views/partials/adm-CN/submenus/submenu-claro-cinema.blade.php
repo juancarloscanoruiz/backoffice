@@ -11,19 +11,22 @@
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion" navbar-index="1" rel="navbar-prev-programacion">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion"
+                        navbar-index="1" rel="navbar-prev-programacion">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
 
                     </div>
 
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis " navbar-index="2" rel="navbar-prev-sinopsis">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-sinopsis " navbar-index="2"
+                        rel="navbar-prev-sinopsis">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class=" a-text-bold-two py-2 px-3 mb-0">SINOPSIS</p>
                         </div>
                     </div>
-                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro " navbar-index="3" rel="navbar-prev-claro-cinema">
+                    <div class="navbar-progra-item navbar-progra-item-border  navbar-canal-claro " navbar-index="3"
+                        rel="navbar-prev-claro-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="py-2 px-3 mb-0 a-text-bold-two">CLARO CINEMA</p>
 
@@ -31,7 +34,8 @@
                     </div>
 
 
-                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4" rel="navbar-prev-home-cinema">
+                    <div class="navbar-progra-item navbar-prev-home navbar-home " navbar-index="4"
+                        rel="navbar-prev-home-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">HOME</p>
                         </div>
@@ -45,7 +49,8 @@
                 <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
                     <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
                         <input type="radio" name="sexo" id="edit-landing-cinema" class="edi-cinema" checked />
-                        <label for="edit-landing-cinema" id="edit-landing-cinema" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
+                        <label for="edit-landing-cinema" id="edit-landing-cinema"
+                            class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
                         <input type="radio" name="sexo" id="prev-landing-cinema" class="prev-cinema" />
@@ -55,9 +60,12 @@
                     </div>
                 </form>
                 <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile"
+                        id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet"
+                        id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc"
+                        id="prev-desktop">
                 </div>
             </div>
             <div class="float-left ml-5 mb-4 ">
@@ -70,19 +78,22 @@
             </div>
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right">
-                <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" /></div>
+                <div class="btn-zona zona"><span class="mr-3">Zona horaria</span> <img
+                        src={{ asset('images/gmt-icon.svg') }} class="Icon_paises1" /></div>
             </div>
 
             <div class="clearfix"></div>
             <!--iframe de programación-->
             <div class="centro ">
-                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5" id="navbar-prev-programacion-cinema">
+                <div class="navbar-progra-content mb-5 navbar-prev-programacion mt-5"
+                    id="navbar-prev-programacion-cinema">
                 </div>
             </div>
             <!--landing de sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
+                        id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -188,11 +199,15 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing" value="3" class="edit-switch-landing edit-landing-yes" />
-                                    <label for="yes-landing" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="yes-landing" value="3"
+                                        class="edit-switch-landing edit-landing-yes" />
+                                    <label for="yes-landing" id="siestado-landing"
+                                        class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                    <label for="no-landing" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="no-landing" value="0"
+                                        class="edit-switch-landing switch-table-edit edit-landing-no" checked />
+                                    <label for="no-landing" id="noestado-landing"
+                                        class="mb-0 no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
                             </div>
@@ -214,11 +229,15 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing" value="3" class="edit-switch-landing edit-landing-yes" />
-                                    <label for="yes-landing" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="yes-landing" value="3"
+                                        class="edit-switch-landing edit-landing-yes" />
+                                    <label for="yes-landing" id="siestado-landing"
+                                        class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                    <label for="no-landing" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="no-landing" value="0"
+                                        class="edit-switch-landing switch-table-edit edit-landing-no" checked />
+                                    <label for="no-landing" id="noestado-landing"
+                                        class="mb-0 no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
                             </div>
@@ -239,11 +258,15 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing" value="3" class="edit-switch-landing edit-landing-yes" checked />
-                                    <label for="yes-landing" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="yes-landing" value="3"
+                                        class="edit-switch-landing edit-landing-yes" checked />
+                                    <label for="yes-landing" id="siestado-landing"
+                                        class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" />
-                                    <label for="no-landing" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="no-landing" value="0"
+                                        class="edit-switch-landing switch-table-edit edit-landing-no" />
+                                    <label for="no-landing" id="noestado-landing"
+                                        class="mb-0 no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
                             </div>
@@ -265,11 +288,15 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing" value="3" class="edit-switch-landing edit-landing-yes" />
-                                    <label for="yes-landing" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="yes-landing" value="3"
+                                        class="edit-switch-landing edit-landing-yes" />
+                                    <label for="yes-landing" id="siestado-landing"
+                                        class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                    <label for="no-landing" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="no-landing" value="0"
+                                        class="edit-switch-landing switch-table-edit edit-landing-no" checked />
+                                    <label for="no-landing" id="noestado-landing"
+                                        class="mb-0 no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
                             </div>
@@ -291,11 +318,15 @@
                             </div>
                             <div class="contenedor-columna centro ">
                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
-                                    <input type="radio" id="yes-landing" value="3" class="edit-switch-landing edit-landing-yes" />
-                                    <label for="yes-landing" id="siestado-landing" class="mb-0 si-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="yes-landing" value="3"
+                                        class="edit-switch-landing edit-landing-yes" />
+                                    <label for="yes-landing" id="siestado-landing"
+                                        class="mb-0 si-estilo cursor-pointer switch-label">
                                         Sí</label>
-                                    <input type="radio" id="no-landing" value="0" class="edit-switch-landing switch-table-edit edit-landing-no" checked />
-                                    <label for="no-landing" id="noestado-landing" class="mb-0 no-estilo cursor-pointer switch-label">
+                                    <input type="radio" id="no-landing" value="0"
+                                        class="edit-switch-landing switch-table-edit edit-landing-no" checked />
+                                    <label for="no-landing" id="noestado-landing"
+                                        class="mb-0 no-estilo cursor-pointer switch-label">
                                         No</label>
                                 </div>
                             </div>
@@ -324,7 +355,7 @@
 
     @include('partials.adm-CN.modal-home.carrusel')
 
-    @include('partials.adm-CN.modals-home.home-encabezado');
+    @include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'claro-cinema']);
     @include('partials.adm-CN.modal-home.logo');
     @include('partials.adm-CN.sinopsis');
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
