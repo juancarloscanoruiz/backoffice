@@ -74630,20 +74630,16 @@ function eventsGrilla() {
   }
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-sinopsis").modal('show');
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#estSis").load("imports #sisEst", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".siestado-landing").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".noestado-landing").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
+    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                 <img src=\"./images/loader.gif\" class=\"loader\"/>\n             </div>");
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    programView.renderSynopsis(id, socketSynopsis);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
       });
     });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                <img src=\"./images/loader.gif\" class=\"loader\"/>\n            </div>");
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-    programView.renderSynopsis(id, socketSynopsis);
   }); //Prev
 
   var SinopsisLandingPrev = {
@@ -74985,13 +74981,21 @@ function eventsGrilla() {
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container"); // let sinopsisLanding = $('.sinopsis-container');
 
   if (navbarPrevSINOPSIS) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
-    var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".edit-synopsis-pencil", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
-      var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
-      programView.renderSynopsis(id, socketSynopsis);
-    });
+    // $("#sinopsis-container iframe").remove();
+    // var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    // $("#synopsis-table-canal-claro").on(
+    //     "click",
+    //     ".edit-synopsis-pencil",
+    //     function () {
+    //         $("body").append(
+    //             `<div class="loader-view-container pointer-none">
+    //                 <img src="./images/loader.gif" class="loader"/>
+    //             </div>`
+    //         );
+    //         let id = $(this).attr("chapter_id");
+    //         programView.renderSynopsis(id, socketSynopsis);
+    //     }
+    // );
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".prev-synopsis-pencil", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
@@ -74999,6 +75003,11 @@ function eventsGrilla() {
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
     });
   }
 
@@ -75016,6 +75025,11 @@ function eventsGrilla() {
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
     });
   }
@@ -75034,6 +75048,11 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+          Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
     });
   } //Editar información de sinopsis
@@ -83655,6 +83674,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/program.js */ "./resources/js/controllers/program.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../preview/prev.js */ "./resources/js/preview/prev.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -83665,6 +83685,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
 /**
  * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
  * y esuchcar eventos
@@ -83721,6 +83742,12 @@ var ProgramView = /*#__PURE__*/function () {
             var dataStringified = JSON.stringify(data);
             socketSynopsis.postMessage(dataStringified);
           }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+              Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_2__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+            });
+          });
         });
       });
     }
@@ -83748,6 +83775,8 @@ var ProgramView = /*#__PURE__*/function () {
             that.editImageSynopsis(socketSynopsis);
             that.editImagesBanner(socketSynopsis);
           }
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit");
         });
       });
     }
