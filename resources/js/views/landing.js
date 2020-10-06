@@ -1375,31 +1375,6 @@ export default class LandingView {
                 $(".footer-title-ter").val(data.data.terms_title);
                 $(".footer-textarea-privacy").val(data.data.about_text);
                 $(".footer-title-privacy").val(data.data.about_title);
-
-                this.test(data.data.terms_text);
-            }
-        });
-    }
-
-    test(valor) {
-        $(".footer-textarea-ter").keydown(function(e) {
-            let Final;
-            let texto;
-            if (e.which === 13 && !e.shiftKey) {
-                texto = document.getElementById("textTerminos").value += "\n";
-                $(".footer-textarea-ter").attr("name", texto);
-                // valor = $('.footer-textarea-ter').attr('name');
-                // valor.attr(valor + '<br>');
-                // debugger
-                // $('.footer-textarea-ter').click(function(){
-                //      valor = $('.footer-textarea-ter').val()
-                // })
-
-                // alert(valor);
-                // $('.footer-textarea-ter').attr('name', $('.footer-textarea-ter').val()+ '<br>')
-                // texto = $('.footer-textarea-ter').attr('name');
-                // Final += texto;
-                // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
             }
         });
     }

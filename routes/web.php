@@ -106,7 +106,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/editHeaderHome", "landingController@editHeaderHome");
     Route::get("/getContentFooter", "landingController@getContentFooter");
     Route::post("/updateInfoFooter", "landingController@updateInfoFooter");
-    Route::get("/getContentRights", "landingController@getContentRights");
+    Route::post("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
     // MODAL CLARO

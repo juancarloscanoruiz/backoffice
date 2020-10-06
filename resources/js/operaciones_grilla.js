@@ -5030,11 +5030,13 @@ break;*/
         $("#delete-info").modal("hide");
         $(".modal-programming-carousel").modal("hide");
         $(".modal-edit-icons").modal("hide");
+        $(".modal-landing-sinopsis").modal("hide");
         $("#modal-logo-home").modal("hide");
         $("#modal-carrusel-home").modal("hide");
         $("#modal-terminos-footer").modal("hide");
         $("#modal-privacy-footer").modal("hide");
         $("#url").modal("hide");
+        $("#modaledi").modal("hide");
     });
 
     // FOOTER
