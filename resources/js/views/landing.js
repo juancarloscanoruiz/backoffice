@@ -8,6 +8,11 @@ const LOADER = `<div class="loader-view-container pointer-none">
     <img src="./images/loader.gif" class="loader"/>
 </div>`;
 
+//Helper
+import PrevImageHelper from "../helpers/PrevImage.js";
+
+import { resetIframe } from "../vendor/easyXDM.js";
+
 export default class LandingView {
     renderHomeHeaderCanalClaro() {
         $("body").append(LOADER);
@@ -84,7 +89,6 @@ export default class LandingView {
         });
     }
     renderHomeBanner() {
-        let that = this;
         $("body").append(LOADER);
         let data = landingController.getContentHome();
         data.then(data => {
@@ -110,51 +114,149 @@ export default class LandingView {
                 let title = data.data.block_1_title;
                 let subtitle = data.data.block_1_subtitle;
                 //let headerVideo = $(".modal-home-encabezado .video-header");
-                headerTitle1.val(data.data.block_1_title);
-                headerTitle2.val(data.data.block_1_subtitle);
+
                 // headerVideo.val(data.data.block_1_video_name);
+                $("#pc").prop("checked", true);
+                let file = "";
                 if (data.data.block_1_video_name) {
-                    let headerVideo = $(".modal-home-encabezado .video-header");
                     //Verificamos si la url es de una imagen
                     if (
                         data.data.block_1_video_name.match(
                             /\.(jpeg|jpg|gif|png)$/
                         ) != null
                     ) {
-                        headerVideo.html(
-                            `<img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="image-promo-header-home">`
-                        );
+                        file = `<img src="${data.data.block_1_video_name}" alt="" class="d-flex w-100" id="image-promo-header-home">`;
                     } else {
                         //La url es de un video
-                        headerVideo.html(`
+                        file = `
                 <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width: 62px; position: absolute; transform: translate(215px, -112px);" />
                 <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute " style="    transform: translate(207px, -40px);">Añade tu archivo <br> jpg 472px X 295px </span>
                 <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                     <source src="${data.data.block_1_video_name}" type="video/mp4">
-                </video>`);
+                </video>`;
                     }
                 }
-                $(".programming-slider-home").slick({
-                    slidesToShow: 1,
-                    dots: true,
-                    appendDots: $(".programming-slider-dots-home"),
-                    initialSlide: 0,
+                $(".pc").html("");
+                $(".pc").html(`
+                <!-- parte del home-->
+                <div class="d-flex col-12 mb-5 mx-auto">
+                  <div class="mr-5">
+                    <img src="./images/home/claro-logo.svg" class="d-flex mb-2 ml-4" />
+                    <!--navbar-->
+                    <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
+                      <div>
+                        <a href="" class="navbar-link text-decoration-none">
+                          <p class="navbar-item-black text-semibold">Canal Claro</p>
+                        </a>
+                      </div>
+                      <div>
+                        <a href="" class="navbar-link text-decoration-none">
+                          <p class="navbar-item-black text-semibold">Concert Channel</p>
+                        </a>
+                      </div>
+                      <div>
+                        <a href="" class="navbar-link text-decoration-none">
+                          <p class="navbar-item-black text-semibold">Claro Cinema</p>
+                        </a>
+                      </div>
+                      <div>
+                        <a target="_blank" href="" class="navbar-link text-decoration-none">
+                          <p class="navbar-item-black text-semibold">Nuestra Visión</p>
+                        </a>
+                      </div>
+                      <div>
+                        <a href="" target="_blank" class="navbar-link text-decoration-none">
+                          <p class="navbar-item-black text-semibold">Claro Sports</p>
+                        </a>
+                      </div>
+                      <!-- <div>
+                            <a href="programacion.php" class="navbar-link text-decoration-none">
+                                <p class="navbar-item">Programación</p>
+                            </a>
+                            </div>-->
+                    </div>
+                    <!--<div class="login">
+                                <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
+                            </div>-->
 
-                    arrows: true,
-                    prevArrow:
-                        '<img src="./images/prev.png" class="arrow-prev" />',
-                    nextArrow:
-                        '<img src="./images/next.png" class="arrow-next" />',
-                    infinite: false,
-                    customPaging: function(slider, i) {
-                        var thumb = $(slider.$slides[i]).data();
-                        return (
-                            "<p class='a-text-bold-teal slider-pagination-item'>" +
-                            (i + 1) +
-                            "</p>"
-                        );
-                    }
-                });
+                    <!--inputs-->
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex"
+                      placeholder="TITULO"
+                      value="${title}"/>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex"
+                      placeholder="SUBTITULO"
+                      value="${subtitle}"/>
+                  </div>
+                  <div class="d-flex justify-content-around">
+                    <input
+                      type="file"
+                      name=""
+                      id="video-promo-header-home"
+                      class="d-none file-video"
+                      accept="video/*"/>
+                    <label
+                      for="video-promo-header-home"
+                      class="mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header">
+                        ${file}
+                    </label>
+                    <!--  <input type="file" name="" id="image-promo-header-home" class="d-none">
+                            <label for="image-promo-header-home"
+                                class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                                <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
+                                    class="add-photo promo-icon cursor-pointer" style="width:95px" />
+                                <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
+                                    jpg 472px X 295px </span>
+                            </label>-->
+                  </div>
+                </div>
+
+                <div class="float-right mr-5 mb-3">
+                    <span class="a-text-bold-brown-two text-normal">
+                        Nombre_Promoción_ConcertChannel_20200709.mp4
+                    </span>
+                </div>
+                <div class="clearfix"></div>`);
+                let homeHeaderButtons = $(".home-encabezado-buttons");
+                homeHeaderButtons.html("");
+                homeHeaderButtons.html(`
+                    <div class="text-center  mb-4 d-flex justify-content-center pb-2">
+                        <button
+                            class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                            id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
+                        <a href="#delete-info-encabezado-home" role="button"
+                            class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                            data-toggle="modal">CANCELAR</a>
+                    </div>`);
+                $(".programming-slider-home")
+                    .not(".slick-initialized")
+                    .slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(".programming-slider-dots-home"),
+                        initialSlide: 0,
+                        arrows: true,
+                        prevArrow:
+                            '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
+                        nextArrow:
+                            '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
+                        infinite: false,
+                        customPaging: function(slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
+                    });
                 //Mostramos el modal
                 $(".modal-home-encabezado").modal("show");
                 //Eliminamos
@@ -170,22 +272,21 @@ export default class LandingView {
     }
 
     renderHomeMobile(images) {
+        let _this = this;
         $("#movil").click(function() {
             let imagesArrayLength = images.length;
             let imageMobile = "";
             for (let index = 0; index < imagesArrayLength; index++) {
-                console.log(images[index]);
-                imageMobile = `
+                imageMobile += `
                 <div class="bor thumbnail-image-program position-relative h-100">
                 <input
                   type="file"
-                  name="image_programming[]"
-                  id="image_programming_1"
-                  class="input-image-program d-none image_programming"
-                  data-index="1"
+                  id="image_home_slider_${index + 1}"
+                  class="input-image-program d-none image-home-banner"
+                  data-index="${index + 1}"
                 />
                 <label
-                  for="image_programming_1"
+                  for="image_home_slider_${index + 1}"
                   class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
                 >
                   <img
@@ -193,8 +294,8 @@ export default class LandingView {
                     alt="add-photo"
                     class="cursor-pointer add-photo"
                   />
-                  <span class="a-text-bold-warm text-plus mt-3 banner-text"
-                    >472px X 295px
+                  <span class="p-1 a-text-bold-warm text-plus mt-3 banner-text"
+                    >665px X 426px
                   </span>
                   <img
                     src="${images[index]}"
@@ -208,153 +309,66 @@ export default class LandingView {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $(".pc").html("");
             $(".pc").html(`
-            <div class="d-flex col-12 mb-5 mx-auto">
-            <div class="mr-5 mx-auto">
-              <div class="d-flex">
-                <!--dots-->
-                <div class="programming-slider-dots-home mt-5 mb-5"></div>
-                <!--add slide-->
-                <img
-                  src="./images/add-icon.svg"
-                  class="add-banner-image cursor-pointer mb-3"
-                />
-              </div>
-              <!--  <div class="shadowblack position-absolute">
-              <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
-              </div>-->
-              <div class="programming-slider-home mx-auto">
-                <div class="bor thumbnail-image-program position-relative h-100">
-                  <input
-                    type="file"
-                    name="image_programming[]"
-                    id="image_programming_1"
-                    class="input-image-program d-none image_programming"
-                    data-index="1"
-                  />
-                  <label
-                    for="image_programming_1"
-                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
-                  >
-                    <img
-                      src="./images/synopsis/camara.svg"
-                      alt="add-photo"
-                      class="cursor-pointer add-photo"
-                    />
-                    <span class="a-text-bold-warm text-plus mt-3 banner-text">
-                      472px X 295px
-                    </span>
-                    <img
-                      src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
-                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
-                    />
-                  </label>
+                <div class="d-flex col-12 mb-5 mx-auto">
+                    <div class="mr-5 mx-auto">
+                    <div class="d-flex">
+                        <!--dots-->
+                        <div class="programming-slider-dots-home mt-5 mb-5"></div>
+                        <!--add slide-->
+                        <img
+                        src="./images/add-icon.svg"
+                        class="cursor-pointer mb-3" id="add-home-banner-image"
+                        />
+                    </div>
+                    <!--  <div class="shadowblack position-absolute">
+                    <img src="./images/basic-icons/GMT-White.svg" alt="" class="float-right">
+                    </div>-->
+                    <div class="home-slider-container position-relative">
+                        <div class="menu-mobile">
+                            <div class="d-flex justify-content-between">
+                                <img src="./images/home/responsive-menu.svg" alt="menu-icon" />
+                                <img class="menu-mobile__logo" src="./images/home/claro-networks-white.svg" alt="Claro Networks Logo" />
+                                <img src="./images/gmt2-icon.svg" alt="gmt icon" />
+                            </div>
+                        </div>
+                        <div class="programming-slider-home mx-auto">
+                        ${imageMobile}
+                        </div>
+                    </div>
+                    </div>
                 </div>
-
-                <div class="bor thumbnail-image-program position-relative h-100">
-                  <input
-                    type="file"
-                    name="image_programming[]"
-                    id="image_programming_1"
-                    class="input-image-program d-none image_programming"
-                    data-index="1"
-                  />
-                  <label
-                    for="image_programming_1"
-                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
-                  >
-                    <img
-                      src="./images/synopsis/camara.svg"
-                      alt="add-photo"
-                      class="cursor-pointer add-photo"
-                    />
-                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
-                      >472px X 295px
-                    </span>
-                    <img
-                      src="./images/synopsis/image-synopsis-carrusel.jpg"
-                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
-                    />
-                  </label>
+                <div class="d-flex mr-5 mb-3">
+                    <span class="a-text-bold-brown-two text-normal"
+                    >Nombre_Promoción_ConcertChannel_20200709.mp4</span
+                    >
                 </div>
-
-                <div class="bor thumbnail-image-program position-relative h-100">
-                  <input
-                    type="file"
-                    name="image_programming[]"
-                    id="image_programming_1"
-                    class="input-image-program d-none image_programming"
-                    data-index="1"
-                  />
-                  <label
-                    for="image_programming_1"
-                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
-                  >
-                    <img
-                      src="./images/synopsis/camara.svg"
-                      alt="add-photo"
-                      class="cursor-pointer add-photo"
-                    />
-                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
-                      >472px X 295px
-                    </span>
-                    <img
-                      src="./images/synopsis/image-synopsis-carrusel.jpg"
-                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
-                    />
-                  </label>
+                <div class="clearfix"></div>
+            `);
+            let homeHeaderButtons = $(".home-encabezado-buttons");
+            homeHeaderButtons.html("");
+            homeHeaderButtons.html(`
+                <div class="text-center  mb-4 d-flex justify-content-center pb-2">
+                    <button
+                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                        id="edit-home-encabezado-mobile" data-dismiss="modal">ACEPTAR</button>
+                    <a href="#delete-info-encabezado" role="button"
+                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                        data-toggle="modal">CANCELAR</a>
                 </div>
-
-                <div class="bor thumbnail-image-program position-relative h-100">
-                  <input
-                    type="file"
-                    name="image_programming[]"
-                    id="image_programming_1"
-                    class="input-image-program d-none image_programming"
-                    data-index="1"
-                  />
-                  <label
-                    for="image_programming_1"
-                    class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
-                  >
-                    <img
-                      src="./images/synopsis/camara.svg"
-                      alt="add-photo"
-                      class="cursor-pointer add-photo"
-                    />
-                    <span class="a-text-bold-warm text-plus mt-3 banner-text"
-                      >472px X 295px
-                    </span>
-                    <img
-                      src="./images/synopsis/image-synopsis-carrusel.jpg"
-                      class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex mr-5 mb-3">
-            <span class="a-text-bold-brown-two text-normal"
-              >Nombre_Promoción_ConcertChannel_20200709.mp4</span
-            >
-          </div>
-          <div class="clearfix"></div>
-
             `);
             let programmingSliderHome = $(".programming-slider-home");
             try {
                 programmingSliderHome.slick("unslick");
-                programmingSliderHome.slick({
+                programmingSliderHome.not(".slick-initialized").slick({
                     slidesToShow: 1,
                     dots: true,
                     appendDots: $(".programming-slider-dots-home"),
                     initialSlide: 0,
-
                     arrows: true,
                     prevArrow:
-                        '<img src="./images/prev.png" class="arrow-prev" />',
+                        '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
                     nextArrow:
-                        '<img src="./images/next.png" class="arrow-next" />',
+                        '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
                     infinite: false,
                     customPaging: function(slider, i) {
                         var thumb = $(slider.$slides[i]).data();
@@ -366,17 +380,16 @@ export default class LandingView {
                     }
                 });
             } catch (error) {
-                programmingSliderHome.slick({
+                programmingSliderHome.not(".slick-initialized").slick({
                     slidesToShow: 1,
                     dots: true,
                     appendDots: $(".programming-slider-dots-home"),
                     initialSlide: 0,
-
                     arrows: true,
                     prevArrow:
-                        '<img src="./images/prev.png" class="arrow-prev" />',
+                        '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
                     nextArrow:
-                        '<img src="./images/next.png" class="arrow-next" />',
+                        '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
                     infinite: false,
                     customPaging: function(slider, i) {
                         var thumb = $(slider.$slides[i]).data();
@@ -388,6 +401,9 @@ export default class LandingView {
                     }
                 });
             }
+            //Añadir una imagen al slider
+            _this.addImageToHomeBanner();
+            PrevImageHelper.prevUploadedImage();
         });
     }
 
@@ -497,6 +513,94 @@ export default class LandingView {
             </div>
             <div class="clearfix"></div>`);
         });
+        let homeHeaderButtons = $(".home-encabezado-buttons");
+        homeHeaderButtons.html("");
+        homeHeaderButtons.html(`
+        <div class="text-center  mb-4 d-flex justify-content-center pb-2">
+            <button
+                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
+            <a href="#delete-info-encabezado-home" role="button"
+                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                data-toggle="modal">CANCELAR</a>
+        </div>
+    `);
+    }
+
+    addImageToHomeBanner() {
+        $("#add-home-banner-image").click(function() {
+            let slideIndex = $(".programming-slider-home").length + 1;
+            //Cada vez que se haga click, el contador incrementa
+
+            //Agregamos un slide al slider de programación
+            $(".programming-slider-home").slick(
+                "slickAdd",
+                `
+                <div class="slick-slide">
+                    <div class="bor thumbnail-image-program position-relative h-100">
+                        <input
+                        type="file"
+                        name="image_programming[]"
+                        id="image_home_slider_${slideIndex}"
+                        class="input-image-program d-none image_programming"
+                        data-index="${slideIndex}"
+                        />
+                        <label
+                        for="image_home_slider_${slideIndex}"
+                        class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel"
+                        >
+                        <img
+                            src="./images/synopsis/camara.svg"
+                            alt="add-photo"
+                            class="cursor-pointer add-photo"
+                        />
+                        <span class="p-1 a-text-bold-warm text-plus mt-3 banner-text"
+                            >665px X 426px
+                        </span>
+                        <img
+                            src="./images/synopsis/image-synopsis-carrusel.jpg"
+                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
+                        />
+                        </label>
+                    </div>
+                </div>
+                `
+            );
+        });
+    }
+
+    uploadHomeBannerImages(container, options) {
+        $("body").append(
+            `<div class="loader-view-container pointer-none">
+                    <img src="./images/loader.gif" class="loader"/>
+                </div>`
+        );
+        let imagesPositions = [];
+        let imagesProgramming = [];
+        //Input donde suben la imagen
+        $(".image-home-banner").each(function() {
+            if (this.files[0]) {
+                imagesPositions.push($(this).attr("data-index"));
+            }
+            imagesProgramming.push(this.files[0]);
+        });
+        let data = new FormData();
+        //Guardamos las imágenes en un array
+        for (let index = 0; index < imagesProgramming.length; index++) {
+            let file = "file" + (index + 1).toString();
+            file = file.toString();
+            data.append(file, imagesProgramming[index]);
+        }
+        //data.append("images", imagesProgramming);
+        data.append("positions", imagesPositions);
+        let response = landingController.uploadHomeBannerImages(data);
+        response
+            .then(data => {
+                $(".loader-view-container").remove();
+                $(".modal-home-encabezado").modal("hide");
+                resetIframe(container, options);
+            })
+            .catch(err => console.log(err));
     }
 
     renderFooterClaroNetworks() {

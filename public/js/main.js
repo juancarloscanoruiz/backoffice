@@ -12374,9 +12374,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.2 (https://getbootstrap.com/)
+  * Bootstrap v4.5.0 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -12402,22 +12402,53 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     return Constructor;
   }
 
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
+    }
 
-      return target;
-    };
-
-    return _extends.apply(this, arguments);
+    return target;
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -12428,8 +12459,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -12609,7 +12640,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.2';
+  var VERSION = '4.5.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -12765,7 +12796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.2';
+  var VERSION$1 = '4.5.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -12900,9 +12931,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
-        Button._jQueryInterface.call($(button), 'toggle');
+      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
+        event.preventDefault(); // work around event sent to label and input
       }
+
+      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -12958,7 +12991,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.2';
+  var VERSION$2 = '4.5.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -13145,7 +13178,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default, config);
+      config = _objectSpread2(_objectSpread2({}, Default), config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -13435,10 +13468,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _extends({}, Default, $(this).data());
+        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
 
         if (typeof config === 'object') {
-          _config = _extends({}, _config, config);
+          _config = _objectSpread2(_objectSpread2({}, _config), config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -13476,7 +13509,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      var config = _extends({}, $(target).data(), $(this).data());
+      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -13545,7 +13578,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.2';
+  var VERSION$3 = '4.5.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -13760,7 +13793,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$1, config);
+      config = _objectSpread2(_objectSpread2({}, Default$1), config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -13814,7 +13847,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -13894,7 +13927,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.2';
+  var VERSION$4 = '4.5.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -14121,7 +14154,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -14166,7 +14199,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -14196,7 +14229,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         };
       }
 
-      return _extends({}, popperConfig, this._config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
     } // Static
     ;
 
@@ -14408,7 +14441,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.2';
+  var VERSION$5 = '4.5.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -14600,7 +14633,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$3, config);
+      config = _objectSpread2(_objectSpread2({}, Default$3), config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -14616,24 +14649,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return;
         }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-
-        if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
-        }
-
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $(this._element).off(Util.TRANSITION_END);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $(_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -14658,8 +14678,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
-
-      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -14747,8 +14765,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
-
-      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -14931,7 +14947,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -14981,7 +14997,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -15018,8 +15034,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -15144,7 +15160,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.2';
+  var VERSION$6 = '4.5.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -15532,7 +15548,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _extends({}, defaultBsConfig, this.config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -15542,7 +15558,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -15597,7 +15613,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _extends({}, this.config, {
+        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
           trigger: 'manual',
           selector: ''
         });
@@ -15697,7 +15713,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           delete dataAttributes[dataAttr];
         }
       });
-      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -15856,21 +15872,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.2';
+  var VERSION$7 = '4.5.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _extends({}, Tooltip.Default, {
+  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
+  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
     content: '(string|element|function)'
   });
 
@@ -16036,7 +16052,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.2';
+  var VERSION$8 = '4.5.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -16150,7 +16166,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -16328,7 +16344,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.2';
+  var VERSION$9 = '4.5.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -16554,7 +16570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.2';
+  var VERSION$a = '4.5.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -16607,8 +16623,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         return;
       }
 
-      this._clearTimeout();
-
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -16657,7 +16671,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     };
 
     _proto.dispose = function dispose() {
-      this._clearTimeout();
+      clearTimeout(this._timeout);
+      this._timeout = null;
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -16671,7 +16686,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -16701,11 +16716,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       } else {
         complete();
       }
-    };
-
-    _proto._clearTimeout = function _clearTimeout() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
     } // Static
     ;
 
@@ -51606,7 +51616,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -88767,6 +88777,12 @@ var LandingController = /*#__PURE__*/function () {
       var response = landingModel.updateInfoTermsAndPrivacy(data);
       return response;
     }
+  }, {
+    key: "uploadHomeBannerImages",
+    value: function uploadHomeBannerImages(data) {
+      var response = landingModel.uploadHomeBannerImages(data);
+      return response;
+    }
   }]);
 
   return LandingController;
@@ -89001,6 +89017,58 @@ function validateToken(token) {
     }
   });
 }
+
+
+
+/***/ }),
+
+/***/ "./resources/js/helpers/PrevImage.js":
+/*!*******************************************!*\
+  !*** ./resources/js/helpers/PrevImage.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PrevImageHelper; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//jQuery
+
+
+var PrevImageHelper = /*#__PURE__*/function () {
+  function PrevImageHelper() {
+    _classCallCheck(this, PrevImageHelper);
+  }
+
+  _createClass(PrevImageHelper, null, [{
+    key: "prevUploadedImage",
+    value: function prevUploadedImage() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
+        var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
+          };
+
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+    }
+  }]);
+
+  return PrevImageHelper;
+}();
 
 
 
@@ -90041,6 +90109,48 @@ var LandingModel = /*#__PURE__*/function () {
 
       return updateInfoTermsAndPrivacy;
     }()
+  }, {
+    key: "uploadHomeBannerImages",
+    value: function () {
+      var _uploadHomeBannerImages = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(dataImages) {
+        var options, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                options = {
+                  method: "POST",
+                  body: dataImages,
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context6.next = 3;
+                return fetch("landing/editHomeHeader", options);
+
+              case 3:
+                response = _context6.sent;
+                _context6.next = 6;
+                return response.json();
+
+              case 6:
+                data = _context6.sent;
+                return _context6.abrupt("return", data);
+
+              case 8:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      function uploadHomeBannerImages(_x3) {
+        return _uploadHomeBannerImages.apply(this, arguments);
+      }
+
+      return uploadHomeBannerImages;
+    }()
   }]);
 
   return LandingModel;
@@ -90360,7 +90470,7 @@ function eventsGrilla() {
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("canal-claro", "".concat(_year, "-").concat(month, "-").concat(day));
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sinopsis-master').on('click', '.edit-synopsis-pencil', function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sinopsis-master").on("click", ".edit-synopsis-pencil", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                 <img src=\"./images/loader.gif\" class=\"loader\"/>\n             </div>");
@@ -90712,21 +90822,6 @@ function eventsGrilla() {
   var navbarPrevSINOPSIS = document.getElementById("sinopsis-container"); // let sinopsisLanding = $('.sinopsis-container');
 
   if (navbarPrevSINOPSIS) {
-    // $("#sinopsis-container iframe").remove();
-    // var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
-    // $("#synopsis-table-canal-claro").on(
-    //     "click",
-    //     ".edit-synopsis-pencil",
-    //     function () {
-    //         $("body").append(
-    //             `<div class="loader-view-container pointer-none">
-    //                 <img src="./images/loader.gif" class="loader"/>
-    //             </div>`
-    //         );
-    //         let id = $(this).attr("chapter_id");
-    //         programView.renderSynopsis(id, socketSynopsis);
-    //     }
-    // );
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".prev-synopsis-pencil", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sinopsis-container iframe").remove();
@@ -90947,80 +91042,6 @@ function eventsGrilla() {
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelBlock4OTwo"])();
             break;
 
-          /* case "pencil-carrusel1":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-edit-program-carrusel").modal("show");
-          //slider para carrusel concert-channel
-          $(".carrusel1-slider").slick({
-          slidesToShow: 1,
-          dots: true,
-          appendDots: $(".carrusel1-slider-dots1"),
-          initialSlide: 0,
-          infinite: false,
-          customPaging: function (slider, i) {
-          var thumb = $(slider.$slides[i]).data();
-          return (
-          "<p class='a-text-bold-teal slider-pagination-item'>" +
-          (i + 1) +
-          "</p>"
-          );
-          }
-          });
-          $("#loader1").remove();
-          }, 3000);
-          break;
-          case "pencil-carrusel2":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-edit-program-carrusel2").modal("show");
-          $(".carrusel2-slider").slick({
-          slidesToShow: 1,
-          dots: true,
-          appendDots: $(".carrusel2-slider-dots1"),
-          initialSlide: 0,
-          infinite: false,
-          customPaging: function (slider, i) {
-          var thumb = $(slider.$slides[i]).data();
-          return (
-          "<p class='a-text-bold-teal slider-pagination-item'>" +
-          (i + 1) +
-          "</p>"
-          );
-          }
-          });
-          $("#loader1").remove();
-          }, 3000);
-          break;
-          case "pencil-header":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-titles").modal("show");
-          $("#loader1").remove();
-          }, 3000);
-          break;
-          case "pencil-video":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-promos-concert").modal("show");
-          $("#loader1").remove();
-          }, 3000);
-          break;
-          case "pencil-header1":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-titles").modal("show");
-          $("#loader1").remove();
-          }, 3000);
-          break;
-          case "header2":
-          $("body").append(loader);
-          setTimeout(function () {
-          $(".modal-titles").modal("show");
-          $("#loader1").remove();
-          }, 3000);
-          break;*/
-
           case "pencil-carrusel1":
             var landing = "Concert Channel";
             var id = 1;
@@ -91162,8 +91183,41 @@ function eventsGrilla() {
     data.append("link", link);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHeaderLanding"])(data);
   }); //Edicion del header del home
+  //Edicion del header del home
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-home-encabezado").click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").on("click", "#edit-home-encabezado-mobile", function () {
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").attr("landing");
+    var container = "";
+    var options = "";
+
+    switch (landing) {
+      case "canal-claro":
+        container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe");
+        options = LandingHomeClaro;
+        break;
+
+      case "admin":
+        container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe");
+        options = LandingHome;
+        break;
+
+      case "claro-cinema":
+        container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe");
+        options = LandingHomeCinema;
+        break;
+
+      case "concert-channel":
+        container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe");
+        options = LandingHomeConcert;
+        break;
+
+      default:
+        break;
+    }
+
+    landingView.uploadHomeBannerImages(container, options);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").on("click", "#edit-home-encabezado", function () {
     var videoimage = document.getElementById("video-promo-header-home").files[0] || "";
     var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-1").val() || "";
     var subtitle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2").val() || "";
@@ -91172,7 +91226,36 @@ function eventsGrilla() {
     data.append("title", title);
     data.append("subtitle", subtitle);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editHomeHeader"])(data);
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").attr("landing");
+
+    switch (landing) {
+      case "canal-claro":
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+        break;
+
+      case "admin":
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe"), LandingHome);
+        break;
+
+      case "claro-cinema":
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+        break;
+
+      case "concert-channel":
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+        break;
+
+      default:
+        break;
+    }
+
+    if (landing == "claro-cinema") {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+    }
+
+    if (landing == "concert-channel") {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+    }
   }); //Previsualizar el video que subió el usuario en el landing de home
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
@@ -91834,7 +91917,6 @@ function eventsGrilla() {
   }); //para agregar un slider más en cinema
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
-    console.log("pato");
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
@@ -98331,6 +98413,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/landing.js */ "./resources/js/controllers/landing.js");
+/* harmony import */ var _helpers_PrevImage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/PrevImage.js */ "./resources/js/helpers/PrevImage.js");
+/* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -98350,7 +98434,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var landingController = new _controllers_landing_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
-var LOADER = "<div class=\"loader-view-container pointer-none\">\n    <img src=\"./images/loader.gif\" class=\"loader\"/>\n</div>";
+var LOADER = "<div class=\"loader-view-container pointer-none\">\n    <img src=\"./images/loader.gif\" class=\"loader\"/>\n</div>"; //Helper
+
+
+
 
 var LandingView = /*#__PURE__*/function () {
   function LandingView() {
@@ -98438,9 +98525,8 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "renderHomeBanner",
     value: function renderHomeBanner() {
-      var _this = this;
+      var _this2 = this;
 
-      var that = this;
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
       var data = landingController.getContentHome();
       data.then(function (data) {
@@ -98464,29 +98550,34 @@ var LandingView = /*#__PURE__*/function () {
           var headerTitle2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .header-title-2");
           var title = data.data.block_1_title;
           var subtitle = data.data.block_1_subtitle; //let headerVideo = $(".modal-home-encabezado .video-header");
+          // headerVideo.val(data.data.block_1_video_name);
 
-          headerTitle1.val(data.data.block_1_title);
-          headerTitle2.val(data.data.block_1_subtitle); // headerVideo.val(data.data.block_1_video_name);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#pc").prop("checked", true);
+          var file = "";
 
           if (data.data.block_1_video_name) {
-            var headerVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado .video-header"); //Verificamos si la url es de una imagen
-
+            //Verificamos si la url es de una imagen
             if (data.data.block_1_video_name.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-              headerVideo.html("<img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">"));
+              file = "<img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">");
             } else {
               //La url es de un video
-              headerVideo.html("\n                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px; position: absolute; transform: translate(215px, -112px);\" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br> jpg 472px X 295px </span>\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                </video>"));
+              file = "\n                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px; position: absolute; transform: translate(215px, -112px);\" />\n                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br> jpg 472px X 295px </span>\n                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                    <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                </video>");
             }
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home").slick({
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <!-- parte del home-->\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                  <div class=\"mr-5\">\n                    <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                    <!--navbar-->\n                    <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                        </a>\n                      </div>\n                      <!-- <div>\n                            <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n                                <p class=\"navbar-item\">Programaci\xF3n</p>\n                            </a>\n                            </div>-->\n                    </div>\n                    <!--<div class=\"login\">\n                                <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n                            </div>-->\n\n                    <!--inputs-->\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                      placeholder=\"TITULO\"\n                      value=\"".concat(title, "\"/>\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                      placeholder=\"SUBTITULO\"\n                      value=\"").concat(subtitle, "\"/>\n                  </div>\n                  <div class=\"d-flex justify-content-around\">\n                    <input\n                      type=\"file\"\n                      name=\"\"\n                      id=\"video-promo-header-home\"\n                      class=\"d-none file-video\"\n                      accept=\"video/*\"/>\n                    <label\n                      for=\"video-promo-header-home\"\n                      class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                        ").concat(file, "\n                    </label>\n                    <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                            <label for=\"image-promo-header-home\"\n                                class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                    class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                    jpg 472px X 295px </span>\n                            </label>-->\n                  </div>\n                </div>\n\n                <div class=\"float-right mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\">\n                        Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4\n                    </span>\n                </div>\n                <div class=\"clearfix\"></div>"));
+          var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
+          homeHeaderButtons.html("");
+          homeHeaderButtons.html("\n                    <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                        <button\n                            class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n                        <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                            class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                            data-toggle=\"modal\">CANCELAR</a>\n                    </div>");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home").not(".slick-initialized").slick({
             slidesToShow: 1,
             dots: true,
             appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-home"),
             initialSlide: 0,
             arrows: true,
-            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-            nextArrow: '<img src="./images/next.png" class="arrow-next" />',
+            prevArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
+            nextArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
             infinite: false,
             customPaging: function customPaging(slider, i) {
               var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
@@ -98498,39 +98589,43 @@ var LandingView = /*#__PURE__*/function () {
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 
-          _this.renderHomeMobile(imagesMobile);
+          _this2.renderHomeMobile(imagesMobile);
 
-          _this.renderHomePC(title, subtitle, data.data.block_1_video_name);
+          _this2.renderHomePC(title, subtitle, data.data.block_1_video_name);
         }
       });
     }
   }, {
     key: "renderHomeMobile",
     value: function renderHomeMobile(images) {
+      var _this = this;
+
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#movil").click(function () {
         var imagesArrayLength = images.length;
         var imageMobile = "";
 
         for (var index = 0; index < imagesArrayLength; index++) {
-          console.log(images[index]);
-          imageMobile = "\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input\n                  type=\"file\"\n                  name=\"image_programming[]\"\n                  id=\"image_programming_1\"\n                  class=\"input-image-program d-none image_programming\"\n                  data-index=\"1\"\n                />\n                <label\n                  for=\"image_programming_1\"\n                  class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                >\n                  <img\n                    src=\"./images/synopsis/camara.svg\"\n                    alt=\"add-photo\"\n                    class=\"cursor-pointer add-photo\"\n                  />\n                  <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                    >472px X 295px\n                  </span>\n                  <img\n                    src=\"".concat(images[index], "\"\n                    class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                  />\n                </label>\n              </div>\n                ");
+          imageMobile += "\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input\n                  type=\"file\"\n                  id=\"image_home_slider_".concat(index + 1, "\"\n                  class=\"input-image-program d-none image-home-banner\"\n                  data-index=\"").concat(index + 1, "\"\n                />\n                <label\n                  for=\"image_home_slider_").concat(index + 1, "\"\n                  class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                >\n                  <img\n                    src=\"./images/synopsis/camara.svg\"\n                    alt=\"add-photo\"\n                    class=\"cursor-pointer add-photo\"\n                  />\n                  <span class=\"p-1 a-text-bold-warm text-plus mt-3 banner-text\"\n                    >665px\u200AX\u200A426px\n                  </span>\n                  <img\n                    src=\"").concat(images[index], "\"\n                    class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                  />\n                </label>\n              </div>\n                ");
         } //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
 
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n            <div class=\"d-flex col-12 mb-5 mx-auto\">\n            <div class=\"mr-5 mx-auto\">\n              <div class=\"d-flex\">\n                <!--dots-->\n                <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n                <!--add slide-->\n                <img\n                  src=\"./images/add-icon.svg\"\n                  class=\"add-banner-image cursor-pointer mb-3\"\n                />\n              </div>\n              <!--  <div class=\"shadowblack position-absolute\">\n              <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n              </div>-->\n              <div class=\"programming-slider-home mx-auto\">\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\">\n                      472px X 295px\n                    </span>\n                    <img\n                      src=\"{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                  <input\n                    type=\"file\"\n                    name=\"image_programming[]\"\n                    id=\"image_programming_1\"\n                    class=\"input-image-program d-none image_programming\"\n                    data-index=\"1\"\n                  />\n                  <label\n                    for=\"image_programming_1\"\n                    class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                  >\n                    <img\n                      src=\"./images/synopsis/camara.svg\"\n                      alt=\"add-photo\"\n                      class=\"cursor-pointer add-photo\"\n                    />\n                    <span class=\"a-text-bold-warm text-plus mt-3 banner-text\"\n                      >472px X 295px\n                    </span>\n                    <img\n                      src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                      class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                    />\n                  </label>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class=\"d-flex mr-5 mb-3\">\n            <span class=\"a-text-bold-brown-two text-normal\"\n              >Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span\n            >\n          </div>\n          <div class=\"clearfix\"></div>\n\n            ");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                    <div class=\"mr-5 mx-auto\">\n                    <div class=\"d-flex\">\n                        <!--dots-->\n                        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n                        <!--add slide-->\n                        <img\n                        src=\"./images/add-icon.svg\"\n                        class=\"cursor-pointer mb-3\" id=\"add-home-banner-image\"\n                        />\n                    </div>\n                    <!--  <div class=\"shadowblack position-absolute\">\n                    <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n                    </div>-->\n                    <div class=\"home-slider-container position-relative\">\n                        <div class=\"menu-mobile\">\n                            <div class=\"d-flex justify-content-between\">\n                                <img src=\"./images/home/responsive-menu.svg\" alt=\"menu-icon\" />\n                                <img class=\"menu-mobile__logo\" src=\"./images/home/claro-networks-white.svg\" alt=\"Claro Networks Logo\" />\n                                <img src=\"./images/gmt2-icon.svg\" alt=\"gmt icon\" />\n                            </div>\n                        </div>\n                        <div class=\"programming-slider-home mx-auto\">\n                        ".concat(imageMobile, "\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                <div class=\"d-flex mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\"\n                    >Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span\n                    >\n                </div>\n                <div class=\"clearfix\"></div>\n            "));
+        var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
+        homeHeaderButtons.html("");
+        homeHeaderButtons.html("\n                <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                    <button\n                        class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                        id=\"edit-home-encabezado-mobile\" data-dismiss=\"modal\">ACEPTAR</button>\n                    <a href=\"#delete-info-encabezado\" role=\"button\"\n                        class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                        data-toggle=\"modal\">CANCELAR</a>\n                </div>\n            ");
         var programmingSliderHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home");
 
         try {
           programmingSliderHome.slick("unslick");
-          programmingSliderHome.slick({
+          programmingSliderHome.not(".slick-initialized").slick({
             slidesToShow: 1,
             dots: true,
             appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-home"),
             initialSlide: 0,
             arrows: true,
-            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-            nextArrow: '<img src="./images/next.png" class="arrow-next" />',
+            prevArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
+            nextArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
             infinite: false,
             customPaging: function customPaging(slider, i) {
               var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
@@ -98538,21 +98633,26 @@ var LandingView = /*#__PURE__*/function () {
             }
           });
         } catch (error) {
-          programmingSliderHome.slick({
+          programmingSliderHome.not(".slick-initialized").slick({
             slidesToShow: 1,
             dots: true,
             appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots-home"),
             initialSlide: 0,
             arrows: true,
-            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-            nextArrow: '<img src="./images/next.png" class="arrow-next" />',
+            prevArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-left-programming" />',
+            nextArrow: '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
             infinite: false,
             customPaging: function customPaging(slider, i) {
               var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
               return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
             }
           });
-        }
+        } //Añadir una imagen al slider
+
+
+        _this.addImageToHomeBanner();
+
+        _helpers_PrevImage_js__WEBPACK_IMPORTED_MODULE_2__["default"].prevUploadedImage();
       });
     }
   }, {
@@ -98573,6 +98673,52 @@ var LandingView = /*#__PURE__*/function () {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n            <!-- parte del home-->\n            <div class=\"d-flex col-12 mb-5 mx-auto\">\n              <div class=\"mr-5\">\n                <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                <!--navbar-->\n                <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                    </a>\n                  </div>\n                  <!-- <div>\n                        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n                            <p class=\"navbar-item\">Programaci\xF3n</p>\n                        </a>\n                        </div>-->\n                </div>\n                <!--<div class=\"login\">\n                            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n                        </div>-->\n\n                <!--inputs-->\n                <input\n                  type=\"text\"\n                  name=\"\"\n                  id=\"\"\n                  class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                  placeholder=\"TITULO\"\n                  value=\"".concat(title, "\"/>\n                <input\n                  type=\"text\"\n                  name=\"\"\n                  id=\"\"\n                  class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                  placeholder=\"SUBTITULO\"\n                  value=\"").concat(subtitle, "\"/>\n              </div>\n              <div class=\"d-flex justify-content-around\">\n                <input\n                  type=\"file\"\n                  name=\"\"\n                  id=\"video-promo-header-home\"\n                  class=\"d-none file-video\"\n                  accept=\"video/*\"/>\n                <label\n                  for=\"video-promo-header-home\"\n                  class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                    ").concat(file, "\n                </label>\n                <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                        <label for=\"image-promo-header-home\"\n                            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                jpg 472px X 295px </span>\n                        </label>-->\n              </div>\n            </div>\n\n            <div class=\"float-right mr-5 mb-3\">\n                <span class=\"a-text-bold-brown-two text-normal\">\n                    Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4\n                </span>\n            </div>\n            <div class=\"clearfix\"></div>"));
+      });
+      var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
+      homeHeaderButtons.html("");
+      homeHeaderButtons.html("\n        <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n        </div>\n    ");
+    }
+  }, {
+    key: "addImageToHomeBanner",
+    value: function addImageToHomeBanner() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#add-home-banner-image").click(function () {
+        var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home").length + 1; //Cada vez que se haga click, el contador incrementa
+        //Agregamos un slide al slider de programación
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home").slick("slickAdd", "\n                <div class=\"slick-slide\">\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input\n                        type=\"file\"\n                        name=\"image_programming[]\"\n                        id=\"image_home_slider_".concat(slideIndex, "\"\n                        class=\"input-image-program d-none image_programming\"\n                        data-index=\"").concat(slideIndex, "\"\n                        />\n                        <label\n                        for=\"image_home_slider_").concat(slideIndex, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\"\n                        >\n                        <img\n                            src=\"./images/synopsis/camara.svg\"\n                            alt=\"add-photo\"\n                            class=\"cursor-pointer add-photo\"\n                        />\n                        <span class=\"p-1 a-text-bold-warm text-plus mt-3 banner-text\"\n                            >665px\u200AX\u200A426px\n                        </span>\n                        <img\n                            src=\"./images/synopsis/image-synopsis-carrusel.jpg\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\"\n                        />\n                        </label>\n                    </div>\n                </div>\n                "));
+      });
+    }
+  }, {
+    key: "uploadHomeBannerImages",
+    value: function uploadHomeBannerImages(container, options) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+      var imagesPositions = [];
+      var imagesProgramming = []; //Input donde suben la imagen
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".image-home-banner").each(function () {
+        if (this.files[0]) {
+          imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("data-index"));
+        }
+
+        imagesProgramming.push(this.files[0]);
+      });
+      var data = new FormData(); //Guardamos las imágenes en un array
+
+      for (var index = 0; index < imagesProgramming.length; index++) {
+        var file = "file" + (index + 1).toString();
+        file = file.toString();
+        data.append(file, imagesProgramming[index]);
+      } //data.append("images", imagesProgramming);
+
+
+      data.append("positions", imagesPositions);
+      var response = landingController.uploadHomeBannerImages(data);
+      response.then(function (data) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("hide");
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_3__["resetIframe"])(container, options);
+      })["catch"](function (err) {
+        return console.log(err);
       });
     }
   }, {
@@ -99360,7 +99506,7 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "getContentTerms",
     value: function getContentTerms() {
-      var _this2 = this;
+      var _this3 = this;
 
       var response = landingController.getContentRights();
       response.then(function (data) {
@@ -99370,7 +99516,7 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val(data.data.about_text);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val(data.data.about_title);
 
-          _this2.test(data.data.terms_text);
+          _this3.test(data.data.terms_text);
         }
       });
     }
@@ -99773,8 +99919,8 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

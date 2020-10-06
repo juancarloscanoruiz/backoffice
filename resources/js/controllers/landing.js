@@ -1,7 +1,6 @@
 import LandingModel from "../models/landing.js";
 let landingModel = new LandingModel();
 export default class LandingController {
-
     getContentHome() {
         let data = landingModel.getContentHome();
         return data;
@@ -15,7 +14,7 @@ export default class LandingController {
     uploadImageFooter(image, key) {
         let data = new FormData();
         data.append("image", image);
-        data.append("key", key)
+        data.append("key", key);
         let response = landingModel.updateInfoFooter(data);
         return response;
     }
@@ -23,7 +22,7 @@ export default class LandingController {
     updateInfoFooter(text, key) {
         let data = new FormData();
         data.append("text", text);
-        data.append("key", key)
+        data.append("key", key);
         let response = landingModel.updateInfoFooter(data);
         return response;
     }
@@ -39,6 +38,11 @@ export default class LandingController {
         data.append("title", title);
         data.append("landing", landing);
         let response = landingModel.updateInfoTermsAndPrivacy(data);
+        return response;
+    }
+
+    uploadHomeBannerImages(data) {
+        let response = landingModel.uploadHomeBannerImages(data);
         return response;
     }
 }
