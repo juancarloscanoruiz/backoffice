@@ -3280,7 +3280,7 @@ break;*/
         new easyXDM.Socket(confProgramacionClaroCinema);
     }
     let confPrevProgramacionCinema = {
-        remote: `${baseURL}programacion-cinema.php`,
+        remote: `${baseURL}programacion-prev-cinema.php`,
         container: document.getElementById("navbar-prev-programacion-cinema"),
         onMessage: function (message, origin) {
             console.log(message);
@@ -3397,7 +3397,7 @@ break;*/
         new easyXDM.Socket(confProgramacionConcertChannel);
     }
     let confPrevProgramacionConcert = {
-        remote: `${baseURL}programacion-concert.php`,
+        remote: `${baseURL}programacion-prev-concert.php`,
         container: document.getElementById("navbar-prev-programacion-concert"),
         onMessage: function (message, origin) {
             console.log(message);
