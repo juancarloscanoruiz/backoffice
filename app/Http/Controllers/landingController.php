@@ -14,44 +14,44 @@ class landingController extends Controller
 
     public function showCanalClaroLanding()
     {
-        $data['edited']=$this->getSectionBack('Canal Claro');
+        $data['edited'] = $this->getSectionBack('Canal Claro');
 
-        return view('admin-site.landings.apro-claro',$data);
+        return view('admin-site.landings.apro-claro', $data);
     }
 
     public function showConcertChannelLanding()
     {
-        $data['edited']=$this->getSectionBack('Concert Channel');
+        $data['edited'] = $this->getSectionBack('Concert Channel');
 
-        return view('admin-site.landings.apro-concert',$data);
+        return view('admin-site.landings.apro-concert', $data);
     }
 
     public function showClaroCinemaLanding()
     {
-        $data['edited']=$this->getSectionBack('Claro Cinema');
+        $data['edited'] = $this->getSectionBack('Claro Cinema');
 
-        return view('admin-site.landings.claro-cinema',$data);
+        return view('admin-site.landings.claro-cinema', $data);
     }
 
     public function showProgramacionLanding()
     {
-        $data['edited']=$this->getSectionBack('Programation');
+        $data['edited'] = $this->getSectionBack('Programation');
 
-        return view('admin-site.landings.programacion',$data);
+        return view('admin-site.landings.programacion', $data);
     }
 
     public function showHomeLanding()
     {
-        $data['edited']=$this->getSectionBack('Home');
+        $data['edited'] = $this->getSectionBack('Home');
 
-        return view('admin-site.landings.home',$data);
-      // return view('partials.adm-CN.grillas.grilla-home');
+        return view('admin-site.landings.home', $data);
+        // return view('partials.adm-CN.grillas.grilla-home');
 
     }
     public function showFooterLanding()
     {
-        $data['edited']=$this->getSectionBack('Footer');
-        return view('admin-site.landings.footer',$data);
+        $data['edited'] = $this->getSectionBack('Footer');
+        return view('admin-site.landings.footer', $data);
     }
     public function showSinopsisLanding()
     {
@@ -133,26 +133,24 @@ class landingController extends Controller
 
         $respuesta =  json_decode($response->getBody());
         try {
-            if($respuesta->code == 200){
+            if ($respuesta->code == 200) {
                 $respuesta = [
-                    "last_edition"=>$respuesta->data->last_edition,
-                    "edited_for"=>$respuesta->data->edited_for,
-                    "rol"=>$respuesta->data->rol,
+                    "last_edition" => $respuesta->data->last_edition,
+                    "edited_for" => $respuesta->data->edited_for,
+                    "rol" => $respuesta->data->rol,
                 ];
                 return $respuesta;
-    
-            }else{
+            } else {
                 $respuesta = [
-                    "last_edition"=>"",
-                    "edited_for"=>"",
-                    "rol"=>"",
+                    "last_edition" => "",
+                    "edited_for" => "",
+                    "rol" => "",
                 ];
                 return $respuesta;
             }
         } catch (\Throwable $th) {
             //throw $th;
         }
-       
     }
     public function captureImagesForChapter(Request $request)
     {
@@ -454,6 +452,16 @@ class landingController extends Controller
     public function editHomeHeader(Request $request)
     {
 
+        $counter = 1;
+        $images = [];
+        $positions = explode(",", $request->input("positions"));
+        $files = $request->file();
+        foreach ($files as $file) {
+            $image = $this->storeImages("imageMobile" . $counter, $file, "public/home/banner");
+            $counter++;
+            array_push($images, $image);
+        }
+
 
         $client = new Client([
             'headers' => ['Content-Type' => 'application/json']
@@ -470,8 +478,9 @@ class landingController extends Controller
                     "usuario_id" => session('id_user'),
                     "video" => $videoimage,
                     "title" => $request->input('title'),
-                    "subtitle" => $request->input('subtitle')
-
+                    "subtitle" => $request->input('subtitle'),
+                    "images" => $images,
+                    "positions" => $positions
                 ]
             )]
         );
@@ -728,6 +737,7 @@ class landingController extends Controller
         }
         $counter = 0;
         $images = [];
+
         foreach ($files as $file) {
             $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/" . $folderLanding . "/banner");
             $counter++;

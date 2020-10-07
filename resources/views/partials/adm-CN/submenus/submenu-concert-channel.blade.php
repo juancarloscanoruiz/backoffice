@@ -1,4 +1,3 @@
-
 <body>
     <main>
         <div id="menu">
@@ -57,9 +56,12 @@
                 <!--Iconos para previsualizar en diferentes tamaños-->
 
                 <div class="pt-2">
-                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
-                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
-                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
+                    <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile"
+                        id="prev-mobile">
+                    <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet"
+                        id="prev-tablet">
+                    <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc"
+                        id="prev-desktop">
                 </div>
 
             </div>
@@ -84,7 +86,8 @@
             <!--iframe de programación-->
             <div class="centro ">
 
-                <div class="navbar-progra-content mb-5 mt-5 navbar-prev-programacion"  id="navbar-prev-programacion-concert" >
+                <div class="navbar-progra-content mb-5 mt-5 navbar-prev-programacion"
+                    id="navbar-prev-programacion-concert">
                 </div>
             </div>
             <!--sinopsis-->
@@ -430,7 +433,7 @@
     @include('partials.adm-CN.modals-concert.banner-concert');
 
     <!--HOME-->
-    @include('partials.adm-CN.modals-home.home-encabezado');
+    @include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'concert-channel']);
     @include('partials.adm-CN.modal-home.logo');
     @include('partials.adm-CN.modal-home.carrusel')
     @include('partials.adm-CN.modals-concert.programming');

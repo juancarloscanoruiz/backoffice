@@ -1,4 +1,4 @@
-<div class="modal modal-home-encabezado p-0 m-0" tabindex="-1" role="dialog" id="">
+<div class="modal modal-home-encabezado p-0 m-0" tabindex="-1" role="dialog" id="" landing="{{ $landing }}">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document" style=" max-width: 1178px;">
         <div class="modal-content  align-item-center centro ">
             <div class="modal-body ">
@@ -10,10 +10,10 @@
                 <!--Calendar-->
                 <div class="col-12 mx-auto">
 
-                    <div class="d-flex align-items-center float-right  mt-4 mb-4 mr-4">
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-4 mr-4">
                         <div class="d-flex">
                             <form action="" name="bannermovil" id="bannermovil" class="">
-                                <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
+                                <div class="ml-auto d-flex prev text-small a-text-medium-brownish location mt-2">
                                     <input type="radio" name="pc" id="pc" checked />
                                     <label for="pc" id="pc" class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                                         <p class=" a-prev-title">PC</p>
@@ -142,16 +142,17 @@
                         <div class="clearfix"></div>
                     </div>
 
-
-                    <div class="text-center  mb-4 d-flex justify-content-center pb-2">
-                        <button
-                            class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                            id="edit-home-encabezado" data-dismiss="modal">ACEPTAR</button>
-                        <a href="#delete-info-encabezado-home" role="button"
-                            class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                            data-toggle="modal">CANCELAR</a>
-
+                    <div class="home-encabezado-buttons">
+                        <div class="text-center  mb-4 d-flex justify-content-center pb-2">
+                            <button
+                                class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+                                id="edit-home-encabezado">ACEPTAR</button>
+                            <a href="#delete-info-encabezado-home" role="button"
+                                class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
+                                data-toggle="modal">CANCELAR</a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -40,7 +40,24 @@ export default class LandingModel {
                 "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
             }
         };
-        let response = await fetch("landing/updateInfoTermsAndPrivacy", options);
+        let response = await fetch(
+            "landing/updateInfoTermsAndPrivacy",
+            options
+        );
+        let data = await response.json();
+        return data;
+    }
+
+    async uploadHomeBannerImages(dataImages) {
+        let options = {
+            method: "POST",
+            body: dataImages,
+            headers: {
+                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+            }
+        };
+
+        let response = await fetch("landing/editHomeHeader", options);
         let data = await response.json();
         return data;
     }
