@@ -92000,7 +92000,7 @@ function eventsGrilla() {
   }
 
   var confPrevProgramacionCinema = {
-    remote: "".concat(baseURL, "programacion-cinema.php"),
+    remote: "".concat(baseURL, "programacion-prev-cinema.php"),
     container: document.getElementById("navbar-prev-programacion-cinema"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
@@ -92084,7 +92084,7 @@ function eventsGrilla() {
   }
 
   var confPrevProgramacionConcert = {
-    remote: "".concat(baseURL, "programacion-concert.php"),
+    remote: "".concat(baseURL, "programacion-prev-concert.php"),
     container: document.getElementById("navbar-prev-programacion-concert"),
     onMessage: function onMessage(message, origin) {
       console.log(message);
