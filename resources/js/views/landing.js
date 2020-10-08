@@ -616,7 +616,6 @@ export default class LandingView {
             container: document.getElementById("claro-networks-programing"),
             onMessage: function(message, origin) {
                 let json = JSON.parse(message);
-
                 if (typeof json == "object") {
                     switch (json.type) {
                         case "footer-claro-networks":

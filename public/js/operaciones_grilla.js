@@ -74716,6 +74716,9 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 function eventsGrilla() {
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#about_link_1_url').click('.about_link_1_title', function () {
+    alert('marina');
+  });
   var landingSinopsis = document.getElementById("prev-sinopsis-landing");
 
   if (landingSinopsis) {
@@ -75150,6 +75153,7 @@ function eventsGrilla() {
   programView.editImagesSynopsis(socketSynopsis);
   programView.editImageSynopsis(socketSynopsis);
   programView.editImagesBanner(socketSynopsis);
+  programView.renderTerminos();
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),
     // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
@@ -83774,8 +83778,6 @@ var LandingView = /*#__PURE__*/function () {
   }, {
     key: "getContentTerms",
     value: function getContentTerms() {
-      var _this3 = this;
-
       var response = landingController.getContentRights();
       response.then(function (data) {
         if (data.code == 200) {
@@ -83783,31 +83785,6 @@ var LandingView = /*#__PURE__*/function () {
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-ter").val(data.data.terms_title);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val(data.data.about_text);
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val(data.data.about_title);
-
-          _this3.test(data.data.terms_text);
-        }
-      });
-    }
-  }, {
-    key: "test",
-    value: function test(valor) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").keydown(function (e) {
-        var Final;
-        var texto;
-
-        if (e.which === 13 && !e.shiftKey) {
-          texto = document.getElementById("textTerminos").value += "\n";
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-ter").attr("name", texto); // valor = $('.footer-textarea-ter').attr('name');
-          // valor.attr(valor + '<br>');
-          // debugger
-          // $('.footer-textarea-ter').click(function(){
-          //      valor = $('.footer-textarea-ter').val()
-          // })
-          // alert(valor);
-          // $('.footer-textarea-ter').attr('name', $('.footer-textarea-ter').val()+ '<br>')
-          // texto = $('.footer-textarea-ter').attr('name');
-          // Final += texto;
-          // $('.footer-textarea-ter').val($('.footer-textarea-ter').val()+ '°')
         }
       });
     }
@@ -83845,6 +83822,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var programController = new _controllers_program_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
 
+var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 /**
  * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
  * y esuchcar eventos
@@ -83882,7 +83860,6 @@ var ProgramView = /*#__PURE__*/function () {
   }, {
     key: "renderPrevSynopsis",
     value: function renderPrevSynopsis() {
-      var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
       var options = {
         remote: "".concat(baseURL, "sinopsis-prev.php"),
         //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,

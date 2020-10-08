@@ -87,6 +87,10 @@ function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
+        $('#about_link_1_url').click('.about_link_1_title', function(){
+            alert('marina');
+        });
+
     let landingSinopsis = document.getElementById("prev-sinopsis-landing");
     if (landingSinopsis) {
         console.log("Found you");
@@ -96,7 +100,7 @@ function eventsGrilla() {
         let year = date.getUTCFullYear();
         getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
     }
-    $(".sinopsis-master").on("click", ".edit-synopsis-pencil", function() {
+    $(".sinopsis-master").on("click", ".edit-synopsis-pencil", function () {
         $("#sinopsis-container iframe").remove();
         var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
         $("body").append(
@@ -108,8 +112,8 @@ function eventsGrilla() {
         let id = $(this).attr("chapter_id");
         programView.renderSynopsis(id, socketSynopsis);
 
-        $("#device-size").load("imports #device-size-edit", function() {
-            $(".a-prev-image").click(function() {
+        $("#device-size").load("imports #device-size-edit", function () {
+            $(".a-prev-image").click(function () {
                 previewPage($(this));
             });
         });
@@ -120,7 +124,7 @@ function eventsGrilla() {
         remote: `${baseURL}sinopsis-prev.php`,
         //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
         container: document.getElementById("sinopsis-container"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
@@ -128,7 +132,7 @@ function eventsGrilla() {
         }
     };
 
-    $(".btn-sis").click(function() {
+    $(".btn-sis").click(function () {
         let key = $(this).attr("key");
         let date = new Date();
         let day = ("0" + date.getUTCDate()).slice(-2);
@@ -158,7 +162,7 @@ function eventsGrilla() {
     $(".calendar-sinopsis-slider").on(
         "click",
         ".synopsis-calendar-item",
-        function() {
+        function () {
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
@@ -168,7 +172,7 @@ function eventsGrilla() {
     $(".calendar-sinopsis-slider").on(
         "click",
         ".synopsis-calendar-item",
-        function() {
+        function () {
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
@@ -178,7 +182,7 @@ function eventsGrilla() {
     $(".calendar-sinopsis-slider").on(
         "click",
         ".synopsis-calendar-item",
-        function() {
+        function () {
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
             console.log($(this).attr("date"));
@@ -187,12 +191,12 @@ function eventsGrilla() {
     );
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
-    $("#video-promo-file").change(function() {
+    $("#video-promo-file").change(function () {
         if (this.files && this.files[0]) {
             let file = this.files[0];
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 // The file reader gives us an ArrayBuffer:
                 let buffer = e.target.result;
 
@@ -216,23 +220,23 @@ function eventsGrilla() {
     });
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".carrusel2-slider").on("afterChange", function(slick, currentSlide) {
+    $(".carrusel2-slider").on("afterChange", function (slick, currentSlide) {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
     });
 
     //CAMBIAR EL NÚMERO DE LA IMAGEN EN EL SLIDER DE SINOPSIS
-    $(".carrusel1-slider").on("afterChange", function(slick, currentSlide) {
+    $(".carrusel1-slider").on("afterChange", function (slick, currentSlide) {
         $(".current-slide-number").text(currentSlide.currentSlide + 1);
     });
 
-    $(".btn-prueba").click(function() {
+    $(".btn-prueba").click(function () {
         getHeaderLanding();
     });
 
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 switch (json.type) {
@@ -266,7 +270,7 @@ function eventsGrilla() {
     let confPrevHomeCinema = {
         remote: `${baseURL}home-prev.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -278,7 +282,7 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    $("#prev-landing-cinema").click(function() {
+    $("#prev-landing-cinema").click(function () {
         //Landing canal claro
         resetIframe($("#navbar-prev-home-cinema iframe"), confPrevHomeCinema);
         $("#prev-mobile")
@@ -288,7 +292,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-cinema").click(function() {
+    $("#edit-landing-cinema").click(function () {
         resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
 
         $("#prev-mobile")
@@ -308,7 +312,7 @@ function eventsGrilla() {
         remote: `${baseURL}sinopsis-edi.php`,
         //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-edi.php`,
         container: document.getElementById("sinopsis-container"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -336,16 +340,16 @@ function eventsGrilla() {
                                 while (true) {
                                     if (
                                         data.data[
-                                            `image_background_${index}`
+                                        `image_background_${index}`
                                         ] !== undefined
                                     ) {
                                         image =
                                             data.data[
-                                                `image_background_${index}`
+                                            `image_background_${index}`
                                             ];
                                         if (
                                             data.data[
-                                                `image_background_${index}`
+                                            `image_background_${index}`
                                             ] == null
                                         ) {
                                             image =
@@ -385,7 +389,7 @@ function eventsGrilla() {
                                         ),
                                         initialSlide: 0,
                                         infinite: false,
-                                        customPaging: function(slider, i) {
+                                        customPaging: function (slider, i) {
                                             var thumb = $(
                                                 slider.$slides[i]
                                             ).data();
@@ -405,7 +409,7 @@ function eventsGrilla() {
                                         ),
                                         initialSlide: 0,
                                         infinite: false,
-                                        customPaging: function(slider, i) {
+                                        customPaging: function (slider, i) {
                                             var thumb = $(
                                                 slider.$slides[i]
                                             ).data();
@@ -431,11 +435,11 @@ function eventsGrilla() {
                                 //Previsualizar una imagen en el banner
                                 $(
                                     ".modal-programming-sinopsis .input-image-program"
-                                ).change(function() {
+                                ).change(function () {
                                     let currentInput = $(this);
                                     if (this.files && this.files[0]) {
                                         var reader = new FileReader();
-                                        reader.onload = function(e) {
+                                        reader.onload = function (e) {
                                             currentInput
                                                 .next()
                                                 .children(".prev-image-program")
@@ -491,11 +495,11 @@ function eventsGrilla() {
                             }
                         });
                         $(".modal-image-synopsis .input-image-program").change(
-                            function() {
+                            function () {
                                 let currentInput = $(this);
                                 if (this.files && this.files[0]) {
                                     var reader = new FileReader();
-                                    reader.onload = function(e) {
+                                    reader.onload = function (e) {
                                         currentInput
                                             .next()
                                             .children(".prev-image-program")
@@ -566,11 +570,11 @@ function eventsGrilla() {
 
                         $(
                             ".modal-synopsis-images-container .input-image-program"
-                        ).change(function() {
+                        ).change(function () {
                             let currentInput = $(this);
                             if (this.files && this.files[0]) {
                                 var reader = new FileReader();
-                                reader.onload = function(e) {
+                                reader.onload = function (e) {
                                     currentInput
                                         .next()
                                         .children(".prev-image-program")
@@ -611,7 +615,7 @@ function eventsGrilla() {
         remote: `${baseURL}sinopsis-prev.php`,
         //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
         container: document.getElementById("sinopsis-container"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow =
@@ -625,7 +629,7 @@ function eventsGrilla() {
         $("#synopsis-table-canal-claro").on(
             "click",
             ".prev-synopsis-pencil",
-            function() {
+            function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -636,8 +640,8 @@ function eventsGrilla() {
                 socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
                 programView.renderSynopsis(id, socketSynopsis);
                 $("#prev-synopsis").prop("checked", true);
-                $("#device-size").load("imports #device-size-prev", function() {
-                    $(".a-prev-image").click(function() {
+                $("#device-size").load("imports #device-size-prev", function () {
+                    $(".a-prev-image").click(function () {
                         previewPage($(this));
                     });
                 });
@@ -651,7 +655,7 @@ function eventsGrilla() {
         $("#synopsis-table-concert-channel").on(
             "click",
             ".edit-synopsis-pencil",
-            function() {
+            function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -664,7 +668,7 @@ function eventsGrilla() {
         $("#synopsis-table-concert-channel").on(
             "click",
             ".prev-synopsis-pencil",
-            function() {
+            function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -674,8 +678,8 @@ function eventsGrilla() {
                 let id = $(this).attr("chapter_id");
                 socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
                 programView.renderSynopsis(id, socketSynopsis);
-                $("#device-size").load("imports #device-size-prev", function() {
-                    $(".a-prev-image").click(function() {
+                $("#device-size").load("imports #device-size-prev", function () {
+                    $(".a-prev-image").click(function () {
                         previewPage($(this));
                     });
                 });
@@ -689,7 +693,7 @@ function eventsGrilla() {
         $("#synopsis-table-claro-cinema").on(
             "click",
             ".edit-synopsis-pencil",
-            function() {
+            function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -702,7 +706,7 @@ function eventsGrilla() {
         $("#synopsis-table-claro-cinema").on(
             "click",
             ".prev-synopsis-pencil",
-            function() {
+            function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -712,8 +716,8 @@ function eventsGrilla() {
                 $("#sinopsis-container iframe").remove();
                 socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
                 programView.renderSynopsis(id, socketSynopsis);
-                $("#device-size").load("imports #device-size-prev", function() {
-                    $(".a-prev-image").click(function() {
+                $("#device-size").load("imports #device-size-prev", function () {
+                    $(".a-prev-image").click(function () {
                         previewPage($(this));
                     });
                 });
@@ -730,11 +734,13 @@ function eventsGrilla() {
     programView.editImageSynopsis(socketSynopsis);
     programView.editImagesBanner(socketSynopsis);
 
+    programView.renderTerminos();
+
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
         // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -811,7 +817,7 @@ function eventsGrilla() {
     let confPrevClaroCinema = {
         remote: `${baseURL}claro-cinema-prev.php`,
         container: document.getElementById("navbar-prev-claro-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -823,7 +829,7 @@ function eventsGrilla() {
     };
 
     //previsualizar concert channel
-    $("#prev-landing-cinema").click(function() {
+    $("#prev-landing-cinema").click(function () {
         //Landing concert channel
         resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
         $("#prev-mobile")
@@ -833,7 +839,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-cinema").click(function() {
+    $("#edit-landing-cinema").click(function () {
         resetIframe(
             $("#navbar-prev-claro-cinema iframe"),
             confLandingClaroCinema
@@ -855,7 +861,7 @@ function eventsGrilla() {
         remote: `${baseURL}concert-channel-edi.php`,
         //remote: `http://localhost:8888/MaquetaCNetworks/concert-channel-edi.php`,
         container: document.getElementById("navbar-prev-concert-channel"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -915,7 +921,7 @@ function eventsGrilla() {
                         break;
                     case "pencil-header1":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-titles").modal("show");
                             $("#loader1").remove();
                         }, 3000);
@@ -923,7 +929,7 @@ function eventsGrilla() {
                         break;
                     case "header2":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-titles").modal("show");
                             $("#loader1").remove();
                         }, 3000);
@@ -943,7 +949,7 @@ function eventsGrilla() {
     let confPrevConcert = {
         remote: `${baseURL}concert-channel-prev.php`,
         container: document.getElementById("navbar-prev-concert-channel"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -954,7 +960,7 @@ function eventsGrilla() {
     };
 
     //previsualizar concert channel
-    $("#prev-landing-concert").click(function() {
+    $("#prev-landing-concert").click(function () {
         //Landing concert channel
         resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
         $("#prev-mobile")
@@ -964,7 +970,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-concert").click(function() {
+    $("#edit-landing-concert").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
@@ -980,7 +986,7 @@ function eventsGrilla() {
         $("#prev-tablet").css("opacity", "0.4");
         $("#prev-desktop").css("opacity", "1");
     });
-    $(".button-modal-concert-channel").click(function() {
+    $(".button-modal-concert-channel").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
@@ -989,7 +995,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "click",
         ".button-modal-concert-channel",
-        function() {
+        function () {
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
@@ -999,7 +1005,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "click",
         ".modal-button-landing-concert",
-        function() {
+        function () {
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
@@ -1010,7 +1016,7 @@ function eventsGrilla() {
     $(".calendar-slider2").on(
         "click",
         ".programming-concert-landing",
-        function() {
+        function () {
             $(".programming-concert-landing").removeClass(
                 "programming-item-active"
             );
@@ -1021,7 +1027,7 @@ function eventsGrilla() {
     $(".calendar-slider2").on(
         "click",
         ".programming-canal-landing",
-        function() {
+        function () {
             $(".programming-canal-landing").removeClass(
                 "programming-item-active"
             );
@@ -1034,7 +1040,7 @@ function eventsGrilla() {
     $(".modal-programming-landing").on(
         "click",
         ".programming-pencil-canal-claro",
-        function() {
+        function () {
             let chapterId = $(this).attr("chapter_id");
             $(".modal-programming-landing").modal("hide");
             getChapterInfo(chapterId, "concert-channel");
@@ -1044,7 +1050,7 @@ function eventsGrilla() {
     $(".modal-programming-landing").on(
         "click",
         ".programming-pencil-concert-channel",
-        function() {
+        function () {
             let chapterId = $(this).attr("chapter_id");
             $(".modal-programming-landing").modal("hide");
             getChapterInfo(chapterId, "canal-claro");
@@ -1052,19 +1058,19 @@ function eventsGrilla() {
     );
 
     //Modal de link para botón
-    $("#url-encabezado-concert").on("show.bs.modal", function() {
+    $("#url-encabezado-concert").on("show.bs.modal", function () {
         let link = $(
             ".modal-header-concert-channel .modal-header-button-link"
         ).val();
         $("#link-button-concert-channel").val(link);
     });
-    $("#url-encabezado-concert").on("hidden.bs.modal", function() {
+    $("#url-encabezado-concert").on("hidden.bs.modal", function () {
         let link = $("#link-button-concert-channel").val();
         $(".modal-header-concert-channel .modal-header-button-link").val(link);
     });
 
     //Concert channel promo
-    $("#upload-concert-promo-button").click(function() {
+    $("#upload-concert-promo-button").click(function () {
         let file = "";
         if (document.getElementById("video-promo-file-concert").files[0]) {
             file = document.getElementById("video-promo-file-concert").files[0];
@@ -1084,7 +1090,7 @@ function eventsGrilla() {
     });
 
     //Concert Channel Header
-    $("#edit-header-landing-concert").click(function() {
+    $("#edit-header-landing-concert").click(function () {
         let landing = "Concert Channel";
         let title1 =
             $(".modal-header-concert-channel .modal-header-title-1").val() ||
@@ -1112,7 +1118,7 @@ function eventsGrilla() {
     $(".modal-home-encabezado").on(
         "click",
         "#edit-home-encabezado-mobile",
-        function() {
+        function () {
             let landing = $(".modal-home-encabezado").attr("landing");
             let container = "";
             let options = "";
@@ -1143,7 +1149,7 @@ function eventsGrilla() {
     $(".modal-home-encabezado").on(
         "click",
         "#edit-home-encabezado",
-        function() {
+        function () {
             let videoimage =
                 document.getElementById("video-promo-header-home").files[0] ||
                 "";
@@ -1204,12 +1210,12 @@ function eventsGrilla() {
     );
 
     //Previsualizar el video que subió el usuario en el landing de home
-    $("#video-promo-header-home").change(function() {
+    $("#video-promo-header-home").change(function () {
         if (this.files && this.files[0]) {
             let file = this.files[0];
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 // The file reader gives us an ArrayBuffer:
                 let buffer = e.target.result;
 
@@ -1233,7 +1239,7 @@ function eventsGrilla() {
         }
     });
 
-    $("#edit-titles-landing-concert").click(function() {
+    $("#edit-titles-landing-concert").click(function () {
         //Title
 
         let value = $(".modal-concert-title").val();
@@ -1261,13 +1267,13 @@ function eventsGrilla() {
 
     //Previsualizar el video que subió el usuario en el landing de concert channel
     let videoPromoInput = $("#video-promo-file-concert");
-    $("#video-promo-file-concert").change(function() {
+    $("#video-promo-file-concert").change(function () {
         $("#image-promo-concert").val("");
         if (this.files && this.files[0]) {
             let file = this.files[0];
             var reader = new FileReader();
             reader.readAsArrayBuffer(file);
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 // The file reader gives us an ArrayBuffer:
                 let buffer = e.target.result;
 
@@ -1290,11 +1296,11 @@ function eventsGrilla() {
         }
     });
 
-    $("#image-promo-concert").change(function() {
+    $("#image-promo-concert").change(function () {
         videoPromoInput.val("");
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 $("#concert-promo-container").html(`
                 <img src="${e.target.result}" alt="" class="d-flex w-100" id="promo-image-concert">
                 `);
@@ -1303,11 +1309,11 @@ function eventsGrilla() {
         reader.readAsDataURL(this.files[0]);
     });
 
-    $("#close-modal-promos-concert").click(function() {
+    $("#close-modal-promos-concert").click(function () {
         $("#link-promo-concert").val("");
     });
 
-    $("#url-promo-concert-button").on("click", function() {
+    $("#url-promo-concert-button").on("click", function () {
         let link = $("#link-promo-concert").val();
         let prevContainer = $("#concert-promo-container");
         let videoInput = $("#video-promo-file-concert");
@@ -1344,21 +1350,21 @@ function eventsGrilla() {
     }
 
     //loader, antes de subir un archivo
-    $(".upload-files").on("click", function() {
+    $(".upload-files").on("click", function () {
         const loader = `
         <div class="loader-view-container" id="loader2">
           <img src="./images/loader.gif" class="loader" alt="">
         </div>
         `;
         $("body").append(loader);
-        setTimeout(function() {
+        setTimeout(function () {
             $("#loader2").remove();
         }, 3000);
     });
 
     //Evento para cuando cerramos el selectpicker
 
-    $(".calendar-slider").on("click", ".programming-item", function() {
+    $(".calendar-slider").on("click", ".programming-item", function () {
         $(".programming-item").removeClass("programming-item-active");
         $(this).addClass("programming-item-active");
         let date = $(this).attr("date");
@@ -1367,7 +1373,7 @@ function eventsGrilla() {
         getProgramming(date, section, time);
     });
 
-    $(".thermometer-schedule-list").on("click", ".unavailable", function() {
+    $(".thermometer-schedule-list").on("click", ".unavailable", function () {
         let chapter_id = $(this).attr("chapter_id");
         getChapterInfo(chapter_id);
     });
@@ -1375,7 +1381,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "change",
         ".edit-image-carrusel",
-        function() {
+        function () {
             let image = this.files[0];
             let name = $(this).attr("program");
             let landing = $(this).attr("landing");
@@ -1391,7 +1397,7 @@ function eventsGrilla() {
         }
     );
 
-    $("#edit-image-horizontal").on("change", function() {
+    $("#edit-image-horizontal").on("change", function () {
         let image = this.files[0];
         let editProgramDataContainer = $(".edit-program-data-container");
         let name = editProgramDataContainer.attr("program");
@@ -1407,7 +1413,7 @@ function eventsGrilla() {
         updateImageProgramOfLanding(data);
     });
 
-    $(".edit-program-attribute-text").keydown(function(e) {
+    $(".edit-program-attribute-text").keydown(function (e) {
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this).attr("key");
             let chapter_id = $(".edit-program-data-container").attr(
@@ -1535,11 +1541,11 @@ function eventsGrilla() {
     $(".modal-programming-carousel-claro").on(
         "change",
         ".input-image-program",
-        function() {
+        function () {
             let currentInput = $(this);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     currentInput
                         .next()
                         .children(".prev-image-program")
@@ -1555,11 +1561,11 @@ function eventsGrilla() {
     $(".modal-programming-carousel-concert").on(
         "change",
         ".input-image-program",
-        function() {
+        function () {
             let currentInput = $(this);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     currentInput
                         .next()
                         .children(".prev-image-program")
@@ -1575,12 +1581,12 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "change",
         ".input-image-program",
-        function() {
+        function () {
             let currentInput = $(this);
 
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     currentInput
                         .next()
                         .children(".prev-image-program")
@@ -1599,7 +1605,7 @@ function eventsGrilla() {
         "keydown",
         ".edit-program-attribute-text",
 
-        function(e) {
+        function (e) {
             if (e.which === 13 && !e.shiftKey) {
                 debugger;
                 let key = $(this).attr("key");
@@ -1778,7 +1784,7 @@ function eventsGrilla() {
         }
     );
 
-    $(".edit-program-attribute-text").blur(function(e) {
+    $(".edit-program-attribute-text").blur(function (e) {
         console.log("blur");
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
@@ -1891,7 +1897,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "blur",
         ".edit-program-attribute-text",
-        function(e) {
+        function (e) {
             let key = $(this).attr("key");
             let chapter_id = $(this).attr("chapter_id");
             let value = $(this).val();
@@ -2051,7 +2057,7 @@ function eventsGrilla() {
         }
     );
 
-    $(".edit-program-switch").click(function() {
+    $(".edit-program-switch").click(function () {
         let value = $(this).val();
         let key = $(this).attr("key");
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
@@ -2060,7 +2066,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "click",
         ".edit-program-switch",
-        function() {
+        function () {
             let value = $(this).val();
             let key = $(this).attr("key");
             let chapter_id = $(this).attr("chapter_id");
@@ -2068,7 +2074,7 @@ function eventsGrilla() {
         }
     );
 
-    $(".edit-switch-home").click(function() {
+    $(".edit-switch-home").click(function () {
         if ($(this).val() == 0) {
             $(".edit-home-date-end").val("");
             $(".edit-home-date-begin").val("");
@@ -2079,7 +2085,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "click",
         ".edit-switch-home",
-        function() {
+        function () {
             if ($(this).val() == 0) {
                 $(".edit-home-date-end").val("");
                 $(".edit-home-date-begin").val("");
@@ -2089,7 +2095,7 @@ function eventsGrilla() {
         }
     );
 
-    $(".edit-switch-landing").click(function() {
+    $(".edit-switch-landing").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");
@@ -2112,7 +2118,7 @@ function eventsGrilla() {
     $(".modal-edit-program-carrusel").on(
         "click",
         ".edit-switch-landing",
-        function() {
+        function () {
             let chapter_id = $(
                 ".modal-edit-program-carrusel .edit-program-data-container"
             ).attr("chapter_id");
@@ -2136,43 +2142,43 @@ function eventsGrilla() {
         }
     );
     //loader, antes de subir un archivo
-    $(".load-modales").click(function() {
+    $(".load-modales").click(function () {
         $(".modal-edit-icons .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
 
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
         }, 3000);
     });
     //loader, antes de subir un archivo
-    $(".load-modal-programming").click(function() {
+    $(".load-modal-programming").click(function () {
         $(".modal-edit-program .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
 
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
         }, 3000);
     });
     //loader, antes de subir un archivo
-    $(".load-programming-carousel").click(function() {
+    $(".load-programming-carousel").click(function () {
         $(".modal-programming-carousel .modal-content").append(
             `<div class="loader-view-container pointer-none" >
             <img src="./images/loader.gif" class="loader"/>
         </div>`
         );
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loader-view-container").remove();
         }, 3000);
     });
 
     //activacion de paginacion
-    $(".slider-logo").click(function() {
+    $(".slider-logo").click(function () {
         $(".slider-pagination").removeClass("slider-pagination-active") &
             $(".slider-pagination").removeClass("a-text-bold-white");
         $(" .slider-pagination").addClass("a-text-bold-teal");
@@ -2187,7 +2193,7 @@ function eventsGrilla() {
                 .find(".slider-pagination")
                 .removeClass("a-text-bold-teal");
     });
-    $("#edit-logos-button").click(function() {
+    $("#edit-logos-button").click(function () {
         let data = new FormData();
         //Canal claro
         let logoUrlCanalClaro =
@@ -2212,7 +2218,7 @@ function eventsGrilla() {
         updateLogosOfLanding(data);
     });
 
-    $("#image-programming-button").click(function() {
+    $("#image-programming-button").click(function () {
         /*
             Arreglo para saber la posición de las imágenes que cargo el usuario
             es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -2221,7 +2227,7 @@ function eventsGrilla() {
         //Arreglo para guardar imágenes de los usuarios
         let imagesProgramming = [];
         //Recorremos cada input para obtener las imágenes
-        $(".image_programming").each(function() {
+        $(".image_programming").each(function () {
             if (this.files[0]) {
                 imagesPositions.push($(this).attr("data-index"));
             }
@@ -2247,7 +2253,7 @@ function eventsGrilla() {
     });
 
     //para agregar un slider más en cinema
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
@@ -2272,7 +2278,7 @@ function eventsGrilla() {
     });
 
     //para agregar un slider más en carrusel2-concert
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         let sliderIndex = $(".load-programming-carousel").length + 1;
         $(".carrusel2-slider").slick(
             "slickAdd",
@@ -2717,7 +2723,7 @@ function eventsGrilla() {
         );
     });
     //para agregar un slider más en carrusel1-concert
-    $(".add-programming-image").click(function() {
+    $(".add-programming-image").click(function () {
         let slideIndex = $(".load-programming-carousel").length + 1;
         //Cada vez que se haga click, el contador incrementa
 
@@ -3166,7 +3172,7 @@ function eventsGrilla() {
     //Declaramos un contador para poder diferenciar los label de los slides que se van creando
 
     //Añadimos un slide al slider de imágenes de programación
-    $(".add-banner-image").click(function() {
+    $(".add-banner-image").click(function () {
         //Cada vez que se haga click, el contador incrementa
         let slideIndex = $(".load-programming-carousel").length + 1;
 
@@ -3203,7 +3209,7 @@ function eventsGrilla() {
     let confProgramacionClaroCinema = {
         remote: `${baseURL}programacion-edi-cinema.php`,
         container: document.getElementById("navbar-prev-programacion-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -3218,7 +3224,7 @@ function eventsGrilla() {
                     case "slider-pagination":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
 
@@ -3235,7 +3241,7 @@ function eventsGrilla() {
                         break;
                     case "menu-logos":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             addImagesModalIcons();
 
                             $(".modal-edit-icons").modal("show");
@@ -3266,7 +3272,7 @@ function eventsGrilla() {
     let confPrevProgramacionCinema = {
         remote: `${baseURL}programacion-cinema.php`,
         container: document.getElementById("navbar-prev-programacion-cinema"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -3278,7 +3284,7 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    $("#prev-landing-cinema").click(function() {
+    $("#prev-landing-cinema").click(function () {
         //Landing canal claro
         resetIframe(
             $("#navbar-prev-programacion-cinema iframe"),
@@ -3291,7 +3297,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-cinema").click(function() {
+    $("#edit-landing-cinema").click(function () {
         resetIframe(
             $("#navbar-prev-programacion-cinema iframe"),
             confProgramacionClaroCinema
@@ -3310,7 +3316,7 @@ function eventsGrilla() {
 
     /////////////
 
-    $(".modal-program-claro-cinema").click(function() {
+    $(".modal-program-claro-cinema").click(function () {
         resetIframe(
             $("#navbar-prev-programacion-cinema iframe"),
             confProgramacionClaroCinema
@@ -3322,7 +3328,7 @@ function eventsGrilla() {
     let confProgramacionConcertChannel = {
         remote: `${baseURL}programacion-edi-concert.php`,
         container: document.getElementById("navbar-prev-programacion-concert"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -3337,7 +3343,7 @@ function eventsGrilla() {
                     case "slider-pagination":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
 
@@ -3354,7 +3360,7 @@ function eventsGrilla() {
                         break;
                     case "menu-logos":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             addImagesModalIcons();
                             $(".modal-edit-icons").modal("show");
                             $("#loader1").remove();
@@ -3383,7 +3389,7 @@ function eventsGrilla() {
     let confPrevProgramacionConcert = {
         remote: `${baseURL}programacion-concert.php`,
         container: document.getElementById("navbar-prev-programacion-concert"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -3395,7 +3401,7 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    $("#prev-landing-concert").click(function() {
+    $("#prev-landing-concert").click(function () {
         //Landing canal claro
         resetIframe(
             $("#navbar-prev-programacion-concert iframe"),
@@ -3408,7 +3414,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-concert").click(function() {
+    $("#edit-landing-concert").click(function () {
         resetIframe(
             $("#navbar-prev-programacion-concert iframe"),
             confProgramacionConcertChannel
@@ -3427,7 +3433,7 @@ function eventsGrilla() {
 
     /////////////
 
-    $(".modal-program-concert-channel").click(function() {
+    $(".modal-program-concert-channel").click(function () {
         resetIframe(
             $("#navbar-prev-programacion-concert iframe"),
             confProgramacionConcertChannel
@@ -3440,7 +3446,7 @@ function eventsGrilla() {
     let confIframe = {
         remote: `${baseURL}programacion-edi.php`,
         container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
@@ -3455,7 +3461,7 @@ function eventsGrilla() {
                     case "slider-pagination":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
 
                             $("#loader1").remove();
@@ -3473,7 +3479,7 @@ function eventsGrilla() {
                         break;
                     case "menu-logos":
                         $("body").append(loader);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             addImagesModalIcons();
 
                             $(".modal-edit-icons").modal("show");
@@ -3491,7 +3497,7 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    $(".edit-landing-modal-button").click(function() {
+    $(".edit-landing-modal-button").click(function () {
         resetIframe($("#navbar-prev-programacion iframe"), confIframe);
     });
     ////////////
@@ -3505,7 +3511,7 @@ function eventsGrilla() {
     let confPrevProgramacion = {
         remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -3516,7 +3522,7 @@ function eventsGrilla() {
         }
     };
 
-    $("#prev").click(function() {
+    $("#prev").click(function () {
         let id = $(".navbar-progra-content").attr("id");
 
         let canalClaro = "#navbar-prev-canal-claro";
@@ -3525,8 +3531,8 @@ function eventsGrilla() {
         $("#navbar-prev-canal-claro iframe").remove();
         $("#navbar-prev-programacion iframe").remove();
 
-        $("#device-size").load("imports #device-size-prev", function() {
-            $(".a-prev-image").click(function() {
+        $("#device-size").load("imports #device-size-prev", function () {
+            $(".a-prev-image").click(function () {
                 previewPage($(this));
             });
         });
@@ -3547,7 +3553,7 @@ function eventsGrilla() {
         }
     });
 
-    $("#edit").click(function() {
+    $("#edit").click(function () {
         let id = $(".navbar-progra-content").attr("id");
 
         let canalClaro = "#navbar-prev-canal-claro";
@@ -3556,8 +3562,8 @@ function eventsGrilla() {
         $("#navbar-prev-canal-claro iframe").remove();
         $("#navbar-prev-programacion iframe").remove();
 
-        $("#device-size").load("imports #device-size-edit", function() {
-            $(".a-prev-image").click(function() {
+        $("#device-size").load("imports #device-size-edit", function () {
+            $(".a-prev-image").click(function () {
                 previewPage($(this));
             });
         });
@@ -3586,11 +3592,11 @@ function eventsGrilla() {
     // });
 
     /////////////
-    $(".input-image-program").change(function() {
+    $(".input-image-program").change(function () {
         let currentInput = $(this);
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 currentInput
                     .next()
                     .children(".prev-image-program")
@@ -3624,7 +3630,7 @@ function eventsGrilla() {
     let genres = "";
     let selectpicker = $(".selectpicker");
     //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function() {
+    selectpicker.on("change", function () {
         //Obtenemos los valores del selectpicker
         let selected = $(this).val();
         //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -3640,7 +3646,7 @@ function eventsGrilla() {
         }
     });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function() {
+    selectpicker.on("hide.bs.select", function () {
         //Seleccionamos la columna en la que estamos
         let currentColumn = $(this).closest(".contenedor-columna");
         //Obtenemos el cahpter_id de la columna
@@ -3654,7 +3660,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
 
-    $("button[id=btn-landing]").click(function() {
+    $("button[id=btn-landing]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -3674,7 +3680,7 @@ function eventsGrilla() {
         }
     });
     //Al momento de dar click en el boton de grilla
-    $("button[id=btn-grilla]").click(function() {
+    $("button[id=btn-grilla]").click(function () {
         if (
             $(this).hasClass("btn-landing") &
             $(this).hasClass("a-text-semi-brown-two")
@@ -3697,7 +3703,7 @@ function eventsGrilla() {
     //Al dar click en el botón, mostramos la pantalla "landing" de la grilla de canal claro
 
     /* Al dar click en el switch de "Establecer en lading", aplicamos ciertos estilos */
-    $(".switch-landing").click(function() {
+    $(".switch-landing").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let landingOptionsChecks = currentColumn.children(
             ".establecer-options"
@@ -3731,7 +3737,7 @@ function eventsGrilla() {
     });
 
     /* Al dar click en el switch de "Establecer en Home", aplicamos ciertos estilos */
-    $(".switch-home").click(function() {
+    $(".switch-home").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
 
         if ($(this).val() == 1) {
@@ -3758,7 +3764,7 @@ function eventsGrilla() {
         }
     });
     //Mostrar la sinópsis completa en modal
-    $(".see-more").click(function() {
+    $(".see-more").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sinopsis actual del programa sin tener el texto truncado con "..."
         let synopsis = currentColumn.attr("synopsis");
@@ -3784,7 +3790,7 @@ function eventsGrilla() {
     });
 
     //botón de modal de edición de de sinopsis
-    $(".edit-synopsis-button").click(function() {
+    $(".edit-synopsis-button").click(function () {
         let chapterId = $(this).attr("chapter_id");
         let key = $(this).attr("key");
         //Obtenemos la sinopsis nueva del textarea del modal
@@ -3827,7 +3833,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -3837,10 +3843,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("date-start-input")
@@ -3881,7 +3887,7 @@ function eventsGrilla() {
             delimiter: ",",
             minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
             //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function() {
+            onShow: function () {
                 picker.picker.style.left = "50%";
                 picker.picker.style.top = "50%";
                 picker.picker.style.transform = "translate(-50%, -50%)";
@@ -3891,10 +3897,10 @@ function eventsGrilla() {
                 $("#modal-container").css("display", "block");
             },
             //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function() {
+            onHide: function () {
                 $("#modal-container").css("display", "none");
             },
-            onSelect: function() {
+            onSelect: function () {
                 //Separamos las dos fechas
                 let fullDate = document
                     .getElementById("programming-carrusel-calendar")
@@ -3918,7 +3924,7 @@ function eventsGrilla() {
         });
     }
 
-    $("#close_modals").click(function() {
+    $("#close_modals").click(function () {
         console.log("cerrar");
         $(".modal").modal("hide");
         $("#modaledi").modal("hide");
@@ -3928,14 +3934,14 @@ function eventsGrilla() {
         //$(".modal-edit-icons").modal("hide");
         // $(".modal-edit-program").modal("hide");
     });
-    $(".close-modal-concert").click(function() {
+    $(".close-modal-concert").click(function () {
         $(".modal").modal("hide");
     });
     //cerrar los dos modales
-    $("#close_modals-claro").click(function() {
+    $("#close_modals-claro").click(function () {
         $(".modal").modal("hide");
     });
-    $("#close_modals-sinopsis").click(function() {
+    $("#close_modals-sinopsis").click(function () {
         $("#delete-info-sinopsis").modal("hide");
         $(".modal-programming-sinopsis").modal("hide");
         $(".delete-image-sinopsis").modal("hide");
@@ -3949,7 +3955,7 @@ function eventsGrilla() {
         y hacemos la petición
     */
     let editableAttribute = $(".editable-attribute");
-    editableAttribute.keydown(function(e) {
+    editableAttribute.keydown(function (e) {
         //Si la tecla que presionamos fue "Enter"
         if (e.which === 13 && !e.shiftKey) {
             let key = $(this)
@@ -4113,7 +4119,7 @@ function eventsGrilla() {
     });
 
     //Se ejecuta cuando editamos un campo y damos click "fuera" del input
-    editableAttribute.blur(function() {
+    editableAttribute.blur(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         let key = currentColumn.attr("key");
         let keyValue = $(this).val();
@@ -4243,7 +4249,7 @@ function eventsGrilla() {
     });
 
     //Sacar los valores de los switches en la grilla
-    $(".switch-table").click(function() {
+    $(".switch-table").click(function () {
         let currentColumn = $(this).closest(".contenedor-columna");
         //Sacamos el valor del switch o radio button
         let keyValue = $(this).val();
@@ -4255,7 +4261,7 @@ function eventsGrilla() {
         editAttributeProgram(chapterId, key, keyValue);
     });
     //Sacar los valores de los switches en el modal de edicion
-    $(".switch-table-edit").click(function() {
+    $(".switch-table-edit").click(function () {
         let chapter_id = $(".edit-program-data-container").attr("chapter_id");
         let value = $(this).val();
         let key = $(this).attr("key");
@@ -4299,7 +4305,7 @@ function eventsGrilla() {
         });
 
     //Truncar texto de sinópsis con "..."
-    $(".lb-synopsis").each(function(index, element) {
+    $(".lb-synopsis").each(function (index, element) {
         if ($(this).text().length > 200) {
             let text =
                 $(this)
@@ -4323,11 +4329,11 @@ function eventsGrilla() {
             multipleSeparator: " ",
             filter: true
         })
-        .on("changed.bs.select", function() {
+        .on("changed.bs.select", function () {
             $(this).selectpicker("refresh");
         });
 
-    $("#inp_programing").on("change", function() {
+    $("#inp_programing").on("change", function () {
         /**
          * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
          * esto para no caursar poroblemas mayores se manda a null e value del form
@@ -4378,7 +4384,7 @@ function eventsGrilla() {
             data: {
                 view: "grilla-" + canal + "-button"
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 const loader = `
                 <div class="loader-view-container">
                 <img src="./images/loader.gif" class="loader" alt="">
@@ -4386,7 +4392,7 @@ function eventsGrilla() {
                 `;
                 $("body").append(loader);
             },
-            success: function(result) {
+            success: function (result) {
                 console.log("grilla de canal claro");
                 console.log(result);
                 $("#general-programming").html("");
@@ -4411,14 +4417,14 @@ function eventsGrilla() {
             processData: false, //esto es para poder pasar el archivo
             contentType: false, //esto es para poder pasar el archivo
             url: "general-program/captureExcel",
-            beforeSend: function() {
+            beforeSend: function () {
                 $("body").append(
                     `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
-            success: function(result) {
+            success: function (result) {
                 var existe_programacion = JSON.parse(result);
                 if (existe_programacion.data == 1) {
                     $(".loader-view-container").remove();
@@ -4441,12 +4447,12 @@ function eventsGrilla() {
                     }
                 }
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             $(".loader-view-container").remove();
             console.log(e);
         });
     }
-    $("#acccion-programacion-remplaza").click(function() {
+    $("#acccion-programacion-remplaza").click(function () {
         console.log("Se remplaza la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -4455,7 +4461,7 @@ function eventsGrilla() {
             type: "POST",
             data: data,
             url: "general-program/changePrograming",
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".modal-information .modal-content").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -4463,20 +4469,20 @@ function eventsGrilla() {
                 );
             },
 
-            success: function(result) {
+            success: function (result) {
                 updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             console.log(e);
             $(".loader-container").remove();
             $(".modal-information").modal("hide");
         });
     });
 
-    $("#acccion-programacion-agrega").click(function() {
+    $("#acccion-programacion-agrega").click(function () {
         console.log("Se agrega la programacion");
         let data = JSON.parse($("#programas_procesados_por_el_excel").val());
         console.log(data);
@@ -4484,26 +4490,26 @@ function eventsGrilla() {
             type: "POST",
             data: data,
             url: "general-program/addPrograming",
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".modal-information .modal-con tent").prepend(
                     `<div class="loader-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
                     </div>`
                 );
             },
-            success: function(result) {
+            success: function (result) {
                 updateGrill(data.landing_id);
                 $(".loader-container").remove();
                 $(".modal-information").modal("hide");
                 console.log(JSON.parse(result));
             }
-        }).fail(function(e) {
+        }).fail(function (e) {
             console.log(e);
             $(".loader-container").remove();
             $(".modal-information").modal("hide");
         });
     });
-    $("#acccion-programacion-cancela").click(function() {
+    $("#acccion-programacion-cancela").click(function () {
         console.log("Se cancela la programacion");
         $("#programas_procesados_por_el_excel").val(" ");
         let programas = $("#programas_procesados_por_el_excel").val();
@@ -4520,7 +4526,7 @@ function eventsGrilla() {
         remote: `${baseURL}claro-canal-edi.php`,
         // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
 
             if (typeof json == "object") {
@@ -4530,7 +4536,7 @@ function eventsGrilla() {
                         break;
                     case "claro-programacion":
                         $("body").append(LOADER);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             let date = new Date();
                             let day = ("0" + date.getUTCDate()).slice(-2);
                             let month = ("0" + (date.getUTCMonth() + 1)).slice(
@@ -4604,7 +4610,7 @@ function eventsGrilla() {
     let confPrevClaroCanal = {
         remote: `${baseURL}claro-canal-prev.php`,
         container: document.getElementById("navbar-prev-canal-claro"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -4618,7 +4624,7 @@ function eventsGrilla() {
     //Landing de claro canal
 
     //previsualizar canal claro
-    $("#prev").click(function() {
+    $("#prev").click(function () {
         //     //Landing canal claro
         resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
         $("#prev-mobile")
@@ -4628,7 +4634,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit").click(function() {
+    $("#edit").click(function () {
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
 
         $("#prev-mobile")
@@ -4643,19 +4649,19 @@ function eventsGrilla() {
     });
 
     // BTN MODAL URL ENCABEZADO
-    $("#url-encabezado").click(function() {
+    $("#url-encabezado").click(function () {
         $("#modal-url").modal("show");
     });
     // BTN MODAL URL PROMO
-    $("#url-promo").click(function() {
+    $("#url-promo").click(function () {
         $("#modal-url").modal("show");
     });
     // BTN BANNER
-    $("#banner-claro").change(function() {
+    $("#banner-claro").change(function () {
         File(this);
     });
     // BTN BANNER
-    $("#btn-acepta-url").click(function() {
+    $("#btn-acepta-url").click(function () {
         $("#modal-url").modal("hide");
         let url = $(".input-url-modal").val() || "";
         $("#inp-text-modal-4").val(url);
@@ -4668,11 +4674,11 @@ function eventsGrilla() {
     function File(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $("#" + objFileInput.name).html(
                     '<img class="img-claro-back" src="' +
-                        e.target.result +
-                        '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
+                    e.target.result +
+                    '" /> <img class="img-add-photo" src="images/basic-icons/pencil-edit-teal.svg" alt="add-photo" /> <span class="text-add-photo">472px X 295px</span>'
                 );
             };
             fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -4680,7 +4686,7 @@ function eventsGrilla() {
         $("#loader1").remove();
     }
     // CARGAR IMG HEADER
-    $("#img-header").change(function() {
+    $("#img-header").change(function () {
         FileHeader(this);
     });
 
@@ -4688,7 +4694,7 @@ function eventsGrilla() {
     function FileHeader(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $("#img-header-claro").html(
                     '<img src="' + e.target.result + '" />'
                 );
@@ -4698,18 +4704,18 @@ function eventsGrilla() {
         }
     }
     // IMG DE PROMO
-    $("#promo-claro-img").change(function() {
+    $("#promo-claro-img").change(function () {
         FilePromoImg(this);
     });
     // IMG DE PROMO CARGAR
     function FilePromoImg(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $("#back-promo-claro").html(
                     '<img class="img-back-modal img-promo" src="' +
-                        e.target.result +
-                        '" />'
+                    e.target.result +
+                    '" />'
                 );
             };
         }
@@ -4717,18 +4723,18 @@ function eventsGrilla() {
         $(".loader-view-container").remove();
     }
     // VIDEO DE PROMO
-    $("#promo-claro-video").change(function() {
+    $("#promo-claro-video").change(function () {
         FilePromoVideo(this);
     });
     // VIDEO DE PROMO CARGAR
     function FilePromoVideo(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $("#back-promo-claro").html(
                     '<video autoplay controls class="img-back-modal img-promo" src="' +
-                        e.target.result +
-                        '" /></video>'
+                    e.target.result +
+                    '" /></video>'
                 );
                 $(".loader-view-container").remove();
             };
@@ -4736,18 +4742,18 @@ function eventsGrilla() {
         }
     }
     // IMG DE CARRUSEL 1
-    $("#carrusel1-claro-img").change(function() {
+    $("#carrusel1-claro-img").change(function () {
         FileCarrusel1Img(this);
     });
     // IMG DE CARRUSEL 1 CARGAR
     function FileCarrusel1Img(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $("#back-carrusel1-claro").html(
                     '<img class="img-back-modal img-carrusel" src="' +
-                        e.target.result +
-                        '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />'
+                    e.target.result +
+                    '" /> <img src="images/heart-icon.svg" class="heart-icon-carrusel" alt="heart-icon" />'
                 );
             };
         }
@@ -4757,7 +4763,7 @@ function eventsGrilla() {
 
     //CLARO CANAL POST HEADER
     // HEADER EDIT CANAL CLARO
-    $("#btn-acepta-modal-header").click(function() {
+    $("#btn-acepta-modal-header").click(function () {
         let landing = "Canal Claro";
         let title1 = $(".inp-text-modal-1").val() || "";
         let title2 = $(".inp-text-modal-2").val() || "";
@@ -4773,14 +4779,14 @@ function eventsGrilla() {
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
 
-    $(".button-modal-canal-claro").click(function() {
+    $(".button-modal-canal-claro").click(function () {
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
 
     $(".modal-edit-program-carrusel").on(
         "click",
         ".button-modal-canal-claro",
-        function() {
+        function () {
             resetIframe(
                 $("#navbar-prev-canal-claro iframe"),
                 landingCanalClaro
@@ -4789,7 +4795,7 @@ function eventsGrilla() {
     );
     // HEADER EDIT CANAL CLARO
     // TITLE EDIT CANAL CLARO
-    $("#btn-acepta-modal-title").click(function() {
+    $("#btn-acepta-modal-title").click(function () {
         // TITULO
         let value = $(".inp-title-modal").val();
         let key = $(".inp-title-modal").attr("key");
@@ -4812,7 +4818,7 @@ function eventsGrilla() {
     });
     // TITLE EDIT CANAL CLARO
     // HEADER EDIT CANAL CLARO
-    $("#btn-acepta-modal-promo").click(function() {
+    $("#btn-acepta-modal-promo").click(function () {
         let landing = "Canal Claro";
         let img = document.getElementById("promo-claro-img").files[0] || "";
         let video = document.getElementById("promo-claro-video").files[0] || "";
@@ -4830,7 +4836,7 @@ function eventsGrilla() {
     // CANAL CLARO
 
     // CARGAR IMG HEADER
-    $("#image-icon1").change(function() {
+    $("#image-icon1").change(function () {
         FileHeaderCinema(this);
     });
 
@@ -4838,7 +4844,7 @@ function eventsGrilla() {
     function FileHeaderCinema(objFileInput) {
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $(".logo-header-claro-cinema").attr("src", e.target.result);
             };
             fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -4847,7 +4853,7 @@ function eventsGrilla() {
     }
 
     // HEADER EDIT CANAL CLARO
-    $("#btn-acepta-modal-header-cinema").click(function() {
+    $("#btn-acepta-modal-header-cinema").click(function () {
         let landing = "Claro Cinema";
         let title1 = $("#ipt-heade").val() || "";
         let title2 = $("#ipt-heade-1").val() || "";
@@ -4867,7 +4873,7 @@ function eventsGrilla() {
     });
     // HEADER EDIT CANAL CLARO
     // TITLE EDIT CANAL CLARO
-    $("#edit-titulos-cinema").click(function() {
+    $("#edit-titulos-cinema").click(function () {
         // TITULO
         let value = $("#ipt-titulo-cinema-1").val();
         let key = $("#ipt-titulo-cinema-1").attr("key");
@@ -4900,7 +4906,7 @@ function eventsGrilla() {
     });
     // TITLE EDIT CANAL CLARO
     // IMG DE PROMO
-    $("#image-promo-concert").change(function() {
+    $("#image-promo-concert").change(function () {
         FilePromoImg(this);
     });
     // IMG DE PROMO CARGAR
@@ -4919,7 +4925,7 @@ function eventsGrilla() {
     //     $(".loader-view-container").remove();
     // }
     // VIDEO DE PROMO
-    $("#video-promo-file-concert").change(function() {
+    $("#video-promo-file-concert").change(function () {
         FilePromoVideo(this);
     });
     // VIDEO DE PROMO CARGAR
@@ -4939,7 +4945,7 @@ function eventsGrilla() {
     // }
     // HEADER EDIT CANAL CLARO
     // HEADER EDIT CANAL CLARO
-    $("#btn-acepta-promo-cinema").click(function() {
+    $("#btn-acepta-promo-cinema").click(function () {
         let file = "";
         if (document.getElementById("video-promo-file-concert").files[0]) {
             file = document.getElementById("video-promo-file-concert").files[0];
@@ -4963,7 +4969,7 @@ function eventsGrilla() {
     });
 
     // HOME
-    $("#logo_home").change(function() {
+    $("#logo_home").change(function () {
         viewImg(this, "#img-logo-home");
         viewEdit();
     });
@@ -4972,7 +4978,7 @@ function eventsGrilla() {
         debugger;
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
-            fileSrt.onload = function(e) {
+            fileSrt.onload = function (e) {
                 $(container).attr("src", e.target.result);
             };
             fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -4984,7 +4990,7 @@ function eventsGrilla() {
         $("#camera").attr("src", "./images/lapiz-acti.svg");
     }
 
-    $("#btn_pruebas").click(function() {
+    $("#btn_pruebas").click(function () {
         // getContentHomeHeader('claro-home-header');
         // let landing = 'Canal Claro';
         // getCarruselHome(landing);
@@ -4995,22 +5001,22 @@ function eventsGrilla() {
         landingView.renderContentFooter("footer-concert-channel");
     });
 
-    $("#modal_url").click(function() {
+    $("#modal_url").click(function () {
         let url = $("#inp_url").val();
         $("#inp_url_modal").val(url);
         $("#url").modal("show");
     });
-    $("#inp_url").click(function() {
+    $("#inp_url").click(function () {
         let url = $("#inp_url").val();
         $("#inp_url_modal").val(url);
         $("#url").modal("show");
     });
-    $("#btn-url").click(function() {
+    $("#btn-url").click(function () {
         let url = $("#inp_url_modal").val();
         $("#inp_url").val(url);
         $("#url").modal("hide");
     });
-    $("#close_all_modal").click(function() {
+    $("#close_all_modal").click(function () {
         $("#delete-info").modal("hide");
         $(".modal-programming-carousel").modal("hide");
         $(".modal-edit-icons").modal("hide");
@@ -5027,7 +5033,7 @@ function eventsGrilla() {
 
     // FOOTER
 
-    $("#acepta_canales_home").click(function() {
+    $("#acepta_canales_home").click(function () {
         let landing = $("#landing_name").val();
         let logo = document.getElementById("logo_home").files[0] || "";
         let subtitle = $("#inp_canales_subtitulo").val() || "";
@@ -5057,7 +5063,7 @@ function eventsGrilla() {
     });
 
     // HOME
-    $(".acepta_carrusel_home").click(function() {
+    $(".acepta_carrusel_home").click(function () {
         const loader = `
         <div class="loader-view-container" id="loader1">
           <img src="./images/loader.gif" class="loader" alt="">
@@ -5065,7 +5071,7 @@ function eventsGrilla() {
         `;
         $("body").append(loader);
 
-        setTimeout(function() {
+        setTimeout(function () {
             $("#loader1").remove();
             console.log("si lo borra");
         }, 2000);
@@ -5077,7 +5083,7 @@ function eventsGrilla() {
         remote: `${baseURL}home-edi-claro.php`,
         // remote: `http://localhost/MaquetaCNetworks/home-edi-claro.php`,
         container: document.getElementById("navbar-prev-home"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 switch (json.type) {
@@ -5119,7 +5125,7 @@ function eventsGrilla() {
     let confHomeClaroCanal = {
         remote: `${baseURL}home-prev.php`,
         container: document.getElementById("navbar-prev-home"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -5134,7 +5140,7 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    $("#prev").click(function() {
+    $("#prev").click(function () {
         //Landing canal claro
         resetIframe($("#navbar-prev-home iframe"), confHomeClaroCanal);
         $("#prev-mobile")
@@ -5144,7 +5150,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit").click(function() {
+    $("#edit").click(function () {
         resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
 
         $("#prev-mobile")
@@ -5162,7 +5168,7 @@ function eventsGrilla() {
         remote: `${baseURL}home-edi-concert.php`,
         //    remote: `http://localhost/MaquetaCNetworks/home-edi-concert.php`,
         container: document.getElementById("navbar-prev-home-concert"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 switch (json.type) {
@@ -5207,7 +5213,7 @@ function eventsGrilla() {
     let confPrevHomeConcert = {
         remote: `${baseURL}home-prev.php`,
         container: document.getElementById("navbar-prev-home-concert"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -5219,7 +5225,7 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    $("#prev-landing-concert").click(function() {
+    $("#prev-landing-concert").click(function () {
         //Landing canal claro
         resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
         $("#prev-mobile")
@@ -5229,7 +5235,7 @@ function eventsGrilla() {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-concert").click(function() {
+    $("#edit-landing-concert").click(function () {
         resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
 
         $("#prev-mobile")
@@ -5245,7 +5251,7 @@ function eventsGrilla() {
     let LandingHome = {
         remote: `${baseURL}home-edi.php`,
         container: document.getElementById("navbar-prev-home-landing"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 const loader = `
@@ -5261,7 +5267,7 @@ function eventsGrilla() {
                     case "home-logos":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#loader1").remove();
                             addImagesModalIcons();
                             $(".modal-edit-icons").modal("show");
@@ -5312,12 +5318,12 @@ function eventsGrilla() {
     if (navbarHome) {
         new easyXDM.Socket(LandingHome);
 
-        $("#prev").click(function() {
+        $("#prev").click(function () {
             $("#navbar-prev-home-landing iframe").remove();
             new easyXDM.Socket({
                 remote: `${baseURL}home-prev.php`,
                 container: document.getElementById("navbar-prev-home-landing"),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     this.container.getElementsByTagName(
                         "iframe"
                     )[0].style.height = message + "px";
@@ -5336,7 +5342,7 @@ function eventsGrilla() {
                 .addClass("cursor-pointer");
         });
 
-        $("#editar").click(function() {
+        $("#editar").click(function () {
             //Al dar click en switch de previsualizar, removemos el iframe e insertamos otro
             $("#navbar-prev-home-landing iframe").remove();
             new easyXDM.Socket(LandingHome);

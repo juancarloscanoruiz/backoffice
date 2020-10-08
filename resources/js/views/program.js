@@ -5,6 +5,8 @@ let programController = new ProgramController();
 
 import { previewPage } from "../preview/prev.js";
 
+
+const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 /**
  * @class Clase para mostrar todo el contenido en relacionado a un programa en las diferentes vistas
  * y esuchcar eventos
@@ -35,7 +37,6 @@ export default class ProgramView {
 
     renderPrevSynopsis() {
 
-        const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
         let options = {
             remote: `${baseURL}sinopsis-prev.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/sinopsis-prev.php`,
