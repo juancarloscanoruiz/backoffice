@@ -734,8 +734,6 @@ function eventsGrilla() {
     programView.editImageSynopsis(socketSynopsis);
     programView.editImagesBanner(socketSynopsis);
 
-    programView.renderTerminos();
-
     let confLandingClaroCinema = {
         remote: `${baseURL}claro-cinema-edi.php`,
         // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
