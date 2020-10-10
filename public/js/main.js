@@ -89924,24 +89924,31 @@ var LandingModel = /*#__PURE__*/function () {
     key: "getContentHome",
     value: function () {
       var _getContentHome = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response, data;
+        var options, response, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return fetch("landing/home");
+                options = {
+                  method: "POST",
+                  body: dataTermsPrivacy,
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context.next = 3;
+                return fetch("landing/home", options);
 
-              case 2:
+              case 3:
                 response = _context.sent;
-                _context.next = 5;
+                _context.next = 6;
                 return response.json();
 
-              case 5:
+              case 6:
                 data = _context.sent;
                 return _context.abrupt("return", data);
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -90457,8 +90464,8 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 function eventsGrilla() {
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#about_link_1_url').click('.about_link_1_title', function () {
-    alert('marina');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#about_link_1_url").click(".about_link_1_title", function () {
+    alert("marina");
   });
   var landingSinopsis = document.getElementById("prev-sinopsis-landing");
 
@@ -90893,8 +90900,7 @@ function eventsGrilla() {
   programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
   programView.editImagesSynopsis(socketSynopsis);
   programView.editImageSynopsis(socketSynopsis);
-  programView.editImagesBanner(socketSynopsis); //programView.renderTerminos();
-
+  programView.editImagesBanner(socketSynopsis);
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),
     // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
