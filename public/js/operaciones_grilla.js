@@ -42362,7 +42362,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -75152,8 +75152,8 @@ function eventsGrilla() {
   programView.renderEditSynopsis(socketSynopsis, LandingSinopsis);
   programView.editImagesSynopsis(socketSynopsis);
   programView.editImageSynopsis(socketSynopsis);
-  programView.editImagesBanner(socketSynopsis);
-  programView.renderTerminos();
+  programView.editImagesBanner(socketSynopsis); //programView.renderTerminos();
+
   var confLandingClaroCinema = {
     remote: "".concat(baseURL, "claro-cinema-edi.php"),
     // remote: `http://localhost/MaquetaCNetworks/claro-cinema-edi.php`,
@@ -78155,7 +78155,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 /* harmony import */ var _vendor_lozad__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../vendor/lozad */ "./resources/js/vendor/lozad.js");
+/* harmony import */ var _helpers_PrevImage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/PrevImage.js */ "./resources/js/helpers/PrevImage.js");
 
+
+ //Helper
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
@@ -78398,9 +78401,9 @@ function addImagesModalIcons() {
     cache: false,
     success: function success(result) {
       result = JSON.parse(result);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#icon_canal_claro_edit").attr("src", result.icon_canal_claro);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#icon_claro_cinema_edit").attr("src", result.icon_claro_cinema);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#icon_concert_channel_edit").attr("src", result.icon_concert_channel);
     }
   });
 }
@@ -78423,7 +78426,7 @@ function addImagesModalBanner() {
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "?").concat(new Date().getTime(), "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming\" data-index=\"").concat(counter, "\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\" />\n                    </label>\n                </div>");
             counter++;
           } else {
             break;
@@ -78447,7 +78450,7 @@ function addImagesModalBanner() {
           return "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" + (i + 1) + "</p>";
         }
       };
-      var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.programming-slider');
+      var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider");
       /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
 
       programmingSlider.html(""); //agregar la información al slider
@@ -78465,9 +78468,9 @@ function addImagesModalBanner() {
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
         //Cada vez que se haga click, el contador incrementa
-        var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
+        var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length; //Agregamos un slide al slider de programación
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n                    <div class=\"slick-slide\">\n                        <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none\" tabindex=\"0\">\n                                <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                                </label>\n                            </div>\n                        </div>\n                    </div>\n                    "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n                    <div class=\"slick-slide\">\n                        <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\" data-index=\"").concat(slideIndex, "\">\n                                <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                                </label>\n                            </div>\n                        </div>\n                    </div>\n                    "));
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots .slick-dots").append(" <img src=\"./images/add-icon.svg\" class=\"add-programming-image cursor-pointer\">");
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
@@ -78477,6 +78480,8 @@ function addImagesModalBanner() {
           var reader = new FileReader();
 
           reader.onload = function (e) {
+            console.log(currentInput.next().children(".prev-image-program").attr("src"));
+            console.log(e.target.result);
             currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
           };
 
@@ -84230,7 +84235,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

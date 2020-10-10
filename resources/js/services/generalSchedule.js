@@ -1,12 +1,8 @@
 import $ from "jquery";
-import {
-    eventsGrilla
-} from "../operaciones_grilla";
-import {
-    createLazyLoad
-} from "../vendor/lozad";
-
-
+import { eventsGrilla } from "../operaciones_grilla";
+import { createLazyLoad } from "../vendor/lozad";
+//Helper
+import PrevImageHelper from "../helpers/PrevImage.js";
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -14,7 +10,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger
+    debugger;
     let data = {
         chapter_id,
         key,
@@ -24,7 +20,7 @@ function editAttributeProgram(chapter_id, key, keyValue) {
         type: "POST",
         data: data,
         url: "program/editAttribute",
-        success: function (result) {
+        success: function(result) {
             console.log(result);
         }
     });
@@ -40,14 +36,14 @@ function filterDates(startDate, lastDate, landing) {
         type: "POST",
         data: data,
         url: "general-program/filterDates",
-        beforeSend: function () {
+        beforeSend: function() {
             $(".grilla-body").prepend(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader-table"/>
                 </div>`
             );
         },
-        success: function (result) {
+        success: function(result) {
             let json = JSON.parse(result);
 
             let grills = json.data.grilla;
@@ -61,7 +57,7 @@ function filterDates(startDate, lastDate, landing) {
                     ${genre.title}
                 </option>
                 `;
-            })
+            });
 
             let header = `
             <div class="contenedor-fila" id="grilla-header">
@@ -260,7 +256,6 @@ function filterDates(startDate, lastDate, landing) {
                         </div>
                         `;
                     } else {
-
                         let inputsBegin = `
                         <div class="programar-schedule d-flex justify-content-end" key="in_landing_begin">
                             <div>
@@ -283,11 +278,13 @@ function filterDates(startDate, lastDate, landing) {
                                 <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="" placeholder="00:00:00">
                             </div>
                         </div>
-                        `
+                        `;
 
                         //Obtenemos la fecha y hora de inicio
                         if (program.in_landing_begin) {
-                            var scheduleBegin = program.in_landing_begin.split(" ");
+                            var scheduleBegin = program.in_landing_begin.split(
+                                " "
+                            );
                             //Obtenemos la fecha de inicio
                             var dateBegin = scheduleBegin[0].split("-");
                             //Obtenemos el año, el mes y el día por separado
@@ -315,16 +312,18 @@ function filterDates(startDate, lastDate, landing) {
                                 " "
                             );
                             //Obtenemos la fecha final
-                            let dateExpiration = scheduleExpiration[0].split("-");
+                            let dateExpiration = scheduleExpiration[0].split(
+                                "-"
+                            );
 
                             //Obtenemos el año, mes y día por separado
                             let dateExpirationYear = dateExpiration[0];
                             let dateExpirationMonth = dateExpiration[1];
                             let dateExpirationDay = dateExpiration[2];
                             //Verificamos si existe la hora, en todo caso que no, la variable es null
-                            let timeExpiration = scheduleExpiration[1] ?
-                                scheduleExpiration[1] :
-                                "00:00:0000";
+                            let timeExpiration = scheduleExpiration[1]
+                                ? scheduleExpiration[1]
+                                : "00:00:0000";
                             inputsExpiration = `
                                 <div class="d-flex justify-content-end programar-schedule" key="in_landing_expiration">
                                     <div>
@@ -335,10 +334,8 @@ function filterDates(startDate, lastDate, landing) {
                                         <input type="text" id="programar-landing-end-hrs" class="landing-expiration-hours editable-attribute time-seconds-input a-text-medium-brownish table-input" value="${timeExpiration}" placeholder="00:00:00">
                                     </div>
                                 </div>
-                                `
-
+                                `;
                         }
-
 
                         inLandingExpiration = `
                         <div class="programar-content">
@@ -385,28 +382,48 @@ function filterDates(startDate, lastDate, landing) {
                         `;
                     } else {
                         //Extraemos la fecha y hora de inicio
-                        let inHomeBegin = program.in_home_begin ? program.in_home_begin.split(" ") : "";
+                        let inHomeBegin = program.in_home_begin
+                            ? program.in_home_begin.split(" ")
+                            : "";
                         //En caso de que no exista la fecha, ponemos la fecha en 0
-                        let inHomeBeginDate = inHomeBegin[0] ? inHomeBegin[0].split("-") : "";
+                        let inHomeBeginDate = inHomeBegin[0]
+                            ? inHomeBegin[0].split("-")
+                            : "";
                         //Obtenemos el año
-                        let inHomeBeginYear = inHomeBeginDate[0] ? inHomeBeginDate[0] : "0000";
+                        let inHomeBeginYear = inHomeBeginDate[0]
+                            ? inHomeBeginDate[0]
+                            : "0000";
                         //Obtenemos el mes
-                        let inHomeBeginMonth = inHomeBeginDate[1] ? inHomeBeginDate[1] : "00";
+                        let inHomeBeginMonth = inHomeBeginDate[1]
+                            ? inHomeBeginDate[1]
+                            : "00";
                         //Obtenemos el día
-                        let inHomeBeginDay = inHomeBeginDate[2] ? inHomeBeginDate[2] : "00";
+                        let inHomeBeginDay = inHomeBeginDate[2]
+                            ? inHomeBeginDate[2]
+                            : "00";
                         //En caso de que no exista la hora, ponemos la hora en 0
-                        let inHomeBeginTime = inHomeBegin[1] ? inHomeBegin[1] : "00:00:00";
+                        let inHomeBeginTime = inHomeBegin[1]
+                            ? inHomeBegin[1]
+                            : "00:00:00";
 
                         //Obtenemos la fecha y hora de fin
                         let inHomeExp = program.in_home_expiration.split(" ");
                         //Obtenemos la fecha y verificamos si efectivamente existe
-                        let inHomeExpDate = inHomeExp[0] ? inHomeExp[0].split("-") : "00-00-0000";
+                        let inHomeExpDate = inHomeExp[0]
+                            ? inHomeExp[0].split("-")
+                            : "00-00-0000";
                         //Obtenemos el año de la fecha extraida
-                        let inHomeExpYear = inHomeExpDate[0] ? inHomeExpDate[0] : "0000";
+                        let inHomeExpYear = inHomeExpDate[0]
+                            ? inHomeExpDate[0]
+                            : "0000";
                         //Obtenemos el mes
-                        let inHomeExpMonth = inHomeExpDate[1] ? inHomeExpDate[1] : "00";
+                        let inHomeExpMonth = inHomeExpDate[1]
+                            ? inHomeExpDate[1]
+                            : "00";
                         //Obtenemos el día
-                        let inHomeExpDay = inHomeExpDate[2] ? inHomeExpDate[2] : "00";
+                        let inHomeExpDay = inHomeExpDate[2]
+                            ? inHomeExpDate[2]
+                            : "00";
 
                         inHome = `
                         <div class="yes-no">
@@ -694,10 +711,10 @@ function filterDates(startDate, lastDate, landing) {
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
             let options = {
-                load: function (el) {
+                load: function(el) {
                     el.classList.add("fade-grilla");
-                },
-            }
+                }
+            };
             createLazyLoad(".contenedor-fila", options);
             eventsGrilla();
         }
@@ -716,7 +733,7 @@ function addImageToProgram(id_version, id_program, image) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function (result) {
+        success: function(result) {
             console.log(result);
         }
     });
@@ -733,7 +750,7 @@ function deleteProgram(id_program, id_version) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function (result) {
+        success: function(result) {
             console.log(result);
         }
     });
@@ -744,11 +761,14 @@ function addImagesModalIcons() {
         type: "POST",
         url: "landing/getSection/programation",
         cache: false,
-        success: function (result) {
+        success: function(result) {
             result = JSON.parse(result);
-            $('#icon_canal_claro_edit').attr('src', result.icon_canal_claro);
-            $('#icon_claro_cinema_edit').attr('src', result.icon_claro_cinema);
-            $('#icon_concert_channel_edit').attr('src', result.icon_concert_channel);
+            $("#icon_canal_claro_edit").attr("src", result.icon_canal_claro);
+            $("#icon_claro_cinema_edit").attr("src", result.icon_claro_cinema);
+            $("#icon_concert_channel_edit").attr(
+                "src",
+                result.icon_concert_channel
+            );
         }
     });
 }
@@ -760,16 +780,20 @@ function addImagesModalBanner() {
         type: "POST",
         cache: false,
         url: "landing/getSection/programation",
-        success: function (result) {
+        success: function(result) {
             result = JSON.parse(result);
-            let slider = ""
+            let slider = "";
             let counter = 1;
-            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
+            $(".programming-slider-dots .slick-dots").append(
+                ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
+            );
 
             while (true) {
                 try {
                     if (result["image_slider_" + counter]) {
-                        slider = slider + `
+                        slider =
+                            slider +
+                            `
                     <div class="bor thumbnail-image-program position-relative h-100">
                     <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" data-index="${counter}">
                     <label for="image_programming_${counter}"
@@ -777,7 +801,7 @@ function addImagesModalBanner() {
                         <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
                             class=" cursor-pointer add-photo" />
                         <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                        <img src="${result["image_slider_"+counter]}?${new Date().getTime()}"
+                        <img src="${result["image_slider_" + counter]}"
                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                     </label>
                 </div>`;
@@ -785,11 +809,9 @@ function addImagesModalBanner() {
                         counter++;
                     } else {
                         break;
-
                     }
                 } catch (error) {
                     break;
-
                 }
             }
 
@@ -800,40 +822,41 @@ function addImagesModalBanner() {
                 initialSlide: 0,
                 infinite: false,
                 arrows: true,
-                prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
-                nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                customPaging: function (slider, i) {
+                prevArrow:
+                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
+                nextArrow:
+                    '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
+                customPaging: function(slider, i) {
                     var thumb = $(slider.$slides[i]).data();
                     return (
                         "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
                         (i + 1) +
                         "</p>"
-                       
                     );
-
-
                 }
-            }
-            
-            const programmingSlider = $('.programming-slider');
+            };
+
+            const programmingSlider = $(".programming-slider");
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
             programmingSlider.html(""); //agregar la información al slider
             programmingSlider.html(slider); //agregar la información al slider
             try {
                 programmingSlider.slick("unslick");
                 programmingSlider.slick(conf);
-            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
-
+                $(".programming-slider-dots .slick-dots").append(
+                    ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
+                );
             } catch (error) {
                 programmingSlider.slick(conf);
-            $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
+                $(".programming-slider-dots .slick-dots").append(
+                    ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
+                );
             }
 
-            $(".add-programming-image").click(function () {
-
+            $(".add-programming-image").click(function() {
                 //Cada vez que se haga click, el contador incrementa
-                let slideIndex = $(".load-programming-carousel").length + 1;
-        
+                let slideIndex = $(".load-programming-carousel").length;
+
                 //Agregamos un slide al slider de programación
                 $(".programming-slider").slick(
                     "slickAdd",
@@ -841,7 +864,7 @@ function addImagesModalBanner() {
                     <div class="slick-slide">
                         <div>
                             <div class="bor thumbnail-image-program position-relative h-100">
-                            <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none" tabindex="0">
+                            <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none image_programming" tabindex="0" data-index="${slideIndex}">
                                 <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                                     <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
@@ -852,16 +875,23 @@ function addImagesModalBanner() {
                     </div>
                     `
                 );
-                $(".programming-slider-dots .slick-dots").append(` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`);
-
+                $(".programming-slider-dots .slick-dots").append(
+                    ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
+                );
             });
 
-            $(".input-image-program").change(function () {
-
+            $(".input-image-program").change(function() {
                 let currentInput = $(this);
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
+                        console.log(
+                            currentInput
+                                .next()
+                                .children(".prev-image-program")
+                                .attr("src")
+                        );
+                        console.log(e.target.result);
                         currentInput
                             .next()
                             .children(".prev-image-program")
@@ -873,7 +903,6 @@ function addImagesModalBanner() {
                 }
             });
         }
-        
     });
 }
 export {
