@@ -5358,6 +5358,27 @@ function eventsGrilla() {
     }
 
     /* MVC */
+
+    $('.thumbnail-image-program').click(function () {
+        let id = $('.image_programming').attr('id')
+        $('#' + id).change(function () {
+            let data = this
+            if (data.files[0]) {
+                fileSrt.onload = function (e) {
+                    $(".img_" + id).attr('src', e.target.result);
+                };
+            }
+            fileSrt.readAsDataURL(data.files[0]);
+        });
+    });
+
+    $('#edit-program-modal-button').click(function(){
+        resetIframe(
+            $("#navbar-prev-concert-channel iframe"),
+            confLandingConcertChannel
+        );
+    });
+    
 }
 
 export { eventsGrilla };

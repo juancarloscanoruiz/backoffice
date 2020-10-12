@@ -29,7 +29,7 @@
 #26 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #27 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #28 {main}
-"} 
+"}
 [2020-10-09 18:34:47] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
 [stacktrace]
 #0 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(91): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
@@ -61,7 +61,7 @@
 #26 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #27 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #28 {main}
-"} 
+"}
 [2020-10-09 18:35:46] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
 [stacktrace]
 #0 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(91): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
@@ -93,7 +93,7 @@
 #26 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #27 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #28 {main}
-"} 
+"}
 [2020-10-09 18:37:12] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
 [stacktrace]
 #0 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(91): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
@@ -125,7 +125,7 @@
 #26 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #27 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #28 {main}
-"} 
+"}
 [2020-10-09 18:37:14] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
 [stacktrace]
 #0 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(91): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
@@ -157,7 +157,7 @@
 #26 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
 #27 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #28 {main}
-"} 
+"}
 [2020-10-09 18:39:04] local.ERROR: symlink(): No such file or directory {"exception":"[object] (ErrorException(code: 0): symlink(): No such file or directory at /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:265)
 [stacktrace]
 #0 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'symlink(): No s...', '/Users/zaid/Doc...', 265, Array)
@@ -179,7 +179,7 @@
 #16 /Users/zaid/Documents/CTIN/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 /Users/zaid/Documents/CTIN/backoffice/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #18 {main}
-"} 
+"}
 [2020-10-12 19:31:04] local.ERROR: Undefined variable: landing (View: /Applications/MAMP/htdocs/backoffice/resources/views/partials/adm-CN/modals-home/home-encabezado.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined variable: landing (View: /Applications/MAMP/htdocs/backoffice/resources/views/partials/adm-CN/modals-home/home-encabezado.blade.php) at /Applications/MAMP/htdocs/backoffice/resources/views/partials/adm-CN/modals-home/home-encabezado.blade.php:1)
 [stacktrace]
 #0 /Applications/MAMP/htdocs/backoffice/resources/views/partials/adm-CN/modals-home/home-encabezado.blade.php(1): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined varia...', '/Applications/M...', 1, Array)
@@ -303,4 +303,4 @@
 #56 /Applications/MAMP/htdocs/backoffice/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
 #57 /Applications/MAMP/htdocs/backoffice/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 {main}
-"} 
+"}
