@@ -94227,8 +94227,6 @@ function addImagesModalBanner() {
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            console.log(currentInput.next().children(".prev-image-program").attr("src"));
-            console.log(e.target.result);
             currentInput.next().children(".prev-image-program").attr("src", e.target.result).addClass("h-100 w-100").css("z-index", "2");
           };
 
@@ -95576,7 +95574,7 @@ function getContentHomeHeader(type) {
                 headerVideo.html("\n                                <img src=\"".concat(data.data.block_1_video_name, "\" alt=\"\" class=\"d-flex w-100\" id=\"image-promo-header-home\">\n                                "));
               } else {
                 //La url es de un video
-                headerVideo.html("\n                                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                                position: absolute;\n                                transform: translate(215px, -112px);\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                                jpg 472px X 295px </span>\n                                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                                <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n                                \n                                 </video>"));
+                headerVideo.html("\n                                <img src=\"./images/basic-icons/pencil-edit-teal.svg\" alt=\"add-photo\" class=\"add-photo promo-icon cursor-pointer\" style=\"width: 62px;\n                                position: absolute;\n                                transform: translate(215px, -112px);\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 white-shadow position-absolute \" style=\"    transform: translate(207px, -40px);\">A\xF1ade tu archivo <br>\n                                jpg 472px X 295px </span>\n                                <video class=\"w-100 h-100 home-video\" id=\"video-promo-header-home\" style=\"display: block\" controls muted autoplay>\n                                <source src=\"".concat(data.data.block_1_video_name, "\" type=\"video/mp4\">\n\n                                 </video>"));
               }
             }
 
@@ -96301,7 +96299,6 @@ function setImageSliderBanner(data) {
   }).fail(function (e) {
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel").modal("hide");
-    console.log(e);
   });
 }
 

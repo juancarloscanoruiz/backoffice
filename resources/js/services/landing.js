@@ -2158,7 +2158,7 @@ function getContentHomeHeader(type) {
                                 jpg 472px X 295px </span>
                                 <video class="w-100 h-100 home-video" id="video-promo-header-home" style="display: block" controls muted autoplay>
                                 <source src="${data.data.block_1_video_name}" type="video/mp4">
-                                
+
                                  </video>`);
                             }
                         }
@@ -3124,7 +3124,6 @@ function setImageSliderBanner(data) {
     }).fail(function(e) {
         $(".loader-container").remove();
         $(".modal-programming-carousel").modal("hide");
-        console.log(e);
     });
 }
 

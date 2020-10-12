@@ -885,13 +885,6 @@ function addImagesModalBanner() {
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
-                        console.log(
-                            currentInput
-                                .next()
-                                .children(".prev-image-program")
-                                .attr("src")
-                        );
-                        console.log(e.target.result);
                         currentInput
                             .next()
                             .children(".prev-image-program")
