@@ -802,7 +802,7 @@ function addImagesModalBanner() {
                             class=" cursor-pointer add-photo" />
                         <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
                         <img src="${result["image_slider_" + counter]}"
-                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
+                            class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                     </label>
                 </div>`;
 
@@ -868,7 +868,7 @@ function addImagesModalBanner() {
                                 <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                                     <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
-                                    <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
+                                    <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}">
                                 </label>
                             </div>
                         </div>
