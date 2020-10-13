@@ -36,9 +36,8 @@
     </div>
     <div class="clearfix"></div>
     <div class="ml-5 float-left mb-4">
-        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit"><?php echo $edited['last_edition']?></span> </span></div>
-        <span class="a-text-black-light text-plus">Editado por: <?php echo $edited['edited_for']?> <label class="zona"> (<label
-                    class="zona "><?php echo $edited['rol']?></label>)</label></span>
+        <div><span class="a-text-black-light text-plus">Última edición : <span class="zona" id="date-edit"><?php echo $edited['last_edition'] ?></span> </span></div>
+        <span class="a-text-black-light text-plus">Editado por: <?php echo $edited['edited_for'] ?> <label class="zona"> (<label class="zona "><?php echo $edited['rol'] ?></label>)</label></span>
     </div>
 
     <div class=" mr-5 d-flex float-right ">
@@ -46,7 +45,13 @@
     </div>
     <div class="clearfix"></div>
     <div class="centro">
-        <div class="navbar-progra-content navbar-prev-canal-claro mb-5" id="navbar-prev-canal-claro">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="navbar-progra-content navbar-prev-canal-claro mb-5 mx-5" id="navbar-prev-canal-claro">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     @include('partials.adm-CN.modals-claro.banner-claro')

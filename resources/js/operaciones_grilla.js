@@ -3525,9 +3525,11 @@ function eventsGrilla() {
 
         let canalClaro = "#navbar-prev-canal-claro";
         let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
 
         $("#navbar-prev-canal-claro iframe").remove();
         $("#navbar-prev-programacion iframe").remove();
+        $("#navbar-prev-home iframe").remove();
 
         $("#device-size").load("imports #device-size-prev", function () {
             $(".a-prev-image").click(function () {
@@ -3543,9 +3545,11 @@ function eventsGrilla() {
                 );
                 break;
             case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    confPrevClaroCanal
+                resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal
+                );
+                break;
+            case home:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro
                 );
                 break;
         }
@@ -3556,9 +3560,11 @@ function eventsGrilla() {
 
         let canalClaro = "#navbar-prev-canal-claro";
         let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
 
         $("#navbar-prev-canal-claro iframe").remove();
         $("#navbar-prev-programacion iframe").remove();
+        $("#navbar-prev-home iframe").remove();
 
         $("#device-size").load("imports #device-size-edit", function () {
             $(".a-prev-image").click(function () {
@@ -3571,9 +3577,11 @@ function eventsGrilla() {
                 resetIframe($("#navbar-prev-programacion iframe"), confIframe);
                 break;
             case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    landingCanalClaro
+                resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro
+                );
+                break;
+            case canalClaro:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro
                 );
                 break;
         }
@@ -4619,33 +4627,6 @@ function eventsGrilla() {
         }
     };
 
-    //Landing de claro canal
-
-    //previsualizar canal claro
-    $("#prev").click(function () {
-        //     //Landing canal claro
-        resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
-        $("#prev-mobile")
-            .removeClass("pointer-none")
-            .addClass("cursor-pointer");
-        $("#prev-tablet")
-            .removeClass("pointer-none")
-            .addClass("cursor-pointer");
-    });
-    $("#edit").click(function () {
-        resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-
-        $("#prev-mobile")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
-    });
-
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
         $("#modal-url").modal("show");
@@ -5136,31 +5117,6 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-
-    //previsualizar canal claro
-    $("#prev").click(function () {
-        //Landing canal claro
-        resetIframe($("#navbar-prev-home iframe"), confHomeClaroCanal);
-        $("#prev-mobile")
-            .removeClass("pointer-none")
-            .addClass("cursor-pointer");
-        $("#prev-tablet")
-            .removeClass("pointer-none")
-            .addClass("cursor-pointer");
-    });
-    $("#edit").click(function () {
-        resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-
-        $("#prev-mobile")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
-    });
 
     let LandingHomeConcert = {
         remote: `${baseURL}home-edi-concert.php`,
