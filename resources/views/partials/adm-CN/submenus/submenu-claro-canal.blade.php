@@ -101,16 +101,6 @@
                     <button class="btn-recha a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
-                <!-- <div>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox" id="viewcarga">
-                        <span class="checkmark1 border-green"></span>
-                    </label><span class=" ml-2 a-text-green mr-4">Guardar cambios</span>
-                    <label class=" d-inline-block mr-4 pl-4 mb-5 mt-3 checksquare" style="vertical-align: middle;">
-                        <input type="checkbox">
-                        <span class="checkmark2  border-red"></span>
-                    </label><span class=" ml-2 a-text-red">No guardar cambios</span>
-                </div>-->
             </div>
             <div class="clearfix"></div>
             <div class=" mr-5 d-flex float-right">
