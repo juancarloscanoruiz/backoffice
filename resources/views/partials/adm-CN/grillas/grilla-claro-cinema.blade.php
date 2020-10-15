@@ -557,7 +557,7 @@ $data_for_new_entry = json_encode([
 
                         <!--Imágenes-->
                         @if ($programs[$indexPrograms]->images->cantity_images_uploaded == 0)
-                            <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes" id="img-{{ $programs[$indexPrograms]->chapter_id }}">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
                                     <img src="{{asset('images/add-icon.svg')}}" alt="añadir imagenes" class="add-images-icon  upload-files">
@@ -571,7 +571,7 @@ $data_for_new_entry = json_encode([
                                 </div>
                             </div>
                         @else
-                            <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes">
+                            <div class="contenedor-columna selectable-column centro editable-column" rel="imagenes" id="img-{{ $programs[$indexPrograms]->chapter_id }}">
                                 <a href="{{ route ('upimage', $programs[$indexPrograms]->chapter_id)}}">
                                     <div class="image-ta position-relative">
                                         <img src="{{asset('/images/basic-icons/pencil-edit-teal.svg')}}" alt="añadir imagenes" class="add-images-icon upload-files">
