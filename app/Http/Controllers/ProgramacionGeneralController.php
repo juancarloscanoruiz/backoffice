@@ -18,8 +18,8 @@ class ProgramacionGeneralController extends Controller
 
     //MÉTODOS PARA GESTION DE PROGRAMACION GENERAL DEL BACKOFFICE DE CLARO NETWORKS
 
-public function onlyday(Request $request)
-{
+    public function onlyday(Request $request)
+    {
 
         //se obtine la version que se peuda editar
         //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
@@ -208,16 +208,16 @@ public function onlyday(Request $request)
         $cadena_nuevo_formato =  date_format($objFecha, 'Y-m-d');
 
         $fecha_del_documento = $cadena_nuevo_formato;
-        $fecha_actual=date('Y-m-d');
-        if($fecha_del_documento < $fecha_actual){
+        $fecha_actual = date('Y-m-d');
+        if ($fecha_del_documento < $fecha_actual) {
             $respuesta = [
-                "code"=>400,
-                "message"=>"La programacion Es de un dia enterior",
-                "data"=>-1
+                "code" => 400,
+                "message" => "La programacion Es de un dia enterior",
+                "data" => -1
             ];
 
-            echo(json_encode($respuesta));
-        }else{
+            echo (json_encode($respuesta));
+        } else {
             # obtener conteo e iterar
             $totalDeHojas = $documento->getSheetCount();
 
@@ -409,7 +409,6 @@ public function onlyday(Request $request)
                 echo ($respuesta);
             }
         }
-
     }
     public function changePrograming(Request $request)
     {
@@ -902,11 +901,12 @@ public function onlyday(Request $request)
             )]
         );
 
-
         $respuesta =  json_decode($response->getBody());
         //var_dump($respuesta);
         if ($respuesta->code == 200) {
-            return redirect()->route('programacion_general');
+
+            return redirect()->route('programacion_general_id', ['id' => $chapterId])->with('alert', 'hello');
+
         }
     }
 
@@ -915,7 +915,7 @@ public function onlyday(Request $request)
 
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/getProgramingGrill/" . $request->input('startDate') . "&" . $request->input('lastDate') . "&".$request->landing."&" . session('id_user')
+            $this->url . "program/getProgramingGrill/" . $request->input('startDate') . "&" . $request->input('lastDate') . "&" . $request->landing . "&" . session('id_user')
         );
         echo ($response->getBody()->getContents());
     }
