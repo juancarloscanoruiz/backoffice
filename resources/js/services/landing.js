@@ -1786,7 +1786,7 @@ function getCarruselHome(landing) {
                             <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
                                 <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
                                 <br>
-                                <p class="a-text-bold-warm text-plus">472px X 295px</p>
+                                <p class="a-text-bold-warm text-plus">295px X 472px</p>
                             </label>
                         </div>
                     </div>
@@ -2380,7 +2380,7 @@ function getContentConcertChannel(type) {
                                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
-                                            <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
+                                            <span class="a-text-bold-warm banner-text text-plus mt-3">1920px X 657px</span>
                                             <img src="${
                                                 data.data[
                                                     "block_1_image_slider_" +
@@ -2456,7 +2456,7 @@ function getContentConcertChannel(type) {
                                             <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" d-none" tabindex="0">
                                             <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                                 <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
-                                                <span class="a-text-bold-warm banner-text text-plus mt-3">1000px X 342px</span>
+                                                <span class="a-text-bold-warm banner-text text-plus mt-3">1920px X 657px</span>
                                                 <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program  img_image_programming_${slideIndex}">
                                             </label>
                                         </div>
@@ -2926,7 +2926,7 @@ function getModalsCanalClaro(type) {
                                         class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
                                             class="cursor-pointer add-photo " />
-                                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
                                         <img src="${
                                             obj.data[
                                                 "block_1_image_slider_" +
@@ -4433,7 +4433,7 @@ function getContentClaroCinema(type) {
                             <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
-                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                                    <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
                                     <img src="${
                                         data.data[
                                             "block_1_image_slider_" + counter

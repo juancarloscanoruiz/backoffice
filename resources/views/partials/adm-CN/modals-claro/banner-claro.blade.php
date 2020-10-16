@@ -52,7 +52,7 @@
                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo " />
-                            <span class="a-text-bold-warm text-plus mt-3 banner-text">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3 banner-text">1920px X 657px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
@@ -65,7 +65,7 @@
                             class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-modales">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo " />
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
@@ -78,7 +78,7 @@
                             class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column load-modales">
                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                 class=" cursor-pointer add-photo" />
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
                             <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}"
                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program" />
                         </label>
