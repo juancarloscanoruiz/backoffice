@@ -6563,8 +6563,7 @@ ul {
 }
 
 .nav-li {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
   padding: 10px;
@@ -6572,22 +6571,19 @@ ul {
 
 .active-navItem {
   position: relative;
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
   opacity: 1;
 }
 
 .list-channel-active {
   border-radius: 20px;
   background: white;
-  -webkit-filter: none !important;
-          filter: none !important;
+  filter: none !important;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 .list-channel-item {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
 }
