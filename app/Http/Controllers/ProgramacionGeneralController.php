@@ -905,7 +905,7 @@ class ProgramacionGeneralController extends Controller
         //var_dump($respuesta);
         if ($respuesta->code == 200) {
 
-            return redirect()->route('programacion_general_id', ['id' => $chapterId])->with('alert', 'hello');
+            return redirect()->route('programacion_general_id', ['id' => $chapterId]);
 
         }
     }

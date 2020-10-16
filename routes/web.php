@@ -61,7 +61,7 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('changePrograming', "ProgramacionGeneralController@changePrograming")->name('changePrograming');
     Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 
-    // Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
+    Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
     // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
 });
 

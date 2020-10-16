@@ -15,7 +15,7 @@
             <span class='text-light1 '>{{ session('rol_name') }}</span>
         </div>
         <div class='mr-5'>
-            <a href="{{ route('programacion_general') }}">
+            <a href="{{ route('programacion_general_id', ['id' => $response['chapter_id']]) }}">
                 <button class='mt-4 btn-return-sitio  a-btn-basic-small text-return load-picture'>REGRESAR</button>
             </a>
         </div>
