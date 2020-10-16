@@ -225,7 +225,8 @@ $(document).ready(function () {
             type: "POST",
             url: "general-program/newRow",
             data: {
-                landing: "Claro Canal"
+                // landing: "Claro Canal"
+                landing: "Canal Claro"
             },
             success: function (result) {
                 $(".grilla-body").append(result);

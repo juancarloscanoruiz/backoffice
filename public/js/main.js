@@ -89247,7 +89247,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       type: "POST",
       url: "general-program/newRow",
       data: {
-        landing: "Claro Canal"
+        // landing: "Claro Canal"
+        landing: "Canal Claro"
       },
       success: function success(result) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").append(result);
@@ -96932,6 +96933,7 @@ function getContentClaroCinema(type) {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
               var imagesPositions = [];
               var imagesProgramming = [];
+              debugger;
               jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
                   imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
