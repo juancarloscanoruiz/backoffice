@@ -65,11 +65,6 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
 });
 
-Route::get('general-program-cache', function($nombre){
-	return "Mostrando el colaborador $nombre";
-});
-
-
 //RUTAS PARA LANDING
 Route::get("/canal-claro", "landingController@showCanalClaroLanding")->name('canal-claro');
 Route::get("/concert-channel", "landingController@showConcertChannelLanding")->name('concert-channel');
