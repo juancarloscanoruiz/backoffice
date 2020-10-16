@@ -369,7 +369,9 @@ class ProgramacionGeneralController extends Controller
                     [
                         'usuario_id' =>  session('id_user'),
                         'landing_id' => $data->landing_id,
-                        'day' => $fecha_del_documento
+                        'day' => $fecha_del_documento,
+                        'version_id' => $data->version_id,
+                        "programas"=>$programas
                     ]
                 )]
             );
@@ -423,7 +425,6 @@ class ProgramacionGeneralController extends Controller
                     'landing_id' => $request->landing_id,
                     'version_id' => $request->version_id,
                     'version_number' => $request->version_number,
-                    'programs' => $request->programas,
                     'day' => $request->action_date,
                 ]
             )]
@@ -451,7 +452,16 @@ class ProgramacionGeneralController extends Controller
         $respuesta =  $response->getBody();
         echo ($respuesta);
     }
+    public function cancelPrograming(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/deleteProgramationTemporal/".$request->version_id
+        );
+        $respuesta =  json_decode($response->getBody());
 
+        echo ($respuesta);
+    }
     //hacemos la llamada a la API
 
     public function newRow(Request $request)
