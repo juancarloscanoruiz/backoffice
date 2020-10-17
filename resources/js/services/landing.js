@@ -204,7 +204,7 @@ function getChapterInfo(data, landing) {
                             <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
                                 <img class="claro-nav-image cursor-auto thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418" alt="" id="icon_concert_channel_edi">
 
-                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">472px X 295px</span>-->
+                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">295px x 180px</span>-->
                             </label>
                         </div>
                     </li>
@@ -4491,7 +4491,7 @@ function getContentClaroCinema(type) {
                         $("#image-programming-button-cinema").click(function() {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                            debugger
+                            debugger;
                             $(".image_programming").each(function() {
                                 if (this.files[0]) {
                                     imagesPositions.push(

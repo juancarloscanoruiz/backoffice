@@ -19,8 +19,7 @@
                                         <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                             class="add-photo " style="z-index:10000" />
                                         <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                            style="z-index:10000">472px X
-                                            295px</span>
+                                            style="z-index:10000">86px X 18px</span>
                                     </div>
                                     <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                         class="w-100 h-100 cursor-pointer prev-image-program thumbnail-image-program"
@@ -107,8 +106,8 @@
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato h1"
                     data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1"
-                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1" data-dismiss="modal"
+                    data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>

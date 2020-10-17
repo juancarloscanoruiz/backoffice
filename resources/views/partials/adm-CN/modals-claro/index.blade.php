@@ -325,7 +325,7 @@
                     <label for="carrusel1-claro-img" class="add-file">
                         <img class="cursor-pointer mb-2" src="images/modals/camara.svg" alt="add-photo"
                             style="width: 100px;" />
-                        <span class="a-text-bold-brown-two mt-3 py-2 text-plus">472 x 245px</span>
+                        <span class="a-text-bold-brown-two mt-3 py-2 text-plus">295px x 180px</span>
                     </label>
                 </div>
                 <p class="a-text-bold-brown-two text-plus my-5">NombreDeLaImagen</p>
@@ -925,8 +925,8 @@
                                                 class="edit-program-icon-image" alt="camera" />
                                             <p
                                                 class="p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two">
-                                                472
-                                                x 245px</p>
+                                                295px
+                                                X 180px</p>
                                         </div>
 
                                         <img src="{{ asset('/images/synopsis/image-synopsis-carrusel.jpg') }}" alt=""
@@ -1513,8 +1513,7 @@
                                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                                 class="add-photo " style="z-index:10000" />
                                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                style="z-index:10000">472px X
-                                                295px</span>
+                                                style="z-index:10000">86px X 18px</span>
                                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                                 id="icon_canal_claro_edit" />
@@ -1548,8 +1547,7 @@
                                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                                 class="add-photo " style="z-index:10000" />
                                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                style="z-index:10000">472px X
-                                                295px</span>
+                                                style="z-index:10000">48px X 53px</span>
                                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                                 id="icon_concert_channel_edit" />
@@ -1581,8 +1579,7 @@
                                             <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
                                                 class="add-photo " style="z-index:10000" />
                                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3  white-shadow"
-                                                style="z-index:10000">472px X
-                                                295px</span>
+                                                style="z-index:10000">40px X 40px</span>
                                             <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                                 id="icon_claro_cinema_edit" />
