@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 if (mix.inProduction()) {
     mix.options({
@@ -25,10 +25,8 @@ if (mix.inProduction()) {
  |
  */
 
-mix.js("resources/js/main.js", "public/js").sass(
-    "resources/sass/app.scss",
-    "public/css"
-);
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css');
 
-mix.js("resources/js/admin.js", "public/js");
+    mix.js("resources/js/admin.js", "public/js");
 mix.js("resources/js/operaciones_grilla.js", "public/js");
