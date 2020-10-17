@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -11222,7 +11222,7 @@ $(".arrow-left").click(function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ 16:
 /*!*************************************!*\
   !*** multi ./resources/js/admin.js ***!
   \*************************************/

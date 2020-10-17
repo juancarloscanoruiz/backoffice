@@ -27,6 +27,7 @@
     "dependencies": {
         "bootstrap-select": "^1.13.18",
         "browser-sync": "^2.26.12",
+        "cleave.js": "^1.6.0",
         "crypto-js": "^4.0.0",
         "gulp": "^4.0.2",
         "litepicker": "^1.5.7",

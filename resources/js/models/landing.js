@@ -2,14 +2,7 @@ import $ from "jquery";
 
 export default class LandingModel {
     async getContentHome() {
-        let options = {
-            method: "POST",
-            body: dataTermsPrivacy,
-            headers: {
-                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
-            }
-        };
-        let response = await fetch("landing/home", options);
+        let response = await fetch("landing/home");
         let data = await response.json();
         return data;
     }
@@ -34,7 +27,13 @@ export default class LandingModel {
     }
 
     async getContentTerms() {
-        let response = await fetch("landing/getContentRights");
+        let options = {
+            method: "POST",
+            headers: {
+                "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+            }
+        };
+        let response = await fetch("landing/getContentRights", options);
         let data = await response.json();
         return data;
     }

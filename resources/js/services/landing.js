@@ -1776,7 +1776,7 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
+                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.program.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
