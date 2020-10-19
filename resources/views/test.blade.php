@@ -18,6 +18,7 @@
     <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
     <script src="{{ asset('/js/main.js')}}?t=<?php echo time(); ?>"></script>
     <script src="{{ asset('/js/admin.js')}}"></script>
+    <script src="{{ asset('/js/app.js')}}" defer></script>
 
     <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ asset('/fonts/Montserrat-Black/Montserrat-Black.woff2') }}">
     <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ asset('/fonts/Montserrat-Bold/Montserrat-Bold.woff2') }}">
@@ -34,10 +35,9 @@
 </head>
 
 <body class="bg-dark contenedor">
-    <div>
-        <button id="btn-sinopsis" class="btn btn-outline-success btn-lg">Click</button>
-        <!-- <button id="btn_pruebas" class="btn btn-outline-success btn-lg">Click</button> -->
-        <div class="mb-5 calendar-sinopsis-slider"></div>
+    <div id="app">
+        <vertical-carrusel-component></vertical-carrusel-component>
+        <button class="btn btn-outline-success btn-lg" data-toggle="modal" data-target="#modal-vertical-carrusel">Click</button>
     </div>
 </body>
 
@@ -56,10 +56,3 @@
         align-items: center;
     }
 </style>
-
-@include('partials.adm-CN.modal-home.logo')
-@include('partials.adm-CN.modal-home.carrusel')
-@include('partials.adm-CN.modal-generic.advertencia')
-@include('partials.adm-CN.modal-generic.url')
-@include('partials.adm-CN.modal-footer.terminosycondiciones')
-@include('partials.adm-CN.modal-footer.edit-footer')
