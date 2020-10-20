@@ -318,7 +318,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-1">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -347,7 +347,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-2">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -375,7 +375,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-3">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -403,7 +403,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-4">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -431,7 +431,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-5">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -459,7 +459,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-6">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">
@@ -487,7 +487,7 @@
                                 class="w-100 cursor-pointer image-cover prev-image-program thumbnail-image-program"
                                 id="footer-icon-7">
                             <span class="white-shadow p-2 a-text-bold-greyish-brown-two">80px X
-                                60px</span>
+                                55px</span>
                         </label>
                         <div class="no-gutters d-flex mt-4">
                             <div class="col-4">

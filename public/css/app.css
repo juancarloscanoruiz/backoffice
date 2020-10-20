@@ -4033,11 +4033,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #3cc1ff;
 }
 
-.concert-input::-ms-input-placeholder {
-  font-family: "Montserrat-Bold";
-  color: #3cc1ff;
-}
-
 .concert-input::placeholder {
   font-family: "Montserrat-Bold";
   color: #3cc1ff;
@@ -4049,11 +4044,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .hoy-en:-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #ffffff;
-}
-
-.hoy-en::-ms-input-placeholder {
   font-family: "Montserrat-Black";
   color: #ffffff;
 }
@@ -4073,11 +4063,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #0097a9;
 }
 
-.title-home-enca::-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #0097a9;
-}
-
 .title-home-enca::placeholder {
   font-family: "Montserrat-Black";
   color: #0097a9;
@@ -4089,11 +4074,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .subtitle-home-enca:-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #2d2926;
-}
-
-.subtitle-home-enca::-ms-input-placeholder {
   font-family: "Montserrat-Black";
   color: #2d2926;
 }
@@ -4113,11 +4093,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #3cc1ff;
 }
 
-.concert-input-title::-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #3cc1ff;
-}
-
 .concert-input-title::placeholder {
   font-family: "Montserrat-Black";
   color: #3cc1ff;
@@ -4129,11 +4104,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .hoy-en-cinema:-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: black;
-}
-
-.hoy-en-cinema::-ms-input-placeholder {
   font-family: "Montserrat-Black";
   color: black;
 }
@@ -4153,11 +4123,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #da291c;
 }
 
-.cinema-input-title::-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #da291c;
-}
-
 .cinema-input-title::placeholder {
   font-family: "Montserrat-Black";
   color: #da291c;
@@ -4173,11 +4138,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
   color: #f4f72e;
 }
 
-.cinema-title-input::-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #f4f72e;
-}
-
 .cinema-title-input::placeholder {
   font-family: "Montserrat-Black";
   color: #f4f72e;
@@ -4189,11 +4149,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .cinema-title-carrusel1-input:-ms-input-placeholder {
-  font-family: "Montserrat-Black";
-  color: #00abc0;
-}
-
-.cinema-title-carrusel1-input::-ms-input-placeholder {
   font-family: "Montserrat-Black";
   color: #00abc0;
 }
@@ -4247,10 +4202,6 @@ div .bootstrap-select > .dropdown-toggle:focus {
 }
 
 .opa-holder:-ms-input-placeholder {
-  opacity: 0.4;
-}
-
-.opa-holder::-ms-input-placeholder {
   opacity: 0.4;
 }
 
@@ -6563,8 +6514,7 @@ ul {
 }
 
 .nav-li {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
   padding: 10px;
@@ -6572,22 +6522,19 @@ ul {
 
 .active-navItem {
   position: relative;
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
   opacity: 1;
 }
 
 .list-channel-active {
   border-radius: 20px;
   background: white;
-  -webkit-filter: none !important;
-          filter: none !important;
+  filter: none !important;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 .list-channel-item {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
 }
@@ -8094,6 +8041,96 @@ select:focus {
   color: #ffffff;
   width: 100%;
   box-shadow: 1px 0px 2px 1px #d8d8d8;
+}
+
+#date-picker {
+  width: 100%;
+}
+
+#date-picker .date-picker-container {
+  max-width: 580px;
+  padding: 24px;
+  margin: auto;
+}
+
+#date-picker .date-picker-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8e7e8;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+#date-picker .dates-picked-container {
+  display: flex;
+  align-items: center;
+}
+
+#date-picker .date-start {
+  width: 135px;
+  height: 30px;
+  margin-right: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#date-picker .date-end {
+  width: 135px;
+  height: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#date-picker .active {
+  width: 135px;
+  height: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px #0097a9;
+  border: solid 1px #0097a9;
+  background-color: #ffffff;
+}
+
+#date-picker .months {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  margin: 0px auto 16px auto;
+}
+
+#date-picker .next-month,
+#date-picker .prev-month {
+  width: 31px;
+}
+
+#date-picker .prev-month {
+  transform: rotate(180deg);
+}
+
+#date-picker .days-container {
+  display: flex;
+  justify-content: center;
+}
+
+#date-picker .days {
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  height: 200px;
+  border-bottom: 1px solid #e8e7e8;
+  margin-bottom: 24px;
+}
+
+#date-picker .date-day {
+  text-align: center;
 }
 
 .menu-mobile {
