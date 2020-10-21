@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import $ from "jquery";
+import "slick-carousel";
+import { editAttributeProgram } from "../services/generalSchedule";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         landing: "",
-        chapters: []
+        chapters: [],
     },
     mutations: {
         getVerticalCarrusel(state, landing) {
@@ -27,10 +30,48 @@ export default new Vuex.Store({
             }
             axios.post('landing/homeCarrusel', {
                 landing
+            }).then(respuesta => {
+                state.chapters = respuesta.data.data.chapters;
+
             })
-                .then(respuesta => {
-                    state.chapters = respuesta.data.data.chapters;
-                })
-        }
-    }
+        },
+        slickShow() {
+            try {
+                $(".slick-show").slick("unslick");
+                $('.slick-show').slick({
+                    dots: true,
+                    fade: true,
+                    arrows: false,
+                    appendDots: $(".slick-dots"),
+                    customPaging: function (slider, i) {
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            } catch (error) {
+                $('.slick-show').slick({
+                    dots: true,
+                    fade: true,
+                    arrows: false,
+                    appendDots: $(".slick-dots"),
+                    customPaging: function (slider, i) {
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            }
+        },
+        modalShow(state, id) {
+            $('#' + id).modal('show')
+        },
+        updateData(state, data) {
+            editAttributeProgram(data.id, data.key, data.value)
+        },
+    },
 })

@@ -111,12 +111,12 @@ $(document).ready(function () {
     landingView.renderFooterPrev(sockets);
     landingView.renderFooterEdit(sockets);
 
-    let options = {
-        load: function (el) {
-            el.classList.add("fade-grilla");
-        },
-    }
-    createLazyLoad(".contenedor-fila", options);
+    // let options = {
+    //     load: function (el) {
+    //         el.classList.add("fade-grilla");
+    //     },
+    // }
+    // createLazyLoad(".contenedor-fila", options);
 
     //loader, images
     $(".load-picture").on("click", function () {

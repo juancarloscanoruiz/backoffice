@@ -74831,9 +74831,6 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 function eventsGrilla() {
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#about_link_1_url").click(".about_link_1_title", function () {
-    alert("marina");
-  });
   var landingSinopsis = document.getElementById("prev-sinopsis-landing");
 
   if (landingSinopsis) {
@@ -75916,7 +75913,6 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
     if (e.which === 13 && !e.shiftKey) {
-      debugger;
       var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
       var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
@@ -77808,7 +77804,6 @@ function eventsGrilla() {
   });
 
   function viewImg(objFileInput, container) {
-    debugger;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
@@ -78496,13 +78491,13 @@ function filterDates(startDate, lastDate, landing) {
       });
       var newGrill = "\n                ".concat(header, "\n                ").concat(rows, "\n            ");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html("");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html(newGrill);
-      var options = {
-        load: function load(el) {
-          el.classList.add("fade-grilla");
-        }
-      };
-      Object(_vendor_lozad__WEBPACK_IMPORTED_MODULE_2__["createLazyLoad"])(".contenedor-fila", options);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".grilla-body").html(newGrill); // let options = {
+      //     load: function(el) {
+      //         el.classList.add("fade-grilla");
+      //     }
+      // };
+      // createLazyLoad(".contenedor-fila", options);
+
       Object(_operaciones_grilla__WEBPACK_IMPORTED_MODULE_1__["eventsGrilla"])();
     }
   });
@@ -80985,7 +80980,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         _iterator5.f();
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel").modal("show"); //Volvemos a crear el slider
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel").modal("show");
 
       try {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carrusel1-slider-concert").slick("unslick");
@@ -81032,23 +81027,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         multipleSeparator: ", "
       }); //Añadir géneros
 
-      var index = 0;
-
-      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
-          _step6;
-
-      try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var _chapter2 = _step6.value;
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = "";
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = _chapter2.chapter.program.genre;
-          index++;
-        }
-      } catch (err) {
-        _iterator6.e(err);
-      } finally {
-        _iterator6.f();
-      }
+      var index = 0; // for (const chapter of data.data.chapters) {
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = "";
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = chapter.chapter.program.genre;
+      //     index++;
+      // }
 
       var editProgramLandingGenres = "";
       var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres").children(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
@@ -81228,18 +81215,18 @@ function reload(idCarousel, landing) {
       console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .dropdown-toggle").removeClass("bs-placeholder");
 
-      var _iterator7 = _createForOfIteratorHelper(data.data.chapters),
-          _step7;
+      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
+          _step6;
 
       try {
-        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-          var chapter = _step7.value;
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+          var chapter = _step6.value;
           jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .filter-option-inner").html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + "</div>");
         }
       } catch (err) {
-        _iterator7.e(err);
+        _iterator6.e(err);
       } finally {
-        _iterator7.f();
+        _iterator6.f();
       }
     }
   });
@@ -81309,7 +81296,6 @@ function getContentClaroCinema(type) {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
               var imagesPositions = [];
               var imagesProgramming = [];
-              debugger;
               jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
                   imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
@@ -81500,12 +81486,12 @@ function getProgrammingSynopsis(landing, date) {
         var colorTextSynopsis = "";
         var labelActive = "";
 
-        var _iterator8 = _createForOfIteratorHelper(programming),
-            _step8;
+        var _iterator7 = _createForOfIteratorHelper(programming),
+            _step7;
 
         try {
-          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-            var program = _step8.value;
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var program = _step7.value;
 
             if (program.sinopsis_info.sinopsis_len <= 21) {
               colorTextSynopsis = "a-text-semibold-tomato";
@@ -81529,9 +81515,9 @@ function getProgrammingSynopsis(landing, date) {
             row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna pl-4\">\n                            <span class=\"a-text-medium-black text-normal \">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorTextSynopsis, " text-normal pl-3 \">").concat(program.sinopsis_info.sinopsis_len, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorText, " text-normal \">").concat(program.sinopsis_info.cant_imagenes, "/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"edit-synopsis-pencil btn-focus sinopsis edi mr-3\" />\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\"prev-synopsis-pencil btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                ").concat(labelActive, "\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
-          _iterator8.e(err);
+          _iterator7.e(err);
         } finally {
-          _iterator8.f();
+          _iterator7.f();
         }
 
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
@@ -83903,7 +83889,6 @@ var LandingView = /*#__PURE__*/function () {
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-button").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        debugger;
         var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val();
         var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val();
         var landing = "about";

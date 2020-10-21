@@ -10,7 +10,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger;
+    debugger
     let data = {
         chapter_id,
         key,
@@ -710,12 +710,12 @@ function filterDates(startDate, lastDate, landing) {
             `;
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
-            let options = {
-                load: function(el) {
-                    el.classList.add("fade-grilla");
-                }
-            };
-            createLazyLoad(".contenedor-fila", options);
+            // let options = {
+            //     load: function(el) {
+            //         el.classList.add("fade-grilla");
+            //     }
+            // };
+            // createLazyLoad(".contenedor-fila", options);
             eventsGrilla();
         }
     });

@@ -34,11 +34,12 @@
 
 </head>
 
-<body class="bg-dark contenedor">
+<body class="bg-dark contenedor container-fluid">
     <div id="app">
-        <vertical-carrusel-component></vertical-carrusel-component>
-        <button class="btn btn-outline-success btn-lg" data-toggle="modal" data-target="#modal-vertical-carrusel">Click</button>
+        <calendario-component></calendario-component>
+
     </div>
+
 </body>
 
 </html>

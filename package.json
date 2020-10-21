@@ -25,6 +25,7 @@
         "vuex": "^3.5.1"
     },
     "dependencies": {
+        "ant-design-vue": "^1.6.5",
         "bootstrap-select": "^1.13.18",
         "browser-sync": "^2.26.12",
         "cleave.js": "^1.6.0",
@@ -32,6 +33,9 @@
         "gulp": "^4.0.2",
         "litepicker": "^1.5.7",
         "lozad": "^1.16.0",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "v-calendar": "^1.1.1",
+        "v-md-date-range-picker": "^2.6.0",
+        "vue2-daterange-picker": "^0.6.1"
     }
 }
