@@ -795,9 +795,9 @@ function addImagesModalBanner() {
                             slider +
                             `
                     <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
-                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming">
+                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" data-index="${counter}">
                     <label for="image_programming_${counter}"
-                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel" data-index="${counter}">
+                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel">
                         <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
                             class=" cursor-pointer add-photo" />
                         <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
@@ -864,7 +864,7 @@ function addImagesModalBanner() {
                     <div class="slick-slide">
                         <div>
                             <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
-                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0" data-index="${counter}">
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                                     <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
