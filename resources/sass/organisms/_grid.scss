@@ -32,18 +32,3 @@
     background-color: $white;
     display: flex;
   }
-
-.content-days,
-.days-text {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.days,
-.days-text div {
-    width: calc(415px / 7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}

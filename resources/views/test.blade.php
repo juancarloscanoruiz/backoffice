@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="bg-dark contenedor container-fluid">
+<body class=" contenedor container-fluid">
     <div id="app">
         <calendario-component></calendario-component>
 

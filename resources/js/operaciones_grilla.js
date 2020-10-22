@@ -3827,56 +3827,57 @@ function eventsGrilla() {
     let calendarMonth = currentDate.getMonth() + 1;
     //Obtenemos el día
     let calendarDay = currentDate.getDate();
-    let dateStartInput = document.getElementById("date-start-input");
-    if (dateStartInput) {
-        //Iniciamos el calendario Litepicker
-        let picker = new Litepicker({
-            element: document.getElementById("date-start-input"),
-            format: "YYYY-MM-DD",
-            delimiter: ",",
-            minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
-            //Al aparecer, aplicamos estilos parecidos a los de un modal
-            onShow: function () {
-                picker.picker.style.left = "50%";
-                picker.picker.style.top = "50%";
-                picker.picker.style.transform = "translate(-50%, -50%)";
-                $(".litepicker").wrap(
-                    "<div class='date-modal' id='modal-container'></div>"
-                );
-                $("#modal-container").css("display", "block");
-            },
-            //Evento que utilizamos cada vez que el calendario se oculta
-            onHide: function () {
-                $("#modal-container").css("display", "none");
-            },
-            onSelect: function () {
-                //Separamos las dos fechas
-                let fullDate = document
-                    .getElementById("date-start-input")
-                    .value.split(",");
-                //  Fecha inicial del datepicker
-                let startDate = fullDate[0];
-                //Separamos la primer fecha
-                let startDateSplit = startDate.split("-");
-                //Creamos una nueva fecha empezando por año
-                let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
-                $("#start-date-text").text(startDateFull);
+    
+    // let dateStartInput = document.getElementById("date-start-input");
+    // if (dateStartInput) {
+    //     //Iniciamos el calendario Litepicker
+    //     let picker = new Litepicker({
+    //         element: document.getElementById("date-start-input"),
+    //         format: "YYYY-MM-DD",
+    //         delimiter: ",",
+    //         minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
+    //         //Al aparecer, aplicamos estilos parecidos a los de un modal
+    //         onShow: function () {
+    //             picker.picker.style.left = "50%";
+    //             picker.picker.style.top = "50%";
+    //             picker.picker.style.transform = "translate(-50%, -50%)";
+    //             $(".litepicker").wrap(
+    //                 "<div class='date-modal' id='modal-container'></div>"
+    //             );
+    //             $("#modal-container").css("display", "block");
+    //         },
+    //         //Evento que utilizamos cada vez que el calendario se oculta
+    //         onHide: function () {
+    //             $("#modal-container").css("display", "none");
+    //         },
+    //         onSelect: function () {
+    //             //Separamos las dos fechas
+    //             let fullDate = document
+    //                 .getElementById("date-start-input")
+    //                 .value.split(",");
+    //             //  Fecha inicial del datepicker
+    //             let startDate = fullDate[0];
+    //             //Separamos la primer fecha
+    //             let startDateSplit = startDate.split("-");
+    //             //Creamos una nueva fecha empezando por año
+    //             let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+    //             $("#start-date-text").text(startDateFull);
 
-                //   Fecha final del datepicker
+    //             //   Fecha final del datepicker
 
-                let landing = $("#date-start-input").attr("landing");
+    //             let landing = $("#date-start-input").attr("landing");
 
-                let endDate = fullDate[1];
-                filterDates(startDate, endDate, landing);
-                let endDateSplit = endDate.split("-");
-                let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
-                $("#end-date-text").text(endDateFull);
-            },
-            numberOfMonths: 1,
-            numberOfColumns: 1,
-            singleMode: false
-        });
-    }
+    //             let endDate = fullDate[1];
+    //             filterDates(startDate, endDate, landing);
+    //             let endDateSplit = endDate.split("-");
+    //             let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+    //             $("#end-date-text").text(endDateFull);
+    //         },
+    //         numberOfMonths: 1,
+    //         numberOfColumns: 1,
+    //         singleMode: false
+    //     });
+    // }
 
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"

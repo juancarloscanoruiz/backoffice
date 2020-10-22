@@ -51744,7 +51744,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.3\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.3\",\"_id\":\"elliptic@6.5.3\",\"_inBundle\":false,\"_integrity\":\"sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.3\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.3\",\"saveSpec\":null,\"fetchSpec\":\"6.5.3\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.3.tgz\",\"_spec\":\"6.5.3\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.3\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.3\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.3\",\"_id\":\"elliptic@6.5.3\",\"_inBundle\":false,\"_integrity\":\"sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.3\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.3\",\"saveSpec\":null,\"fetchSpec\":\"6.5.3\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.3.tgz\",\"_spec\":\"6.5.3\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.3\"}");
 
 /***/ }),
 
@@ -92535,13 +92535,60 @@ function eventsGrilla() {
 
   var calendarMonth = currentDate.getMonth() + 1; //Obtenemos el día
 
-  var calendarDay = currentDate.getDate();
-  var dateStartInput = document.getElementById("date-start-input");
+  var calendarDay = currentDate.getDate(); // let dateStartInput = document.getElementById("date-start-input");
+  // if (dateStartInput) {
+  //     //Iniciamos el calendario Litepicker
+  //     let picker = new Litepicker({
+  //         element: document.getElementById("date-start-input"),
+  //         format: "YYYY-MM-DD",
+  //         delimiter: ",",
+  //         minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
+  //         //Al aparecer, aplicamos estilos parecidos a los de un modal
+  //         onShow: function () {
+  //             picker.picker.style.left = "50%";
+  //             picker.picker.style.top = "50%";
+  //             picker.picker.style.transform = "translate(-50%, -50%)";
+  //             $(".litepicker").wrap(
+  //                 "<div class='date-modal' id='modal-container'></div>"
+  //             );
+  //             $("#modal-container").css("display", "block");
+  //         },
+  //         //Evento que utilizamos cada vez que el calendario se oculta
+  //         onHide: function () {
+  //             $("#modal-container").css("display", "none");
+  //         },
+  //         onSelect: function () {
+  //             //Separamos las dos fechas
+  //             let fullDate = document
+  //                 .getElementById("date-start-input")
+  //                 .value.split(",");
+  //             //  Fecha inicial del datepicker
+  //             let startDate = fullDate[0];
+  //             //Separamos la primer fecha
+  //             let startDateSplit = startDate.split("-");
+  //             //Creamos una nueva fecha empezando por año
+  //             let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+  //             $("#start-date-text").text(startDateFull);
+  //             //   Fecha final del datepicker
+  //             let landing = $("#date-start-input").attr("landing");
+  //             let endDate = fullDate[1];
+  //             filterDates(startDate, endDate, landing);
+  //             let endDateSplit = endDate.split("-");
+  //             let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+  //             $("#end-date-text").text(endDateFull);
+  //         },
+  //         numberOfMonths: 1,
+  //         numberOfColumns: 1,
+  //         singleMode: false
+  //     });
+  // }
 
-  if (dateStartInput) {
+  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
+
+  if (programmingCarruselPicker) {
     //Iniciamos el calendario Litepicker
     var picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
-      element: document.getElementById("date-start-input"),
+      element: programmingCarruselPicker,
       format: "YYYY-MM-DD",
       delimiter: ",",
       minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
@@ -92550,51 +92597,6 @@ function eventsGrilla() {
         picker.picker.style.left = "50%";
         picker.picker.style.top = "50%";
         picker.picker.style.transform = "translate(-50%, -50%)";
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
-      },
-      //Evento que utilizamos cada vez que el calendario se oculta
-      onHide: function onHide() {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
-      },
-      onSelect: function onSelect() {
-        //Separamos las dos fechas
-        var fullDate = document.getElementById("date-start-input").value.split(","); //  Fecha inicial del datepicker
-
-        var startDate = fullDate[0]; //Separamos la primer fecha
-
-        var startDateSplit = startDate.split("-"); //Creamos una nueva fecha empezando por año
-
-        var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull); //   Fecha final del datepicker
-
-        var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#date-start-input").attr("landing");
-        var endDate = fullDate[1];
-        Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["filterDates"])(startDate, endDate, landing);
-        var endDateSplit = endDate.split("-");
-        var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
-      },
-      numberOfMonths: 1,
-      numberOfColumns: 1,
-      singleMode: false
-    });
-  }
-
-  var programmingCarruselPicker = document.getElementById("programming-carrusel-calendar");
-
-  if (programmingCarruselPicker) {
-    //Iniciamos el calendario Litepicker
-    var _picker = new litepicker__WEBPACK_IMPORTED_MODULE_4___default.a({
-      element: programmingCarruselPicker,
-      format: "YYYY-MM-DD",
-      delimiter: ",",
-      minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
-      //Al aparecer, aplicamos estilos parecidos a los de un modal
-      onShow: function onShow() {
-        _picker.picker.style.left = "50%";
-        _picker.picker.style.top = "50%";
-        _picker.picker.style.transform = "translate(-50%, -50%)";
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
       },
@@ -100058,8 +100060,8 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

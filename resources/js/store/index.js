@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import $ from "jquery";
 import "slick-carousel";
-import { editAttributeProgram } from "../services/generalSchedule";
+import { editAttributeProgram, filterDates } from "../services/generalSchedule";
 
 Vue.use(Vuex);
 
@@ -73,5 +73,8 @@ export default new Vuex.Store({
         updateData(state, data) {
             editAttributeProgram(data.id, data.key, data.value)
         },
+        filterDates(state, data) {
+            filterDates( data.dataGrilla, data.dataEnd, data.landing);
+        }
     },
 })
