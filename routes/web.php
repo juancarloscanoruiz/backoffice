@@ -96,7 +96,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
     Route::get("/home", "landingController@getContentHome");
-    Route::get('/header', "landingController@getModalsCanalClaro");
+    Route::post('/getLandingCanalClaro', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
@@ -142,9 +142,12 @@ Route::get('/menurris', function () {
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
-// MODALES
+
+
+
+
 Route::get('/test',  function () {
-    return view('test');
+    return view('test.index');
 });
 Route::get('/imports',  function () {
     return view('imports.device-size');

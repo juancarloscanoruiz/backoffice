@@ -28,7 +28,7 @@
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
 
-</head id="app">
+</head>
 
 @yield('content')
 

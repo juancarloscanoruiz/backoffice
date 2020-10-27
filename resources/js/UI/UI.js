@@ -27,6 +27,9 @@ import {
 import {
     calendarSlick
 } from "../config/slick.js";
+
+import {mvh} from '../app'
+
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -404,6 +407,7 @@ function showlanding() {
             let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
             let year = date.getUTCFullYear();
             getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
+            mvh();
         }
     });
 }

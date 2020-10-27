@@ -6,7 +6,7 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
-                <div class="dots-container mx-auto d-flex justify-content-between">
+                <div class="dots-container justify-content-between">
                     <div class="d-flex">
                         <!--dots-->
                         <div class="programming-slider-dots-canal-claro mt-5 mb-5"></div>

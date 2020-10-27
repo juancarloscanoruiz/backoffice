@@ -3612,56 +3612,56 @@ function eventsGrilla() {
         }
     });
 
-    $(".select-carrusel").selectpicker({
-        filter: true,
-        multipleSeparator: ", "
-    });
+    // $(".select-carrusel").selectpicker({
+    //     filter: true,
+    //     multipleSeparator: ", "
+    // });
     let imageTriangle = `
     <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
 `;
     $(".edit-program-image .bootstrap-select").append(imageTriangle);
     //selectpicker para el campo de género en un programa
-    $(".selectpicker").selectpicker({
-        filter: true,
-        multipleSeparator: ", "
-    });
+    // $(".selectpicker").selectpicker({
+    //     filter: true,
+    //     multipleSeparator: ", "
+    // });
 
     /*
         Obtener el valor de las cateogrías seleccionadas y colocarlas
         en un string
     */
     let genres = "";
-    let selectpicker = $(".selectpicker");
-    //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function () {
-        //Obtenemos los valores del selectpicker
-        let selected = $(this).val();
-        //Obtenemos el número de valores que hemos obtenido del arreglo
-        let selectedLength = selected.length;
-        genres = "";
-        for (let index = 0; index < selectedLength; index++) {
-            //Si es la primera palabra o la última, no agregamos una coma
-            if (selectedLength - 1 == index) {
-                genres += `${selected[index]}`;
-            } else {
-                genres += `${selected[index]},`;
-            }
-        }
-    });
+    // let selectpicker = $(".selectpicker");
+    // //Verificamos si el usuario ha seleccionado un género o categoría
+    // selectpicker.on("change", function () {
+    //     //Obtenemos los valores del selectpicker
+    //     let selected = $(this).val();
+    //     //Obtenemos el número de valores que hemos obtenido del arreglo
+    //     let selectedLength = selected.length;
+    //     genres = "";
+    //     for (let index = 0; index < selectedLength; index++) {
+    //         //Si es la primera palabra o la última, no agregamos una coma
+    //         if (selectedLength - 1 == index) {
+    //             genres += `${selected[index]}`;
+    //         } else {
+    //             genres += `${selected[index]},`;
+    //         }
+    //     }
+    // });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function () {
-        //Seleccionamos la columna en la que estamos
-        let currentColumn = $(this).closest(".contenedor-columna");
-        //Obtenemos el cahpter_id de la columna
-        let chapterId = currentColumn.attr("chapter_id");
-        //Obtenemos la key
-        let key = currentColumn.attr("key");
-        //Obtenemos los géneros que pudo haber seleccionado el usuario
-        let keyValue = genres;
-        //Hacemos la petición
+    // selectpicker.on("hide.bs.select", function () {
+    //     //Seleccionamos la columna en la que estamos
+    //     let currentColumn = $(this).closest(".contenedor-columna");
+    //     //Obtenemos el cahpter_id de la columna
+    //     let chapterId = currentColumn.attr("chapter_id");
+    //     //Obtenemos la key
+    //     let key = currentColumn.attr("key");
+    //     //Obtenemos los géneros que pudo haber seleccionado el usuario
+    //     let keyValue = genres;
+    //     //Hacemos la petición
 
-        editAttributeProgram(chapterId, key, keyValue);
-    });
+    //     editAttributeProgram(chapterId, key, keyValue);
+    // });
 
     $("button[id=btn-landing]").click(function () {
         if (
@@ -3827,57 +3827,66 @@ function eventsGrilla() {
     let calendarMonth = currentDate.getMonth() + 1;
     //Obtenemos el día
     let calendarDay = currentDate.getDate();
-    
-    // let dateStartInput = document.getElementById("date-start-input");
-    // if (dateStartInput) {
-    //     //Iniciamos el calendario Litepicker
-    //     let picker = new Litepicker({
-    //         element: document.getElementById("date-start-input"),
-    //         format: "YYYY-MM-DD",
-    //         delimiter: ",",
-    //         minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
-    //         //Al aparecer, aplicamos estilos parecidos a los de un modal
-    //         onShow: function () {
-    //             picker.picker.style.left = "50%";
-    //             picker.picker.style.top = "50%";
-    //             picker.picker.style.transform = "translate(-50%, -50%)";
-    //             $(".litepicker").wrap(
-    //                 "<div class='date-modal' id='modal-container'></div>"
-    //             );
-    //             $("#modal-container").css("display", "block");
-    //         },
-    //         //Evento que utilizamos cada vez que el calendario se oculta
-    //         onHide: function () {
-    //             $("#modal-container").css("display", "none");
-    //         },
-    //         onSelect: function () {
-    //             //Separamos las dos fechas
-    //             let fullDate = document
-    //                 .getElementById("date-start-input")
-    //                 .value.split(",");
-    //             //  Fecha inicial del datepicker
-    //             let startDate = fullDate[0];
-    //             //Separamos la primer fecha
-    //             let startDateSplit = startDate.split("-");
-    //             //Creamos una nueva fecha empezando por año
-    //             let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
-    //             $("#start-date-text").text(startDateFull);
 
-    //             //   Fecha final del datepicker
+    $('.vueCalendar').on('click', function () {
+        $('#calendar').modal('show')
+    })
 
-    //             let landing = $("#date-start-input").attr("landing");
+    let dateStartInput = document.getElementById("date-start-input");
+    if (dateStartInput) {
 
-    //             let endDate = fullDate[1];
-    //             filterDates(startDate, endDate, landing);
-    //             let endDateSplit = endDate.split("-");
-    //             let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
-    //             $("#end-date-text").text(endDateFull);
-    //         },
-    //         numberOfMonths: 1,
-    //         numberOfColumns: 1,
-    //         singleMode: false
-    //     });
-    // }
+        $('.vueCalendar').on('click', function () {
+            $('#calendar').modal('show')
+        })
+
+        // //Iniciamos el calendario Litepicker
+        // let picker = new Litepicker({
+        //     element: document.getElementById("date-start-input"),
+        //     format: "YYYY-MM-DD",
+        //     delimiter: ",",
+        //     minDate: `${calendarYear}-${calendarMonth}-${calendarDay}`,
+        //     //Al aparecer, aplicamos estilos parecidos a los de un modal
+        //     onShow: function () {
+        //         picker.picker.style.left = "50%";
+        //         picker.picker.style.top = "50%";
+        //         picker.picker.style.transform = "translate(-50%, -50%)";
+        //         $(".litepicker").wrap(
+        //             "<div class='date-modal' id='modal-container'></div>"
+        //         );
+        //         $("#modal-container").css("display", "block");
+        //     },
+        //     //Evento que utilizamos cada vez que el calendario se oculta
+        //     onHide: function () {
+        //         $("#modal-container").css("display", "none");
+        //     },
+        //     onSelect: function () {
+        //         //Separamos las dos fechas
+        //         let fullDate = document
+        //             .getElementById("date-start-input")
+        //             .value.split(",");
+        //         //  Fecha inicial del datepicker
+        //         let startDate = fullDate[0];
+        //         //Separamos la primer fecha
+        //         let startDateSplit = startDate.split("-");
+        //         //Creamos una nueva fecha empezando por año
+        //         let startDateFull = `${startDateSplit[2]}-${startDateSplit[1]}-${startDateSplit[0]}`;
+        //         $("#start-date-text").text(startDateFull);
+
+        //          //   Fecha final del datepicker
+
+        //          let landing = $("#date-start-input").attr("landing");
+
+        //         let endDate = fullDate[1];
+        //         filterDates(startDate, endDate, landing);
+        //         let endDateSplit = endDate.split("-");
+        //         let endDateFull = `${endDateSplit[2]}-${endDateSplit[1]}-${endDateSplit[0]}`;
+        //         $("#end-date-text").text(endDateFull);
+        //     },
+        //     numberOfMonths: 1,
+        //     numberOfColumns: 1,
+        //     singleMode: false
+        // });
+    }
 
     let programmingCarruselPicker = document.getElementById(
         "programming-carrusel-calendar"
@@ -4319,23 +4328,23 @@ function eventsGrilla() {
         }
     });
 
-    $(".listcinema").selectpicker({
-        multipleSeparator: " ",
-        filter: true
-    });
+    // $(".listcinema").selectpicker({
+    //     multipleSeparator: " ",
+    //     filter: true
+    // });
     //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
     $(".edit-row-pencil").click(selectRow);
     //Al dar click en una columna, aplicamos estilos
     $(".selectable-column").click(selectColumn);
 
-    $(".selectpicker")
-        .selectpicker({
-            multipleSeparator: " ",
-            filter: true
-        })
-        .on("changed.bs.select", function () {
-            $(this).selectpicker("refresh");
-        });
+    // $(".selectpicker")
+    //     .selectpicker({
+    //         multipleSeparator: " ",
+    //         filter: true
+    //     })
+    //     .on("changed.bs.select", function () {
+    //         $(this).selectpicker("refresh");
+    //     });
 
     $("#inp_programing").on("change", function () {
         /**
@@ -4526,91 +4535,6 @@ function eventsGrilla() {
             <img src="./images/loader.gif" class="loader" alt="">
             </div>`;
 
-    let landingCanalClaro = {
-        remote: `${baseURL}claro-canal-edi.php`,
-        // remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/claro-canal-edi.php`,
-        container: document.getElementById("navbar-prev-canal-claro"),
-        onMessage: function (message, origin) {
-            let json = JSON.parse(message);
-
-            if (typeof json == "object") {
-                switch (json.type) {
-                    case "claro-header":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "claro-programacion":
-                        $("body").append(LOADER);
-                        setTimeout(function () {
-                            let date = new Date();
-                            let day = ("0" + date.getUTCDate()).slice(-2);
-                            let month = ("0" + (date.getUTCMonth() + 1)).slice(
-                                -2
-                            );
-                            let year = date.getUTCFullYear();
-                            let currentDate = `${year}-${month}-${day}`;
-                            getProgrammingLanding(
-                                currentDate,
-                                "canal-claro",
-                                ""
-                            );
-                            $("#loader1").remove();
-                        }, 3000);
-                        break;
-                    case "claro-title":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "claro-promo":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "claro-carrusel1":
-                        let id = 1;
-                        let landing = "Canal Claro";
-                        getPromotionalsProgramsCarousel(
-                            id,
-                            landing,
-                            "thumbnail-header-claro"
-                        );
-
-                        break;
-                    case "claro-carrusel2":
-                        id = 2;
-                        landing = "Canal Claro";
-                        getPromotionalsProgramsCarousel(
-                            id,
-                            landing,
-                            "thumbnail-header-claro "
-                        );
-                        break;
-                    case "claro-carrusel-title":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "claro-carrusel-title2":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "btn-redirect-header":
-                        getModalsCanalClaro(json.type);
-                        break;
-                    case "slider-pagination":
-                        getModalsCanalClaro("slider-pagination");
-                        break;
-                }
-            }
-            this.container.getElementsByTagName("iframe")[0].style.height =
-                message + "px";
-            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-        }
-    };
-
-    //Landing de claro canal
-
-    let navbarLandingCanalClaro = document.getElementById(
-        "navbar-prev-canal-claro"
-    );
-    if (navbarLandingCanalClaro) {
-        $("#navbar-prev-canal-claro iframe").remove();
-        new easyXDM.Socket(landingCanalClaro);
-    }
     let confPrevClaroCanal = {
         remote: `${baseURL}claro-canal-prev.php`,
         container: document.getElementById("navbar-prev-canal-claro"),

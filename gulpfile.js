@@ -18,4 +18,5 @@ gulp.task('default', () => {
     gulp.watch("./resources/js/**/*.vue").on('change', browserSync.reload);
     gulp.watch("./resources/views/*.blade.php").on('change', browserSync.reload);
     gulp.watch("./resources/views/**/*.blade.php").on('change', browserSync.reload);
+    gulp.watch("./routest/*.php").on('change', browserSync.reload);
 });

@@ -20,7 +20,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="slick-show" style="width: 100%">
+                                <div class="slick-show">
                                     <div v-for="(data) in this.chapters" v-bind:key="data.chapter.id">
                                         <div class="col-12 p-0 mb-5">
                                             <!--Estado y alertas del programa-->

@@ -1,50 +1,31 @@
 <template>
 <div>
-
-    <button type="button" class="btn btn-primary" v-on:click="this.modalVerticalCarrusel">
-        Launch demo modal
-    </button>
-    <verticalCarrusel></verticalCarrusel>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="navbar-progra-content navbar-prev-canal-claro mb-5 mt-5" id="navbar-prev-canal-claro"></div>
+            </div>
+        </div>
+    </div>
+    <banner></banner>
 </div>
 </template>
 
 <script>
 import store from '../store'
-import verticalCarrusel from './VerticalCarrusel'
+import banner from './BannerModal'
+
 import {
-    filtro
-} from '../filters/index'
+    mvh
+} from '../app'
 
 export default {
-    data: function () {
-        return {
-            landing: 'Canal Claro',
-            VerticalCarrusel: 'modal-vertical-carrusel',
-        }
-    },
     mounted() {
-        store.commit('getVerticalCarrusel', this.landing)
+        mvh();
+        store.commit('getLandingCanalClaro');
     },
     components: {
-        verticalCarrusel
-    },
-    methods: {
-        modalVerticalCarrusel: function () {
-            store.commit('slickShow')
-            store.commit('modalShow', this.VerticalCarrusel)
-            filtro()
-        },
+        banner
     }
 };
 </script>
-
-<style>
-.days,
-.days-text div {
-    width: calc(415px / 7);
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-</style>

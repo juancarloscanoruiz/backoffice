@@ -84,7 +84,7 @@
             </div>
             <div class="pd-5">SINÓPSIS</div>
             <div class="justify-content-center">
-                <a href="{{ route('sinopsis') }}"> 
+                <a href="{{ route('sinopsis') }}">
                     <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
                 </a>
                 <input type="image" src="./images/historial-no.svg" alt="" class="ml-3 btn-focus "></input>
@@ -115,3 +115,4 @@
         </ul>
 
     </div>
+</div>

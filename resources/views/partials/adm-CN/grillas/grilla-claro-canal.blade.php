@@ -130,13 +130,6 @@ $data_for_new_entry = json_encode([
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">
             <div>
-                <input id="inp_programing" type="file" api='<?php echo $data_for_new_entry; ?>'>
-                <label for="inp_programing" class="cursor-pointer a-btn-orange a-btn-basic-medium pl-2 d-flex align-items-center justify-content-center upload-files" style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt="" class="cursor-pointer pr-2">Cargar archivos</span></label>
-            </div>
-            <calendario-component></calendario-component>
-        </div>
-        <!-- <div class=" d-flex ml-5 pt-5 pb-4">
-            <div>
                 <input id="inp_programing" type="file"
                     api='<?php echo $data_for_new_entry; ?>'>
                 <label for="inp_programing"
@@ -144,8 +137,8 @@ $data_for_new_entry = json_encode([
                     style="padding-left:.2rem"><span class="  text-crea pr-2"><img src="./images/clip.svg" alt=""
                             class="cursor-pointer pr-2">Cargar archivos</span></label>
             </div>
-            Fecha de inicio de calendario 
-            <div class="position-relative">
+            <!-- Fecha de inicio de calendario  -->
+            <div class="position-relative vueCalendar">
                 <input type="text" id="date-start-input" landing="Claro Canal">
                 <label for="date-start-input"
                     class="mb-0 ml-5 date-button date-start-table d-flex align-items-center pl-3 pr-3"
@@ -157,16 +150,16 @@ $data_for_new_entry = json_encode([
                     </div>
                 </label>
             </div>
-            Fecha de fin de calendario
+            <!-- Fecha de fin de calendario -->
             <label for="date-start-input"
-                class="mb-0 ml-5 date-button date-end-table d-flex align-items-center pl-3 pr-3">
+                class="mb-0 ml-5 date-button date-end-table d-flex align-items-center pl-3 pr-3 vueCalendar">
                 <img src="./images/calendario.svg" alt="">
                 <div class="ml-3">
                     <p class="text-small d-block mb-0 a-text-semibold-warmgrey">Fin</p>
                     <p class="text-normal mb-0 a-text-bold-charcoal" id="end-date-text">{{ $lastDate }}</p>
                 </div>
             </label>
-        </div> -->
+        </div>
 
         <!--end-->
         <div id="rempla-claro-canal" class="landing-table table-porcent">

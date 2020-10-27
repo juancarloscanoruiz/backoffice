@@ -386,7 +386,8 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "section/" . $section
+            // $this->url . "section/" . $section
+            $this->url . "section/programation"
         );
 
         $respuesta =  json_decode($response->getBody());
