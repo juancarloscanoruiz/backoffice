@@ -38,9 +38,9 @@ export default new Vue({
 function mvh() {
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
-    $('.vueCalendar').on('click', function () {
-        $('#calendar').modal('show')
-    })
+    // $('.vueCalendar').on('click', function () {
+    //     $('#calendar').modal('show')
+    // })
 
     let landingCanalClaro = {
         remote: `${baseURL}claro-canal-edi.php`,

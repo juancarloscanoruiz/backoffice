@@ -15,7 +15,6 @@
 <body>
     <main>
         <div id="app">
-        <calendario-component></calendario-component>
             @include('partials.headers.headerPrograGeneral')
             <div class="justify-content-center centro mx-auto position-title">
                 <span class="text-titulo">PROGRAMACIÓN GENERAL <br> DEL </span>
