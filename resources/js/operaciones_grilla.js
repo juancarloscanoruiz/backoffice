@@ -87,6 +87,85 @@ function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
+
+    let landingCanalClaro = {
+        remote: `${baseURL}claro-canal-edi.php`,
+        container: document.getElementById("navbar-prev-canal-claro"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "claro-header":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-programacion":
+                        $("body").append(LOADER);
+                        setTimeout(function () {
+                            let date = new Date();
+                            let day = ("0" + date.getUTCDate()).slice(-2);
+                            let month = ("0" + (date.getUTCMonth() + 1)).slice(
+                                -2
+                            );
+                            let year = date.getUTCFullYear();
+                            let currentDate = `${year}-${month}-${day}`;
+                            getProgrammingLanding(
+                                currentDate,
+                                "canal-claro",
+                                ""
+                            );
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
+                    case "claro-title":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-promo":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-carrusel1":
+                        let id = 1;
+                        let landing = "Canal Claro";
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "thumbnail-header-claro"
+                        );
+
+                        break;
+                    case "claro-carrusel2":
+                        id = 2;
+                        landing = "Canal Claro";
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "thumbnail-header-claro "
+                        );
+                        break;
+                    case "claro-carrusel-title":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "claro-carrusel-title2":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "btn-redirect-header":
+                        getModalsCanalClaro(json.type);
+                        break;
+                    case "slider-pagination":
+                        getModalsCanalClaro("slider-pagination");
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    let navbarLandingCanalClaro = document.getElementById("navbar-prev-canal-claro");
+    if (navbarLandingCanalClaro) {
+        $("#navbar-prev-canal-claro iframe").remove();
+        new easyXDM.Socket(landingCanalClaro);
+    }
+
     let landingSinopsis = document.getElementById("prev-sinopsis-landing");
     if (landingSinopsis) {
         console.log("Found you");

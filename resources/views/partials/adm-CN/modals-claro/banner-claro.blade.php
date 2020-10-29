@@ -6,8 +6,8 @@
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
-                <div class="dots-container justify-content-between">
-                    <div class="d-flex">
+                <div class="d-flex dots-container justify-content-between mx-auto">
+                    <div class="d-flex align-items-center">
                         <!--dots-->
                         <div class="programming-slider-dots-canal-claro mt-5 mb-5"></div>
                         <!--add slide-->
@@ -117,7 +117,7 @@
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
                 <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato h1"
-                    id="close_modals">ACEPTAR</button>
+                    id="close_modals" data-dismiss="modal" data-dismiss="modal">ACEPTAR</button>
 
                 <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  h1" data-dismiss="modal"
                     data-dismiss="modal" aria-hidden="true">CANCELAR</button>

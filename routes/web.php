@@ -96,6 +96,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
     Route::get("/home", "landingController@getContentHome");
+    Route::get('/header', "landingController@getModalsCanalClaro");
     Route::post('/getLandingCanalClaro', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
