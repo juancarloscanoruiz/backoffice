@@ -3911,7 +3911,7 @@ function eventsGrilla() {
         $(".modal-synopsis").modal("hide");
     });
     //Removemos las instancias de litepicker que sobran
-    $(".litepicker").remove();
+    // $(".litepicker").remove();
     $(".date-modal").remove();
     //Sacamos la fecha actual para ponerla en el calendario
     let currentDate = new Date();
@@ -3934,6 +3934,7 @@ function eventsGrilla() {
         // })
 
          //Iniciamos el calendario Litepicker
+         /*
          let picker = new Litepicker({
              element: document.getElementById("date-start-input"),
              format: "YYYY-MM-DD",
@@ -3980,6 +3981,7 @@ function eventsGrilla() {
             numberOfColumns: 1,
             singleMode: false
         });
+        */
     }
 
     let programmingCarruselPicker = document.getElementById(
@@ -3988,6 +3990,7 @@ function eventsGrilla() {
 
     if (programmingCarruselPicker) {
         //Iniciamos el calendario Litepicker
+        /*
         let picker = new Litepicker({
             element: programmingCarruselPicker,
             format: "YYYY-MM-DD",
@@ -4029,6 +4032,7 @@ function eventsGrilla() {
             numberOfColumns: 1,
             singleMode: false
         });
+        */
     }
 
     $("#close_modals").click(function () {
