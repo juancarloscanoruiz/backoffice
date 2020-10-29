@@ -2660,6 +2660,11 @@ body {
   transform: translate(-8px, -72px);
 }
 
+.btn-calendar {
+  height: 40px;
+  border-radius: 10px;
+}
+
 .add-images-icon {
   position: absolute;
   left: 50%;

@@ -218,21 +218,36 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-    let calendarsinopsis = $(".calendar-sinopsis-slider");
-    $(".calendar-sinopsis-slider").slick({
-        slidesToShow: 11,
-        slidesToScroll: 11,
-        infinite: true,
-        dots: false,
-        centerMode: false,
-        arrows: true,
-        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    });
-    calendarsinopsis.slick("unslick");
-    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+    // let calendarsinopsis = $(".calendar-sinopsis-slider");
+    // try {
+    //     calendarsinopsis.slick("unslick");
+    //     $(".calendar-sinopsis-slider").slick({
+    //         slidesToShow: 11,
+    //         slidesToScroll: 11,
+    //         infinite: true,
+    //         dots: false,
+    //         centerMode: false,
+    //         arrows: true,
+    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    //     });
+    // } catch (error) {
+    //     $(".calendar-sinopsis-slider").slick({
+    //         slidesToShow: 11,
+    //         slidesToScroll: 11,
+    //         infinite: true,
+    //         dots: false,
+    //         centerMode: false,
+    //         arrows: true,
+    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    //     });
+    // }
 
-    createSlickSlider(calendarsinopsis, calendarSlick);
+    
+    // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+
+    // createSlickSlider(calendarsinopsis, calendarSlick);
 
     $(".calendar-sinopsis-slider").on(
         "click",
@@ -3691,56 +3706,56 @@ function eventsGrilla() {
         }
     });
 
-    $(".select-carrusel").selectpicker({
-        filter: true,
-        multipleSeparator: ", "
-    });
+    // $(".select-carrusel").selectpicker({
+    //     filter: true,
+    //     multipleSeparator: ", "
+    // });
     let imageTriangle = `
     <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
 `;
     $(".edit-program-image .bootstrap-select").append(imageTriangle);
     //selectpicker para el campo de género en un programa
-    $(".selectpicker").selectpicker({
-        filter: true,
-        multipleSeparator: ", "
-    });
+    // $(".selectpicker").selectpicker({
+    //     filter: true,
+    //     multipleSeparator: ", "
+    // });
 
     /*
         Obtener el valor de las cateogrías seleccionadas y colocarlas
         en un string
     */
     let genres = "";
-    let selectpicker = $(".selectpicker");
-    //Verificamos si el usuario ha seleccionado un género o categoría
-    selectpicker.on("change", function () {
-        //Obtenemos los valores del selectpicker
-        let selected = $(this).val();
-        //Obtenemos el número de valores que hemos obtenido del arreglo
-        let selectedLength = selected.length;
-        genres = "";
-        for (let index = 0; index < selectedLength; index++) {
-            //Si es la primera palabra o la última, no agregamos una coma
-            if (selectedLength - 1 == index) {
-                genres += `${selected[index]}`;
-            } else {
-                genres += `${selected[index]},`;
-            }
-        }
-    });
+    // let selectpicker = $(".selectpicker");
+    // //Verificamos si el usuario ha seleccionado un género o categoría
+    // selectpicker.on("change", function () {
+    //     //Obtenemos los valores del selectpicker
+    //     let selected = $(this).val();
+    //     //Obtenemos el número de valores que hemos obtenido del arreglo
+    //     let selectedLength = selected.length;
+    //     genres = "";
+    //     for (let index = 0; index < selectedLength; index++) {
+    //         //Si es la primera palabra o la última, no agregamos una coma
+    //         if (selectedLength - 1 == index) {
+    //             genres += `${selected[index]}`;
+    //         } else {
+    //             genres += `${selected[index]},`;
+    //         }
+    //     }
+    // });
     //Evento para cuando cerramos el selectpicker
-    selectpicker.on("hide.bs.select", function () {
-        //Seleccionamos la columna en la que estamos
-        let currentColumn = $(this).closest(".contenedor-columna");
-        //Obtenemos el cahpter_id de la columna
-        let chapterId = currentColumn.attr("chapter_id");
-        //Obtenemos la key
-        let key = currentColumn.attr("key");
-        //Obtenemos los géneros que pudo haber seleccionado el usuario
-        let keyValue = genres;
-        //Hacemos la petición
+    // selectpicker.on("hide.bs.select", function () {
+    //     //Seleccionamos la columna en la que estamos
+    //     let currentColumn = $(this).closest(".contenedor-columna");
+    //     //Obtenemos el cahpter_id de la columna
+    //     let chapterId = currentColumn.attr("chapter_id");
+    //     //Obtenemos la key
+    //     let key = currentColumn.attr("key");
+    //     //Obtenemos los géneros que pudo haber seleccionado el usuario
+    //     let keyValue = genres;
+    //     //Hacemos la petición
 
-         editAttributeProgram(chapterId, key, keyValue);
-    s });
+    //      editAttributeProgram(chapterId, key, keyValue);
+    // s });
 
     $("button[id=btn-landing]").click(function () {
         if (
@@ -4407,23 +4422,23 @@ function eventsGrilla() {
         }
     });
 
-    $(".listcinema").selectpicker({
-        multipleSeparator: " ",
-        filter: true
-    });
+    // $(".listcinema").selectpicker({
+    //     multipleSeparator: " ",
+    //     filter: true
+    // });
     //Al dar click en el lápiz, habilitamos la edición de la fila y aplicamos estilos
     $(".edit-row-pencil").click(selectRow);
     //Al dar click en una columna, aplicamos estilos
     $(".selectable-column").click(selectColumn);
 
-    $(".selectpicker")
-        .selectpicker({
-            multipleSeparator: " ",
-            filter: true
-        })
-        .on("changed.bs.select", function () {
-            $(this).selectpicker("refresh");
-        });
+    // $(".selectpicker")
+    //     .selectpicker({
+    //         multipleSeparator: " ",
+    //         filter: true
+    //     })
+    //     .on("changed.bs.select", function () {
+    //         $(this).selectpicker("refresh");
+    //     });
 
     $("#inp_programing").on("change", function () {
         /**

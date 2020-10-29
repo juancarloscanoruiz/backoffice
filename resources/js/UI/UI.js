@@ -28,6 +28,7 @@ import {
     calendarSlick
 } from "../config/slick.js";
 
+import store from '../store'
 import {mvh} from '../app'
 
 /**

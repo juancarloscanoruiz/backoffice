@@ -35,13 +35,8 @@
 </head>
 
 <body class="bg-dark contenedor container-fluid">
-<!-- <body class="bg-dark contenedor container-fluid" style="margin: 1000px 0;"> -->
-    <div id="app">
-        <!-- <landing-canal-claro-component></landing-canal-claro-component> -->
-        <!-- <calendario-component></calendario-component> -->
-        <test-component></test-component>
+    <div>
     </div>
-    
 </body>
 
 </html>

@@ -104,9 +104,6 @@ $data_for_new_entry = json_encode([
     transform: rotate(45deg);
     }
 </style>
-
-
-
 <div class="grilla-claro-canal">
     <div class="ml-5 float-left">
         <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{$last_edition}}</span> </span></div>
