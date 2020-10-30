@@ -77,6 +77,8 @@ import {
     createCalendarDays
 } from "./vendor/slick.js";
 
+import store from './store'
+
 $(document).ready(function () {
 
 
@@ -944,6 +946,37 @@ $(document).ready(function () {
         $("#tb1").append(fila);
     }
 
+    // VUE
+    $('.lan_claro').on("click", function () {
+        $("#bodymenu").html("");
+        showlanding();
+    });
+
+    $('.gril-claro').on("click", function (event) {
+        $.ajax({
+            type: "POST",
+            url: "view",
+            data: {
+                view: "grilla-canal-claro-button"
+            },
+            beforeSend: function () {
+                const loader = `
+            <div class="loader-view-container">
+              <img src="./images/loader.gif" class="loader" alt="">
+            </div>
+            `;
+                $("body").append(loader);
+            },
+            success: function (result) {
+                console.log(result);
+                $("#general-programming").html("");
+                $("#general-programming").html(result);
+                eventsGrilla();
+                $(".loader-view-container").remove();
+            }
+        });
+    });
+    // VUE
 
 });
 

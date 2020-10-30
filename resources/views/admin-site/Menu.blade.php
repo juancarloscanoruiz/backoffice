@@ -1,5 +1,15 @@
 @extends('layaout.app')
 
+<?php
+$last_edition = $respuesta->data->grilla[0]->last_edition;
+$edited_for = $respuesta->data->grilla[0]->edited_for;
+$rol_user_edit = $respuesta->data->grilla[0]->user_rol;
+
+if ($rol_user_edit == 'root') {
+    $rol_user_edit = 'Súper Usuario';
+}
+?>
+
 @section('scripts')
 <script src="{{ asset('/js/lib/easyXDM.min.js')  }}"></script>
 @endsection
@@ -15,7 +25,6 @@
 <body>
     <main>
         <div id="app">
-        <claro-networks-component></claro-networks-component>
             @include('partials.headers.headerPrograGeneral')
             <div class="justify-content-center centro mx-auto position-title">
                 <span class="text-titulo">PROGRAMACIÓN GENERAL <br> DEL </span>
@@ -45,6 +54,16 @@
                     </li>
                 </ul>
             </nav> -->
+            <div class="grilla-claro-canal">
+                <div class="ml-5 float-left">
+                    <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{ $last_edition }}</span>
+                        </span></div>
+                    <span class="a-text-black-light text-plus">Editado por: <label class="zona"> {{ $edited_for }} (<label class="zona ">{{ $rol_user_edit }}</label>)</label></span>
+                </div>
+                <btn-component></btn-component>
+                <div class="clearfix"></div>
+            </div>
+            <!-- <claro-networks-component></claro-networks-component> -->
             <div id="general-programming">
                 @include('partials.adm-CN.grillas.grilla-claro-canal')
             </div>

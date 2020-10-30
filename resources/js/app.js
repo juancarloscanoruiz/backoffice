@@ -16,6 +16,7 @@ import store from './store'
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('menu-component', require('./components/menu/Menu.vue').default);
+Vue.component('btn-component', require('./components/mvh/Buttons.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -34,7 +35,23 @@ export default new Vue({
     store,
 });
 
+(function () { mvh() })();
+
 function mvh() {
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+
+    let iframeProgramacion = {
+        remote: `${baseURL}programacion-edi.php`,
+        container: document.getElementById("viewIframe"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+
+    // new easyXDM.Socket(iframeProgramacion);
+
     $('.vueCalendar').on('click', function () {
         $('#calendar').modal('show')
     })
