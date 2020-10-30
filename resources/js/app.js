@@ -17,6 +17,7 @@ import store from './store'
 
 Vue.component('menu-component', require('./components/menu/Menu.vue').default);
 Vue.component('btn-component', require('./components/mvh/Buttons.vue').default);
+Vue.component('calendar-slider-component', require('./components/mvh/CalendarSlider.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

@@ -403,6 +403,7 @@ function showlanding() {
                 previewPage($(this));
             });
             eventsGrilla();
+            
             let date = new Date();
             let day = ('0' + date.getUTCDate()).slice(-2);
             let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);

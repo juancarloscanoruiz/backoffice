@@ -53,7 +53,8 @@ import {
     getCarruselHome,
     editHeaderHome,
     getContentHomeCinema,
-    getContentHomeHeaderCinema
+    getContentHomeHeaderCinema,
+    
 } from "./services/landing.js";
 
 //Configraciones para la librería de Cleave JS
@@ -208,7 +209,7 @@ function eventsGrilla() {
     };
 
     $(".btn-sis").click(function () {
-        let key = $(this).attr("key");
+        let key = $(this).attr("mvh");
         let date = new Date();
         let day = ("0" + date.getUTCDate()).slice(-2);
         let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
@@ -218,36 +219,21 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-    // let calendarsinopsis = $(".calendar-sinopsis-slider");
-    // try {
-    //     calendarsinopsis.slick("unslick");
-    //     $(".calendar-sinopsis-slider").slick({
-    //         slidesToShow: 11,
-    //         slidesToScroll: 11,
-    //         infinite: true,
-    //         dots: false,
-    //         centerMode: false,
-    //         arrows: true,
-    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    //     });
-    // } catch (error) {
-    //     $(".calendar-sinopsis-slider").slick({
-    //         slidesToShow: 11,
-    //         slidesToScroll: 11,
-    //         infinite: true,
-    //         dots: false,
-    //         centerMode: false,
-    //         arrows: true,
-    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    //     });
-    // }
+    let calendarsinopsis = $(".calendar-sinopsis-slider");
+    $(".calendar-sinopsis-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
+    calendarsinopsis.slick("unslick");
+    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
-    
-    // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
-
-    // createSlickSlider(calendarsinopsis, calendarSlick);
+    createSlickSlider(calendarsinopsis, calendarSlick);
 
     $(".calendar-sinopsis-slider").on(
         "click",
@@ -3934,7 +3920,6 @@ function eventsGrilla() {
         // })
 
          //Iniciamos el calendario Litepicker
-         /*
          let picker = new Litepicker({
              element: document.getElementById("date-start-input"),
              format: "YYYY-MM-DD",
@@ -3981,7 +3966,6 @@ function eventsGrilla() {
             numberOfColumns: 1,
             singleMode: false
         });
-        */
     }
 
     let programmingCarruselPicker = document.getElementById(
@@ -3990,7 +3974,6 @@ function eventsGrilla() {
 
     if (programmingCarruselPicker) {
         //Iniciamos el calendario Litepicker
-        /*
         let picker = new Litepicker({
             element: programmingCarruselPicker,
             format: "YYYY-MM-DD",
@@ -4032,7 +4015,6 @@ function eventsGrilla() {
             numberOfColumns: 1,
             singleMode: false
         });
-        */
     }
 
     $("#close_modals").click(function () {

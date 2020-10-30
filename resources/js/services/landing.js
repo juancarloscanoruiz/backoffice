@@ -90,14 +90,14 @@ function updateImagesOfProgrammingSlider(data) {
         contentType: false, //esto es para poder pasar el archivo
         cache: false,
         url: "landing/update-programming-carrusel",
-        beforeSend: function() {
+        beforeSend: function () {
             $(".modal-programming-carousel .modal-content").append(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             $(".loader-container").remove();
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -107,7 +107,7 @@ function updateImagesOfProgrammingSlider(data) {
                 $(".modal-programming-carousel").modal("hide");
             }
         }
-    }).fail(function(e) {
+    }).fail(function (e) {
         $(".loader-container").remove();
         $(".modal-programming-carousel").modal("hide");
         console.log(e);
@@ -121,7 +121,7 @@ function updateLogosOfLanding(data) {
         processData: false, //esto es para poder pasar el archivo
         contentType: false, //esto es para poder pasar el archivo
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $(".modal-edit-icons .modal-content").append(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -129,7 +129,7 @@ function updateLogosOfLanding(data) {
             );
         },
         url: "landing/updateLandingLogo",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".loader-container").remove();
@@ -147,7 +147,7 @@ function updateImageProgramOfLanding(data) {
         contentType: false, //esto es para poder pasar el archivo
         cache: false,
         url: "landing/updateImageProgram",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -158,7 +158,7 @@ function getChapterInfo(data, landing) {
         type: "GET",
         url: "landing/get-chapter-info/" + data,
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -171,7 +171,7 @@ function getChapterInfo(data, landing) {
             );
         },
 
-        success: function(result) {
+        success: function (result) {
             let capsule = "";
 
             switch (landing) {
@@ -380,14 +380,13 @@ function getChapterInfo(data, landing) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
-                            }">
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -396,14 +395,13 @@ function getChapterInfo(data, landing) {
                             daysSlider += `
                                 <li
                                 0
-                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
-                            }">
+                            )}" class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -413,9 +411,8 @@ function getChapterInfo(data, landing) {
                         if (i < 10) {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
-                            }">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -429,9 +426,8 @@ function getChapterInfo(data, landing) {
                         } else {
                             //Días restantes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
-                            }">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -450,28 +446,26 @@ function getChapterInfo(data, landing) {
                 for (let i = 1; i <= getDays(2); i++) {
                     if (i < 10) {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${
-                            data.program.section_id
-                        }">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-0${i}" section_id="${data.program.section_id
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth + 1,
-                                        i
-                                    )}</p>
+                                currentMonth + 1,
+                                i
+                            )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
                         `;
                     } else {
                         daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${
-                            data.program.section_id
-                        }">
+                            <li class="programming-item" date="${yearUTC}-${nextMonth}-${i}" section_id="${data.program.section_id
+                            }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth + 1,
-                                        i
-                                    )}</p>
+                                currentMonth + 1,
+                                i
+                            )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                             </li>
@@ -486,14 +480,13 @@ function getChapterInfo(data, landing) {
                         if (i < 10) {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${
-                                data.program.section_id
-                            }">
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-0${i}" section_id="${data.program.section_id
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -501,14 +494,13 @@ function getChapterInfo(data, landing) {
                         } else {
                             //Día actual activo
                             daysSlider += `
-                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
-                            }">
+                                <li class="programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
+                                }">
                                 <div class="day">
                                     <p class="day-text">${getDayName(
-                                        currentMonth,
-                                        i
-                                    )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
                                 </li>
@@ -518,9 +510,8 @@ function getChapterInfo(data, landing) {
                         if (i < 10) {
                             //Días siguientes
                             daysSlider += `
-                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
-                            }">
+                            <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
+                                }">
                             <div class="day">
                                 <p class="day-text">${getDayName(
                                     currentMonth,
@@ -533,14 +524,13 @@ function getChapterInfo(data, landing) {
                         } else {
                             //Días siguientes
                             daysSlider += `
-                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${
-                                data.program.section_id
-                            }">
+                                    <li class="programming-item" date="${yearUTC}-${monthUTC}-${i}" section_id="${data.program.section_id
+                                }">
                                     <div class="day">
                                         <p class="day-text">${getDayName(
-                                            currentMonth,
-                                            i
-                                        )}</p>
+                                    currentMonth,
+                                    i
+                                )}</p>
                                         <p class="day-number">${i}</p>
                                     </div>
                                     </li>
@@ -637,7 +627,7 @@ function getChapterInfo(data, landing) {
             dropdownTitles.selectpicker();
 
             let selectheader = $(".thumbnail-header1");
-            selectheader.on("hide.bs.select", function() {
+            selectheader.on("hide.bs.select", function () {
                 let keyValue = "";
                 let key = $("#prog_titulo_programa").attr("key");
                 let chapter_id = $(".edit-program-data-container").attr(
@@ -660,7 +650,7 @@ function getChapterInfo(data, landing) {
             <img src="./images/triangle.svg" alt="" class="position-absolute cursor-pointer dropimg">
         `;
             $(".edit-program-image .bootstrap-select").append(imageTriangle);
-            $(".dropimg").click(function() {
+            $(".dropimg").click(function () {
                 dropdownTitles.selectpicker("toggle");
             });
 
@@ -683,7 +673,7 @@ function getChapterInfo(data, landing) {
             let editProgramLandingGenres = "";
             let selectGenres = $("#edit-program-genres");
             //Verificamos si el usuario ha seleccionado un género o categoría
-            selectGenres.on("change", function() {
+            selectGenres.on("change", function () {
                 //Obtenemos los valores del selectpicker
                 let selected = $(this).val();
                 //Obtenemos el número de valores que hemos obtenido del arreglo
@@ -700,7 +690,7 @@ function getChapterInfo(data, landing) {
             });
 
             //Evento para cuando cerramos el selectpicker
-            selectGenres.on("hide.bs.select", function() {
+            selectGenres.on("hide.bs.select", function () {
                 let chapterId = $(".edit-program-data-container").attr(
                     "chapter_id"
                 );
@@ -713,7 +703,7 @@ function getChapterInfo(data, landing) {
                 editAttributeProgram(chapterId, key, keyValue);
             });
 
-            $(".available").click(function() {
+            $(".available").click(function () {
                 let section = $(this).attr("section");
                 switch (section) {
                     case "1":
@@ -818,9 +808,8 @@ function getChapterInfo(data, landing) {
 
             //Schedule Item Date Time
             let scheduleItemDate = data.program.day.split("-");
-            $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
-                scheduleItemDate[1]
-            }-${scheduleItemDate[0]}
+            $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${scheduleItemDate[1]
+                }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
             //Synopsis
             $(".edit-program-textarea").val(data.program.synopsis);
@@ -906,7 +895,7 @@ function newProgram(landing, schedule) {
         },
         cache: false,
 
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -914,7 +903,7 @@ function newProgram(landing, schedule) {
             );
         },
         url: "landing/newProgram",
-        success: function(result) {
+        success: function (result) {
             $(".loader-view-container").remove();
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
@@ -931,7 +920,7 @@ function getProgramming(date, section, time) {
             time: time
         },
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -939,7 +928,7 @@ function getProgramming(date, section, time) {
             );
         },
         url: "landing/getProgramming",
-        success: function(result) {
+        success: function (result) {
             $(".loader-view-container").remove();
             let data = JSON.parse(result);
 
@@ -1027,7 +1016,7 @@ function getProgramming(date, section, time) {
                 $("#prog_titulo_programa").selectpicker("destroy");
                 $("#prog_titulo_programa").selectpicker();
                 let selectheader = $(".thumbnail-header1");
-                selectheader.on("hide.bs.select", function() {
+                selectheader.on("hide.bs.select", function () {
                     let keyValue = "";
                     let key = $("#prog_titulo_programa").attr("key");
                     let chapter_id = $(".edit-program-data-container").attr(
@@ -1064,7 +1053,7 @@ function getProgramming(date, section, time) {
                     data.program.program.genre
                 );
 
-                $(".available").click(function() {
+                $(".available").click(function () {
                     let channel = $(this).attr("section");
                     switch (channel) {
                         case "1":
@@ -1169,9 +1158,8 @@ function getProgramming(date, section, time) {
                 }
                 //Schedule Item Date Time
                 let scheduleItemDate = data.program.day.split("-");
-                $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${
-                    scheduleItemDate[1]
-                }-${scheduleItemDate[0]}
+                $(".edit-schedule-date").val(`${scheduleItemDate[2]}-${scheduleItemDate[1]
+                    }-${scheduleItemDate[0]}
                 ${$(".edit-schedule-item-time").val(data.program.hour)}`);
 
                 //Synopsis
@@ -1223,7 +1211,7 @@ function newProgramByDate(section, date, time) {
             time: time
         },
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -1231,7 +1219,7 @@ function newProgramByDate(section, date, time) {
             );
         },
         url: "landing/newProgramByDate",
-        success: function(result) {
+        success: function (result) {
             $(".loader-view-container").remove();
             let data = JSON.parse(result);
             getChapterInfo(data.chapter_id);
@@ -1244,7 +1232,7 @@ function getContentConcertChannelHeader() {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -1252,7 +1240,7 @@ function getContentConcertChannelHeader() {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -1317,14 +1305,14 @@ function getCarruselHome(landing) {
             landing
         },
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -1918,7 +1906,7 @@ function getCarruselHome(landing) {
                         appendDots: $(".slaider-home-dots"),
                         initialSlide: 0,
                         infinite: false,
-                        customPaging: function(slider, i) {
+                        customPaging: function (slider, i) {
                             var thumb = $(slider.$slides[i]).data();
                             return (
                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -1935,7 +1923,7 @@ function getCarruselHome(landing) {
                         appendDots: $(".slaider-home-dots"),
                         initialSlide: 0,
                         infinite: false,
-                        customPaging: function(slider, i) {
+                        customPaging: function (slider, i) {
                             var thumb = $(slider.$slides[i]).data();
                             return (
                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -1994,13 +1982,13 @@ function getCarruselHome(landing) {
                 for (const chapter of data.data.chapters) {
                     $("#edit-genre-container .filter-option-inner").html(
                         '<div class="filter-option-inner-inner">' +
-                            chapter.chapter.program.genre +
-                            "</div>"
+                        chapter.chapter.program.genre +
+                        "</div>"
                     );
                 }
             }
 
-            $(".add-file-carrusel").click(function() {
+            $(".add-file-carrusel").click(function () {
                 let id = $(this).attr("id");
                 let key = $(".load-carrusel").attr("key");
                 let name = $(".load-carrusel").attr("program");
@@ -2011,7 +1999,7 @@ function getCarruselHome(landing) {
 }
 
 function imgCarruselHome(id, key, name) {
-    $("#img_carrusel_" + id).change(function() {
+    $("#img_carrusel_" + id).change(function () {
         viewImg(this, "#img-carrusel-home-" + id, id, key, name);
         viewEdit();
     });
@@ -2020,7 +2008,7 @@ function imgCarruselHome(id, key, name) {
 function viewImg(objFileInput, container, id, key, name) {
     let fileSrt = new FileReader();
     if (objFileInput.files[0]) {
-        fileSrt.onload = function(e) {
+        fileSrt.onload = function (e) {
             $(container).attr("src", e.target.result);
         };
         fileSrt.readAsDataURL(objFileInput.files[0]);
@@ -2049,7 +2037,7 @@ function captureImagesForChapter(data) {
         contentType: false, //esto es para poder pasar el archivo
         cache: false,
         url: "landing/captureImagesForChapter",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -2063,7 +2051,7 @@ function getContentHomeCinema(type) {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2071,7 +2059,7 @@ function getContentHomeCinema(type) {
             );
         },
         url: "landing/home",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -2108,7 +2096,7 @@ function getContentHomeHeader(type) {
     $.ajax({
         type: "GET",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2116,7 +2104,7 @@ function getContentHomeHeader(type) {
             );
         },
         url: "landing/home",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -2174,7 +2162,7 @@ function getContentHomeHeader(type) {
                             nextArrow:
                                 '<img src="./images/next.png" class="arrow-next" />',
                             infinite: false,
-                            customPaging: function(slider, i) {
+                            customPaging: function (slider, i) {
                                 var thumb = $(slider.$slides[i]).data();
                                 return (
                                     "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -2223,7 +2211,7 @@ function getContentHomeHeaderCinema() {
     $.ajax({
         type: "GET",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2231,7 +2219,7 @@ function getContentHomeHeaderCinema() {
             );
         },
         url: "landing/home",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -2257,7 +2245,7 @@ function getContentConcertChannelBlockHeader3() {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2265,7 +2253,7 @@ function getContentConcertChannelBlockHeader3() {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
                 let landingTitle = $(".modal-titles .section-landing-title");
@@ -2288,7 +2276,7 @@ function getContentConcertChannelBlock4One() {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2296,7 +2284,7 @@ function getContentConcertChannelBlock4One() {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
                 let landingTitle = $(".modal-titles .section-landing-title");
@@ -2319,7 +2307,7 @@ function getContentConcertChannelBlock4OTwo() {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2327,7 +2315,7 @@ function getContentConcertChannelBlock4OTwo() {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             if (data.code == 200) {
                 let landingTitle = $(".modal-titles .section-landing-title");
@@ -2349,7 +2337,7 @@ function getContentConcertChannel(type) {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -2357,7 +2345,7 @@ function getContentConcertChannel(type) {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -2381,12 +2369,11 @@ function getContentConcertChannel(type) {
                                             <img src="./images/synopsis/camara.svg" alt="add-photo"
                                                 class=" cursor-pointer add-photo " />
                                             <span class="a-text-bold-warm banner-text text-plus mt-3">1920px X 657px</span>
-                                            <img src="${
-                                                data.data[
-                                                    "block_1_image_slider_" +
-                                                        counter
-                                                ]
-                                            }"
+                                            <img src="${data.data[
+                                        "block_1_image_slider_" +
+                                        counter
+                                        ]
+                                        }"
                                                 class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                                         </label>
                                     </div>
@@ -2413,7 +2400,7 @@ function getContentConcertChannel(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -2431,7 +2418,7 @@ function getContentConcertChannel(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -2441,7 +2428,7 @@ function getContentConcertChannel(type) {
                                 }
                             });
                         }
-                        $(".add-banner-image-concert").click(function() {
+                        $(".add-banner-image-concert").click(function () {
                             //Cada vez que se haga click, el contador incrementa
                             let slideIndex =
                                 $(".load-programming-carousel").length + 1;
@@ -2465,7 +2452,7 @@ function getContentConcertChannel(type) {
                                 `
                             );
                         });
-                        $(".banner-slider-button").click(function() {
+                        $(".banner-slider-button").click(function () {
                             /*
                                 Arreglo para saber la posición de las imágenes que cargo el usuario
                                 es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -2474,7 +2461,7 @@ function getContentConcertChannel(type) {
                             //Arreglo para guardar imágenes de los usuarios
                             let imagesProgramming = [];
                             //Recorremos cada input para obtener las imágenes
-                            $(".image_programming").each(function() {
+                            $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
                                         $(this).attr("data-index")
@@ -2516,7 +2503,7 @@ function getContentConcertChannel(type) {
 function getConcertChannelPromo() {
     $.ajax({
         type: "POST",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 ` <div class = "loader-view-container pointer-none">
                 <img src = "./images/loader.gif" class = "loader"/>
@@ -2524,7 +2511,7 @@ function getConcertChannelPromo() {
             );
         },
         url: "landing/concertChannel",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             if (json.code == 200) {
                 $(".modal-promos-concert").modal("show");
@@ -2570,7 +2557,7 @@ function editHeaderLanding(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2578,7 +2565,7 @@ function editHeaderLanding(data) {
             );
         },
         url: "landing/editHeaderLanding",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -2598,7 +2585,7 @@ function editHomeHeader(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2606,7 +2593,7 @@ function editHomeHeader(data) {
             );
         },
         url: "landing/editHomeHeader",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -2621,7 +2608,7 @@ function editElementLanding(data) {
     $.ajax({
         type: "POST",
         data: data,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2629,7 +2616,7 @@ function editElementLanding(data) {
             );
         },
         url: "landing/editElementLanding",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             $(".loader-view-container").remove();
         }
@@ -2642,7 +2629,7 @@ function editPromoLanding(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2650,7 +2637,7 @@ function editPromoLanding(data) {
             );
         },
         url: "landing/editElementLanding",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -2668,7 +2655,7 @@ function editPromoLandingCinema(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2676,7 +2663,7 @@ function editPromoLandingCinema(data) {
             );
         },
         url: "landing/editPromoLandingCinema",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             let json = JSON.parse(result);
             if (json.code == 200) {
@@ -2692,7 +2679,7 @@ function editPromoLandingCinema(data) {
 function getProgrammingLanding(date, landing) {
     $.ajax({
         type: "GET",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2703,7 +2690,7 @@ function getProgrammingLanding(date, landing) {
             date
         },
         url: "landing/getProgrammingLanding",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -2800,7 +2787,7 @@ function getProgrammingLanding(date, landing) {
 function getProgramsLanding(date, landing = "") {
     $.ajax({
         type: "GET",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2811,7 +2798,7 @@ function getProgramsLanding(date, landing = "") {
             date
         },
         url: "landing/getProgrammingLanding",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -2896,7 +2883,7 @@ function getProgramsLanding(date, landing = "") {
 function getModalsCanalClaro(type) {
     $.ajax({
         type: "GET",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -2904,7 +2891,7 @@ function getModalsCanalClaro(type) {
             );
         },
         url: "landing/header",
-        success: function(result) {
+        success: function (result) {
             let obj = JSON.parse(result);
             if (obj.code == 200) {
                 console.log(obj);
@@ -2927,12 +2914,11 @@ function getModalsCanalClaro(type) {
                                         <img src="./images/synopsis/camara.svg" alt="add-photo"
                                             class="cursor-pointer add-photo " />
                                         <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
-                                        <img src="${
-                                            obj.data[
-                                                "block_1_image_slider_" +
-                                                    counter
-                                            ]
-                                        }"
+                                        <img src="${obj.data[
+                                    "block_1_image_slider_" +
+                                    counter
+                                    ]
+                                    }"
                                             class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                                     </label>
                                 </div>
@@ -2955,7 +2941,7 @@ function getModalsCanalClaro(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
 
                                     return (
@@ -2975,7 +2961,7 @@ function getModalsCanalClaro(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -2986,7 +2972,7 @@ function getModalsCanalClaro(type) {
                             });
                         }
 
-                        $(".banner-slider-button").click(function() {
+                        $(".banner-slider-button").click(function () {
                             /*
                                 Arreglo para saber la posición de las imágenes que cargo el usuario
                                 es decir, saber si subió la 1 y 3, o 2,3 etc.
@@ -2995,7 +2981,7 @@ function getModalsCanalClaro(type) {
                             //Arreglo para guardar imágenes de los usuarios
                             let imagesProgramming = [];
                             //Recorremos cada input para obtener las imágenes
-                            $(".image_programming").each(function() {
+                            $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
                                         $(this).attr("data-index")
@@ -3051,8 +3037,8 @@ function getModalsCanalClaro(type) {
                     case "claro-promo":
                         $("#back-promo-claro").html(
                             '<video autoplay muted controls class="img-back-modal img-promo" src="' +
-                                obj.data.block_3_video_url +
-                                '" /></video>'
+                            obj.data.block_3_video_url +
+                            '" /></video>'
                         );
                         $("#modal-promo").modal("show");
                         break;
@@ -3103,14 +3089,14 @@ function setImageSliderBanner(data) {
         contentType: false, //esto es para poder pasar el archivo
         cache: false,
         url: "landing/setImageSliderBanner",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             $(".loader-view-container").remove();
             let json = JSON.parse(result);
@@ -3121,7 +3107,7 @@ function setImageSliderBanner(data) {
                 $(".modal-programming-carousel").modal("hide");
             }
         }
-    }).fail(function(e) {
+    }).fail(function (e) {
         $(".loader-container").remove();
         $(".modal-programming-carousel").modal("hide");
     });
@@ -3131,7 +3117,7 @@ function FileHeader(objFileInput) {
     $("body").append(LOADER);
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
-        fileReader.onload = function(e) {
+        fileReader.onload = function (e) {
             $("#" + objFileInput.name).html(
                 '<img src="' + e.target.result + '" />'
             );
@@ -3147,7 +3133,7 @@ function editHeaderLandingClaro(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -3155,7 +3141,7 @@ function editHeaderLandingClaro(data) {
             );
         },
         url: "landing/editHeaderLandingClaro",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -3170,11 +3156,11 @@ function FilePromoImg(objFileInput) {
     $("body").append(LOADER);
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
-        fileReader.onload = function(e) {
+        fileReader.onload = function (e) {
             $("#back-promo-claro").html(
                 '<img class="img-back-modal img-promo" src="' +
-                    e.target.result +
-                    '" />'
+                e.target.result +
+                '" />'
             );
         };
     }
@@ -3184,7 +3170,7 @@ function editElementLandingClaro(data) {
     $.ajax({
         type: "POST",
         data: data,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -3192,7 +3178,7 @@ function editElementLandingClaro(data) {
             );
         },
         url: "landing/editElementLandingClaro",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -3209,11 +3195,11 @@ function FilePromoVideo(objFileInput) {
     $("body").append(LOADER);
     if (objFileInput.files[0]) {
         var fileReader = new FileReader();
-        fileReader.onload = function(e) {
+        fileReader.onload = function (e) {
             $("#back-promo-claro").html(
                 '<video autoplay controls class="img-back-modal img-promo" src="' +
-                    e.target.result +
-                    '" /></video>'
+                e.target.result +
+                '" /></video>'
             );
             $(".loader-view-container").remove();
         };
@@ -3235,7 +3221,7 @@ function getPromotionalsProgramsCarousel(
             landing
         },
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -3243,7 +3229,7 @@ function getPromotionalsProgramsCarousel(
             );
         },
 
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             $(".loader-view-container").remove();
@@ -3275,8 +3261,8 @@ function getPromotionalsProgramsCarousel(
 
             $("#numCarrusel").html(
                 '<h2 class="edit-program-modal-title h2 text-center a-text-black-brown-two pt-5">PROGRAMACIÓN PRINCIPAL - CARRUSEL ' +
-                    idCarousel +
-                    "</h2>"
+                idCarousel +
+                "</h2>"
             );
 
             for (const chapter of data.data.chapters) {
@@ -4039,7 +4025,7 @@ function getPromotionalsProgramsCarousel(
                     appendDots: $(".carrusel1-slider-dots1"),
                     initialSlide: 0,
                     infinite: false,
-                    customPaging: function(slider, i) {
+                    customPaging: function (slider, i) {
                         var thumb = $(slider.$slides[i]).data();
                         return (
                             "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -4056,7 +4042,7 @@ function getPromotionalsProgramsCarousel(
                     appendDots: $(".carrusel1-slider-dots1"),
                     initialSlide: 0,
                     infinite: false,
-                    customPaging: function(slider, i) {
+                    customPaging: function (slider, i) {
                         var thumb = $(slider.$slides[i]).data();
                         return (
                             "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -4069,7 +4055,7 @@ function getPromotionalsProgramsCarousel(
 
             $(".modal-edit-program-carrusel .carrusel1-slider-concert").on(
                 "afterChange",
-                function(slick, currentSlide) {
+                function (slick, currentSlide) {
                     $(".current-slide-number").text(
                         currentSlide.currentSlide + 1
                     );
@@ -4106,7 +4092,7 @@ function getPromotionalsProgramsCarousel(
                 ".modal-edit-program-carrusel .edit-program-genres"
             ).children(".list1");
             //Verificamos si el usuario ha seleccionado un género o categoría
-            selectGenres.on("changed.bs.select", function() {
+            selectGenres.on("changed.bs.select", function () {
                 //Obtenemos los valores del selectpicker
                 let selected = $(this).val();
 
@@ -4124,7 +4110,7 @@ function getPromotionalsProgramsCarousel(
                 console.log(editProgramLandingGenres);
             });
             //Evento para cuando cerramos el selectpicker
-            selectGenres.on("hide.bs.select", function() {
+            selectGenres.on("hide.bs.select", function () {
                 let chapterId = $(this).attr("chapter_id");
 
                 //Obtenemos la key
@@ -4144,7 +4130,7 @@ function getPromotionalsProgramsCarousel(
             let selectheader = $(
                 ".modal-edit-program-carrusel .carrusel-concert-select"
             ).children(".carrusel-concert-select");
-            selectheader.on("hide.bs.select", function() {
+            selectheader.on("hide.bs.select", function () {
                 let keyValue = "";
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
@@ -4199,10 +4185,10 @@ function getPromotionalsProgramsCarousel(
             $(
                 ".modal-edit-program-carrusel .edit-program-image .bootstrap-select"
             ).append(imageTriangle);
-            $(".dropimg").click(function() {
+            $(".dropimg").click(function () {
                 $(".carrusel-concert-select").selectpicker("toggle");
             });
-            $(".edit-program-attribute-text").blur(function(e) {
+            $(".edit-program-attribute-text").blur(function (e) {
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -4383,7 +4369,7 @@ function reload(idCarousel, landing) {
             landing
         },
         cache: false,
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             $("#edit-genre-container .dropdown-toggle").removeClass(
@@ -4392,8 +4378,8 @@ function reload(idCarousel, landing) {
             for (const chapter of data.data.chapters) {
                 $("#edit-genre-container .filter-option-inner").html(
                     '<div class="filter-option-inner-inner">' +
-                        chapter.chapter.program.genre +
-                        "</div>"
+                    chapter.chapter.program.genre +
+                    "</div>"
                 );
             }
         }
@@ -4405,7 +4391,7 @@ function getContentClaroCinema(type) {
     $.ajax({
         type: "POST",
         cache: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                         <img src="./images/loader.gif" class="loader"/>
@@ -4413,7 +4399,7 @@ function getContentClaroCinema(type) {
             );
         },
         url: "landing/claroCinema",
-        success: function(result) {
+        success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
@@ -4433,10 +4419,9 @@ function getContentClaroCinema(type) {
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
                                     <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
-                                    <img src="${
-                                        data.data[
-                                            "block_1_image_slider_" + counter
-                                        ]
+                                    <img src="${data.data[
+                                    "block_1_image_slider_" + counter
+                                    ]
                                     }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                                 </label>
                         </div>
@@ -4458,7 +4443,7 @@ function getContentClaroCinema(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -4477,7 +4462,7 @@ function getContentClaroCinema(type) {
                                 ),
                                 initialSlide: 0,
                                 infinite: false,
-                                customPaging: function(slider, i) {
+                                customPaging: function (slider, i) {
                                     let thumb = $(slider.$slides[i]).data();
                                     return (
                                         "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -4487,10 +4472,10 @@ function getContentClaroCinema(type) {
                                 }
                             });
                         }
-                        $("#image-programming-button-cinema").click(function() {
+                        $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                            $(".image_programming").each(function() {
+                            $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
                                         $(this).attr("data-index")
@@ -4513,7 +4498,7 @@ function getContentClaroCinema(type) {
                             data.append("landing", "Claro Cinema");
                             setImageSliderBanner(data);
                         });
-                        $("#close_modals").click(function() {
+                        $("#close_modals").click(function () {
                             console.log("cerreer");
                             $(".modal").modal("hide");
                             $("#modaledi").modal("hide");
@@ -4687,7 +4672,7 @@ function editPromoLandingClaro(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -4695,7 +4680,7 @@ function editPromoLandingClaro(data) {
             );
         },
         url: "landing/editPromoLandingClaro",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -4709,7 +4694,7 @@ function editPromoLandingClaro(data) {
 function getProgrammingSynopsis(landing, date) {
     $.ajax({
         type: "POST",
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -4720,7 +4705,7 @@ function getProgrammingSynopsis(landing, date) {
             date
         },
         url: "landing/getProgrammingSynopsisTable",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log("Sinopsis", json);
             if (json.code == 200) {
@@ -4843,7 +4828,7 @@ function getProgrammingSynopsis(landing, date) {
                 `);
             }
             $(".loader-view-container").remove();
-            $(".sinopsis").click(function() {
+            $(".sinopsis").click(function () {
                 //$(".modal-landing-sinopsis").modal("show");
             });
         }
@@ -4902,7 +4887,7 @@ async function updateImagesSynopsis(images) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -4910,7 +4895,7 @@ async function updateImagesSynopsis(images) {
             );
         },
         url: "landing/updateImagesSynopsis",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             if (json.code == 200) {
                 console.log("imágenes subidas correctamente", json);
@@ -4925,7 +4910,7 @@ function confLandingHome(baseURL) {
     let confLandingHome = {
         remote: `${baseURL}home-edi.php`,
         container: document.getElementById("navbar_prev_home_landing"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 const loader = `
@@ -4941,7 +4926,7 @@ function confLandingHome(baseURL) {
                     case "home-logos":
                         $("body").append(loader);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#loader1").remove();
                             addImagesModalIcons();
                             $(".modal-edit-icons").modal("show");
@@ -5000,7 +4985,7 @@ function confLandingHome(baseURL) {
     let confPrevHomeGrilla = {
         remote: `http://www.claronetworks.openofficedospuntocero.info/v1.2/home.php`,
         container: document.getElementById("navbar_prev_home_landing"),
-        onMessage: function(message, origin) {
+        onMessage: function (message, origin) {
             console.log(message);
             this.container.getElementsByTagName("iframe")[0].style.height =
                 message + "px";
@@ -5010,7 +4995,7 @@ function confLandingHome(baseURL) {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
-    $("#prev-landing-home-grilla").click(function() {
+    $("#prev-landing-home-grilla").click(function () {
         //Landing canal claro
         resetIframe($("#navbar_prev_home_landing iframe"), confPrevHomeGrilla);
         $("#prev-mobile")
@@ -5020,7 +5005,7 @@ function confLandingHome(baseURL) {
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
     });
-    $("#edit-landing-home-grilla").click(function() {
+    $("#edit-landing-home-grilla").click(function () {
         resetIframe($("#navbar_prev_home_landing iframe"), confLandingHome);
         $("#prev-mobile")
             .removeClass("cursor-pointer")
@@ -5043,7 +5028,7 @@ function editHeaderHome(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -5051,7 +5036,7 @@ function editHeaderHome(data) {
             );
         },
         url: "landing/editHeaderHome",
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
             console.log(json);
             if (json.code == 200) {
@@ -5097,5 +5082,5 @@ export {
     getCarruselHome,
     editHeaderHome,
     getContentHomeCinema,
-    getContentHomeHeaderCinema
+    getContentHomeHeaderCinema,
 };

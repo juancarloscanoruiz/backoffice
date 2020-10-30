@@ -54,7 +54,7 @@ if ($rol_user_edit == 'root') {
                     </li>
                 </ul>
             </nav> -->
-            <div class="grilla-claro-canal">
+            <!-- <div class="grilla-claro-canal">
                 <div class="ml-5 float-left">
                     <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{ $last_edition }}</span>
                         </span></div>
@@ -62,7 +62,7 @@ if ($rol_user_edit == 'root') {
                 </div>
                 <btn-component></btn-component>
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
             <!-- <claro-networks-component></claro-networks-component> -->
             <div id="general-programming">
                 @include('partials.adm-CN.grillas.grilla-claro-canal')

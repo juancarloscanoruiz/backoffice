@@ -111,7 +111,7 @@ $data_for_new_entry = json_encode([
         transform: rotate(45deg);
     }
 </style>
-<!-- <div class="grilla-claro-canal">
+<div class="grilla-claro-canal">
     <div class="ml-5 float-left">
         <div><span class="a-text-black-light text-plus">Última edición : <span class="zona">{{ $last_edition }}</span>
             </span></div>
@@ -122,7 +122,7 @@ $data_for_new_entry = json_encode([
         <button class="text-uppercase btn-landing a-btn-basic-small a-text-semi-brown-two text-plus lan-claro" id="btn-landing"><span>Landing</span></button>
     </div>
     <div class="clearfix"></div>
-</div> -->
+</div>
 <div id="bodymenu">
     <div id="grilla">
         <div class=" d-flex ml-5 pt-5 pb-4">

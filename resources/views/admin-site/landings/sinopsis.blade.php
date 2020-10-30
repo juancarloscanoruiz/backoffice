@@ -4,7 +4,7 @@
 
 <body>
     @include('partials.headers.headerPrograGeneral')
-    <div>
+    <div id="app">
         <!-- APROVARCAMBIOS -->
         <div id="title" class="mt-3">
             <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
@@ -35,17 +35,17 @@
                 <!--menu-->
                 <div class="row no-gutters">
                     <ul class="tv-list-programming col-md-9 mt-5 mb-5">
-                        <div class="col-md centro no-gap border-r d-flex justify-content-center btn-sis" key="canal-claro">
+                        <div class="col-md centro no-gap border-r d-flex justify-content-center btn-sis" mvh="canal-claro">
                             <li rel="claro-canal-programing" class="px-5 py-4 list-channel-item d-flex align-content-center list-channel-active">
                                 <img class="claro-nav-image" src="./images/home/tv-1.svg" alt="" id="icon_canal_claro" style="width: 150px" />
                             </li>
                         </div>
-                        <div class="col-md centro no-gap border-r d-flex justify-content-center btn-sis" key="concert-channel">
+                        <div class="col-md centro no-gap border-r d-flex justify-content-center btn-sis" mvh="concert-channel">
                             <li rel="concert-channel-programing" class="px-5 py-4 list-channel-item d-flex align-content-center">
                                 <img class="nav-image" src="{{ asset('/images/concert-black-icon.svg') }}" alt="" id="icon_concert_channel" style="width: 200px;" />
                             </li>
                         </div>
-                        <div class="col-md centro no-gap d-flex justify-content-center btn-sis" key="claro-cinema">
+                        <div class="col-md centro no-gap d-flex justify-content-center btn-sis" mvh="claro-cinema">
                             <li rel="claro-cinema-programing" class="px-5 py-4 list-channel-item d-flex align-content-center">
                                 <img class="nav-image" src="{{ asset('/images/home/cinema-home-img.svg') }}" alt="" id="icon_claro_cinema" style="width: 100px;" />
                             </li>
@@ -57,6 +57,7 @@
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
+                    <calendar-slider-component></calendar-slider-component>
                     <div class="mb-5 calendar-sinopsis-slider">
 
                     </div>
