@@ -17,7 +17,7 @@
                             class="input-image-program footer-input-image d-none" key="image_left">
                         <label for="footer-image-left-input"
                             class="label-footer-main-image mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo mb-3" style="z-index:10000">
                             <span class="a-text-bold-greyish-brown-two text-plus p-2 pr-3 pl-3  white-shadow"
                                 style="z-index:10000">500px
@@ -34,7 +34,7 @@
                             class="input-image-program footer-input-image d-none" key="image_right">
                         <label for="footer-image-right-input"
                             class="label-footer-main-image mb-0 cursor-pointer d-flex justify-content-center align-items-center h-100 flex-column load-modales">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo mb-3" style="z-index:10000">
                             <span class="a-text-bold-greyish-brown-two text-plus p-2 pr-3 pl-3  white-shadow"
                                 style="z-index:10000">500px
@@ -61,7 +61,7 @@
                                 <label for="social-media-1-input"
                                     class="position-relative label-footer cursor-pointer d-flex justify-content-center align-items-center flex-column oval-icon-social-media">
                                     <div class="mask-white"></div>
-                                    <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                                    <img src="./images/basic-icons/pencil-edit-teal.svg"
                                         alt="add-photo" class="add-photo" style="z-index:10000">
                                     <span class="a-text-bold-greyish-brown-two">58px X 58px</span>
                                     <img src=""
@@ -84,7 +84,7 @@
                                     class="input-image-program footer-input-image d-none">
                                 <label for="social-media-2-input"
                                     class="position-relative label-footer cursor-pointer d-flex justify-content-center align-items-center flex-column oval-icon-social-media">
-                                    <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                                    <img src="./images/basic-icons/pencil-edit-teal.svg"
                                         alt="add-photo" class="add-photo" style="z-index:10000">
                                     <div class="mask-white"></div>
                                     <span class="a-text-bold-greyish-brown-two">58px X 58px</span>
@@ -109,7 +109,7 @@
                                 <label for="social-media-3-input"
                                     class="position-relative label-footer cursor-pointer d-flex justify-content-center align-items-center flex-column oval-icon-social-media">
                                     <div class="mask-white"></div>
-                                    <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                                    <img src="./images/basic-icons/pencil-edit-teal.svg"
                                         alt="add-photo" class="add-photo" style="z-index:10000">
                                     <span class="a-text-bold-greyish-brown-two">58px X 58px</span>
                                     <img src=""
@@ -133,7 +133,7 @@
                                 <label for="social-media-4-input"
                                     class="position-relative label-footer cursor-pointer d-flex justify-content-center align-items-center flex-column oval-icon-social-media">
                                     <div class="mask-white"></div>
-                                    <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                                    <img src="./images/basic-icons/pencil-edit-teal.svg"
                                         alt="add-photo" class="add-photo" style="z-index:10000">
                                     <span class="a-text-bold-greyish-brown-two">58px X 58px</span>
                                     <img src=""
@@ -263,7 +263,7 @@
                         key="about_icon">
                     <label for="about_icon"
                         class="bor label-footer-icon position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                        <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
+                        <img src="./images/basic-icons/pencil-edit-teal.svg" alt="add-photo"
                             class="add-photo" style="z-index:10000">
 
                         <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -311,7 +311,7 @@
                             class="footer-input-image input-image-program logo-landing d-none">
                         <label for="menu_2_opcion_1_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -340,7 +340,7 @@
                             key="menu_2_opcion_2_icon">
                         <label for="menu_2_opcion_2_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -368,7 +368,7 @@
                             class="input-image-program footer-input-image logo-landing d-none">
                         <label for="menu_2_opcion_3_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -396,7 +396,7 @@
                             class="input-image-program footer-input-image d-none">
                         <label for="menu_2_opcion_4_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -424,7 +424,7 @@
                             class="input-image-program footer-input-image d-none">
                         <label for="menu_2_opcion_5_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -452,7 +452,7 @@
                             class="input-image-program footer-input-image d-none">
                         <label for="menu_2_opcion_6_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
@@ -480,7 +480,7 @@
                             class="input-image-program footer-input-image d-none">
                         <label for="menu_2_opcion_7_icon"
                             class="w-100 bor label-footer-option position-relative cursor-pointer d-flex justify-content-center align-items-center flex-column">
-                            <img src="http://localhost:8888/backoffice/public/images/synopsis/camara.svg"
+                            <img src="./images/basic-icons/pencil-edit-teal.svg"
                                 alt="add-photo" class="add-photo" style="z-index:10000">
 
                             <img src="{{ asset('images/synopsis/image-synopsis-horizontal.png') }}"
