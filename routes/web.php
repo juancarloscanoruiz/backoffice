@@ -61,7 +61,8 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 
     Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
-    // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
+
+    Route::post('getGrilla', "ProgramacionGeneralController@getGrilla");
 });
 
 //RUTAS PARA LANDING
@@ -111,6 +112,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
+    Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
     // MODAL CLARO
 });
 

@@ -774,6 +774,15 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
 
+    function getSynopsisTable(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSinospsisTable/" . $request->input("firstDay")
+        );
+        echo ($response->getBody()->getContents());
+    }
+
     function getSynopsis(Request $request)
     {
 

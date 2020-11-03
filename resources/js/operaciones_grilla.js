@@ -219,21 +219,21 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-    let calendarsinopsis = $(".calendar-sinopsis-slider");
-    $(".calendar-sinopsis-slider").slick({
-        slidesToShow: 11,
-        slidesToScroll: 11,
-        infinite: true,
-        dots: false,
-        centerMode: false,
-        arrows: true,
-        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    });
-    calendarsinopsis.slick("unslick");
-    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+    // let calendarsinopsis = $(".calendar-sinopsis-slider");
+    // $(".calendar-sinopsis-slider").slick({
+    //     slidesToShow: 11,
+    //     slidesToScroll: 11,
+    //     infinite: true,
+    //     dots: false,
+    //     centerMode: false,
+    //     arrows: true,
+    //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    // });
+    // calendarsinopsis.slick("unslick");
+    // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
-    createSlickSlider(calendarsinopsis, calendarSlick);
+    // createSlickSlider(calendarsinopsis, calendarSlick);
 
     $(".calendar-sinopsis-slider").on(
         "click",
