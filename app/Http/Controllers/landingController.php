@@ -386,8 +386,7 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            // $this->url . "section/" . $section
-            $this->url . "section/programation"
+            $this->url . "section/" . $section
         );
 
         $respuesta =  json_decode($response->getBody());
@@ -770,15 +769,6 @@ class landingController extends Controller
         $client = new Client();
         $response = $client->get(
             $this->url . "program/getSinospsisTable/" . $request->input("date")
-        );
-        echo ($response->getBody()->getContents());
-    }
-
-    function getSynopsisTable(Request $request)
-    {
-        $client = new Client();
-        $response = $client->get(
-            $this->url . "program/getSinospsisTable/" . $request->input("firstDay")
         );
         echo ($response->getBody()->getContents());
     }

@@ -1481,6 +1481,7 @@ export default class LandingView {
                 </div>`
             );
 
+            debugger;
             let text = $(".footer-textarea-privacy").val();
             let title = $(".footer-title-privacy").val();
 

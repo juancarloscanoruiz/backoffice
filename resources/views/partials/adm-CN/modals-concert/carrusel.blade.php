@@ -9,6 +9,8 @@
                 </div>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
 
+                <div class="cj"></div>
+
                 <div class="col-11 mx-auto">
                     <div class="float-right">
                         <div class="d-flex pl-5 ">
@@ -1368,7 +1370,7 @@
                                 <section class="text-center mb-3 d-flex justify-content-center">
                                     <button
                                         class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack  text-plus edit-landing-modal-button"
-                                        data-dismiss="modal-edit-program-carrusel" id="edit-program-modal-button">ACEPTAR</button>
+                                        data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
                                 </section>
 
                             </div>

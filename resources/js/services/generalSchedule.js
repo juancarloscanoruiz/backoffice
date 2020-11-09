@@ -10,7 +10,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger
+    debugger;
     let data = {
         chapter_id,
         key,
@@ -710,12 +710,12 @@ function filterDates(startDate, lastDate, landing) {
             `;
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
-            // let options = {
-            //     load: function(el) {
-            //         el.classList.add("fade-grilla");
-            //     }
-            // };
-            // createLazyLoad(".contenedor-fila", options);
+            let options = {
+                load: function(el) {
+                    el.classList.add("fade-grilla");
+                }
+            };
+            createLazyLoad(".contenedor-fila", options);
             eventsGrilla();
         }
     });
@@ -795,9 +795,9 @@ function addImagesModalBanner() {
                             slider +
                             `
                     <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
-                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" data-index="${counter}">
+                    <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming">
                     <label for="image_programming_${counter}"
-                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel">
+                        class="h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel" data-index="${counter}">
                         <img src="http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg" alt="add-photo"
                             class=" cursor-pointer add-photo" />
                         <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
@@ -864,7 +864,7 @@ function addImagesModalBanner() {
                     <div class="slick-slide">
                         <div>
                             <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
-                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0" data-index="${counter}">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
                                     <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>

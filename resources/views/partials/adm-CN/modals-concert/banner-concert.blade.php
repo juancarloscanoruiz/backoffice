@@ -3,11 +3,13 @@
     <div class="modal-dialog modal-dialog-centered m-0" role="document" style="max-width: 100%;">
         <div class="modal-content">
             <div class="modal-body">
+
+
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">BANNER PROGRAMACIÓN - CARRUSEL </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
                 <!--Slider pagination-->
-                <div class="d-flex dots-container mx-auto justify-content-between">
-                <div class="d-flex align-items-center">
+                <div class="dots-container mx-auto d-flex justify-content-between">
+                    <div class="d-flex">
                         <!--dots-->
                         <div class="programming-slider-dots-concert-channel mt-5 mb-5"></div>
                         <!--add slide-->

@@ -6,7 +6,6 @@ import {
     showModalDeleteUserBO,
     getNameCountry,
     getNameGender,
-    showPageUsersFront,
     showModalDeleteUserFront
 } from "../UI/UI.js";
 
@@ -1192,83 +1191,31 @@ function deleteUserFront(id) {
                 pointerEvents: "all"
             });
             if (json.code == 200) {
-
-                $(".modal-delete-user-front").modal("hide");
-
+                localStorage.setItem("usersFront", JSON.stringify(json.data));
+                //let users = JSON.parse(localStorage.getItem("usersFront"));
                 let users = json.data;
-                let userF = "";
+                let userBO = "";
                 users.forEach(user => {
-                    userF += `
+                    userBO += `
           <div class="pd-5">${user.name}</div>
           <div class='justify-content-center' _id="${user.id}">
-            <input type='image' src='./images/ojito-acti.svg' class='show-user-front-icon  btn-focus images'></input>
+            <!--Acciones-->
+            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus show-user-front-icon images' id='visual'></input>
             <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>
-            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus delete-user-front-icon images' _username="${user.name}"></input>
+            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-user-front-icon' _username="${user.name}"></input>
           </div>
           `;
                 });
-
-                $("#Admin-users-Front").html(`
-        <div class="sombras1 trans10 mb-5 ">
-          <div class="grid texto-general users-front-table">
-            <header>
-              <div class="text-title">Usuario</div>
-            </header>
-            <section class="section">
-              <div class="text-title">Acciones</div>
-            </section>
-            ${userF}
-          </div>
-
-        </div>
-        <div class="col-xl-1 user-front-table">
-
-        <div>
-        <ul class="description">
-        <li class="posi">
-        <input type="image" src="./images/ver-muestra.svg" class="btn-focus  tam "></input>
-        <div class="describe"><img src="./images/recuadro1-hover.svg"><span class="text-veri">Visualizar</span></div>
-        </li>
-        <li class="posi">
-        <input type="image" src="./images/edita-muestra.svg" class="btn-focus  tam"></input>
-        <div class="describe"><img src="./images/recuadro1-hover.svg"><span class="text-edita">Editar</span></div>
-        </li>
-        <li class="posi">
-        <input type="image" src="./images/borrar-muestra.svg" class="btn-focus  tam"></input>
-        <div class="describe"><img src="./images/recuadro1-hover.svg"><span class="text-borra">Borrar</span></div>
-        </li>
-        </ul>
-
-        </div>
-
-        </div>
+                $(".users-front-table").html(`
+        <header>
+          <div class="text-title">Usuario</div>
+        </header>
+        <section>
+          <div class="text-title">Acciones</div>
+        </section>
+        ${userBO}
         `);
-        showModalDeleteUserFront()
-        //        localStorage.setItem("usersFront", JSON.stringify(json.data));
-        //         let users = json.data;
-        //         console.log(users)
-        //         let userBO = "";
-        //         users.forEach(user => {
-        //             userBO += `
-        //   <div class="pd-5">${user.name}</div>
-        //   <div class='justify-content-center' _id="${user.id}">
-        //     <!--Acciones-->
-        //     <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus show-user-front-icon images' id='visual'></input>
-        //     <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>
-        //     <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-user-front-icon' _username="${user.name}"></input>
-        //   </div>
-        //   `;
-        //         });
-        //         $(".users-front-table").html(`
-        // <header>
-        //   <div class="text-title">Usuario</div>
-        // </header>
-        // <section>
-        //   <div class="text-title">Acciones</div>
-        // </section>
-        // ${userBO}
-        // `);
-                // $(".modal-delete-user-front").modal("hide");
+                $(".modal-delete-user-front").modal("hide");
                 //showModalDeleteUserFront();
                 //showUserFront();
             }

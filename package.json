@@ -11,31 +11,25 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
+        "lodash": "^4.17.13",
+        "parcel-bundler": "^1.12.4",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.26.8",
         "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10",
-        "vuex": "^3.5.1"
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "ant-design-vue": "^1.6.5",
+        "bootstrap": "^4.5.2",
         "bootstrap-select": "^1.13.18",
-        "browser-sync": "^2.26.12",
         "cleave.js": "^1.6.0",
         "crypto-js": "^4.0.0",
-        "gulp": "^4.0.2",
+        "jquery": "^3.5.1",
         "litepicker": "^1.5.7",
         "lozad": "^1.16.0",
-        "slick-carousel": "^1.8.1",
-        "v-calendar": "^1.1.1",
-        "v-md-date-range-picker": "^2.6.0",
-        "vue2-daterange-picker": "^0.6.1"
+        "popper.js": "^1.16.1",
+        "select2": "^4.0.13",
+        "slick-carousel": "^1.8.1"
     }
 }

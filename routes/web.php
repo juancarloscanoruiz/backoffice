@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,8 +62,7 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 
     Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
-
-    Route::post('getGrilla', "ProgramacionGeneralController@getGrilla");
+    // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
 });
 
 //RUTAS PARA LANDING
@@ -98,7 +98,6 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
     Route::get("/home", "landingController@getContentHome");
     Route::get('/header', "landingController@getModalsCanalClaro");
-    Route::post('/getLandingCanalClaro', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
     Route::post("/editElementLandingClaro", "landingController@editElementLandingClaro");
@@ -112,7 +111,6 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
-    Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
     // MODAL CLARO
 });
 
@@ -139,18 +137,15 @@ Route::get('/menus', function () {
 });
 
 Route::get('/menurris', function () {
-    return view('calendar');
+    return view('partials.adm-CN.modals-home.modal-banner');
 });
 //RUTA PARA REGRESAR A LANDING DE PROGRAMACIÓN
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
-
-
-
-
+// MODALES
 Route::get('/test',  function () {
-    return view('test.index');
+    return view('test');
 });
 Route::get('/imports',  function () {
     return view('imports.device-size');

@@ -147,6 +147,36 @@ class ProgramacionGeneralController extends Controller
         }
     }
 
+    public function getGrilla(Request $request)
+    {
+        $firstDay = "";
+        $lastDay = "";
+        if ($request->input('last-day') && $request->input('first-day')) {
+            $firstDay = $request->input('last-day');
+            $lastDay = $request->input('first-day');
+        } else {
+            $firstDay = date('Y-m-d');
+            $lastDay = date('Y-m-d');
+        }
+        //se obtine la version que se peuda editar
+        //si el usuario tiene una version se muestra si no se muestra la version maestra del dia
+        //en caso de que ninguna tenga datos se mostrara la maestra pero cn valores vacios, es decir al grilla aparecera en blanco
+        //el dia en que inicia la version maestra es:
+
+        $hoy = date('Y-m-d');
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/VersionEditable/" . $hoy . "&Claro Canal&" . session('id_user')
+        );
+        $respuesta =  json_decode($response->getBody());
+
+        if ($respuesta->code == 200) {
+            return view('layaout.adm-CN.Menu')->with('respuesta', $respuesta);
+        } else {
+            return back()->with("error", "Por el momento no podemos obtneer informacion intenta mas tarde");
+        };
+    }
+
     public function getImages($idimages)
     {
         $client = new Client();
@@ -341,7 +371,7 @@ class ProgramacionGeneralController extends Controller
                         'landing_id' => $data->landing_id,
                         'day' => $fecha_del_documento,
                         'version_id' => $data->version_id,
-                        "programas" => $programas
+                        "programas"=>$programas
                     ]
                 )]
             );
@@ -426,7 +456,7 @@ class ProgramacionGeneralController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/deleteProgramationTemporal/" . $request->version_id
+            $this->url . "program/deleteProgramationTemporal/".$request->version_id
         );
         $respuesta =  json_decode($response->getBody());
 
@@ -886,6 +916,7 @@ class ProgramacionGeneralController extends Controller
         if ($respuesta->code == 200) {
 
             return redirect()->route('programacion_general_id', ['id' => $chapterId]);
+
         }
     }
 
@@ -917,14 +948,5 @@ class ProgramacionGeneralController extends Controller
         );
         $respuesta =  $response->getBody();
         echo $respuesta;
-    }
-
-    public function getGrilla(Request $request)
-    {
-        $firstDay = $request->input('firstDay');
-        $usuario_id = session('id_user');
-        $client = new Client();
-        $response = $client->get($this->url . "program/getProgramingGrillFirst/" . $firstDay . "&Claro Canal&" . $usuario_id);
-        echo ($response->getBody()->getContents());
     }
 }

@@ -1,4 +1,4 @@
-<div id="modal-carrusel-home" class="modal modal-edit-home-carrusel" style="overflow: auto;">
+<div id="modal-carrusel-home" class="modal modal-edit-program-carrusel" style="overflow: auto;">
     <div class="modal-dialog-centered modal-dialog max-width-modal-xl">
         <div class="modal-content modal-carrusel-home">
             <!-- TEXTO -->
