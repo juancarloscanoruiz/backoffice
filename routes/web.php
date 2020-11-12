@@ -145,7 +145,7 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
 });
 // MODALES
 Route::get('/test',  function () {
-    return view('test');
+    return view('test.test');
 });
 Route::get('/imports',  function () {
     return view('imports.device-size');

@@ -23,8 +23,10 @@
     "dependencies": {
         "bootstrap": "^4.5.2",
         "bootstrap-select": "^1.13.18",
+        "browser-sync": "^2.26.13",
         "cleave.js": "^1.6.0",
         "crypto-js": "^4.0.0",
+        "gulp": "^4.0.2",
         "jquery": "^3.5.1",
         "litepicker": "^1.5.7",
         "lozad": "^1.16.0",
