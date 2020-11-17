@@ -62,6 +62,7 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 
     Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
+    Route::post('getFirstGrilla', "ProgramacionGeneralController@getFirstGrilla")->name('programacion_general_id');
     // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
 });
 
@@ -96,7 +97,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getSynopsis", "landingController@getSynopsis");
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
-    Route::get("/home", "landingController@getContentHome");
+    Route::post("/home", "landingController@getContentHome");
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
@@ -111,6 +112,9 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
+
+    Route::post("/setImgCarruselHome", "landingController@setImgCarruselHome");
+    Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
     // MODAL CLARO
 });
 
@@ -143,10 +147,10 @@ Route::get('/menurris', function () {
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
-// MODALES
-Route::get('/test',  function () {
-    return view('test.test');
-});
 Route::get('/imports',  function () {
     return view('imports.device-size');
+});
+
+Route::get('/zaid',  function () {
+    return view('test');
 });

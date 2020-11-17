@@ -3,16 +3,16 @@ import "slick-carousel";
 
 var index
 
-function slickShowArrow() {
+function slickShowArrow(slick, dots) {
     try {
-        $(".slick-show").slick("unslick");
-        $('.slick-show').slick({
+        slick.slick("unslick");
+        slick.slick({
             dots: true,
             arrows: true,
             prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;" />',
             nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
             fade: true,
-            appendDots: $(".slick-dots-mvh"),
+            appendDots: dots,
             customPaging: function (slider, i) {
                 index = (i + 1)
                 return (
@@ -23,13 +23,13 @@ function slickShowArrow() {
             }
         });
     } catch (error) {
-        $('.slick-show').slick({
+        slick.slick({
             dots: true,
             arrows: true,
             prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;"/>',
             nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
             fade: true,
-            appendDots: $(".slick-dots-mvh"),
+            appendDots: dots,
             customPaging: function (slider, i) {
                 index = (i + 1)
                 return (
@@ -44,6 +44,31 @@ function slickShowArrow() {
     addSlickDots(index)
 }
 
+function slickShowCalendar() {
+    // try {
+    //     $(".slick-show").slick("unslick");
+    //     $('.slick-show').slick({
+    //         infinite: true,
+    //         slidesToShow: 11,
+    //         slidesToScroll: 11,
+    //         dots: false,
+    //         arrows: true,
+    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    //     });
+    // } catch (error) {
+    //     $('.slick-show').slick({
+    //         infinite: true,
+    //         slidesToShow: 11,
+    //         slidesToScroll: 11,
+    //         dots: false,
+    //         arrows: true,
+    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    //     });
+    // }
+}
+
 function addSlickDots(sliderLengt) {
     $('.add-dots-image').on('click', function () {
         sliderLengt++;
@@ -54,5 +79,6 @@ function addSlickDots(sliderLengt) {
 }
 
 export {
-    slickShowArrow
+    slickShowArrow,
+    slickShowCalendar
 }

@@ -21076,43 +21076,94 @@ module.exports = g;
 /*!*******************************!*\
   !*** ./resources/js/index.js ***!
   \*******************************/
-/*! exports provided: programacion */
+/*! exports provided: mvh, programacion, showModalSinopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mvh", function() { return mvh; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "programacion", function() { return programacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModalSinopsis", function() { return showModalSinopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/actions */ "./resources/js/store/actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
 
-var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>";
 
-(function () {
-  mvh();
-})();
+
+var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { sinopsis() })();x
 
 function mvh() {
-  programacion();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-prev-programacion').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-show').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html('');
+    programacion('programacion-edi.php');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-sinopsis').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+    sinopsis();
+  });
 }
 
-function programacion() {
+function programacion(landing) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
   var iframeProgramacion = {
-    remote: "".concat(URLBASE, "programacion-edi.php"),
-    container: document.getElementById("iframe-programacion"),
+    remote: URLBASE + landing,
+    container: document.getElementById("iframe-canal-claro"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 
       if (_typeof(json) == "object") {
+        console.log(json.type);
+
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            Object(_store_getters__WEBPACK_IMPORTED_MODULE_1__["getBanner"])();
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getProgramacion"])('banner');
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getProgramacion"])('logos');
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  };
+  new easyXDM.Socket(iframeProgramacion);
+}
+
+function sinopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+  Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getSynopsis"])();
+}
+
+function showModalSinopsis(obj) {
+  var LandingSinopsis = {
+    remote: "".concat(URLBASE, "sinopsis-edi.php"),
+    container: document.getElementById("sinopsis-iframe"),
+    onMessage: function onMessage(message, origin) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modalSinopsis').modal('show');
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case 'slider-pagination':
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["getBannerSinopsis"])(JSON.parse(obj));
             break;
         }
       }
@@ -21121,7 +21172,8 @@ function programacion() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   };
-  new easyXDM.Socket(iframeProgramacion);
+  var socket = new easyXDM.Socket(LandingSinopsis);
+  socket.postMessage(obj);
 }
 
 
@@ -21132,19 +21184,21 @@ function programacion() {
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getBannerProgramacion */
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerProgramacion", function() { return getBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLogosProgramacion", function() { return getLogosProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsisTable", function() { return getSynopsisTable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerSinopsis", function() { return getBannerSinopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
-/* harmony import */ var _events_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./events/events */ "./resources/js/store/events/events.js");
-/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./methods */ "./resources/js/store/methods.js");
+/* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
+/* harmony import */ var _events_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./events/events */ "./resources/js/store/events/events.js");
+/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./methods */ "./resources/js/store/methods.js");
+/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calendar/calendar */ "./resources/js/store/calendar/calendar.js");
 
 
 
@@ -21152,6 +21206,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function getBannerProgramacion(res) {
+  console.log(res);
   var slider = "";
   var counter = 1;
 
@@ -21168,13 +21223,178 @@ function getBannerProgramacion(res) {
     }
   }
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-show").html(slider);
-  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_2__["slickShowArrow"])();
-  Object(_events_events__WEBPACK_IMPORTED_MODULE_3__["previewImage"])();
-  Object(_events_events__WEBPACK_IMPORTED_MODULE_3__["closeModals"])();
-  Object(_methods__WEBPACK_IMPORTED_MODULE_4__["setBannerProgramacion"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-mvh").addClass('slick-programacion-canal');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh").addClass('slick-dots-programacion-canal');
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-programacion-canal');
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-programacion-canal');
+  slick.html(slider);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getLogosProgramacion(res) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_0").attr("src", res.icon_canal_claro);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_1").attr("src", res.icon_concert_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_2").attr("src", res.icon_claro_cinema);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").attr("value", res.url_canal_claro);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").attr("value", res.url_concert_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").attr("value", res.url_claro_cinema);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModalUrl"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnUrl"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setLogosProgramacion"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-logos').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getSynopsisTable(res, lastMonth, lastDay) {// let table = `<div class="contenedor-columna synop titletable text-center"><span class="a-text-MBlack a-text-prev">Programa</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Caracteres</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Imágenes</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Acciones</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Landing</span></div>`;
+  // let landing;
+  // let index;
+  // let sinopsis_len;
+  // let cant_imagenes;
+  // let cant_imagenes_switch;
+  // slickCalendar(lastMonth, lastDay);
+  // slickShowCalendar()
+  // landing = $('.subMenuLandingCase').attr('landing')
+  // if (landing == 'Canal Claro') {
+  //     index = 0;
+  // }
+  // if (landing == 'Concert Channel') {
+  //     index = 1;
+  // }
+  // if (landing == 'Claro Cinema') {
+  //     index = 2
+  // }
+  // res[index].programing[0].programs.forEach(programs => {
+  //     if (programs.sinopsis_info.sinopsis_len < 21) {
+  //         sinopsis_len = `<span class="a-text-semibold-tomato text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+  //     }
+  //     if (programs.sinopsis_info.sinopsis_len > 21 && programs.sinopsis_info.sinopsis_len < 144) {
+  //         sinopsis_len = `<span class="a-text-semibold-orange text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+  //     }
+  //     if (programs.sinopsis_info.sinopsis_len > 144) {
+  //         sinopsis_len = `<span class="a-text-semibold-greyish-brown-two text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+  //     }
+  //     if (programs.sinopsis_info.cant_imagenes <= 4) {
+  //         cant_imagenes = `<span class="a-text-semibold-tomato text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+  //         cant_imagenes_switch = `
+  //     <div v-if="programs.sinopsis_info.cant_imagenes <= 4" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+  //         <label for="yes-synopsis" id="yes-synopsis" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+  //         <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo label-active cursor-pointer switch-label">No</label>
+  //     </div>`
+  //     }
+  //     if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
+  //         cant_imagenes = `<span class="a-text-semibold-orange text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+  //         cant_imagenes_switch = `
+  //     <div v-if="programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+  //         <label for="yes-synopsis" id="yes-synopsis" class="mb-0 label-active si-estilo cursor-pointer switch-label">Sí</label>
+  //         <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo  cursor-pointer switch-label">No</label>
+  //     </div>`
+  //     }
+  //     if (programs.sinopsis_info.cant_imagenes >= 8) {
+  //         cant_imagenes = `<span class="a-text-semibold-greyish-brown-two text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+  //         cant_imagenes_switch = `
+  //     <div v-if="programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+  //         <label for="yes-synopsis" id="yes-synopsis" class="mb-0 label-active si-estilo cursor-pointer switch-label">Sí</label>
+  //         <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo  cursor-pointer switch-label">No</label>
+  //     </div>`
+  //     }
+  //     table += `
+  // <div class="contenedor-fila">
+  //     <div class="contenedor-columna pl-4">
+  //         <span class="a-text-medium-black text-normal">${programs.chapter_title}</span>
+  //     </div>
+  //     <div class="contenedor-columna text-center">${sinopsis_len}</div>
+  //     <div class="contenedor-columna text-center">${cant_imagenes}</div>
+  //     <div class="contenedor-columna text-center">
+  //         <input id="${programs.chapter_id}" type="image" src="./images/lapiz-acti.svg" alt="Editar" class="edi mr-3" name="edi" />
+  //         <input id="${programs.chapter_id}" type="image" src="./images/ojito-acti.svg" alt="Vizualizar" class="edi" name="prev" />
+  //     </div>
+  //     <div class="contenedor-columna text-center">${cant_imagenes_switch}</div>
+  // </div>`
+  // });
+  // $('.show-sinopsis-table').addClass('mt-5')
+  // $('.show-sinopsis-table').html(table)
+  // evnSinopsis()
+  // closeModals()
+  // $(".loader-view-container").remove();
+}
+
+function getBannerSinopsis(res) {// res = res.data
+  // let slider = "";
+  // let counter = 1;
+  // while (true) {
+  //     try {
+  //         if (res['image_background_' + counter]) {
+  //             console.log(res['image_background_' + counter])
+  //             slider += `
+  //             <div class="container-banner">
+  //                 <img class="banner bor responsi-img img_banner_${counter}" src="${res["image_background_" + counter]}" alt="" />
+  //                 <input class="d-none previewImage" id="img_banner_${counter}" type="file" accept="image/*" index="${counter}"/>
+  //                 <div class="container-camera">
+  //                     <label for="img_banner_${counter}" class="cursor-pointer">
+  //                         <p class="text-center a-text-bold-warm text-plus mb-0">
+  //                             <img class="camera_${counter}" src="./images/basic-icons/camara.svg" /><span>1920px X 657px</span>
+  //                         </p>
+  //                     </label>
+  //                 </div>
+  //             </div>`
+  //             counter++;
+  //         } else {
+  //             break;
+  //         }
+  //     } catch (error) {
+  //         break;
+  //     }
+  // }
+  // $(".slick-show").html(slider);
+  // slickShowArrow()
+  // previewImage()
+  // closeModals()
+  // // setBannerProgramacion()
+  // $('#show-banner').modal('show');
+  // $(".loader-view-container").remove();
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/calendar/calendar.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/calendar/calendar.js ***!
+  \*************************************************/
+/*! exports provided: slickCalendar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickCalendar", function() { return slickCalendar; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function slickCalendar(lastMonth, lastDay) {// let date = new Date()
+  // let months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+  // let days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"]
+  // $('.monthSliderCalendar').html(months[date.getMonth()] + ' ' + date.getFullYear())
+  // for (let i = date.getDate(); i <= lastDay; i++) {
+  //     if (i == date.getDate()) {
+  //         $('.slick-show').append(`<div class="synopsis-calendar-item programming-item programming-item-active" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><p class="day-text"></p>${days[textDay(date.getFullYear(), date.getMonth(), i)]}<p class="day-number">${i}</p></div>`)
+  //     } else {
+  //         $('.slick-show').append(`<div class="synopsis-calendar-item programming-item" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><p class="day-text"></p>${days[textDay(date.getFullYear(), date.getMonth(), i)]}<p class="day-number">${i}</p></div>`)
+  //     }
+  // }
+}
+
+function textDay(y, m, d) {
+  var start = new Date(y, m, d);
+  return start.getDay();
 }
 
 
@@ -21185,15 +21405,20 @@ function getBannerProgramacion(res) {
 /*!*********************************************!*\
   !*** ./resources/js/store/events/events.js ***!
   \*********************************************/
-/*! exports provided: closeModals, previewImage */
+/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModals", function() { return closeModals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModalUrl", function() { return closeModalUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewImage", function() { return previewImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnUrl", function() { return evnUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnSinopsis", function() { return evnSinopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./resources/js/index.js");
+
 
 
 function previewImage() {
@@ -21217,6 +21442,72 @@ function closeModals() {
   });
 }
 
+function closeModalUrl() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-url').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('hide');
+  });
+}
+
+function evnUrl() {
+  var evn;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-url').on('click', function () {
+    evn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.children[1].children);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('show');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-url').on('click', function () {
+    console.log('llego');
+    console.log(evn);
+    evn.val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val());
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val('');
+    evn = '';
+  });
+}
+
+function evnSinopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edi').on('click', function () {
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('name');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: {
+        chapter_id: chapter_id
+      },
+      cache: false,
+      url: "landing/getSynopsis",
+      success: function success(res) {
+        eveRollEdiPrev(type);
+
+        if (type == 'edi') {
+          Object(_index__WEBPACK_IMPORTED_MODULE_1__["showModalSinopsis"])(JSON.stringify(JSON.parse(res)));
+        } // if ($(this).attr('name') == 'edi') {
+        //     let json = JSON.parse(res)
+        //     sinopsis(json.data)
+        //     // while (state.landingSinopsis[`image_background_${state.sliderLengt}`]) {
+        //     //     let url = state.landingSinopsis[`image_background_${state.sliderLengt}`]
+        //     //     let img = { img: url }
+        //     //     state.slider.push(img);
+        //     //     state.sliderLengt++
+        //     // }
+        //     // sinopsis(JSON.stringify(state.sinopsis))
+        //     // state.editable = true;
+        // } else {
+        //     // sinopsisPrev(JSON.stringify(state.sinopsis))
+        //     // state.previsualizacion = true;
+        // }
+
+      }
+    });
+  });
+}
+
+function eveRollEdiPrev(type) {
+  if (type == 'edi') {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rollEdiPrev').html("\n    <div class=\"d-flex prev text-small a-text-medium-brownish location mt-2\">\n        <input type=\"radio\" name=\"rol\" id=\"edit-syn\" checked />\n        <label for=\"edit-syn\" id=\"editar\" class=\"mujer-estilo d-flex align-items-center pl-4 pt-3\">\n            <p class=\" a-prev-title\">EDITAR</p>\n        </label>\n        <input type=\"radio\" name=\"rol\" id=\"prev-syn\" />\n        <label for=\"prev-syn\" id=\"previsualiza\" class=\"hombre-estilo pl-2 pt-3 a-prev-title\">\n            <p>PREVISUALIZAR</p>\n        </label>\n        <img src=\"./images/mobile.svg\" class=\"a-prev-image ml-3 mr-3 op-inac\" alt=\"mobile\">\n        <img src=\"./images/tablet.svg\" class=\"a-prev-image op-inac\" alt=\"tablet\">\n        <img src=\"./images/pc.svg\" class=\"a-prev-image ml-3 op-inac\" alt=\"pc\">\n    </div>");
+  } else {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rollEdiPrev').html("\n    <div class=\"d-flex prev text-small a-text-medium-brownish location mt-2\">\n        <input type=\"radio\" name=\"rol\" id=\"edit-syn\" />\n        <label for=\"edit-syn\" id=\"editar\" class=\"mujer-estilo d-flex align-items-center pl-4 pt-3\" name=\"edi\">\n            <p class=\" a-prev-title\">EDITAR</p>\n        </label>\n        <input type=\"radio\" name=\"rol\" id=\"prev-syn\" checked />\n        <label for=\"prev-syn\" id=\"previsualiza\" class=\"hombre-estilo pl-2 pt-3 a-prev-title\" name=\"prev\">\n            <p>PREVISUALIZAR</p>\n        </label>\n        <img src=\"./images/mobile.svg\" class=\"a-prev-image ml-3 mr-3 op-inac cursor-pointer\" alt=\"mobile\" id=\"prev-mobile\">\n        <img src=\"./images/tablet.svg\" class=\"a-prev-image op-inac cursor-pointer\" alt=\"tablet\" id=\"prev-tablet\">\n        <img src=\"./images/pc.svg\" class=\"a-prev-image ml-3 op-ac cursor-pointer\" alt=\"pc\" id=\"prev-desktop\">\n    </div>");
+  }
+}
+
 
 
 /***/ }),
@@ -21225,12 +21516,13 @@ function closeModals() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: getBanner */
+/*! exports provided: getProgramacion, getSynopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBanner", function() { return getBanner; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacion", function() { return getProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsis", function() { return getSynopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
@@ -21242,13 +21534,39 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 
 
-function getBanner() {
+function getProgramacion(type) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
     url: "landing/getSection/programation",
     success: function success(res) {
-      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerProgramacion"])(JSON.parse(res));
+      if (type == 'banner') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerProgramacion"])(JSON.parse(res));
+      } else if (type == 'logos') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getLogosProgramacion"])(JSON.parse(res));
+      }
+    }
+  });
+}
+
+function getSynopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getSynopsisTable",
+    success: function success(res) {
+      getLastDateCalendar(JSON.parse(res));
+    }
+  });
+}
+
+function getLastDateCalendar(sinopsis) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "general-program/getFirstGrilla",
+    success: function success(res) {
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getSynopsisTable"])(sinopsis.data, JSON.parse(res).data.last_day_calendar.split('-')[1], JSON.parse(res).data.last_day_calendar.split('-')[2]);
     }
   });
 }
@@ -21261,12 +21579,14 @@ function getBanner() {
 /*!***************************************!*\
   !*** ./resources/js/store/methods.js ***!
   \***************************************/
-/*! exports provided: setBannerProgramacion */
+/*! exports provided: setBannerProgramacion, setLogosProgramacion, setImgCarruselVertical */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBannerProgramacion", function() { return setBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLogosProgramacion", function() { return setLogosProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselVertical", function() { return setImgCarruselVertical; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _setters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setters */ "./resources/js/store/setters.js");
@@ -21292,9 +21612,43 @@ function setBannerProgramacion() {
 
     data.append("positions", index);
     data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programming-modal").val());
-    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["getImgBannerProgramacion"])(data);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerProgramacion"])(data);
     img = [];
     index = [];
+  });
+}
+
+function setLogosProgramacion() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-logos').on('click', function () {
+    var logo;
+    var data = new FormData();
+
+    for (var i = 0; i <= 2; i++) {
+      logo = document.getElementById('img_logo_' + i).files[0] || "";
+      data.append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img_logo_' + i).attr('mvh'), logo);
+    }
+
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
+    console.log(urlCanalClaro);
+    data.append("urlCanalClaro", urlCanalClaro);
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
+    data.append("urlConcertChannel", urlConertChannel);
+    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
+    data.append("urlClaroCinema", urlClaroCinema);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setlogoLnading"])(data);
+  });
+}
+
+function setImgCarruselVertical() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
+    var img = e.target.files[0];
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('chapter_id');
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('landing');
+    var data = new FormData();
+    data.append("thumbnail_list_vertical", img);
+    data.append("chapter_id", id);
+    data.append("landing", landing);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgCarruselHome"])(data);
   });
 }
 
@@ -21306,19 +21660,21 @@ function setBannerProgramacion() {
 /*!***************************************!*\
   !*** ./resources/js/store/setters.js ***!
   \***************************************/
-/*! exports provided: getImgBannerProgramacion */
+/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getImgBannerProgramacion", function() { return getImgBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerProgramacion", function() { return setImgBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setlogoLnading", function() { return setlogoLnading; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselHome", function() { return setImgCarruselHome; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
 
 
 
-function getImgBannerProgramacion(data) {
+function setImgBannerProgramacion(data) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     data: data,
@@ -21330,9 +21686,46 @@ function getImgBannerProgramacion(data) {
     url: "landing/update-programming-carrusel",
     success: function success(res) {
       console.log(res);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-programacion').html('');
-      Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])();
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+    }
+  });
+}
+
+function setlogoLnading(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/updateLandingLogo",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+    }
+  });
+}
+
+function setImgCarruselHome(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImgCarruselHome",
+    success: function success(res) {
+      console.log(res); // $('#iframe-programacion').html('');
+      // programacion()
+      // $('#show-banner').modal('hide');
     }
   });
 }
@@ -21345,12 +21738,13 @@ function getImgBannerProgramacion(data) {
 /*!*******************************************!*\
   !*** ./resources/js/store/slick/slick.js ***!
   \*******************************************/
-/*! exports provided: slickShowArrow */
+/*! exports provided: slickShowArrow, slickShowCalendar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickShowArrow", function() { return slickShowArrow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickShowCalendar", function() { return slickShowCalendar; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slick-carousel */ "./node_modules/slick-carousel/slick/slick.js");
@@ -21359,29 +21753,29 @@ __webpack_require__.r(__webpack_exports__);
 
 var index;
 
-function slickShowArrow() {
+function slickShowArrow(slick, dots) {
   try {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-show").slick("unslick");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-show').slick({
+    slick.slick("unslick");
+    slick.slick({
       dots: true,
       arrows: true,
       prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;" />',
       nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
       fade: true,
-      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh"),
+      appendDots: dots,
       customPaging: function customPaging(slider, i) {
         index = i + 1;
         return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
       }
     });
   } catch (error) {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-show').slick({
+    slick.slick({
       dots: true,
       arrows: true,
       prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;"/>',
       nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
       fade: true,
-      appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh"),
+      appendDots: dots,
       customPaging: function customPaging(slider, i) {
         index = i + 1;
         return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
@@ -21391,6 +21785,30 @@ function slickShowArrow() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh .slick-dots").append('<img src="./images/add-icon.svg" class="add-dots-image cursor-pointer">');
   addSlickDots(index);
+}
+
+function slickShowCalendar() {// try {
+  //     $(".slick-show").slick("unslick");
+  //     $('.slick-show').slick({
+  //         infinite: true,
+  //         slidesToShow: 11,
+  //         slidesToScroll: 11,
+  //         dots: false,
+  //         arrows: true,
+  //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+  //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  //     });
+  // } catch (error) {
+  //     $('.slick-show').slick({
+  //         infinite: true,
+  //         slidesToShow: 11,
+  //         slidesToScroll: 11,
+  //         dots: false,
+  //         arrows: true,
+  //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+  //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  //     });
+  // }
 }
 
 function addSlickDots(sliderLengt) {

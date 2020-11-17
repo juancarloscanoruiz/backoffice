@@ -27,6 +27,8 @@ import {
 import {
     calendarSlick
 } from "../config/slick.js";
+
+import { mvh, programacion } from '../index'
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -219,7 +221,7 @@ function createNavbarProgramacionGeneral() {
         if ($(this).hasClass("navbar-canal-claro")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-sinopsis")) {
-            changeContentProgramacionGeneral($(this).attr("rel"));
+            // changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-programacion")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
@@ -404,6 +406,9 @@ function showlanding() {
             let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
             let year = date.getUTCFullYear();
             getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
+
+            mvh()
+            programacion('programacion-edi.php')
         }
     });
 }
@@ -692,16 +697,16 @@ function showLandingSchedule(id) {
                     $("#general-programming")
                         .html(result)
                         .promise();
-                        let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
-                        // let baseURL = "https://localhost/MaquetaCNetworks/"
-                        confLandingHome(baseURL);
-                        const prevImage = $(".a-prev-image");
+                    let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+                    // let baseURL = "https://localhost/MaquetaCNetworks/"
+                    confLandingHome(baseURL);
+                    const prevImage = $(".a-prev-image");
 
-            prevImage.click(function () {
-                let prevContainer = $("iframe");
-                previewPage($(this));
-            });
-                        eventsGrilla();
+                    prevImage.click(function () {
+                        let prevContainer = $("iframe");
+                        previewPage($(this));
+                    });
+                    eventsGrilla();
                 }
             });
             break;

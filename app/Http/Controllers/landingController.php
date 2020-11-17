@@ -547,7 +547,7 @@ class landingController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/actual_programing_programation/gmt&" . $request->input("date")
+            $this->url . "program/actual_programing_programation/gmt&" . $request->input("date") . '&0'
         );
         echo ($response->getBody()->getContents());
     }
@@ -1115,5 +1115,57 @@ class landingController extends Controller
             )]
         );
         return $response->getBody()->getContents();
+    }
+
+    public function setImgCarruselHome(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        switch ($request->input('landing')) {
+            case 'canal_claro':
+                $img = $this->storeImages($request->input('chapter_id'), $request->file('thumbnail_list_vertical'), "public/canal-claro/section-home-vertical");
+                break;
+            case 'concert_channel':
+                $img = $this->storeImages($request->input('chapter_id'), $request->file('thumbnail_list_vertical'), "public/concert-channel/section-home-vertical");
+                break;
+            case 'claro_cinema':
+                $img = $this->storeImages($request->input('chapter_id'), $request->file('thumbnail_list_vertical'), "public/claro-cinema/section-home-vertical");
+                break;
+            default:
+                break;
+        }
+
+        $response = $client->post(
+            $this->url . "program/CaptureImagesForChapter",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'chapter_id' => $request->input('chapter_id'),
+                    "thumbnail_list_horizontal" => "",
+                    "thumbnail_list_vertical" => $img,
+                    "image_synopsis" => "",
+                    "image_synopsis_frame_1" => "",
+                    "image_synopsis_frame_2" => "",
+                    "image_synopsis_frame_3" => "",
+                    "image_background_1" => "",
+                    "image_background_2" => "",
+                    "image_background_3" => ""
+                ]
+            )]
+        );
+
+        return $response->getBody()->getContents();
+    }
+
+    function getSynopsisTable()
+    {
+        $date = date('y-m-d');
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/getSinospsisTable/" . $date
+        );
+        echo ($response->getBody()->getContents());
     }
 }
