@@ -115,6 +115,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
 
     Route::post("/setImgCarruselHome", "landingController@setImgCarruselHome");
     Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
+    Route::post("/getCanalClaro", "landingController@getCanalClaro");
     // MODAL CLARO
 });
 
@@ -148,7 +149,7 @@ Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
 Route::get('/imports',  function () {
-    return view('imports.device-size');
+    return view('components.imports');
 });
 
 Route::get('/zaid',  function () {

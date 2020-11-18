@@ -5,7 +5,7 @@ $.ajaxSetup({
     }
 });
 
-import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable } from './actions'
+import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro } from './actions'
 
 function getProgramacion(type) {
     $.ajax({
@@ -44,4 +44,15 @@ function getLastDateCalendar(sinopsis) {
     })
 }
 
-export { getProgramacion, getSynopsis}
+function getCanalClaro() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "landing/getCanalClaro",
+        success: function (res) {
+            getBannerCanalClaro(JSON.parse(res))
+        }
+    })
+}
+
+export { getProgramacion, getSynopsis, getCanalClaro}

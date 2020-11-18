@@ -5,7 +5,7 @@ import { setImgBannerProgramacion, setImgCarruselHome, setlogoLnading } from './
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 var img = [], index = [];
 
-function setBannerProgramacion() {
+function setBannerProgramacion(lang) {
     $('.previewImage').on('change', function (e) {
         img.push(e.target.files[0]);
         index.push($(this).attr('index'));

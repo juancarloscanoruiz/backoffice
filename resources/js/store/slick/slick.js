@@ -44,29 +44,29 @@ function slickShowArrow(slick, dots) {
     addSlickDots(index)
 }
 
-function slickShowCalendar() {
-    // try {
-    //     $(".slick-show").slick("unslick");
-    //     $('.slick-show').slick({
-    //         infinite: true,
-    //         slidesToShow: 11,
-    //         slidesToScroll: 11,
-    //         dots: false,
-    //         arrows: true,
-    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    //     });
-    // } catch (error) {
-    //     $('.slick-show').slick({
-    //         infinite: true,
-    //         slidesToShow: 11,
-    //         slidesToScroll: 11,
-    //         dots: false,
-    //         arrows: true,
-    //         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    //         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    //     });
-    // }
+function slickShowCalendar(slick) {
+    try {
+        slick.slick("unslick");
+        slick.slick({
+            infinite: true,
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            dots: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+        });
+    } catch (error) {
+        slick.slick({
+            infinite: true,
+            slidesToShow: 11,
+            slidesToScroll: 11,
+            dots: false,
+            arrows: true,
+            prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+            nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+        });
+    }
 }
 
 function addSlickDots(sliderLengt) {

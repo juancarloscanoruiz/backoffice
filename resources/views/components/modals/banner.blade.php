@@ -9,7 +9,7 @@
                         <div class="navbar px-0 pb-5 pt-4">
                             <!-- DOCTS -->
                             <div class="d-flex align-items-center col-4">
-                                <div class="position-relative carrusel1-slider-dots1 slick-dots-mvh"></div>
+                                <div class="position-relative carrusel1-slider-dots1 slick-dots-mvh slick-dots-banner"></div>
                             </div>
                             <div>
                                 <h3 class="text-uppercase h3 a-text-black-brown-two">Vigencia</h3>
@@ -35,15 +35,17 @@
                     </div>
                 </div>
                 <div class="slick-mvh">
-                    <div class="container-banner">
-                        <img class="banner bor responsi-img img_banner_0" src="./images/synopsis/image-synopsis-carrusel.jpg" alt="" />
-                        <input class="d-none previewImage" id="img_banner_0" type="file" accept="image/*" />
-                        <div class="container-camera">
-                            <label for="img_banner_0" class="cursor-pointer">
-                                <p class="text-center a-text-bold-warm text-plus mb-0">
-                                    <img class="camera_0" src="./images/basic-icons/camara.svg" /><span>1920px X 657px</span>
-                                </p>
-                            </label>
+                    <div class="slick-banner">
+                        <div class="container-banner">
+                            <img class="banner bor responsi-img img_banner_0" src="./images/synopsis/image-synopsis-carrusel.jpg" alt="" />
+                            <input class="d-none previewImage" id="img_banner_0" type="file" accept="image/*" />
+                            <div class="container-camera">
+                                <label for="img_banner_0" class="cursor-pointer">
+                                    <p class="text-center a-text-bold-warm text-plus mb-0">
+                                        <img class="camera_0" src="./images/basic-icons/camara.svg" /><span>1920px X 657px</span>
+                                    </p>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>

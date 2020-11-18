@@ -29,6 +29,7 @@ import {
 } from "../config/slick.js";
 
 import { mvh, programacion } from '../index'
+// import { eveRollEdiPrev } from '../store/events/events'
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -223,7 +224,7 @@ function createNavbarProgramacionGeneral() {
         } else if ($(this).hasClass("navbar-sinopsis")) {
             // changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-programacion")) {
-            changeContentProgramacionGeneral($(this).attr("rel"));
+            // changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         }
@@ -302,6 +303,12 @@ function createNavbarProgramacionGeneral() {
 }
 
 function changeContentProgramacionGeneral(nameSection) {
+    $('#iframe-canal-claro').html('');
+    // $('#navbar-prev-canal-claro').html('');
+    $('.monthSliderCalendar').html('');
+    $('.slick-calendario').html('');
+    $('.show-sinopsis-table').html('')
+
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
     if (nameSection == "navbar-prev-sinopsis") {

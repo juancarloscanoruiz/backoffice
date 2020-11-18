@@ -1,6 +1,9 @@
 import $ from "jquery";
 
-import { showModalSinopsis } from '../../index'
+const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
+
+import { showModalSinopsis, programacion, iframePrev, clearIframe, showlanding } from '../../index'
+import { previewPage } from "../../preview/prev.js";
 
 function previewImage() {
     $('.previewImage').on('change', function (e) {
@@ -45,6 +48,7 @@ function evnUrl() {
 
 function evnSinopsis() {
     $('.edi').on('click', function () {
+        $("body").append(LOADER);
         let chapter_id = $(this).attr('id')
         let type = $(this).attr('name')
         $.ajax({
@@ -57,22 +61,6 @@ function evnSinopsis() {
                 if (type == 'edi') {
                     showModalSinopsis(JSON.stringify(JSON.parse(res)))
                 }
-
-                // if ($(this).attr('name') == 'edi') {
-                //     let json = JSON.parse(res)
-                //     sinopsis(json.data)
-                //     // while (state.landingSinopsis[`image_background_${state.sliderLengt}`]) {
-                //     //     let url = state.landingSinopsis[`image_background_${state.sliderLengt}`]
-                //     //     let img = { img: url }
-                //     //     state.slider.push(img);
-                //     //     state.sliderLengt++
-                //     // }
-                //     // sinopsis(JSON.stringify(state.sinopsis))
-                //     // state.editable = true;
-                // } else {
-                //     // sinopsisPrev(JSON.stringify(state.sinopsis))
-                //     // state.previsualizacion = true;
-                // }
             }
         })
     })
@@ -110,7 +98,49 @@ function eveRollEdiPrev(type) {
         <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
     </div>`)
     }
+}
 
+function loadRoll() {
+    let mvh;
+    $('#editar').on('click', function () {
+        $("#mvhImg").load("imports #mvh-edit");
+        mvh = $(this).attr('mvh');
+        switch (mvh) {
+            case '0':
+                clearIframe()
+                programacion('programacion-edi.php')
+                break
+            case '1':
+                console.log('en proseso')
+                break
+            case '2':
+                clearIframe()
+                showlanding('claro-canal-edi.php')
+                break
+        }
+    })
+
+    $('#previsualiza').on('click', function () {
+        $("#mvhImg").load("imports #mvh-prev", function () {
+            $(".a-prev-image").click(function () {
+                previewPage($(this));
+            });
+        });
+        mvh = $(this).attr('mvh');
+        switch (mvh) {
+            case '0':
+                clearIframe()
+                iframePrev('programacion-prev.php')
+                break
+            case '1':
+                console.log('en proseso')
+                break
+            case '2':
+                clearIframe()
+                iframePrev('claro-canal.php')
+                break
+        }
+    })
 }
 
 export {
@@ -118,5 +148,7 @@ export {
     closeModalUrl,
     previewImage,
     evnUrl,
-    evnSinopsis
+    evnSinopsis,
+    eveRollEdiPrev,
+    loadRoll
 }

@@ -1168,4 +1168,14 @@ class landingController extends Controller
         );
         echo ($response->getBody()->getContents());
     }
+
+    public function getCanalClaro()
+    {
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "section/canal_claro"
+        );
+
+        return $response->getBody()->getContents();
+    }
 }
