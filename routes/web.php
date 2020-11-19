@@ -62,6 +62,7 @@ Route::group(['prefix' => 'general-program', "middleware" => "session_user"], fu
     Route::post('addPrograming', "ProgramacionGeneralController@addPrograming")->name('addPrograming');
 
     Route::get('#img-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
+    Route::post('getFirstGrilla', "ProgramacionGeneralController@getFirstGrilla")->name('programacion_general_id');
     // Route::get('#entrada-{id}', "ProgramacionGeneralController@index")->name('programacion_general_id');
 });
 
@@ -89,14 +90,15 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/claroCinema", "landingController@getContentClaroCinema");
     Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
     Route::post("/editElementLanding", "landingController@editElementLanding");
-    Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
+    // Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
+    Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
     Route::post("/setImageSliderBanner", "landingController@setImageSliderBanner");
     Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
     Route::post("/getProgrammingSynopsisTable", "landingController@getProgrammingSynopsisTable");
     Route::post("/getSynopsis", "landingController@getSynopsis");
     Route::post("/editBlockSynopsis", "landingController@editBlockSynopsis");
     Route::post("/updateImagesSynopsis", "landingController@updateImages");
-    Route::get("/home", "landingController@getContentHome");
+    Route::post("/home", "landingController@getContentHome");
     Route::get('/header', "landingController@getModalsCanalClaro");
     Route::get("/getCarrusel1", "landingController@getCarrusel1");
     Route::post("/editHeaderLandingClaro", "landingController@editHeaderLandingClaro");
@@ -111,6 +113,11 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getContentRights", "landingController@getContentRights");
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
+
+    Route::post("/setImgCarruselHome", "landingController@setImgCarruselHome");
+    Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
+    Route::post("/getCanalClaro", "landingController@getCanalClaro");
+    Route::post("/setTitulo", "landingController@setTitulo");
     // MODAL CLARO
 });
 
@@ -143,10 +150,10 @@ Route::get('/menurris', function () {
 Route::group(['prefix' => 'lan-claro', "middleware" => "session_user"], function () {
     Route::get('/', "ProgramacionGeneralController@onlyday")->name('landings');
 });
-// MODALES
-Route::get('/test',  function () {
-    return view('test');
-});
 Route::get('/imports',  function () {
-    return view('imports.device-size');
+    return view('components.imports');
+});
+
+Route::get('/zaid',  function () {
+    return view('test');
 });

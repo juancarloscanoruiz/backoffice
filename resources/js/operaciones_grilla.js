@@ -143,21 +143,21 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-    let calendarsinopsis = $(".calendar-sinopsis-slider");
-    $(".calendar-sinopsis-slider").slick({
-        slidesToShow: 11,
-        slidesToScroll: 11,
-        infinite: true,
-        dots: false,
-        centerMode: false,
-        arrows: true,
-        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    });
-    calendarsinopsis.slick("unslick");
-    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+    // let calendarsinopsis = $(".calendar-sinopsis-slider");
+    // $(".calendar-sinopsis-slider").slick({
+    //     slidesToShow: 11,
+    //     slidesToScroll: 11,
+    //     infinite: true,
+    //     dots: false,
+    //     centerMode: false,
+    //     arrows: true,
+    //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    // });
+    // calendarsinopsis.slick("unslick");
+    // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
-    createSlickSlider(calendarsinopsis, calendarSlick);
+    // createSlickSlider(calendarsinopsis, calendarSlick);
 
     $(".calendar-sinopsis-slider").on(
         "click",
@@ -2265,7 +2265,7 @@ function eventsGrilla() {
                 <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program d-none image_programming " data-index="${slideIndex}">
                     <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column    ">
                         <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
-                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1000px X 342px</span>
+                        <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
                         <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
                     </label>
                     </div>
@@ -3184,7 +3184,7 @@ function eventsGrilla() {
                         <input type="file" name="image_programming[]" id="image_programming_${slideIndex}" class="input-image-program image_programming" data-index="${slideIndex}" tabindex="0">
                         <label for="image_programming_${slideIndex}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                             <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
-                            <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                            <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
                             <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program">
                         </label>
                     </div>
@@ -3450,10 +3450,10 @@ function eventsGrilla() {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
-                        <div class="loader-view-container" id="loader1">
-                            <img src="./images/loader.gif" class="loader" alt="">
-                        </div>
-                            `;
+                         <div class="loader-view-container" id="loader1">
+                             <img src="./images/loader.gif" class="loader" alt="">
+                         </div>
+                             `;
                 switch (json.type) {
                     case "program":
                         getChapterInfo(json.chapterId);
@@ -3547,12 +3547,13 @@ function eventsGrilla() {
                 );
                 break;
             case canalClaro:
-                resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    confPrevClaroCanal
                 );
                 break;
             case home:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro
-                );
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
                 break;
         }
     });
@@ -3579,26 +3580,26 @@ function eventsGrilla() {
                 resetIframe($("#navbar-prev-programacion iframe"), confIframe);
                 break;
             case canalClaro:
-                resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    landingCanalClaro
                 );
                 break;
             case canalClaro:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro
-                );
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
                 break;
         }
     });
 
-    // $("#edit").click(function () {
-    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    $("#edit").click(function () {
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
 
-    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    //     $("#prev-mobile").css("opacity", "0.4");
-    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    //     $("#prev-tablet").css("opacity", "0.4");
-    //     $("#prev-desktop").css("opacity", "1");
-    // });
-
+        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
     /////////////
     $(".input-image-program").change(function () {
         let currentInput = $(this);
@@ -4613,6 +4614,10 @@ function eventsGrilla() {
     );
     if (navbarLandingCanalClaro) {
         $("#navbar-prev-canal-claro iframe").remove();
+        $('#iframe-canal-claro').html('');
+        $('.monthSliderCalendar').html('');
+        $('.slick-calendario').html('');
+        $('.show-sinopsis-table').html('')
         new easyXDM.Socket(landingCanalClaro);
     }
     let confPrevClaroCanal = {
@@ -5043,21 +5048,6 @@ function eventsGrilla() {
         }
     });
 
-    // HOME
-    $(".acepta_carrusel_home").click(function () {
-        const loader = `
-        <div class="loader-view-container" id="loader1">
-          <img src="./images/loader.gif" class="loader" alt="">
-        </div>
-        `;
-        $("body").append(loader);
-
-        setTimeout(function () {
-            $("#loader1").remove();
-            console.log("si lo borra");
-        }, 2000);
-    });
-
     /* MVC */
 
     let LandingHomeClaro = {
@@ -5317,20 +5307,23 @@ function eventsGrilla() {
 
     /* MVC */
 
-    $('.thumbnail-image-program').click(function () {
+    $(".thumbnail-image-program").click(function () {
         let id = this.firstElementChild.attributes[4].value;
-        $('#image_programming_' + id).change(function () {
-            let data = this
+        $("#image_programming_" + id).change(function () {
+            let data = this;
             if (data.files[0]) {
                 fileSrt.onload = function (e) {
-                    $(".img_image_programming_" + id).attr('src', e.target.result);
+                    $(".img_image_programming_" + id).attr(
+                        "src",
+                        e.target.result
+                    );
                 };
             }
             fileSrt.readAsDataURL(data.files[0]);
         });
     });
 
-    $('.load-programming-carousel').click(function () {
+    $(".load-programming-carousel").click(function () {
         alert(this);
         console.log(this);
         console.log(this.firstElementChild.attributes[4].value);
@@ -5367,13 +5360,27 @@ function eventsGrilla() {
     //     });
     // })
 
-    $('#edit-program-modal-button').click(function () {
+    $("#edit-program-modal-button").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
         );
     });
 
+    $('#acepta_carrusel_home').on('click', function () {
+        let landing = $(this).attr('landing');
+        console.log(landing)
+        if (landing == 'canal_claro') {
+            resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+        }
+        if (landing == 'concert_channel') {
+            LandingHomeConcert
+            resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+        }
+        if (landing == 'claro_cinema') {
+            resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+        }
+    })
 }
 
 export { eventsGrilla };

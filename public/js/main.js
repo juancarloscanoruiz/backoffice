@@ -87858,7 +87858,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/landing.js */ "./resources/js/services/landing.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
 //SERVICES
+
 
 
 
@@ -88027,10 +88029,8 @@ function createNavbarProgramacionGeneral() {
 
     if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-canal-claro")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
-      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {// changeContentProgramacionGeneral($(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {// changeContentProgramacionGeneral($(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     }
@@ -88103,6 +88103,11 @@ function createNavbarProgramacionGeneral() {
 }
 
 function changeContentProgramacionGeneral(nameSection) {
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('#iframe-canal-claro').html(''); // $('#navbar-prev-canal-claro').html('');
+
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.monthSliderCalendar').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.slick-calendario').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_3___default()('.show-sinopsis-table').html('');
   jquery__WEBPACK_IMPORTED_MODULE_3___default()(".navbar-progra-content").hide();
   jquery__WEBPACK_IMPORTED_MODULE_3___default()("#" + nameSection).show();
 
@@ -88200,6 +88205,8 @@ function showlanding() {
       var month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
       var year = date.getUTCFullYear();
       Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getProgrammingSynopsis"])("canal-claro", "".concat(year, "-").concat(month, "-").concat(day));
+      Object(_index__WEBPACK_IMPORTED_MODULE_8__["mvh"])();
+      Object(_index__WEBPACK_IMPORTED_MODULE_8__["programacion"])('programacion-edi.php');
     }
   });
 } //Mandamos traer con ajax la vista de previsualizacion de concert channel
@@ -89074,6 +89081,260 @@ var PrevImageHelper = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/index.js":
+/*!*******************************!*\
+  !*** ./resources/js/index.js ***!
+  \*******************************/
+/*! exports provided: mvh, programacion, showModalSinopsis, sinopsisPrev, iframePrev, clearIframe, showlanding, home */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mvh", function() { return mvh; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "programacion", function() { return programacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModalSinopsis", function() { return showModalSinopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sinopsisPrev", function() { return sinopsisPrev; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iframePrev", function() { return iframePrev; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearIframe", function() { return clearIframe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanding", function() { return showlanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "home", function() { return home; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/actions */ "./resources/js/store/actions.js");
+/* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/events/events */ "./resources/js/store/events/events.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+
+
+var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { showlanding('claro-canal-edi.php'); mvh() })();
+// (function () { sinopsis(); })();
+
+function mvh() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-edit", function () {});
+  Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["loadRoll"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-programacion').on('click', function () {
+    clearIframe();
+    programacion('programacion-edi.php');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '0');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '0');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-sinopsis').on('click', function () {
+    clearIframe();
+    sinopsis();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '1');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '1');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-canal-claro').on('click', function () {
+    clearIframe();
+    showlanding('claro-canal-edi.php');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '2');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '2');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-home').on('click', function () {
+    clearIframe();
+    home('home-edi-claro.php');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '3');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '3');
+  });
+  Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getLastDateCalendar"])();
+}
+
+function programacion(landing) {
+  var iframeProgramacion = {
+    remote: URLBASE + landing,
+    container: document.getElementById("iframe-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getProgramacion"])('banner');
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getProgramacion"])('logos');
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  new easyXDM.Socket(iframeProgramacion);
+}
+
+function iframePrev(landing) {
+  var iframePrev = {
+    remote: URLBASE + landing,
+    container: document.getElementById("iframe-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      console.log(message);
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  new easyXDM.Socket(iframePrev);
+}
+
+function sinopsisPrev(obj) {
+  var iframePrev = {
+    remote: "".concat(URLBASE, "sinopsis-prev.php"),
+    container: document.getElementById("sinopsis-iframe"),
+    onMessage: function onMessage(message, origin) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modalSinopsis').modal('show');
+      Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["loadRoll"])();
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var socket = new easyXDM.Socket(iframePrev);
+  socket.postMessage(obj);
+}
+
+function sinopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+  Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getSynopsis"])();
+}
+
+function showModalSinopsis(obj) {
+  var LandingSinopsis = {
+    remote: "".concat(URLBASE, "sinopsis-edi.php"),
+    container: document.getElementById("sinopsis-iframe"),
+    onMessage: function onMessage(message, origin) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modalSinopsis').modal('show');
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case 'slider-pagination':
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["getBannerSinopsis"])(JSON.parse(obj));
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var socket = new easyXDM.Socket(LandingSinopsis);
+  socket.postMessage(obj);
+}
+
+function showlanding(landing) {
+  var iframeLanding = {
+    remote: URLBASE + landing,
+    container: document.getElementById("iframe-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('banner');
+            break;
+
+          case "claro-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('header');
+            break;
+
+          case "claro-programacion":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getModalProgramacion"])();
+            break;
+
+          case "claro-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-1');
+            break;
+
+          case "claro-promo":
+            break;
+
+          case "claro-carrusel-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-2');
+            break;
+
+          case "claro-carrusel1":
+            break;
+
+          case "claro-carrusel-title2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-3');
+            break;
+
+          case "claro-carrusel2":
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  new easyXDM.Socket(iframeLanding);
+}
+
+function home(landing) {
+  var iframeLanding = {
+    remote: URLBASE + landing,
+    container: document.getElementById("iframe-canal-claro"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+      console.log(json);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case 'slider-pagination':
+            break;
+
+          case 'home-claro-carrousel-main':
+            break;
+
+          case 'claro-home-header':
+            break;
+
+          case 'claro-home-slider':
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  new easyXDM.Socket(iframeLanding);
+}
+
+function clearIframe() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro iframe').remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendario').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner').remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner').html('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-mvh').html('<div class="slick-banner"></div>');
+}
+
+
+
+/***/ }),
+
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
@@ -89932,7 +90193,6 @@ var LandingModel = /*#__PURE__*/function () {
               case 0:
                 options = {
                   method: "POST",
-                  body: dataTermsPrivacy,
                   headers: {
                     "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
                   }
@@ -90044,24 +90304,30 @@ var LandingModel = /*#__PURE__*/function () {
     key: "getContentTerms",
     value: function () {
       var _getContentTerms = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response, data;
+        var options, response, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return fetch("landing/getContentRights");
+                options = {
+                  method: "POST",
+                  headers: {
+                    "X-CSRF-Token": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
+                  }
+                };
+                _context4.next = 3;
+                return fetch("landing/getContentRights", options);
 
-              case 2:
+              case 3:
                 response = _context4.sent;
-                _context4.next = 5;
+                _context4.next = 6;
                 return response.json();
 
-              case 5:
+              case 6:
                 data = _context4.sent;
                 return _context4.abrupt("return", data);
 
-              case 7:
+              case 8:
               case "end":
                 return _context4.stop();
             }
@@ -90512,21 +90778,21 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".content-table").html(" ");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])(key, "".concat(year, "-").concat(month, "-").concat(day));
   }); //calendario de sinopsis
+  // let calendarsinopsis = $(".calendar-sinopsis-slider");
+  // $(".calendar-sinopsis-slider").slick({
+  //     slidesToShow: 11,
+  //     slidesToScroll: 11,
+  //     infinite: true,
+  //     dots: false,
+  //     centerMode: false,
+  //     arrows: true,
+  //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+  //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  // });
+  // calendarsinopsis.slick("unslick");
+  // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+  // createSlickSlider(calendarsinopsis, calendarSlick);
 
-  var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
-    slidesToShow: 11,
-    slidesToScroll: 11,
-    infinite: true,
-    dots: false,
-    centerMode: false,
-    arrows: true,
-    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-  });
-  calendarsinopsis.slick("unslick");
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
-  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
@@ -91931,7 +92197,7 @@ function eventsGrilla() {
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Cada vez que se haga click, el contador incrementa
     //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column    \">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-claro-cinema").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(slideIndex, "\">\n                    <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column    \">\n                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                        <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                    </label>\n                    </div>\n                </div>\n            </div>\n            "));
   }); //para agregar un slider más en carrusel2-concert
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".add-programming-image").click(function () {
@@ -91951,7 +92217,7 @@ function eventsGrilla() {
     //Cada vez que se haga click, el contador incrementa
     var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-canal-claro").slick("slickAdd", "\n            <div class=\"slick-slide\">\n                <div>\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" tabindex=\"0\">\n                        <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                            <span class=\"a-text-bold-warm text-plus mt-3\">1920px X 657px</span>\n                            <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program\">\n                        </label>\n                    </div>\n                </div>\n            </div>\n            "));
   });
   /*function preloader() {
       console.log("si entra al metodo desde submenu");
@@ -92138,7 +92404,7 @@ function eventsGrilla() {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
-        var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        var loader = "\n                         <div class=\"loader-view-container\" id=\"loader1\">\n                             <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                         </div>\n                             ";
 
         switch (json.type) {
           case "program":
@@ -92253,15 +92519,15 @@ function eventsGrilla() {
         Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
         break;
     }
-  }); // $("#edit").click(function () {
-  //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-  //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-  //     $("#prev-mobile").css("opacity", "0.4");
-  //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-  //     $("#prev-tablet").css("opacity", "0.4");
-  //     $("#prev-desktop").css("opacity", "1");
-  // });
-  /////////////
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+  }); /////////////
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
@@ -93126,6 +93392,10 @@ function eventsGrilla() {
 
   if (navbarLandingCanalClaro) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendario').html('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html('');
     new easyXDM.Socket(landingCanalClaro);
   }
 
@@ -93522,15 +93792,6 @@ function eventsGrilla() {
     if (landing == "Concert Channel") {
       Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
     }
-  }); // HOME
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".acepta_carrusel_home").click(function () {
-    var loader = "\n        <div class=\"loader-view-container\" id=\"loader1\">\n          <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n        ";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-      console.log("si lo borra");
-    }, 2000);
   });
   /* MVC */
 
@@ -93780,21 +94041,21 @@ function eventsGrilla() {
   /* MVC */
 
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-image-program').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-image-program").click(function () {
     var id = this.firstElementChild.attributes[4].value;
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image_programming_' + id).change(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image_programming_" + id).change(function () {
       var data = this;
 
       if (data.files[0]) {
         fileSrt.onload = function (e) {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_image_programming_" + id).attr('src', e.target.result);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_image_programming_" + id).attr("src", e.target.result);
         };
       }
 
       fileSrt.readAsDataURL(data.files[0]);
     });
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.load-programming-carousel').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").click(function () {
     alert(this);
     console.log(this);
     console.log(this.firstElementChild.attributes[4].value);
@@ -93828,8 +94089,25 @@ function eventsGrilla() {
   //     });
   // })
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#edit-program-modal-button').click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-modal-button").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_carrusel_home').on('click', function () {
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('landing');
+    console.log(landing);
+
+    if (landing == 'canal_claro') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
+    }
+
+    if (landing == 'concert_channel') {
+      LandingHomeConcert;
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+    }
+
+    if (landing == 'claro_cinema') {
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+    }
   });
 }
 
@@ -94211,7 +94489,7 @@ function addImagesModalBanner(idpagination, totalslides) {
       while (true) {
         try {
           if (result["image_slider_" + counter]) {
-            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\" data-index=\"").concat(counter, "\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\"/>\n                    </label>\n                </div>");
+            slider = slider + "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\">\n                    <label for=\"image_programming_").concat(counter, "\"\n                        class=\"h-100 mb-0 d-flex justify-content-center align-items-center  flex-column load-programming-carousel\" data-index=\"").concat(counter, "\">\n                        <img src=\"http://back.claronetworks.openofficedospuntocero.info/backoffice/public/images/synopsis/camara.svg\" alt=\"add-photo\"\n                            class=\" cursor-pointer add-photo\" />\n                        <span class=\"a-text-bold-warm text-plus mt-3\">1920px X 657px</span>\n                        <img src=\"").concat(result["image_slider_" + counter], "\"\n                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\"/>\n                    </label>\n                </div>");
             counter++;
           } else {
             break;
@@ -94266,17 +94544,17 @@ function addImagesModalBanner(idpagination, totalslides) {
         //Cada vez que se haga click, el contador incrementa
         var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".load-programming-carousel").length; //Agregamos un slide al slider de programación
 
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n                    <div class=\"slick-slide\">\n                        <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_").concat(counter, "\">\n                                </label>\n                            </div>\n                        </div>\n                    </div>\n                    "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider").slick("slickAdd", "\n                    <div class=\"slick-slide\">\n                        <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1920px X 657px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_").concat(counter, "\">\n                                </label>\n                            </div>\n                        </div>\n                    </div>\n                    "));
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots .slick-dots").append(" <img src=\"./images/add-icon.svg\" class=\"add-programming-image cursor-pointer\">");
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.thumbnail-image-program').click(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".thumbnail-image-program").click(function () {
           var id = this.attributes[1].value;
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('#image_programming_' + id).change(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image_programming_" + id).change(function () {
             var data = this;
             var fileSrt = new FileReader();
 
             if (data.files[0]) {
               fileSrt.onload = function (e) {
-                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_image_programming_" + id).attr('src', e.target.result);
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_image_programming_" + id).attr("src", e.target.result);
               };
             }
 
@@ -94364,6 +94642,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
+/* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/events/events */ "./resources/js/store/events/events.js");
+/* harmony import */ var _store_methods__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store/methods */ "./resources/js/store/methods.js");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -94395,6 +94675,9 @@ function getMonth(idMonth) {
   var month = date.getUTCMonth() + idMonth;
   return month;
 }
+
+
+
 
 function getNextMonth(month) {
   var date = new Date();
@@ -94515,7 +94798,7 @@ function getChapterInfo(data, landing) {
 
       switch (landing) {
         case "canal-claro":
-          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
+          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">295px x 180px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
           break;
 
         case "concert-channel":
@@ -95289,6 +95572,7 @@ function getCarruselHome(landing) {
       break;
   }
 
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#acepta_carrusel_home').attr('landing', landing);
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     url: "landing/homeCarrusel",
@@ -95420,7 +95704,7 @@ function getCarruselHome(landing) {
               inHomeTimes = "\n                    <div class=\"row\">\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_begin\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-date-end\" placeholder=\"00:00:00\" chapter_id=\"".concat(chapter.chapter.id, "\" key=\"in_landing_begin\" value=\"\"></span>\n                            </div>\n                        </div>\n                        <div class=\"col-6\">\n                            <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\">\n                                <p class=\"text-small-rectangle a-text-bold-warm\">Fin</p>\n                                <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                <span class=\"a-text-bold-warm mt-3\">\n                                    <input key=\"in_home_expiration\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date edit-home-time-end\" placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\" key=\"in_landing_expiration\" value=\"\"></span>\n                            </div>\n                        </div>\n                    </div>");
             }
 
-            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.thumbnail_list_vertical, "\" chapter=\"").concat(chapter.chapter.id, "\" >\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input class=\"d-none load-carrusel\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\" program=\"").concat(chapter.chapter.title, "\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">472px X 295px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\" edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                        </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container borrando\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
+            program += "\n            <div class=\"container-fluid\">\n            <input type=\"hidden\" id=\"chapter_id_master\" class=\"chapter_id_master\" value=\"".concat(chapter_id_master, "\">\n            <div class=\"row\">\n                <div class=\"col-8\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Estableceren landing</p>\n                                <!--Switch-->\n                                ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n                                    <span class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel 1</span>\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inLandingDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inLandingTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATA TIME -->\n                        <div class=\"col-6 edit-program-data-container\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"text-plus text-plus text-uppercase a-text-bold-coolgray\" style=\"margin-bottom: 72px;\">Schedule Item Date time</p>\n                                <div class=\"row\">\n                                    <div class=\"col-6 mb-4\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                        <div class=\"text-center edit-rectangle-max-container py-2 d-flex align-content-center justify-content-center\" style=\"margin-bottom: 99px\">\n                                            <img src=\"./images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input key=\"\" type=\"text\" class=\"edit-program-attribute-text input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\" placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"col-6\">\n                                        <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                        <div class=\"text-center edit-rectangle-max-container d-flex align-content-center justify-content-center py-2\">\n                                            <img src=\"./images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                            <span class=\"a-text-bold-warm mt-2\">\n                                                <input type=\"text\" class=\"edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\" placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-6 edit-program-data-container mt-3\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray float-left\">Establecer en home</p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Fecha</p>\n                                    ").concat(inHomeDates, "\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                    ").concat(inHomeTimes, "\n                                </div>\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                        <div class=\"col-6 mt-3\">\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> subbed</p>\n                                ").concat(subbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between m-schedule\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Schedule version <br> dubbed</p>\n                                ").concat(dubbed, "\n                            </div>\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-0 text-plus text-uppercase a-text-bold-brown-two\">Audio 5.1 available</p>\n                                ").concat(audio5, "\n                            </div>\n                        </div>\n                        <!-- UNICOS Y DIFERENTES -->\n                    </div>\n                </div>\n                <div class=\"col-4 p-0\" id=\"img_carrusel_home\">\n                    <div>\n                        <!-- IMG -->\n                        <div class=\"position-relative text-center\">\n                            <img class=\"img-back-modal img-carrusel-home img_carrusel_").concat(chapter.chapter.id, "\" id=\"img-carrusel-home-").concat(chapter.chapter.id, "\" src=\"").concat(chapter.chapter.thumbnail_list_vertical, "\" chapter=\"").concat(chapter.chapter.id, "\" >\n                        </div>\n                        <!-- BTN ICONOS -->\n                        <div class=\"modal-img-carrusel\">\n                            <!-- INPUTS -->\n                            <input chapter_id=\"").concat(chapter.chapter.id, "\" class=\"d-none load-carrusel previewImage\" id=\"img_carrusel_").concat(chapter.chapter.id, "\" name=\"img-carrusel_").concat(chapter.chapter.id, "\" type=\"file\" key=\"thumbnail_list_vertical\" program=\"").concat(chapter.chapter.title, "\" landing=\"").concat(landing, "\">\n                            <!-- LABEL -->\n                            <label for=\"img_carrusel_").concat(chapter.chapter.id, "\" class=\"add-file load-programming-carousel\">\n                                <img id=\"").concat(chapter.chapter.id, "\" class=\"add-file-carrusel cursor-pointer mb-2\" src=\"./images/basic-icons/camara.svg\" alt=\"add-photo\" />\n                                <br>\n                                <p class=\"a-text-bold-warm text-plus\">295px X 472px</p>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <!-- NOMBRE DE LA IMAGEN -->\n                <div class=\"offset-8 col-4 p-0\">\n                    <span class=\"a-text-bold-brown-two text-plus my-4 d-block\">NombreDeLaImagen_Home_Vertical_20200709.jpg</span>\n                </div>\n                <!-- SINOPSIS -->\n                <div class=\"col-12\">\n                    <section class=\" edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                        <!--Textarea-->\n                        <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\" class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\" id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                        </section>\n                </div>\n                <div class=\"col-12\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode season</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.season, "\" type=\"text\" key=\"season\" class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program episode number</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program_episode_number, "\" type=\"text\" key=\"program_episode_number\" class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\" placeholder=\"000\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program year produced</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.year, "\" type=\"text\" key=\"program_year_produced\" class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"YYYY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container mt-3 chapter_id=\"").concat(chapter.chapter.id, "\"\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program title alternate</p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.subtitle, "\" type=\"text\" key=\"subtitle\" class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\" placeholder=\"Program Title Alternate\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative mt-3\" id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program genre list</p>\n                                <div class=\"mb-3 edit-rectangle-container borrando\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!-- CODE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule item rating code</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.program.rating, "\" type=\"text\" key=\"rating\" class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\" placeholder=\"PG-00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DATE -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item log date</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase\">Fecha</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\" type=\"text\" key=\"day\" class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"DD:MM:YY\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- GMT -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule item log time (gmt)</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.hour, "\" type=\"text\" key=\"programing\" class=\"edit-schedule-item-time edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\n                        <!-- DURATION -->\n                        <div class=\"col-4 edit-program-data-container mt-3\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated schedule item duration</p>\n                                <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA</p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <input chapter_id=\"").concat(chapter.chapter.id, "\" value=\"").concat(chapter.chapter.duration, "\" type=\"text\" key=\"duration\" class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\" placeholder=\"00:00:00\">\n                                </div>\n                            </div>\n                        </div>\xA0\n                    </div>\n                </div>\n            </div>\n        </div>\n                    ");
           }
         } catch (err) {
           _iterator.e(err);
@@ -95515,12 +95799,13 @@ function getCarruselHome(landing) {
         }
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".add-file-carrusel").click(function () {
-        var id = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("id");
-        var key = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".load-carrusel").attr("key");
-        var name = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".load-carrusel").attr("program");
-        imgCarruselHome(id, key, name);
-      });
+      Object(_store_events_events__WEBPACK_IMPORTED_MODULE_8__["previewImage"])();
+      Object(_store_methods__WEBPACK_IMPORTED_MODULE_9__["setImgCarruselVertical"])(); // $(".add-file-carrusel").click(function() {
+      //     let id = $(this).attr("id");
+      //     let key = $(".load-carrusel").attr("key");
+      //     let name = $(".load-carrusel").attr("program");
+      //     imgCarruselHome(id, key, name);
+      // });
     }
   });
 }
@@ -95820,7 +96105,7 @@ function getContentConcertChannel(type) {
             while (true) {
               try {
                 if (data.data["block_1_image_slider_".concat(counter)]) {
-                  image += "\n                                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                        <label for=\"image_programming_1\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                                class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                            <img src=\"".concat(data.data["block_1_image_slider_" + counter], "\"\n                                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                        </label>\n                                    </div>\n                                    ");
+                  image += "\n                                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_1\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                        <label for=\"image_programming_1\"\n                                            class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                            <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                                class=\" cursor-pointer add-photo \" />\n                                            <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1920px X 657px</span>\n                                            <img src=\"".concat(data.data["block_1_image_slider_" + counter], "\"\n                                                class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                        </label>\n                                    </div>\n                                    ");
                   counter++;
                 } else {
                   break;
@@ -95864,7 +96149,7 @@ function getContentConcertChannel(type) {
               //Cada vez que se haga click, el contador incrementa
               var slideIndex = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".load-programming-carousel").length + 1; //Agregamos un slide al slider de programación
 
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel").slick("slickAdd", "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1000px X 342px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program  img_image_programming_").concat(slideIndex, "\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                "));
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel").slick("slickAdd", "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(slideIndex, "\" class=\"input-image-program image_programming\" data-index=\"").concat(slideIndex, "\" d-none\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(slideIndex, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm banner-text text-plus mt-3\">1920px X 657px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program  img_image_programming_").concat(slideIndex, "\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                "));
             });
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".banner-slider-button").click(function () {
               /*
@@ -96218,7 +96503,7 @@ function getModalsCanalClaro(type) {
 
             while (true) {
               if (obj.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\"cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                    </label>\n                                </div>\n                                ");
+                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\"cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                    </label>\n                                </div>\n                                ");
                 counter++;
               } else {
                 break;
@@ -96919,7 +97204,7 @@ function getContentClaroCinema(type) {
 
             while (true) {
               if (data.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1000px X 342px</span>\n                                    <img src=\"").concat(data.data["block_1_image_slider_" + counter], "\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                </label>\n                        </div>\n                        ");
+                image += "\n                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                    <img src=\"").concat(data.data["block_1_image_slider_" + counter], "\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                </label>\n                        </div>\n                        ");
                 counter++;
               } else {
                 break;
@@ -98284,6 +98569,942 @@ function sendEmailResetPassword(input) {
         jquery__WEBPACK_IMPORTED_MODULE_3___default()("#modal-send-email").modal("show");
       }
     }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/actions.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/actions.js ***!
+  \***************************************/
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerProgramacion", function() { return getBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLogosProgramacion", function() { return getLogosProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsisTable", function() { return getSynopsisTable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerSinopsis", function() { return getBannerSinopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerCanalClaro", function() { return getBannerCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaderCanalClaro", function() { return getHeaderCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacionCanalClaro", function() { return getProgramacionCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTitleCanalClaro", function() { return getTitleCanalClaro; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
+/* harmony import */ var _events_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./events/events */ "./resources/js/store/events/events.js");
+/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./methods */ "./resources/js/store/methods.js");
+/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calendar/calendar */ "./resources/js/store/calendar/calendar.js");
+
+
+
+
+
+var landing;
+
+function getBannerProgramacion(res) {
+  var slider = "";
+  var counter = 1;
+
+  while (true) {
+    try {
+      if (res["image_slider_" + counter]) {
+        slider += "\n            <div class=\"container-banner\">\n                <img class=\"banner bor responsi-img img_banner_".concat(counter, "\" src=\"").concat(res["image_slider_" + counter], "\" alt=\"\" />\n                <input class=\"d-none previewImage\" id=\"img_banner_").concat(counter, "\" type=\"file\" accept=\"image/*\" index=\"").concat(counter, "\"/>\n                <div class=\"container-camera\">\n                    <label for=\"img_banner_").concat(counter, "\" class=\"cursor-pointer\">\n                        <p class=\"text-center a-text-bold-warm text-plus mb-0\">\n                            <img class=\"camera_").concat(counter, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span>\n                        </p>\n                    </label>\n                </div>\n            </div>");
+        counter++;
+      } else {
+        break;
+      }
+    } catch (error) {
+      break;
+    }
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
+  slick.html(slider);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])('programacion');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getLogosProgramacion(res) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_0").attr("src", res.icon_canal_claro);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_1").attr("src", res.icon_concert_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img_logo_2").attr("src", res.icon_claro_cinema);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").attr("value", res.url_canal_claro);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").attr("value", res.url_concert_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").attr("value", res.url_claro_cinema);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModalUrl"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnUrl"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setLogosProgramacion"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-logos').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getSynopsisTable(res, lastMonth, lastDay) {
+  var table = "<div class=\"contenedor-columna synop titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Programa</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Caracteres</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Im\xE1genes</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Acciones</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Landing</span></div>";
+  var index;
+  var sinopsis_len;
+  var cant_imagenes;
+  var cant_imagenes_switch;
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendario');
+  var slickMonth = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar');
+  Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick, slickMonth);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowCalendar"])(slick);
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    index = 0;
+  }
+
+  if (landing == 'Concert Channel') {
+    index = 1;
+  }
+
+  if (landing == 'Claro Cinema') {
+    index = 2;
+  }
+
+  res = res.data[index].programing[0].programs;
+  res.forEach(function (programs) {
+    if (programs.sinopsis_info.sinopsis_len < 21) {
+      sinopsis_len = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 21 && programs.sinopsis_info.sinopsis_len < 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.cant_imagenes <= 4) {
+      cant_imagenes = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes <= 4\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes >= 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    table += "\n          <div class=\"contenedor-fila\">\n              <div class=\"contenedor-columna pl-4\">\n                  <span class=\"a-text-medium-black text-normal\">".concat(programs.chapter_title, "</span>\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(sinopsis_len, "</div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes, "</div>\n              <div class=\"contenedor-columna text-center\">\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"Editar\" class=\"edi mr-3\" name=\"edi\" />\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"Vizualizar\" class=\"edi\" name=\"prev\" />\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes_switch, "</div>\n          </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').addClass('mt-5');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html(table);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnSinopsis"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getBannerSinopsis(res) {
+  res = res.data;
+  var slider = "";
+  var counter = 1;
+
+  while (true) {
+    try {
+      if (res['image_background_' + counter]) {
+        slider += "\n                <div class=\"container-banner\">\n                    <img class=\"banner bor responsi-img img_banner_".concat(counter, "\" src=\"").concat(res["image_background_" + counter], "\" alt=\"\" />\n                    <input class=\"d-none previewImage\" id=\"img_banner_").concat(counter, "\" type=\"file\" accept=\"image/*\" index=\"").concat(counter, "\"/>\n                    <div class=\"container-camera\">\n                        <label for=\"img_banner_").concat(counter, "\" class=\"cursor-pointer\">\n                            <p class=\"text-center a-text-bold-warm text-plus mb-0\">\n                                <img class=\"camera_").concat(counter, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span>\n                            </p>\n                        </label>\n                    </div>\n                </div>");
+        counter++;
+      } else {
+        break;
+      }
+    } catch (error) {
+      break;
+    }
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
+  slick.html(slider);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])(); // // setBannerProgramacion()
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getBannerCanalClaro(res) {
+  res = res.data;
+  var slider = "";
+  var counter = 1;
+
+  while (true) {
+    try {
+      if (res["block_1_image_slider_" + counter]) {
+        slider += "\n            <div class=\"container-banner\">\n                <img class=\"banner bor responsi-img img_banner_".concat(counter, "\" src=\"").concat(res["block_1_image_slider_" + counter], "\" alt=\"\" />\n                <input class=\"d-none previewImage\" id=\"img_banner_").concat(counter, "\" type=\"file\" accept=\"image/*\" index=\"").concat(counter, "\"/>\n                <div class=\"container-camera\">\n                    <label for=\"img_banner_").concat(counter, "\" class=\"cursor-pointer\">\n                        <p class=\"text-center a-text-bold-warm text-plus mb-0\">\n                            <img class=\"camera_").concat(counter, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span>\n                        </p>\n                    </label>\n                </div>\n            </div>");
+        counter++;
+      } else {
+        break;
+      }
+    } catch (error) {
+      break;
+    }
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
+  slick.html(slider);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])('canal');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getHeaderCanalClaro(res) {
+  res = res.data;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img-header").attr('src', res.block_2_icon_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val(res.block_2_title_1);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val(res.block_2_title_2);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-3").val(res.block_2_button_title);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(res.block_2_button_url);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModalUrl"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnUrl"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setHeaderCanalClaro"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getProgramacionCanalClaro(res, lastMonth, lastDay) {
+  var programacion = '';
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    res = res.data[0].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/tv-1.svg');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('width', '200px');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').removeClass();
+  }
+
+  if (landing == 'Concert Channel') {
+    res = res.data[1].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/concert-black-icon.svg');
+  }
+
+  if (landing == 'Claro Cinema') {
+    res = res.data[2].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/cinema-home-img.svg');
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendarioProg');
+  var slickMonth = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendarProg');
+  Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick, slickMonth);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowCalendar"])(slick);
+  res.forEach(function (programs) {
+    programacion += "\n        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n            <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(landing, "\" chapter_id=\"").concat(programs.chapter_id, "\">\n            <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                    ").concat(programs.Program_Title, " - ").concat(programs.chapter_title, "\n                </p>\n                <div class=\"schedule-item-body\">\n                    <div class=\"schedule-poster\">\n                        <div class=\"poster\">\n                            <div class=\"thumbnail-edit\" _id=\"").concat(programs.chapter_id, "\">\n                                <img src=\"").concat(programs.image, "\" class=\"w-100\" alt=\"\">\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"schedule-details\">\n                        <div class=\"schedule-details-header\">\n                            <div>\n                                <p class=\"schedule a-text-semi-brown-two\">\n                                    ").concat(programs.time, " hrs.\n                                </p>\n                                <p class=\"rating a-text-semibold-warm-grey-five\">\n                                    Clasificaci\xF3n: A\n                                </p>\n                            </div>\n                            <div>\n                                <button title=\"Agregar a mi lista\" class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\" viewBox=\"0 0 48 44\">\n                                        <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\" stroke=\"#7A7777\" stroke-width=\"3\" d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                    </svg>\n                                </button>\n                            </div>\n                        </div>\n                        <div>\n                            <span class=\"schedule-description a-text-regular-warm-grey-five s1\" id=\"synopsis-edi\">").concat(programs.sinopsis, "</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-modal-programacion').html(programacion);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-programacion').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getTitleCanalClaro(res, id) {
+  res = res.data;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val('');
+
+  if (id == 1) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_3_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_3_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_3_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_3_subtitle");
+  }
+
+  if (id == 2) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_4_carrusel_1_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_4_carrusel_1_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_4_carrusel_1_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_4_carrusel_1_subtitle");
+  }
+
+  if (id == 3) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_4_carrusel_2_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_4_carrusel_2_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_4_carrusel_2_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_4_carrusel_2_subtitle");
+  }
+
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setTituloCanalClaro"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/calendar/calendar.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/calendar/calendar.js ***!
+  \*************************************************/
+/*! exports provided: slickCalendar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickCalendar", function() { return slickCalendar; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function slickCalendar(lastMonth, lastDay, slick, slickMonth) {
+  var date = new Date();
+  var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  var days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"];
+  slickMonth.html(months[date.getMonth()] + ' ' + date.getFullYear());
+
+  for (var i = date.getDate(); i <= lastDay; i++) {
+    if (i == date.getDate()) {
+      slick.append("<div class=\"synopsis-calendar-item programming-item programming-item-active\" date=\"".concat(date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i, "\"><p class=\"day-text\"></p>").concat(days[textDay(date.getFullYear(), date.getMonth(), i)], "<p class=\"day-number\">").concat(i, "</p></div>"));
+    } else {
+      slick.append("<div class=\"synopsis-calendar-item programming-item\" date=\"".concat(date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i, "\"><p class=\"day-text\"></p>").concat(days[textDay(date.getFullYear(), date.getMonth(), i)], "<p class=\"day-number\">").concat(i, "</p></div>"));
+    }
+  }
+}
+
+function textDay(y, m, d) {
+  var start = new Date(y, m, d);
+  return start.getDay();
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/events/events.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/events/events.js ***!
+  \*********************************************/
+/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, loadRoll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModals", function() { return closeModals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModalUrl", function() { return closeModalUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewImage", function() { return previewImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnUrl", function() { return evnUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnSinopsis", function() { return evnSinopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadRoll", function() { return loadRoll; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./resources/js/index.js");
+/* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../preview/prev.js */ "./resources/js/preview/prev.js");
+
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>";
+
+
+
+function previewImage() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
+    var evn = e.target;
+    var reader = new FileReader();
+
+    if (evn.files && evn.files[0]) {
+      reader.onload = function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.' + evn.id).attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(evn.files[0]);
+    }
+  });
+}
+
+function closeModals() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+  });
+}
+
+function closeModalUrl() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-url').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('hide');
+  });
+}
+
+function evnUrl() {
+  var evn;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-url').on('click', function () {
+    evn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.children[1].children);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('show');
+    console.log(evn);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-url').on('click', function () {
+    evn.val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val());
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val('');
+    evn = '';
+  });
+}
+
+function evnSinopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edi').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
+    var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('name');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+      type: "POST",
+      data: {
+        chapter_id: chapter_id
+      },
+      cache: false,
+      url: "landing/getSynopsis",
+      success: function success(res) {
+        if (type == 'edi') {
+          Object(_index__WEBPACK_IMPORTED_MODULE_1__["showModalSinopsis"])(JSON.stringify(JSON.parse(res)));
+        } else {
+          Object(_index__WEBPACK_IMPORTED_MODULE_1__["sinopsisPrev"])(JSON.stringify(JSON.parse(res)));
+        }
+      }
+    });
+  });
+}
+
+function loadRoll() {
+  var mvh;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-edit");
+    mvh = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('mvh');
+
+    switch (mvh) {
+      case '0':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
+        break;
+
+      case '1':
+        console.log('en proseso');
+        break;
+
+      case '2':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+        break;
+
+      case '3':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["home"])('home-edi-claro.php');
+        break;
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-prev", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
+        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_2__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      });
+    });
+    mvh = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('mvh');
+
+    switch (mvh) {
+      case '0':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["iframePrev"])('programacion-prev.php');
+        break;
+
+      case '1':
+        console.log('en proseso');
+        break;
+
+      case '2':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["iframePrev"])('claro-canal.php');
+        break;
+
+      case '3':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["iframePrev"])('home-prev.php');
+        break;
+    }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/getters.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/getters.js ***!
+  \***************************************/
+/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacion", function() { return getProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsis", function() { return getSynopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCanalClaro", function() { return getCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalProgramacion", function() { return getModalProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLastDateCalendar", function() { return getLastDateCalendar; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
+  headers: {
+    "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr("content")
+  }
+});
+
+var lastMonth, lastDay;
+
+function getProgramacion(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getSection/programation",
+    success: function success(res) {
+      if (type == 'banner') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerProgramacion"])(JSON.parse(res));
+      } else if (type == 'logos') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getLogosProgramacion"])(JSON.parse(res));
+      }
+    }
+  });
+}
+
+function getSynopsis() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getSynopsisTable",
+    success: function success(res) {
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getSynopsisTable"])(JSON.parse(res), lastMonth, lastDay);
+    }
+  });
+}
+
+function getLastDateCalendar() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "general-program/getFirstGrilla",
+    success: function success(res) {
+      lastMonth = JSON.parse(res).data.last_day_calendar.split('-')[1];
+      lastDay = JSON.parse(res).data.last_day_calendar.split('-')[2];
+    }
+  });
+}
+
+function getCanalClaro(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getCanalClaro",
+    success: function success(res) {
+      if (type == 'banner') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerCanalClaro"])(JSON.parse(res));
+      }
+
+      if (type == 'header') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getHeaderCanalClaro"])(JSON.parse(res));
+      }
+
+      if (type == 'title-1') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 1);
+      }
+
+      if (type == 'title-2') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 2);
+      }
+
+      if (type == 'title-3') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 3);
+      }
+    }
+  });
+}
+
+function getModalProgramacion() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getProgrammingLanding",
+    success: function success(res) {
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getProgramacionCanalClaro"])(JSON.parse(res), lastMonth, lastDay);
+    }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/methods.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/methods.js ***!
+  \***************************************/
+/*! exports provided: setBannerProgramacion, setLogosProgramacion, setImgCarruselVertical, setHeaderCanalClaro, setTituloCanalClaro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBannerProgramacion", function() { return setBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLogosProgramacion", function() { return setLogosProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselVertical", function() { return setImgCarruselVertical; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHeaderCanalClaro", function() { return setHeaderCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTituloCanalClaro", function() { return setTituloCanalClaro; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _setters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setters */ "./resources/js/store/setters.js");
+
+
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>";
+var img = [],
+    index = [];
+
+function setBannerProgramacion(lang) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
+    img.push(e.target.files[0]);
+    index.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('index'));
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-banner').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    var data = new FormData();
+
+    for (var i = 0; i < img.length; i++) {
+      var file = "file" + (i + 1).toString();
+      data.append(file, img[i]);
+    }
+
+    data.append("positions", index);
+    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programming-modal").val());
+
+    if (lang == 'programacion') {
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerProgramacion"])(data);
+    }
+
+    if (lang == 'canal') {
+      data.append("landing", "Canal Claro");
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerCanalClaro"])(data);
+    }
+
+    img = [];
+    index = [];
+  });
+}
+
+function setLogosProgramacion() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-logos').on('click', function () {
+    var logo;
+    var data = new FormData();
+
+    for (var i = 0; i <= 2; i++) {
+      logo = document.getElementById('img_logo_' + i).files[0] || "";
+      data.append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#img_logo_' + i).attr('mvh'), logo);
+    }
+
+    var urlCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-canal-claro").val() || "";
+    console.log(urlCanalClaro);
+    data.append("urlCanalClaro", urlCanalClaro);
+    var urlConertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-concert-channel").val() || "";
+    data.append("urlConcertChannel", urlConertChannel);
+    var urlClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-logo-claro-cinema").val() || "";
+    data.append("urlClaroCinema", urlClaroCinema);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setlogoLnading"])(data);
+  });
+}
+
+function setImgCarruselVertical() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
+    var img = e.target.files[0];
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('chapter_id');
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('landing');
+    var data = new FormData();
+    data.append("thumbnail_list_vertical", img);
+    data.append("chapter_id", id);
+    data.append("landing", landing);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgCarruselHome"])(data);
+  });
+}
+
+function setHeaderCanalClaro() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-header').on('click', function () {
+    var landing = "Canal Claro";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
+    var logo = document.getElementById("img-header").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setHeader"])(data);
+  });
+}
+
+function setTituloCanalClaro() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-titulo').on('click', function () {
+    var data = new FormData();
+    var landing = "Canal Claro";
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setTitulo"])({
+      value: value,
+      key: key,
+      landing: landing
+    });
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setTitulo"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/setters.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/setters.js ***!
+  \***************************************/
+/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome, setHeader, setTitulo, setImgBannerCanalClaro */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerProgramacion", function() { return setImgBannerProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setlogoLnading", function() { return setlogoLnading; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselHome", function() { return setImgCarruselHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHeader", function() { return setHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTitulo", function() { return setTitulo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerCanalClaro", function() { return setImgBannerCanalClaro; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
+
+
+
+function setImgBannerProgramacion(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/update-programming-carrusel",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setImgBannerCanalClaro(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImageSliderBanner",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setlogoLnading(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/updateLandingLogo",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setImgCarruselHome(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImgCarruselHome",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); // $('#iframe-programacion').html('');
+      // programacion()
+      // $('#show-banner').modal('hide');
+    }
+  });
+}
+
+function setHeader(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/editHeaderLandingClaro",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setTitulo(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    cache: false,
+    url: "landing/setTitulo",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/slick/slick.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/slick/slick.js ***!
+  \*******************************************/
+/*! exports provided: slickShowArrow, slickShowCalendar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickShowArrow", function() { return slickShowArrow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickShowCalendar", function() { return slickShowCalendar; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slick-carousel */ "./node_modules/slick-carousel/slick/slick.js");
+/* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slick_carousel__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var index;
+
+function slickShowArrow(slick, dots) {
+  try {
+    slick.slick("unslick");
+    slick.slick({
+      dots: true,
+      arrows: true,
+      prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;" />',
+      nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
+      fade: true,
+      appendDots: dots,
+      customPaging: function customPaging(slider, i) {
+        index = i + 1;
+        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+      }
+    });
+  } catch (error) {
+    slick.slick({
+      dots: true,
+      arrows: true,
+      prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;"/>',
+      nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
+      fade: true,
+      appendDots: dots,
+      customPaging: function customPaging(slider, i) {
+        index = i + 1;
+        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+      }
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh .slick-dots").append('<img src="./images/add-icon.svg" class="add-dots-image cursor-pointer">');
+  addSlickDots(index);
+}
+
+function slickShowCalendar(slick) {
+  try {
+    slick.slick("unslick");
+    slick.slick({
+      infinite: true,
+      slidesToShow: 11,
+      slidesToScroll: 11,
+      dots: false,
+      arrows: true,
+      prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+      nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
+  } catch (error) {
+    slick.slick({
+      infinite: true,
+      slidesToShow: 11,
+      slidesToScroll: 11,
+      dots: false,
+      arrows: true,
+      prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+      nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
+  }
+}
+
+function addSlickDots(sliderLengt) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.add-dots-image').on('click', function () {
+    sliderLengt++;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-show').slick('slickAdd', "<div class=\"container-banner\"><img class=\"banner bor responsi-img img_banner_".concat(sliderLengt, "\" src=\"./images/synopsis/image-synopsis-carrusel.jpg\" alt=\"\" /><input class=\"d-none previewImage\" id=\"img_banner_").concat(sliderLengt, "\" type=\"file\" accept=\"image/*\" index=\"").concat(sliderLengt, "\" /><div class=\"container-camera\"><label for=\"img_banner_").concat(sliderLengt, "\" class=\"cursor-pointer\"><p class=\"text-center a-text-bold-warm text-plus mb-0\"><img class=\"camera_").concat(sliderLengt, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span></p></label></div></div>"));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh .slick-dots").append('<img src="./images/add-icon.svg" class="add-dots-image cursor-pointer">');
+    addSlickDots(sliderLengt);
   });
 }
 
