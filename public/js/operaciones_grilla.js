@@ -83034,7 +83034,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import { eveRollEdiPrev } from '../store/events/events'
 
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
@@ -84252,7 +84251,7 @@ var PrevImageHelper = /*#__PURE__*/function () {
 /*!*******************************!*\
   !*** ./resources/js/index.js ***!
   \*******************************/
-/*! exports provided: mvh, programacion, showModalSinopsis, iframePrev, clearIframe, showlanding */
+/*! exports provided: mvh, programacion, showModalSinopsis, sinopsisPrev, iframePrev, clearIframe, showlanding, home */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84260,9 +84259,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mvh", function() { return mvh; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "programacion", function() { return programacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModalSinopsis", function() { return showModalSinopsis; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sinopsisPrev", function() { return sinopsisPrev; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iframePrev", function() { return iframePrev; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearIframe", function() { return clearIframe; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showlanding", function() { return showlanding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "home", function() { return home; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -84278,10 +84279,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { sinopsis() })();
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { showlanding('claro-canal-edi.php'); mvh() })();
+// (function () { sinopsis(); })();
 
 function mvh() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#mvhImg").load("imports #mvh-edit", function () {});
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-edit", function () {});
   Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["loadRoll"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-programacion').on('click', function () {
     clearIframe();
@@ -84296,8 +84298,7 @@ function mvh() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '1');
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.navbar-canal-claro').on('click', function () {
-    clearIframe(); // showlanding('concert-channel-edi.php')
-
+    clearIframe();
     showlanding('claro-canal-edi.php');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '2');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '2');
@@ -84308,10 +84309,10 @@ function mvh() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').attr('mvh', '3');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').attr('mvh', '3');
   });
+  Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getLastDateCalendar"])();
 }
 
 function programacion(landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
   var iframeProgramacion = {
     remote: URLBASE + landing,
     container: document.getElementById("iframe-canal-claro"),
@@ -84334,14 +84335,12 @@ function programacion(landing) {
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   };
   new easyXDM.Socket(iframeProgramacion);
 }
 
 function iframePrev(landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
   var iframePrev = {
     remote: URLBASE + landing,
     container: document.getElementById("iframe-canal-claro"),
@@ -84349,10 +84348,24 @@ function iframePrev(landing) {
       console.log(message);
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   };
   new easyXDM.Socket(iframePrev);
+}
+
+function sinopsisPrev(obj) {
+  var iframePrev = {
+    remote: "".concat(URLBASE, "sinopsis-prev.php"),
+    container: document.getElementById("sinopsis-iframe"),
+    onMessage: function onMessage(message, origin) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modalSinopsis').modal('show');
+      Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["loadRoll"])();
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  var socket = new easyXDM.Socket(iframePrev);
+  socket.postMessage(obj);
 }
 
 function sinopsis() {
@@ -84379,7 +84392,6 @@ function showModalSinopsis(obj) {
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   };
   var socket = new easyXDM.Socket(LandingSinopsis);
@@ -84387,7 +84399,6 @@ function showModalSinopsis(obj) {
 }
 
 function showlanding(landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
   var iframeLanding = {
     remote: URLBASE + landing,
     container: document.getElementById("iframe-canal-claro"),
@@ -84398,28 +84409,38 @@ function showlanding(landing) {
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])();
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('banner');
             break;
 
           case "claro-header":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('header');
             break;
 
           case "claro-programacion":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getModalProgramacion"])();
             break;
 
           case "claro-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-1');
             break;
 
           case "claro-promo":
             break;
 
           case "claro-carrusel-title":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-2');
             break;
 
           case "claro-carrusel1":
             break;
 
           case "claro-carrusel-title2":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('title-3');
             break;
 
           case "claro-carrusel2":
@@ -84429,14 +84450,12 @@ function showlanding(landing) {
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   };
   new easyXDM.Socket(iframeLanding);
 }
 
 function home(landing) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
   var iframeLanding = {
     remote: URLBASE + landing,
     container: document.getElementById("iframe-canal-claro"),
@@ -84462,7 +84481,6 @@ function home(landing) {
 
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   };
   new easyXDM.Socket(iframeLanding);
@@ -86707,63 +86725,63 @@ function eventsGrilla() {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-concert iframe"), confProgramacionConcertChannel);
   }); //Landing de programación de claro canal
   //Canal claro
-  // let confIframe = {
-  //     remote: `${baseURL}programacion-edi.php`,
-  //     container: document.getElementById("navbar-prev-programacion"),
-  //     onMessage: function (message, origin) {
-  //         let json = JSON.parse(message);
-  //         if (typeof json == "object") {
-  //             let loader = `
-  //                     <div class="loader-view-container" id="loader1">
-  //                         <img src="./images/loader.gif" class="loader" alt="">
-  //                     </div>
-  //                         `;
-  //             switch (json.type) {
-  //                 case "program":
-  //                     getChapterInfo(json.chapterId);
-  //                     break;
-  //                 case "slider-pagination":
-  //                     $("body").append(loader);
-  //                     setTimeout(function () {
-  //                         $(".modal-programming-carousel").modal("show");
-  //                         $("#loader1").remove();
-  //                         addImagesModalBanner();
-  //                     }, 3000);
-  //                     break;
-  //                 case "synopsis":
-  //                     document
-  //                         .querySelector("body")
-  //                         .insertAdjacentHTML("beforeend", loader);
-  //                     window.location.href =
-  //                         "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-  //                     break;
-  //                 case "menu-logos":
-  //                     $("body").append(loader);
-  //                     setTimeout(function () {
-  //                         addImagesModalIcons();
-  //                         $(".modal-edit-icons").modal("show");
-  //                         $("#loader1").remove();
-  //                     }, 3000);
-  //                     break;
-  //                 default:
-  //                     break;
-  //             }
-  //         }
-  //         this.container.getElementsByTagName("iframe")[0].style.height =
-  //             message + "px";
-  //         this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-  //             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-  //     }
-  // };
-  // $(".edit-landing-modal-button").click(function () {
-  //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-  // });
-  ////////////
 
-  var navbarPrograContainer = document.getElementById("navbar-prev-programacion"); // if (navbarPrograContainer) {
-  //     $("#navbar-prev-programacion iframe").remove();
-  //     new easyXDM.Socket(confIframe);
-  // }
+  var confIframe = {
+    remote: "".concat(baseURL, "programacion-edi.php"),
+    container: document.getElementById("navbar-prev-programacion"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        var loader = "\n                         <div class=\"loader-view-container\" id=\"loader1\">\n                             <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                         </div>\n                             ";
+
+        switch (json.type) {
+          case "program":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId);
+            break;
+
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+            }, 3000);
+            break;
+
+          case "synopsis":
+            document.querySelector("body").insertAdjacentHTML("beforeend", loader);
+            window.location.href = "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+  }); ////////////
+
+  var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
+
+  if (navbarPrograContainer) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+    new easyXDM.Socket(confIframe);
+  }
 
   var confPrevProgramacion = {
     remote: "".concat(baseURL, "programacion-prev.php"),
@@ -86819,7 +86837,7 @@ function eventsGrilla() {
 
     switch ("#" + id) {
       case programacion:
-        // resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
         break;
 
       case canalClaro:
@@ -86830,15 +86848,15 @@ function eventsGrilla() {
         Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
         break;
     }
-  }); // $("#edit").click(function () {
-  //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-  //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-  //     $("#prev-mobile").css("opacity", "0.4");
-  //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-  //     $("#prev-tablet").css("opacity", "0.4");
-  //     $("#prev-desktop").css("opacity", "1");
-  // });
-  /////////////
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+  }); /////////////
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
     var currentInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
@@ -92874,7 +92892,7 @@ function sendEmailResetPassword(input) {
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro */
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92884,6 +92902,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsisTable", function() { return getSynopsisTable; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerSinopsis", function() { return getBannerSinopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerCanalClaro", function() { return getBannerCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaderCanalClaro", function() { return getHeaderCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacionCanalClaro", function() { return getProgramacionCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTitleCanalClaro", function() { return getTitleCanalClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
@@ -92895,6 +92916,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var landing;
 
 function getBannerProgramacion(res) {
   var slider = "";
@@ -92942,13 +92964,13 @@ function getLogosProgramacion(res) {
 
 function getSynopsisTable(res, lastMonth, lastDay) {
   var table = "<div class=\"contenedor-columna synop titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Programa</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Caracteres</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Im\xE1genes</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Acciones</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Landing</span></div>";
-  var landing;
   var index;
   var sinopsis_len;
   var cant_imagenes;
   var cant_imagenes_switch;
   var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendario');
-  Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick);
+  var slickMonth = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar');
+  Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick, slickMonth);
   Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowCalendar"])(slick);
   landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
 
@@ -92964,7 +92986,8 @@ function getSynopsisTable(res, lastMonth, lastDay) {
     index = 2;
   }
 
-  res[index].programing[0].programs.forEach(function (programs) {
+  res = res.data[index].programing[0].programs;
+  res.forEach(function (programs) {
     if (programs.sinopsis_info.sinopsis_len < 21) {
       sinopsis_len = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
     }
@@ -92979,20 +93002,20 @@ function getSynopsisTable(res, lastMonth, lastDay) {
 
     if (programs.sinopsis_info.cant_imagenes <= 4) {
       cant_imagenes = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
-      cant_imagenes_switch = "\n             <div v-if=\"programs.sinopsis_info.cant_imagenes <= 4\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                 <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 si-estilo cursor-pointer switch-label\">S\xED</label>\n                 <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">No</label>\n             </div>";
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes <= 4\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">No</label>\n                 </div>";
     }
 
     if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
       cant_imagenes = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
-      cant_imagenes_switch = "\n             <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                 <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                 <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n             </div>";
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
     }
 
     if (programs.sinopsis_info.cant_imagenes >= 8) {
       cant_imagenes = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
-      cant_imagenes_switch = "\n             <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                 <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                 <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n             </div>";
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
     }
 
-    table += "\n         <div class=\"contenedor-fila\">\n             <div class=\"contenedor-columna pl-4\">\n                 <span class=\"a-text-medium-black text-normal\">".concat(programs.chapter_title, "</span>\n             </div>\n             <div class=\"contenedor-columna text-center\">").concat(sinopsis_len, "</div>\n             <div class=\"contenedor-columna text-center\">").concat(cant_imagenes, "</div>\n             <div class=\"contenedor-columna text-center\">\n                 <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"Editar\" class=\"edi mr-3\" name=\"edi\" />\n                 <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"Vizualizar\" class=\"edi\" name=\"prev\" />\n             </div>\n             <div class=\"contenedor-columna text-center\">").concat(cant_imagenes_switch, "</div>\n         </div>");
+    table += "\n          <div class=\"contenedor-fila\">\n              <div class=\"contenedor-columna pl-4\">\n                  <span class=\"a-text-medium-black text-normal\">".concat(programs.chapter_title, "</span>\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(sinopsis_len, "</div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes, "</div>\n              <div class=\"contenedor-columna text-center\">\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"Editar\" class=\"edi mr-3\" name=\"edi\" />\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"Vizualizar\" class=\"edi\" name=\"prev\" />\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes_switch, "</div>\n          </div>");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').addClass('mt-5');
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html(table);
@@ -93001,40 +93024,33 @@ function getSynopsisTable(res, lastMonth, lastDay) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
-function getBannerSinopsis(res) {// res = res.data
-  // let slider = "";
-  // let counter = 1;
-  // while (true) {
-  //     try {
-  //         if (res['image_background_' + counter]) {
-  //             console.log(res['image_background_' + counter])
-  //             slider += `
-  //             <div class="container-banner">
-  //                 <img class="banner bor responsi-img img_banner_${counter}" src="${res["image_background_" + counter]}" alt="" />
-  //                 <input class="d-none previewImage" id="img_banner_${counter}" type="file" accept="image/*" index="${counter}"/>
-  //                 <div class="container-camera">
-  //                     <label for="img_banner_${counter}" class="cursor-pointer">
-  //                         <p class="text-center a-text-bold-warm text-plus mb-0">
-  //                             <img class="camera_${counter}" src="./images/basic-icons/camara.svg" /><span>1920px X 657px</span>
-  //                         </p>
-  //                     </label>
-  //                 </div>
-  //             </div>`
-  //             counter++;
-  //         } else {
-  //             break;
-  //         }
-  //     } catch (error) {
-  //         break;
-  //     }
-  // }
-  // $(".slick-show").html(slider);
-  // slickShowArrow()
-  // previewImage()
-  // closeModals()
-  // // setBannerProgramacion()
-  // $('#show-banner').modal('show');
-  // $(".loader-view-container").remove();
+function getBannerSinopsis(res) {
+  res = res.data;
+  var slider = "";
+  var counter = 1;
+
+  while (true) {
+    try {
+      if (res['image_background_' + counter]) {
+        slider += "\n                <div class=\"container-banner\">\n                    <img class=\"banner bor responsi-img img_banner_".concat(counter, "\" src=\"").concat(res["image_background_" + counter], "\" alt=\"\" />\n                    <input class=\"d-none previewImage\" id=\"img_banner_").concat(counter, "\" type=\"file\" accept=\"image/*\" index=\"").concat(counter, "\"/>\n                    <div class=\"container-camera\">\n                        <label for=\"img_banner_").concat(counter, "\" class=\"cursor-pointer\">\n                            <p class=\"text-center a-text-bold-warm text-plus mb-0\">\n                                <img class=\"camera_").concat(counter, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span>\n                            </p>\n                        </label>\n                    </div>\n                </div>");
+        counter++;
+      } else {
+        break;
+      }
+    } catch (error) {
+      break;
+    }
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
+  slick.html(slider);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])(); // // setBannerProgramacion()
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
 function getBannerCanalClaro(res) {
@@ -93066,6 +93082,87 @@ function getBannerCanalClaro(res) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
+function getHeaderCanalClaro(res) {
+  res = res.data;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".img-header").attr('src', res.block_2_icon_channel);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val(res.block_2_title_1);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val(res.block_2_title_2);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-3").val(res.block_2_button_title);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val(res.block_2_button_url);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModalUrl"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnUrl"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setHeaderCanalClaro"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-header').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getProgramacionCanalClaro(res, lastMonth, lastDay) {
+  var programacion = '';
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    res = res.data[0].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/tv-1.svg');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('width', '200px');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').removeClass();
+  }
+
+  if (landing == 'Concert Channel') {
+    res = res.data[1].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/concert-black-icon.svg');
+  }
+
+  if (landing == 'Claro Cinema') {
+    res = res.data[2].programing[0].programs;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/cinema-home-img.svg');
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendarioProg');
+  var slickMonth = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendarProg');
+  Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick, slickMonth);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowCalendar"])(slick);
+  res.forEach(function (programs) {
+    programacion += "\n        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n            <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(landing, "\" chapter_id=\"").concat(programs.chapter_id, "\">\n            <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                    ").concat(programs.Program_Title, " - ").concat(programs.chapter_title, "\n                </p>\n                <div class=\"schedule-item-body\">\n                    <div class=\"schedule-poster\">\n                        <div class=\"poster\">\n                            <div class=\"thumbnail-edit\" _id=\"").concat(programs.chapter_id, "\">\n                                <img src=\"").concat(programs.image, "\" class=\"w-100\" alt=\"\">\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"schedule-details\">\n                        <div class=\"schedule-details-header\">\n                            <div>\n                                <p class=\"schedule a-text-semi-brown-two\">\n                                    ").concat(programs.time, " hrs.\n                                </p>\n                                <p class=\"rating a-text-semibold-warm-grey-five\">\n                                    Clasificaci\xF3n: A\n                                </p>\n                            </div>\n                            <div>\n                                <button title=\"Agregar a mi lista\" class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\" viewBox=\"0 0 48 44\">\n                                        <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\" stroke=\"#7A7777\" stroke-width=\"3\" d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                    </svg>\n                                </button>\n                            </div>\n                        </div>\n                        <div>\n                            <span class=\"schedule-description a-text-regular-warm-grey-five s1\" id=\"synopsis-edi\">").concat(programs.sinopsis, "</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-modal-programacion').html(programacion);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-programacion').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getTitleCanalClaro(res, id) {
+  res = res.data;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val('');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val('');
+
+  if (id == 1) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_3_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_3_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_3_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_3_subtitle");
+  }
+
+  if (id == 2) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_4_carrusel_1_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_4_carrusel_1_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_4_carrusel_1_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_4_carrusel_1_subtitle");
+  }
+
+  if (id == 3) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val(res.block_4_carrusel_2_title);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr('key', "block_4_carrusel_2_title");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(res.block_4_carrusel_2_subtitle);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr('key', "block_4_carrusel_2_subtitle");
+  }
+
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setTituloCanalClaro"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
 
 
 /***/ }),
@@ -93084,11 +93181,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function slickCalendar(lastMonth, lastDay, slick) {
+function slickCalendar(lastMonth, lastDay, slick, slickMonth) {
   var date = new Date();
   var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   var days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"];
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendar').html(months[date.getMonth()] + ' ' + date.getFullYear());
+  slickMonth.html(months[date.getMonth()] + ' ' + date.getFullYear());
 
   for (var i = date.getDate(); i <= lastDay; i++) {
     if (i == date.getDate()) {
@@ -93112,7 +93209,7 @@ function textDay(y, m, d) {
 /*!*********************************************!*\
   !*** ./resources/js/store/events/events.js ***!
   \*********************************************/
-/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, eveRollEdiPrev, loadRoll */
+/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, loadRoll */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93122,7 +93219,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewImage", function() { return previewImage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnUrl", function() { return evnUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnSinopsis", function() { return evnSinopsis; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eveRollEdiPrev", function() { return eveRollEdiPrev; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadRoll", function() { return loadRoll; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
@@ -93165,10 +93261,9 @@ function evnUrl() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-url').on('click', function () {
     evn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.children[1].children);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('show');
+    console.log(evn);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-url').on('click', function () {
-    console.log('llego');
-    console.log(evn);
     evn.val(jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val());
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-link').val('');
     evn = '';
@@ -93188,28 +93283,20 @@ function evnSinopsis() {
       cache: false,
       url: "landing/getSynopsis",
       success: function success(res) {
-        eveRollEdiPrev(type);
-
         if (type == 'edi') {
           Object(_index__WEBPACK_IMPORTED_MODULE_1__["showModalSinopsis"])(JSON.stringify(JSON.parse(res)));
+        } else {
+          Object(_index__WEBPACK_IMPORTED_MODULE_1__["sinopsisPrev"])(JSON.stringify(JSON.parse(res)));
         }
       }
     });
   });
 }
 
-function eveRollEdiPrev(type) {
-  if (type == 'edi') {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rollEdiPrev').html("\n    <div class=\"d-flex prev text-small a-text-medium-brownish location mt-2\">\n        <input type=\"radio\" name=\"rol\" id=\"edit-syn\" checked />\n        <label for=\"edit-syn\" id=\"editar\" class=\"mujer-estilo d-flex align-items-center pl-4 pt-3\">\n            <p class=\" a-prev-title\">EDITAR</p>\n        </label>\n        <input type=\"radio\" name=\"rol\" id=\"prev-syn\" />\n        <label for=\"prev-syn\" id=\"previsualiza\" class=\"hombre-estilo pl-2 pt-3 a-prev-title\">\n            <p>PREVISUALIZAR</p>\n        </label>\n        <img src=\"./images/mobile.svg\" class=\"a-prev-image ml-3 mr-3 op-inac\" alt=\"mobile\">\n        <img src=\"./images/tablet.svg\" class=\"a-prev-image op-inac\" alt=\"tablet\">\n        <img src=\"./images/pc.svg\" class=\"a-prev-image ml-3 op-inac\" alt=\"pc\">\n    </div>");
-  } else {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rollEdiPrev').html("\n    <div class=\"d-flex prev text-small a-text-medium-brownish location mt-2\">\n        <input type=\"radio\" name=\"rol\" id=\"edit-syn\" />\n        <label for=\"edit-syn\" id=\"editar\" class=\"mujer-estilo d-flex align-items-center pl-4 pt-3\" name=\"edi\">\n            <p class=\" a-prev-title\">EDITAR</p>\n        </label>\n        <input type=\"radio\" name=\"rol\" id=\"prev-syn\" checked />\n        <label for=\"prev-syn\" id=\"previsualiza\" class=\"hombre-estilo pl-2 pt-3 a-prev-title\" name=\"prev\">\n            <p>PREVISUALIZAR</p>\n        </label>\n        <img src=\"./images/mobile.svg\" class=\"a-prev-image ml-3 mr-3 op-inac cursor-pointer\" alt=\"mobile\" id=\"prev-mobile\">\n        <img src=\"./images/tablet.svg\" class=\"a-prev-image op-inac cursor-pointer\" alt=\"tablet\" id=\"prev-tablet\">\n        <img src=\"./images/pc.svg\" class=\"a-prev-image ml-3 op-ac cursor-pointer\" alt=\"pc\" id=\"prev-desktop\">\n    </div>");
-  }
-}
-
 function loadRoll() {
   var mvh;
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#editar').on('click', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#mvhImg").load("imports #mvh-edit");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-edit");
     mvh = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('mvh');
 
     switch (mvh) {
@@ -93226,10 +93313,15 @@ function loadRoll() {
         Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
         Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
         break;
+
+      case '3':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["home"])('home-edi-claro.php');
+        break;
     }
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#previsualiza').on('click', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#mvhImg").load("imports #mvh-prev", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".mvhImg").load("imports #mvh-prev", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
         Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_2__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
       });
@@ -93250,6 +93342,11 @@ function loadRoll() {
         Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
         Object(_index__WEBPACK_IMPORTED_MODULE_1__["iframePrev"])('claro-canal.php');
         break;
+
+      case '3':
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["clearIframe"])();
+        Object(_index__WEBPACK_IMPORTED_MODULE_1__["iframePrev"])('home-prev.php');
+        break;
     }
   });
 }
@@ -93262,7 +93359,7 @@ function loadRoll() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: getProgramacion, getSynopsis, getCanalClaro */
+/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93270,6 +93367,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacion", function() { return getProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsis", function() { return getSynopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCanalClaro", function() { return getCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalProgramacion", function() { return getModalProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLastDateCalendar", function() { return getLastDateCalendar; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
@@ -93280,6 +93379,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
   }
 });
 
+var lastMonth, lastDay;
 
 function getProgramacion(type) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -93302,29 +93402,59 @@ function getSynopsis() {
     cache: false,
     url: "landing/getSynopsisTable",
     success: function success(res) {
-      getLastDateCalendar(JSON.parse(res));
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getSynopsisTable"])(JSON.parse(res), lastMonth, lastDay);
     }
   });
 }
 
-function getLastDateCalendar(sinopsis) {
+function getLastDateCalendar() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
     url: "general-program/getFirstGrilla",
     success: function success(res) {
-      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getSynopsisTable"])(sinopsis.data, JSON.parse(res).data.last_day_calendar.split('-')[1], JSON.parse(res).data.last_day_calendar.split('-')[2]);
+      lastMonth = JSON.parse(res).data.last_day_calendar.split('-')[1];
+      lastDay = JSON.parse(res).data.last_day_calendar.split('-')[2];
     }
   });
 }
 
-function getCanalClaro() {
+function getCanalClaro(type) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
     url: "landing/getCanalClaro",
     success: function success(res) {
-      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerCanalClaro"])(JSON.parse(res));
+      if (type == 'banner') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerCanalClaro"])(JSON.parse(res));
+      }
+
+      if (type == 'header') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getHeaderCanalClaro"])(JSON.parse(res));
+      }
+
+      if (type == 'title-1') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 1);
+      }
+
+      if (type == 'title-2') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 2);
+      }
+
+      if (type == 'title-3') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 3);
+      }
+    }
+  });
+}
+
+function getModalProgramacion() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getProgrammingLanding",
+    success: function success(res) {
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getProgramacionCanalClaro"])(JSON.parse(res), lastMonth, lastDay);
     }
   });
 }
@@ -93337,7 +93467,7 @@ function getCanalClaro() {
 /*!***************************************!*\
   !*** ./resources/js/store/methods.js ***!
   \***************************************/
-/*! exports provided: setBannerProgramacion, setLogosProgramacion, setImgCarruselVertical */
+/*! exports provided: setBannerProgramacion, setLogosProgramacion, setImgCarruselVertical, setHeaderCanalClaro, setTituloCanalClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93345,6 +93475,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBannerProgramacion", function() { return setBannerProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLogosProgramacion", function() { return setLogosProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselVertical", function() { return setImgCarruselVertical; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHeaderCanalClaro", function() { return setHeaderCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTituloCanalClaro", function() { return setTituloCanalClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _setters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setters */ "./resources/js/store/setters.js");
@@ -93370,7 +93502,16 @@ function setBannerProgramacion(lang) {
 
     data.append("positions", index);
     data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programming-modal").val());
-    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerProgramacion"])(data);
+
+    if (lang == 'programacion') {
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerProgramacion"])(data);
+    }
+
+    if (lang == 'canal') {
+      data.append("landing", "Canal Claro");
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerCanalClaro"])(data);
+    }
+
     img = [];
     index = [];
   });
@@ -93410,6 +93551,44 @@ function setImgCarruselVertical() {
   });
 }
 
+function setHeaderCanalClaro() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-header').on('click', function () {
+    var landing = "Canal Claro";
+    var title1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-1").val() || "";
+    var title2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-text-modal-2").val() || "";
+    var logo = document.getElementById("img-header").files[0] || "";
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#inp-text-modal-4").val() || "";
+    var data = new FormData();
+    data.append("landing", landing);
+    data.append("title1", title1);
+    data.append("title2", title2);
+    data.append("logo", logo);
+    data.append("link", link);
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setHeader"])(data);
+  });
+}
+
+function setTituloCanalClaro() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-titulo').on('click', function () {
+    var data = new FormData();
+    var landing = "Canal Claro";
+    var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
+    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setTitulo"])({
+      value: value,
+      key: key,
+      landing: landing
+    });
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val();
+    var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
+    Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setTitulo"])({
+      value: valueSub,
+      key: keySub,
+      landing: landing
+    });
+  });
+}
+
 
 
 /***/ }),
@@ -93418,7 +93597,7 @@ function setImgCarruselVertical() {
 /*!***************************************!*\
   !*** ./resources/js/store/setters.js ***!
   \***************************************/
-/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome */
+/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome, setHeader, setTitulo, setImgBannerCanalClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93426,6 +93605,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerProgramacion", function() { return setImgBannerProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setlogoLnading", function() { return setlogoLnading; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselHome", function() { return setImgCarruselHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHeader", function() { return setHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTitulo", function() { return setTitulo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerCanalClaro", function() { return setImgBannerCanalClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
@@ -93447,6 +93629,27 @@ function setImgBannerProgramacion(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
       Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setImgBannerCanalClaro(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImageSliderBanner",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -93466,6 +93669,7 @@ function setlogoLnading(data) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
       Object(_index__WEBPACK_IMPORTED_MODULE_1__["programacion"])('programacion-edi.php');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }
@@ -93481,9 +93685,46 @@ function setImgCarruselHome(data) {
     cache: false,
     url: "landing/setImgCarruselHome",
     success: function success(res) {
-      console.log(res); // $('#iframe-programacion').html('');
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove(); // $('#iframe-programacion').html('');
       // programacion()
       // $('#show-banner').modal('hide');
+    }
+  });
+}
+
+function setHeader(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/editHeaderLandingClaro",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setTitulo(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    cache: false,
+    url: "landing/setTitulo",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
   });
 }

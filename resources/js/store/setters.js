@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { programacion } from '../index';
+import { programacion, showlanding } from '../index';
 
 function setImgBannerProgramacion(data) {
     $.ajax({
@@ -15,6 +15,25 @@ function setImgBannerProgramacion(data) {
             $('#iframe-canal-claro').html('');
             programacion('programacion-edi.php')
             $('.modal').modal('hide');
+            $(".loader-view-container").remove();
+        }
+    })
+}
+
+function setImgBannerCanalClaro(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        cache: false,
+        url: "landing/setImageSliderBanner",
+        success: function (res) {
+            console.log(res)
+            $('#iframe-canal-claro').html('');
+            showlanding('claro-canal-edi.php')
+            $('.modal').modal('hide');
+            $(".loader-view-container").remove();
         }
     })
 }
@@ -32,6 +51,7 @@ function setlogoLnading(data) {
             $('#iframe-canal-claro').html('');
             programacion('programacion-edi.php')
             $('.modal').modal('hide');
+            $(".loader-view-container").remove();
         }
     })
 }
@@ -46,14 +66,53 @@ function setImgCarruselHome(data) {
         url: "landing/setImgCarruselHome",
         success: function (res) {
             console.log(res)
+            $(".loader-view-container").remove();
             // $('#iframe-programacion').html('');
             // programacion()
             // $('#show-banner').modal('hide');
         }
     })
 }
+
+function setHeader(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        cache: false,
+        url: "landing/editHeaderLandingClaro",
+        success: function (res) {
+            console.log(res)
+            $('#iframe-canal-claro').html('');
+            showlanding('claro-canal-edi.php')
+            $('.modal').modal('hide');
+            $(".loader-view-container").remove();
+        }
+    })
+}
+
+function setTitulo(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        cache: false,
+        url: "landing/setTitulo",
+        success: function (res) {
+            console.log(res)
+            $('#iframe-canal-claro').html('');
+            showlanding('claro-canal-edi.php')
+            $('.modal').modal('hide');
+            $(".loader-view-container").remove();
+        }
+    })
+}
+
 export {
     setImgBannerProgramacion,
     setlogoLnading,
-    setImgCarruselHome
+    setImgCarruselHome,
+    setHeader,
+    setTitulo,
+    setImgBannerCanalClaro
 }

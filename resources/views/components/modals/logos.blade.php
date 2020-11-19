@@ -9,26 +9,6 @@
 
                         <div class="container-fluid px-5">
                             <div class="row">
-                                <!-- ITEMS -->
-                                <!-- <div class="col-11 mt-4">
-                                    <div class="row">
-                                        <div class="col-3 offset-1">
-                                            <div class="d-flex justify-content-end">
-                                                <p class="a-text-bold-teal slider-pagination-item float-right slider-item-active">1</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 offset-1">
-                                            <div class="d-flex justify-content-end">
-                                                <p class="a-text-bold-teal slider-pagination-item float-right">2</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 offset-1">
-                                            <div class="d-flex justify-content-end">
-                                                <p class="a-text-bold-teal slider-pagination-item float-right">3</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <!-- IMG -->
                                 <div class="col-11 mt-4">
                                     <div class="row">

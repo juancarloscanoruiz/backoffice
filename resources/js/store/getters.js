@@ -5,7 +5,9 @@ $.ajaxSetup({
     }
 });
 
-import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro } from './actions'
+import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro } from './actions'
+
+var lastMonth, lastDay;
 
 function getProgramacion(type) {
     $.ajax({
@@ -28,31 +30,57 @@ function getSynopsis() {
         cache: false,
         url: "landing/getSynopsisTable",
         success: function (res) {
-            getLastDateCalendar(JSON.parse(res))
+            getSynopsisTable(JSON.parse(res), lastMonth, lastDay);
         }
     })
 }
 
-function getLastDateCalendar(sinopsis) {
+function getLastDateCalendar() {
     $.ajax({
         type: "POST",
         cache: false,
         url: "general-program/getFirstGrilla",
         success: function (res) {
-            getSynopsisTable(sinopsis.data, JSON.parse(res).data.last_day_calendar.split('-')[1], JSON.parse(res).data.last_day_calendar.split('-')[2]);
+            lastMonth = JSON.parse(res).data.last_day_calendar.split('-')[1]
+            lastDay = JSON.parse(res).data.last_day_calendar.split('-')[2]
         }
     })
 }
 
-function getCanalClaro() {
+function getCanalClaro(type) {
     $.ajax({
         type: "POST",
         cache: false,
         url: "landing/getCanalClaro",
         success: function (res) {
-            getBannerCanalClaro(JSON.parse(res))
+            if (type == 'banner') {
+                getBannerCanalClaro(JSON.parse(res))
+            }
+            if (type == 'header') {
+                getHeaderCanalClaro(JSON.parse(res))
+            }
+            if (type == 'title-1') {
+                getTitleCanalClaro(JSON.parse(res), 1)
+            }
+            if (type == 'title-2') {
+                getTitleCanalClaro(JSON.parse(res), 2)
+            }
+            if (type == 'title-3') {
+                getTitleCanalClaro(JSON.parse(res), 3)
+            }
         }
     })
 }
 
-export { getProgramacion, getSynopsis, getCanalClaro}
+function getModalProgramacion() {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "landing/getProgrammingLanding",
+        success: function (res) {
+            getProgramacionCanalClaro(JSON.parse(res), lastMonth, lastDay)
+        }
+    })
+}
+
+export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar }

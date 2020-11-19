@@ -90,7 +90,8 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/claroCinema", "landingController@getContentClaroCinema");
     Route::post("/editHeaderLanding", "landingController@editHeaderLanding");
     Route::post("/editElementLanding", "landingController@editElementLanding");
-    Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
+    // Route::get("/getProgrammingLanding", "landingController@getProgrammingLanding");
+    Route::post("/getProgrammingLanding", "landingController@getProgrammingLanding");
     Route::post("/setImageSliderBanner", "landingController@setImageSliderBanner");
     Route::post("/getPromotionalsProgramsCarousel", "landingController@getPromotionalsProgramsCarousel");
     Route::post("/getProgrammingSynopsisTable", "landingController@getProgrammingSynopsisTable");
@@ -116,6 +117,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/setImgCarruselHome", "landingController@setImgCarruselHome");
     Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
     Route::post("/getCanalClaro", "landingController@getCanalClaro");
+    Route::post("/setTitulo", "landingController@setTitulo");
     // MODAL CLARO
 });
 

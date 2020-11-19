@@ -1,18 +1,19 @@
 import $ from "jquery";
 import "bootstrap";
 
-import { getProgramacion, getSynopsis, getCanalClaro } from './store/getters'
+import { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar } from './store/getters'
 import { getBannerSinopsis, } from './store/actions'
 import { loadRoll, } from './store/events/events'
 
 const URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 
-// (function () { sinopsis() })();
+// (function () { showlanding('claro-canal-edi.php'); mvh() })();
+// (function () { sinopsis(); })();
 
 function mvh() {
 
-    $("#mvhImg").load("imports #mvh-edit", function () { });
+    $(".mvhImg").load("imports #mvh-edit", function () { });
     loadRoll()
 
     $('.navbar-programacion').on('click', function () {
@@ -31,7 +32,6 @@ function mvh() {
 
     $('.navbar-canal-claro').on('click', function () {
         clearIframe()
-        // showlanding('concert-channel-edi.php')
         showlanding('claro-canal-edi.php')
         $('#editar').attr('mvh', '2')
         $('#previsualiza').attr('mvh', '2')
@@ -43,10 +43,11 @@ function mvh() {
         $('#editar').attr('mvh', '3')
         $('#previsualiza').attr('mvh', '3')
     })
+
+    getLastDateCalendar()
 }
 
 function programacion(landing) {
-    $("body").append(LOADER);
     let iframeProgramacion = {
         remote: URLBASE + landing,
         container: document.getElementById("iframe-canal-claro"),
@@ -66,14 +67,12 @@ function programacion(landing) {
             }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            $(".loader-view-container").remove();
         }
     };
     new easyXDM.Socket(iframeProgramacion);
 }
 
 function iframePrev(landing) {
-    $("body").append(LOADER);
     let iframePrev = {
         remote: URLBASE + landing,
         container: document.getElementById("iframe-canal-claro"),
@@ -81,10 +80,24 @@ function iframePrev(landing) {
             console.log(message)
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            $(".loader-view-container").remove();
         }
     };
     new easyXDM.Socket(iframePrev);
+}
+
+function sinopsisPrev(obj) {
+    let iframePrev = {
+        remote: `${URLBASE}sinopsis-prev.php`,
+        container: document.getElementById("sinopsis-iframe"),
+        onMessage: function (message, origin) {
+            $('#modalSinopsis').modal('show')
+            loadRoll()
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    let socket = new easyXDM.Socket(iframePrev);
+    socket.postMessage(obj);
 }
 
 function sinopsis() {
@@ -109,7 +122,6 @@ function showModalSinopsis(obj) {
             }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            $(".loader-view-container").remove();
         }
     };
     let socket = new easyXDM.Socket(LandingSinopsis);
@@ -117,7 +129,6 @@ function showModalSinopsis(obj) {
 }
 
 function showlanding(landing) {
-    $("body").append(LOADER);
     let iframeLanding = {
         remote: URLBASE + landing,
         container: document.getElementById("iframe-canal-claro"),
@@ -127,21 +138,31 @@ function showlanding(landing) {
                 switch (json.type) {
                     case "slider-pagination":
                         $("body").append(LOADER);
-                        getCanalClaro();
+                        getCanalClaro('banner');
                         break;
                     case "claro-header":
+                        $("body").append(LOADER);
+                        getCanalClaro('header');
                         break;
                     case "claro-programacion":
+                        $("body").append(LOADER);
+                        getModalProgramacion();
                         break;
                     case "claro-title":
+                        $("body").append(LOADER);
+                        getCanalClaro('title-1');
                         break;
                     case "claro-promo":
                         break;
                     case "claro-carrusel-title":
+                        $("body").append(LOADER);
+                        getCanalClaro('title-2');
                         break;
                     case "claro-carrusel1":
                         break;
                     case "claro-carrusel-title2":
+                        $("body").append(LOADER);
+                        getCanalClaro('title-3');
                         break;
                     case "claro-carrusel2":
                         break;
@@ -149,14 +170,12 @@ function showlanding(landing) {
             }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            $(".loader-view-container").remove();
         }
     };
     new easyXDM.Socket(iframeLanding);
 }
 
 function home(landing) {
-    $("body").append(LOADER);
     let iframeLanding = {
         remote: URLBASE + landing,
         container: document.getElementById("iframe-canal-claro"),
@@ -177,7 +196,6 @@ function home(landing) {
             }
             this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
             this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-            $(".loader-view-container").remove();
         }
     };
     new easyXDM.Socket(iframeLanding);
@@ -199,7 +217,9 @@ export {
     mvh,
     programacion,
     showModalSinopsis,
+    sinopsisPrev,
     iframePrev,
     clearIframe,
-    showlanding
+    showlanding,
+    home
 }

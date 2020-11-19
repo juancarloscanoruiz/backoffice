@@ -3441,71 +3441,71 @@ function eventsGrilla() {
     //Landing de programación de claro canal
     //Canal claro
 
-    // let confIframe = {
-    //     remote: `${baseURL}programacion-edi.php`,
-    //     container: document.getElementById("navbar-prev-programacion"),
-    //     onMessage: function (message, origin) {
-    //         let json = JSON.parse(message);
-    //         if (typeof json == "object") {
-    //             let loader = `
-    //                     <div class="loader-view-container" id="loader1">
-    //                         <img src="./images/loader.gif" class="loader" alt="">
-    //                     </div>
-    //                         `;
-    //             switch (json.type) {
-    //                 case "program":
-    //                     getChapterInfo(json.chapterId);
-    //                     break;
-    //                 case "slider-pagination":
-    //                     $("body").append(loader);
+    let confIframe = {
+        remote: `${baseURL}programacion-edi.php`,
+        container: document.getElementById("navbar-prev-programacion"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                let loader = `
+                         <div class="loader-view-container" id="loader1">
+                             <img src="./images/loader.gif" class="loader" alt="">
+                         </div>
+                             `;
+                switch (json.type) {
+                    case "program":
+                        getChapterInfo(json.chapterId);
+                        break;
+                    case "slider-pagination":
+                        $("body").append(loader);
 
-    //                     setTimeout(function () {
-    //                         $(".modal-programming-carousel").modal("show");
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
 
-    //                         $("#loader1").remove();
+                            $("#loader1").remove();
 
-    //                         addImagesModalBanner();
-    //                     }, 3000);
+                            addImagesModalBanner();
+                        }, 3000);
 
-    //                     break;
-    //                 case "synopsis":
-    //                     document
-    //                         .querySelector("body")
-    //                         .insertAdjacentHTML("beforeend", loader);
-    //                     window.location.href =
-    //                         "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
-    //                     break;
-    //                 case "menu-logos":
-    //                     $("body").append(loader);
-    //                     setTimeout(function () {
-    //                         addImagesModalIcons();
+                        break;
+                    case "synopsis":
+                        document
+                            .querySelector("body")
+                            .insertAdjacentHTML("beforeend", loader);
+                        window.location.href =
+                            "http://back.claronetworks.openofficedospuntocero.info/backoffice/public/landing/edit-program";
+                        break;
+                    case "menu-logos":
+                        $("body").append(loader);
+                        setTimeout(function () {
+                            addImagesModalIcons();
 
-    //                         $(".modal-edit-icons").modal("show");
-    //                         $("#loader1").remove();
-    //                     }, 3000);
-    //                     break;
+                            $(".modal-edit-icons").modal("show");
+                            $("#loader1").remove();
+                        }, 3000);
+                        break;
 
-    //                 default:
-    //                     break;
-    //             }
-    //         }
-    //         this.container.getElementsByTagName("iframe")[0].style.height =
-    //             message + "px";
-    //         this.container.getElementsByTagName("iframe")[0].style.boxShadow =
-    //             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
-    //     }
-    // };
-    // $(".edit-landing-modal-button").click(function () {
-    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-    // });
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height =
+                message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow =
+                "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    $(".edit-landing-modal-button").click(function () {
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    });
     ////////////
     let navbarPrograContainer = document.getElementById(
         "navbar-prev-programacion"
     );
-    // if (navbarPrograContainer) {
-    //     $("#navbar-prev-programacion iframe").remove();
-    //     new easyXDM.Socket(confIframe);
-    // }
+    if (navbarPrograContainer) {
+        $("#navbar-prev-programacion iframe").remove();
+        new easyXDM.Socket(confIframe);
+    }
     let confPrevProgramacion = {
         remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
@@ -3575,7 +3575,7 @@ function eventsGrilla() {
 
         switch ("#" + id) {
             case programacion:
-                // resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
                 break;
             case canalClaro:
                 resetIframe(
@@ -3589,16 +3589,15 @@ function eventsGrilla() {
         }
     });
 
-    // $("#edit").click(function () {
-    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    $("#edit").click(function () {
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
 
-    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    //     $("#prev-mobile").css("opacity", "0.4");
-    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    //     $("#prev-tablet").css("opacity", "0.4");
-    //     $("#prev-desktop").css("opacity", "1");
-    // });
-
+        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+    });
     /////////////
     $(".input-image-program").change(function () {
         let currentInput = $(this);

@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { setImgBannerProgramacion, setImgCarruselHome, setlogoLnading } from './setters'
+import { setImgBannerProgramacion, setImgCarruselHome, setlogoLnading, setHeader, setTitulo, setImgBannerCanalClaro } from './setters'
 
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 var img = [], index = [];
@@ -20,7 +20,14 @@ function setBannerProgramacion(lang) {
         }
         data.append("positions", index);
         data.append("date", $("#programming-modal").val());
-        setImgBannerProgramacion(data)
+        if (lang == 'programacion') {
+            setImgBannerProgramacion(data)
+        }
+        if (lang == 'canal') {
+            data.append("landing", "Canal Claro");
+            setImgBannerCanalClaro(data)
+        }
+
         img = [];
         index = [];
     })
@@ -59,8 +66,50 @@ function setImgCarruselVertical() {
     })
 }
 
+function setHeaderCanalClaro() {
+    $('#btn-acepta-header').on('click', function () {
+        let landing = "Canal Claro";
+        let title1 = $(".inp-text-modal-1").val() || "";
+        let title2 = $(".inp-text-modal-2").val() || "";
+        let logo = document.getElementById("img-header").files[0] || "";
+        let link = $("#inp-text-modal-4").val() || "";
+        let data = new FormData();
+        data.append("landing", landing);
+        data.append("title1", title1);
+        data.append("title2", title2);
+        data.append("logo", logo);
+        data.append("link", link);
+        setHeader(data)
+    })
+}
+
+function setTituloCanalClaro() {
+    $('#btn-acepta-titulo').on('click', function () {
+
+        let data = new FormData();
+        let landing = "Canal Claro";
+
+        let value = $(".inp-title-modal").val();
+        let key = $(".inp-title-modal").attr("key");
+        setTitulo({
+            value: value,
+            key: key,
+            landing: landing
+        });
+        let valueSub = $(".inp-sub-title-modal").val();
+        let keySub = $(".inp-sub-title-modal").attr("key");
+        setTitulo({
+            value: valueSub,
+            key: keySub,
+            landing: landing
+        });
+    })
+}
+
 export {
     setBannerProgramacion,
     setLogosProgramacion,
-    setImgCarruselVertical
+    setImgCarruselVertical,
+    setHeaderCanalClaro,
+    setTituloCanalClaro
 }

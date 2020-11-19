@@ -30,29 +30,7 @@
                             <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-right">
                         </div>
                     </nav>
-                    <div class="navbar">
-                        <!-- BOTONES APROBAR Y RECHAZAR CAMBIOS -->
-                        <div class="d-flex">
-                            <button class="a-text-MBlack btn-apro mr-3">Aprobar cambios</button>
-                            <button class="a-text-MBlack btn-recha">Rechazar cambios</button>
-                        </div>
-                        <!-- EDITAR - PRVISUALIZAR -->
-                        <div class="d-flex float-right pb-2 mr-1">
-                            <form action="" name="formilariosexo" id="formulariosexo" class="formulario">
-                                <div class=" d-flex prev text-small a-text-medium-brownish location mt-2">
-                                    <input type="radio" name="sexo" id="edit" checked />
-                                    <label for="edit" id="editar" class="mujer-estilo d-flex align-items-center pl-4 pt-3" mvh="0">
-                                        <p class=" a-prev-title">EDITAR</p>
-                                    </label>
-                                    <input type="radio" name="sexo" id="prev" />
-                                    <label for="prev" id="previsualiza" class="hombre-estilo pl-2 pt-3" mvh="0"> 
-                                        <p class=" a-prev-title ">PREVISUALIZAR</p>
-                                    </label>
-                                </div>
-                            </form>
-                            <div id="mvhImg"></div>
-                        </div>
-                    </div>
+                    @include('components.previsualizacion')
                     <div class="navbar mb-4">
                         <div></div>
                         <div>
@@ -80,7 +58,9 @@
 </body>
 @include('components.modals.banner')
 @include('components.modals.logos')
-@include('components.modals.sinopsis')
+@include('components.modals.header')
+@include('components.modals.programacion')
+@include('components.modals.titulo')
 
 @include('components.modals.generic.advertencia')
 @include('components.modals.generic.advertencia-url')

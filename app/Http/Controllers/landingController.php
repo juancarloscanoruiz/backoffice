@@ -542,15 +542,6 @@ class landingController extends Controller
 
         echo ($response->getBody()->getContents());
     }
-
-    public function getProgrammingLanding(Request $request)
-    {
-        $client = new Client();
-        $response = $client->get(
-            $this->url . "program/actual_programing_programation/gmt&" . $request->input("date") . '&0'
-        );
-        echo ($response->getBody()->getContents());
-    }
     // CANAL CLARO
 
     // GET MODAL HEADER, TITLE PROMO
@@ -707,62 +698,6 @@ class landingController extends Controller
         echo ($response->getBody()->getContents());
     }
     // CANAL CLARO
-
-    function setImageSliderBanner(Request $request)
-    {
-
-        $folderLanding = "";
-        switch ($request->input("landing")) {
-            case 'Canal Claro':
-                $folderLanding = "canal-claro";
-                break;
-            case 'Concert Channel':
-                $folderLanding = "concert-channel";
-                break;
-            case 'Claro Cinema':
-                $folderLanding = "claro-cinema";
-                break;
-
-            default:
-                # code...
-                break;
-        }
-        //Imágene que subió el usuario
-        $files = $request->file();
-        //POsiciones de las imágenes
-        $positions = explode(",", $request->input("positions"));
-        $dates = ["00-00-0000", "00-00-0000"];
-        if ($request->input("dates")) {
-            $dates = explode(",", $request->input("date"));
-        }
-        $counter = 0;
-        $images = [];
-
-        foreach ($files as $file) {
-            $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/" . $folderLanding . "/banner");
-            $counter++;
-            array_push($images, $newFile);
-        }
-
-        $client = new Client([
-            'headers' => ['Content-Type' => 'application/json']
-        ]);
-
-        $response = $client->post(
-            $this->url . "section/setImageSlider",
-            ['body' => json_encode(
-                [
-                    'usuario_id' => session('id_user'),
-                    'landing' => $request->input("landing"),
-                    'positions' => $positions,
-                    'value' => $images,
-
-                ]
-            )]
-        );
-        $respuesta =  $response->getBody()->getContents();
-        echo ($respuesta);
-    }
 
     function getProgrammingSynopsisTable(Request $request)
     {
@@ -1177,5 +1112,91 @@ class landingController extends Controller
         );
 
         return $response->getBody()->getContents();
+    }
+
+    public function getProgrammingLanding()
+    {
+        $date = date('y-m-d');
+        $client = new Client();
+        $response = $client->get(
+            $this->url . "program/actual_programing_programation/gmt&" . $date . '&1'
+        );
+        echo ($response->getBody()->getContents());
+    }
+
+    public function setTitulo(Request $request)
+    {
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+        $response = $client->post(
+            $this->url . "section/editElement",
+            ['body' => json_encode(
+                [
+                    "usuario_id" => session('id_user'),
+                    "value" => $request->input('value'),
+                    "key" => $request->input('key'),
+                    "landing" => $request->input('landing'),
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
+    }
+
+    function setImageSliderBanner(Request $request)
+    {
+        //Imágene que subió el usuario
+        $files = $request->file();
+        //POsiciones de las imágenes
+        $positions = explode(",", $request->input("positions"));
+        $dates = ["00-00-0000", "00-00-0000"];
+        if ($request->input("dates")) {
+            $dates = explode(",", $request->input("date"));
+        }
+
+        $counter = 0;
+        $images = [];
+        switch ($request->input('landing')) {
+            case 'Canal Claro':
+                foreach ($files as $file) {
+                    $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/canal_claro/banner");
+                    $counter++;
+                    array_push($images, $newFile);
+                }
+                break;
+            case 'Concert Channel':
+                foreach ($files as $file) {
+                    $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/concert_channel/banner");
+                    $counter++;
+                    array_push($images, $newFile);
+                }
+                break;
+            case 'Claro Cinema':
+                foreach ($files as $file) {
+                    $newFile = $this->storeImages("imageBannerSlider" . $positions[$counter], $file, "public/claro_cinema/banner");
+                    $counter++;
+                    array_push($images, $newFile);
+                }
+                break;
+        }
+
+        $client = new Client([
+            'headers' => ['Content-Type' => 'application/json']
+        ]);
+
+        $response = $client->post(
+            $this->url . "section/setImageSlider",
+            ['body' => json_encode(
+                [
+                    'usuario_id' => session('id_user'),
+                    'landing' => $request->input("landing"),
+                    'positions' => $positions,
+                    'value' => $images,
+                ]
+            )]
+        );
+
+        echo ($response->getBody()->getContents());
     }
 }

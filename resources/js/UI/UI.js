@@ -29,7 +29,6 @@ import {
 } from "../config/slick.js";
 
 import { mvh, programacion } from '../index'
-// import { eveRollEdiPrev } from '../store/events/events'
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */

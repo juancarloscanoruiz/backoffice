@@ -4,15 +4,7 @@
             <div class="container-fluid mt-4 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <div class="navbar">
-                            <!-- BOTONES APROBAR Y RECHAZAR CAMBIOS -->
-                            <div class="d-flex">
-                                <button class="a-text-MBlack btn-apro mr-3">Aprobar cambios</button>
-                                <button class="a-text-MBlack btn-recha">Rechazar cambios</button>
-                            </div>
-                            <!-- EDITAR - PRVISUALIZAR -->
-                            <div class="rollEdiPrev"></div>
-                        </div>
+                        @include('components.previsualizacion')
                         <div class="navbar">
                             <!-- ULTIMA EDICIÒN -->
                             <div>
