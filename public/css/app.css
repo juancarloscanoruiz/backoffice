@@ -4731,6 +4731,10 @@ div .bootstrap-select > .dropdown-toggle:focus {
   z-index: 1;
 }
 
+.p21 {
+  padding-top: 21px;
+}
+
 @font-face {
   font-family: "Montserrat-Light";
   src: url(/backoffice/public/fonts/Montserrat-Light/Montserrat-Light.eot);
@@ -6563,7 +6567,8 @@ ul {
 }
 
 .nav-li {
-  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
   padding: 10px;
@@ -6571,19 +6576,22 @@ ul {
 
 .active-navItem {
   position: relative;
-  filter: none;
+  -webkit-filter: none;
+          filter: none;
   opacity: 1;
 }
 
 .list-channel-active {
   border-radius: 20px;
   background: white;
-  filter: none !important;
+  -webkit-filter: none !important;
+          filter: none !important;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 .list-channel-item {
-  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
   opacity: 0.75;
   transition: all 0.6s ease;
 }

@@ -108,7 +108,7 @@
 
                 <div class="col-xl-4 fecha-margi text-small a-text-medium-brownish">
                   <p class="margin-fecha">Fecha de nacimiento</p>
-                  <div class=" mb-4 cuadro-fecha">
+                  <div class=" mb-4 p21 cuadro-fecha">
                     <div class="cuadro-dia">
 
                       <input type="checkbox" id="selectDay" />
