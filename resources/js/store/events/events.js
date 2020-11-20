@@ -66,6 +66,13 @@ function evnSinopsis() {
             }
         })
     })
+
+    $('.synopsis-calendar-item').on('click', function () {
+        $("body").append(LOADER);
+        $(".synopsis-calendar-item").removeClass("programming-item-active");
+        $(this).addClass("programming-item-active");
+        getProgramacionDate($(this).attr("date"), 2)
+    })
 }
 
 function loadRoll() {
@@ -124,7 +131,7 @@ function synopsisCalendarItem() {
         $("body").append(LOADER);
         $(".synopsis-calendar-item").removeClass("programming-item-active");
         $(this).addClass("programming-item-active");
-        getProgramacionDate($(this).attr("date"))
+        getProgramacionDate($(this).attr("date"), 1)
     })
 }
 

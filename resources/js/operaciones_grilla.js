@@ -143,17 +143,17 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-     let calendarsinopsis = $(".calendar-sinopsis-slider");
-     $(".calendar-sinopsis-slider").slick({
-         slidesToShow: 11,
-         slidesToScroll: 11,
-         infinite: true,
-         dots: false,
-         centerMode: false,
-         arrows: true,
-         prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-         nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-     });
+    let calendarsinopsis = $(".calendar-sinopsis-slider");
+    $(".calendar-sinopsis-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
     calendarsinopsis.slick("unslick");
     createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
@@ -1605,7 +1605,7 @@ function eventsGrilla() {
 
         function (e) {
             if (e.which === 13 && !e.shiftKey) {
-                debugger;
+
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -3339,16 +3339,16 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
-                      
-                        let idpagination =json.id_slide;
-                        let totalslides = json.totales;
-                       
-                       // setTimeout(function () {
-                        
-                            //$("#loader1").remove();
 
-                            addImagesModalBanner(idpagination, totalslides);
-                     //   }, 3000);
+                        let idpagination = json.id_slide;
+                        let totalslides = json.totales;
+
+                        // setTimeout(function () {
+
+                        //$("#loader1").remove();
+
+                        addImagesModalBanner(idpagination, totalslides);
+                        //   }, 3000);
 
                         break;
                     case "synopsis":
@@ -4961,7 +4961,7 @@ function eventsGrilla() {
     });
 
     function viewImg(objFileInput, container) {
-        debugger;
+
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {

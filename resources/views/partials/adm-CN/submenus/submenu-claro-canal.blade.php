@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-8 mx-auto">
                     <h3 class="monthSliderCalendar a-text-semibold-brownish-grey-three text-uppercase"></h3>
-                    <div class="slick-calendario calendar-sinopsis-slider"></div>
+                    <div class="slick-calendario"></div>
                 </div>
 
                 <div class="col-11 mx-auto p-0 content-table show-sinopsis-table"></div>

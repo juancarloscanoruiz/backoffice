@@ -2642,7 +2642,7 @@ function getProgrammingLanding(date, landing) {
 //Conseguir únicamente programas de un landing, sin mostrar el modal
 function getProgramsLanding(date, landing = "") {
     $.ajax({
-        type: "GET",
+        type: "POST",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -4332,7 +4332,7 @@ function getContentClaroCinema(type) {
                         $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                            debugger;
+
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
