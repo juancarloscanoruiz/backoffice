@@ -38,7 +38,7 @@
                         <!-- BOTONES -->
                         <div class="content mt-4">
                             <div class="d-flex justify-content-center">
-                                <button id="acepta_canales_home" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                                <button class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack" data-dismiss="modal">ACEPTAR</button>
                                 <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                             </div>
                         </div>

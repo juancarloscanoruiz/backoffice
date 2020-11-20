@@ -178,7 +178,7 @@
     <!-- MODAL TITULO - TEXTO-PROMO LANDING CANAL CLARO 1 -->
 
     <!-- MODAL PROMO - PROMO LANDING CANAL CLARO 1 -->
-    <div id="modal-promo" class="modal" data-backdrop-limit="1">
+    <div id="modal-promo" class="modal">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-promo-claro modal-content">
                 <!-- TEXTO -->
