@@ -22,7 +22,8 @@
                 <img src="http://www.claronetworks.openofficedospuntocero.info/images/registro/listo.svg" class="listo ml-2 mt-1" />
               </div>
               <div class="position-relative mb-4">
-                <input class="insert-data input-password a-text-medium-brownish" type="password" id="edit-user-front-repassword" name="login-password" placeholder="Confirmar contraseña" autocomplete="off" />
+                <input class="insert-data input-password2 a-text-medium-brownish" type="password" id="edit-user-front-repassword" name="login-password" placeholder="Confirmar contraseña" autocomplete="off" />
+             
               </div>
 
               <div class="d-flex align-items-center mb-4 mx-auto mt-2 ">

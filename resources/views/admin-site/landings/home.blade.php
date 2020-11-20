@@ -6,7 +6,7 @@
         @include('partials.headers.headerPrograGeneral')
         <div id="title" class="mt-3">
             <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
-                <div class="d-flex">
+                <div class="d-flex pointer-none">
                     <button class="btn-apro  a-text-MBlack mr-3  text-normal gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
                     <button class="btn-recha  a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar

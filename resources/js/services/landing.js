@@ -176,7 +176,7 @@ function getChapterInfo(data) {
 
         success: function (result) {
 
-            console.log(result)
+           
 
             let data = JSON.parse(result);
             $(".loader-view-container").remove();
@@ -195,9 +195,10 @@ function getChapterInfo(data) {
 
             var daysSlider = "";
             //Pegamos el nombre del mes y el año
-            $("#slider-calendar-current-date").html(
+            $(".mesinfo").text(
                 getMonthAndYear(date.getMonth())
             );
+            console.log(getMonthAndYear(date.getMonth()),"messss");
             //Obtenemos la hora GMT
             let dateUTC = new Date();
             //Día en horario central

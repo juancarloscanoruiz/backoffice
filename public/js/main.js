@@ -92423,12 +92423,11 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
+            var idpagination = json.id_slide;
+            var totalslides = json.totales; // setTimeout(function () {
+            //$("#loader1").remove();
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])(idpagination, totalslides);
             break;
 
           case "synopsis":
@@ -92474,70 +92473,28 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0];
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  };
+  }; //previsualizar  programacion canal claro
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
-    var canalClaro = "#navbar-prev-canal-claro";
-    var programacion = "#navbar-prev-programacion";
-    var home = "#navbar-prev-home";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-    });
-
-    switch ("#" + id) {
-      case programacion:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
-        break;
-
-      case home:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-        break;
-    }
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n        <div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n            ");
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000); //Landing programacion canal claro
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
-    var canalClaro = "#navbar-prev-canal-claro";
-    var programacion = "#navbar-prev-programacion";
-    var home = "#navbar-prev-home";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-    });
-
-    switch ("#" + id) {
-      case programacion:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-        break;
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n        <div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n            ");
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000);
   }); /////////////
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
@@ -94238,7 +94195,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-  debugger;
   var data = {
     chapter_id: chapter_id,
     key: key,
@@ -94805,7 +94761,6 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      console.log(result);
       var data = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
@@ -94822,7 +94777,8 @@ function getChapterInfo(data) {
       var totalDaysSlider = 0;
       var daysSlider = ""; //Pegamos el nombre del mes y el año
 
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".mesinfo").text(getMonthAndYear(date.getMonth()));
+      console.log(getMonthAndYear(date.getMonth()), "messss"); //Obtenemos la hora GMT
 
       var dateUTC = new Date(); //Día en horario central
 
@@ -98174,7 +98130,7 @@ function getUserToUpdate(id) {
             }); //VALIDATE PASSWORD
 
             jquery__WEBPACK_IMPORTED_MODULE_3___default()(".input-password").keyup(function () {
-              Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this), jquery__WEBPACK_IMPORTED_MODULE_3___default()(".warning-password-text"));
+              Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this), jquery__WEBPACK_IMPORTED_MODULE_3___default()(".caracteres-min"));
             });
             jquery__WEBPACK_IMPORTED_MODULE_3___default()("#edit-input-username").val(json.data.name);
             jquery__WEBPACK_IMPORTED_MODULE_3___default()("#edit-input-email").val(json.data.email);
@@ -99957,7 +99913,7 @@ var LandingView = /*#__PURE__*/function () {
           }
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <!-- parte del home-->\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                  <div class=\"mr-5\">\n                    <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                    <!--navbar-->\n                    <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                        </a>\n                      </div>\n                      <!-- <div>\n                            <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n                                <p class=\"navbar-item\">Programaci\xF3n</p>\n                            </a>\n                            </div>-->\n                    </div>\n                    <!--<div class=\"login\">\n                                <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n                            </div>-->\n\n                    <!--inputs-->\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                      placeholder=\"TITULO\"\n                      value=\"".concat(title, "\"/>\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                      placeholder=\"SUBTITULO\"\n                      value=\"").concat(subtitle, "\"/>\n                  </div>\n                  <div class=\"d-flex justify-content-around\">\n                    <input\n                      type=\"file\"\n                      name=\"\"\n                      id=\"video-promo-header-home\"\n                      class=\"d-none file-video\"\n                      accept=\"video/*\"/>\n                    <label\n                      for=\"video-promo-header-home\"\n                      class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                        ").concat(file, "\n                    </label>\n                    <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                            <label for=\"image-promo-header-home\"\n                                class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                    class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                    jpg 472px X 295px </span>\n                            </label>-->\n                  </div>\n                </div>\n\n                <div class=\"float-right mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\">\n                        Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4\n                    </span>\n                </div>\n                <div class=\"clearfix\"></div>"));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <!-- parte del home-->\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                  <div class=\"mr-5\">\n                    <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                    <!--navbar-->\n                    <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                        </span>\n                      </div>\n                      <!-- <div>\n                            <span class=\"navbar-link text-decoration-none\">\n                                <p class=\"navbar-item\">Programaci\xF3n</p>\n                            </span>\n                            </div>-->\n                    </div>\n                    <!--<div class=\"login\">\n                                <span class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></span>\n                            </div>-->\n\n                    <!--inputs-->\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                      placeholder=\"TITULO\"\n                      value=\"".concat(title, "\"/>\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                      placeholder=\"SUBTITULO\"\n                      value=\"").concat(subtitle, "\"/>\n                  </div>\n                  <div class=\"d-flex justify-content-around\">\n                    <input\n                      type=\"file\"\n                      name=\"\"\n                      id=\"video-promo-header-home\"\n                      class=\"d-none file-video\"\n                      accept=\"video/*\"/>\n                    <label\n                      for=\"video-promo-header-home\"\n                      class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                        ").concat(file, "\n                    </label>\n                    <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                            <label for=\"image-promo-header-home\"\n                                class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                    class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                    jpg 472px X 295px </span>\n                            </label>-->\n                  </div>\n                </div>\n\n                <div class=\"float-right mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\">\n                        Nombre_Promoci\xF3n_Home_20200709.mp4\n                    </span>\n                </div>\n                <div class=\"clearfix\"></div>"));
           var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
           homeHeaderButtons.html("");
           homeHeaderButtons.html("\n                    <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                        <button\n                            class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n                        <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                            class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                            data-toggle=\"modal\">CANCELAR</a>\n                    </div>");
@@ -100004,7 +99960,7 @@ var LandingView = /*#__PURE__*/function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                    <div class=\"mr-5 mx-auto\">\n                    <div class=\"d-flex\">\n                        <!--dots-->\n                        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n                        <!--add slide-->\n                        <img\n                        src=\"./images/add-icon.svg\"\n                        class=\"cursor-pointer mb-3\" id=\"add-home-banner-image\"\n                        />\n                    </div>\n                    <!--  <div class=\"shadowblack position-absolute\">\n                    <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n                    </div>-->\n                    <div class=\"home-slider-container position-relative\">\n                        <div class=\"menu-mobile\">\n                            <div class=\"d-flex justify-content-between\">\n                                <img src=\"./images/home/responsive-menu.svg\" alt=\"menu-icon\" />\n                                <img class=\"menu-mobile__logo\" src=\"./images/home/claro-networks-white.svg\" alt=\"Claro Networks Logo\" />\n                                <img src=\"./images/gmt2-icon.svg\" alt=\"gmt icon\" />\n                            </div>\n                        </div>\n                        <div class=\"programming-slider-home mx-auto\">\n                        ".concat(imageMobile, "\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                <div class=\"d-flex mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\"\n                    >Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span\n                    >\n                </div>\n                <div class=\"clearfix\"></div>\n            "));
         var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
         homeHeaderButtons.html("");
-        homeHeaderButtons.html("\n                <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                    <button\n                        class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                        id=\"edit-home-encabezado-mobile\" data-dismiss=\"modal\">ACEPTAR</button>\n                    <a href=\"#delete-info-encabezado\" role=\"button\"\n                        class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                        data-toggle=\"modal\">CANCELAR</a>\n                </div>\n            ");
+        homeHeaderButtons.html("\n                <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                    <button\n                        class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                        id=\"edit-home-encabezado-mobile\" data-dismiss=\"modal\">ACEPTAR</button>\n                    <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                        class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                        data-toggle=\"modal\">CANCELAR</a>\n                </div>\n            ");
         var programmingSliderHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home");
 
         try {

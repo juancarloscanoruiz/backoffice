@@ -3215,6 +3215,7 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
+    
                 switch (json.type) {
                     case "program":
                         getChapterInfo(json.chapterId);
@@ -3459,15 +3460,16 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
-                        $("body").append(loader);
+                      
+                        let idpagination =json.id_slide;
+                        let totalslides = json.totales;
+                       
+                       // setTimeout(function () {
+                        
+                            //$("#loader1").remove();
 
-                        setTimeout(function () {
-                            $(".modal-programming-carousel").modal("show");
+                            addImagesModalBanner(idpagination, totalslides);
 
-                            $("#loader1").remove();
-
-                            addImagesModalBanner();
-                        }, 3000);
 
                         break;
                     case "synopsis":
@@ -3508,6 +3510,7 @@ function eventsGrilla() {
         $("#navbar-prev-programacion iframe").remove();
         new easyXDM.Socket(confIframe);
     }
+    
     let confPrevProgramacion = {
         remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
@@ -3522,83 +3525,47 @@ function eventsGrilla() {
         }
     };
 
+    //previsualizar  programacion canal claro
     $("#prev").click(function () {
-        let id = $(".navbar-progra-content").attr("id");
+        $("body").append( `
+        <div class="loader-view-container" id="loader1">
+            <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+            `);
+            resetIframe(
+                $("#navbar-prev-programacion iframe"),
+                confPrevProgramacion
+            );
+            setTimeout(function () {                            
+               
+                $("#prev-mobile")
+                    .removeClass("pointer-none")
+                    .addClass("cursor-pointer");
+                $("#prev-tablet")
+                    .removeClass("pointer-none")
+                    .addClass("cursor-pointer");
+                    $("#loader1").remove();
+            }, 2000);
 
-        let canalClaro = "#navbar-prev-canal-claro";
-        let programacion = "#navbar-prev-programacion";
-        let home = "#navbar-prev-home";
-
-        $("#navbar-prev-canal-claro iframe").remove();
-        $("#navbar-prev-programacion iframe").remove();
-        $("#navbar-prev-home iframe").remove();
-
-        $("#device-size").load("imports #device-size-prev", function () {
-            $(".a-prev-image").click(function () {
-                previewPage($(this));
-            });
-        });
-
-        switch ("#" + id) {
-            case programacion:
-                resetIframe(
-                    $("#navbar-prev-programacion iframe"),
-                    confPrevProgramacion
-                );
-                break;
-            case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    confPrevClaroCanal
-                );
-                break;
-            case home:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-                break;
-        }
+        //Landing programacion canal claro
+       
     });
-
     $("#edit").click(function () {
-        let id = $(".navbar-progra-content").attr("id");
-
-        let canalClaro = "#navbar-prev-canal-claro";
-        let programacion = "#navbar-prev-programacion";
-        let home = "#navbar-prev-home";
-
-        $("#navbar-prev-canal-claro iframe").remove();
-        $("#navbar-prev-programacion iframe").remove();
-        $("#navbar-prev-home iframe").remove();
-
-        $("#device-size").load("imports #device-size-edit", function () {
-            $(".a-prev-image").click(function () {
-                previewPage($(this));
-            });
-        });
-
-        switch ("#" + id) {
-            case programacion:
-                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-                break;
-            case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    landingCanalClaro
-                );
-                break;
-            case canalClaro:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-                break;
-        }
-    });
-
-    $("#edit").click(function () {
-        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        $("body").append( `
+        <div class="loader-view-container" id="loader1">
+            <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+            `);
+            resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+            setTimeout(function () {
 
         $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
         $("#prev-mobile").css("opacity", "0.4");
         $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
         $("#prev-tablet").css("opacity", "0.4");
         $("#prev-desktop").css("opacity", "1");
+        $("#loader1").remove();
+    }, 2000);
     });
     /////////////
     $(".input-image-program").change(function () {

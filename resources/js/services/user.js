@@ -785,9 +785,11 @@ function getUserToUpdate(id) {
                             $(".input-password").keyup(function() {
                                 validateKeyUpPassword(
                                     $(this),
-                                    $(".warning-password-text")
+                                    $(".caracteres-min")
                                 );
                             });
+
+                           
 
                             $("#edit-input-username").val(json.data.name);
                             $("#edit-input-email").val(json.data.email);

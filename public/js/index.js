@@ -94,15 +94,6 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
-  * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-  */
-(function (global, factory) {
-   true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
-  undefined;
-}(this, (function (exports, $, Popper) { 'use strict';
 
 
 /***/ }),
@@ -124,54 +115,6 @@ asn1.constants = __webpack_require__(/*! ./asn1/constants */ "./node_modules/asn
 asn1.decoders = __webpack_require__(/*! ./asn1/decoders */ "./node_modules/asn1.js/lib/asn1/decoders/index.js");
 asn1.encoders = __webpack_require__(/*! ./asn1/encoders */ "./node_modules/asn1.js/lib/asn1/encoders/index.js");
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-
-    return target;
-  }
 
 /***/ }),
 
@@ -181,17 +124,6 @@ asn1.encoders = __webpack_require__(/*! ./asn1/encoders */ "./node_modules/asn1.
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  /**
-   * ------------------------------------------------------------------------
-   * Private TransitionEnd Helpers
-   * ------------------------------------------------------------------------
-   */
 
 var asn1 = __webpack_require__(/*! ../asn1 */ "./node_modules/asn1.js/lib/asn1.js");
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
@@ -360,24 +292,6 @@ EncoderBuffer.prototype.join = function join(out, offset) {
     out = new Buffer(this.length);
   if (!offset)
     offset = 0;
-  var NAME = 'alert';
-  var VERSION = '4.5.0';
-  var DATA_KEY = 'bs.alert';
-  var EVENT_KEY = "." + DATA_KEY;
-  var DATA_API_KEY = '.data-api';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var SELECTOR_DISMISS = '[data-dismiss="alert"]';
-  var EVENT_CLOSE = "close" + EVENT_KEY;
-  var EVENT_CLOSED = "closed" + EVENT_KEY;
-  var EVENT_CLICK_DATA_API = "click" + EVENT_KEY + DATA_API_KEY;
-  var CLASS_NAME_ALERT = 'alert';
-  var CLASS_NAME_FADE = 'fade';
-  var CLASS_NAME_SHOW = 'show';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   if (this.length === 0)
     return out;
@@ -625,30 +539,6 @@ Node.prototype.def = function def(val) {
 
   return this;
 };
-  var NAME$1 = 'button';
-  var VERSION$1 = '4.5.0';
-  var DATA_KEY$1 = 'bs.button';
-  var EVENT_KEY$1 = "." + DATA_KEY$1;
-  var DATA_API_KEY$1 = '.data-api';
-  var JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
-  var CLASS_NAME_ACTIVE = 'active';
-  var CLASS_NAME_BUTTON = 'btn';
-  var CLASS_NAME_FOCUS = 'focus';
-  var SELECTOR_DATA_TOGGLE_CARROT = '[data-toggle^="button"]';
-  var SELECTOR_DATA_TOGGLES = '[data-toggle="buttons"]';
-  var SELECTOR_DATA_TOGGLE = '[data-toggle="button"]';
-  var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
-  var SELECTOR_INPUT = 'input:not([type="hidden"])';
-  var SELECTOR_ACTIVE = '.active';
-  var SELECTOR_BUTTON = '.btn';
-  var EVENT_CLICK_DATA_API$1 = "click" + EVENT_KEY$1 + DATA_API_KEY$1;
-  var EVENT_FOCUS_BLUR_DATA_API = "focus" + EVENT_KEY$1 + DATA_API_KEY$1 + " " + ("blur" + EVENT_KEY$1 + DATA_API_KEY$1);
-  var EVENT_LOAD_DATA_API = "load" + EVENT_KEY$1 + DATA_API_KEY$1;
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
 Node.prototype.explicit = function explicit(num) {
   var state = this._baseState;
@@ -764,11 +654,6 @@ Node.prototype._decode = function decode(input, options) {
 
       if (input.isError(present))
         return present;
-      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
-        event.preventDefault(); // work around event sent to label and input
-      }
-
-      Button._jQueryInterface.call($(button), 'toggle');
     }
   }
 
@@ -898,13 +783,6 @@ Node.prototype._getUse = function _getUse(entity, obj) {
   }
   return state.useDecoder;
 };
-  var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.0';
-  var DATA_KEY$2 = 'bs.carousel';
-  var EVENT_KEY$2 = "." + DATA_KEY$2;
-  var DATA_API_KEY$2 = '.data-api';
-  var JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
-  var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
 Node.prototype._decodeChoice = function decodeChoice(input, options) {
   var state = this._baseState;
@@ -1098,11 +976,6 @@ Node.prototype._isPrintstr = function isPrintstr(str) {
   return /^[A-Za-z0-9 '\(\)\+,\-\.\/:=\?]*$/.test(str);
 };
 
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default), config);
-      Util.typeCheckConfig(NAME$2, config, DefaultType);
-      return config;
-    };
 
 /***/ }),
 
@@ -1376,11 +1249,6 @@ DERNode.prototype._peekTag = function peekTag(buffer, tag, any) {
   return decodedTag.tag === tag || decodedTag.tagStr === tag ||
     (decodedTag.tagStr + 'of') === tag || any;
 };
-        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
-
-        if (typeof config === 'object') {
-          _config = _objectSpread2(_objectSpread2({}, _config), config);
-        }
 
 DERNode.prototype._decodeTag = function decodeTag(buffer, tag, any) {
   var decodedTag = derDecodeTag(buffer,
@@ -1531,7 +1399,6 @@ DERNode.prototype._decodeObjid = function decodeObjid(buffer, values, relative) 
     if (tmp !== undefined)
       result = tmp;
   }
-      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
   return result;
 };
@@ -1624,19 +1491,6 @@ function derDecodeTag(buf, fail) {
     primitive: primitive,
     tag: tag,
     tagStr: tagStr
-  var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.0';
-  var DATA_KEY$3 = 'bs.collapse';
-  var EVENT_KEY$3 = "." + DATA_KEY$3;
-  var DATA_API_KEY$3 = '.data-api';
-  var JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
-  var Default$1 = {
-    toggle: true,
-    parent: ''
-  };
-  var DefaultType$1 = {
-    toggle: 'boolean',
-    parent: '(string|element)'
   };
 }
 
@@ -1898,9 +1752,6 @@ DERNode.prototype._encodeObjid = function encodeObjid(id, values, relative) {
 
   return this._createEncoderBuffer(objid);
 };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$1), config);
-      config.toggle = Boolean(config.toggle); // Coerce string values
 
 function two(num) {
   if (num < 10)
@@ -1994,7 +1845,6 @@ DERNode.prototype._encodeInt = function encodeInt(num, values) {
   if(out[0] & 0x80) {
     out.unshift(0);
   }
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
   return this._createEncoderBuffer(new Buffer(out));
 };
@@ -2051,13 +1901,6 @@ function encodeTag(tag, primitive, cls, reporter) {
 
   if (!primitive)
     res |= 0x20;
-  var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.0';
-  var DATA_KEY$4 = 'bs.dropdown';
-  var EVENT_KEY$4 = "." + DATA_KEY$4;
-  var DATA_API_KEY$4 = '.data-api';
-  var JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
-  var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   res |= (der.tagClassByName[cls || 'universal'] << 6);
 
@@ -2371,11 +2214,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       // 'a'
       if (c >= 49) {
         r += c - 49 + 0xa;
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
-      Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
-      return config;
-    };
 
       // 'A'
       } else if (c >= 17) {
@@ -2428,11 +2266,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       this.imuln(pow);
       if (this.words[0] + word < 0x4000000) {
         this.words[0] += word;
-      if (typeof this._config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
-          return data;
-        };
       } else {
         this._iaddn(word);
       }
@@ -2454,33 +2287,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     this.copy(r);
     return r;
   };
-    _proto._getPopperConfig = function _getPopperConfig() {
-      var popperConfig = {
-        placement: this._getPlacement(),
-        modifiers: {
-          offset: this._getOffset(),
-          flip: {
-            enabled: this._config.flip
-          },
-          preventOverflow: {
-            boundariesElement: this._config.boundary
-          }
-        }
-      }; // Disable Popper.js if we have a static display
-
-      if (this._config.display === 'static') {
-        popperConfig.modifiers.applyStyle = {
-          enabled: false
-        };
-      }
-
-      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
-    } // Static
-    ;
-
-    Dropdown._jQueryInterface = function _jQueryInterface(config) {
-      return this.each(function () {
-        var data = $(this).data(DATA_KEY$4);
 
   BN.prototype._expand = function _expand (size) {
     while (this.length < size) {
@@ -2868,13 +2674,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.length > num.length) return this.clone().ior(num);
     return num.clone().ior(this);
   };
-  var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.0';
-  var DATA_KEY$5 = 'bs.modal';
-  var EVENT_KEY$5 = "." + DATA_KEY$5;
-  var DATA_API_KEY$5 = '.data-api';
-  var JQUERY_NO_CONFLICT$5 = $.fn[NAME$5];
-  var ESCAPE_KEYCODE$1 = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   BN.prototype.uor = function uor (num) {
     if (this.length > num.length) return this.clone().iuor(num);
@@ -3064,11 +2863,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return this;
   };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$3), config);
-      Util.typeCheckConfig(NAME$5, config, DefaultType$3);
-      return config;
-    };
 
   // Add `num` to `this`
   BN.prototype.add = function add (num) {
@@ -3139,12 +2933,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       carry = r >> 26;
       this.words[i] = r & 0x3ffffff;
     }
-        this._element.classList.add(CLASS_NAME_STATIC);
-
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, function () {
-          _this3._element.classList.remove(CLASS_NAME_STATIC);
-        }).emulateTransitionEnd(modalTransitionDuration);
 
     // Copy rest of the words
     if (carry === 0 && i < a.length && a !== this) {
@@ -3788,11 +3576,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   if (!Math.imul) {
     comb10MulTo = smallMulTo;
   }
-      if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
-        modalBody.scrollTop = 0;
-      } else {
-        this._element.scrollTop = 0;
-      }
 
   function bigMulTo (self, num, out) {
     out.negative = num.negative ^ self.negative;
@@ -3917,7 +3700,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
           var io = itws[p + j + s];
 
           var rx = rtwdf_ * ro - itwdf_ * io;
-      this._isTransitioning = false;
 
           io = rtwdf_ * io + itwdf_ * ro;
           ro = rx;
@@ -4095,7 +3877,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return this;
   };
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
   BN.prototype.muln = function muln (num) {
     return this.clone().imuln(num);
@@ -4194,7 +3975,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     var s = Math.min((bits - r) / 26, this.length);
     var mask = 0x3ffffff ^ ((0x3ffffff >>> r) << r);
     var maskedWords = extended;
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     h -= s;
     h = Math.max(0, h);
@@ -4243,46 +4023,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     // TODO(indutny): implement me
     assert(this.negative === 0);
     return this.iushrn(bits, hint, extended);
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
-  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-  var DefaultWhitelist = {
-    // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
-    a: ['target', 'href', 'title', 'rel'],
-    area: [],
-    b: [],
-    br: [],
-    col: [],
-    code: [],
-    div: [],
-    em: [],
-    hr: [],
-    h1: [],
-    h2: [],
-    h3: [],
-    h4: [],
-    h5: [],
-    h6: [],
-    i: [],
-    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
-    li: [],
-    ol: [],
-    p: [],
-    pre: [],
-    s: [],
-    small: [],
-    span: [],
-    sub: [],
-    sup: [],
-    strong: [],
-    u: [],
-    ul: []
   };
 
   // Shift-left
@@ -4594,104 +4334,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
         mod: res.mod
       };
     }
-  var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.0';
-  var DATA_KEY$6 = 'bs.tooltip';
-  var EVENT_KEY$6 = "." + DATA_KEY$6;
-  var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
-  var CLASS_PREFIX = 'bs-tooltip';
-  var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
-  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
-  var DefaultType$4 = {
-    animation: 'boolean',
-    template: 'string',
-    title: '(string|element|function)',
-    trigger: 'string',
-    delay: '(number|object)',
-    html: 'boolean',
-    selector: '(string|boolean)',
-    placement: '(string|function)',
-    offset: '(number|string|function)',
-    container: '(string|element|boolean)',
-    fallbackPlacement: '(string|array)',
-    boundary: '(string|element)',
-    sanitize: 'boolean',
-    sanitizeFn: '(null|function)',
-    whiteList: 'object',
-    popperConfig: '(null|object)'
-  };
-  var AttachmentMap = {
-    AUTO: 'auto',
-    TOP: 'top',
-    RIGHT: 'right',
-    BOTTOM: 'bottom',
-    LEFT: 'left'
-  };
-  var Default$4 = {
-    animation: true,
-    template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
-    trigger: 'hover focus',
-    title: '',
-    delay: 0,
-    html: false,
-    selector: false,
-    placement: 'top',
-    offset: 0,
-    container: false,
-    fallbackPlacement: 'flip',
-    boundary: 'scrollParent',
-    sanitize: true,
-    sanitizeFn: null,
-    whiteList: DefaultWhitelist,
-    popperConfig: null
-  };
-  var HOVER_STATE_SHOW = 'show';
-  var HOVER_STATE_OUT = 'out';
-  var Event = {
-    HIDE: "hide" + EVENT_KEY$6,
-    HIDDEN: "hidden" + EVENT_KEY$6,
-    SHOW: "show" + EVENT_KEY$6,
-    SHOWN: "shown" + EVENT_KEY$6,
-    INSERTED: "inserted" + EVENT_KEY$6,
-    CLICK: "click" + EVENT_KEY$6,
-    FOCUSIN: "focusin" + EVENT_KEY$6,
-    FOCUSOUT: "focusout" + EVENT_KEY$6,
-    MOUSEENTER: "mouseenter" + EVENT_KEY$6,
-    MOUSELEAVE: "mouseleave" + EVENT_KEY$6
-  };
-  var CLASS_NAME_FADE$2 = 'fade';
-  var CLASS_NAME_SHOW$4 = 'show';
-  var SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
-  var SELECTOR_ARROW = '.arrow';
-  var TRIGGER_HOVER = 'hover';
-  var TRIGGER_FOCUS = 'focus';
-  var TRIGGER_CLICK = 'click';
-  var TRIGGER_MANUAL = 'manual';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
-
-  var Tooltip = /*#__PURE__*/function () {
-    function Tooltip(element, config) {
-      if (typeof Popper === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
-      } // private
-
-
-      this._isEnabled = true;
-      this._timeout = 0;
-      this._hoverState = '';
-      this._activeTrigger = {};
-      this._popper = null; // Protected
-
-      this.element = element;
-      this.config = this._getConfig(config);
-      this.tip = null;
-
-      this._setListeners();
-    } // Getters
 
     if ((this.negative & num.negative) !== 0) {
       res = this.neg().divmod(num.neg(), mode);
@@ -5054,31 +4696,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.negative === 0 && negative) return 1;
 
     this.strip();
-      var defaultBsConfig = {
-        placement: attachment,
-        modifiers: {
-          offset: this._getOffset(),
-          flip: {
-            behavior: this.config.fallbackPlacement
-          },
-          arrow: {
-            element: SELECTOR_ARROW
-          },
-          preventOverflow: {
-            boundariesElement: this.config.boundary
-          }
-        },
-        onCreate: function onCreate(data) {
-          if (data.originalPlacement !== data.placement) {
-            _this3._handlePopperPlacementChange(data);
-          }
-        },
-        onUpdate: function onUpdate(data) {
-          return _this3._handlePopperPlacementChange(data);
-        }
-      };
-      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
-    };
 
     var res;
     if (this.length > 1) {
@@ -5096,14 +4713,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.negative !== 0) return -res | 0;
     return res;
   };
-      if (typeof this.config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
-          return data;
-        };
-      } else {
-        offset.offset = this.config.offset;
-      }
 
   // Compare two numbers and return:
   // 1 - if `this` > `num`
@@ -5171,15 +4780,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   BN.prototype.lte = function lte (num) {
     return this.cmp(num) <= 0;
   };
-      if (this.config.selector) {
-        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
-          trigger: 'manual',
-          selector: ''
-        });
-      } else {
-        this._fixTitle();
-      }
-    };
 
   BN.prototype.eqn = function eqn (num) {
     return this.cmpn(num) === 0;
@@ -5286,14 +4886,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     this.red._verify1(this);
     return this.red.neg(this);
   };
-    _proto._getConfig = function _getConfig(config) {
-      var dataAttributes = $(this.element).data();
-      Object.keys(dataAttributes).forEach(function (dataAttr) {
-        if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
-          delete dataAttributes[dataAttr];
-        }
-      });
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
   BN.prototype.redPow = function redPow (num) {
     assert(this.red && !num.red, 'redPow(normalNum)');
@@ -5558,30 +5150,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
   Red.prototype.sub = function sub (a, b) {
     this._verify2(a, b);
-  /**
-   * ------------------------------------------------------------------------
-   * Constants
-   * ------------------------------------------------------------------------
-   */
-
-  var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.0';
-  var DATA_KEY$7 = 'bs.popover';
-  var EVENT_KEY$7 = "." + DATA_KEY$7;
-  var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
-  var CLASS_PREFIX$1 = 'bs-popover';
-  var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
-
-  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
-    placement: 'right',
-    trigger: 'click',
-    content: '',
-    template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
-  });
-
-  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
-    content: '(string|element|function)'
-  });
 
     var res = a.sub(b);
     if (res.cmpn(0) < 0) {
@@ -5742,16 +5310,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     var r = num.umod(this.m);
 
     return r === num ? r.clone() : r;
-  var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.0';
-  var DATA_KEY$8 = 'bs.scrollspy';
-  var EVENT_KEY$8 = "." + DATA_KEY$8;
-  var DATA_API_KEY$6 = '.data-api';
-  var JQUERY_NO_CONFLICT$8 = $.fn[NAME$8];
-  var Default$6 = {
-    offset: 10,
-    method: 'auto',
-    target: ''
   };
 
   Red.prototype.convertFrom = function convertFrom (num) {
@@ -5832,8 +5390,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return res._forceRed(this);
   };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
   Mont.prototype.invm = function invm (a) {
     // (AR)^-1 * R^2 = (A^-1 * R^-1) * R^2 = A^-1 * R
@@ -6091,34 +5647,6 @@ function fromByteArray (uint8) {
     if (left.cmp(right) < 0) return left;
     return right;
   };
-  var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.0';
-  var DATA_KEY$9 = 'bs.tab';
-  var EVENT_KEY$9 = "." + DATA_KEY$9;
-  var DATA_API_KEY$7 = '.data-api';
-  var JQUERY_NO_CONFLICT$9 = $.fn[NAME$9];
-  var EVENT_HIDE$3 = "hide" + EVENT_KEY$9;
-  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$9;
-  var EVENT_SHOW$3 = "show" + EVENT_KEY$9;
-  var EVENT_SHOWN$3 = "shown" + EVENT_KEY$9;
-  var EVENT_CLICK_DATA_API$6 = "click" + EVENT_KEY$9 + DATA_API_KEY$7;
-  var CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu';
-  var CLASS_NAME_ACTIVE$3 = 'active';
-  var CLASS_NAME_DISABLED$1 = 'disabled';
-  var CLASS_NAME_FADE$4 = 'fade';
-  var CLASS_NAME_SHOW$6 = 'show';
-  var SELECTOR_DROPDOWN$1 = '.dropdown';
-  var SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
-  var SELECTOR_ACTIVE$2 = '.active';
-  var SELECTOR_ACTIVE_UL = '> li > .active';
-  var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]';
-  var SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
-  var SELECTOR_DROPDOWN_ACTIVE_CHILD = '> .dropdown-menu .active';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   BN.prototype._init = function init (number, base, endian) {
     if (typeof number === 'number') {
@@ -6396,24 +5924,6 @@ function fromByteArray (uint8) {
       this.words[this.length++] = 0;
     }
     return this;
-  var NAME$a = 'toast';
-  var VERSION$a = '4.5.0';
-  var DATA_KEY$a = 'bs.toast';
-  var EVENT_KEY$a = "." + DATA_KEY$a;
-  var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
-  var EVENT_CLICK_DISMISS$1 = "click.dismiss" + EVENT_KEY$a;
-  var EVENT_HIDE$4 = "hide" + EVENT_KEY$a;
-  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$a;
-  var EVENT_SHOW$4 = "show" + EVENT_KEY$a;
-  var EVENT_SHOWN$4 = "shown" + EVENT_KEY$a;
-  var CLASS_NAME_FADE$5 = 'fade';
-  var CLASS_NAME_HIDE = 'hide';
-  var CLASS_NAME_SHOW$7 = 'show';
-  var CLASS_NAME_SHOWING = 'showing';
-  var DefaultType$7 = {
-    animation: 'boolean',
-    autohide: 'boolean',
-    delay: 'number'
   };
 
   // Remove leading `0` from `this`
@@ -6574,8 +6084,6 @@ function fromByteArray (uint8) {
         } else {
           out = r + out;
         }
-      if (this._config.animation) {
-        this._element.classList.add(CLASS_NAME_FADE$5);
       }
       if (this.isZero()) {
         out = '0' + out;
@@ -6682,9 +6190,6 @@ function fromByteArray (uint8) {
 
     for (var i = 0, shift = 0; i < this.length; i++) {
       var word = (this.words[i] << shift) | carry;
-    _proto.dispose = function dispose() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
 
       res[position--] = word & 0xff;
       if (position >= 0) {
@@ -6708,11 +6213,6 @@ function fromByteArray (uint8) {
 
     if (position >= 0) {
       res[position--] = carry;
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
-      Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
-      return config;
-    };
 
       while (position >= 0) {
         res[position--] = 0;
@@ -6751,13 +6251,6 @@ function fromByteArray (uint8) {
   BN.prototype._zeroBits = function _zeroBits (w) {
     // Short-cut
     if (w === 0) return 26;
-    } // Static
-    ;
-
-    Toast._jQueryInterface = function _jQueryInterface(config) {
-      return this.each(function () {
-        var $element = $(this);
-        var data = $element.data(DATA_KEY$a);
 
     var t = w;
     var r = 0;
@@ -9629,9 +9122,9 @@ function fromByteArray (uint8) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.2 (https://getbootstrap.com/)
+  * Bootstrap v4.5.0 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -9657,22 +9150,53 @@ function fromByteArray (uint8) {
     return Constructor;
   }
 
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
+    }
 
-      return target;
-    };
-
-    return _extends.apply(this, arguments);
+    return target;
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -9683,8 +9207,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -9864,7 +9388,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.2';
+  var VERSION = '4.5.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -10020,7 +9544,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.2';
+  var VERSION$1 = '4.5.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -10155,9 +9679,11 @@ function fromByteArray (uint8) {
         return;
       }
 
-      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
-        Button._jQueryInterface.call($(button), 'toggle');
+      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
+        event.preventDefault(); // work around event sent to label and input
       }
+
+      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -10213,7 +9739,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.2';
+  var VERSION$2 = '4.5.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -10400,7 +9926,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default, config);
+      config = _objectSpread2(_objectSpread2({}, Default), config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -10690,10 +10216,10 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _extends({}, Default, $(this).data());
+        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
 
         if (typeof config === 'object') {
-          _config = _extends({}, _config, config);
+          _config = _objectSpread2(_objectSpread2({}, _config), config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -10731,7 +10257,7 @@ function fromByteArray (uint8) {
         return;
       }
 
-      var config = _extends({}, $(target).data(), $(this).data());
+      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -10800,7 +10326,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.2';
+  var VERSION$3 = '4.5.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -11015,7 +10541,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$1, config);
+      config = _objectSpread2(_objectSpread2({}, Default$1), config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -11069,7 +10595,7 @@ function fromByteArray (uint8) {
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -11149,7 +10675,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.2';
+  var VERSION$4 = '4.5.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -11376,7 +10902,7 @@ function fromByteArray (uint8) {
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -11421,7 +10947,7 @@ function fromByteArray (uint8) {
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -11451,7 +10977,7 @@ function fromByteArray (uint8) {
         };
       }
 
-      return _extends({}, popperConfig, this._config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
     } // Static
     ;
 
@@ -11663,7 +11189,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.2';
+  var VERSION$5 = '4.5.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -11855,7 +11381,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$3, config);
+      config = _objectSpread2(_objectSpread2({}, Default$3), config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -11871,24 +11397,11 @@ function fromByteArray (uint8) {
           return;
         }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-
-        if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
-        }
-
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $(this._element).off(Util.TRANSITION_END);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $(_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -11913,8 +11426,6 @@ function fromByteArray (uint8) {
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
-
-      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -12002,8 +11513,6 @@ function fromByteArray (uint8) {
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
-
-      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -12186,7 +11695,7 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -12236,7 +11745,7 @@ function fromByteArray (uint8) {
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -12273,8 +11782,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.2): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * Bootstrap (v4.5.0): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -12399,7 +11908,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.2';
+  var VERSION$6 = '4.5.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -12787,7 +12296,7 @@ function fromByteArray (uint8) {
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _extends({}, defaultBsConfig, this.config.popperConfig);
+      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -12797,7 +12306,7 @@ function fromByteArray (uint8) {
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -12852,7 +12361,7 @@ function fromByteArray (uint8) {
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _extends({}, this.config, {
+        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
           trigger: 'manual',
           selector: ''
         });
@@ -12952,7 +12461,7 @@ function fromByteArray (uint8) {
           delete dataAttributes[dataAttr];
         }
       });
-      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -13111,21 +12620,21 @@ function fromByteArray (uint8) {
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.2';
+  var VERSION$7 = '4.5.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _extends({}, Tooltip.Default, {
+  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
+  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
     content: '(string|element|function)'
   });
 
@@ -13291,7 +12800,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.2';
+  var VERSION$8 = '4.5.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -13405,7 +12914,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -13583,7 +13092,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.2';
+  var VERSION$9 = '4.5.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -13809,7 +13318,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.2';
+  var VERSION$a = '4.5.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -13862,8 +13371,6 @@ function fromByteArray (uint8) {
         return;
       }
 
-      this._clearTimeout();
-
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -13912,7 +13419,8 @@ function fromByteArray (uint8) {
     };
 
     _proto.dispose = function dispose() {
-      this._clearTimeout();
+      clearTimeout(this._timeout);
+      this._timeout = null;
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -13926,7 +13434,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -13956,11 +13464,6 @@ function fromByteArray (uint8) {
       } else {
         complete();
       }
-    };
-
-    _proto._clearTimeout = function _clearTimeout() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
     } // Static
     ;
 
@@ -47289,7 +46792,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -87174,12 +86677,12 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
+            var idpagination = json.id_slide;
+            var totalslides = json.totales; // setTimeout(function () {
+            //$("#loader1").remove();
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])(idpagination, totalslides); //   }, 3000);
+
             break;
 
           case "synopsis":
@@ -87259,12 +86762,11 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
+            var idpagination = json.id_slide;
+            var totalslides = json.totales; // setTimeout(function () {
+            //$("#loader1").remove();
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])(idpagination, totalslides);
             break;
 
           case "synopsis":
@@ -87310,70 +86812,28 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0];
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  };
+  }; //previsualizar  programacion canal claro
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
-    var canalClaro = "#navbar-prev-canal-claro";
-    var programacion = "#navbar-prev-programacion";
-    var home = "#navbar-prev-home";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-    });
-
-    switch ("#" + id) {
-      case programacion:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
-        break;
-
-      case home:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-        break;
-    }
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n        <div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n            ");
+    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000); //Landing programacion canal claro
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-content").attr("id");
-    var canalClaro = "#navbar-prev-canal-claro";
-    var programacion = "#navbar-prev-programacion";
-    var home = "#navbar-prev-home";
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe").remove();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit", function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
-        Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
-      });
-    });
-
-    switch ("#" + id) {
-      case programacion:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-        break;
-
-      case canalClaro:
-        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe"), LandingHomeClaro);
-        break;
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n        <div class=\"loader-view-container\" id=\"loader1\">\n            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>\n            ");
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    setTimeout(function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000);
   }); /////////////
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-image-program").change(function () {
@@ -89074,7 +88534,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-  debugger;
   var data = {
     chapter_id: chapter_id,
     key: key,
@@ -89318,7 +88777,11 @@ function addImagesModalIcons() {
  */
 
 
-function addImagesModalBanner() {
+function addImagesModalBanner(idpagination, totalslides) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n    <div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n    </div>\n        ");
+  var initial = parseInt(idpagination);
+  var allslide = parseInt(totalslides);
+  var alls = allslide + 1;
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
@@ -89340,13 +88803,24 @@ function addImagesModalBanner() {
         } catch (error) {
           break;
         }
+
+        console.log(counter + "counter ini");
       }
 
+      console.log(counter + "counter end");
+
+      if (counter <= alls) {
+        slider = slider + "\n                 <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_").concat(counter, "\">\n                                </label>\n                            </div>\n                       </div>\n                    ");
+        counter++;
+      }
+
+      console.log(counter + "counter");
+      console.log(alls + "allslides");
       var conf = {
         slidesToShow: 1,
         dots: true,
         appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-        initialSlide: 0,
+        initialSlide: initial,
         infinite: false,
         arrows: true,
         prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
@@ -89393,7 +88867,9 @@ function addImagesModalBanner() {
             fileSrt.readAsDataURL(data.files[0]);
           });
         });
-      }); // $('.load-programming-carousel').click(function () {
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show"); // $('.load-programming-carousel').click(function () {
       //     alert($('.load-programming-carousel').attr('data-index'));
       // });
       // $(".input-image-program").change(function () {
@@ -89624,7 +89100,6 @@ function getChapterInfo(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      console.log(result);
       var data = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
@@ -89641,7 +89116,8 @@ function getChapterInfo(data) {
       var totalDaysSlider = 0;
       var daysSlider = ""; //Pegamos el nombre del mes y el año
 
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".mesinfo").text(getMonthAndYear(date.getMonth()));
+      console.log(getMonthAndYear(date.getMonth()), "messss"); //Obtenemos la hora GMT
 
       var dateUTC = new Date(); //Día en horario central
 
@@ -92767,7 +92243,7 @@ function getAllUsersBO() {
           var rol = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["changeNameRol"])(user.rol_id);
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class=\"pd-10\">").concat(rol, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class=' btn-focus view-user-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-icon'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-userbo-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title\">Usuario</div>\n            </header>\n            <section class=\"section\">\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center justify-content-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title\">Usuario</div>\n            </header>\n            <section class=\"section\">\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        "));
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])();
         /*showDescriptions();
         showUserBO();*/
@@ -92993,7 +92469,7 @@ function getUserToUpdate(id) {
             }); //VALIDATE PASSWORD
 
             jquery__WEBPACK_IMPORTED_MODULE_3___default()(".input-password").keyup(function () {
-              Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this), jquery__WEBPACK_IMPORTED_MODULE_3___default()(".warning-password-text"));
+              Object(_form_form_js__WEBPACK_IMPORTED_MODULE_1__["validateKeyUpPassword"])(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this), jquery__WEBPACK_IMPORTED_MODULE_3___default()(".caracteres-min"));
             });
             jquery__WEBPACK_IMPORTED_MODULE_3___default()("#edit-input-username").val(json.data.name);
             jquery__WEBPACK_IMPORTED_MODULE_3___default()("#edit-input-email").val(json.data.email);
@@ -93265,7 +92741,8 @@ function deleteUserBO(id) {
           var rol = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["changeNameRol"])(user.rol_id);
           userBO += "\n          <div class=\"pd-5 username-bo\">".concat(user.name, "</div>\n          <div class=\"pd-10\">").concat(rol, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus view-user-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-icon'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-userbo-icon' _username=\"").concat(user.name, "\" ></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("\n        <header>\n        <div class=\"text-title \">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title \">Rol</div>\n        </section>\n        <aside>\n          <div class=\"text-title \">Acciones</div>\n        </aside>\n        ".concat(userBO, "\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("\n               \n                <header>\n                <div class=\"text-title\">Usuario</div>\n                </header>\n                <section class=\"section\">\n                  <div class=\"text-title \">Rol</div>\n                </section>\n                <aside>\n                  <div class=\"text-title \">Acciones</div>\n                </aside>\n                ".concat(userBO, "\n              \n        "));
         jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user").modal("hide");
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])(); //showUserBO();
       }
@@ -93306,9 +92783,10 @@ function deleteUserFront(id) {
         users.forEach(function (user) {
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus show-user-front-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-user-front-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user-front").modal("hide"); //showModalDeleteUserFront();
-        //showUserFront();
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section class=\"section\">\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user-front").modal("hide");
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])(); //showUserFront();
       }
     }
   });
@@ -94774,7 +94252,7 @@ var LandingView = /*#__PURE__*/function () {
           }
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <!-- parte del home-->\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                  <div class=\"mr-5\">\n                    <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                    <!--navbar-->\n                    <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                        </a>\n                      </div>\n                      <div>\n                        <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                        </a>\n                      </div>\n                      <!-- <div>\n                            <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n                                <p class=\"navbar-item\">Programaci\xF3n</p>\n                            </a>\n                            </div>-->\n                    </div>\n                    <!--<div class=\"login\">\n                                <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n                            </div>-->\n\n                    <!--inputs-->\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                      placeholder=\"TITULO\"\n                      value=\"".concat(title, "\"/>\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                      placeholder=\"SUBTITULO\"\n                      value=\"").concat(subtitle, "\"/>\n                  </div>\n                  <div class=\"d-flex justify-content-around\">\n                    <input\n                      type=\"file\"\n                      name=\"\"\n                      id=\"video-promo-header-home\"\n                      class=\"d-none file-video\"\n                      accept=\"video/*\"/>\n                    <label\n                      for=\"video-promo-header-home\"\n                      class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                        ").concat(file, "\n                    </label>\n                    <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                            <label for=\"image-promo-header-home\"\n                                class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                    class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                    jpg 472px X 295px </span>\n                            </label>-->\n                  </div>\n                </div>\n\n                <div class=\"float-right mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\">\n                        Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4\n                    </span>\n                </div>\n                <div class=\"clearfix\"></div>"));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <!-- parte del home-->\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                  <div class=\"mr-5\">\n                    <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                    <!--navbar-->\n                    <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                        </span>\n                      </div>\n                      <div>\n                        <span class=\"navbar-link text-decoration-none\">\n                          <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                        </span>\n                      </div>\n                      <!-- <div>\n                            <span class=\"navbar-link text-decoration-none\">\n                                <p class=\"navbar-item\">Programaci\xF3n</p>\n                            </span>\n                            </div>-->\n                    </div>\n                    <!--<div class=\"login\">\n                                <span class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></span>\n                            </div>-->\n\n                    <!--inputs-->\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                      placeholder=\"TITULO\"\n                      value=\"".concat(title, "\"/>\n                    <input\n                      type=\"text\"\n                      name=\"\"\n                      id=\"\"\n                      class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                      placeholder=\"SUBTITULO\"\n                      value=\"").concat(subtitle, "\"/>\n                  </div>\n                  <div class=\"d-flex justify-content-around\">\n                    <input\n                      type=\"file\"\n                      name=\"\"\n                      id=\"video-promo-header-home\"\n                      class=\"d-none file-video\"\n                      accept=\"video/*\"/>\n                    <label\n                      for=\"video-promo-header-home\"\n                      class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                        ").concat(file, "\n                    </label>\n                    <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                            <label for=\"image-promo-header-home\"\n                                class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                                <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                    class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                                <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                    jpg 472px X 295px </span>\n                            </label>-->\n                  </div>\n                </div>\n\n                <div class=\"float-right mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\">\n                        Nombre_Promoci\xF3n_Home_20200709.mp4\n                    </span>\n                </div>\n                <div class=\"clearfix\"></div>"));
           var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
           homeHeaderButtons.html("");
           homeHeaderButtons.html("\n                    <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                        <button\n                            class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n                        <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                            class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                            data-toggle=\"modal\">CANCELAR</a>\n                    </div>");
@@ -94821,7 +94299,7 @@ var LandingView = /*#__PURE__*/function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n                <div class=\"d-flex col-12 mb-5 mx-auto\">\n                    <div class=\"mr-5 mx-auto\">\n                    <div class=\"d-flex\">\n                        <!--dots-->\n                        <div class=\"programming-slider-dots-home mt-5 mb-5\"></div>\n                        <!--add slide-->\n                        <img\n                        src=\"./images/add-icon.svg\"\n                        class=\"cursor-pointer mb-3\" id=\"add-home-banner-image\"\n                        />\n                    </div>\n                    <!--  <div class=\"shadowblack position-absolute\">\n                    <img src=\"./images/basic-icons/GMT-White.svg\" alt=\"\" class=\"float-right\">\n                    </div>-->\n                    <div class=\"home-slider-container position-relative\">\n                        <div class=\"menu-mobile\">\n                            <div class=\"d-flex justify-content-between\">\n                                <img src=\"./images/home/responsive-menu.svg\" alt=\"menu-icon\" />\n                                <img class=\"menu-mobile__logo\" src=\"./images/home/claro-networks-white.svg\" alt=\"Claro Networks Logo\" />\n                                <img src=\"./images/gmt2-icon.svg\" alt=\"gmt icon\" />\n                            </div>\n                        </div>\n                        <div class=\"programming-slider-home mx-auto\">\n                        ".concat(imageMobile, "\n                        </div>\n                    </div>\n                    </div>\n                </div>\n                <div class=\"d-flex mr-5 mb-3\">\n                    <span class=\"a-text-bold-brown-two text-normal\"\n                    >Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4</span\n                    >\n                </div>\n                <div class=\"clearfix\"></div>\n            "));
         var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
         homeHeaderButtons.html("");
-        homeHeaderButtons.html("\n                <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                    <button\n                        class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                        id=\"edit-home-encabezado-mobile\" data-dismiss=\"modal\">ACEPTAR</button>\n                    <a href=\"#delete-info-encabezado\" role=\"button\"\n                        class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                        data-toggle=\"modal\">CANCELAR</a>\n                </div>\n            ");
+        homeHeaderButtons.html("\n                <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n                    <button\n                        class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                        id=\"edit-home-encabezado-mobile\" data-dismiss=\"modal\">ACEPTAR</button>\n                    <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                        class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                        data-toggle=\"modal\">CANCELAR</a>\n                </div>\n            ");
         var programmingSliderHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-home");
 
         try {

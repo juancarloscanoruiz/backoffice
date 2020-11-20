@@ -6,6 +6,7 @@ function previewPage(icon) {
     let iframeCanalClaro = $("#navbar-prev-canal-claro iframe");
     let iframeProgramacion = $("#navbar-prev-programacion iframe");
     let iframeHome = $("#navbar-prev-home iframe");
+ 
     let iframeHomeGrilla = $("#navbar_prev_home_landing iframe");
     let iframeClaroCinema = $("#navbar-prev-claro-cinema iframe");
     let iframeFooterCinema = $("#claro-cinema-programing iframe");
