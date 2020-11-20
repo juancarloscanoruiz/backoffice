@@ -86784,6 +86784,18 @@ function eventsGrilla() {
             }, 3000);
             break;
 
+          case "claro-carrusel1":
+            var landing = "Concert Channel";
+            var id = 1;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+            break;
+
+          case "claro-carrusel2":
+            landing = "Concert Channel";
+            id = 1;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+            break;
+
           default:
             break;
         }
@@ -87887,7 +87899,8 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-canal-claro").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").on("click", ".button-modal-canal-claro", function () {
+    console.log("EL reus");
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // TITLE EDIT CANAL CLARO
@@ -88258,8 +88271,7 @@ function eventsGrilla() {
   if (NavbarHomeConcert) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
     new easyXDM.Socket(LandingHomeConcert);
-  } ////////////
-
+  }
 
   var confPrevHomeConcert = {
     remote: "".concat(baseURL, "home-prev.php"),
@@ -88576,7 +88588,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-  debugger;
   var data = {
     chapter_id: chapter_id,
     key: key,

@@ -3486,6 +3486,24 @@ function eventsGrilla() {
                             $("#loader1").remove();
                         }, 3000);
                         break;
+                    case "claro-carrusel1":
+                        let landing = "Concert Channel";
+                        let id = 1;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background-blue thumbnail-header-concert"
+                        );
+                        break;
+                    case "claro-carrusel2":
+                        landing = "Concert Channel";
+                        id = 1;
+                        getPromotionalsProgramsCarousel(
+                            id,
+                            landing,
+                            "header-background-blue thumbnail-header-concert"
+                        );
+                        break;
 
                     default:
                         break;
@@ -4766,13 +4784,15 @@ function eventsGrilla() {
     });
 
     $(".button-modal-canal-claro").click(function () {
+
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
 
-    $(".modal-edit-program-carrusel").on(
+    $("#modal-carrusel-home").on(
         "click",
         ".button-modal-canal-claro",
         function () {
+
             resetIframe(
                 $("#navbar-prev-canal-claro iframe"),
                 landingCanalClaro
@@ -5154,7 +5174,6 @@ function eventsGrilla() {
         new easyXDM.Socket(LandingHomeConcert);
     }
 
-    ////////////
 
     let confPrevHomeConcert = {
         remote: `${baseURL}home-prev.php`,
