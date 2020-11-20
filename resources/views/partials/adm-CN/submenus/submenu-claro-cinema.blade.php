@@ -351,7 +351,8 @@
 
     <!--HOME-->
 
-    @include('partials.adm-CN.modals-claro.index');
+    @include('components.modals.banner')
+    @include('components.emergencia')
 
     @include('partials.adm-CN.modal-home.carrusel')
 
@@ -360,7 +361,6 @@
     @include('partials.adm-CN.sinopsis');
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
     @include('partials.adm-CN.modals-cinema.promo-cinema')
-    @include('partials.adm-CN.modals-cinema.banner-cinema')
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.modals-cinema.programming');

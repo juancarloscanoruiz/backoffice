@@ -235,7 +235,11 @@ function getBannerCanalClaro(res) {
 
     previewImage()
     closeModals()
-    setBannerProgramacion('canal')
+    if (landing == 'Canal Claro') {
+        setBannerProgramacion('canal')
+    } else {
+        setBannerProgramacion('cinema')
+    }
 
     $(".loader-view-container").remove();
 }
@@ -408,7 +412,7 @@ function updateSinopsis(res) {
     let sinopsis_len;
     let cant_imagenes;
     let cant_imagenes_switch;
-    
+
     landing = $('.subMenuLandingCase').attr('landing')
 
     if (landing == 'Canal Claro') {

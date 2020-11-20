@@ -85,6 +85,8 @@ import { previewPage } from "./preview/prev.js";
 
 import { closeModals } from "./store/events/events";
 
+import { getClaroCinema } from "./store/getters";
+
 function eventsGrilla() {
 
     closeModals()
@@ -754,7 +756,8 @@ function eventsGrilla() {
 
                 switch (json.type) {
                     case "slider-pagination":
-                        getContentClaroCinema("slider-pagination");
+                        getClaroCinema('banner')
+                        // getContentClaroCinema("slider-pagination");
                         break;
                     case "current-programming-cinema":
                         let date = new Date();

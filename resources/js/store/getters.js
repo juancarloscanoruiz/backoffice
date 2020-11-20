@@ -91,6 +91,19 @@ function getCanalClaro(type) {
     })
 }
 
+function getClaroCinema(type) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "landing/claroCinema",
+        success: function (res) {
+            if (type == 'banner') {
+                getBannerCanalClaro(JSON.parse(res))
+            }
+        }
+    })
+}
+
 function getModalProgramacion() {
     $.ajax({
         type: "POST",
@@ -102,4 +115,4 @@ function getModalProgramacion() {
     })
 }
 
-export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate }
+export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate, getClaroCinema }
