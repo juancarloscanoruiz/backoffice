@@ -4332,7 +4332,7 @@ function getContentClaroCinema(type) {
                         $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                            debugger;
+
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(

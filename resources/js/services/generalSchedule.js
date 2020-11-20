@@ -10,7 +10,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger;
+
     let data = {
         chapter_id,
         key,
@@ -793,15 +793,15 @@ function addImagesModalBanner(idpagination, totalslides) {
             result = JSON.parse(result);
             let slider = "";
             let counter = 1;
-            
+
             $(".programming-slider-dots .slick-dots").append(
                 ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
             );
-          
+
 
             while (true) {
                 try {
-                 
+
                     if (result["image_slider_" + counter]) {
 
                         slider =
@@ -819,7 +819,7 @@ function addImagesModalBanner(idpagination, totalslides) {
                     </label>
                 </div>`;
 
-                        
+
                 counter++;
                     } else {
                         break;
@@ -830,7 +830,7 @@ function addImagesModalBanner(idpagination, totalslides) {
                 console.log(counter +"counter ini");
             }
             console.log(counter +"counter end");
-            
+
             if(counter <= alls){
                 slider =
                             slider +
@@ -851,7 +851,7 @@ function addImagesModalBanner(idpagination, totalslides) {
             }
             console.log(counter +"counter");
             console.log(alls +"allslides");
-            
+
 
             let conf = {
                 slidesToShow: 1,
@@ -873,7 +873,7 @@ function addImagesModalBanner(idpagination, totalslides) {
                     );
                 }
             };
-            
+
 
             const programmingSlider = $(".programming-slider");
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */

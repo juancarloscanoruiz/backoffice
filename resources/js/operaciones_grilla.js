@@ -175,7 +175,7 @@ function eventsGrilla() {
         function () {
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
-            console.log($(this).attr("date"));
+
             getProgrammingSynopsis("concert-channel", $(this).attr("date"));
         }
     );
@@ -261,7 +261,7 @@ function eventsGrilla() {
         }
     };
 
-    ////////////
+
     let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
     if (NavbarHomeCinema) {
         $("#navbar-prev-home-cinema  iframe").remove();
@@ -1605,7 +1605,7 @@ function eventsGrilla() {
 
         function (e) {
             if (e.which === 13 && !e.shiftKey) {
-                debugger;
+
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -4961,7 +4961,7 @@ function eventsGrilla() {
     });
 
     function viewImg(objFileInput, container) {
-        debugger;
+
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {

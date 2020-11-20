@@ -11229,7 +11229,7 @@ $(".arrow-left").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })
