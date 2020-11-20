@@ -221,9 +221,9 @@ function createNavbarProgramacionGeneral() {
         if ($(this).hasClass("navbar-canal-claro")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-sinopsis")) {
-            // changeContentProgramacionGeneral($(this).attr("rel"));
+            changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-programacion")) {
-            // changeContentProgramacionGeneral($(this).attr("rel"));
+            changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         }

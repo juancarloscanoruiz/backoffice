@@ -143,21 +143,21 @@ function eventsGrilla() {
     });
 
     //calendario de sinopsis
-    // let calendarsinopsis = $(".calendar-sinopsis-slider");
-    // $(".calendar-sinopsis-slider").slick({
-    //     slidesToShow: 11,
-    //     slidesToScroll: 11,
-    //     infinite: true,
-    //     dots: false,
-    //     centerMode: false,
-    //     arrows: true,
-    //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-    //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-    // });
-    // calendarsinopsis.slick("unslick");
-    // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
+    let calendarsinopsis = $(".calendar-sinopsis-slider");
+    $(".calendar-sinopsis-slider").slick({
+        slidesToShow: 11,
+        slidesToScroll: 11,
+        infinite: true,
+        dots: false,
+        centerMode: false,
+        arrows: true,
+        prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+        nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+    });
+    calendarsinopsis.slick("unslick");
+    createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
 
-    // createSlickSlider(calendarsinopsis, calendarSlick);
+    createSlickSlider(calendarsinopsis, calendarSlick);
 
     $(".calendar-sinopsis-slider").on(
         "click",
@@ -3339,16 +3339,16 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
-                      
-                        let idpagination =json.id_slide;
-                        let totalslides = json.totales;
-                       
-                       // setTimeout(function () {
-                        
-                            //$("#loader1").remove();
 
-                            addImagesModalBanner(idpagination, totalslides);
-                     //   }, 3000);
+                        let idpagination = json.id_slide;
+                        let totalslides = json.totales;
+
+                        // setTimeout(function () {
+
+                        //$("#loader1").remove();
+
+                        addImagesModalBanner(idpagination, totalslides);
+                        //   }, 3000);
 
                         break;
                     case "synopsis":

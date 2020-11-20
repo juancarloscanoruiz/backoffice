@@ -94,15 +94,6 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
-  * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-  */
-(function (global, factory) {
-   true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
-  undefined;
-}(this, (function (exports, $, Popper) { 'use strict';
 
 
 /***/ }),
@@ -124,54 +115,6 @@ asn1.constants = __webpack_require__(/*! ./asn1/constants */ "./node_modules/asn
 asn1.decoders = __webpack_require__(/*! ./asn1/decoders */ "./node_modules/asn1.js/lib/asn1/decoders/index.js");
 asn1.encoders = __webpack_require__(/*! ./asn1/encoders */ "./node_modules/asn1.js/lib/asn1/encoders/index.js");
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-
-    return target;
-  }
 
 /***/ }),
 
@@ -181,17 +124,6 @@ asn1.encoders = __webpack_require__(/*! ./asn1/encoders */ "./node_modules/asn1.
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  /**
-   * ------------------------------------------------------------------------
-   * Private TransitionEnd Helpers
-   * ------------------------------------------------------------------------
-   */
 
 var asn1 = __webpack_require__(/*! ../asn1 */ "./node_modules/asn1.js/lib/asn1.js");
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
@@ -360,24 +292,6 @@ EncoderBuffer.prototype.join = function join(out, offset) {
     out = new Buffer(this.length);
   if (!offset)
     offset = 0;
-  var NAME = 'alert';
-  var VERSION = '4.5.0';
-  var DATA_KEY = 'bs.alert';
-  var EVENT_KEY = "." + DATA_KEY;
-  var DATA_API_KEY = '.data-api';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var SELECTOR_DISMISS = '[data-dismiss="alert"]';
-  var EVENT_CLOSE = "close" + EVENT_KEY;
-  var EVENT_CLOSED = "closed" + EVENT_KEY;
-  var EVENT_CLICK_DATA_API = "click" + EVENT_KEY + DATA_API_KEY;
-  var CLASS_NAME_ALERT = 'alert';
-  var CLASS_NAME_FADE = 'fade';
-  var CLASS_NAME_SHOW = 'show';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   if (this.length === 0)
     return out;
@@ -625,30 +539,6 @@ Node.prototype.def = function def(val) {
 
   return this;
 };
-  var NAME$1 = 'button';
-  var VERSION$1 = '4.5.0';
-  var DATA_KEY$1 = 'bs.button';
-  var EVENT_KEY$1 = "." + DATA_KEY$1;
-  var DATA_API_KEY$1 = '.data-api';
-  var JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
-  var CLASS_NAME_ACTIVE = 'active';
-  var CLASS_NAME_BUTTON = 'btn';
-  var CLASS_NAME_FOCUS = 'focus';
-  var SELECTOR_DATA_TOGGLE_CARROT = '[data-toggle^="button"]';
-  var SELECTOR_DATA_TOGGLES = '[data-toggle="buttons"]';
-  var SELECTOR_DATA_TOGGLE = '[data-toggle="button"]';
-  var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
-  var SELECTOR_INPUT = 'input:not([type="hidden"])';
-  var SELECTOR_ACTIVE = '.active';
-  var SELECTOR_BUTTON = '.btn';
-  var EVENT_CLICK_DATA_API$1 = "click" + EVENT_KEY$1 + DATA_API_KEY$1;
-  var EVENT_FOCUS_BLUR_DATA_API = "focus" + EVENT_KEY$1 + DATA_API_KEY$1 + " " + ("blur" + EVENT_KEY$1 + DATA_API_KEY$1);
-  var EVENT_LOAD_DATA_API = "load" + EVENT_KEY$1 + DATA_API_KEY$1;
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
 Node.prototype.explicit = function explicit(num) {
   var state = this._baseState;
@@ -764,11 +654,6 @@ Node.prototype._decode = function decode(input, options) {
 
       if (input.isError(present))
         return present;
-      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
-        event.preventDefault(); // work around event sent to label and input
-      }
-
-      Button._jQueryInterface.call($(button), 'toggle');
     }
   }
 
@@ -898,13 +783,6 @@ Node.prototype._getUse = function _getUse(entity, obj) {
   }
   return state.useDecoder;
 };
-  var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.0';
-  var DATA_KEY$2 = 'bs.carousel';
-  var EVENT_KEY$2 = "." + DATA_KEY$2;
-  var DATA_API_KEY$2 = '.data-api';
-  var JQUERY_NO_CONFLICT$2 = $.fn[NAME$2];
-  var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
 Node.prototype._decodeChoice = function decodeChoice(input, options) {
   var state = this._baseState;
@@ -1098,11 +976,6 @@ Node.prototype._isPrintstr = function isPrintstr(str) {
   return /^[A-Za-z0-9 '\(\)\+,\-\.\/:=\?]*$/.test(str);
 };
 
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default), config);
-      Util.typeCheckConfig(NAME$2, config, DefaultType);
-      return config;
-    };
 
 /***/ }),
 
@@ -1376,11 +1249,6 @@ DERNode.prototype._peekTag = function peekTag(buffer, tag, any) {
   return decodedTag.tag === tag || decodedTag.tagStr === tag ||
     (decodedTag.tagStr + 'of') === tag || any;
 };
-        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
-
-        if (typeof config === 'object') {
-          _config = _objectSpread2(_objectSpread2({}, _config), config);
-        }
 
 DERNode.prototype._decodeTag = function decodeTag(buffer, tag, any) {
   var decodedTag = derDecodeTag(buffer,
@@ -1531,7 +1399,6 @@ DERNode.prototype._decodeObjid = function decodeObjid(buffer, values, relative) 
     if (tmp !== undefined)
       result = tmp;
   }
-      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
   return result;
 };
@@ -1624,19 +1491,6 @@ function derDecodeTag(buf, fail) {
     primitive: primitive,
     tag: tag,
     tagStr: tagStr
-  var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.0';
-  var DATA_KEY$3 = 'bs.collapse';
-  var EVENT_KEY$3 = "." + DATA_KEY$3;
-  var DATA_API_KEY$3 = '.data-api';
-  var JQUERY_NO_CONFLICT$3 = $.fn[NAME$3];
-  var Default$1 = {
-    toggle: true,
-    parent: ''
-  };
-  var DefaultType$1 = {
-    toggle: 'boolean',
-    parent: '(string|element)'
   };
 }
 
@@ -1898,9 +1752,6 @@ DERNode.prototype._encodeObjid = function encodeObjid(id, values, relative) {
 
   return this._createEncoderBuffer(objid);
 };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$1), config);
-      config.toggle = Boolean(config.toggle); // Coerce string values
 
 function two(num) {
   if (num < 10)
@@ -1994,7 +1845,6 @@ DERNode.prototype._encodeInt = function encodeInt(num, values) {
   if(out[0] & 0x80) {
     out.unshift(0);
   }
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
 
   return this._createEncoderBuffer(new Buffer(out));
 };
@@ -2051,13 +1901,6 @@ function encodeTag(tag, primitive, cls, reporter) {
 
   if (!primitive)
     res |= 0x20;
-  var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.0';
-  var DATA_KEY$4 = 'bs.dropdown';
-  var EVENT_KEY$4 = "." + DATA_KEY$4;
-  var DATA_API_KEY$4 = '.data-api';
-  var JQUERY_NO_CONFLICT$4 = $.fn[NAME$4];
-  var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   res |= (der.tagClassByName[cls || 'universal'] << 6);
 
@@ -2371,11 +2214,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       // 'a'
       if (c >= 49) {
         r += c - 49 + 0xa;
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
-      Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
-      return config;
-    };
 
       // 'A'
       } else if (c >= 17) {
@@ -2428,11 +2266,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       this.imuln(pow);
       if (this.words[0] + word < 0x4000000) {
         this.words[0] += word;
-      if (typeof this._config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
-          return data;
-        };
       } else {
         this._iaddn(word);
       }
@@ -2454,33 +2287,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     this.copy(r);
     return r;
   };
-    _proto._getPopperConfig = function _getPopperConfig() {
-      var popperConfig = {
-        placement: this._getPlacement(),
-        modifiers: {
-          offset: this._getOffset(),
-          flip: {
-            enabled: this._config.flip
-          },
-          preventOverflow: {
-            boundariesElement: this._config.boundary
-          }
-        }
-      }; // Disable Popper.js if we have a static display
-
-      if (this._config.display === 'static') {
-        popperConfig.modifiers.applyStyle = {
-          enabled: false
-        };
-      }
-
-      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
-    } // Static
-    ;
-
-    Dropdown._jQueryInterface = function _jQueryInterface(config) {
-      return this.each(function () {
-        var data = $(this).data(DATA_KEY$4);
 
   BN.prototype._expand = function _expand (size) {
     while (this.length < size) {
@@ -2868,13 +2674,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.length > num.length) return this.clone().ior(num);
     return num.clone().ior(this);
   };
-  var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.0';
-  var DATA_KEY$5 = 'bs.modal';
-  var EVENT_KEY$5 = "." + DATA_KEY$5;
-  var DATA_API_KEY$5 = '.data-api';
-  var JQUERY_NO_CONFLICT$5 = $.fn[NAME$5];
-  var ESCAPE_KEYCODE$1 = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   BN.prototype.uor = function uor (num) {
     if (this.length > num.length) return this.clone().iuor(num);
@@ -3064,11 +2863,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return this;
   };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$3), config);
-      Util.typeCheckConfig(NAME$5, config, DefaultType$3);
-      return config;
-    };
 
   // Add `num` to `this`
   BN.prototype.add = function add (num) {
@@ -3139,12 +2933,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
       carry = r >> 26;
       this.words[i] = r & 0x3ffffff;
     }
-        this._element.classList.add(CLASS_NAME_STATIC);
-
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, function () {
-          _this3._element.classList.remove(CLASS_NAME_STATIC);
-        }).emulateTransitionEnd(modalTransitionDuration);
 
     // Copy rest of the words
     if (carry === 0 && i < a.length && a !== this) {
@@ -3788,11 +3576,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   if (!Math.imul) {
     comb10MulTo = smallMulTo;
   }
-      if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
-        modalBody.scrollTop = 0;
-      } else {
-        this._element.scrollTop = 0;
-      }
 
   function bigMulTo (self, num, out) {
     out.negative = num.negative ^ self.negative;
@@ -3917,7 +3700,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
           var io = itws[p + j + s];
 
           var rx = rtwdf_ * ro - itwdf_ * io;
-      this._isTransitioning = false;
 
           io = rtwdf_ * io + itwdf_ * ro;
           ro = rx;
@@ -4095,7 +3877,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return this;
   };
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
   BN.prototype.muln = function muln (num) {
     return this.clone().imuln(num);
@@ -4194,7 +3975,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     var s = Math.min((bits - r) / 26, this.length);
     var mask = 0x3ffffff ^ ((0x3ffffff >>> r) << r);
     var maskedWords = extended;
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
 
     h -= s;
     h = Math.max(0, h);
@@ -4243,46 +4023,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     // TODO(indutny): implement me
     assert(this.negative === 0);
     return this.iushrn(bits, hint, extended);
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
-  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-  var DefaultWhitelist = {
-    // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
-    a: ['target', 'href', 'title', 'rel'],
-    area: [],
-    b: [],
-    br: [],
-    col: [],
-    code: [],
-    div: [],
-    em: [],
-    hr: [],
-    h1: [],
-    h2: [],
-    h3: [],
-    h4: [],
-    h5: [],
-    h6: [],
-    i: [],
-    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
-    li: [],
-    ol: [],
-    p: [],
-    pre: [],
-    s: [],
-    small: [],
-    span: [],
-    sub: [],
-    sup: [],
-    strong: [],
-    u: [],
-    ul: []
   };
 
   // Shift-left
@@ -4594,104 +4334,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
         mod: res.mod
       };
     }
-  var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.0';
-  var DATA_KEY$6 = 'bs.tooltip';
-  var EVENT_KEY$6 = "." + DATA_KEY$6;
-  var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
-  var CLASS_PREFIX = 'bs-tooltip';
-  var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
-  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
-  var DefaultType$4 = {
-    animation: 'boolean',
-    template: 'string',
-    title: '(string|element|function)',
-    trigger: 'string',
-    delay: '(number|object)',
-    html: 'boolean',
-    selector: '(string|boolean)',
-    placement: '(string|function)',
-    offset: '(number|string|function)',
-    container: '(string|element|boolean)',
-    fallbackPlacement: '(string|array)',
-    boundary: '(string|element)',
-    sanitize: 'boolean',
-    sanitizeFn: '(null|function)',
-    whiteList: 'object',
-    popperConfig: '(null|object)'
-  };
-  var AttachmentMap = {
-    AUTO: 'auto',
-    TOP: 'top',
-    RIGHT: 'right',
-    BOTTOM: 'bottom',
-    LEFT: 'left'
-  };
-  var Default$4 = {
-    animation: true,
-    template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
-    trigger: 'hover focus',
-    title: '',
-    delay: 0,
-    html: false,
-    selector: false,
-    placement: 'top',
-    offset: 0,
-    container: false,
-    fallbackPlacement: 'flip',
-    boundary: 'scrollParent',
-    sanitize: true,
-    sanitizeFn: null,
-    whiteList: DefaultWhitelist,
-    popperConfig: null
-  };
-  var HOVER_STATE_SHOW = 'show';
-  var HOVER_STATE_OUT = 'out';
-  var Event = {
-    HIDE: "hide" + EVENT_KEY$6,
-    HIDDEN: "hidden" + EVENT_KEY$6,
-    SHOW: "show" + EVENT_KEY$6,
-    SHOWN: "shown" + EVENT_KEY$6,
-    INSERTED: "inserted" + EVENT_KEY$6,
-    CLICK: "click" + EVENT_KEY$6,
-    FOCUSIN: "focusin" + EVENT_KEY$6,
-    FOCUSOUT: "focusout" + EVENT_KEY$6,
-    MOUSEENTER: "mouseenter" + EVENT_KEY$6,
-    MOUSELEAVE: "mouseleave" + EVENT_KEY$6
-  };
-  var CLASS_NAME_FADE$2 = 'fade';
-  var CLASS_NAME_SHOW$4 = 'show';
-  var SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
-  var SELECTOR_ARROW = '.arrow';
-  var TRIGGER_HOVER = 'hover';
-  var TRIGGER_FOCUS = 'focus';
-  var TRIGGER_CLICK = 'click';
-  var TRIGGER_MANUAL = 'manual';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
-
-  var Tooltip = /*#__PURE__*/function () {
-    function Tooltip(element, config) {
-      if (typeof Popper === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
-      } // private
-
-
-      this._isEnabled = true;
-      this._timeout = 0;
-      this._hoverState = '';
-      this._activeTrigger = {};
-      this._popper = null; // Protected
-
-      this.element = element;
-      this.config = this._getConfig(config);
-      this.tip = null;
-
-      this._setListeners();
-    } // Getters
 
     if ((this.negative & num.negative) !== 0) {
       res = this.neg().divmod(num.neg(), mode);
@@ -5054,31 +4696,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.negative === 0 && negative) return 1;
 
     this.strip();
-      var defaultBsConfig = {
-        placement: attachment,
-        modifiers: {
-          offset: this._getOffset(),
-          flip: {
-            behavior: this.config.fallbackPlacement
-          },
-          arrow: {
-            element: SELECTOR_ARROW
-          },
-          preventOverflow: {
-            boundariesElement: this.config.boundary
-          }
-        },
-        onCreate: function onCreate(data) {
-          if (data.originalPlacement !== data.placement) {
-            _this3._handlePopperPlacementChange(data);
-          }
-        },
-        onUpdate: function onUpdate(data) {
-          return _this3._handlePopperPlacementChange(data);
-        }
-      };
-      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
-    };
 
     var res;
     if (this.length > 1) {
@@ -5096,14 +4713,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     if (this.negative !== 0) return -res | 0;
     return res;
   };
-      if (typeof this.config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
-          return data;
-        };
-      } else {
-        offset.offset = this.config.offset;
-      }
 
   // Compare two numbers and return:
   // 1 - if `this` > `num`
@@ -5171,15 +4780,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   BN.prototype.lte = function lte (num) {
     return this.cmp(num) <= 0;
   };
-      if (this.config.selector) {
-        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
-          trigger: 'manual',
-          selector: ''
-        });
-      } else {
-        this._fixTitle();
-      }
-    };
 
   BN.prototype.eqn = function eqn (num) {
     return this.cmpn(num) === 0;
@@ -5286,14 +4886,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     this.red._verify1(this);
     return this.red.neg(this);
   };
-    _proto._getConfig = function _getConfig(config) {
-      var dataAttributes = $(this.element).data();
-      Object.keys(dataAttributes).forEach(function (dataAttr) {
-        if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
-          delete dataAttributes[dataAttr];
-        }
-      });
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
 
   BN.prototype.redPow = function redPow (num) {
     assert(this.red && !num.red, 'redPow(normalNum)');
@@ -5558,30 +5150,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
   Red.prototype.sub = function sub (a, b) {
     this._verify2(a, b);
-  /**
-   * ------------------------------------------------------------------------
-   * Constants
-   * ------------------------------------------------------------------------
-   */
-
-  var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.0';
-  var DATA_KEY$7 = 'bs.popover';
-  var EVENT_KEY$7 = "." + DATA_KEY$7;
-  var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
-  var CLASS_PREFIX$1 = 'bs-popover';
-  var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
-
-  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
-    placement: 'right',
-    trigger: 'click',
-    content: '',
-    template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
-  });
-
-  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
-    content: '(string|element|function)'
-  });
 
     var res = a.sub(b);
     if (res.cmpn(0) < 0) {
@@ -5742,16 +5310,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
     var r = num.umod(this.m);
 
     return r === num ? r.clone() : r;
-  var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.0';
-  var DATA_KEY$8 = 'bs.scrollspy';
-  var EVENT_KEY$8 = "." + DATA_KEY$8;
-  var DATA_API_KEY$6 = '.data-api';
-  var JQUERY_NO_CONFLICT$8 = $.fn[NAME$8];
-  var Default$6 = {
-    offset: 10,
-    method: 'auto',
-    target: ''
   };
 
   Red.prototype.convertFrom = function convertFrom (num) {
@@ -5832,8 +5390,6 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
     return res._forceRed(this);
   };
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
 
   Mont.prototype.invm = function invm (a) {
     // (AR)^-1 * R^2 = (A^-1 * R^-1) * R^2 = A^-1 * R
@@ -6091,34 +5647,6 @@ function fromByteArray (uint8) {
     if (left.cmp(right) < 0) return left;
     return right;
   };
-  var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.0';
-  var DATA_KEY$9 = 'bs.tab';
-  var EVENT_KEY$9 = "." + DATA_KEY$9;
-  var DATA_API_KEY$7 = '.data-api';
-  var JQUERY_NO_CONFLICT$9 = $.fn[NAME$9];
-  var EVENT_HIDE$3 = "hide" + EVENT_KEY$9;
-  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$9;
-  var EVENT_SHOW$3 = "show" + EVENT_KEY$9;
-  var EVENT_SHOWN$3 = "shown" + EVENT_KEY$9;
-  var EVENT_CLICK_DATA_API$6 = "click" + EVENT_KEY$9 + DATA_API_KEY$7;
-  var CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu';
-  var CLASS_NAME_ACTIVE$3 = 'active';
-  var CLASS_NAME_DISABLED$1 = 'disabled';
-  var CLASS_NAME_FADE$4 = 'fade';
-  var CLASS_NAME_SHOW$6 = 'show';
-  var SELECTOR_DROPDOWN$1 = '.dropdown';
-  var SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
-  var SELECTOR_ACTIVE$2 = '.active';
-  var SELECTOR_ACTIVE_UL = '> li > .active';
-  var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]';
-  var SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
-  var SELECTOR_DROPDOWN_ACTIVE_CHILD = '> .dropdown-menu .active';
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   BN.prototype._init = function init (number, base, endian) {
     if (typeof number === 'number') {
@@ -6396,24 +5924,6 @@ function fromByteArray (uint8) {
       this.words[this.length++] = 0;
     }
     return this;
-  var NAME$a = 'toast';
-  var VERSION$a = '4.5.0';
-  var DATA_KEY$a = 'bs.toast';
-  var EVENT_KEY$a = "." + DATA_KEY$a;
-  var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
-  var EVENT_CLICK_DISMISS$1 = "click.dismiss" + EVENT_KEY$a;
-  var EVENT_HIDE$4 = "hide" + EVENT_KEY$a;
-  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$a;
-  var EVENT_SHOW$4 = "show" + EVENT_KEY$a;
-  var EVENT_SHOWN$4 = "shown" + EVENT_KEY$a;
-  var CLASS_NAME_FADE$5 = 'fade';
-  var CLASS_NAME_HIDE = 'hide';
-  var CLASS_NAME_SHOW$7 = 'show';
-  var CLASS_NAME_SHOWING = 'showing';
-  var DefaultType$7 = {
-    animation: 'boolean',
-    autohide: 'boolean',
-    delay: 'number'
   };
 
   // Remove leading `0` from `this`
@@ -6574,8 +6084,6 @@ function fromByteArray (uint8) {
         } else {
           out = r + out;
         }
-      if (this._config.animation) {
-        this._element.classList.add(CLASS_NAME_FADE$5);
       }
       if (this.isZero()) {
         out = '0' + out;
@@ -6682,9 +6190,6 @@ function fromByteArray (uint8) {
 
     for (var i = 0, shift = 0; i < this.length; i++) {
       var word = (this.words[i] << shift) | carry;
-    _proto.dispose = function dispose() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
 
       res[position--] = word & 0xff;
       if (position >= 0) {
@@ -6708,11 +6213,6 @@ function fromByteArray (uint8) {
 
     if (position >= 0) {
       res[position--] = carry;
-    _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
-      Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
-      return config;
-    };
 
       while (position >= 0) {
         res[position--] = 0;
@@ -6751,13 +6251,6 @@ function fromByteArray (uint8) {
   BN.prototype._zeroBits = function _zeroBits (w) {
     // Short-cut
     if (w === 0) return 26;
-    } // Static
-    ;
-
-    Toast._jQueryInterface = function _jQueryInterface(config) {
-      return this.each(function () {
-        var $element = $(this);
-        var data = $element.data(DATA_KEY$a);
 
     var t = w;
     var r = 0;
@@ -83702,8 +83195,10 @@ function createNavbarProgramacionGeneral() {
 
     if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-canal-claro")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {// changeContentProgramacionGeneral($(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {// changeContentProgramacionGeneral($(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     }
@@ -85625,21 +85120,21 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".content-table").html(" ");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])(key, "".concat(year, "-").concat(month, "-").concat(day));
   }); //calendario de sinopsis
-  // let calendarsinopsis = $(".calendar-sinopsis-slider");
-  // $(".calendar-sinopsis-slider").slick({
-  //     slidesToShow: 11,
-  //     slidesToScroll: 11,
-  //     infinite: true,
-  //     dots: false,
-  //     centerMode: false,
-  //     arrows: true,
-  //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-  //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-  // });
-  // calendarsinopsis.slick("unslick");
-  // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
-  // createSlickSlider(calendarsinopsis, calendarSlick);
 
+  var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
+    slidesToShow: 11,
+    slidesToScroll: 11,
+    infinite: true,
+    dots: false,
+    centerMode: false,
+    arrows: true,
+    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  });
+  calendarsinopsis.slick("unslick");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
@@ -87174,12 +86669,12 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
-            setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
-            }, 3000);
+            var idpagination = json.id_slide;
+            var totalslides = json.totales; // setTimeout(function () {
+            //$("#loader1").remove();
+
+            Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])(idpagination, totalslides); //   }, 3000);
+
             break;
 
           case "synopsis":
@@ -89318,7 +88813,11 @@ function addImagesModalIcons() {
  */
 
 
-function addImagesModalBanner() {
+function addImagesModalBanner(idpagination, totalslides) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("\n    <div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n    </div>\n        ");
+  var initial = parseInt(idpagination);
+  var allslide = parseInt(totalslides);
+  var alls = allslide + 1;
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
@@ -89340,13 +88839,24 @@ function addImagesModalBanner() {
         } catch (error) {
           break;
         }
+
+        console.log(counter + "counter ini");
       }
 
+      console.log(counter + "counter end");
+
+      if (counter <= alls) {
+        slider = slider + "\n                 <div>\n                            <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                    <span class=\"a-text-bold-warm text-plus mt-3\">1000px X 342px</span>\n                                    <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_").concat(counter, "\">\n                                </label>\n                            </div>\n                       </div>\n                    ");
+        counter++;
+      }
+
+      console.log(counter + "counter");
+      console.log(alls + "allslides");
       var conf = {
         slidesToShow: 1,
         dots: true,
         appendDots: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots"),
-        initialSlide: 0,
+        initialSlide: initial,
         infinite: false,
         arrows: true,
         prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
@@ -89393,7 +88903,9 @@ function addImagesModalBanner() {
             fileSrt.readAsDataURL(data.files[0]);
           });
         });
-      }); // $('.load-programming-carousel').click(function () {
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show"); // $('.load-programming-carousel').click(function () {
       //     alert($('.load-programming-carousel').attr('data-index'));
       // });
       // $(".input-image-program").change(function () {
@@ -91159,7 +90671,7 @@ function editPromoLandingCinema(data) {
 
 function getProgrammingLanding(date, landing) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
-    type: "GET",
+    type: "POST",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -91236,7 +90748,7 @@ function getProgrammingLanding(date, landing) {
 function getProgramsLanding(date) {
   var landing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
-    type: "GET",
+    type: "POST",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -92767,7 +92279,7 @@ function getAllUsersBO() {
           var rol = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["changeNameRol"])(user.rol_id);
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class=\"pd-10\">").concat(rol, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class=' btn-focus view-user-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-icon'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-userbo-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title\">Usuario</div>\n            </header>\n            <section class=\"section\">\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#Adm-users-BO").html("\n        <div class=\"col-xl-10 position-btn-alta\">\n          <button class=\"btn-alta text-public mb-4 d-flex align-items-center justify-content-center\" id=\"btnAlta\">Agregar nuevo usuario</button>\n        </div>\n        <div class=\"sombras2 trans10 mb-5\">\n          <div class=\"grid-users texto-general users-backoffice-table\">\n            <header>\n            <div class=\"text-title\">Usuario</div>\n            </header>\n            <section class=\"section\">\n              <div class=\"text-title \">Rol</div>\n            </section>\n            <aside>\n              <div class=\"text-title \">Acciones</div>\n            </aside>\n            ".concat(userBO, "\n          </div>\n        </div>\n\n\n          <div>\n          <ul class=\"description\">\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/ver-muestra.svg\" class=\"btn-focus  tam \"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-veri\">Visualizar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/edita-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-edita\">Editar</span></div>\n          </li>\n          <li class=\"posi\">\n          <input type=\"image\" src=\"./images/borrar-muestra.svg\" class=\"btn-focus  tam\"></input>\n          <div class=\"describe\"><img src=\"./images/recuadro1-hover.svg\"><span class=\"text-borra\">Borrar</span></div>\n          </li>\n          </ul>\n\n          </div>\n\n        "));
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])();
         /*showDescriptions();
         showUserBO();*/
@@ -93265,7 +92777,8 @@ function deleteUserBO(id) {
           var rol = Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["changeNameRol"])(user.rol_id);
           userBO += "\n          <div class=\"pd-5 username-bo\">".concat(user.name, "</div>\n          <div class=\"pd-10\">").concat(rol, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus view-user-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-icon'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-userbo-icon' _username=\"").concat(user.name, "\" ></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("\n        <header>\n        <div class=\"text-title \">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title \">Rol</div>\n        </section>\n        <aside>\n          <div class=\"text-title \">Acciones</div>\n        </aside>\n        ".concat(userBO, "\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-backoffice-table").html("\n               \n                <header>\n                <div class=\"text-title\">Usuario</div>\n                </header>\n                <section class=\"section\">\n                  <div class=\"text-title \">Rol</div>\n                </section>\n                <aside>\n                  <div class=\"text-title \">Acciones</div>\n                </aside>\n                ".concat(userBO, "\n              \n        "));
         jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user").modal("hide");
         Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserBO"])(); //showUserBO();
       }
@@ -93306,9 +92819,10 @@ function deleteUserFront(id) {
         users.forEach(function (user) {
           userBO += "\n          <div class=\"pd-5\">".concat(user.name, "</div>\n          <div class='justify-content-center' _id=\"").concat(user.id, "\">\n            <!--Acciones-->\n            <input type='image' src='./images/ver-acti.svg' class='ml-3 btn-focus show-user-front-icon images' id='visual'></input>\n            <input type='image' src='./images/edit-ac.svg' class='ml-3 btn-focus images edit-user-front'></input>\n            <input type='image' src='./images/eliminar-acti.svg' class='ml-3 btn-focus images delete-user-front-icon' _username=\"").concat(user.name, "\"></input>\n          </div>\n          ");
         });
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section>\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user-front").modal("hide"); //showModalDeleteUserFront();
-        //showUserFront();
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("");
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".users-front-table").html("\n        <header>\n          <div class=\"text-title\">Usuario</div>\n        </header>\n        <section class=\"section\">\n          <div class=\"text-title\">Acciones</div>\n        </section>\n        ".concat(userBO, "\n        "));
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()(".modal-delete-user-front").modal("hide");
+        Object(_UI_UI_js__WEBPACK_IMPORTED_MODULE_0__["showModalDeleteUserFront"])(); //showUserFront();
       }
     }
   });
@@ -93395,7 +92909,7 @@ function sendEmailResetPassword(input) {
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro */
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro, updateSinopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93410,6 +92924,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTitleCanalClaro", function() { return getTitleCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProgramacion", function() { return updateProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPromoCanalClaro", function() { return getPromoCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSinopsis", function() { return updateSinopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
@@ -93666,6 +93181,64 @@ function updateProgramacion(res) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
+function updateSinopsis(res) {
+  var table = "<div class=\"contenedor-columna synop titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Programa</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Caracteres</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Im\xE1genes</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Acciones</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Landing</span></div>";
+  var index;
+  var sinopsis_len;
+  var cant_imagenes;
+  var cant_imagenes_switch;
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    index = 0;
+  }
+
+  if (landing == 'Concert Channel') {
+    index = 1;
+  }
+
+  if (landing == 'Claro Cinema') {
+    index = 2;
+  }
+
+  res = res.data[index].programing[0].programs;
+  res.forEach(function (programs) {
+    if (programs.sinopsis_info.sinopsis_len < 21) {
+      sinopsis_len = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 21 && programs.sinopsis_info.sinopsis_len < 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.cant_imagenes <= 4) {
+      cant_imagenes = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes <= 4\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes >= 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    table += "\n          <div class=\"contenedor-fila\">\n              <div class=\"contenedor-columna pl-4\">\n                  <span class=\"a-text-medium-black text-normal\">".concat(programs.chapter_title, "</span>\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(sinopsis_len, "</div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes, "</div>\n              <div class=\"contenedor-columna text-center\">\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"Editar\" class=\"edi mr-3\" name=\"edi\" />\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"Vizualizar\" class=\"edi\" name=\"prev\" />\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes_switch, "</div>\n          </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').addClass('mt-5');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html(table);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnSinopsis"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
 function getTitleCanalClaro(res, id) {
   res = res.data;
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val('');
@@ -93840,6 +93413,12 @@ function evnSinopsis() {
       }
     });
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-calendar-item').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), 2);
+  });
 }
 
 function loadRoll() {
@@ -93905,7 +93484,7 @@ function synopsisCalendarItem() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), 1);
   });
 }
 
@@ -93972,7 +93551,7 @@ function getSynopsis() {
   });
 }
 
-function getProgramacionDate(date) {
+function getProgramacionDate(date, id) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     data: {
@@ -93981,7 +93560,11 @@ function getProgramacionDate(date) {
     cache: false,
     url: "landing/getProgramacionDate",
     success: function success(res) {
-      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateProgramacion"])(JSON.parse(res));
+      if (id == '1') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateProgramacion"])(JSON.parse(res));
+      } else {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateSinopsis"])(JSON.parse(res));
+      }
     }
   });
 }
@@ -96166,7 +95749,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ }),

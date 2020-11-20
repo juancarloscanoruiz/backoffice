@@ -2534,7 +2534,7 @@ function editPromoLandingCinema(data) {
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 function getProgrammingLanding(date, landing) {
     $.ajax({
-        type: "GET",
+        type: "POST",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
@@ -2642,7 +2642,7 @@ function getProgrammingLanding(date, landing) {
 //Conseguir únicamente programas de un landing, sin mostrar el modal
 function getProgramsLanding(date, landing = "") {
     $.ajax({
-        type: "GET",
+        type: "POST",
         beforeSend: function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
