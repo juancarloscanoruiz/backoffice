@@ -97,9 +97,7 @@
                 <section class="col-8 mx-auto">
                     <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
                         id="slider-calendar-current-date">Octubre 2020</h3>
-                    <div class="mb-5 calendar-sinopsis-slider">
-
-                    </div>
+                    <div class="mb-5 calendar-sinopsis-slider"></div>
                 </section>
                 <div id="prev-sinopsis">
                     <div class="mx-auto shadow mt-5 col-10 p-0 mb-5 content-table" id="synopsis-table-concert-channel">

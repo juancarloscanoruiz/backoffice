@@ -22351,7 +22351,7 @@ function addSlickDots(sliderLengt) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /var/www/html/BackofficeClaroNetworks/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })
