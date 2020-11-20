@@ -339,7 +339,7 @@ function getAllUsersBO() {
                 $("#Adm-users-BO").html(
                     `
         <div class="col-xl-10 position-btn-alta">
-          <button class="btn-alta text-public mb-4 d-flex align-items-center" id="btnAlta">Agregar nuevo usuario</button>
+          <button class="btn-alta text-public mb-4 d-flex align-items-center justify-content-center" id="btnAlta">Agregar nuevo usuario</button>
         </div>
         <div class="sombras2 trans10 mb-5">
           <div class="grid-users texto-general users-backoffice-table">
@@ -1143,17 +1143,20 @@ function deleteUserBO(id) {
           </div>
           `;
                 });
+                $(".users-backoffice-table").html("");
                 $(".users-backoffice-table").html(`
-        <header>
-        <div class="text-title ">Usuario</div>
-        </header>
-        <section>
-          <div class="text-title ">Rol</div>
-        </section>
-        <aside>
-          <div class="text-title ">Acciones</div>
-        </aside>
-        ${userBO}
+               
+                <header>
+                <div class="text-title">Usuario</div>
+                </header>
+                <section class="section">
+                  <div class="text-title ">Rol</div>
+                </section>
+                <aside>
+                  <div class="text-title ">Acciones</div>
+                </aside>
+                ${userBO}
+              
         `);
                 $(".modal-delete-user").modal("hide");
                 showModalDeleteUserBO();
@@ -1206,17 +1209,18 @@ function deleteUserFront(id) {
           </div>
           `;
                 });
+                $(".users-front-table").html("");
                 $(".users-front-table").html(`
         <header>
           <div class="text-title">Usuario</div>
         </header>
-        <section>
+        <section class="section">
           <div class="text-title">Acciones</div>
         </section>
         ${userBO}
         `);
                 $(".modal-delete-user-front").modal("hide");
-                //showModalDeleteUserFront();
+                showModalDeleteUserFront();
                 //showUserFront();
             }
         }

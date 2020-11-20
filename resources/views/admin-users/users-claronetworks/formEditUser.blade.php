@@ -108,7 +108,7 @@
 
                 <div class="col-xl-4 fecha-margi text-small a-text-medium-brownish">
                   <p class="margin-fecha">Fecha de nacimiento</p>
-                  <div class=" mb-4 cuadro-fecha">
+                  <div class=" mb-4 p21 cuadro-fecha">
                     <div class="cuadro-dia">
 
                       <input type="checkbox" id="selectDay" />
@@ -544,7 +544,7 @@
               </div>
 
               <div class="navbar navbar-expand-sm justify-content-center mx-auto texto ml-xl-2 pb-3 ">
-                <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4">CANCELAR</button>
+                <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4 closeViewFront">CANCELAR</button>
                 <button type="button" class="a-button-pill-teal-primary a-button-pill-padding  btn-save-data-front a-text-bold-white">GUARDAR</button>
               </div>
               <div>
