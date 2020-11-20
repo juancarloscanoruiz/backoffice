@@ -301,6 +301,6 @@
 
     @include('partials.adm-CN.modal-generic.advertencia');
     @include('partials.adm-CN.modal-generic.url');
-
+    @include('components.modals.carrusel')
 
 </body>
