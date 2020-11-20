@@ -83,7 +83,11 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
+import { closeModals } from "./store/events/events";
+
 function eventsGrilla() {
+
+    closeModals()
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
@@ -663,6 +667,7 @@ function eventsGrilla() {
                 );
                 let id = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
+                closeModals()
             }
         );
         $("#synopsis-table-concert-channel").on(
@@ -3364,6 +3369,7 @@ function eventsGrilla() {
                             addImagesModalIcons();
                             $(".modal-edit-icons").modal("show");
                             $("#loader1").remove();
+                            closeModals()
                         }, 3000);
                         break;
 
@@ -3487,7 +3493,7 @@ function eventsGrilla() {
                         }, 3000);
                         break;
                     case "claro-carrusel1":
-                        let landing = "Concert Channel";
+                        let landing = "Canal Claro";
                         let id = 1;
                         getPromotionalsProgramsCarousel(
                             id,
@@ -3496,8 +3502,8 @@ function eventsGrilla() {
                         );
                         break;
                     case "claro-carrusel2":
-                        landing = "Concert Channel";
-                        id = 1;
+                        landing = "Canal Claro";
+                        id = 2;
                         getPromotionalsProgramsCarousel(
                             id,
                             landing,
@@ -5031,8 +5037,13 @@ function eventsGrilla() {
         $("#modal-carrusel-home").modal("hide");
         $("#modal-terminos-footer").modal("hide");
         $("#modal-privacy-footer").modal("hide");
+        $("#delete-info").modal("hide");
         $("#url").modal("hide");
         $("#modaledi").modal("hide");
+        $(".modal").modal("hide");
+        $(".modal-backdrop").removeClass('modal-backdrop');
+        $(".modal-backdrop").remove();
+        console.log('si llega')
     });
 
     // FOOTER

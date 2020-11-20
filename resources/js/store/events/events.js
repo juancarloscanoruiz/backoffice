@@ -22,8 +22,28 @@ function previewImage() {
 }
 
 function closeModals() {
+    console.log('watch modal close')
+
+    $(".close-modal-concert").click(function () {
+        $("#delete-info").modal("hide");
+        $(".modal-programming-carousel").modal("hide");
+        $(".modal-edit-icons").modal("hide");
+        $(".modal-landing-sinopsis").modal("hide");
+        $("#modal-logo-home").modal("hide");
+        $("#modal-carrusel-home").modal("hide");
+        $("#modal-terminos-footer").modal("hide");
+        $("#modal-privacy-footer").modal("hide");
+        $("#url").modal("hide");
+        $("#modaledi").modal("hide");
+        $(".modal").modal("hide");
+        $(".modal-backdrop").removeClass('modal-backdrop');
+        $(".modal-backdrop").remove();
+        console.log('si llega')
+    });
+
     $('#close-modal').on('click', function () {
         $('.modal').modal('hide')
+        $('#sinopsis-iframe iframe').remove();
     })
 }
 
