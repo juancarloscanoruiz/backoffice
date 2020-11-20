@@ -999,6 +999,8 @@ function eventsGrilla() {
         "click",
         ".button-modal-concert-channel",
         function () {
+
+            $('.modal-edit-program-carrusel').modal("hide")
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
@@ -4794,15 +4796,12 @@ function eventsGrilla() {
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
 
-    $("#modal-carrusel-home").on(
+    $(".modal-edit-program-carrusel").on(
         "click",
         ".button-modal-canal-claro",
         function () {
-
-            resetIframe(
-                $("#navbar-prev-canal-claro iframe"),
-                landingCanalClaro
-            );
+            $(".modal-edit-program-carrusel").modal("hide");
+            resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
         }
     );
     // HEADER EDIT CANAL CLARO
