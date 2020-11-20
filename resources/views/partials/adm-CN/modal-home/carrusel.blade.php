@@ -238,8 +238,8 @@
                                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                                             <!--Textarea-->
                                             <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
-                                            <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
-                                <div class="clearfix"></div>
+                                            <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center"><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                                            <div class="clearfix"></div>
                                         </section>
                                     </div>
                                     <div class="col-12">
@@ -339,12 +339,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- BOTONES -->
-            <div class="content my-4">
-                <div class="d-flex justify-content-center">
-                    <button data-dismiss="modal" id="acepta_carrusel_home" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack modal-edit-program-carrusel acepta_carrusel_home">ACEPTAR</button>
-                    <!-- <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a> -->
+                <!-- BOTONES -->
+                <div class="content my-4">
+                    <div class="d-flex justify-content-center">
+                        <button data-dismiss="modal" id="acepta_carrusel_home" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack modal-edit-program-carrusel acepta_carrusel_home">ACEPTAR</button>
+                        <!-- <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a> -->
+                    </div>
                 </div>
             </div>
         </div>
