@@ -1196,7 +1196,14 @@ class landingController extends Controller
                 ]
             )]
         );
+        echo ($response->getBody()->getContents());
+    }
 
+    function getProgramacionDate(Request $request)
+    {
+        $date = $request->input("date");
+        $client = new Client();
+        $response = $client->get($this->url . "program/getSinospsisTable/" . $date);
         echo ($response->getBody()->getContents());
     }
 }

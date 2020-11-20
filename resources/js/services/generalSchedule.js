@@ -775,7 +775,16 @@ function addImagesModalIcons() {
 /**
  * Se consulta a la API y se colocan las imagenes que se encuentren
  */
-function addImagesModalBanner() {
+function addImagesModalBanner(idpagination, totalslides) {
+    $("body").append(`
+    <div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+    </div>
+        `);
+        let initial = parseInt(idpagination);
+        let allslide = parseInt(totalslides);
+       let alls = allslide+1;
+
     $.ajax({
         type: "POST",
         cache: false,
@@ -784,13 +793,17 @@ function addImagesModalBanner() {
             result = JSON.parse(result);
             let slider = "";
             let counter = 1;
+            
             $(".programming-slider-dots .slick-dots").append(
                 ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
             );
+          
 
             while (true) {
                 try {
+                 
                     if (result["image_slider_" + counter]) {
+
                         slider =
                             slider +
                             `
@@ -806,20 +819,45 @@ function addImagesModalBanner() {
                     </label>
                 </div>`;
 
-                        counter++;
+                        
+                counter++;
                     } else {
                         break;
                     }
                 } catch (error) {
                     break;
                 }
+                console.log(counter +"counter ini");
             }
+            console.log(counter +"counter end");
+            
+            if(counter <= alls){
+                slider =
+                            slider +
+                    `
+                 <div>
+                            <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
+                                <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                    <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                    <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_${counter}">
+                                </label>
+                            </div>
+                       </div>
+                    `
+                ;
+                counter++;
+            }
+            console.log(counter +"counter");
+            console.log(alls +"allslides");
+            
 
             let conf = {
                 slidesToShow: 1,
                 dots: true,
                 appendDots: $(".programming-slider-dots"),
-                initialSlide: 0,
+                initialSlide: initial,
                 infinite: false,
                 arrows: true,
                 prevArrow:
@@ -835,6 +873,7 @@ function addImagesModalBanner() {
                     );
                 }
             };
+            
 
             const programmingSlider = $(".programming-slider");
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
@@ -896,6 +935,8 @@ function addImagesModalBanner() {
                     });
                 });
             });
+            $("#loader1").remove();
+            $(".modal-programming-carousel").modal("show");
 
             // $('.load-programming-carousel').click(function () {
             //     alert($('.load-programming-carousel').attr('data-index'));

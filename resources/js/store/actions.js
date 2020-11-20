@@ -1,11 +1,12 @@
 import $ from "jquery";
 
 import { slickShowArrow, slickShowCalendar } from './slick/slick'
-import { closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis } from './events/events'
+import { closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, synopsisCalendarItem, evnProgramacion } from './events/events'
 import { setBannerProgramacion, setLogosProgramacion, setHeaderCanalClaro, setTituloCanalClaro } from './methods'
 import { slickCalendar } from './calendar/calendar'
 
 let landing;
+let lang;
 
 function getBannerProgramacion(res) {
     let slider = "";
@@ -267,25 +268,30 @@ function getProgramacionCanalClaro(res, lastMonth, lastDay) {
         $('.moda-programming-landing-logo').attr('src', './images/home/tv-1.svg')
         $('.moda-programming-landing-logo').attr('width', '200px')
         $('.moda-programming-landing-logo').removeClass()
+        lang = 'canal_claro'
+
     }
     if (landing == 'Concert Channel') {
         res = res.data[1].programing[0].programs
         $('.moda-programming-landing-logo').attr('src', './images/concert-black-icon.svg')
+        lang = 'concert_channel'
     }
     if (landing == 'Claro Cinema') {
         res = res.data[2].programing[0].programs
         $('.moda-programming-landing-logo').attr('src', './images/home/cinema-home-img.svg')
+        lang = 'claro_cinema'
     }
 
     let slick = $('.slick-calendarioProg');
     let slickMonth = $('.monthSliderCalendarProg');
     slickCalendar(lastMonth, lastDay, slick, slickMonth);
     slickShowCalendar(slick)
+    synopsisCalendarItem()
 
     res.forEach(programs => {
         programacion += `
         <div class="p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer">
-            <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-${landing}" chapter_id="${programs.chapter_id}">
+            <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-${lang}" chapter_id="${programs.chapter_id}">
             <div class="schedule-container col-12 p-5 mx-auto mt-0">
                 <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                     ${programs.Program_Title} - ${programs.chapter_title}
@@ -326,8 +332,72 @@ function getProgramacionCanalClaro(res, lastMonth, lastDay) {
     })
 
     $('.show-modal-programacion').html(programacion);
+    evnProgramacion()
 
     $('#show-programacion').modal('show');
+    $(".loader-view-container").remove();
+}
+
+function updateProgramacion(res) {
+
+    let programacion = '';
+    landing = $('.subMenuLandingCase').attr('landing')
+
+    if (landing == 'Canal Claro') {
+        res = res.data[0].programing[0].programs
+    }
+    if (landing == 'Concert Channel') {
+        res = res.data[1].programing[0].programs
+    }
+    if (landing == 'Claro Cinema') {
+        res = res.data[2].programing[0].programs
+    }
+
+    res.forEach(programs => {
+        programacion += `
+        <div class="p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer">
+            <img src="./images/pencil.svg" alt="" class="pencil-edit programming-pencil-${lang}" chapter_id="${programs.chapter_id}">
+            <div class="schedule-container col-12 p-5 mx-auto mt-0">
+                <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
+                    ${programs.Program_Title} - ${programs.chapter_title}
+                </p>
+                <div class="schedule-item-body">
+                    <div class="schedule-poster">
+                        <div class="poster">
+                            <div class="thumbnail-edit" _id="${programs.chapter_id}">
+                                <img src="${programs.image}" class="w-100" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-details">
+                        <div class="schedule-details-header">
+                            <div>
+                                <p class="schedule a-text-semi-brown-two">
+                                    ${programs.time} hrs.
+                                </p>
+                                <p class="rating a-text-semibold-warm-grey-five">
+                                    Clasificación: A
+                                </p>
+                            </div>
+                            <div>
+                                <button title="Agregar a mi lista" class="button-none add-favorites programing-button" type="button" _id="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44">
+                                        <path class="heart-gray" fill="none" fill-rule=" evenodd" stroke="#7A7777" stroke-width="3" d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="schedule-description a-text-regular-warm-grey-five s1" id="synopsis-edi">${programs.sinopsis}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    })
+
+    $('.show-modal-programacion').html(programacion);
+    evnProgramacion()
     $(".loader-view-container").remove();
 }
 
@@ -361,4 +431,14 @@ function getTitleCanalClaro(res, id) {
     $(".loader-view-container").remove();
 }
 
-export { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro }
+function getPromoCanalClaro(res) {
+    res = res.data
+    $("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + res.block_3_video_url +'" /></video>');
+
+    closeModals()
+    $("#modal-promo").modal("show");
+    $(".loader-view-container").remove();
+}
+
+export { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro }
+

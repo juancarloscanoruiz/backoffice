@@ -3339,14 +3339,16 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
-                        $("body").append(loader);
+                      
+                        let idpagination =json.id_slide;
+                        let totalslides = json.totales;
+                       
+                       // setTimeout(function () {
+                        
+                            //$("#loader1").remove();
 
-                        setTimeout(function () {
-                            $(".modal-programming-carousel").modal("show");
-                            $("#loader1").remove();
-
-                            addImagesModalBanner();
-                        }, 3000);
+                            addImagesModalBanner(idpagination, totalslides);
+                     //   }, 3000);
 
                         break;
                     case "synopsis":

@@ -5,6 +5,8 @@ import { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getL
 import { getBannerSinopsis, } from './store/actions'
 import { loadRoll, } from './store/events/events'
 
+import { getChapterInfo } from "./services/landing.js";
+
 const URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 
@@ -54,6 +56,7 @@ function programacion(landing) {
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                console.log(json.type);
                 switch (json.type) {
                     case "slider-pagination":
                         $("body").append(LOADER);
@@ -62,6 +65,10 @@ function programacion(landing) {
                     case "menu-logos":
                         $("body").append(LOADER);
                         getProgramacion('logos')
+                        break;
+                    case "program":
+                        $("body").append(LOADER);
+                        getChapterInfo(json.chapterId);
                         break;
                 }
             }
@@ -153,6 +160,8 @@ function showlanding(landing) {
                         getCanalClaro('title-1');
                         break;
                     case "claro-promo":
+                        $("body").append(LOADER);
+                        getCanalClaro('promo');
                         break;
                     case "claro-carrusel-title":
                         $("body").append(LOADER);

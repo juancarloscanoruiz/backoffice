@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid subMenuLandingCase" landing="Canal Claro">
+        <div class="container-fluid subMenuLandingCase mb-5" landing="Canal Claro">
             <div class="row">
                 <div class="col-8 mx-auto">
                     <h3 class="monthSliderCalendar a-text-semibold-brownish-grey-three text-uppercase"></h3>
@@ -61,6 +61,9 @@
 @include('components.modals.header')
 @include('components.modals.programacion')
 @include('components.modals.titulo')
+@include('components.modals.termometro')
+@include('components.modals.sinopsis')
+@include('components.modals.promo')
 
 @include('components.modals.generic.advertencia')
 @include('components.modals.generic.advertencia-url')
