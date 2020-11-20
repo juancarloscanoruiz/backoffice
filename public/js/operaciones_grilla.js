@@ -9122,9 +9122,9 @@ function fromByteArray (uint8) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
+  * Bootstrap v4.5.2 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -9150,53 +9150,22 @@ function fromByteArray (uint8) {
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
 
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
       }
-    }
 
-    return target;
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -9207,8 +9176,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -9388,7 +9357,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.0';
+  var VERSION = '4.5.2';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -9544,7 +9513,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.0';
+  var VERSION$1 = '4.5.2';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -9679,11 +9648,9 @@ function fromByteArray (uint8) {
         return;
       }
 
-      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
-        event.preventDefault(); // work around event sent to label and input
+      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
+        Button._jQueryInterface.call($(button), 'toggle');
       }
-
-      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -9739,7 +9706,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.0';
+  var VERSION$2 = '4.5.2';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -9926,7 +9893,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default), config);
+      config = _extends({}, Default, config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -10216,10 +10183,10 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
+        var _config = _extends({}, Default, $(this).data());
 
         if (typeof config === 'object') {
-          _config = _objectSpread2(_objectSpread2({}, _config), config);
+          _config = _extends({}, _config, config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -10257,7 +10224,7 @@ function fromByteArray (uint8) {
         return;
       }
 
-      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+      var config = _extends({}, $(target).data(), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -10326,7 +10293,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.0';
+  var VERSION$3 = '4.5.2';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -10541,7 +10508,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$1), config);
+      config = _extends({}, Default$1, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -10595,7 +10562,7 @@ function fromByteArray (uint8) {
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -10675,7 +10642,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.0';
+  var VERSION$4 = '4.5.2';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -10902,7 +10869,7 @@ function fromByteArray (uint8) {
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
+      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -10947,7 +10914,7 @@ function fromByteArray (uint8) {
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -10977,7 +10944,7 @@ function fromByteArray (uint8) {
         };
       }
 
-      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
+      return _extends({}, popperConfig, this._config.popperConfig);
     } // Static
     ;
 
@@ -11189,7 +11156,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.0';
+  var VERSION$5 = '4.5.2';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -11381,7 +11348,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$3), config);
+      config = _extends({}, Default$3, config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -11397,11 +11364,24 @@ function fromByteArray (uint8) {
           return;
         }
 
+        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+        if (!isModalOverflowing) {
+          this._element.style.overflowY = 'hidden';
+        }
+
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
+        $(this._element).off(Util.TRANSITION_END);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
+
+          if (!isModalOverflowing) {
+            $(_this3._element).one(Util.TRANSITION_END, function () {
+              _this3._element.style.overflowY = '';
+            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
+          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -11426,6 +11406,8 @@ function fromByteArray (uint8) {
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
+
+      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -11513,6 +11495,8 @@ function fromByteArray (uint8) {
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
+
+      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -11695,7 +11679,7 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -11745,7 +11729,7 @@ function fromByteArray (uint8) {
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -11782,8 +11766,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -11908,7 +11892,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.0';
+  var VERSION$6 = '4.5.2';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -12296,7 +12280,7 @@ function fromByteArray (uint8) {
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
+      return _extends({}, defaultBsConfig, this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -12306,7 +12290,7 @@ function fromByteArray (uint8) {
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -12361,7 +12345,7 @@ function fromByteArray (uint8) {
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
+        this.config = _extends({}, this.config, {
           trigger: 'manual',
           selector: ''
         });
@@ -12461,7 +12445,7 @@ function fromByteArray (uint8) {
           delete dataAttributes[dataAttr];
         }
       });
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
+      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -12620,21 +12604,21 @@ function fromByteArray (uint8) {
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.0';
+  var VERSION$7 = '4.5.2';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
+  var Default$5 = _extends({}, Tooltip.Default, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
+  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
     content: '(string|element|function)'
   });
 
@@ -12800,7 +12784,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.0';
+  var VERSION$8 = '4.5.2';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -12914,7 +12898,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -13092,7 +13076,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.0';
+  var VERSION$9 = '4.5.2';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -13318,7 +13302,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.0';
+  var VERSION$a = '4.5.2';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -13371,6 +13355,8 @@ function fromByteArray (uint8) {
         return;
       }
 
+      this._clearTimeout();
+
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -13419,8 +13405,7 @@ function fromByteArray (uint8) {
     };
 
     _proto.dispose = function dispose() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
+      this._clearTimeout();
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -13434,7 +13419,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -13464,6 +13449,11 @@ function fromByteArray (uint8) {
       } else {
         complete();
       }
+    };
+
+    _proto._clearTimeout = function _clearTimeout() {
+      clearTimeout(this._timeout);
+      this._timeout = null;
     } // Static
     ;
 
@@ -46792,7 +46782,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -83032,12 +83022,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _operaciones_grilla__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operaciones_grilla */ "./resources/js/operaciones_grilla.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/landing.js */ "./resources/js/services/landing.js");
-/* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../vendor/slick.js */ "./resources/js/vendor/slick.js");
-/* harmony import */ var _config_slick_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../config/slick.js */ "./resources/js/config/slick.js");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
 //SERVICES
-
-
 
 
 
@@ -83205,8 +83191,10 @@ function createNavbarProgramacionGeneral() {
 
     if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-canal-claro")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {// changeContentProgramacionGeneral($(this).attr("rel"));
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {// changeContentProgramacionGeneral($(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-sinopsis")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
+    } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-programacion")) {
+      changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     } else if (jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).hasClass("navbar-home")) {
       changeContentProgramacionGeneral(jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr("rel"));
     }
@@ -83288,6 +83276,8 @@ function changeContentProgramacionGeneral(nameSection) {
   jquery__WEBPACK_IMPORTED_MODULE_3___default()("#" + nameSection).show();
 
   if (nameSection == "navbar-prev-sinopsis") {
+    console.log("Sinopsis dentro");
+
     try {
       var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_3___default()(".calendar-sinopsis-slider");
       calendarsinopsis.slick("unslick");
@@ -83381,8 +83371,8 @@ function showlanding() {
       var month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
       var year = date.getUTCFullYear();
       Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getProgrammingSynopsis"])("canal-claro", "".concat(year, "-").concat(month, "-").concat(day));
-      Object(_index__WEBPACK_IMPORTED_MODULE_8__["mvh"])();
-      Object(_index__WEBPACK_IMPORTED_MODULE_8__["programacion"])('programacion-edi.php');
+      Object(_index__WEBPACK_IMPORTED_MODULE_6__["mvh"])();
+      Object(_index__WEBPACK_IMPORTED_MODULE_6__["programacion"])('programacion-edi.php');
     }
   });
 } //Mandamos traer con ajax la vista de previsualizacion de concert channel
@@ -84282,6 +84272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/actions */ "./resources/js/store/actions.js");
 /* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/events/events */ "./resources/js/store/events/events.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/landing */ "./resources/js/views/landing.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -84290,6 +84281,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
+
+var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_6__["default"]();
 var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { showlanding('claro-canal-edi.php'); mvh() })();
 // (function () { sinopsis(); })();
@@ -84425,6 +84418,8 @@ function showlanding(landing) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
+        var _landing;
+
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
@@ -84457,6 +84452,7 @@ function showlanding(landing) {
             break;
 
           case "claro-carrusel1":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getPromotionalsProgramsCarousel"])('1', "Canal Claro", "thumbnail-header-claro");
             break;
 
           case "claro-carrusel-title2":
@@ -84465,6 +84461,7 @@ function showlanding(landing) {
             break;
 
           case "claro-carrusel2":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getPromotionalsProgramsCarousel"])('2', "Canal Claro", "thumbnail-header-claro");
             break;
         }
       }
@@ -84487,15 +84484,21 @@ function home(landing) {
       if (_typeof(json) == "object") {
         switch (json.type) {
           case 'slider-pagination':
+            landingView.renderHomeBanner();
             break;
 
           case 'home-claro-carrousel-main':
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getModalProgramacion"])();
             break;
 
           case 'claro-home-header':
+            landingView.renderHomeHeaderCanalClaro();
+            Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["closeModals"])();
             break;
 
           case 'claro-home-slider':
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getCarruselHome"])("Canal Claro");
             break;
         }
       }
@@ -85052,6 +85055,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
+/* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/events/events */ "./resources/js/store/events/events.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -85079,7 +85084,10 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 
 
+
+
 function eventsGrilla() {
+  Object(_store_events_events__WEBPACK_IMPORTED_MODULE_12__["closeModals"])();
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#about_link_1_url").click(".about_link_1_title", function () {
     alert("marina");
@@ -85128,21 +85136,21 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".content-table").html(" ");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])(key, "".concat(year, "-").concat(month, "-").concat(day));
   }); //calendario de sinopsis
-  // let calendarsinopsis = $(".calendar-sinopsis-slider");
-  // $(".calendar-sinopsis-slider").slick({
-  //     slidesToShow: 11,
-  //     slidesToScroll: 11,
-  //     infinite: true,
-  //     dots: false,
-  //     centerMode: false,
-  //     arrows: true,
-  //     prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
-  //     nextArrow: '<img src="./images/next.png" class="arrow-next" />'
-  // });
-  // calendarsinopsis.slick("unslick");
-  // createCalendarDays(calendarsinopsis, "synopsis-calendar-item");
-  // createSlickSlider(calendarsinopsis, calendarSlick);
 
+  var calendarsinopsis = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider");
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").slick({
+    slidesToShow: 11,
+    slidesToScroll: 11,
+    infinite: true,
+    dots: false,
+    centerMode: false,
+    arrows: true,
+    prevArrow: '<img src="./images/prev.png" class="arrow-prev" />',
+    nextArrow: '<img src="./images/next.png" class="arrow-next" />'
+  });
+  calendarsinopsis.slick("unslick");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createCalendarDays"])(calendarsinopsis, "synopsis-calendar-item");
+  Object(_vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__["createSlickSlider"])(calendarsinopsis, _config_slick_js__WEBPACK_IMPORTED_MODULE_8__["calendarSlick"]);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
@@ -85152,7 +85160,6 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    console.log(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingSynopsis"])("concert-channel", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".calendar-sinopsis-slider").on("click", ".synopsis-calendar-item", function () {
@@ -85222,8 +85229,7 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  }; ////////////
-
+  };
   var NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
 
   if (NavbarHomeCinema) {
@@ -85471,6 +85477,7 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       programView.renderSynopsis(id, socketSynopsis);
+      Object(_store_events_events__WEBPACK_IMPORTED_MODULE_12__["closeModals"])();
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-concert-channel").on("click", ".prev-synopsis-pencil", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
@@ -85530,7 +85537,8 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("slider-pagination");
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_13__["getClaroCinema"])('banner'); // getContentClaroCinema("slider-pagination");
+
             break;
 
           case "current-programming-cinema":
@@ -85738,6 +85746,7 @@ function eventsGrilla() {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-concert-channel", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-program-carrusel').modal("hide");
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".modal-button-landing-concert", function () {
@@ -86166,7 +86175,6 @@ function eventsGrilla() {
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("keydown", ".edit-program-attribute-text", function (e) {
     if (e.which === 13 && !e.shiftKey) {
-      debugger;
       var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
       var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
@@ -86696,6 +86704,7 @@ function eventsGrilla() {
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalIcons"])();
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+              Object(_store_events_events__WEBPACK_IMPORTED_MODULE_12__["closeModals"])();
             }, 3000);
             break;
 
@@ -86781,6 +86790,18 @@ function eventsGrilla() {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
             }, 3000);
+            break;
+
+          case "claro-carrusel1":
+            var landing = "Canal Claro";
+            var id = 1;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
+            break;
+
+          case "claro-carrusel2":
+            landing = "Canal Claro";
+            id = 2;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getPromotionalsProgramsCarousel"])(id, landing, "header-background-blue thumbnail-header-concert");
             break;
 
           default:
@@ -87845,6 +87866,7 @@ function eventsGrilla() {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").on("click", ".button-modal-canal-claro", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel").modal("hide");
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
   }); // HEADER EDIT CANAL CLARO
   // TITLE EDIT CANAL CLARO
@@ -88019,7 +88041,6 @@ function eventsGrilla() {
   });
 
   function viewImg(objFileInput, container) {
-    debugger;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
 
     if (objFileInput.files[0]) {
@@ -88070,8 +88091,13 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-backdrop").removeClass('modal-backdrop');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-backdrop").remove();
+    console.log('si llega');
   }); // FOOTER
   // FOOTER
 
@@ -88216,8 +88242,7 @@ function eventsGrilla() {
   if (NavbarHomeConcert) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe").remove();
     new easyXDM.Socket(LandingHomeConcert);
-  } ////////////
-
+  }
 
   var confPrevHomeConcert = {
     remote: "".concat(baseURL, "home-prev.php"),
@@ -90635,7 +90660,7 @@ function editPromoLandingCinema(data) {
 
 function getProgrammingLanding(date, landing) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
-    type: "GET",
+    type: "POST",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -90712,7 +90737,7 @@ function getProgrammingLanding(date, landing) {
 function getProgramsLanding(date) {
   var landing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
-    type: "GET",
+    type: "POST",
     beforeSend: function beforeSend() {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
@@ -91203,7 +91228,7 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
             carruselImg = "\n                    <section class=\"edit-program-image\">\n                        <select\n                            class=\"carrusel-concert-select ".concat(landingClass, " w-100 a-text-MBlack h2 d-flex align-items-center justify-content-between position-relative programs-catalogue\"\n                            title=\"").concat(chapter.chapter.title, "\" id=\"prog_titulo_programa\" data-live-search=\"true\"\n                            data-live-search-placeholder=\"Agregar t\xEDtulo de nuevo programa\"\n                            name=\"thumbnail-header1\" key=\"title\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                        </select>\n                        <!--Imagen del programa--->\n                        <div class=\"edit-thumbnail position-relative\">\n                            <input type=\"file\" name=\"image-horizontal\"\n                                class=\"input-image-program d-none edit-image-carrusel\" id=\"edit-image-carrusel-").concat(chapter.chapter.id, "\" chapter_id=\"").concat(chapter.chapter.id, "\" landing=\"").concat(idLanding, "\" program=\"").concat(chapter.chapter.program.title, "\">\n                            <label for=\"edit-image-carrusel-").concat(chapter.chapter.id, "\"\n                                class=\"load-modal-programming load-photo d-inline\" id=\"imagenes\">\n                                <img src=\"./images/heart-icon.svg\" class=\"thumbnail-heart-icon\"\n                                    alt=\"heart-icon\" />\n                                <div class=\"edit-program-camera text-center\">\n                                    <img src=\"./images/synopsis/camara.svg\"\n                                        class=\"edit-program-icon-image\" alt=\"camera\" />\n                                    <p\n                                        class=\"p-2 mb-0 text-center size-thumbnail-text text-plus a-text-bold-brown-two\">\n                                        295\n                                        x 180px</p>\n                                </div>\n                                <img src=\"").concat(chapter.image_program, "\" alt=\"\"\n    class=\"thumbnail-image-prev edit-image-program prev-image-program\" />\n\n\n                            </label>\n                        </div>\n                        <!--Nombre de la imagen-->\n                        <p class=\"a-text-bold-brown-two text-plus mt-4 mb-5\">NombreDeLaImagen</p>\n                    </section>\n                    ");
           }
 
-          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-items-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm \">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container backwhite d-flex align-items-center justify-content-center py-2\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm \"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\" class=\"mr-2\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container   backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            data-dismiss=\"modal\" id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
+          program += "\n                <div>\n                ".concat(carruselImg, "\n                <!--Establecer en landing, home, schedule item date time-->\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Landing-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en landing\n                                </p>\n                                    ").concat(inLandingSwitch, "\n                                <!--Inputs radio-->\n                                <div class=\"d-flex align-items-center mb-3\">\n\n                                    <span\n                                        class=\"a-text-bold-silver cursor-pointer ml-2 text-uppercase\">Carrusel\n                                        1</span>\n\n                                </div>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inLandingDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inLandingTimes, "\n                            </div>\n                        </div>\n                        <!--Home-->\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p class=\"mb-3 text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Establecer\n                                    en home\n                                </p>\n                                <!--Switch-->\n                                ").concat(inHomeSwitch, "\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    ").concat(inHomeDates, "\n                                </div>\n                                <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">Hora</p>\n                                ").concat(inHomeTimes, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container edit-data-container-large\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container h-100\">\n                                <p\n                                    class=\"edit-date-time-title text-plus text-plus text-uppercase a-text-bold-coolgray\">\n                                    Schedule Item Date time\n                                </p>\n                                <div>\n                                    <p class=\"mb-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                        Fecha\n                                    </p>\n                                    <div class=\"text-center edit-rectangle-small-container backwhite py-2 d-flex align-items-center justify-content-center\"\n                                        style=\"margin-bottom: 81px\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <span class=\"a-text-bold-warm \">\n\n                                            <input key=\"\" type=\" text\"\n                                                class=\"input-basic edit-program-input a-text-bold-warm schedule-date-input edit-schedule-date\"\n                                                placeholder=\"00-00-0000\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-3 pt-3 text-plus a-text-medium-coolgray text-uppercase\">\n                                    Hora\n                                </p>\n                                <div\n                                    class=\"text-center edit-rectangle-small-container backwhite d-flex align-items-center justify-content-center py-2\">\n                                    <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                    <span class=\"a-text-bold-warm \"><input type=\"text\"\n                                            class=\"time-seconds-input input-basic edit-program-input a-text-bold-warm edit-schedule-item-time text-uppercase\"\n                                            placeholder=\"00:00:00\" value=\"").concat(chapter.chapter.hour, "\"></span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <!--Sinopsis-->\n                <section class=\"edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                    <h3 class=\"h3 text-uppercase a-text-bold-brown-two mb-3\">Sinopsis</h3>\n                    <!--Textarea-->\n                    <textarea chapter_id=\"").concat(chapter.chapter.id, "\" key=\"synopsis\"\n                        class=\"edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3\"\n                        id=\"prog_sinopsis\">").concat(chapter.chapter.synopsis, "</textarea>\n                        <button class=\"a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center\" ><img src=\"./images/basic-icons/enter.svg\" alt=\"\" class=\"mr-2\"> ACTUALIZAR</button>\n                        <div class=\"clearfix\"></div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program episode season-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    season\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"season\" value=\"").concat(chapter.chapter.season, "\"\n                                        class=\"edit-program-season text-center input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program episode number-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    episode\n                                    number\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_episode_number\" value=\"").concat(chapter.chapter.program_episode_number, "\"\n                                        class=\"text-center edit-episode-number input-basic edit-program-input edit-program-attribute-text a-text-bold-warm text-uppercase\"\n                                        placeholder=\"000\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program year produced-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    year\n                                    produced\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"program_year_produced\" ").concat(chapter.chapter.program.year, "\n                                        class=\"year-input text-center edit-year-produced input-basic edit-program-attribute-text edit-program-input a-text-bold-warm text-uppercase\"\n                                        placeholder=\"YYYY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Program title alternate-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    title\n                                    alternate\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container p-3\">\n                                    <input type=\"text\" key=\"subtitle\" value=\"").concat(chapter.chapter.subtitle, "\"\n                                        class=\"w-100 edit-program-subtitle input-basic edit-program-input edit-program-attribute-text a-text-bold-warm\"\n                                        placeholder=\"Program Title Alternate\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                        <!--Program genre list-->\n                        <div class=\"col-4 edit-program-data-container position-relative\"\n                            id=\"edit-genre-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Program\n                                    genre\n                                    list\n                                </p>\n                                <div class=\"mb-3 edit-rectangle-container\">\n                                    <select\n                                        class=\"list1 edit-program-genres mb-0 a-text-regular-brownishtwo text-normal  input-basic show-tick\"\n                                         title=\"Genere list\" multiple\n                                        data-live-search=\"true\" data-live-search-placeholder=\"Buscar\"\n                                        data-header=\"Program List\" data-dropup-auto=\"false\" key=\"genre\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </select>\n                                </div>\n                            </div>\n                        </div>\n                        <!---->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    item\n                                    rating\n                                    code\n                                </p>\n                                <div class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3\">\n                                    <input type=\"text\" key=\"rating\" value=\"").concat(chapter.chapter.program.rating, "\"\n                                        class=\"text-center edit-program-attribute-text input-basic edit-program-input a-text-bold-warm text-uppercase edit-rating-code\"\n                                        placeholder=\"PG-00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-3\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two\">Schedule item\n                                    log\n                                    date\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase\n                                    \">Fecha\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container   backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/calendario.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"day\" value=\"").concat(scheduleDate[2], "-").concat(scheduleDate[1], "-").concat(scheduleDate[0], "\"\n                                            class=\"edit-schedule-date edit-program-attribute-text schedule-date-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"DD:MM:YY\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container h-100 d-flex flex-column justify-content-between\">\n                                <p class=\"text-plus text-uppercase a-text-bold-brown-two pb-4\">Schedule\n                                    item log\n                                    time (gmt)\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"programing\" value=\"").concat(chapter.chapter.hour, "\"\n                                            class=\"edit-schedule-item-time  edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div\n                                class=\"edit-data-container d-flex flex-column justify-content-between h-100\">\n                                <p class=\" text-plus text-uppercase a-text-bold-brown-two\">estimated\n                                    schedule item duration\n                                </p>\n                                <div>\n                                    <p class=\"a-text-medium-brown-two text-plus text-uppercase \">HORA\n                                    </p>\n                                    <div\n                                        class=\"mb-3 text-center edit-rectangle-small-container backwhite py-3 d-flex align-items-center justify-content-center\">\n                                        <img src=\"images/reloj.svg\" alt=\"\" class=\"mr-3\">\n                                        <input type=\"text\" key=\"duration\" value=\"").concat(chapter.chapter.duration, "\"\n                                            class=\"edit-program-duration edit-program-attribute-text time-seconds-input input-basic edit-program-input a-text-bold-warm text-uppercase\"\n                                            placeholder=\"00:00:00\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <section class=\"mb-5\">\n                    <div class=\"row\">\n                        <!--Schedule item log date-->\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    subbed\n                                </p>\n                                ").concat(subbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Schedule\n                                    version\n                                    dubbed\n                                </p>\n                                ").concat(dubbed, "\n                            </div>\n                        </div>\n                        <div class=\"col-4 edit-program-data-container\" chapter_id=\"").concat(chapter.chapter.id, "\">\n                            <div class=\"edit-data-container d-flex justify-content-between\">\n                                <p class=\"mb-3 text-plus text-uppercase a-text-bold-brown-two\">Audio\n                                    5.1<br>\n                                    available\n                                </p>\n                                ").concat(audio5, "\n\n                            </div>\n                        </div>\n                    </div>\n                </section>\n                <div class=\" d-flex justify-content-center\">\n                    <section class=\"text-center mb-3 d-flex justify-content-center\">\n                        <button\n                            class=\"d-flex ").concat(classButton, " mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                            id=\"edit-program-modal-button\">ACEPTAR</button>\n                    </section>\n\n                </div>\n            </div>\n                ");
         } //Mostramos el modal
 
       } catch (err) {
@@ -91259,23 +91284,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         multipleSeparator: ", "
       }); //Añadir géneros
 
-      var index = 0;
-
-      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
-          _step6;
-
-      try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var _chapter2 = _step6.value;
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = "";
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = _chapter2.chapter.program.genre;
-          index++;
-        }
-      } catch (err) {
-        _iterator6.e(err);
-      } finally {
-        _iterator6.f();
-      }
+      var index = 0; // for (const chapter of data.data.chapters) {
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = "";
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = chapter.chapter.program.genre;
+      //     index++;
+      // }
 
       var editProgramLandingGenres = "";
       var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres").children(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
@@ -91455,18 +91472,18 @@ function reload(idCarousel, landing) {
       console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .dropdown-toggle").removeClass("bs-placeholder");
 
-      var _iterator7 = _createForOfIteratorHelper(data.data.chapters),
-          _step7;
+      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
+          _step6;
 
       try {
-        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-          var chapter = _step7.value;
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+          var chapter = _step6.value;
           jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .filter-option-inner").html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + "</div>");
         }
       } catch (err) {
-        _iterator7.e(err);
+        _iterator6.e(err);
       } finally {
-        _iterator7.f();
+        _iterator6.f();
       }
     }
   });
@@ -91536,7 +91553,6 @@ function getContentClaroCinema(type) {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
               var imagesPositions = [];
               var imagesProgramming = [];
-              debugger;
               jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
                 if (this.files[0]) {
                   imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
@@ -91727,12 +91743,12 @@ function getProgrammingSynopsis(landing, date) {
         var colorTextSynopsis = "";
         var labelActive = "";
 
-        var _iterator8 = _createForOfIteratorHelper(programming),
-            _step8;
+        var _iterator7 = _createForOfIteratorHelper(programming),
+            _step7;
 
         try {
-          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-            var program = _step8.value;
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var program = _step7.value;
 
             if (program.sinopsis_info.sinopsis_len <= 21) {
               colorTextSynopsis = "a-text-semibold-tomato";
@@ -91756,9 +91772,9 @@ function getProgrammingSynopsis(landing, date) {
             row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna pl-4\">\n                            <span class=\"a-text-medium-black text-normal \">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorTextSynopsis, " text-normal pl-3 \">").concat(program.sinopsis_info.sinopsis_len, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorText, " text-normal \">").concat(program.sinopsis_info.cant_imagenes, "/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"edit-synopsis-pencil btn-focus sinopsis edi mr-3\" />\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\"prev-synopsis-pencil btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                ").concat(labelActive, "\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
-          _iterator8.e(err);
+          _iterator7.e(err);
         } finally {
-          _iterator8.f();
+          _iterator7.f();
         }
 
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));
@@ -92873,7 +92889,7 @@ function sendEmailResetPassword(input) {
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro */
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro, updateSinopsis */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92888,6 +92904,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTitleCanalClaro", function() { return getTitleCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProgramacion", function() { return updateProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPromoCanalClaro", function() { return getPromoCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSinopsis", function() { return updateSinopsis; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
@@ -93062,7 +93079,13 @@ function getBannerCanalClaro(res) {
   Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
   Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
   Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
-  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])('canal');
+
+  if (landing == 'Canal Claro') {
+    Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])('canal');
+  } else {
+    Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBannerProgramacion"])('cinema');
+  }
+
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
@@ -93141,6 +93164,64 @@ function updateProgramacion(res) {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-modal-programacion').html(programacion);
   Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnProgramacion"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function updateSinopsis(res) {
+  var table = "<div class=\"contenedor-columna synop titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Programa</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Caracteres</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Im\xE1genes</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Acciones</span></div><div class=\"contenedor-columna landins titletable text-center\"><span class=\"a-text-MBlack a-text-prev\">Landing</span></div>";
+  var index;
+  var sinopsis_len;
+  var cant_imagenes;
+  var cant_imagenes_switch;
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    index = 0;
+  }
+
+  if (landing == 'Concert Channel') {
+    index = 1;
+  }
+
+  if (landing == 'Claro Cinema') {
+    index = 2;
+  }
+
+  res = res.data[index].programing[0].programs;
+  res.forEach(function (programs) {
+    if (programs.sinopsis_info.sinopsis_len < 21) {
+      sinopsis_len = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 21 && programs.sinopsis_info.sinopsis_len < 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.sinopsis_len > 144) {
+      sinopsis_len = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.sinopsis_len, "</span>");
+    }
+
+    if (programs.sinopsis_info.cant_imagenes <= 4) {
+      cant_imagenes = "<span class=\"a-text-semibold-tomato text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes <= 4\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo label-active cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-orange text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    if (programs.sinopsis_info.cant_imagenes >= 8) {
+      cant_imagenes = "<span class=\"a-text-semibold-greyish-brown-two text-normal\">".concat(programs.sinopsis_info.cant_imagenes, "/8</span>");
+      cant_imagenes_switch = "\n                 <div v-if=\"programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8\" class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                     <label for=\"yes-synopsis\" id=\"yes-synopsis\" class=\"mb-0 label-active si-estilo cursor-pointer switch-label\">S\xED</label>\n                     <label for=\"no-synopsis\" id=\"noestado-landing\" class=\"mb-0 no-estilo  cursor-pointer switch-label\">No</label>\n                 </div>";
+    }
+
+    table += "\n          <div class=\"contenedor-fila\">\n              <div class=\"contenedor-columna pl-4\">\n                  <span class=\"a-text-medium-black text-normal\">".concat(programs.chapter_title, "</span>\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(sinopsis_len, "</div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes, "</div>\n              <div class=\"contenedor-columna text-center\">\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"Editar\" class=\"edi mr-3\" name=\"edi\" />\n                  <input id=\"").concat(programs.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"Vizualizar\" class=\"edi\" name=\"prev\" />\n              </div>\n              <div class=\"contenedor-columna text-center\">").concat(cant_imagenes_switch, "</div>\n          </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').addClass('mt-5');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-sinopsis-table').html(table);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnSinopsis"])();
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
@@ -93272,8 +93353,26 @@ function previewImage() {
 }
 
 function closeModals() {
+  console.log('watch modal close');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".close-modal-concert").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#delete-info").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-landing-sinopsis").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-logo-home").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-carrusel-home").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-terminos-footer").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-footer").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modaledi").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal").modal("hide");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-backdrop").removeClass('modal-backdrop');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-backdrop").remove();
+    console.log('si llega');
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sinopsis-iframe iframe').remove();
   });
 }
 
@@ -93317,6 +93416,12 @@ function evnSinopsis() {
         }
       }
     });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-calendar-item').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), 2);
   });
 }
 
@@ -93383,7 +93488,7 @@ function synopsisCalendarItem() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
-    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"), 1);
   });
 }
 
@@ -93401,7 +93506,7 @@ function evnProgramacion() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate */
+/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate, getClaroCinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93412,6 +93517,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalProgramacion", function() { return getModalProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLastDateCalendar", function() { return getLastDateCalendar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacionDate", function() { return getProgramacionDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClaroCinema", function() { return getClaroCinema; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
@@ -93450,7 +93556,7 @@ function getSynopsis() {
   });
 }
 
-function getProgramacionDate(date) {
+function getProgramacionDate(date, id) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     data: {
@@ -93459,7 +93565,11 @@ function getProgramacionDate(date) {
     cache: false,
     url: "landing/getProgramacionDate",
     success: function success(res) {
-      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateProgramacion"])(JSON.parse(res));
+      if (id == '1') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateProgramacion"])(JSON.parse(res));
+      } else {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateSinopsis"])(JSON.parse(res));
+      }
     }
   });
 }
@@ -93504,6 +93614,19 @@ function getCanalClaro(type) {
 
       if (type == 'title-3') {
         Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 3);
+      }
+    }
+  });
+}
+
+function getClaroCinema(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/claroCinema",
+    success: function success(res) {
+      if (type == 'banner') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBannerCanalClaro"])(JSON.parse(res));
       }
     }
   });
@@ -93571,6 +93694,11 @@ function setBannerProgramacion(lang) {
     if (lang == 'canal') {
       data.append("landing", "Canal Claro");
       Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerCanalClaro"])(data);
+    }
+
+    if (lang == 'cinema') {
+      data.append("landing", "Claro Cinema");
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setImgBannerClaroCinema"])(data);
     }
 
     img = [];
@@ -93658,7 +93786,7 @@ function setTituloCanalClaro() {
 /*!***************************************!*\
   !*** ./resources/js/store/setters.js ***!
   \***************************************/
-/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome, setHeader, setTitulo, setImgBannerCanalClaro */
+/*! exports provided: setImgBannerProgramacion, setlogoLnading, setImgCarruselHome, setHeader, setTitulo, setImgBannerCanalClaro, setImgBannerClaroCinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93669,6 +93797,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHeader", function() { return setHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTitulo", function() { return setTitulo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerCanalClaro", function() { return setImgBannerCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgBannerClaroCinema", function() { return setImgBannerClaroCinema; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
@@ -93709,6 +93838,24 @@ function setImgBannerCanalClaro(data) {
       console.log(res);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#iframe-canal-claro').html('');
       Object(_index__WEBPACK_IMPORTED_MODULE_1__["showlanding"])('claro-canal-edi.php');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+function setImgBannerClaroCinema(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/setImageSliderBanner",
+    success: function success(res) {
+      console.log(res);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
     }
@@ -95148,7 +95295,6 @@ var LandingView = /*#__PURE__*/function () {
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-privacy-button").click(function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
-        debugger;
         var text = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-textarea-privacy").val();
         var title = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".footer-title-privacy").val();
         var landing = "about";
@@ -95644,7 +95790,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/CTIN/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

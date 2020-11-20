@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-8 mx-auto">
                     <h3 class="monthSliderCalendar a-text-semibold-brownish-grey-three text-uppercase"></h3>
-                    <div class="slick-calendario calendar-sinopsis-slider"></div>
+                    <div class="slick-calendario"></div>
                 </div>
 
                 <div class="col-11 mx-auto p-0 content-table show-sinopsis-table"></div>
@@ -64,6 +64,10 @@
 @include('components.modals.termometro')
 @include('components.modals.sinopsis')
 @include('components.modals.promo')
+@include('components.modals.carrusel')
+@include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'canal-claro']);
+@include('components.modals.logo')
+@include('partials.adm-CN.modal-home.carrusel');
 
 @include('components.modals.generic.advertencia')
 @include('components.modals.generic.advertencia-url')

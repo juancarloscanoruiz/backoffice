@@ -20,13 +20,7 @@ import {
     getProgrammingSynopsis,
     confLandingHome
 } from "../services/landing.js";
-import {
-    createSlickSlider,
-    createCalendarDays
-} from "../vendor/slick.js";
-import {
-    calendarSlick
-} from "../config/slick.js";
+
 
 import { mvh, programacion } from '../index'
 /**
@@ -216,14 +210,15 @@ function createNavbarProgramacionGeneral() {
     let arrowLeft = $(".arrow-progra-left");
     let arrowRight = $(".arrow-progra-right");
     navbarPrograItems.click(function () {
+
         navbarPrograItems.removeClass("navbar-progra-active");
         $(this).addClass("navbar-progra-active");
         if ($(this).hasClass("navbar-canal-claro")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-sinopsis")) {
-            // changeContentProgramacionGeneral($(this).attr("rel"));
+            changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-programacion")) {
-            // changeContentProgramacionGeneral($(this).attr("rel"));
+            changeContentProgramacionGeneral($(this).attr("rel"));
         } else if ($(this).hasClass("navbar-home")) {
             changeContentProgramacionGeneral($(this).attr("rel"));
         }
@@ -302,6 +297,7 @@ function createNavbarProgramacionGeneral() {
 }
 
 function changeContentProgramacionGeneral(nameSection) {
+
     $('#iframe-canal-claro').html('');
     // $('#navbar-prev-canal-claro').html('');
     $('.monthSliderCalendar').html('');
@@ -311,6 +307,7 @@ function changeContentProgramacionGeneral(nameSection) {
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
     if (nameSection == "navbar-prev-sinopsis") {
+        console.log("Sinopsis dentro")
         try {
             let calendarsinopsis = $(".calendar-sinopsis-slider");
             calendarsinopsis.slick("unslick");

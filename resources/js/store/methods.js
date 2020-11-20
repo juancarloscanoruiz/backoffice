@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { setImgBannerProgramacion, setImgCarruselHome, setlogoLnading, setHeader, setTitulo, setImgBannerCanalClaro } from './setters'
+import { setImgBannerProgramacion, setImgCarruselHome, setlogoLnading, setHeader, setTitulo, setImgBannerCanalClaro, setImgBannerClaroCinema } from './setters'
 
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 var img = [], index = [];
@@ -26,6 +26,10 @@ function setBannerProgramacion(lang) {
         if (lang == 'canal') {
             data.append("landing", "Canal Claro");
             setImgBannerCanalClaro(data)
+        }
+        if (lang == 'cinema') {
+            data.append("landing", "Claro Cinema");
+            setImgBannerClaroCinema(data)
         }
 
         img = [];

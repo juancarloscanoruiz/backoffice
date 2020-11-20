@@ -12,7 +12,7 @@
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
                     <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion"
-                        navbar-index="1" rel="navbar-prev-programacion">
+                        navbar-index="1" rel="navbar-prev-programacion-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
@@ -351,7 +351,8 @@
 
     <!--HOME-->
 
-    @include('partials.adm-CN.modals-claro.index');
+    @include('components.modals.banner')
+    @include('components.emergencia')
 
     @include('partials.adm-CN.modal-home.carrusel')
 
@@ -360,7 +361,6 @@
     @include('partials.adm-CN.sinopsis');
     @include('partials.adm-CN.modals-cinema.titulo-cinema')
     @include('partials.adm-CN.modals-cinema.promo-cinema')
-    @include('partials.adm-CN.modals-cinema.banner-cinema')
     @include('partials.adm-CN.modals-cinema.encabezado-cinema')
     @include('partials.adm-CN.modals-concert.carrusel');
     @include('partials.adm-CN.modals-cinema.programming');

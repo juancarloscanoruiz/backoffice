@@ -5,7 +5,7 @@ $.ajaxSetup({
     }
 });
 
-import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro } from './actions'
+import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro, updateSinopsis } from './actions'
 
 var lastMonth, lastDay;
 
@@ -35,14 +35,18 @@ function getSynopsis() {
     })
 }
 
-function getProgramacionDate(date) {
+function getProgramacionDate(date, id) {
     $.ajax({
         type: "POST",
         data: { date },
         cache: false,
         url: "landing/getProgramacionDate",
         success: function (res) {
-            updateProgramacion(JSON.parse(res))
+            if (id == '1') {
+                updateProgramacion(JSON.parse(res))
+            } else {
+                updateSinopsis(JSON.parse(res))
+            }
         }
     })
 }
@@ -87,6 +91,19 @@ function getCanalClaro(type) {
     })
 }
 
+function getClaroCinema(type) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "landing/claroCinema",
+        success: function (res) {
+            if (type == 'banner') {
+                getBannerCanalClaro(JSON.parse(res))
+            }
+        }
+    })
+}
+
 function getModalProgramacion() {
     $.ajax({
         type: "POST",
@@ -98,4 +115,4 @@ function getModalProgramacion() {
     })
 }
 
-export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate }
+export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate, getClaroCinema }

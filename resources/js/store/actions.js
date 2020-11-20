@@ -235,7 +235,11 @@ function getBannerCanalClaro(res) {
 
     previewImage()
     closeModals()
-    setBannerProgramacion('canal')
+    if (landing == 'Canal Claro') {
+        setBannerProgramacion('canal')
+    } else {
+        setBannerProgramacion('cinema')
+    }
 
     $(".loader-view-container").remove();
 }
@@ -401,6 +405,88 @@ function updateProgramacion(res) {
     $(".loader-view-container").remove();
 }
 
+function updateSinopsis(res) {
+
+    let table = `<div class="contenedor-columna synop titletable text-center"><span class="a-text-MBlack a-text-prev">Programa</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Caracteres</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Imágenes</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Acciones</span></div><div class="contenedor-columna landins titletable text-center"><span class="a-text-MBlack a-text-prev">Landing</span></div>`;
+    let index;
+    let sinopsis_len;
+    let cant_imagenes;
+    let cant_imagenes_switch;
+
+    landing = $('.subMenuLandingCase').attr('landing')
+
+    if (landing == 'Canal Claro') {
+        index = 0;
+    }
+    if (landing == 'Concert Channel') {
+        index = 1;
+    }
+    if (landing == 'Claro Cinema') {
+        index = 2
+    }
+    res = res.data[index].programing[0].programs
+
+    res.forEach(programs => {
+
+        if (programs.sinopsis_info.sinopsis_len < 21) {
+            sinopsis_len = `<span class="a-text-semibold-tomato text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+        }
+        if (programs.sinopsis_info.sinopsis_len > 21 && programs.sinopsis_info.sinopsis_len < 144) {
+            sinopsis_len = `<span class="a-text-semibold-orange text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+        }
+        if (programs.sinopsis_info.sinopsis_len > 144) {
+            sinopsis_len = `<span class="a-text-semibold-greyish-brown-two text-normal">${programs.sinopsis_info.sinopsis_len}</span>`
+        }
+
+        if (programs.sinopsis_info.cant_imagenes <= 4) {
+            cant_imagenes = `<span class="a-text-semibold-tomato text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+            cant_imagenes_switch = `
+                 <div v-if="programs.sinopsis_info.cant_imagenes <= 4" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                     <label for="yes-synopsis" id="yes-synopsis" class="mb-0 si-estilo cursor-pointer switch-label">Sí</label>
+                     <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo label-active cursor-pointer switch-label">No</label>
+                 </div>`
+        }
+        if (programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes < 8) {
+            cant_imagenes = `<span class="a-text-semibold-orange text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+            cant_imagenes_switch = `
+                 <div v-if="programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                     <label for="yes-synopsis" id="yes-synopsis" class="mb-0 label-active si-estilo cursor-pointer switch-label">Sí</label>
+                     <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo  cursor-pointer switch-label">No</label>
+                 </div>`
+        }
+        if (programs.sinopsis_info.cant_imagenes >= 8) {
+            cant_imagenes = `<span class="a-text-semibold-greyish-brown-two text-normal">${programs.sinopsis_info.cant_imagenes}/8</span>`
+            cant_imagenes_switch = `
+                 <div v-if="programs.sinopsis_info.cant_imagenes > 4 && programs.sinopsis_info.cant_imagenes <= 8" class="d-flex align-items-center justify-content-center mb-2 mt-2">
+                     <label for="yes-synopsis" id="yes-synopsis" class="mb-0 label-active si-estilo cursor-pointer switch-label">Sí</label>
+                     <label for="no-synopsis" id="noestado-landing" class="mb-0 no-estilo  cursor-pointer switch-label">No</label>
+                 </div>`
+        }
+
+        table += `
+          <div class="contenedor-fila">
+              <div class="contenedor-columna pl-4">
+                  <span class="a-text-medium-black text-normal">${programs.chapter_title}</span>
+              </div>
+              <div class="contenedor-columna text-center">${sinopsis_len}</div>
+              <div class="contenedor-columna text-center">${cant_imagenes}</div>
+              <div class="contenedor-columna text-center">
+                  <input id="${programs.chapter_id}" type="image" src="./images/lapiz-acti.svg" alt="Editar" class="edi mr-3" name="edi" />
+                  <input id="${programs.chapter_id}" type="image" src="./images/ojito-acti.svg" alt="Vizualizar" class="edi" name="prev" />
+              </div>
+              <div class="contenedor-columna text-center">${cant_imagenes_switch}</div>
+          </div>`
+    });
+
+    $('.show-sinopsis-table').addClass('mt-5')
+    $('.show-sinopsis-table').html(table)
+
+    evnSinopsis()
+    closeModals()
+
+    $(".loader-view-container").remove();
+}
+
 function getTitleCanalClaro(res, id) {
     res = res.data
     $(".inp-title-modal").val('');
@@ -433,12 +519,12 @@ function getTitleCanalClaro(res, id) {
 
 function getPromoCanalClaro(res) {
     res = res.data
-    $("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + res.block_3_video_url +'" /></video>');
+    $("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + res.block_3_video_url + '" /></video>');
 
     closeModals()
     $("#modal-promo").modal("show");
     $(".loader-view-container").remove();
 }
 
-export { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro }
+export { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro, updateSinopsis }
 

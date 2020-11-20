@@ -38,6 +38,22 @@ function setImgBannerCanalClaro(data) {
     })
 }
 
+function setImgBannerClaroCinema(data) {
+    $.ajax({
+        type: "POST",
+        data: data,
+        processData: false, //esto es para poder pasar el archivo
+        contentType: false, //esto es para poder pasar el archivo
+        cache: false,
+        url: "landing/setImageSliderBanner",
+        success: function (res) {
+            console.log(res)
+            $('.modal').modal('hide');
+            $(".loader-view-container").remove();
+        }
+    })
+}
+
 function setlogoLnading(data) {
     $.ajax({
         type: "POST",
@@ -114,5 +130,6 @@ export {
     setImgCarruselHome,
     setHeader,
     setTitulo,
-    setImgBannerCanalClaro
+    setImgBannerCanalClaro,
+    setImgBannerClaroCinema
 }

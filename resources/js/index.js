@@ -3,9 +3,12 @@ import "bootstrap";
 
 import { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar } from './store/getters'
 import { getBannerSinopsis, } from './store/actions'
-import { loadRoll, } from './store/events/events'
+import { loadRoll, closeModals } from './store/events/events'
 
-import { getChapterInfo } from "./services/landing.js";
+import { getChapterInfo, getPromotionalsProgramsCarousel, getCarruselHome } from "./services/landing.js";
+
+import LandingView from "./views/landing";
+let landingView = new LandingView();
 
 const URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
@@ -142,6 +145,7 @@ function showlanding(landing) {
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
             if (typeof json == "object") {
+                let landing
                 switch (json.type) {
                     case "slider-pagination":
                         $("body").append(LOADER);
@@ -168,12 +172,14 @@ function showlanding(landing) {
                         getCanalClaro('title-2');
                         break;
                     case "claro-carrusel1":
+                        getPromotionalsProgramsCarousel('1', "Canal Claro", "thumbnail-header-claro");
                         break;
                     case "claro-carrusel-title2":
                         $("body").append(LOADER);
                         getCanalClaro('title-3');
                         break;
                     case "claro-carrusel2":
+                        getPromotionalsProgramsCarousel('2', "Canal Claro", "thumbnail-header-claro");
                         break;
                 }
             }
@@ -194,12 +200,18 @@ function home(landing) {
             if (typeof json == "object") {
                 switch (json.type) {
                     case 'slider-pagination':
+                        landingView.renderHomeBanner();
                         break
                     case 'home-claro-carrousel-main':
+                        $("body").append(LOADER);
+                        getModalProgramacion();
                         break
                     case 'claro-home-header':
+                        landingView.renderHomeHeaderCanalClaro();
+                        closeModals()
                         break
                     case 'claro-home-slider':
+                        getCarruselHome("Canal Claro");
                         break
                 }
             }
