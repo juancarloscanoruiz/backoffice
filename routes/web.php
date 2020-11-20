@@ -118,6 +118,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getSynopsisTable", "landingController@getSynopsisTable");
     Route::post("/getCanalClaro", "landingController@getCanalClaro");
     Route::post("/setTitulo", "landingController@setTitulo");
+    Route::post("/getProgramacionDate", "landingController@getProgramacionDate");
     // MODAL CLARO
 });
 

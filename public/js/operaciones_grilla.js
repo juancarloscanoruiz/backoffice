@@ -84271,7 +84271,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
 /* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/actions */ "./resources/js/store/actions.js");
 /* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/events/events */ "./resources/js/store/events/events.js");
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 
@@ -84320,6 +84322,8 @@ function programacion(landing) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
+        console.log(json.type);
+
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
@@ -84329,6 +84333,11 @@ function programacion(landing) {
           case "menu-logos":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
             Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getProgramacion"])('logos');
+            break;
+
+          case "program":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getChapterInfo"])(json.chapterId);
             break;
         }
       }
@@ -84428,6 +84437,8 @@ function showlanding(landing) {
             break;
 
           case "claro-promo":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getCanalClaro"])('promo');
             break;
 
           case "claro-carrusel-title":
@@ -89096,7 +89107,7 @@ function updateImageProgramOfLanding(data) {
   });
 }
 
-function getChapterInfo(data, landing) {
+function getChapterInfo(data) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "GET",
     url: "landing/get-chapter-info/" + data,
@@ -89106,22 +89117,7 @@ function getChapterInfo(data, landing) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program .modal-content").append("<div class=\"loader-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
     },
     success: function success(result) {
-      var capsule = "";
-
-      switch (landing) {
-        case "canal-claro":
-          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">295px x 180px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
-          break;
-
-        case "concert-channel":
-          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel capsule\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
-          break;
-
-        case "claro-cinema":
-          capsule = "\n<div class=\"d-flex justify-content-center my-5\">\n    <div class=\"position-relative d-inline-block mx-auto\">\n        <div class=\"row no-gutters col-12\">\n            <ul class=\"d-flex list-progra pl-0\">\n                <!--Logo canal claro-->\n                <div class=\"text-center no-gap  mr-2 capsule-claro capsule\">\n                    <li rel=\"claro-canal-programing-edit\" class=\"navs-li active-navItems navbar-progra-item-container d-inline-block\" style=\"width: 200px !important;\">\n\n                        <div class=\" mx-auto position-relative thumbnail-image-program \" id=\"images-logo\">\n\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416\" alt=\"\" id=\"icon_canal_claro_edi\">\n\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo concert channel-->\n                <div class=\" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel\">\n                    <li rel=\"concert-channel-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <!--  <img class=\"nav-image\" src=\"./images/home/tv-2.svg\" alt=\"\" />-->\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <!--  <input type=\"file\" name=\"image-to-logo\" id=\"imagelogo\" class=\"input-image-program d-none\">-->\n                            <!--class to update image-->\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"claro-nav-image cursor-auto thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418\" alt=\"\" id=\"icon_concert_channel_edi\">\n\n                                <!--    <span class=\"a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast\">472px X 295px</span>-->\n                            </label>\n                        </div>\n                    </li>\n                </div>\n                <!--Logo claro cinema-->\n                <div class=\" text-center no-gap  ml-2 capsule-cinema capsule\">\n                    <li rel=\"claro-cinema-programing-edit\" class=\"navs-li d-inline-block\" style=\"width: 200px !important;\">\n                        <div class=\" mx-auto position-relative thumbnail-image-program\" id=\"images-logo\">\n                            <label for=\"imagelogo\" class=\"mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column\">\n                                <img class=\"cursor-auto claro-nav-image thumbnail-image-program\" src=\"http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419\" alt=\"\" id=\"icon_claro_cinema_edi\">\n                            </label>\n                        </div>\n                    </li>\n                </div>\n            </ul>\n        </div>\n    </div>\n</div>\n";
-          break;
-      }
-
+      console.log(result);
       var data = JSON.parse(result);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-container").remove();
@@ -92892,7 +92888,7 @@ function sendEmailResetPassword(input) {
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro */
+/*! exports provided: getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerSinopsis, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92905,6 +92901,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaderCanalClaro", function() { return getHeaderCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacionCanalClaro", function() { return getProgramacionCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTitleCanalClaro", function() { return getTitleCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProgramacion", function() { return updateProgramacion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPromoCanalClaro", function() { return getPromoCanalClaro; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
@@ -92917,6 +92915,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var landing;
+var lang;
 
 function getBannerProgramacion(res) {
   var slider = "";
@@ -93107,27 +93106,56 @@ function getProgramacionCanalClaro(res, lastMonth, lastDay) {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/tv-1.svg');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('width', '200px');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').removeClass();
+    lang = 'canal_claro';
   }
 
   if (landing == 'Concert Channel') {
     res = res.data[1].programing[0].programs;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/concert-black-icon.svg');
+    lang = 'concert_channel';
   }
 
   if (landing == 'Claro Cinema') {
     res = res.data[2].programing[0].programs;
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.moda-programming-landing-logo').attr('src', './images/home/cinema-home-img.svg');
+    lang = 'claro_cinema';
   }
 
   var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-calendarioProg');
   var slickMonth = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.monthSliderCalendarProg');
   Object(_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__["slickCalendar"])(lastMonth, lastDay, slick, slickMonth);
   Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowCalendar"])(slick);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["synopsisCalendarItem"])();
   res.forEach(function (programs) {
-    programacion += "\n        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n            <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(landing, "\" chapter_id=\"").concat(programs.chapter_id, "\">\n            <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                    ").concat(programs.Program_Title, " - ").concat(programs.chapter_title, "\n                </p>\n                <div class=\"schedule-item-body\">\n                    <div class=\"schedule-poster\">\n                        <div class=\"poster\">\n                            <div class=\"thumbnail-edit\" _id=\"").concat(programs.chapter_id, "\">\n                                <img src=\"").concat(programs.image, "\" class=\"w-100\" alt=\"\">\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"schedule-details\">\n                        <div class=\"schedule-details-header\">\n                            <div>\n                                <p class=\"schedule a-text-semi-brown-two\">\n                                    ").concat(programs.time, " hrs.\n                                </p>\n                                <p class=\"rating a-text-semibold-warm-grey-five\">\n                                    Clasificaci\xF3n: A\n                                </p>\n                            </div>\n                            <div>\n                                <button title=\"Agregar a mi lista\" class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\" viewBox=\"0 0 48 44\">\n                                        <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\" stroke=\"#7A7777\" stroke-width=\"3\" d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                    </svg>\n                                </button>\n                            </div>\n                        </div>\n                        <div>\n                            <span class=\"schedule-description a-text-regular-warm-grey-five s1\" id=\"synopsis-edi\">").concat(programs.sinopsis, "</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>");
+    programacion += "\n        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n            <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(lang, "\" chapter_id=\"").concat(programs.chapter_id, "\">\n            <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                    ").concat(programs.Program_Title, " - ").concat(programs.chapter_title, "\n                </p>\n                <div class=\"schedule-item-body\">\n                    <div class=\"schedule-poster\">\n                        <div class=\"poster\">\n                            <div class=\"thumbnail-edit\" _id=\"").concat(programs.chapter_id, "\">\n                                <img src=\"").concat(programs.image, "\" class=\"w-100\" alt=\"\">\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"schedule-details\">\n                        <div class=\"schedule-details-header\">\n                            <div>\n                                <p class=\"schedule a-text-semi-brown-two\">\n                                    ").concat(programs.time, " hrs.\n                                </p>\n                                <p class=\"rating a-text-semibold-warm-grey-five\">\n                                    Clasificaci\xF3n: A\n                                </p>\n                            </div>\n                            <div>\n                                <button title=\"Agregar a mi lista\" class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\" viewBox=\"0 0 48 44\">\n                                        <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\" stroke=\"#7A7777\" stroke-width=\"3\" d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                    </svg>\n                                </button>\n                            </div>\n                        </div>\n                        <div>\n                            <span class=\"schedule-description a-text-regular-warm-grey-five s1\" id=\"synopsis-edi\">").concat(programs.sinopsis, "</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-modal-programacion').html(programacion);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnProgramacion"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-programacion').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function updateProgramacion(res) {
+  var programacion = '';
+  landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.subMenuLandingCase').attr('landing');
+
+  if (landing == 'Canal Claro') {
+    res = res.data[0].programing[0].programs;
+  }
+
+  if (landing == 'Concert Channel') {
+    res = res.data[1].programing[0].programs;
+  }
+
+  if (landing == 'Claro Cinema') {
+    res = res.data[2].programing[0].programs;
+  }
+
+  res.forEach(function (programs) {
+    programacion += "\n        <div class=\"p-3 border-t border-r border-l border-b position-relative mb-3 cursor-pointer\">\n            <img src=\"./images/pencil.svg\" alt=\"\" class=\"pencil-edit programming-pencil-".concat(lang, "\" chapter_id=\"").concat(programs.chapter_id, "\">\n            <div class=\"schedule-container col-12 p-5 mx-auto mt-0\">\n                <p class=\"mb-3 h3 schedule-title a-text-plus a-text-black-brown-two\">\n                    ").concat(programs.Program_Title, " - ").concat(programs.chapter_title, "\n                </p>\n                <div class=\"schedule-item-body\">\n                    <div class=\"schedule-poster\">\n                        <div class=\"poster\">\n                            <div class=\"thumbnail-edit\" _id=\"").concat(programs.chapter_id, "\">\n                                <img src=\"").concat(programs.image, "\" class=\"w-100\" alt=\"\">\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"schedule-details\">\n                        <div class=\"schedule-details-header\">\n                            <div>\n                                <p class=\"schedule a-text-semi-brown-two\">\n                                    ").concat(programs.time, " hrs.\n                                </p>\n                                <p class=\"rating a-text-semibold-warm-grey-five\">\n                                    Clasificaci\xF3n: A\n                                </p>\n                            </div>\n                            <div>\n                                <button title=\"Agregar a mi lista\" class=\"button-none add-favorites programing-button\" type=\"button\" _id=\"\">\n                                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"44\" viewBox=\"0 0 48 44\">\n                                        <path class=\"heart-gray\" fill=\"none\" fill-rule=\" evenodd\" stroke=\"#7A7777\" stroke-width=\"3\" d=\"M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z\" />\n                                    </svg>\n                                </button>\n                            </div>\n                        </div>\n                        <div>\n                            <span class=\"schedule-description a-text-regular-warm-grey-five s1\" id=\"synopsis-edi\">").concat(programs.sinopsis, "</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>");
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-modal-programacion').html(programacion);
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["evnProgramacion"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
@@ -93160,6 +93188,14 @@ function getTitleCanalClaro(res, id) {
   Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
   Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setTituloCanalClaro"])();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-title').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+function getPromoCanalClaro(res) {
+  res = res.data;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#back-promo-claro").html('<video autoplay muted controls class="img-back-modal img-promo" src="' + res.block_3_video_url + '" /></video>');
+  Object(_events_events__WEBPACK_IMPORTED_MODULE_2__["closeModals"])();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-promo").modal("show");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 }
 
@@ -93209,7 +93245,7 @@ function textDay(y, m, d) {
 /*!*********************************************!*\
   !*** ./resources/js/store/events/events.js ***!
   \*********************************************/
-/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, loadRoll */
+/*! exports provided: closeModals, closeModalUrl, previewImage, evnUrl, evnSinopsis, loadRoll, synopsisCalendarItem, evnProgramacion */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93220,12 +93256,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnUrl", function() { return evnUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnSinopsis", function() { return evnSinopsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadRoll", function() { return loadRoll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "synopsisCalendarItem", function() { return synopsisCalendarItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "evnProgramacion", function() { return evnProgramacion; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./resources/js/index.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../preview/prev.js */ "./resources/js/preview/prev.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../getters */ "./resources/js/store/getters.js");
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/landing.js */ "./resources/js/services/landing.js");
 
 var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>";
+
+
 
 
 
@@ -93272,7 +93314,6 @@ function evnUrl() {
 
 function evnSinopsis() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edi').on('click', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
     var chapter_id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('id');
     var type = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('name');
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
@@ -93285,6 +93326,7 @@ function evnSinopsis() {
       success: function success(res) {
         if (type == 'edi') {
           Object(_index__WEBPACK_IMPORTED_MODULE_1__["showModalSinopsis"])(JSON.stringify(JSON.parse(res)));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-container").remove();
         } else {
           Object(_index__WEBPACK_IMPORTED_MODULE_1__["sinopsisPrev"])(JSON.stringify(JSON.parse(res)));
         }
@@ -93351,6 +93393,21 @@ function loadRoll() {
   });
 }
 
+function synopsisCalendarItem() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.synopsis-calendar-item').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".synopsis-calendar-item").removeClass("programming-item-active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass("programming-item-active");
+    Object(_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacionDate"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("date"));
+  });
+}
+
+function evnProgramacion() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.pencil-edit').on('click', function () {
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_4__["getChapterInfo"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('chapter_id'));
+  });
+}
+
 
 
 /***/ }),
@@ -93359,7 +93416,7 @@ function loadRoll() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar */
+/*! exports provided: getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93369,6 +93426,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCanalClaro", function() { return getCanalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalProgramacion", function() { return getModalProgramacion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLastDateCalendar", function() { return getLastDateCalendar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacionDate", function() { return getProgramacionDate; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
@@ -93407,6 +93465,20 @@ function getSynopsis() {
   });
 }
 
+function getProgramacionDate(date) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: {
+      date: date
+    },
+    cache: false,
+    url: "landing/getProgramacionDate",
+    success: function success(res) {
+      Object(_actions__WEBPACK_IMPORTED_MODULE_1__["updateProgramacion"])(JSON.parse(res));
+    }
+  });
+}
+
 function getLastDateCalendar() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
@@ -93435,6 +93507,10 @@ function getCanalClaro(type) {
 
       if (type == 'title-1') {
         Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getTitleCanalClaro"])(JSON.parse(res), 1);
+      }
+
+      if (type == 'promo') {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getPromoCanalClaro"])(JSON.parse(res));
       }
 
       if (type == 'title-2') {

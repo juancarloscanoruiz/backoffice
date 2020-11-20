@@ -5,7 +5,7 @@ $.ajaxSetup({
     }
 });
 
-import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro } from './actions'
+import { getBannerProgramacion, getLogosProgramacion, getSynopsisTable, getBannerCanalClaro, getHeaderCanalClaro, getProgramacionCanalClaro, getTitleCanalClaro, updateProgramacion, getPromoCanalClaro } from './actions'
 
 var lastMonth, lastDay;
 
@@ -31,6 +31,18 @@ function getSynopsis() {
         url: "landing/getSynopsisTable",
         success: function (res) {
             getSynopsisTable(JSON.parse(res), lastMonth, lastDay);
+        }
+    })
+}
+
+function getProgramacionDate(date) {
+    $.ajax({
+        type: "POST",
+        data: { date },
+        cache: false,
+        url: "landing/getProgramacionDate",
+        success: function (res) {
+            updateProgramacion(JSON.parse(res))
         }
     })
 }
@@ -62,6 +74,9 @@ function getCanalClaro(type) {
             if (type == 'title-1') {
                 getTitleCanalClaro(JSON.parse(res), 1)
             }
+            if (type == 'promo') {
+                getPromoCanalClaro(JSON.parse(res))
+            }
             if (type == 'title-2') {
                 getTitleCanalClaro(JSON.parse(res), 2)
             }
@@ -83,4 +98,4 @@ function getModalProgramacion() {
     })
 }
 
-export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar }
+export { getProgramacion, getSynopsis, getCanalClaro, getModalProgramacion, getLastDateCalendar, getProgramacionDate }

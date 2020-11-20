@@ -4,6 +4,9 @@ const LOADER = `<div class="loader-view-container" id="loader1"><img src="./imag
 
 import { showModalSinopsis, sinopsisPrev, programacion, iframePrev, clearIframe, showlanding, home } from '../../index'
 import { previewPage } from "../../preview/prev.js";
+import { getProgramacionDate } from "../getters";
+
+import { getChapterInfo } from "../../services/landing.js";
 
 function previewImage() {
     $('.previewImage').on('change', function (e) {
@@ -46,7 +49,6 @@ function evnUrl() {
 
 function evnSinopsis() {
     $('.edi').on('click', function () {
-        $("body").append(LOADER);
         let chapter_id = $(this).attr('id')
         let type = $(this).attr('name')
         $.ajax({
@@ -57,6 +59,7 @@ function evnSinopsis() {
             success: function (res) {
                 if (type == 'edi') {
                     showModalSinopsis(JSON.stringify(JSON.parse(res)))
+                    $(".loader-container").remove();
                 } else {
                     sinopsisPrev(JSON.stringify(JSON.parse(res)))
                 }
@@ -116,11 +119,28 @@ function loadRoll() {
     })
 }
 
+function synopsisCalendarItem() {
+    $('.synopsis-calendar-item').on('click', function () {
+        $("body").append(LOADER);
+        $(".synopsis-calendar-item").removeClass("programming-item-active");
+        $(this).addClass("programming-item-active");
+        getProgramacionDate($(this).attr("date"))
+    })
+}
+
+function evnProgramacion() {
+    $('.pencil-edit').on('click', function () {
+        getChapterInfo($(this).attr('chapter_id'))
+    })
+}
+
 export {
     closeModals,
     closeModalUrl,
     previewImage,
     evnUrl,
     evnSinopsis,
-    loadRoll
+    loadRoll,
+    synopsisCalendarItem,
+    evnProgramacion
 }
