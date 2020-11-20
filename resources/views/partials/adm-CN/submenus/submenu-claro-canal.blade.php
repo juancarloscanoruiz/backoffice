@@ -64,6 +64,10 @@
 @include('components.modals.termometro')
 @include('components.modals.sinopsis')
 @include('components.modals.promo')
+@include('components.modals.carrusel')
+@include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'canal-claro']);
+@include('components.modals.logo')
+@include('partials.adm-CN.modal-home.carrusel');
 
 @include('components.modals.generic.advertencia')
 @include('components.modals.generic.advertencia-url')

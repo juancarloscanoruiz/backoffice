@@ -89098,6 +89098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/actions */ "./resources/js/store/actions.js");
 /* harmony import */ var _store_events_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/events/events */ "./resources/js/store/events/events.js");
 /* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/landing */ "./resources/js/views/landing.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -89106,6 +89107,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
+
+var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_6__["default"]();
 var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // (function () { showlanding('claro-canal-edi.php'); mvh() })();
 // (function () { sinopsis(); })();
@@ -89241,6 +89244,8 @@ function showlanding(landing) {
       var json = JSON.parse(message);
 
       if (_typeof(json) == "object") {
+        var _landing;
+
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
@@ -89273,6 +89278,7 @@ function showlanding(landing) {
             break;
 
           case "claro-carrusel1":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getPromotionalsProgramsCarousel"])('1', "Canal Claro", "thumbnail-header-claro");
             break;
 
           case "claro-carrusel-title2":
@@ -89281,6 +89287,7 @@ function showlanding(landing) {
             break;
 
           case "claro-carrusel2":
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getPromotionalsProgramsCarousel"])('2', "Canal Claro", "thumbnail-header-claro");
             break;
         }
       }
@@ -89303,15 +89310,21 @@ function home(landing) {
       if (_typeof(json) == "object") {
         switch (json.type) {
           case 'slider-pagination':
+            landingView.renderHomeBanner();
             break;
 
           case 'home-claro-carrousel-main':
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_2__["getModalProgramacion"])();
             break;
 
           case 'claro-home-header':
+            landingView.renderHomeHeaderCanalClaro();
+            Object(_store_events_events__WEBPACK_IMPORTED_MODULE_4__["closeModals"])();
             break;
 
           case 'claro-home-slider':
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_5__["getCarruselHome"])("Canal Claro");
             break;
         }
       }
@@ -96956,23 +96969,15 @@ function getPromotionalsProgramsCarousel(idCarousel, landing) {
         multipleSeparator: ", "
       }); //Añadir géneros
 
-      var index = 0;
-
-      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
-          _step6;
-
-      try {
-        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-          var _chapter2 = _step6.value;
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = "";
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner")[index].innerText = _chapter2.chapter.program.genre;
-          index++;
-        }
-      } catch (err) {
-        _iterator6.e(err);
-      } finally {
-        _iterator6.f();
-      }
+      var index = 0; // for (const chapter of data.data.chapters) {
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = "";
+      //     $(
+      //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+      //     )[index].innerText = chapter.chapter.program.genre;
+      //     index++;
+      // }
 
       var editProgramLandingGenres = "";
       var selectGenres = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-edit-program-carrusel .edit-program-genres").children(".list1"); //Verificamos si el usuario ha seleccionado un género o categoría
@@ -97152,18 +97157,18 @@ function reload(idCarousel, landing) {
       console.log(data);
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .dropdown-toggle").removeClass("bs-placeholder");
 
-      var _iterator7 = _createForOfIteratorHelper(data.data.chapters),
-          _step7;
+      var _iterator6 = _createForOfIteratorHelper(data.data.chapters),
+          _step6;
 
       try {
-        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-          var chapter = _step7.value;
+        for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+          var chapter = _step6.value;
           jquery__WEBPACK_IMPORTED_MODULE_1___default()("#edit-genre-container .filter-option-inner").html('<div class="filter-option-inner-inner">' + chapter.chapter.program.genre + "</div>");
         }
       } catch (err) {
-        _iterator7.e(err);
+        _iterator6.e(err);
       } finally {
-        _iterator7.f();
+        _iterator6.f();
       }
     }
   });
@@ -97424,12 +97429,12 @@ function getProgrammingSynopsis(landing, date) {
         var colorTextSynopsis = "";
         var labelActive = "";
 
-        var _iterator8 = _createForOfIteratorHelper(programming),
-            _step8;
+        var _iterator7 = _createForOfIteratorHelper(programming),
+            _step7;
 
         try {
-          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-            var program = _step8.value;
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var program = _step7.value;
 
             if (program.sinopsis_info.sinopsis_len <= 21) {
               colorTextSynopsis = "a-text-semibold-tomato";
@@ -97453,9 +97458,9 @@ function getProgrammingSynopsis(landing, date) {
             row += "\n                    <div class=\"contenedor-fila\">\n                        <div class=\"contenedor-columna pl-4\">\n                            <span class=\"a-text-medium-black text-normal \">".concat(program.chapter_title, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorTextSynopsis, " text-normal pl-3 \">").concat(program.sinopsis_info.sinopsis_len, "</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <span class=\"").concat(colorText, " text-normal \">").concat(program.sinopsis_info.cant_imagenes, "/8</span>\n                        </div>\n                        <div class=\"contenedor-columna centro\">\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/lapiz-acti.svg\" alt=\"\" class=\"edit-synopsis-pencil btn-focus sinopsis edi mr-3\" />\n                            <input chapter_id=\"").concat(program.chapter_id, "\" type=\"image\" src=\"./images/ojito-acti.svg\" alt=\"\" class=\"prev-synopsis-pencil btn-focus edi\" />\n                        </div>\n                        <div class=\"contenedor-columna centro \">\n                            <div class=\"d-flex align-items-center justify-content-center mb-2 mt-2\">\n                                ").concat(labelActive, "\n                            </div>\n                        </div>\n                    </div>\n\n                    ");
           }
         } catch (err) {
-          _iterator8.e(err);
+          _iterator7.e(err);
         } finally {
-          _iterator8.f();
+          _iterator7.f();
         }
 
         container.html("\n                ".concat(header, "\n                ").concat(row, "\n                "));

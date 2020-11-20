@@ -3935,15 +3935,15 @@ function getPromotionalsProgramsCarousel(
             });
             //Añadir géneros
             let index = 0;
-            for (const chapter of data.data.chapters) {
-                $(
-                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
-                )[index].innerText = "";
-                $(
-                    ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
-                )[index].innerText = chapter.chapter.program.genre;
-                index++;
-            }
+            // for (const chapter of data.data.chapters) {
+            //     $(
+            //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+            //     )[index].innerText = "";
+            //     $(
+            //         ".modal-edit-program-carrusel .edit-program-genres .filter-option-inner-inner"
+            //     )[index].innerText = chapter.chapter.program.genre;
+            //     index++;
+            // }
             let editProgramLandingGenres = "";
             let selectGenres = $(
                 ".modal-edit-program-carrusel .edit-program-genres"
