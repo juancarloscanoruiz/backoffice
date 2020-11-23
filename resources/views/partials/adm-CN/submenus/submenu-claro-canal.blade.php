@@ -81,11 +81,12 @@
                         </label>
                     </div>
                 </form>
-                <div class="pt-2">
+                <div id="device-size"></div>
+                <!-- <div class="pt-2">
                     <img src="./images/mobile.svg" class="a-prev-image ml-3 mr-3 op-inac pointer-none" alt="mobile" id="prev-mobile">
                     <img src="./images/tablet.svg" class="a-prev-image op-inac pointer-none" alt="tablet" id="prev-tablet">
                     <img src="./images/pc.svg" class="a-prev-image ml-3 op-ac cursor-pointer" alt="pc" id="prev-desktop">
-                </div>
+                </div> -->
             </div>
             <div class="float-left ml-5 mb-4 ">
                 <div class="d-flex  ">
@@ -349,6 +350,7 @@
             </div>
         </div>
     </main>
+
     @include('partials.adm-CN.modals-claro.banner-claro');
     @include('partials.adm-CN.modals-claro.index');
     @include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'canal-claro']);
@@ -361,6 +363,8 @@
     @include('partials.adm-CN.modal-home.carrusel');
 
 
-
+    @include('components.modals.generic.advertencia')
+    @include('components.modals.generic.advertencia-url')
+    @include('components.modals.generic.url')
 
 </body>

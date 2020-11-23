@@ -18,6 +18,10 @@ import { resetIframe } from "../vendor/easyXDM.js";
 import { createSlickSlider, createCalendarDays } from "../vendor/slick.js";
 
 import { addImagesModalIcons } from "../services/generalSchedule.js";
+
+import { previewImage, modalUrl, modalUrlClose } from '../store/eventos/evn'
+import { setImgCarruselVertical } from '../store/methods'
+
 function getMonth(idMonth) {
     let date = new Date();
     let month = date.getUTCMonth() + idMonth;
@@ -153,7 +157,7 @@ function updateImageProgramOfLanding(data) {
     });
 }
 
-function getChapterInfo(data, landing) {
+function getChapterInfo(data, clase) {
     $.ajax({
         type: "GET",
         url: "landing/get-chapter-info/" + data,
@@ -172,160 +176,10 @@ function getChapterInfo(data, landing) {
         },
 
         success: function (result) {
-            let capsule = "";
 
-            switch (landing) {
-                case "canal-claro":
-                    capsule = `
-<div class="d-flex justify-content-center my-5">
-    <div class="position-relative d-inline-block mx-auto">
-        <div class="row no-gutters col-12">
-            <ul class="d-flex list-progra pl-0">
-                <!--Logo canal claro-->
-                <div class="text-center no-gap  mr-2 capsule-claro capsule">
-                    <li rel="claro-canal-programing-edit" class="navs-li active-navItems navbar-progra-item-container d-inline-block" style="width: 200px !important;">
-
-                        <div class=" mx-auto position-relative thumbnail-image-program " id="images-logo">
-
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416" alt="" id="icon_canal_claro_edi">
-
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo concert channel-->
-                <div class=" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel">
-                    <li rel="concert-channel-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <!--  <img class="nav-image" src="./images/home/tv-2.svg" alt="" />-->
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <!--  <input type="file" name="image-to-logo" id="imagelogo" class="input-image-program d-none">-->
-                            <!--class to update image-->
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image cursor-auto thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418" alt="" id="icon_concert_channel_edi">
-
-                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">295px x 180px</span>-->
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo claro cinema-->
-                <div class=" text-center no-gap  ml-2 capsule-cinema">
-                    <li rel="claro-cinema-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="cursor-auto claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419" alt="" id="icon_claro_cinema_edi">
-                            </label>
-                        </div>
-                    </li>
-                </div>
-            </ul>
-        </div>
-    </div>
-</div>
-`;
-                    break;
-                case "concert-channel":
-                    capsule = `
-<div class="d-flex justify-content-center my-5">
-    <div class="position-relative d-inline-block mx-auto">
-        <div class="row no-gutters col-12">
-            <ul class="d-flex list-progra pl-0">
-                <!--Logo canal claro-->
-                <div class="text-center no-gap  mr-2 capsule-claro">
-                    <li rel="claro-canal-programing-edit" class="navs-li active-navItems navbar-progra-item-container d-inline-block" style="width: 200px !important;">
-
-                        <div class=" mx-auto position-relative thumbnail-image-program " id="images-logo">
-
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416" alt="" id="icon_canal_claro_edi">
-
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo concert channel-->
-                <div class=" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel capsule">
-                    <li rel="concert-channel-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <!--  <img class="nav-image" src="./images/home/tv-2.svg" alt="" />-->
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <!--  <input type="file" name="image-to-logo" id="imagelogo" class="input-image-program d-none">-->
-                            <!--class to update image-->
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image cursor-auto thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418" alt="" id="icon_concert_channel_edi">
-
-                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">472px X 295px</span>-->
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo claro cinema-->
-                <div class=" text-center no-gap  ml-2 capsule-cinema">
-                    <li rel="claro-cinema-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="cursor-auto claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419" alt="" id="icon_claro_cinema_edi">
-                            </label>
-                        </div>
-                    </li>
-                </div>
-            </ul>
-        </div>
-    </div>
-</div>
-`;
-                    break;
-                case "claro-cinema":
-                    capsule = `
-<div class="d-flex justify-content-center my-5">
-    <div class="position-relative d-inline-block mx-auto">
-        <div class="row no-gutters col-12">
-            <ul class="d-flex list-progra pl-0">
-                <!--Logo canal claro-->
-                <div class="text-center no-gap  mr-2 capsule-claro capsule">
-                    <li rel="claro-canal-programing-edit" class="navs-li active-navItems navbar-progra-item-container d-inline-block" style="width: 200px !important;">
-
-                        <div class=" mx-auto position-relative thumbnail-image-program " id="images-logo">
-
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/images/home/tv-1.svg?v=1600801074416" alt="" id="icon_canal_claro_edi">
-
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo concert channel-->
-                <div class=" text-center no-gap border-r border-l pr-2 pl-2 capsule-channel">
-                    <li rel="concert-channel-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <!--  <img class="nav-image" src="./images/home/tv-2.svg" alt="" />-->
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <!--  <input type="file" name="image-to-logo" id="imagelogo" class="input-image-program d-none">-->
-                            <!--class to update image-->
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="claro-nav-image cursor-auto thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-2.svg?v=1600801074418" alt="" id="icon_concert_channel_edi">
-
-                                <!--    <span class="a-text-bold-warm text-plus mt-5 mb-5 shadow-contrast">472px X 295px</span>-->
-                            </label>
-                        </div>
-                    </li>
-                </div>
-                <!--Logo claro cinema-->
-                <div class=" text-center no-gap  ml-2 capsule-cinema capsule">
-                    <li rel="claro-cinema-programing-edit" class="navs-li d-inline-block" style="width: 200px !important;">
-                        <div class=" mx-auto position-relative thumbnail-image-program" id="images-logo">
-                            <label for="imagelogo" class="mb-0 d-flex p-2 m-3 justify-content-center align-items-center h-100 flex-column">
-                                <img class="cursor-auto claro-nav-image thumbnail-image-program" src="http://www.claronetworks.openofficedospuntocero.info/v1.2/images/home/tv-3.svg?v=1600801074419" alt="" id="icon_claro_cinema_edi">
-                            </label>
-                        </div>
-                    </li>
-                </div>
-            </ul>
-        </div>
-    </div>
-</div>
-`;
-                    break;
-            }
+            $('.thumbnail-header1').removeClass('thumbnail-header');
+            $('.thumbnail-header1').addClass('thumbnail-header-claro');
+            $('.thumbnail-header1').addClass(clase);
 
             let data = JSON.parse(result);
             $(".loader-view-container").remove();
@@ -849,10 +703,6 @@ function getChapterInfo(data, landing) {
                 $(".edit-audio5-yes").prop("checked", true);
             }
 
-            // $('.cj').html(capsule);
-
-            // $().addClass('capsule');
-
             $(".modal-edit-program").modal("show");
             setTimeout(() => {
                 try {
@@ -1301,6 +1151,7 @@ function getCarruselHome(landing) {
         default:
             break;
     }
+    $('#acepta_carrusel_home').attr('landing', landing)
     $.ajax({
         type: "POST",
         url: "landing/homeCarrusel",
@@ -1767,12 +1618,12 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
+                            <img class="img-back-modal img-carrusel-home img_carrusel_${chapter.chapter.id}" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
                             <!-- INPUTS -->
-                            <input class="d-none load-carrusel" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical" program="${chapter.chapter.title}">
+                            <input chapter_id="${chapter.chapter.id}" class="d-none load-carrusel previewImage" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical" program="${chapter.chapter.title}" landing="${landing}">
                             <!-- LABEL -->
                             <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
                                 <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
@@ -1991,12 +1842,15 @@ function getCarruselHome(landing) {
                 }
             }
 
-            $(".add-file-carrusel").click(function () {
-                let id = $(this).attr("id");
-                let key = $(".load-carrusel").attr("key");
-                let name = $(".load-carrusel").attr("program");
-                imgCarruselHome(id, key, name);
-            });
+            previewImage()
+            setImgCarruselVertical()
+
+            // $(".add-file-carrusel").click(function () {
+            //     let id = $(this).attr("id");
+            //     let key = $(".load-carrusel").attr("key");
+            //     let name = $(".load-carrusel").attr("program");
+            //     imgCarruselHome(id, key, name);
+            // });
         }
     });
 }
@@ -3014,15 +2868,15 @@ function getModalsCanalClaro(type) {
 
                         break;
                     case "claro-header":
-                        $("#img-header-claro").html(
-                            '<img src="' + obj.data.block_2_icon_channel + '">'
-                        );
+                        $("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
                         $(".inp-text-modal-1").val(obj.data.block_2_title_1);
                         $(".inp-text-modal-2").val(obj.data.block_2_title_2);
-                        $(".inp-text-modal-3").val(
-                            obj.data.block_2_button_title
-                        );
+                        $(".inp-text-modal-3").val(obj.data.block_2_button_title);
+                        $("#inp-text-modal-4").val(obj.data.block_2_button_url);
                         $("#modal-header").modal("show");
+
+                        modalUrl()
+                        modalUrlClose()
                         break;
                     // GET HEADER
                     // GET TITLE
@@ -4479,7 +4333,6 @@ function getContentClaroCinema(type) {
                         $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                         
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(
