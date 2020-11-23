@@ -248,7 +248,7 @@ export default class LandingView {
                         nextArrow:
                             '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
                         infinite: false,
-                        customPaging: function(slider, i) {
+                        customPaging: function (slider, i) {
                             var thumb = $(slider.$slides[i]).data();
                             return (
                                 "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -273,7 +273,7 @@ export default class LandingView {
 
     renderHomeMobile(images) {
         let _this = this;
-        $("#movil").click(function() {
+        $("#movil").click(function () {
             let imagesArrayLength = images.length;
             let imageMobile = "";
             for (let index = 0; index < imagesArrayLength; index++) {
@@ -370,7 +370,7 @@ export default class LandingView {
                     nextArrow:
                         '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
                     infinite: false,
-                    customPaging: function(slider, i) {
+                    customPaging: function (slider, i) {
                         var thumb = $(slider.$slides[i]).data();
                         return (
                             "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -391,7 +391,7 @@ export default class LandingView {
                     nextArrow:
                         '<img src="./images/synopsis/arrow.svg" class="arrow-right-programming" />',
                     infinite: false,
-                    customPaging: function(slider, i) {
+                    customPaging: function (slider, i) {
                         var thumb = $(slider.$slides[i]).data();
                         return (
                             "<p class='a-text-bold-teal slider-pagination-item'>" +
@@ -408,7 +408,7 @@ export default class LandingView {
     }
 
     renderHomePC(title, subtitle, media) {
-        $("#pc").click(function() {
+        $("#pc").click(function () {
             //Hacemos una validación para saber si es imagen o es un video
             let file = "";
             if (media) {
@@ -528,7 +528,7 @@ export default class LandingView {
     }
 
     addImageToHomeBanner() {
-        $("#add-home-banner-image").click(function() {
+        $("#add-home-banner-image").click(function () {
             let slideIndex = $(".programming-slider-home").length + 1;
             //Cada vez que se haga click, el contador incrementa
 
@@ -578,7 +578,7 @@ export default class LandingView {
         let imagesPositions = [];
         let imagesProgramming = [];
         //Input donde suben la imagen
-        $(".image-home-banner").each(function() {
+        $(".image-home-banner").each(function () {
             if (this.files[0]) {
                 imagesPositions.push($(this).attr("data-index"));
             }
@@ -614,7 +614,7 @@ export default class LandingView {
             remote: `${baseURL}footer-edition.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-edition.php`,
             container: document.getElementById("claro-networks-programing"),
-            onMessage: function(message, origin) {
+            onMessage: function (message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -653,7 +653,7 @@ export default class LandingView {
             remote: `${baseURL}footer-claro-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-edi.php`,
             container: containerFooterClaroCanal,
-            onMessage: function(message, origin) {
+            onMessage: function (message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -693,7 +693,7 @@ export default class LandingView {
             remote: `${baseURL}footer-concert-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-concert-edi.php`,
             container: containerFooterConcertChannel,
-            onMessage: function(message, origin) {
+            onMessage: function (message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -734,7 +734,7 @@ export default class LandingView {
             remote: `${baseURL}footer-cinema-edi.php`,
             //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-edi.php`,
             container: containerFooterClaroCinema,
-            onMessage: function(message, origin) {
+            onMessage: function (message, origin) {
                 let json = JSON.parse(message);
                 if (typeof json == "object") {
                     switch (json.type) {
@@ -768,13 +768,13 @@ export default class LandingView {
     renderFooterPrev(sockets) {
         const baseURL =
             "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-        $("#prev-footer").click(function() {
+        $("#prev-footer").click(function () {
             $(".navbar-prev-footers iframe").remove();
             let footerClaroNetoworksPrev = {
                 remote: `${baseURL}footer-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-prev.php`,
                 container: document.getElementById("claro-networks-programing"),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName(
                         "iframe"
@@ -792,7 +792,7 @@ export default class LandingView {
                 remote: `${baseURL}footer-claro-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-claro-prev.php`,
                 container: document.getElementById("claro-canal-programing"),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName(
                         "iframe"
@@ -812,7 +812,7 @@ export default class LandingView {
                 container: document.getElementById(
                     "concert-channel-programing"
                 ),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName(
                         "iframe"
@@ -830,7 +830,7 @@ export default class LandingView {
                 remote: `${baseURL}footer-cinema-prev.php`,
                 //remote: `http://localhost:8888/MaquetaCNetworks/footer-cinema-prev.php`,
                 container: document.getElementById("claro-cinema-programing"),
-                onMessage: function(message, origin) {
+                onMessage: function (message, origin) {
                     console.log(message);
                     this.container.getElementsByTagName(
                         "iframe"
@@ -862,7 +862,7 @@ export default class LandingView {
 
     renderFooterEdit(sockets) {
         let that = this;
-        $("#edit-footer").click(function() {
+        $("#edit-footer").click(function () {
             $(".navbar-prev-footers iframe").remove();
             let optionsFooterClaroNetworks = that.renderFooterClaroNetworks();
             let optionsFooterCanalClaro = that.renderFooterClaroCanal();
@@ -1353,7 +1353,7 @@ export default class LandingView {
         footersContainer.hide();
         $(".navbar-prev-footers:first").show();
         let that = this;
-        iconsLandingFooter.click(function() {
+        iconsLandingFooter.click(function () {
             iconsLandingFooter.removeClass("list-channel-active");
             $(this).addClass("list-channel-active");
             let rel = $(this).attr("rel");
@@ -1363,7 +1363,7 @@ export default class LandingView {
     }
 
     uploadImageFooter(sockets) {
-        $(".footer-input-image").change(function() {
+        $(".footer-input-image").change(function () {
             let currentInput = this.files[0];
             let key = $(this).attr("key");
             let response = landingController.uploadImageFooter(
@@ -1387,7 +1387,7 @@ export default class LandingView {
 
     updateInfoFooter(sockets) {
         //Inputs
-        $(".footer-input-text").blur(function() {
+        $(".footer-input-text").blur(function () {
             let key = $(this).attr("key");
             let value = $(this).val();
             let response = landingController.updateInfoFooter(value, key);
@@ -1407,7 +1407,7 @@ export default class LandingView {
                 });
         });
         //Eventos para modales de links
-        $(".inp_url").click(function() {
+        $(".inp_url").click(function () {
             let type = $(this).attr("free");
             let key = $(this).attr("key");
             let url = $("." + type).val();
@@ -1419,7 +1419,7 @@ export default class LandingView {
         });
 
         //Cerrar modal y obtener valores
-        $(".btn-url").click(function() {
+        $(".btn-url").click(function () {
             let type = $(".input-url-modal").attr("free");
             let url = $("#inp_url_modal").val();
             $("." + type).val(url);
@@ -1427,18 +1427,18 @@ export default class LandingView {
             landingController.updateInfoFooter(url, key);
             $("#url").modal("hide");
         });
-        $(".tericon").click(function() {
+        $(".tericon").click(function () {
             $("#modal-terminos-footer").modal("show");
         });
 
-        $("#notice-privacy").click(function() {
+        $("#notice-privacy").click(function () {
             $("#modal-privacy-footer").modal("show");
         });
     }
 
     updateInfoTermsAndPrivacy(sockets) {
         //Botón del modal de términos y condiciones
-        $("#acepta_terminos-footer").click(function() {
+        $("#acepta_terminos-footer").click(function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
@@ -1474,14 +1474,13 @@ export default class LandingView {
                 });
         });
 
-        $("#modal-privacy-button").click(function() {
+        $("#modal-privacy-button").click(function () {
             $("body").append(
                 `<div class="loader-view-container pointer-none">
                     <img src="./images/loader.gif" class="loader"/>
                 </div>`
             );
 
-            debugger;
             let text = $(".footer-textarea-privacy").val();
             let title = $(".footer-title-privacy").val();
 

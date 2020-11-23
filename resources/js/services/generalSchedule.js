@@ -10,7 +10,6 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger;
     let data = {
         chapter_id,
         key,
@@ -20,7 +19,7 @@ function editAttributeProgram(chapter_id, key, keyValue) {
         type: "POST",
         data: data,
         url: "program/editAttribute",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -36,14 +35,14 @@ function filterDates(startDate, lastDate, landing) {
         type: "POST",
         data: data,
         url: "general-program/filterDates",
-        beforeSend: function() {
+        beforeSend: function () {
             $(".grilla-body").prepend(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader-table"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
 
             let grills = json.data.grilla;
@@ -711,7 +710,7 @@ function filterDates(startDate, lastDate, landing) {
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
             let options = {
-                load: function(el) {
+                load: function (el) {
                     el.classList.add("fade-grilla");
                 }
             };
@@ -733,7 +732,7 @@ function addImageToProgram(id_version, id_program, image) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -750,7 +749,7 @@ function deleteProgram(id_program, id_version) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -761,7 +760,7 @@ function addImagesModalIcons() {
         type: "POST",
         url: "landing/getSection/programation",
         cache: false,
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
             $("#icon_canal_claro_edit").attr("src", result.icon_canal_claro);
             $("#icon_claro_cinema_edit").attr("src", result.icon_claro_cinema);
@@ -780,7 +779,7 @@ function addImagesModalBanner() {
         type: "POST",
         cache: false,
         url: "landing/getSection/programation",
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
             let slider = "";
             let counter = 1;
@@ -826,7 +825,7 @@ function addImagesModalBanner() {
                     '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
                 nextArrow:
                     '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                customPaging: function(slider, i) {
+                customPaging: function (slider, i) {
                     var thumb = $(slider.$slides[i]).data();
                     return (
                         "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
@@ -853,7 +852,7 @@ function addImagesModalBanner() {
                 );
             }
 
-            $(".add-programming-image").click(function() {
+            $(".add-programming-image").click(function () {
                 //Cada vez que se haga click, el contador incrementa
                 let slideIndex = $(".load-programming-carousel").length;
 
@@ -879,13 +878,13 @@ function addImagesModalBanner() {
                     ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
                 );
 
-                $(".thumbnail-image-program").click(function() {
+                $(".thumbnail-image-program").click(function () {
                     let id = this.attributes[1].value;
-                    $("#image_programming_" + id).change(function() {
+                    $("#image_programming_" + id).change(function () {
                         let data = this;
                         var fileSrt = new FileReader();
                         if (data.files[0]) {
-                            fileSrt.onload = function(e) {
+                            fileSrt.onload = function (e) {
                                 $(".img_image_programming_" + id).attr(
                                     "src",
                                     e.target.result
