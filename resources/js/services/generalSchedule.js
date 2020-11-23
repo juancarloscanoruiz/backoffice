@@ -10,7 +10,7 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-    debugger;
+  
     let data = {
         chapter_id,
         key,
@@ -775,7 +775,7 @@ function addImagesModalIcons() {
 /**
  * Se consulta a la API y se colocan las imagenes que se encuentren
  */
-function addImagesModalBanner() {
+function addImagesModalBanner(id_slide,totales) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -784,6 +784,11 @@ function addImagesModalBanner() {
             result = JSON.parse(result);
             let slider = "";
             let counter = 1;
+
+            let total = JSON.parse(totales)+1;
+
+           
+            let initial =JSON.parse(id_slide);
             $(".programming-slider-dots .slick-dots").append(
                 ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
             );
@@ -813,13 +818,36 @@ function addImagesModalBanner() {
                 } catch (error) {
                     break;
                 }
+                console.log(counter);
+                
+            }
+            if(counter <= total){
+                slider =
+                slider +
+                    `
+                    <div class="slick-slide">
+                        <div>
+                            <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
+                            <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
+                                <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                    <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                    <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
+                                    <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_${counter}">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                ;
+                counter++;
+              
             }
 
             let conf = {
                 slidesToShow: 1,
                 dots: true,
                 appendDots: $(".programming-slider-dots"),
-                initialSlide: 0,
+                initialSlide: initial,
                 infinite: false,
                 arrows: true,
                 prevArrow:

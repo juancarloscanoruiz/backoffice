@@ -70,7 +70,7 @@
                     <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
                     <!--Slider de calendario-->
 
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase date-program mb-4 mt-5"
                         id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
 
                     <section class="col-10 mx-auto">
@@ -702,7 +702,7 @@
                         </section>
                         <!--Slider de calendario-->
                         <section class="col-8 mx-auto">
-                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6"
+                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase date-program mb-5 mt-6"
                                 id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
                             <div class="mb-5 calendar-slider">
                                 <li class="programming-item programming-item-active">
@@ -1601,7 +1601,7 @@
                             <button
                                 class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                                 id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
-                            <a href="#delete-info" role="button"
+                            <a href="#delete-info-claro" role="button"
                                 class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                                 data-toggle="modal">CANCELAR</a>
 

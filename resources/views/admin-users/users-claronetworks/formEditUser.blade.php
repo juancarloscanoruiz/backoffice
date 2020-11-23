@@ -22,7 +22,7 @@
                 <img src="http://www.claronetworks.openofficedospuntocero.info/images/registro/listo.svg" class="listo ml-2 mt-1" />
               </div>
               <div class="position-relative mb-4">
-                <input class="insert-data input-password a-text-medium-brownish" type="password" id="edit-user-front-repassword" name="login-password" placeholder="Confirmar contraseña" autocomplete="off" />
+                <input class="insert-data input-password2 a-text-medium-brownish" type="password" id="edit-user-front-repassword" name="login-password" placeholder="Confirmar contraseña" autocomplete="off" />
               </div>
 
               <div class="d-flex align-items-center mb-4 mx-auto mt-2 ">
@@ -107,8 +107,11 @@
                 </div>
 
                 <div class="col-xl-4 fecha-margi text-small a-text-medium-brownish">
-                  <p class="margin-fecha">Fecha de nacimiento</p>
-                  <div class=" mb-4 cuadro-fecha">
+                  <div class=" cuadro-date">
+
+                  
+                  <p class="margindate">Fecha de nacimiento</p>
+                  <div class=" cuadro-fecha h-100 mb-16">
                     <div class="cuadro-dia">
 
                       <input type="checkbox" id="selectDay" />
@@ -539,12 +542,13 @@
                       </label>
                     </div>
                   </div>
+                  </div>
                  <!-- <p class="mb-0 a-text-medium-black" id="error_birthday">Error</p>-->
                 </div>
               </div>
 
               <div class="navbar navbar-expand-sm justify-content-center mx-auto texto ml-xl-2 pb-3 ">
-                <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4">CANCELAR</button>
+                <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4 closeViewFront">CANCELAR</button>
                 <button type="button" class="a-button-pill-teal-primary a-button-pill-padding  btn-save-data-front a-text-bold-white">GUARDAR</button>
               </div>
               <div>
@@ -566,7 +570,7 @@
             <p class="a-text-medium-brownish modal-delete-username-front">Los datos se han actualizado correctamente</p>
           </div>
           <div class="pb-4 align-item-center centro pb-5">
-            <button type="button" class="a-button-pill-teal-primary a-button-pill-fixed" data-dismiss="modal" id="modal-button"><span class="a-text-bold-white">OK</span></button>
+            <button type="button" class="a-button-pill-teal-primary a-button-pill-fixed closeViewFront"" data-dismiss="modal" id="modal-button"><span class="a-text-bold-white">OK</span></button>
 
           </div>
         </div>

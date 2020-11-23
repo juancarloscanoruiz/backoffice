@@ -998,7 +998,7 @@ function getUserFrontToUpdate(id) {
                                         confirmPasswordResult = 0;
                                     }
 
-                                    let day = $(".SeleccionDiaLista").text();
+                                   /* let day = $(".SeleccionDiaLista").text();
                                     let month = $(".SeleccionMesLista").text();
                                     let year = $(".SeleccionAñoLista").text();
                                     let date = year + "-" + month + "-" + day;
@@ -1012,6 +1012,37 @@ function getUserFrontToUpdate(id) {
                                                 "La fecha debe estar completa"
                                             )
                                             .css("color", "red");
+                                        return false;
+                                    }*/
+                                   /* let pass1 = $(".input-password").val();
+                                    let pass2 = $(".input-password2").val();
+                                    if (pass1 === "") {
+                                      
+                                        $(".input-password2").after(`<span class=" invalid-email caracteres-min">Este campo es obligatorio *</span>`);
+                                    }
+                                    /*let rePassword = $(
+                                        "#edit-user-front-repassword"
+                                    ).val();*/
+
+                                   /* if (pass2 === "") {
+                                       // confirmPasswordResult = 0;
+                                        $("#edit-user-front-password").after(`<span class=" invalid-email caracteres-min">Este campo es obligatorio *</span>`);
+
+                                    }*/
+
+                                    let day = $(".SeleccionDiaLista").text();
+                                    let month = $(".SeleccionMesLista").text();
+                                    let year = $(".SeleccionAñoLista").text();
+                                    
+                                    let date = year + "-" + month + "-" + day;
+                                    if (
+                                        day == "Día" ||
+                                        month == "Mes" ||
+                                        year == "Año"
+                                    ) {
+                                        $(".cuadro-fecha").after(`<div class=" invalid-email caracteres-min">Este campo es obligatorio *</div>`).removeClass("mb-16");
+                                           $(".cuadro-date").css("margin-bottom", "-19px"); 
+                                            
                                         return false;
                                     }
 
@@ -1143,11 +1174,12 @@ function deleteUserBO(id) {
           </div>
           `;
                 });
+                $(".users-backoffice-table").html("");
                 $(".users-backoffice-table").html(`
         <header>
         <div class="text-title ">Usuario</div>
         </header>
-        <section>
+        <section class="section">
           <div class="text-title ">Rol</div>
         </section>
         <aside>
@@ -1206,17 +1238,18 @@ function deleteUserFront(id) {
           </div>
           `;
                 });
+                $(".users-front-table").html("");
                 $(".users-front-table").html(`
         <header>
           <div class="text-title">Usuario</div>
         </header>
-        <section>
+        <section class="section">
           <div class="text-title">Acciones</div>
         </section>
         ${userBO}
         `);
                 $(".modal-delete-user-front").modal("hide");
-                //showModalDeleteUserFront();
+                showModalDeleteUserFront();
                 //showUserFront();
             }
         }

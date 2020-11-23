@@ -347,6 +347,9 @@ function getChapterInfo(data, landing) {
             $("#slider-calendar-current-date").html(
                 getMonthAndYear(date.getMonth())
             );
+            $(".date-program").text(
+                getMonthAndYear(date.getMonth())
+            );
             //Obtenemos la hora GMT
             let dateUTC = new Date();
             //Día en horario central
@@ -4476,7 +4479,7 @@ function getContentClaroCinema(type) {
                         $("#image-programming-button-cinema").click(function () {
                             let imagesPositions = [];
                             let imagesProgramming = [];
-                            debugger;
+                         
                             $(".image_programming").each(function () {
                                 if (this.files[0]) {
                                     imagesPositions.push(

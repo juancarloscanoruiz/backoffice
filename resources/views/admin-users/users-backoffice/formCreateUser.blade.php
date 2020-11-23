@@ -367,7 +367,7 @@
               </div>
             </div>
             <div class=" mb-4 text-center">
-              <button type="button" class="a-button-pill-teal-primary a-button-pill-fixed" id="modal-button" data-dismiss="modal"><span class="a-text-bold-white">ACEPTAR</span></button>
+              <button type="button" class="a-button-pill-teal-primary a-button-pill-fixed closeViewBO" id="modal-button" data-dismiss="modal"><span class="a-text-bold-white">ACEPTAR</span></button>
             </div>
           </div>
         </div>

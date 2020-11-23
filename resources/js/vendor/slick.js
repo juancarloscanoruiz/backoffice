@@ -78,6 +78,7 @@ function createCalendarDays(container, calendarClass = "") {
 
     var daysSlider = "";
     //Pegamos el nombre del mes y el año
+    $(".date-program").text(getMonthAndYear(date.getMonth()));
     $("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
     //Obtenemos la hora GMT
     let dateUTC = new Date();

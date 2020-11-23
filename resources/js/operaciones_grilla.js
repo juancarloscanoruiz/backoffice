@@ -1621,7 +1621,7 @@ function eventsGrilla() {
 
         function (e) {
             if (e.which === 13 && !e.shiftKey) {
-                debugger;
+              
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -3360,8 +3360,10 @@ function eventsGrilla() {
                         setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
+                           let  id_slide = json.id_slide;
+                             let  totales = json.totales;
 
-                            addImagesModalBanner();
+                            addImagesModalBanner(id_slide,totales);
                         }, 3000);
 
                         break;
@@ -3480,7 +3482,10 @@ function eventsGrilla() {
 
                             $("#loader1").remove();
 
-                            addImagesModalBanner();
+                            let  id_slide = json.id_slide;
+                            let  totales = json.totales;
+
+                           addImagesModalBanner(id_slide,totales);
                         }, 3000);
 
                         break;
@@ -4972,7 +4977,7 @@ function eventsGrilla() {
     });
 
     function viewImg(objFileInput, container) {
-        debugger;
+       
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
