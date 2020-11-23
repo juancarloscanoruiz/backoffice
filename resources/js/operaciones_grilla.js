@@ -5392,6 +5392,21 @@ function eventsGrilla() {
             confLandingConcertChannel
         );
     });
+
+    $('#acepta_carrusel_home').on('click', function () {
+        let landing = $(this).attr('landing');
+        console.log(landing)
+        if (landing == 'canal_claro') {
+            resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+        }
+        if (landing == 'concert_channel') {
+            LandingHomeConcert
+            resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
+        }
+        if (landing == 'claro_cinema') {
+            resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
+        }
+    })
 }
 
 export { eventsGrilla };

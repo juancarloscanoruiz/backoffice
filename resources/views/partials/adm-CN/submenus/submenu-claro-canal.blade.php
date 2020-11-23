@@ -349,6 +349,10 @@
             </div>
         </div>
     </main>
+
+    @include('components.modals.generic.advertencia-url')
+    @include('components.modals.generic.url')
+
     @include('partials.adm-CN.modals-claro.banner-claro');
     @include('partials.adm-CN.modals-claro.index');
     @include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'canal-claro']);

@@ -18,6 +18,10 @@ import { resetIframe } from "../vendor/easyXDM.js";
 import { createSlickSlider, createCalendarDays } from "../vendor/slick.js";
 
 import { addImagesModalIcons } from "../services/generalSchedule.js";
+
+import { previewImage, modalUrl } from '../store/eventos/evn'
+import { setImgCarruselVertical } from '../store/methods'
+
 function getMonth(idMonth) {
     let date = new Date();
     let month = date.getUTCMonth() + idMonth;
@@ -1298,6 +1302,7 @@ function getCarruselHome(landing) {
         default:
             break;
     }
+    $('#acepta_carrusel_home').attr('landing', landing)
     $.ajax({
         type: "POST",
         url: "landing/homeCarrusel",
@@ -1764,12 +1769,12 @@ function getCarruselHome(landing) {
                     <div>
                         <!-- IMG -->
                         <div class="position-relative text-center">
-                            <img class="img-back-modal img-carrusel-home" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
+                            <img class="img-back-modal img-carrusel-home img_carrusel_${chapter.chapter.id}" id="img-carrusel-home-${chapter.chapter.id}" src="${chapter.chapter.thumbnail_list_vertical}" chapter="${chapter.chapter.id}" >
                         </div>
                         <!-- BTN ICONOS -->
                         <div class="modal-img-carrusel">
                             <!-- INPUTS -->
-                            <input class="d-none load-carrusel" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical" program="${chapter.chapter.title}">
+                            <input chapter_id="${chapter.chapter.id}" class="d-none load-carrusel previewImage" id="img_carrusel_${chapter.chapter.id}" name="img-carrusel_${chapter.chapter.id}" type="file" key="thumbnail_list_vertical" program="${chapter.chapter.title}" landing="${landing}">
                             <!-- LABEL -->
                             <label for="img_carrusel_${chapter.chapter.id}" class="add-file load-programming-carousel">
                                 <img id="${chapter.chapter.id}" class="add-file-carrusel cursor-pointer mb-2" src="./images/basic-icons/camara.svg" alt="add-photo" />
@@ -1988,12 +1993,15 @@ function getCarruselHome(landing) {
                 }
             }
 
-            $(".add-file-carrusel").click(function () {
-                let id = $(this).attr("id");
-                let key = $(".load-carrusel").attr("key");
-                let name = $(".load-carrusel").attr("program");
-                imgCarruselHome(id, key, name);
-            });
+            previewImage()
+            setImgCarruselVertical()
+
+            // $(".add-file-carrusel").click(function () {
+            //     let id = $(this).attr("id");
+            //     let key = $(".load-carrusel").attr("key");
+            //     let name = $(".load-carrusel").attr("program");
+            //     imgCarruselHome(id, key, name);
+            // });
         }
     });
 }
@@ -3011,15 +3019,14 @@ function getModalsCanalClaro(type) {
 
                         break;
                     case "claro-header":
-                        $("#img-header-claro").html(
-                            '<img src="' + obj.data.block_2_icon_channel + '">'
-                        );
+                        $("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
                         $(".inp-text-modal-1").val(obj.data.block_2_title_1);
                         $(".inp-text-modal-2").val(obj.data.block_2_title_2);
-                        $(".inp-text-modal-3").val(
-                            obj.data.block_2_button_title
-                        );
+                        $(".inp-text-modal-3").val(obj.data.block_2_button_title);
+                        $("#inp-text-modal-4").val(obj.data.block_2_button_url);
                         $("#modal-header").modal("show");
+
+                        modalUrl()
                         break;
                     // GET HEADER
                     // GET TITLE

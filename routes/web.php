@@ -112,6 +112,7 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/updateInfoTermsAndPrivacy", "landingController@updateInfoTermsAndPrivacy");
     Route::post("/captureImagesForChapter", "landingController@captureImagesForChapter");
     // MODAL CLARO
+    Route::post("/setImgCarruselHome", "landingController@setImgCarruselHome");
 });
 
 //Rutas para la edición de un programa en el sitio
