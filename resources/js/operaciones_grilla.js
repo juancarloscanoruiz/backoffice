@@ -3536,75 +3536,6 @@ function eventsGrilla() {
         }
     };
 
-    $("#prev").click(function () {
-        let id = $(".navbar-progra-content").attr("id");
-
-        let canalClaro = "#navbar-prev-canal-claro";
-        let programacion = "#navbar-prev-programacion";
-        let home = "#navbar-prev-home";
-
-        $("#navbar-prev-canal-claro iframe").remove();
-        $("#navbar-prev-programacion iframe").remove();
-        $("#navbar-prev-home iframe").remove();
-
-        $("#device-size").load("imports #device-size-prev", function () {
-            $(".a-prev-image").click(function () {
-                previewPage($(this));
-            });
-        });
-
-        switch ("#" + id) {
-            case programacion:
-                resetIframe(
-                    $("#navbar-prev-programacion iframe"),
-                    confPrevProgramacion
-                );
-                break;
-            case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    confPrevClaroCanal
-                );
-                break;
-            case home:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-                break;
-        }
-    });
-
-    $("#edit").click(function () {
-        let id = $(".navbar-progra-content").attr("id");
-
-        let canalClaro = "#navbar-prev-canal-claro";
-        let programacion = "#navbar-prev-programacion";
-        let home = "#navbar-prev-home";
-
-        $("#navbar-prev-canal-claro iframe").remove();
-        $("#navbar-prev-programacion iframe").remove();
-        $("#navbar-prev-home iframe").remove();
-
-        $("#device-size").load("imports #device-size-edit", function () {
-            $(".a-prev-image").click(function () {
-                previewPage($(this));
-            });
-        });
-
-        switch ("#" + id) {
-            case programacion:
-                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-                break;
-            case canalClaro:
-                resetIframe(
-                    $("#navbar-prev-canal-claro iframe"),
-                    landingCanalClaro
-                );
-                break;
-            case canalClaro:
-                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-                break;
-        }
-    });
-
     // $("#edit").click(function () {
     //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
 
@@ -5407,6 +5338,130 @@ function eventsGrilla() {
             resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
         }
     })
+
+    $("#device-size").load("imports #device-size-edit");
+
+    $("#edit").click(function () {
+        let id = $(".navbar-progra-active").attr("rel");
+
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
+
+        $("#" + id + " iframe").remove();
+
+        $("#device-size").load("imports #device-size-edit");
+        switch ("#" + id) {
+            case programacion:
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+                break;
+            case canalClaro:
+                resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+                break;
+            case home:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+                break;
+        }
+    })
+    $("#prev").click(function () {
+        let id = $(".navbar-progra-active").attr("rel");
+
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
+
+        $("#" + id + " iframe").remove();
+
+        $("#device-size").load("imports #device-size-prev", function () {
+            $(".a-prev-image").click(function () {
+                previewPage($(this));
+            });
+        });
+
+        switch ("#" + id) {
+            case programacion:
+                resetIframe(
+                    $("#navbar-prev-programacion iframe"), confPrevProgramacion);
+                break;
+            case canalClaro:
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+                break;
+            case home:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+                break;
+        }
+    })
+
+
+    // $("#prev").click(function () {
+    //     let id = $(".navbar-progra-content").attr("id");
+
+    //     let canalClaro = "#navbar-prev-canal-claro";
+    //     let programacion = "#navbar-prev-programacion";
+    //     let home = "#navbar-prev-home";
+
+    //     $("#navbar-prev-canal-claro iframe").remove();
+    //     $("#navbar-prev-programacion iframe").remove();
+    //     $("#navbar-prev-home iframe").remove();
+
+    //     $("#device-size").load("imports #device-size-prev", function () {
+    //         $(".a-prev-image").click(function () {
+    //             previewPage($(this));
+    //         });
+    //     });
+
+    //     switch ("#" + id) {
+    //         case programacion:
+    //             resetIframe(
+    //                 $("#navbar-prev-programacion iframe"),
+    //                 confPrevProgramacion
+    //             );
+    //             break;
+    //         case canalClaro:
+    //             resetIframe(
+    //                 $("#navbar-prev-canal-claro iframe"),
+    //                 confPrevClaroCanal
+    //             );
+    //             break;
+    //         case home:
+    //             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+    //             break;
+    //     }
+    // });
+
+    // $("#edit").click(function () {
+    //     let id = $(".navbar-progra-content").attr("id");
+
+    //     let canalClaro = "#navbar-prev-canal-claro";
+    //     let programacion = "#navbar-prev-programacion";
+    //     let home = "#navbar-prev-home";
+
+    //     $("#navbar-prev-canal-claro iframe").remove();
+    //     $("#navbar-prev-programacion iframe").remove();
+    //     $("#navbar-prev-home iframe").remove();
+
+    //     $("#device-size").load("imports #device-size-edit", function () {
+    //         $(".a-prev-image").click(function () {
+    //             previewPage($(this));
+    //         });
+    //     });
+
+    //     switch ("#" + id) {
+    //         case programacion:
+    //             resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+    //             break;
+    //         case canalClaro:
+    //             resetIframe(
+    //                 $("#navbar-prev-canal-claro iframe"),
+    //                 landingCanalClaro
+    //             );
+    //             break;
+    //         case canalClaro:
+    //             resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+    //             break;
+    //     }
+    // });
 }
 
 export { eventsGrilla };

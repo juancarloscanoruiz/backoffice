@@ -692,16 +692,16 @@ function showLandingSchedule(id) {
                     $("#general-programming")
                         .html(result)
                         .promise();
-                        let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
-                        // let baseURL = "https://localhost/MaquetaCNetworks/"
-                        confLandingHome(baseURL);
-                        const prevImage = $(".a-prev-image");
+                    let baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/"
+                    // let baseURL = "https://localhost/MaquetaCNetworks/"
+                    confLandingHome(baseURL);
+                    const prevImage = $(".a-prev-image");
 
-            prevImage.click(function () {
-                let prevContainer = $("iframe");
-                previewPage($(this));
-            });
-                        eventsGrilla();
+                    prevImage.click(function () {
+                        let prevContainer = $("iframe");
+                        previewPage($(this));
+                    });
+                    eventsGrilla();
                 }
             });
             break;

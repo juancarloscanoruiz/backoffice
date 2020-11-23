@@ -14,18 +14,29 @@ function previewImage() {
 }
 
 function modalUrl() {
-    console.log('click')
     let evn;
     $('.show-url').on('click', function () {
         evn = $(this.children[1].children);
         $('#show-url').modal('show');
         $('#modal-link').val(evn.val())
     })
-    $('#btn-acepta-url').on('click', function () {
-        evn.val($('#modal-link').val())
-        $('#modal-link').val('')
+    $('.btn-acepta-url').on('click', function () {
+        evn.val($('.modal-link').val())
+        $('.modal-link').val('')
         evn = '';
     })
 }
 
-export { previewImage, modalUrl }
+function modalClose() {
+    $('#close-modal').on('click', function () {
+        $('.modal').modal('hide')
+    })
+}
+
+function modalUrlClose() {
+    $('#close-modal-url').on('click', function () {
+        $('#show-url').modal('hide')
+    })
+}
+
+export { previewImage, modalUrl, modalClose, modalUrlClose }

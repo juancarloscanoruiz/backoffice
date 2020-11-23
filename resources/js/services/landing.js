@@ -19,7 +19,7 @@ import { createSlickSlider, createCalendarDays } from "../vendor/slick.js";
 
 import { addImagesModalIcons } from "../services/generalSchedule.js";
 
-import { previewImage, modalUrl } from '../store/eventos/evn'
+import { previewImage, modalUrl, modalUrlClose } from '../store/eventos/evn'
 import { setImgCarruselVertical } from '../store/methods'
 
 function getMonth(idMonth) {
@@ -3027,6 +3027,7 @@ function getModalsCanalClaro(type) {
                         $("#modal-header").modal("show");
 
                         modalUrl()
+                        modalUrlClose()
                         break;
                     // GET HEADER
                     // GET TITLE
