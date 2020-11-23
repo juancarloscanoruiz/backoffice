@@ -1206,4 +1206,11 @@ class landingController extends Controller
         $response = $client->get($this->url . "program/getSinospsisTable/" . $date);
         echo ($response->getBody()->getContents());
     }
+
+    function getProgramId(Request $request)
+    {
+        $client = new Client();
+        $response = $client->get($this->url . "programation/getChapter/" . $request->input("id"));
+        echo ($response->getBody()->getContents());
+    }
 }

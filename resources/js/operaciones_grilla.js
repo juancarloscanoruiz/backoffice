@@ -83,13 +83,13 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
-import { closeModals } from "./store/events/events";
+// import { closeModals } from "./store/events/events";
 
-import { getClaroCinema } from "./store/getters";
+// import { getClaroCinema } from "./store/getters";
 
 function eventsGrilla() {
 
-    closeModals()
+    // closeModals()
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
@@ -3225,7 +3225,7 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-    
+
                 switch (json.type) {
                     case "program":
                         getChapterInfo(json.chapterId);
@@ -3471,15 +3471,15 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
-                      
-                        let idpagination =json.id_slide;
-                        let totalslides = json.totales;
-                       
-                       // setTimeout(function () {
-                        
-                            //$("#loader1").remove();
 
-                            addImagesModalBanner(idpagination, totalslides);
+                        let idpagination = json.id_slide;
+                        let totalslides = json.totales;
+
+                        // setTimeout(function () {
+
+                        //$("#loader1").remove();
+
+                        addImagesModalBanner(idpagination, totalslides);
 
 
                         break;
@@ -3539,7 +3539,7 @@ function eventsGrilla() {
         $("#navbar-prev-programacion iframe").remove();
         new easyXDM.Socket(confIframe);
     }
-    
+
     let confPrevProgramacion = {
         remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
@@ -3556,45 +3556,45 @@ function eventsGrilla() {
 
     //previsualizar  programacion canal claro
     $("#prev").click(function () {
-        $("body").append( `
+        $("body").append(`
         <div class="loader-view-container" id="loader1">
             <img src="./images/loader.gif" class="loader" alt="">
         </div>
             `);
-            resetIframe(
-                $("#navbar-prev-programacion iframe"),
-                confPrevProgramacion
-            );
-            setTimeout(function () {                            
-               
-                $("#prev-mobile")
-                    .removeClass("pointer-none")
-                    .addClass("cursor-pointer");
-                $("#prev-tablet")
-                    .removeClass("pointer-none")
-                    .addClass("cursor-pointer");
-                    $("#loader1").remove();
-            }, 2000);
+        resetIframe(
+            $("#navbar-prev-programacion iframe"),
+            confPrevProgramacion
+        );
+        setTimeout(function () {
+
+            $("#prev-mobile")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+            $("#prev-tablet")
+                .removeClass("pointer-none")
+                .addClass("cursor-pointer");
+            $("#loader1").remove();
+        }, 2000);
 
         //Landing programacion canal claro
-       
+
     });
     $("#edit").click(function () {
-        $("body").append( `
+        $("body").append(`
         <div class="loader-view-container" id="loader1">
             <img src="./images/loader.gif" class="loader" alt="">
         </div>
             `);
-            resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-            setTimeout(function () {
+        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        setTimeout(function () {
 
-        $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
-        $("#loader1").remove();
-    }, 2000);
+            $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-mobile").css("opacity", "0.4");
+            $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+            $("#prev-tablet").css("opacity", "0.4");
+            $("#prev-desktop").css("opacity", "1");
+            $("#loader1").remove();
+        }, 2000);
     });
     /////////////
     $(".input-image-program").change(function () {

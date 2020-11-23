@@ -25,7 +25,7 @@ function getMonth(idMonth) {
 }
 
 import { previewImage } from '../store/events/events'
-import { setImgCarruselVertical } from '../store/methods'
+// import { setImgCarruselVertical } from '../store/methods'
 
 function getNextMonth(month) {
     let date = new Date();
@@ -176,7 +176,7 @@ function getChapterInfo(data) {
 
         success: function (result) {
 
-           
+
 
             let data = JSON.parse(result);
             $(".loader-view-container").remove();
@@ -198,7 +198,7 @@ function getChapterInfo(data) {
             $(".mesinfo").text(
                 getMonthAndYear(date.getMonth())
             );
-            console.log(getMonthAndYear(date.getMonth()),"messss");
+            console.log(getMonthAndYear(date.getMonth()), "messss");
             //Obtenemos la hora GMT
             let dateUTC = new Date();
             //Día en horario central
@@ -506,54 +506,54 @@ function getChapterInfo(data) {
                 dropdownTitles.selectpicker("toggle");
             });
 
-            data;
-            //Genres
-            let optionGenre = "";
+
+            // data;
+            // //Genres
+            // let optionGenre = "";
             data.genres.forEach(genre => {
-                optionGenre += `
-                    <option value="${genre.title}">${genre.title}</option>
-                    `;
+                $(".list1").append(`<option value="${genre.title}">${genre.title}</option>`)
+                console.log(genre)
             });
-            $(".list1").append(optionGenre);
-            $(".list1").selectpicker("destroy");
-            $(".list1").selectpicker({
-                filter: true,
-                multipleSeparator: ", "
-            });
-            //End if
+            // $(".list1").append(optionGenre);
+            // $(".list1").selectpicker("destroy");
+            // $(".list1").selectpicker({
+            //     filter: true,
+            //     multipleSeparator: ", "
+            // });
+            // //End if
 
-            let editProgramLandingGenres = "";
-            let selectGenres = $("#edit-program-genres");
-            //Verificamos si el usuario ha seleccionado un género o categoría
-            selectGenres.on("change", function () {
-                //Obtenemos los valores del selectpicker
-                let selected = $(this).val();
-                //Obtenemos el número de valores que hemos obtenido del arreglo
-                let selectedLength = selected.length;
-                editProgramLandingGenres = "";
-                for (let index = 0; index < selectedLength; index++) {
-                    //Si es la primera palabra o la última, no agregamos una coma
-                    if (selectedLength - 1 == index) {
-                        editProgramLandingGenres += `${selected[index]}`;
-                    } else {
-                        editProgramLandingGenres += `${selected[index]},`;
-                    }
-                }
-            });
+            // let editProgramLandingGenres = "";
+            // let selectGenres = $("#edit-program-genres");
+            // //Verificamos si el usuario ha seleccionado un género o categoría
+            // selectGenres.on("change", function () {
+            //     //Obtenemos los valores del selectpicker
+            //     let selected = $(this).val();
+            //     //Obtenemos el número de valores que hemos obtenido del arreglo
+            //     let selectedLength = selected.length;
+            //     editProgramLandingGenres = "";
+            //     for (let index = 0; index < selectedLength; index++) {
+            //         //Si es la primera palabra o la última, no agregamos una coma
+            //         if (selectedLength - 1 == index) {
+            //             editProgramLandingGenres += `${selected[index]}`;
+            //         } else {
+            //             editProgramLandingGenres += `${selected[index]},`;
+            //         }
+            //     }
+            // });
 
-            //Evento para cuando cerramos el selectpicker
-            selectGenres.on("hide.bs.select", function () {
-                let chapterId = $(".edit-program-data-container").attr(
-                    "chapter_id"
-                );
-                //Obtenemos la key
-                let key = $("#edit-program-genres").attr("key");
-                //Obtenemos los géneros que pudo haber seleccionado el usuario
-                let keyValue = editProgramLandingGenres;
-                //Hacemos la petición
+            // //Evento para cuando cerramos el selectpicker
+            // selectGenres.on("hide.bs.select", function () {
+            //     let chapterId = $(".edit-program-data-container").attr(
+            //         "chapter_id"
+            //     );
+            //     //Obtenemos la key
+            //     let key = $("#edit-program-genres").attr("key");
+            //     //Obtenemos los géneros que pudo haber seleccionado el usuario
+            //     let keyValue = editProgramLandingGenres;
+            //     //Hacemos la petición
 
-                editAttributeProgram(chapterId, key, keyValue);
-            });
+            //     editAttributeProgram(chapterId, key, keyValue);
+            // });
 
             $(".available").click(function () {
                 let section = $(this).attr("section");

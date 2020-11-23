@@ -4,15 +4,17 @@ function slickCalendar(lastMonth, lastDay, slick, slickMonth) {
     let date = new Date()
     let months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     let days = ["DOM", "LUN", "MAR", "MIER", "JUE", "VIE", "SAB"]
+    let index = 0;
     slickMonth.html(months[date.getMonth()] + ' ' + date.getFullYear())
     for (let i = date.getDate(); i <= lastDay; i++) {
         if (i == date.getDate()) {
-            slick.append(`<div class="synopsis-calendar-item programming-item programming-item-active" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><p class="day-text"></p>${days[textDay(date.getFullYear(), date.getMonth(), i)]}<p class="day-number">${i}</p></div>`)
+            slick.append(`<div class="synopsis-calendar-item programming-item programming-item-active" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><div clas="day"><p class="day-text">${days[textDay(date.getFullYear(), date.getMonth(), i)]}</p><p class="day-number">${i}</p></div></div>`)
         } else {
-            slick.append(`<div class="synopsis-calendar-item programming-item" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><p class="day-text"></p>${days[textDay(date.getFullYear(), date.getMonth(), i)]}<p class="day-number">${i}</p></div>`)
+            slick.append(`<div class="synopsis-calendar-item programming-item" date="${date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + i}"><div clas="day"><p class="day-text">${days[textDay(date.getFullYear(), date.getMonth(), i)]}</p><p class="day-number">${i}</p></div></div>`)
         }
+        index++
     }
-
+    return index
 }
 
 function textDay(y, m, d) {

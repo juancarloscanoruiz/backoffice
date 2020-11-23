@@ -119,7 +119,9 @@ Route::group(['prefix' => 'landing', 'middleware' => 'session_user'], function (
     Route::post("/getCanalClaro", "landingController@getCanalClaro");
     Route::post("/setTitulo", "landingController@setTitulo");
     Route::post("/getProgramacionDate", "landingController@getProgramacionDate");
+
     // MODAL CLARO
+    Route::post("/getProgramId", "landingController@getProgramId");
 });
 
 //Rutas para la edición de un programa en el sitio

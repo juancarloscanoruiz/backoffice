@@ -22,7 +22,7 @@ import {
 } from "../services/landing.js";
 
 
-import { mvh, programacion } from '../index'
+import { mvh, canalClaroProgramacion } from '../index'
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -411,7 +411,7 @@ function showlanding() {
             getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
 
             mvh()
-            programacion('programacion-edi.php')
+            canalClaroProgramacion()
         }
     });
 }
