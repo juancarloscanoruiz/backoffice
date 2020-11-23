@@ -3,4 +3,3 @@
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/jquery.overlayScrollbars.js"></script> --}}
 <script src="{{ asset('/js/main.js')}}?t=<?php echo time(); ?>"></script>
 <script src="{{ asset('/js/admin.js')}}"></script>
-<script src="{{ asset('/js/index.js')}}" defer></script>

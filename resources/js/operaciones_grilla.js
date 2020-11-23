@@ -83,13 +83,7 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
-// import { closeModals } from "./store/events/events";
-
-// import { getClaroCinema } from "./store/getters";
-
 function eventsGrilla() {
-
-    // closeModals()
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
@@ -181,7 +175,7 @@ function eventsGrilla() {
         function () {
             $(".synopsis-calendar-item").removeClass("programming-item-active");
             $(this).addClass("programming-item-active");
-
+            console.log($(this).attr("date"));
             getProgrammingSynopsis("concert-channel", $(this).attr("date"));
         }
     );
@@ -267,7 +261,7 @@ function eventsGrilla() {
         }
     };
 
-
+    ////////////
     let NavbarHomeCinema = document.getElementById("navbar-prev-home-cinema");
     if (NavbarHomeCinema) {
         $("#navbar-prev-home-cinema  iframe").remove();
@@ -632,6 +626,22 @@ function eventsGrilla() {
     let navbarPrevSINOPSIS = document.getElementById("sinopsis-container");
     // let sinopsisLanding = $('.sinopsis-container');
     if (navbarPrevSINOPSIS) {
+        $("#sinopsis-container iframe").remove();
+        var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+        $("#synopsis-table-canal-claro").on(
+            "click",
+            ".edit-synopsis-pencil",
+            function () {
+                $("body").append(
+                    `<div class="loader-view-container pointer-none">
+                        <img src="./images/loader.gif" class="loader"/>
+                    </div>`
+                );
+                let id = $(this).attr("chapter_id");
+                programView.renderSynopsis(id, socketSynopsis);
+                $("#device-size").load("imports #device-size-edit");
+            }
+        );
         $("#synopsis-table-canal-claro").on(
             "click",
             ".prev-synopsis-pencil",
@@ -669,7 +679,6 @@ function eventsGrilla() {
                 );
                 let id = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
-                closeModals()
             }
         );
         $("#synopsis-table-concert-channel").on(
@@ -756,8 +765,7 @@ function eventsGrilla() {
 
                 switch (json.type) {
                     case "slider-pagination":
-                        getClaroCinema('banner')
-                        // getContentClaroCinema("slider-pagination");
+                        getContentClaroCinema("slider-pagination");
                         break;
                     case "current-programming-cinema":
                         let date = new Date();
@@ -1002,8 +1010,6 @@ function eventsGrilla() {
         "click",
         ".button-modal-concert-channel",
         function () {
-
-            $('.modal-edit-program-carrusel').modal("hide")
             resetIframe(
                 $("#navbar-prev-concert-channel iframe"),
                 confLandingConcertChannel
@@ -1615,7 +1621,7 @@ function eventsGrilla() {
 
         function (e) {
             if (e.which === 13 && !e.shiftKey) {
-
+                debugger;
                 let key = $(this).attr("key");
                 let chapter_id = $(this).attr("chapter_id");
                 let value = $(this).val();
@@ -2720,7 +2726,7 @@ function eventsGrilla() {
 <section class="text-center mb-3 d-flex justify-content-center">
 <button
     class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-    data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
+    data-dismiss="modal">ACEPTAR</button>
 </section>
 
 </div>
@@ -3167,7 +3173,7 @@ function eventsGrilla() {
         <section class="text-center mb-3 d-flex justify-content-center">
             <button
                 class="d-flex  mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
-                data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
+                data-dismiss="modal">ACEPTAR</button>
         </section>
 
     </div>
@@ -3225,7 +3231,6 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-
                 switch (json.type) {
                     case "program":
                         getChapterInfo(json.chapterId);
@@ -3350,16 +3355,14 @@ function eventsGrilla() {
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
+                        $("body").append(loader);
 
-                        let idpagination = json.id_slide;
-                        let totalslides = json.totales;
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
+                            $("#loader1").remove();
 
-                        // setTimeout(function () {
-
-                        //$("#loader1").remove();
-
-                        addImagesModalBanner(idpagination, totalslides);
-                        //   }, 3000);
+                            addImagesModalBanner();
+                        }, 3000);
 
                         break;
                     case "synopsis":
@@ -3375,7 +3378,6 @@ function eventsGrilla() {
                             addImagesModalIcons();
                             $(".modal-edit-icons").modal("show");
                             $("#loader1").remove();
-                            closeModals()
                         }, 3000);
                         break;
 
@@ -3462,25 +3464,24 @@ function eventsGrilla() {
             let json = JSON.parse(message);
             if (typeof json == "object") {
                 let loader = `
-                         <div class="loader-view-container" id="loader1">
-                             <img src="./images/loader.gif" class="loader" alt="">
-                         </div>
-                             `;
+                        <div class="loader-view-container" id="loader1">
+                            <img src="./images/loader.gif" class="loader" alt="">
+                        </div>
+                            `;
                 switch (json.type) {
                     case "program":
                         getChapterInfo(json.chapterId);
                         break;
                     case "slider-pagination":
+                        $("body").append(loader);
 
-                        let idpagination = json.id_slide;
-                        let totalslides = json.totales;
+                        setTimeout(function () {
+                            $(".modal-programming-carousel").modal("show");
 
-                        // setTimeout(function () {
+                            $("#loader1").remove();
 
-                        //$("#loader1").remove();
-
-                        addImagesModalBanner(idpagination, totalslides);
-
+                            addImagesModalBanner();
+                        }, 3000);
 
                         break;
                     case "synopsis":
@@ -3498,24 +3499,6 @@ function eventsGrilla() {
                             $(".modal-edit-icons").modal("show");
                             $("#loader1").remove();
                         }, 3000);
-                        break;
-                    case "claro-carrusel1":
-                        let landing = "Canal Claro";
-                        let id = 1;
-                        getPromotionalsProgramsCarousel(
-                            id,
-                            landing,
-                            "header-background-blue thumbnail-header-concert"
-                        );
-                        break;
-                    case "claro-carrusel2":
-                        landing = "Canal Claro";
-                        id = 2;
-                        getPromotionalsProgramsCarousel(
-                            id,
-                            landing,
-                            "header-background-blue thumbnail-header-concert"
-                        );
                         break;
 
                     default:
@@ -3539,7 +3522,6 @@ function eventsGrilla() {
         $("#navbar-prev-programacion iframe").remove();
         new easyXDM.Socket(confIframe);
     }
-
     let confPrevProgramacion = {
         remote: `${baseURL}programacion-prev.php`,
         container: document.getElementById("navbar-prev-programacion"),
@@ -3554,48 +3536,85 @@ function eventsGrilla() {
         }
     };
 
-    //previsualizar  programacion canal claro
     $("#prev").click(function () {
-        $("body").append(`
-        <div class="loader-view-container" id="loader1">
-            <img src="./images/loader.gif" class="loader" alt="">
-        </div>
-            `);
-        resetIframe(
-            $("#navbar-prev-programacion iframe"),
-            confPrevProgramacion
-        );
-        setTimeout(function () {
+        let id = $(".navbar-progra-content").attr("id");
 
-            $("#prev-mobile")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#prev-tablet")
-                .removeClass("pointer-none")
-                .addClass("cursor-pointer");
-            $("#loader1").remove();
-        }, 2000);
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
 
-        //Landing programacion canal claro
+        $("#navbar-prev-canal-claro iframe").remove();
+        $("#navbar-prev-programacion iframe").remove();
+        $("#navbar-prev-home iframe").remove();
 
+        $("#device-size").load("imports #device-size-prev", function () {
+            $(".a-prev-image").click(function () {
+                previewPage($(this));
+            });
+        });
+
+        switch ("#" + id) {
+            case programacion:
+                resetIframe(
+                    $("#navbar-prev-programacion iframe"),
+                    confPrevProgramacion
+                );
+                break;
+            case canalClaro:
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    confPrevClaroCanal
+                );
+                break;
+            case home:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+                break;
+        }
     });
+
     $("#edit").click(function () {
-        $("body").append(`
-        <div class="loader-view-container" id="loader1">
-            <img src="./images/loader.gif" class="loader" alt="">
-        </div>
-            `);
-        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
-        setTimeout(function () {
+        let id = $(".navbar-progra-content").attr("id");
 
-            $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-            $("#prev-mobile").css("opacity", "0.4");
-            $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-            $("#prev-tablet").css("opacity", "0.4");
-            $("#prev-desktop").css("opacity", "1");
-            $("#loader1").remove();
-        }, 2000);
+        let canalClaro = "#navbar-prev-canal-claro";
+        let programacion = "#navbar-prev-programacion";
+        let home = "#navbar-prev-home";
+
+        $("#navbar-prev-canal-claro iframe").remove();
+        $("#navbar-prev-programacion iframe").remove();
+        $("#navbar-prev-home iframe").remove();
+
+        $("#device-size").load("imports #device-size-edit", function () {
+            $(".a-prev-image").click(function () {
+                previewPage($(this));
+            });
+        });
+
+        switch ("#" + id) {
+            case programacion:
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+                break;
+            case canalClaro:
+                resetIframe(
+                    $("#navbar-prev-canal-claro iframe"),
+                    landingCanalClaro
+                );
+                break;
+            case canalClaro:
+                resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
+                break;
+        }
     });
+
+    // $("#edit").click(function () {
+    //     resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+
+    //     $("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-mobile").css("opacity", "0.4");
+    //     $("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    //     $("#prev-tablet").css("opacity", "0.4");
+    //     $("#prev-desktop").css("opacity", "1");
+    // });
+
     /////////////
     $(".input-image-program").change(function () {
         let currentInput = $(this);
@@ -4610,10 +4629,6 @@ function eventsGrilla() {
     );
     if (navbarLandingCanalClaro) {
         $("#navbar-prev-canal-claro iframe").remove();
-        $('#iframe-canal-claro').html('');
-        $('.monthSliderCalendar').html('');
-        $('.slick-calendario').html('');
-        $('.show-sinopsis-table').html('')
         new easyXDM.Socket(landingCanalClaro);
     }
     let confPrevClaroCanal = {
@@ -4762,7 +4777,6 @@ function eventsGrilla() {
     });
 
     $(".button-modal-canal-claro").click(function () {
-
         resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
     });
 
@@ -4770,8 +4784,10 @@ function eventsGrilla() {
         "click",
         ".button-modal-canal-claro",
         function () {
-            $(".modal-edit-program-carrusel").modal("hide");
-            resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
+            resetIframe(
+                $("#navbar-prev-canal-claro iframe"),
+                landingCanalClaro
+            );
         }
     );
     // HEADER EDIT CANAL CLARO
@@ -4956,7 +4972,7 @@ function eventsGrilla() {
     });
 
     function viewImg(objFileInput, container) {
-
+        debugger;
         $("body").append(LOADER);
         if (objFileInput.files[0]) {
             fileSrt.onload = function (e) {
@@ -5006,13 +5022,8 @@ function eventsGrilla() {
         $("#modal-carrusel-home").modal("hide");
         $("#modal-terminos-footer").modal("hide");
         $("#modal-privacy-footer").modal("hide");
-        $("#delete-info").modal("hide");
         $("#url").modal("hide");
         $("#modaledi").modal("hide");
-        $(".modal").modal("hide");
-        $(".modal-backdrop").removeClass('modal-backdrop');
-        $(".modal-backdrop").remove();
-        console.log('si llega')
     });
 
     // FOOTER
@@ -5046,6 +5057,21 @@ function eventsGrilla() {
                 LandingHomeConcert
             );
         }
+    });
+
+    // HOME
+    $(".acepta_carrusel_home").click(function () {
+        const loader = `
+        <div class="loader-view-container" id="loader1">
+          <img src="./images/loader.gif" class="loader" alt="">
+        </div>
+        `;
+        $("body").append(loader);
+
+        setTimeout(function () {
+            $("#loader1").remove();
+            console.log("si lo borra");
+        }, 2000);
     });
 
     /* MVC */
@@ -5154,6 +5180,7 @@ function eventsGrilla() {
         new easyXDM.Socket(LandingHomeConcert);
     }
 
+    ////////////
 
     let confPrevHomeConcert = {
         remote: `${baseURL}home-prev.php`,
@@ -5365,21 +5392,6 @@ function eventsGrilla() {
             confLandingConcertChannel
         );
     });
-
-    $('#acepta_carrusel_home').on('click', function () {
-        let landing = $(this).attr('landing');
-        console.log(landing)
-        if (landing == 'canal_claro') {
-            resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
-        }
-        if (landing == 'concert_channel') {
-            LandingHomeConcert
-            resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
-        }
-        if (landing == 'claro_cinema') {
-            resetIframe($("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
-        }
-    })
 }
 
 export { eventsGrilla };

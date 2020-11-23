@@ -145,38 +145,38 @@ export default class LandingView {
                     <!--navbar-->
                     <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
                       <div>
-                        <span class="navbar-link text-decoration-none">
+                        <a href="" class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Canal Claro</p>
-                        </span>
+                        </a>
                       </div>
                       <div>
-                        <span class="navbar-link text-decoration-none">
+                        <a href="" class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Concert Channel</p>
-                        </span>
+                        </a>
                       </div>
                       <div>
-                        <span class="navbar-link text-decoration-none">
+                        <a href="" class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Claro Cinema</p>
-                        </span>
+                        </a>
                       </div>
                       <div>
-                        <span class="navbar-link text-decoration-none">
+                        <a target="_blank" href="" class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Nuestra Visión</p>
-                        </span>
+                        </a>
                       </div>
                       <div>
-                        <span class="navbar-link text-decoration-none">
+                        <a href="" target="_blank" class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Claro Sports</p>
-                        </span>
+                        </a>
                       </div>
                       <!-- <div>
-                            <span class="navbar-link text-decoration-none">
+                            <a href="programacion.php" class="navbar-link text-decoration-none">
                                 <p class="navbar-item">Programación</p>
-                            </span>
+                            </a>
                             </div>-->
                     </div>
                     <!--<div class="login">
-                                <span class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></span>
+                                <a href="" class="login-item"><img class="login-country" alt="" src="./images/paises/ecuador.svg"></a>
                             </div>-->
 
                     <!--inputs-->
@@ -220,7 +220,7 @@ export default class LandingView {
 
                 <div class="float-right mr-5 mb-3">
                     <span class="a-text-bold-brown-two text-normal">
-                        Nombre_Promoción_Home_20200709.mp4
+                        Nombre_Promoción_ConcertChannel_20200709.mp4
                     </span>
                 </div>
                 <div class="clearfix"></div>`);
@@ -351,7 +351,7 @@ export default class LandingView {
                     <button
                         class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
                         id="edit-home-encabezado-mobile" data-dismiss="modal">ACEPTAR</button>
-                    <a href="#delete-info-encabezado-home" role="button"
+                    <a href="#delete-info-encabezado" role="button"
                         class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                         data-toggle="modal">CANCELAR</a>
                 </div>
@@ -1481,7 +1481,7 @@ export default class LandingView {
                 </div>`
             );
 
-
+            debugger;
             let text = $(".footer-textarea-privacy").val();
             let title = $(".footer-title-privacy").val();
 

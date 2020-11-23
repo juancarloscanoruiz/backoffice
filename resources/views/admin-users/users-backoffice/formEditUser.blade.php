@@ -349,7 +349,7 @@
           </div>
 
           <div class="col-xl-12 align-item-center mt-5 pb-5 centro space">
-            <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4 closeViewBO">CANCELAR</button>
+            <button type="button" class="a-button-pill-teal-outline a-button-pill-padding  a-text-bold-teal mr-4">CANCELAR</button>
             <button type="button" class="a-button-pill-teal-primary a-button-pill-padding  save-button-edit a-text-bold-white">GUARDAR</button>
           </div>
       </form>
