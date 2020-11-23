@@ -1119,7 +1119,7 @@ function getContentConcertChannelHeader() {
                 if (data.data.block_2_icon_channel) {
                     $(".label-no-image").remove();
                 }
-                $("#icon_canal_claro_edit").attr(
+                $(".thumbnail-image-program").attr(
                     "src",
                     data.data.block_2_icon_channel
                 );
