@@ -111,7 +111,7 @@
             <!--colocacion de iframde sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -345,7 +345,7 @@
             </div>
             <!--iframe de home-->
             <div class="centro ">
-                <div class="navbar-progra-content   mb-5 mt-5 mx-5" id="navbar-prev-home">
+                <div class="navbar-progra-content mb-5 mt-5" id="navbar-prev-home">
                 </div>
             </div>
         </div>

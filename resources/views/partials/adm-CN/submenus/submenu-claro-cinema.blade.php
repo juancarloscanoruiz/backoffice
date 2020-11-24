@@ -11,7 +11,7 @@
             <nav class="d-flex col-xl-11 navbar-expand-sm justify-content-center mb-5" id="option">
                 <div class="navbar-progra d-flex align-items-center justify-content-center mt-2">
                     <img src="./images/arrow-gray.svg" alt="flecha" class="arrow-progra arrow-progra-left">
-                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion" navbar-index="1" rel="navbar-prev-programacion">
+                    <div class="navbar-progra-item navbar-progra-item-border navbar-progra-active navbar-programacion navbar-prev-programacion" navbar-index="1" rel="navbar-prev-programacion-cinema">
                         <div class="navbar-progra-item-container ml-3 mr-3">
                             <p class="a-text-bold-two py-2 px-3 mb-0">PROGRAMACIÓN</p>
                         </div>
@@ -82,7 +82,7 @@
             <!--landing de sinopsis-->
             <div class="navbar-progra-content navbar-sinopsis" id="navbar-prev-sinopsis">
                 <section class="col-8 mx-auto">
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">Octubre 2020</h3>
+                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">Octubre 2020</h3>
                     <div class="mb-5 calendar-sinopsis-slider">
                         <li class="programming-item programming-item-active">
                             <p class="mb-0">MIER</p>
@@ -319,6 +319,10 @@
     <!--inicio de modales para edición-->
 
     <!--HOME-->
+
+    @include('components.modals.generic.advertencia')
+    @include('components.modals.generic.advertencia-url')
+    @include('components.modals.generic.url')
 
     @include('partials.adm-CN.modals-claro.emergenci');
 

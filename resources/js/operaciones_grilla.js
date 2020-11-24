@@ -83,6 +83,8 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
+import { modalClose, modalUrlClose } from "./store/eventos/evn";
+
 function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
@@ -639,7 +641,7 @@ function eventsGrilla() {
                 );
                 let id = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
-                $("#device-size").load("imports #device-size-edit");
+                $(".device-size").load("imports #device-size-edit");
             }
         );
         $("#synopsis-table-canal-claro").on(
@@ -656,7 +658,7 @@ function eventsGrilla() {
                 socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
                 programView.renderSynopsis(id, socketSynopsis);
                 $("#prev-synopsis").prop("checked", true);
-                $("#device-size").load("imports #device-size-prev", function () {
+                $(".device-size").load("imports #device-size-prev", function () {
                     $(".a-prev-image").click(function () {
                         previewPage($(this));
                     });
@@ -777,6 +779,7 @@ function eventsGrilla() {
                         getProgrammingLanding(currentDate, "canal-claro", "");
                         break;
                     case "header-landing-cinema":
+                        modalUrlClose()
                         getContentClaroCinema("header-landing-cinema");
                         break;
                     case "title-cinema":
@@ -897,6 +900,7 @@ function eventsGrilla() {
                         );
                         break;
                     case "header-landing-concert":
+                        modalClose()
                         getContentConcertChannelHeader();
                         break;
                     case "pencil-header":
@@ -3904,6 +3908,12 @@ function eventsGrilla() {
         $(".modal-edit-synopsis").modal("hide");
     });
 
+    $('.close_modals-sinopsis').on('click', function () {
+        $('.modal-landing-synopsis').modal('hide')
+        $('.modal-edit-synopsis').modal('hide')
+        $('.modal-info-synopsis').modal('hide')
+    })
+
     /* Al dar "enter" cancelamos el salto de línea,
         conseguimos el valor del campo de la grilla
         y hacemos la petición
@@ -4722,7 +4732,7 @@ function eventsGrilla() {
     );
     // HEADER EDIT CANAL CLARO
     // TITLE EDIT CANAL CLARO
-    $("#btn-acepta-modal-title").click(function () {
+    $(".btn-acepta-modal-title").click(function () {
         // TITULO
         let value = $(".inp-title-modal").val();
         let key = $(".inp-title-modal").attr("key");

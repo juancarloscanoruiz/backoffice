@@ -7,18 +7,14 @@
                     JPG </p>
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">IMAGEN </h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                <div
-                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-image position-relative">
+                <div class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-image position-relative">
                     <div class="justify-content-around position-absolute d-flex w-100 h-100  align-items-center">
                         <input type="file" name="" id="image-synopsis" class="input-image-program d-none">
-                        <label for="image-synopsis"
-                            class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
-                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo"
-                                class="add-photo promo-icon cursor-pointer" style="width:95px" />
+                        <label for="image-synopsis" class="mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales">
+                            <img src="{{ asset('/images/synopsis/camara.svg') }}" alt="add-photo" class="add-photo promo-icon cursor-pointer" style="width:95px" />
                             <span class="a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow">Añade tu archivo
                                 jpg 552px X 366px </span>
-                            <img class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program image-synopsis-modal"
-                                src="{{ asset('/images/synopsis/image-synopsis.svg') }}" alt="add-photo" />
+                            <img class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program image-synopsis-modal" src="{{ asset('/images/synopsis/image-synopsis.svg') }}" alt="add-photo" />
                         </label>
                     </div>
 
@@ -28,12 +24,8 @@
 
                 </div>
                 <div class="text-center  mb-4 d-flex justify-content-center pb-2 mt-4">
-                    <button
-                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                        id="upload-image-synopsis">ACEPTAR</button>
-                    <a href="#delete-image-sinopsis" role="button"
-                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
+                    <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="upload-image-synopsis">ACEPTAR</button>
+                    <a href="#delete-image-sinopsis" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>
         </div>
@@ -43,8 +35,7 @@
 
 
 <!--modal para perder lo hecho en los landing de edit-->
-<div class=" modal  delete-image-sinopsis" data-backdrop-limit="1" id="delete-image-sinopsis" tabindex="-1"
-    role="dialog" data-modal-parent="#modalpromos">
+<div class=" modal  delete-image-sinopsis" data-backdrop-limit="1" id="delete-image-sinopsis" tabindex="-1" role="dialog" data-modal-parent="#modalpromos">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
@@ -54,12 +45,9 @@
             </div>
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                    id="close_modals-sinopsis">ACEPTAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal close_modals-sinopsis" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>

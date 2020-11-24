@@ -74693,6 +74693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./vendor/easyXDM.js */ "./resources/js/vendor/easyXDM.js");
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
+/* harmony import */ var _store_eventos_evn__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/eventos/evn */ "./resources/js/store/eventos/evn.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -74715,6 +74716,7 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
 
  //Config
+
 
 
 
@@ -75096,7 +75098,7 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
       var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
       programView.renderSynopsis(id, socketSynopsis);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".device-size").load("imports #device-size-edit");
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#synopsis-table-canal-claro").on("click", ".prev-synopsis-pencil", function () {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
@@ -75105,7 +75107,7 @@ function eventsGrilla() {
       socketSynopsis = new easyXDM.Socket(LandingSinopsisPrev);
       programView.renderSynopsis(id, socketSynopsis);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-synopsis").prop("checked", true);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".device-size").load("imports #device-size-prev", function () {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
           Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_11__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
         });
@@ -75198,6 +75200,7 @@ function eventsGrilla() {
             break;
 
           case "header-landing-cinema":
+            Object(_store_eventos_evn__WEBPACK_IMPORTED_MODULE_12__["modalUrlClose"])();
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("header-landing-cinema");
             break;
 
@@ -75299,6 +75302,7 @@ function eventsGrilla() {
             break;
 
           case "header-landing-concert":
+            Object(_store_eventos_evn__WEBPACK_IMPORTED_MODULE_12__["modalClose"])();
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannelHeader"])();
             break;
 
@@ -76759,6 +76763,11 @@ function eventsGrilla() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-sinopsis").modal("hide");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-synopsis").modal("hide");
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.close_modals-sinopsis').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-landing-synopsis').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-synopsis').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-info-synopsis').modal('hide');
+  });
   /* Al dar "enter" cancelamos el salto de línea,
       conseguimos el valor del campo de la grilla
       y hacemos la petición
@@ -77486,7 +77495,7 @@ function eventsGrilla() {
   }); // HEADER EDIT CANAL CLARO
   // TITLE EDIT CANAL CLARO
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-acepta-modal-title").click(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".btn-acepta-modal-title").click(function () {
     // TITULO
     var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").val();
     var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-title-modal").attr("key");
@@ -78879,6 +78888,7 @@ function getChapterInfo(data, clase) {
       var totalDaysSlider = 0;
       var daysSlider = ""; //Pegamos el nombre del mes y el año
 
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".date-program").text(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
 
@@ -82670,13 +82680,12 @@ function sendEmailResetPassword(input) {
 /*!*******************************************!*\
   !*** ./resources/js/store/eventos/evn.js ***!
   \*******************************************/
-/*! exports provided: previewImage, previewVideo, modalUrl, modalClose, modalUrlClose */
+/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewImage", function() { return previewImage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewVideo", function() { return previewVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrl", function() { return modalUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClose", function() { return modalClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrlClose", function() { return modalUrlClose; });
@@ -82696,18 +82705,6 @@ function previewImage() {
 
       reader.readAsDataURL(evn.files[0]);
     }
-  });
-}
-
-function previewVideo() {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewVideo').on('change', function (e) {// let evn = e.target;
-    // let reader = new FileReader();
-    // if (evn.files && evn.files[0]) {
-    //     reader.onload = (e) => {
-    //         $('.' + evn.id).attr('src', e.target.result)
-    //     }
-    //     reader.readAsDataURL(evn.files[0]);
-    // }
   });
 }
 
@@ -82734,6 +82731,7 @@ function modalClose() {
 function modalUrlClose() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-url').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('hide');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-url').modal('hide');
   });
 }
 
@@ -82922,6 +82920,7 @@ function createCalendarDays(container) {
   var daysSlider = ""; //Pegamos el nombre del mes y el año
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-program").text(getMonthAndYear(date.getMonth()));
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slider-calendar-current-date").html(getMonthAndYear(date.getMonth()));
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#slider-calendar-current-date").html(getMonthAndYear(date.getMonth())); //Obtenemos la hora GMT
 
   var dateUTC = new Date(); //Día en horario central
@@ -84219,7 +84218,7 @@ var ProgramView = /*#__PURE__*/function () {
             socketSynopsis.postMessage(dataStringified);
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-prev", function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".device-size").load("imports #device-size-prev", function () {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(".a-prev-image").click(function () {
               Object(_preview_prev_js__WEBPACK_IMPORTED_MODULE_2__["previewPage"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
             });
@@ -84252,7 +84251,7 @@ var ProgramView = /*#__PURE__*/function () {
             that.editImagesBanner(socketSynopsis);
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#device-size").load("imports #device-size-edit");
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".device-size").load("imports #device-size-edit");
         });
       });
     }

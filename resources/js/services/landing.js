@@ -198,6 +198,9 @@ function getChapterInfo(data, clase) {
 
             var daysSlider = "";
             //Pegamos el nombre del mes y el año
+            $(".slider-calendar-current-date").html(
+                getMonthAndYear(date.getMonth())
+            );
             $("#slider-calendar-current-date").html(
                 getMonthAndYear(date.getMonth())
             );

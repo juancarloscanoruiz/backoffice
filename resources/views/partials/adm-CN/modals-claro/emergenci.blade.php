@@ -66,7 +66,7 @@
                 <!-- BOTONES -->
                 <div class="content">
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack btn-acepta-modal-title">ACEPTAR</button>
                         <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
     <!-- MODAL PROMO - PROMO LANDING CANAL CLARO 1 -->
 
     <!-- MODAL LINK - ENCABEZADO LANDING CANAL CLARO 5 -->
-    <div id="modal-url" class="modal">
+    <div id="modal-url" class="modal show-url" style="z-index: 9990;">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-link-claro modal-content">
                 <!-- TEXTO  -->
@@ -141,7 +141,7 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button id="btn-acepta-url" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+                        <a href="#delete-info-url" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
             </div>
@@ -518,7 +518,7 @@
                         </section>
                         <!--Slider de calendario-->
                         <section class="col-8 mx-auto">
-                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
+                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
                             <div class="mb-5 calendar-slider">
                                 <li class="programming-item programming-item-active">
                                     <p class="mb-0">MIER</p>
@@ -1308,7 +1308,7 @@
     </div>
 
     <!--modal para perder lo hecho en los landing de edit-->
-    <div class="modal" data-backdrop-limit="1" id="delete-info-claro" tabindex="-1" role="dialog">
+    <div class="modal" data-backdrop-limit="1" id="delete-info-claro" tabindex="-1" role="dialog" style="z-index: 9991;">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">

@@ -1,5 +1,5 @@
 <!--modal para perder lo hecho en los landing de edit-->
-<div class="modal" data-backdrop-limit="1" id="delete-info-claro" tabindex="-1" role="dialog" style="z-index: 9999;">
+<div class="modal" data-backdrop-limit="1" id="delete-info-claro" tabindex="-1" role="dialog" style="z-index: 9991;">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
