@@ -1282,6 +1282,7 @@ function eventsGrilla() {
     //Previsualizar el video que subió el usuario en el landing de concert channel
     let videoPromoInput = $("#video-promo-file-concert");
     $("#video-promo-file-concert").change(function () {
+        console.log('metodo concert')
         $("#image-promo-concert").val("");
         if (this.files && this.files[0]) {
             let file = this.files[0];
@@ -1299,13 +1300,8 @@ function eventsGrilla() {
                 // The blob gives us a URL to the video file:
                 let url = window.URL.createObjectURL(videoBlob);
 
-                $("#concert-promo-container").html(
-                    `
-                        <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
-                            <source src="${url}" type="video/mp4">
-                        </video>
-                        `
-                );
+                $("#concert-promo-container").html(`<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay><source src="${url}" type="video/mp4"></video>`);
+                $("#cinema-promo-container").html(`<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay><source src="${url}" type="video/mp4"></video>`);
             };
         }
     });
@@ -3240,7 +3236,6 @@ function eventsGrilla() {
                         setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
-
                             addImagesModalBanner();
                         }, 3000);
 
@@ -3359,10 +3354,10 @@ function eventsGrilla() {
                         setTimeout(function () {
                             $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
-                           let  id_slide = json.id_slide;
-                             let  totales = json.totales;
+                            let id_slide = json.id_slide;
+                            let totales = json.totales;
 
-                            addImagesModalBanner(id_slide,totales);
+                            addImagesModalBanner(id_slide, totales);
                         }, 3000);
 
                         break;
@@ -3481,10 +3476,10 @@ function eventsGrilla() {
 
                             $("#loader1").remove();
 
-                            let  id_slide = json.id_slide;
-                            let  totales = json.totales;
+                            let id_slide = json.id_slide;
+                            let totales = json.totales;
 
-                           addImagesModalBanner(id_slide,totales);
+                            addImagesModalBanner(id_slide, totales);
                         }, 3000);
 
                         break;

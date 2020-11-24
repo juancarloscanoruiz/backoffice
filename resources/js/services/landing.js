@@ -4414,34 +4414,19 @@ function getContentClaroCinema(type) {
 
                     case "promo-cinema":
                         $(".modal-promo-cinema").modal("show");
-                        $(".upload-promo-button").attr(
-                            "key",
-                            "block_3_video_url"
-                        );
+                        $(".upload-promo-button").attr("key", "block_3_video_url");
                         //Checamos si existe el vídeo de promoción en concert channel
                         if (data.data.block_3_video_url) {
                             let promoContainer = $("#cinema-promo-container");
                             //Verificamos si la url es de una imagen
-                            if (
-                                data.data.block_3_video_url.match(
-                                    /\.(jpeg|jpg|gif|png)$/
-                                ) != null
-                            ) {
-                                promoContainer.html(`
-                                <img src="${data.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">
-                                `);
+                            if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                                promoContainer.html(`<img src="${data.data.block_3_video_url}" alt="" class="d-flex w-100" id="promo-image-concert">`);
                             } else {
                                 //La url es de un video
-                                promoContainer.html(`
-                                <video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay>
-                                <source src="${data.data.block_3_video_url}" type="video/mp4">
-                                 </video>
-                                `);
+                                promoContainer.html(`<video class="w-100 h-100" id="video-promo-concert" style="display: block" controls muted autoplay><source src="${data.data.block_3_video_url}" type="video/mp4"></video>`);
                             }
                         } else {
-                            promoContainer.html(`
-                            <img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">
-                            `);
+                            promoContainer.html(`<img src="./images/synopsis/background-promo.svg" alt="" class="d-flex w-100" id="promo-image-concert">`);
                         }
                         break;
                     case "title-carrusel1":

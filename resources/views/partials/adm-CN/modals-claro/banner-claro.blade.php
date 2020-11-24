@@ -10,7 +10,7 @@
                         <!--dots-->
                         <div class="programming-slider-dots-canal-claro mt-5 mb-5"></div>
                         <!--add slide-->
-                        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3">
+                        <img src="{{ asset('images/add-icon.svg') }}" class="add-banner-image cursor-pointer mb-3" style="width: 50px;">
                     </div>
                     <!--Calendar-->
                     <div class="d-flex align-items-center">

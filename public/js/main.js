@@ -91312,6 +91312,7 @@ function eventsGrilla() {
 
   var videoPromoInput = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert");
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-file-concert").change(function () {
+    console.log('metodo concert');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#image-promo-concert").val("");
 
     if (this.files && this.files[0]) {
@@ -91328,7 +91329,8 @@ function eventsGrilla() {
         }); // The blob gives us a URL to the video file:
 
         var url = window.URL.createObjectURL(videoBlob);
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("\n                        <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                            <source src=\"".concat(url, "\" type=\"video/mp4\">\n                        </video>\n                        "));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-promo-container").html("<video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay><source src=\"".concat(url, "\" type=\"video/mp4\"></video>"));
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cinema-promo-container").html("<video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay><source src=\"".concat(url, "\" type=\"video/mp4\"></video>"));
       };
     }
   });
@@ -97071,13 +97073,13 @@ function getContentClaroCinema(type) {
 
 
               if (data.data.block_3_video_url.match(/\.(jpeg|jpg|gif|png)$/) != null) {
-                _promoContainer2.html("\n                                <img src=\"".concat(data.data.block_3_video_url, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                                "));
+                _promoContainer2.html("<img src=\"".concat(data.data.block_3_video_url, "\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">"));
               } else {
                 //La url es de un video
-                _promoContainer2.html("\n                                <video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay>\n                                <source src=\"".concat(data.data.block_3_video_url, "\" type=\"video/mp4\">\n                                 </video>\n                                "));
+                _promoContainer2.html("<video class=\"w-100 h-100\" id=\"video-promo-concert\" style=\"display: block\" controls muted autoplay><source src=\"".concat(data.data.block_3_video_url, "\" type=\"video/mp4\"></video>"));
               }
             } else {
-              promoContainer.html("\n                            <img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">\n                            ");
+              promoContainer.html("<img src=\"./images/synopsis/background-promo.svg\" alt=\"\" class=\"d-flex w-100\" id=\"promo-image-concert\">");
             }
 
             break;
@@ -98379,12 +98381,13 @@ function sendEmailResetPassword(input) {
 /*!*******************************************!*\
   !*** ./resources/js/store/eventos/evn.js ***!
   \*******************************************/
-/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose */
+/*! exports provided: previewImage, previewVideo, modalUrl, modalClose, modalUrlClose */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewImage", function() { return previewImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "previewVideo", function() { return previewVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrl", function() { return modalUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClose", function() { return modalClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrlClose", function() { return modalUrlClose; });
@@ -98404,6 +98407,18 @@ function previewImage() {
 
       reader.readAsDataURL(evn.files[0]);
     }
+  });
+}
+
+function previewVideo() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewVideo').on('change', function (e) {// let evn = e.target;
+    // let reader = new FileReader();
+    // if (evn.files && evn.files[0]) {
+    //     reader.onload = (e) => {
+    //         $('.' + evn.id).attr('src', e.target.result)
+    //     }
+    //     reader.readAsDataURL(evn.files[0]);
+    // }
   });
 }
 

@@ -13,6 +13,19 @@ function previewImage() {
     })
 }
 
+function previewVideo() {
+    $('.previewVideo').on('change', function (e) {
+        // let evn = e.target;
+        // let reader = new FileReader();
+        // if (evn.files && evn.files[0]) {
+        //     reader.onload = (e) => {
+        //         $('.' + evn.id).attr('src', e.target.result)
+        //     }
+        //     reader.readAsDataURL(evn.files[0]);
+        // }
+    })
+}
+
 function modalUrl() {
     let evn;
     $('.show-url').on('click', function () {
@@ -39,4 +52,4 @@ function modalUrlClose() {
     })
 }
 
-export { previewImage, modalUrl, modalClose, modalUrlClose }
+export { previewImage, previewVideo, modalUrl, modalClose, modalUrlClose }
