@@ -93372,6 +93372,7 @@ function eventsGrilla() {
       file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
     }
 
+    console.log(file);
     var landing = "Claro Cinema";
     var data = new FormData();
     var key = "block_3_video_url";
@@ -93380,6 +93381,7 @@ function eventsGrilla() {
     data.append("key", key);
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLandingCinema"])(data);
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
   }); // HOME
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#logo_home").change(function () {
@@ -96103,6 +96105,7 @@ function editPromoLandingCinema(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
 } //Conseguir la programación de un landing por primera vez, abriendo el modal con programas
 
 
