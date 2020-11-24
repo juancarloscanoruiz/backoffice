@@ -3876,7 +3876,8 @@ function getPromotionalsProgramsCarousel(
             }
 
             //Mostramos el modal
-            $(".modal-edit-program-carrusel").modal("show");
+            // $(".modal-edit-program-carrusel").modal("show");
+            $("#modaledicarrusel").modal("show");
             //Volvemos a crear el slider
             try {
                 $(".carrusel1-slider-concert").slick("unslick");
