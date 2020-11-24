@@ -93802,6 +93802,15 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit").click(function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-active").attr("rel");
     console.log(id);
+
+    if (id == undefined) {
+      var _programacion = document.getElementById('navbar-prev-programacion');
+
+      if (_programacion) {
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+      }
+    }
+
     var canalClaro = "#navbar-prev-canal-claro";
     var programacion = "#navbar-prev-programacion";
     var home = "#navbar-prev-home";
@@ -93825,6 +93834,15 @@ function eventsGrilla() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev").click(function () {
     var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".navbar-progra-active").attr("rel");
     console.log(id);
+
+    if (id == undefined) {
+      var _programacion2 = document.getElementById('navbar-prev-programacion');
+
+      if (_programacion2) {
+        Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confPrevProgramacion);
+      }
+    }
+
     var canalClaro = "#navbar-prev-canal-claro";
     var programacion = "#navbar-prev-programacion";
     var home = "#navbar-prev-home";

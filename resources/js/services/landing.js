@@ -2530,6 +2530,7 @@ function editPromoLandingCinema(data) {
             $(".loader-view-container").remove();
         }
     });
+    $(".loader-view-container").remove();
 }
 
 //Conseguir la programación de un landing por primera vez, abriendo el modal con programas

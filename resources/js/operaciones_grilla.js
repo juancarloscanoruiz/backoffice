@@ -4882,6 +4882,8 @@ function eventsGrilla() {
             file = $("#link-promo-concert").val();
         }
 
+        console.log(file)
+
         let landing = "Claro Cinema";
         let data = new FormData();
         let key = "block_3_video_url";
@@ -4893,6 +4895,7 @@ function eventsGrilla() {
             $("#navbar-prev-claro-cinema iframe"),
             confLandingClaroCinema
         );
+        $("#loader1").remove();
     });
 
     // HOME
@@ -5343,6 +5346,13 @@ function eventsGrilla() {
 
         console.log(id)
 
+        if (id == undefined) {
+            let programacion = document.getElementById('navbar-prev-programacion')
+            if (programacion) {
+                resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+            }
+        }
+
         let canalClaro = "#navbar-prev-canal-claro";
         let programacion = "#navbar-prev-programacion";
         let home = "#navbar-prev-home";
@@ -5361,12 +5371,20 @@ function eventsGrilla() {
                 resetIframe($("#navbar-prev-home iframe"), LandingHomeClaro);
                 break;
         }
+
     })
 
     $("#prev").click(function () {
         let id = $(".navbar-progra-active").attr("rel");
 
         console.log(id)
+
+        if (id == undefined) {
+            let programacion = document.getElementById('navbar-prev-programacion')
+            if (programacion) {
+                resetIframe($("#navbar-prev-programacion iframe"), confPrevProgramacion);
+            }
+        }
 
         let canalClaro = "#navbar-prev-canal-claro";
         let programacion = "#navbar-prev-programacion";
