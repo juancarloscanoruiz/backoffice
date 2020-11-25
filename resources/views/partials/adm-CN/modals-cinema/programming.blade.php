@@ -202,7 +202,7 @@
                 </div>
                 <div class="content">
                     <div class="d-flex justify-content-center">
-                        <button id="btn-acepta-modal-promo" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
+                        <button id="btn-acepta-modal-promo" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack" data-dismiss="modal">ACEPTAR</button>
                         <a href="#delete-info-programming" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>

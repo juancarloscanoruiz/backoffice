@@ -775,8 +775,8 @@ function eventsGrilla() {
                         let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
-                        // getProgrammingLanding(currentDate, "claro-cinema");
-                        getProgrammingLanding(currentDate, "canal-claro", "");
+                        getProgrammingLanding(currentDate, "claro-cinema");
+                        // getProgrammingLanding(currentDate, "canal-claro", "");
                         break;
                     case "header-landing-cinema":
                         modalUrlClose()
@@ -1212,12 +1212,12 @@ function eventsGrilla() {
                     break;
             }
 
-            if (landing == "claro-cinema") {
-                resetIframe(
-                    $("#navbar-prev-home-cinema iframe"),
-                    LandingHomeCinema
-                );
-            }
+            // if (landing == "claro-cinema") {
+            //     resetIframe(
+            //         $("#navbar-prev-home-cinema iframe"),
+            //         LandingHomeCinema
+            //     );
+            // }
             if (landing == "concert-channel") {
                 resetIframe(
                     $("#navbar-prev-home-concert iframe"),
@@ -3232,6 +3232,7 @@ function eventsGrilla() {
                             `;
                 switch (json.type) {
                     case "program":
+                        $('.edit-landing-modal-button').attr('landing', 'cinema')
                         getChapterInfo(json.chapterId, 'thumbnail-header-cinema');
                         break;
                     case "slider-pagination":
@@ -3470,6 +3471,7 @@ function eventsGrilla() {
                             `;
                 switch (json.type) {
                     case "program":
+                        $('.edit-landing-modal-button').attr('landing', 'canal')
                         getChapterInfo(json.chapterId, 'thumbnail-header-claro');
                         break;
                     case "slider-pagination":
@@ -3515,7 +3517,19 @@ function eventsGrilla() {
         }
     };
     $(".edit-landing-modal-button").click(function () {
-        resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        let landing = $(this).attr('landing')
+        if (landing == 'canal') {
+            $("#navbar-prev-programacion iframe").remove();
+            resetIframe($("#navbar-prev-programacion iframe"), confIframe);
+        }
+        if (landing == 'concert') {
+
+        }
+        if (landing == 'cinema') {
+            $("#navbar-prev-programacion-cinema iframe").remove();
+            resetIframe($("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+        }
+
     });
     ////////////
     let navbarPrograContainer = document.getElementById(
@@ -5327,12 +5341,12 @@ function eventsGrilla() {
     //     });
     // })
 
-    $("#edit-program-modal-button").click(function () {
-        resetIframe(
-            $("#navbar-prev-concert-channel iframe"),
-            confLandingConcertChannel
-        );
-    });
+    // $("#edit-program-modal-button").click(function () {
+    //     resetIframe(
+    //         $("#navbar-prev-concert-channel iframe"),
+    //         confLandingConcertChannel
+    //     );
+    // });
 
     $('#acepta_carrusel_home').on('click', function () {
         let landing = $(this).attr('landing');

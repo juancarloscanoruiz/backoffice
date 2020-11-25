@@ -75193,10 +75193,10 @@ function eventsGrilla() {
 
             var _year2 = _date.getUTCFullYear();
 
-            var _currentDate = "".concat(_year2, "-").concat(_month, "-").concat(_day); // getProgrammingLanding(currentDate, "claro-cinema");
+            var _currentDate = "".concat(_year2, "-").concat(_month, "-").concat(_day);
 
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "claro-cinema"); // getProgrammingLanding(currentDate, "canal-claro", "");
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "canal-claro", "");
             break;
 
           case "header-landing-cinema":
@@ -75527,11 +75527,13 @@ function eventsGrilla() {
 
       default:
         break;
-    }
+    } // if (landing == "claro-cinema") {
+    //     resetIframe(
+    //         $("#navbar-prev-home-cinema iframe"),
+    //         LandingHomeCinema
+    //     );
+    // }
 
-    if (landing == "claro-cinema") {
-      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-cinema iframe"), LandingHomeCinema);
-    }
 
     if (landing == "concert-channel") {
       Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
@@ -76243,6 +76245,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "program":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').attr('landing', 'cinema');
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId, 'thumbnail-header-cinema');
             break;
 
@@ -76414,6 +76417,7 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "program":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').attr('landing', 'canal');
             Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(json.chapterId, 'thumbnail-header-claro');
             break;
 
@@ -76452,7 +76456,19 @@ function eventsGrilla() {
     }
   };
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-modal-button").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('landing');
+
+    if (landing == 'canal') {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe").remove();
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe"), confIframe);
+    }
+
+    if (landing == 'concert') {}
+
+    if (landing == 'cinema') {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe").remove();
+      Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe"), confProgramacionClaroCinema);
+    }
   }); ////////////
 
   var navbarPrograContainer = document.getElementById("navbar-prev-programacion");
@@ -78054,10 +78070,13 @@ function eventsGrilla() {
   //         fileSrt.readAsDataURL(data.files[0]);
   //     });
   // })
+  // $("#edit-program-modal-button").click(function () {
+  //     resetIframe(
+  //         $("#navbar-prev-concert-channel iframe"),
+  //         confLandingConcertChannel
+  //     );
+  // });
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-program-modal-button").click(function () {
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#acepta_carrusel_home').on('click', function () {
     var landing = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('landing');
     console.log(landing);

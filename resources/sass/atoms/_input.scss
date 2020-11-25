@@ -51,7 +51,8 @@ input[type="radio"]:checked+.a-btn-check:before {
 
 input[type="radio"]:checked+.hombre-estilo {
     background: $lemongreen;
-    color: $white;
+    // color: $white;
+    color: $black;
     border: none;
 }
 
@@ -98,13 +99,15 @@ option:checked+.roles {
 
 input[type="radio"]:checked+.mujer-estilo {
     background: $lemongreen;
-    color: $white;
+    // color: $white;
+    color: $black;
     border: none;
 }
 
 input[type="radio"]:checked+.mujer-estilo1 {
     background: $lemongreen;
-    color: $white;
+    // color: $white;
+    color: $black;
     border: none;
 }
 
