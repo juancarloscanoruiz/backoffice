@@ -85,6 +85,8 @@ import { previewPage } from "./preview/prev.js";
 
 import { modalClose, modalUrlClose } from "./store/eventos/evn";
 
+import { getProgramacion } from './store/getters'
+
 function eventsGrilla() {
     const baseURL =
         "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
@@ -240,10 +242,19 @@ function eventsGrilla() {
         container: document.getElementById("navbar-prev-home-cinema"),
         onMessage: function (message, origin) {
             let json = JSON.parse(message);
+            console.log(json.type)
             if (typeof json == "object") {
                 switch (json.type) {
                     case "slider-pagination":
                         landingView.renderHomeBanner();
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "claro-cinema");
                         break;
                     case "cinema-home-header":
                         getContentHomeHeaderCinema();
@@ -764,7 +775,7 @@ function eventsGrilla() {
                             <img src="./images/loader.gif" class="loader" alt="">
                         </div>
                             `;
-
+                console.log(json.type)
                 switch (json.type) {
                     case "slider-pagination":
                         getContentClaroCinema("slider-pagination");
@@ -3239,9 +3250,8 @@ function eventsGrilla() {
                         $("body").append(loader);
 
                         setTimeout(function () {
-                            $(".modal-programming-carousel").modal("show");
                             $("#loader1").remove();
-                            addImagesModalBanner();
+                            getProgramacion(1)
                         }, 3000);
 
                         break;

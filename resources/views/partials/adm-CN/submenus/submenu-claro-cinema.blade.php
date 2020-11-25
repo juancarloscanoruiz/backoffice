@@ -320,24 +320,27 @@
 
     <!--HOME-->
 
-    @include('components.modals.generic.advertencia')
-    @include('components.modals.generic.advertencia-url')
-    @include('components.modals.generic.url')
+</body>
+@include('components.modals.banner')
 
-    @include('partials.adm-CN.modals-claro.emergenci');
+@include('components.modals.generic.advertencia')
+@include('components.modals.generic.advertencia-url')
+@include('components.modals.generic.url')
 
-    @include('partials.adm-CN.modal-home.carrusel')
+@include('partials.adm-CN.modals-claro.emergenci');
 
-    @include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'claro-cinema']);
-    @include('partials.adm-CN.modal-home.logo');
-    @include('partials.adm-CN.sinopsis');
-    @include('partials.adm-CN.modals-cinema.titulo-cinema')
-    @include('partials.adm-CN.modals-cinema.promo-cinema')
-    @include('partials.adm-CN.modals-cinema.banner-cinema')
-    @include('partials.adm-CN.modals-cinema.encabezado-cinema')
-    @include('partials.adm-CN.modals-concert.carrusel');
-    @include('partials.adm-CN.modals-cinema.programming');
+@include('partials.adm-CN.modal-home.carrusel')
 
-    @include('partials.adm-CN.modal-generic.advertencia');
-    @include('partials.adm-CN.modal-generic.url');
+@include('partials.adm-CN.modals-home.home-encabezado', ['landing' => 'claro-cinema']);
+@include('partials.adm-CN.modal-home.logo');
+@include('partials.adm-CN.sinopsis');
+@include('partials.adm-CN.modals-cinema.titulo-cinema')
+@include('partials.adm-CN.modals-cinema.promo-cinema')
+@include('partials.adm-CN.modals-cinema.banner-cinema')
+@include('partials.adm-CN.modals-cinema.encabezado-cinema')
+@include('partials.adm-CN.modals-concert.carrusel');
+@include('partials.adm-CN.modals-cinema.programming');
+
+@include('partials.adm-CN.modal-generic.advertencia');
+@include('partials.adm-CN.modal-generic.url');
 </body>

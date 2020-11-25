@@ -1,6 +1,9 @@
 import $ from "jquery";
 
-import { setImgCarruselHome } from './setters'
+import { setImgCarruselHome, setBannerProgramacion } from './setters'
+
+const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
+var img = [], index = [];
 
 function setImgCarruselVertical() {
     $('.previewImage').on('change', function (e) {
@@ -15,4 +18,27 @@ function setImgCarruselVertical() {
     })
 }
 
-export { setImgCarruselVertical }
+function setBanner(id) {
+    $('.previewImage').on('change', function (e) {
+        img.push(e.target.files[0]);
+        index.push($(this).attr('index'));
+    })
+
+    $('#btn-acepta-banner').on('click', function () {
+        $("body").append(LOADER);
+        let data = new FormData();
+        for (let i = 0; i < img.length; i++) {
+            let file = "file" + (i + 1).toString();
+            data.append(file, img[i]);
+        }
+        data.append("positions", index);
+        data.append("date", $("#programming-modal").val());
+        if (id == 1) {
+            setBannerProgramacion(data)
+        }
+        img = [];
+        index = [];
+    })
+}
+
+export { setImgCarruselVertical, setBanner }

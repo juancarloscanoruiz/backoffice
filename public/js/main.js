@@ -89064,6 +89064,75 @@ var PrevImageHelper = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/index.js":
+/*!*******************************!*\
+  !*** ./resources/js/index.js ***!
+  \*******************************/
+/*! exports provided: claroCinemaProgramacion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "claroCinemaProgramacion", function() { return claroCinemaProgramacion; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/landing.js */ "./resources/js/services/landing.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
+/* harmony import */ var _services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/generalSchedule.js */ "./resources/js/services/generalSchedule.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+
+
+var URLBASE = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>"; // PROGRAMACION
+
+function claroCinemaProgramacion() {
+  var iframeProgramacion = {
+    remote: URLBASE + 'programacion-edi-cinema.php',
+    container: document.getElementById("navbar-prev-programacion-cinema"),
+    onMessage: function onMessage(message, origin) {
+      var json = JSON.parse(message);
+
+      if (_typeof(json) == "object") {
+        switch (json.type) {
+          case "slider-pagination":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacion"])(1);
+            break;
+
+          case "menu-logos":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+            setTimeout(function () {
+              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_4__["addImagesModalIcons"])();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-icons").modal("show");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+            }, 3000);
+            break;
+
+          case "program":
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('.edit-landing-modal-button').attr('landing', 'cinema');
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_2__["getChapterInfo"])(json.chapterId, 'thumbnail-header-cinema');
+            break;
+        }
+      }
+
+      this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+      this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+    }
+  };
+  new easyXDM.Socket(iframeProgramacion);
+} // PROGRAMACION
+
+
+
+
+/***/ }),
+
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
@@ -90426,6 +90495,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_slick_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./vendor/slick.js */ "./resources/js/vendor/slick.js");
 /* harmony import */ var _preview_prev_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./preview/prev.js */ "./resources/js/preview/prev.js");
 /* harmony import */ var _store_eventos_evn__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/eventos/evn */ "./resources/js/store/eventos/evn.js");
+/* harmony import */ var _store_getters__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store/getters */ "./resources/js/store/getters.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 //JQUERY
@@ -90448,6 +90518,7 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
  //Métodos para mostrar las vistas de "Landing" o "Grilla"
 
  //Config
+
 
 
 
@@ -90573,11 +90644,26 @@ function eventsGrilla() {
     container: document.getElementById("navbar-prev-home-cinema"),
     onMessage: function onMessage(message, origin) {
       var json = JSON.parse(message);
+      console.log(json.type);
 
       if (_typeof(json) == "object") {
         switch (json.type) {
           case "slider-pagination":
             landingView.renderHomeBanner();
+            break;
+
+          case "home-claro-carrousel-main":
+            var _date = new Date();
+
+            var _day = ("0" + _date.getUTCDate()).slice(-2);
+
+            var _month = ("0" + (_date.getUTCMonth() + 1)).slice(-2);
+
+            var _year2 = _date.getUTCFullYear();
+
+            var _currentDate = "".concat(_year2, "-").concat(_month, "-").concat(_day);
+
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "claro-cinema");
             break;
 
           case "cinema-home-header":
@@ -90910,6 +90996,7 @@ function eventsGrilla() {
 
       if (_typeof(json) == "object") {
         var loader = "\n                        <div class=\"loader-view-container\" id=\"loader1\">\n                            <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n                        </div>\n                            ";
+        console.log(json.type);
 
         switch (json.type) {
           case "slider-pagination":
@@ -90917,17 +91004,17 @@ function eventsGrilla() {
             break;
 
           case "current-programming-cinema":
-            var _date = new Date();
+            var _date2 = new Date();
 
-            var _day = ("0" + _date.getUTCDate()).slice(-2);
+            var _day2 = ("0" + _date2.getUTCDate()).slice(-2);
 
-            var _month = ("0" + (_date.getUTCMonth() + 1)).slice(-2);
+            var _month2 = ("0" + (_date2.getUTCMonth() + 1)).slice(-2);
 
-            var _year2 = _date.getUTCFullYear();
+            var _year3 = _date2.getUTCFullYear();
 
-            var _currentDate = "".concat(_year2, "-").concat(_month, "-").concat(_day);
+            var _currentDate2 = "".concat(_year3, "-").concat(_month2, "-").concat(_day2);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate, "claro-cinema"); // getProgrammingLanding(currentDate, "canal-claro", "");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "claro-cinema"); // getProgrammingLanding(currentDate, "canal-claro", "");
 
             break;
 
@@ -91020,17 +91107,17 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "current-programming-concert":
-            var _date2 = new Date();
+            var _date3 = new Date();
 
-            var _day2 = ("0" + _date2.getUTCDate()).slice(-2);
+            var _day3 = ("0" + _date3.getUTCDate()).slice(-2);
 
-            var _month2 = ("0" + (_date2.getUTCMonth() + 1)).slice(-2);
+            var _month3 = ("0" + (_date3.getUTCMonth() + 1)).slice(-2);
 
-            var _year3 = _date2.getUTCFullYear();
+            var _year4 = _date3.getUTCFullYear();
 
-            var _currentDate2 = "".concat(_year3, "-").concat(_month2, "-").concat(_day2);
+            var _currentDate3 = "".concat(_year4, "-").concat(_month3, "-").concat(_day3);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "concert-channel", "");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "concert-channel", "");
             break;
 
           case "header-landing-concert":
@@ -91444,9 +91531,9 @@ function eventsGrilla() {
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-            var _date3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
 
-            value = "".concat(_date3[2], "-").concat(_date3[1], "-").concat(_date3[0], " 00:00:00");
+            value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91455,15 +91542,15 @@ function eventsGrilla() {
 
         case "in_home_expiration":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-            var _date4 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
-            value = "".concat(_date4[2], "-").concat(_date4[1], "-").concat(_date4[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+            value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-            var _date5 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+            var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
-            value = "".concat(_date5[2], "-").concat(_date5[1], "-").concat(_date5[0], " 00:00:00");
+            value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91472,15 +91559,15 @@ function eventsGrilla() {
 
         case "in_landing_begin":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-            var _date6 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+            var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
-            value = "".concat(_date6[2], "-").concat(_date6[1], "-").concat(_date6[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+            value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-            var _date7 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+            var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
-            value = "".concat(_date7[2], "-").concat(_date7[1], "-").concat(_date7[0], " 00:00:00");
+            value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91489,15 +91576,15 @@ function eventsGrilla() {
 
         case "in_landing_expiration":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-            var _date8 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+            var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
-            value = "".concat(_date8[2], "-").concat(_date8[1], "-").concat(_date8[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+            value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-            var _date9 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+            var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
-            value = "".concat(_date9[2], "-").concat(_date9[1], "-").concat(_date9[0], " 00:00:00");
+            value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91562,15 +91649,15 @@ function eventsGrilla() {
       switch (key) {
         case "in_home_begin":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-            var _date10 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+            var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
 
-            value = "".concat(_date10[2], "-").concat(_date10[1], "-").concat(_date10[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+            value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-            var _date11 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+            var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
 
-            value = "".concat(_date11[2], "-").concat(_date11[1], "-").concat(_date11[0], " 00:00:00");
+            value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91579,15 +91666,15 @@ function eventsGrilla() {
 
         case "in_home_expiration":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-            var _date12 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+            var _date13 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
 
-            value = "".concat(_date12[2], "-").concat(_date12[1], "-").concat(_date12[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
+            value = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-end").val()) {
-            var _date13 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
+            var _date14 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-end").val().split("-");
 
-            value = "".concat(_date13[2], "-").concat(_date13[1], "-").concat(_date13[0], " 00:00:00");
+            value = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91596,15 +91683,15 @@ function eventsGrilla() {
 
         case "in_landing_begin":
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-            var _date14 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+            var _date15 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
 
-            value = "".concat(_date14[2], "-").concat(_date14[1], "-").concat(_date14[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+            value = "".concat(_date15[2], "-").concat(_date15[1], "-").concat(_date15[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-            var _date15 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+            var _date16 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
 
-            value = "".concat(_date15[2], "-").concat(_date15[1], "-").concat(_date15[0], " 00:00:00");
+            value = "".concat(_date16[2], "-").concat(_date16[1], "-").concat(_date16[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91614,15 +91701,15 @@ function eventsGrilla() {
         case "in_landing_expiration":
           //Si se escribió la hora y la fecha
           if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-            var _date16 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
+            var _date17 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-date-end").val().split("-");
 
-            value = "".concat(_date16[2], "-").concat(_date16[1], "-").concat(_date16[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
+            value = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel  .edit-landing-time-end").val());
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-            var _date17 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+            var _date18 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
 
-            value = "".concat(_date17[2], "-").concat(_date17[1], "-").concat(_date17[0], " 00:00:00");
+            value = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0], " 00:00:00");
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).blur();
           }
@@ -91650,9 +91737,9 @@ function eventsGrilla() {
           value = "".concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val(), " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val());
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-begin").val()) {
-          var _date18 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
+          var _date19 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-");
 
-          value = "".concat(_date18[2], "-").concat(_date18[1], "-").concat(_date18[0], " 00:00:00");
+          value = "".concat(_date19[2], "-").concat(_date19[1], "-").concat(_date19[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91660,14 +91747,14 @@ function eventsGrilla() {
 
       case "in_home_expiration":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
-          var _date19 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date19[2], "-").concat(_date19[1], "-").concat(_date19[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
           var _date20 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
 
-          value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " 00:00:00");
+          value = "".concat(_date20[2], "-").concat(_date20[1], "-").concat(_date20[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-time-expiration").val()) {
+          var _date21 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date21[2], "-").concat(_date21[1], "-").concat(_date21[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91675,14 +91762,14 @@ function eventsGrilla() {
 
       case "in_landing_begin":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
-          var _date21 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date21[2], "-").concat(_date21[1], "-").concat(_date21[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
           var _date22 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
 
-          value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " 00:00:00");
+          value = "".concat(_date22[2], "-").concat(_date22[1], "-").concat(_date22[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-begin").val()) {
+          var _date23 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91690,14 +91777,14 @@ function eventsGrilla() {
 
       case "in_landing_expiration":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
-          var _date23 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date23[2], "-").concat(_date23[1], "-").concat(_date23[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
           var _date24 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
 
-          value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " 00:00:00");
+          value = "".concat(_date24[2], "-").concat(_date24[1], "-").concat(_date24[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-time-end").val()) {
+          var _date25 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91718,14 +91805,14 @@ function eventsGrilla() {
     switch (key) {
       case "in_home_begin":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-          var _date25 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val();
+          var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val();
 
-          value = "".concat(_date25[2], "-").concat(_date25[1], "-").concat(_date25[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
+          value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val());
           chapter_id, key, value;
         } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-begin").val()) {
-          var _date26 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
+          var _date27 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-begin").val().split("-");
 
-          value = "".concat(_date26[2], "-").concat(_date26[1], "-").concat(_date26[0], " 00:00:00");
+          value = "".concat(_date27[2], "-").concat(_date27[1], "-").concat(_date27[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91733,15 +91820,15 @@ function eventsGrilla() {
 
       case "in_home_expiration":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
-          var _date27 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
-
-          value = "".concat(_date27[2], "-").concat(_date27[1], "-").concat(_date27[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val());
-          console.log(_date27);
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
           var _date28 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
 
-          value = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0], " 00:00:00");
+          value = "".concat(_date28[2], "-").concat(_date28[1], "-").concat(_date28[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val());
+          console.log(_date28);
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-time-expiration").val()) {
+          var _date29 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-home-date-expiration").val().split("-");
+
+          value = "".concat(_date29[2], "-").concat(_date29[1], "-").concat(_date29[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91749,14 +91836,14 @@ function eventsGrilla() {
 
       case "in_landing_begin":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
-          var _date29 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
-
-          value = "".concat(_date29[2], "-").concat(_date29[1], "-").concat(_date29[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
           var _date30 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
 
-          value = "".concat(_date30[2], "-").concat(_date30[1], "-").concat(_date30[0], " 00:00:00");
+          value = "".concat(_date30[2], "-").concat(_date30[1], "-").concat(_date30[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-begin").val()) {
+          var _date31 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-begin").val().split("-");
+
+          value = "".concat(_date31[2], "-").concat(_date31[1], "-").concat(_date31[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91764,14 +91851,14 @@ function eventsGrilla() {
 
       case "in_landing_expiration":
         if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
-          var _date31 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
-
-          value = "".concat(_date31[2], "-").concat(_date31[1], "-").concat(_date31[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val());
-          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
-        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
           var _date32 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
 
-          value = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0], " 00:00:00");
+          value = "".concat(_date32[2], "-").concat(_date32[1], "-").concat(_date32[0], " ").concat(jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val());
+          Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
+        } else if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val() && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-time-end").val()) {
+          var _date33 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-edit-program-carrusel .edit-landing-date-end").val().split("-");
+
+          value = "".concat(_date33[2], "-").concat(_date33[1], "-").concat(_date33[0], " 00:00:00");
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapter_id, key, value);
         }
 
@@ -91984,9 +92071,8 @@ function eventsGrilla() {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-carousel").modal("show");
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["addImagesModalBanner"])();
+              Object(_store_getters__WEBPACK_IMPORTED_MODULE_13__["getProgramacion"])(1);
             }, 3000);
             break;
 
@@ -92533,10 +92619,10 @@ function eventsGrilla() {
         //Verificamos si lo que estamos editando es Schedule Item Long Date
         case "day":
           //Seperamos la fecha
-          var _date33 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+          var _date34 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
 
 
-          keyValue = "".concat(_date33[2], "-").concat(_date33[1], "-").concat(_date33[0]);
+          keyValue = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]);
           Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
           break;
         //Verificamos si el campo que estamos editando es el año de producción
@@ -92556,43 +92642,43 @@ function eventsGrilla() {
           if (schedule == "in_landing_begin") {
             //Obtenemos el div padre para saber qué horario y fecha andamos modificando
             //Obteemos la fecha y la dividimos
-            var _date34 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+            var _date35 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-            var _day3 = "".concat(_date34[2], "-").concat(_date34[1], "-").concat(_date34[0]);
+            var _day4 = "".concat(_date35[2], "-").concat(_date35[1], "-").concat(_date35[0]);
 
             var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
             //En caso de tener ambos valores, hacemos al petición
 
-            if (_day3 != "" && hours != "") {
-              keyValue = "".concat(_day3, " ").concat(hours);
+            if (_day4 != "" && hours != "") {
+              keyValue = "".concat(_day4, " ").concat(hours);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, mandamos la hora en 0
-            else if (_day3 != "" && hours == "") {
+            else if (_day4 != "" && hours == "") {
                 hours = "00:00:00";
-                keyValue = "".concat(_day3, " ").concat(hours);
+                keyValue = "".concat(_day4, " ").concat(hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
               }
           } //Verificamos si es la fecha fin
           else if (schedule == "in_landing_expiration") {
-              var _date35 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+              var _date36 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
               var _hours = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-              var _day4 = "".concat(_date35[2], "-").concat(_date35[1], "-").concat(_date35[0]); //En caso de tener ambos valores, hacemos la petición
+              var _day5 = "".concat(_date36[2], "-").concat(_date36[1], "-").concat(_date36[0]); //En caso de tener ambos valores, hacemos la petición
 
 
-              if (_date35 != "" && _hours != "") {
-                var _day5 = "".concat(_date35[2], "-").concat(_date35[1], "-").concat(_date35[0]);
+              if (_date36 != "" && _hours != "") {
+                var _day6 = "".concat(_date36[2], "-").concat(_date36[1], "-").concat(_date36[0]);
 
-                keyValue = "".concat(_day5, " ").concat(_hours);
+                keyValue = "".concat(_day6, " ").concat(_hours);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
               } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-              else if (_date35 != "" && _hours == "") {
+              else if (_date36 != "" && _hours == "") {
                   _hours = "00:00:00";
-                  keyValue = "".concat(_day4, " ").concat(_hours);
+                  keyValue = "".concat(_day5, " ").concat(_hours);
                   Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
                 }
             }
@@ -92604,40 +92690,40 @@ function eventsGrilla() {
 
           if (scheduleHome == "in_home_begin") {
             //Obtenemos la fecha
-            var _date36 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
+            var _date37 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-day").val().split("-");
 
-            var _day6 = "".concat(_date36[2], "-").concat(_date36[1], "-").concat(_date36[0]); //Obtenemos la hora
+            var _day7 = "".concat(_date37[2], "-").concat(_date37[1], "-").concat(_date37[0]); //Obtenemos la hora
 
 
             var _hours2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date36 != "" && _hours2 != "") {
-              keyValue = "".concat(_day6, " ").concat(_hours2);
+            if (_date37 != "" && _hours2 != "") {
+              keyValue = "".concat(_day7, " ").concat(_hours2);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date36 != "" && _hours2 == "") {
+            else if (_date37 != "" && _hours2 == "") {
                 _hours2 = "00:00:00";
-                keyValue = "".concat(_day6, " ").concat(_hours2);
+                keyValue = "".concat(_day7, " ").concat(_hours2);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
               }
           } else if (scheduleHome == "in_home_expiration") {
             //Obtenemos la fecha
-            var _date37 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
+            var _date38 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-day").val().split("-");
 
-            var _day7 = "".concat(_date37[2], "-").concat(_date37[1], "-").concat(_date37[0]); //Obtenemos la hora
+            var _day8 = "".concat(_date38[2], "-").concat(_date38[1], "-").concat(_date38[0]); //Obtenemos la hora
 
 
             var _hours3 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-            if (_date37 != "" && _hours3 != "") {
-              keyValue = "".concat(_day7, " ").concat(_hours3);
+            if (_date38 != "" && _hours3 != "") {
+              keyValue = "".concat(_day8, " ").concat(_hours3);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             } //En caso de que la hora venga vacía, la igualamos a 0
-            else if (_date37 != "" && _hours3 == "") {
+            else if (_date38 != "" && _hours3 == "") {
                 _hours3 = "00:00:00";
-                keyValue = "".concat(_day7, " ").concat(_hours3);
+                keyValue = "".concat(_day8, " ").concat(_hours3);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
               }
           }
@@ -92670,10 +92756,10 @@ function eventsGrilla() {
       //Verificamos si lo que estamos editando es Schedule Item Long Date
       case "day":
         //Seperamos la fecha
-        var _date38 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
+        var _date39 = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val().split("-"); //Volvemos a unir la fecha empezando por el año y mandamos la petición
 
 
-        keyValue = "".concat(_date38[2], "-").concat(_date38[1], "-").concat(_date38[0]);
+        keyValue = "".concat(_date39[2], "-").concat(_date39[1], "-").concat(_date39[0]);
         Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, key, keyValue);
         break;
       //En caso de que el campo que estemos editando, sea el de programar publicación para landing
@@ -92685,43 +92771,43 @@ function eventsGrilla() {
         if (schedule == "in_landing_begin") {
           //Obtenemos el div padre para saber qué horario y fecha andamos modificando
           //Obteemos la fecha y la dividimos
-          var _date39 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
+          var _date40 = parent.find(".landing-start-day").val().split("-"); //Re hacemos la fecha
 
 
-          var _day8 = "".concat(_date39[2], "-").concat(_date39[1], "-").concat(_date39[0]);
+          var _day9 = "".concat(_date40[2], "-").concat(_date40[1], "-").concat(_date40[0]);
 
           var hours = parent.find(".landing-start-hours").val(); //Obtenemos hora
           //En caso de tener ambos valores, hacemos al petición
 
-          if (_day8 != "" && hours != "") {
-            keyValue = "".concat(_day8, " ").concat(hours);
+          if (_day9 != "" && hours != "") {
+            keyValue = "".concat(_day9, " ").concat(hours);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
           } //En caso de solo tener el día, mandamos la hora en 0
-          else if (_day8 != "" && hours == "") {
+          else if (_day9 != "" && hours == "") {
               hours = "00:00:00";
-              keyValue = "".concat(_day8, " ").concat(hours);
+              keyValue = "".concat(_day9, " ").concat(hours);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
             }
         } //Verificamos si es la fecha fin
         else if (schedule == "in_landing_expiration") {
-            var _date40 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
+            var _date41 = parent.find(".landing-expiration-day").val().split("-"); //Obtenemos fecha
 
 
             var _hours4 = parent.find(".landing-expiration-hours").val(); //Obtenemos hora
 
 
-            var _day9 = "".concat(_date40[2], "-").concat(_date40[1], "-").concat(_date40[0]); //En caso de tener ambos valores, hacemos la petición
+            var _day10 = "".concat(_date41[2], "-").concat(_date41[1], "-").concat(_date41[0]); //En caso de tener ambos valores, hacemos la petición
 
 
-            if (_date40 != "" && _hours4 != "") {
-              var _day10 = "".concat(_date40[2], "-").concat(_date40[1], "-").concat(_date40[0]);
+            if (_date41 != "" && _hours4 != "") {
+              var _day11 = "".concat(_date41[2], "-").concat(_date41[1], "-").concat(_date41[0]);
 
-              keyValue = "".concat(_day10, " ").concat(_hours4);
+              keyValue = "".concat(_day11, " ").concat(_hours4);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
             } //En caso de solo tener el día, la hora la igualamos a 0 y hacemos la petición
-            else if (_date40 != "" && _hours4 == "") {
+            else if (_date41 != "" && _hours4 == "") {
                 _hours4 = "00:00:00";
-                keyValue = "".concat(_day9, " ").concat(_hours4);
+                keyValue = "".concat(_day10, " ").concat(_hours4);
                 Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, schedule, keyValue);
               }
           }
@@ -92734,41 +92820,41 @@ function eventsGrilla() {
 
         if (scheduleHome == "in_home_begin") {
           //Obtenemos la fecha
-          var _date41 = parentHome.find(".home-start-day").val().split("-");
+          var _date42 = parentHome.find(".home-start-day").val().split("-");
 
-          var _day11 = "".concat(_date41[2], "-").concat(_date41[1], "-").concat(_date41[0]); //Obtenemos la hora
+          var _day12 = "".concat(_date42[2], "-").concat(_date42[1], "-").concat(_date42[0]); //Obtenemos la hora
 
 
           var _hours5 = parentHome.find(".home-start-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-          if (_date41 != "" && _hours5 != "") {
-            keyValue = "".concat(_day11, " ").concat(_hours5);
+          if (_date42 != "" && _hours5 != "") {
+            keyValue = "".concat(_day12, " ").concat(_hours5);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date41 != "" && _hours5 == "") {
+          else if (_date42 != "" && _hours5 == "") {
               _hours5 = "00:00:00";
-              keyValue = "".concat(_day11, " ").concat(_hours5);
+              keyValue = "".concat(_day12, " ").concat(_hours5);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             }
         } else if (scheduleHome == "in_home_expiration") {
           //Obtenemos la fecha
-          var _date42 = parentHome.find(".home-expiration-day").val().split("-");
+          var _date43 = parentHome.find(".home-expiration-day").val().split("-");
 
-          var _day12 = "".concat(_date42[2], "-").concat(_date42[1], "-").concat(_date42[0]); //Obtenemos la hora
+          var _day13 = "".concat(_date43[2], "-").concat(_date43[1], "-").concat(_date43[0]); //Obtenemos la hora
 
 
           var _hours6 = parentHome.find(".home-expiration-hours").val(); //Si ambos no están vacíos, hacemos la petición
 
 
-          if (_date42 != "" && _hours6 != "") {
-            _day12 = "".concat(_date42[2], "-").concat(_date42[1], "-").concat(_date42[0]);
-            keyValue = "".concat(_day12, " ").concat(_hours6);
+          if (_date43 != "" && _hours6 != "") {
+            _day13 = "".concat(_date43[2], "-").concat(_date43[1], "-").concat(_date43[0]);
+            keyValue = "".concat(_day13, " ").concat(_hours6);
             Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
           } //En caso de que la hora venga vacía, la igualamos a 0
-          else if (_date42 != "" && _hours6 == "") {
+          else if (_date43 != "" && _hours6 == "") {
               _hours6 = "00:00:00";
-              keyValue = "".concat(_day12, " ").concat(_hours6);
+              keyValue = "".concat(_day13, " ").concat(_hours6);
               Object(_services_generalSchedule_js__WEBPACK_IMPORTED_MODULE_5__["editAttributeProgram"])(chapterId, scheduleHome, keyValue);
             }
         }
@@ -93520,17 +93606,17 @@ function eventsGrilla() {
             break;
 
           case "home-claro-carrousel-main":
-            var _date43 = new Date();
+            var _date44 = new Date();
 
-            var _day13 = ("0" + _date43.getUTCDate()).slice(-2);
+            var _day14 = ("0" + _date44.getUTCDate()).slice(-2);
 
-            var _month3 = ("0" + (_date43.getUTCMonth() + 1)).slice(-2);
+            var _month4 = ("0" + (_date44.getUTCMonth() + 1)).slice(-2);
 
-            var _year4 = _date43.getUTCFullYear();
+            var _year5 = _date44.getUTCFullYear();
 
-            var _currentDate3 = "".concat(_year4, "-").concat(_month3, "-").concat(_day13);
+            var _currentDate4 = "".concat(_year5, "-").concat(_month4, "-").concat(_day14);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate3, "canal-claro");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "canal-claro");
             break;
 
           case "claro-home-header":
@@ -93583,18 +93669,18 @@ function eventsGrilla() {
             break;
 
           case "home-claro-carrousel-main":
-            var _date44 = new Date();
+            var _date45 = new Date();
 
-            var _day14 = ("0" + _date44.getUTCDate()).slice(-2);
+            var _day15 = ("0" + _date45.getUTCDate()).slice(-2);
 
-            var _month4 = ("0" + (_date44.getUTCMonth() + 1)).slice(-2);
+            var _month5 = ("0" + (_date45.getUTCMonth() + 1)).slice(-2);
 
-            var _year5 = _date44.getUTCFullYear();
+            var _year6 = _date45.getUTCFullYear();
 
-            var _currentDate4 = "".concat(_year5, "-").concat(_month4, "-").concat(_day14); // getProgrammingLanding(currentDate, "concert channel", 'home');
+            var _currentDate5 = "".concat(_year6, "-").concat(_month5, "-").concat(_day15); // getProgrammingLanding(currentDate, "concert channel", 'home');
 
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate4, "concert-channel");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "concert-channel");
             break;
 
           case "concert-home-header":
@@ -93676,17 +93762,17 @@ function eventsGrilla() {
             break;
 
           case "home-carrousel-main":
-            var _date45 = new Date();
+            var _date46 = new Date();
 
-            var _day15 = ("0" + _date45.getUTCDate()).slice(-2);
+            var _day16 = ("0" + _date46.getUTCDate()).slice(-2);
 
-            var _month5 = ("0" + (_date45.getUTCMonth() + 1)).slice(-2);
+            var _month6 = ("0" + (_date46.getUTCMonth() + 1)).slice(-2);
 
-            var _year6 = _date45.getUTCFullYear();
+            var _year7 = _date46.getUTCFullYear();
 
-            var _currentDate5 = "".concat(_year6, "-").concat(_month5, "-").concat(_day15);
+            var _currentDate6 = "".concat(_year7, "-").concat(_month6, "-").concat(_day16);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate5, "canal-claro");
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate6, "canal-claro");
             break;
 
           case "claro-home-header":
@@ -98428,11 +98514,68 @@ function sendEmailResetPassword(input) {
 
 /***/ }),
 
+/***/ "./resources/js/store/actions.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/actions.js ***!
+  \***************************************/
+/*! exports provided: getBanner */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBanner", function() { return getBanner; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick/slick */ "./resources/js/store/slick/slick.js");
+/* harmony import */ var _eventos_evn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./eventos/evn */ "./resources/js/store/eventos/evn.js");
+/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./methods */ "./resources/js/store/methods.js");
+
+
+
+
+
+function getBanner(res, id) {
+  var slider = "";
+  var counter = 1;
+
+  if (id == 1) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.titulo-banner').html('BANNER PROGRAMACIÓN - CARRUSEL');
+
+    while (true) {
+      try {
+        if (res["image_slider_" + counter]) {
+          slider += "\n            <div class=\"container-banner\">\n                <img class=\"banner bor responsi-img img_banner_".concat(counter, "\" src=\"").concat(res["image_slider_" + counter], "\" alt=\"\" />\n                <input class=\"d-none previewImage\" id=\"img_banner_").concat(counter, "\" type=\"file\" accept=\"image/*\" index=\"").concat(counter, "\"/>\n                <div class=\"container-camera\">\n                    <label for=\"img_banner_").concat(counter, "\" class=\"cursor-pointer\">\n                        <p class=\"text-center a-text-bold-warm text-plus mb-0\">\n                            <img class=\"camera_").concat(counter, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span>\n                        </p>\n                    </label>\n                </div>\n            </div>");
+          counter++;
+        } else {
+          break;
+        }
+      } catch (error) {
+        break;
+      }
+    }
+  }
+
+  var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
+  slick.html(slider);
+  var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
+  Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["modalClose"])();
+  Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["dateCalendar"])();
+  Object(_methods__WEBPACK_IMPORTED_MODULE_3__["setBanner"])(1);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-banner').modal('show');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+}
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/eventos/evn.js":
 /*!*******************************************!*\
   !*** ./resources/js/store/eventos/evn.js ***!
   \*******************************************/
-/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose */
+/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98441,6 +98584,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrl", function() { return modalUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClose", function() { return modalClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrlClose", function() { return modalUrlClose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateCalendar", function() { return dateCalendar; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -98457,6 +98601,45 @@ function previewImage() {
 
       reader.readAsDataURL(evn.files[0]);
     }
+  });
+}
+
+function dateCalendar() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").remove();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".date-modal").remove();
+  var date = new Date();
+  var calendarYear = date.getFullYear();
+  var calendarMonth = date.getMonth() + 1;
+  var calendarDay = date.getDate();
+  var picker = new Litepicker({
+    element: document.getElementById("programming-modal"),
+    format: "YYYY-MM-DD",
+    delimiter: ",",
+    minDate: "".concat(calendarYear, "-").concat(calendarMonth, "-").concat(calendarDay),
+    onShow: function onShow() {
+      picker.picker.style.left = "50%";
+      picker.picker.style.top = "50%";
+      picker.picker.style.transform = "translate(-50%, -50%)";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".litepicker").wrap("<div class='date-modal' id='modal-container'></div>");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "block");
+    },
+    onHide: function onHide() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-container").css("display", "none");
+    },
+    onSelect: function onSelect() {
+      var fullDate = document.getElementById("programming-modal").value.split(",");
+      var startDate = fullDate[0];
+      var startDateSplit = startDate.split("-");
+      var startDateFull = "".concat(startDateSplit[2], "-").concat(startDateSplit[1], "-").concat(startDateSplit[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#start-date-text").text(startDateFull);
+      var endDate = fullDate[1];
+      var endDateSplit = endDate.split("-");
+      var endDateFull = "".concat(endDateSplit[2], "-").concat(endDateSplit[1], "-").concat(endDateSplit[0]);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#end-date-text").text(endDateFull);
+    },
+    numberOfMonths: 1,
+    numberOfColumns: 1,
+    singleMode: false
   });
 }
 
@@ -98491,21 +98674,63 @@ function modalUrlClose() {
 
 /***/ }),
 
+/***/ "./resources/js/store/getters.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/getters.js ***!
+  \***************************************/
+/*! exports provided: getProgramacion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramacion", function() { return getProgramacion; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
+  headers: {
+    "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta[name="csrf-token"]').attr("content")
+  }
+});
+
+
+function getProgramacion(type) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    cache: false,
+    url: "landing/getSection/programation",
+    success: function success(res) {
+      if (type == 1) {
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBanner"])(JSON.parse(res), 1);
+      }
+    }
+  });
+}
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/methods.js":
 /*!***************************************!*\
   !*** ./resources/js/store/methods.js ***!
   \***************************************/
-/*! exports provided: setImgCarruselVertical */
+/*! exports provided: setImgCarruselVertical, setBanner */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselVertical", function() { return setImgCarruselVertical; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBanner", function() { return setBanner; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _setters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setters */ "./resources/js/store/setters.js");
 
 
+var LOADER = "<div class=\"loader-view-container\" id=\"loader1\"><img src=\"./images/loader.gif\" class=\"loader\" alt=\"\"></div>";
+var img = [],
+    index = [];
 
 function setImgCarruselVertical() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
@@ -98520,6 +98745,32 @@ function setImgCarruselVertical() {
   });
 }
 
+function setBanner(id) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.previewImage').on('change', function (e) {
+    img.push(e.target.files[0]);
+    index.push(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('index'));
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-acepta-banner').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
+    var data = new FormData();
+
+    for (var i = 0; i < img.length; i++) {
+      var file = "file" + (i + 1).toString();
+      data.append(file, img[i]);
+    }
+
+    data.append("positions", index);
+    data.append("date", jquery__WEBPACK_IMPORTED_MODULE_0___default()("#programming-modal").val());
+
+    if (id == 1) {
+      Object(_setters__WEBPACK_IMPORTED_MODULE_1__["setBannerProgramacion"])(data);
+    }
+
+    img = [];
+    index = [];
+  });
+}
+
 
 
 /***/ }),
@@ -98528,14 +98779,17 @@ function setImgCarruselVertical() {
 /*!***************************************!*\
   !*** ./resources/js/store/setters.js ***!
   \***************************************/
-/*! exports provided: setImgCarruselHome */
+/*! exports provided: setImgCarruselHome, setBannerProgramacion */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImgCarruselHome", function() { return setImgCarruselHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBannerProgramacion", function() { return setBannerProgramacion; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
+
 
 
 function setImgCarruselHome(data) {
@@ -98554,6 +98808,91 @@ function setImgCarruselHome(data) {
       // programacion()
       // $('#show-banner').modal('hide');
     }
+  });
+}
+
+function setBannerProgramacion(data) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    type: "POST",
+    data: data,
+    processData: false,
+    //esto es para poder pasar el archivo
+    contentType: false,
+    //esto es para poder pasar el archivo
+    cache: false,
+    url: "landing/update-programming-carrusel",
+    success: function success(res) {
+      console.log(res);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion-cinema iframe").remove();
+      Object(_index__WEBPACK_IMPORTED_MODULE_1__["claroCinemaProgramacion"])();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal').modal('hide');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+    }
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./resources/js/store/slick/slick.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/slick/slick.js ***!
+  \*******************************************/
+/*! exports provided: slickShowArrow */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slickShowArrow", function() { return slickShowArrow; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slick-carousel */ "./node_modules/slick-carousel/slick/slick.js");
+/* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slick_carousel__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var index;
+
+function slickShowArrow(slick, dots) {
+  try {
+    slick.slick("unslick");
+    slick.slick({
+      dots: true,
+      arrows: true,
+      prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;" />',
+      nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
+      fade: true,
+      appendDots: dots,
+      customPaging: function customPaging(slider, i) {
+        index = i + 1;
+        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+      }
+    });
+  } catch (error) {
+    slick.slick({
+      dots: true,
+      arrows: true,
+      prevArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" style="width: 40px;"/>',
+      nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
+      fade: true,
+      appendDots: dots,
+      customPaging: function customPaging(slider, i) {
+        index = i + 1;
+        return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+      }
+    });
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh .slick-dots").append('<img src="./images/add-icon.svg" class="add-dots-image cursor-pointer">');
+  addSlickDots(index);
+}
+
+function addSlickDots(sliderLengt) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.add-dots-image').on('click', function () {
+    sliderLengt++;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-show').slick('slickAdd', "<div class=\"container-banner\"><img class=\"banner bor responsi-img img_banner_".concat(sliderLengt, "\" src=\"./images/synopsis/image-synopsis-carrusel.jpg\" alt=\"\" /><input class=\"d-none previewImage\" id=\"img_banner_").concat(sliderLengt, "\" type=\"file\" accept=\"image/*\" index=\"").concat(sliderLengt, "\" /><div class=\"container-camera\"><label for=\"img_banner_").concat(sliderLengt, "\" class=\"cursor-pointer\"><p class=\"text-center a-text-bold-warm text-plus mb-0\"><img class=\"camera_").concat(sliderLengt, "\" src=\"./images/basic-icons/camara.svg\" /><span>1920px X 657px</span></p></label></div></div>"));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".slick-dots-mvh .slick-dots").append('<img src="./images/add-icon.svg" class="add-dots-image cursor-pointer">');
+    addSlickDots(sliderLengt);
   });
 }
 
