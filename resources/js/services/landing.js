@@ -2890,7 +2890,7 @@ function getModalsCanalClaro(type) {
                         $(".inp-sub-title-modal").val(
                             obj.data.block_3_subtitle
                         );
-                        $(".inp-sub-title-modal").attr("block_3_subtitle");
+                        $(".inp-sub-title-modal").attr("key", "block_3_subtitle");
                         $("#modal-title").modal("show");
                         break;
                     // GET TITLE
@@ -2909,11 +2909,11 @@ function getModalsCanalClaro(type) {
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_1_title
                         );
-                        $(".inp-title-modal").attr("block_4_carrusel_1_title");
+                        $(".inp-title-modal").attr("key", "block_4_carrusel_1_title");
                         $(".inp-sub-title-modal").val(
                             obj.data.block_4_carrusel_1_subtitle
                         );
-                        $(".inp-sub-title-modal").attr(
+                        $(".inp-sub-title-modal").attr("key",
                             "block_4_carrusel_1_subtitle"
                         );
                         $("#modal-title").modal("show");
@@ -2924,11 +2924,11 @@ function getModalsCanalClaro(type) {
                         $(".inp-title-modal").val(
                             obj.data.block_4_carrusel_2_title
                         );
-                        $(".inp-title-modal").attr("block_4_carrusel_2_title");
+                        $(".inp-title-modal").attr("key", "block_4_carrusel_2_title");
                         $(".inp-sub-title-modal").val(
                             obj.data.block_4_carrusel_2_subtitle
                         );
-                        $(".inp-sub-title-modal").attr(
+                        $(".inp-sub-title-modal").attr("key",
                             "block_4_carrusel_2_subtitle"
                         );
                         $("#modal-title").modal("show");

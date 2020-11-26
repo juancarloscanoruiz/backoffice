@@ -4768,7 +4768,6 @@ function eventsGrilla() {
         });
         // SUB TITULO
         let valueSub = $(".inp-sub-title-modal").val();
-        // let keySub = "block_3_subtitle";
         let keySub = $(".inp-sub-title-modal").attr("key");
         editElementLandingClaro({
             value: valueSub,
