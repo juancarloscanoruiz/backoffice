@@ -94030,6 +94030,9 @@ function eventsGrilla() {
         break;
     }
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.close-all-modal').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-icons').modal('hide');
+  });
 }
 
 

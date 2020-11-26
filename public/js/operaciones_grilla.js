@@ -87679,8 +87679,7 @@ function eventsGrilla() {
       landing: landing
     }); // SUB TITULO
 
-    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val(); // let keySub = "block_3_subtitle";
-
+    var valueSub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").val();
     var keySub = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".inp-sub-title-modal").attr("key");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editElementLandingClaro"])({
       value: valueSub,
@@ -88369,6 +88368,9 @@ function eventsGrilla() {
         Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
         break;
     }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.close-all-modal').on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.modal-edit-icons').modal('hide');
   });
 }
 
@@ -90829,7 +90831,7 @@ function getModalsCanalClaro(type) {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_3_title);
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("key", "block_3_title");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_3_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_3_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("key", "block_3_subtitle");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE
@@ -90844,9 +90846,9 @@ function getModalsCanalClaro(type) {
 
           case "claro-carrusel-title":
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_4_carrusel_1_title);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("block_4_carrusel_1_title");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("key", "block_4_carrusel_1_title");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_1_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_4_carrusel_1_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("key", "block_4_carrusel_1_subtitle");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE CARRUSEL 1
@@ -90854,9 +90856,9 @@ function getModalsCanalClaro(type) {
 
           case "claro-carrusel-title2":
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").val(obj.data.block_4_carrusel_2_title);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("block_4_carrusel_2_title");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-title-modal").attr("key", "block_4_carrusel_2_title");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").val(obj.data.block_4_carrusel_2_subtitle);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("block_4_carrusel_2_subtitle");
+            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-sub-title-modal").attr("key", "block_4_carrusel_2_subtitle");
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modal-title").modal("show");
             break;
           // GET TITLE CARRUSEL 1
@@ -93382,7 +93384,7 @@ function createCalendarDays(container) {
         if (i < 10) {
           daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-0").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
         } else {
-          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
+          daysSlider += "\n                                <li\n                                0\n                            )}\" class=\"".concat(calendarClass, " programming-item programming-item-active\" date=\"").concat(yearUTC, "-").concat(monthUTC, "-").concat(i, "\" section_id=\"\">\n                                <div class=\"\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth, i), "</p>\n                                    <p class=\"day-number\">").concat(i, "</p>\n                                </div>\n                                </li>\n                            ");
         }
       } else {
         if (i < 10) {
@@ -93398,7 +93400,7 @@ function createCalendarDays(container) {
 
     for (var _i = 1; _i <= getDays(2); _i++) {
       if (_i < 10) {
-        daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(dateUTC.getUTCMonth() + 2, "-0").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
+        daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(dateUTC.getUTCMonth() + 2, "-0").concat(_i, "\" section_id=\"\">\n                                <div class=\"\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
       } else {
         daysSlider += "\n                            <li class=\"".concat(calendarClass, " programming-item\" date=\"").concat(yearUTC, "-").concat(dateUTC.getUTCMonth() + 2, "-").concat(_i, "\" section_id=\"\">\n                                <div class=\"day\">\n                                    <p class=\"day-text\">").concat(getDayName(currentMonth + 1, _i), "</p>\n                                    <p class=\"day-number\">").concat(_i, "</p>\n                                </div>\n                            </li>\n                        ");
       }

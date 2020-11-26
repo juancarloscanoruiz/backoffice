@@ -5501,6 +5501,10 @@ function eventsGrilla() {
                 break;
         }
     })
+
+    $('.close-all-modal').on('click', function () {
+        $('.modal-edit-icons').modal('hide')
+    })
 }
 
 export { eventsGrilla };
