@@ -4804,6 +4804,15 @@ function eventsGrilla() {
             resetIframe($("#navbar-prev-canal-claro iframe"), landingCanalClaro);
         }
     );
+
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".button-modal-claro-cinema",
+        function () {
+            $(".modal-edit-program-carrusel").modal("hide");
+            resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
+        }
+    );
     // HEADER EDIT CANAL CLARO
     // TITLE EDIT CANAL CLARO
     $("#btn-acepta-modal-title").click(function () {
