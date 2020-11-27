@@ -992,7 +992,6 @@ function eventsGrilla() {
 
        setTimeout(function () {
         //Landing concert channel
-        resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
         $("#prev-mobile")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
@@ -1008,7 +1007,6 @@ function eventsGrilla() {
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
         );
-
         $("body").append(`<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
         </div>`);
@@ -1023,6 +1021,7 @@ function eventsGrilla() {
             .addClass("pointer-none");
         $("#prev-tablet").css("opacity", "0.4");
         $("#prev-desktop").css("opacity", "1");
+    }, 2000);
     });
     $(".button-modal-concert-channel").click(function () {
         resetIframe(
@@ -5225,16 +5224,16 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    // $("#prev-landing-concert").click(function () {
-    //     //Landing canal claro
-    //     resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
-    //     $("#prev-mobile")
-    //         .removeClass("pointer-none")
-    //         .addClass("cursor-pointer");
-    //     $("#prev-tablet")
-    //         .removeClass("pointer-none")
-    //         .addClass("cursor-pointer");
-    // });
+     $("#prev-landing-concert").click(function () {
+        //Landing canal claro
+        resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+     $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+         $("#prev-tablet")
+            .removeClass("pointer-none")
+             .addClass("cursor-pointer");
+     });
     $("#edit-landing-concert").click(function () {
         resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
 

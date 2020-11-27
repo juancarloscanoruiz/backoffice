@@ -4,6 +4,7 @@ let h;
 function previewPage(icon) {
     let pageContainer = $("iframe");
     let iframeCanalClaro = $("#navbar-prev-canal-claro iframe");
+    let iframeConcertChannel= $("#navbar-prev-concert-channel iframe");
     let iframeProgramacion = $("#navbar-prev-programacion iframe");
     let iframeHome = $("#navbar-prev-home iframe");
     let iframeHomeGrilla = $("#navbar_prev_home_landing iframe");
@@ -27,6 +28,7 @@ function previewPage(icon) {
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"
         );
         iframeHome.css("height", "4400px");
+        iframeConcertChannel.css("height", "1700px");
         iframeHomeGrilla.css("height", "4400px");
         iframeProgramacion.css("height", "5000px");
         iframeCanalClaro.css("height", "2800px");
@@ -47,6 +49,7 @@ function previewPage(icon) {
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"
         );
         iframeHome.css("height", "5100px");
+        iframeConcertChannel.css("height", "1500px");
         iframeHomeGrilla.css("height", "5100px");
         iframeProgramacion.css("height", "12000px");
         iframeCanalClaro.css("height", "2800px");
@@ -58,7 +61,7 @@ function previewPage(icon) {
       
     }
     //PC
-    else {
+    else if (icon.is("#prev-desktop")) {
         pageContainer.css("width", "1200px");
         prevMobileIcon.css("opacity", "0.4");
         prevTabletIcon.css("opacity", "0.4");
@@ -67,6 +70,7 @@ function previewPage(icon) {
            "box-shadow",
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"
         );
+        iframeConcertChannel.css("height", "2180px");
         iframeHome.css("height", "4300px");
         iframeHomeGrilla.css("height", "4300px");
         iframeProgramacion.css("height", "2700px");

@@ -515,7 +515,7 @@ export default class LandingView {
 
             let homeHeaderButtons = $(".home-encabezado-buttons");
             homeHeaderButtons.html("");
-            $(".home-encabezado-buttons").html(`
+            homeHeaderButtons.html(`
         <div class="text-center  mb-4 d-flex justify-content-center pb-2">
             <button
                 class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
@@ -597,7 +597,6 @@ export default class LandingView {
         let response = landingController.uploadHomeBannerImages(data);
         response
             .then(data => {
-                console.log(data)
                 $(".loader-view-container").remove();
                 $(".modal-home-encabezado").modal("hide");
                 resetIframe(container, options);

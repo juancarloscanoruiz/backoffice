@@ -82,7 +82,7 @@
                 <input type="image" src="./images/noti-no.svg" alt="" class="ml-3 btn-focus "></input>
 
             </div>
-            <div class="pd-5">SINÓPSIS</div>
+            <div class="pd-5">SINOPSIS</div>
             <div class="justify-content-center">
                 <a href="{{ route('sinopsis') }}"> 
                     <input type="image" src="./images/lapiz-acti.svg" alt="" class="ml-3 btn-focus load-photo"></input>
