@@ -83,17 +83,12 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
-import { modalClose, modalUrlClose } from "./store/eventos/evn";
+import { modalClose, modalUrlClose, programmingPencil } from "./store/eventos/evn";
 
 import { getProgramacion } from './store/getters'
 
 function eventsGrilla() {
-    const baseURL =
-        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-
-    $("#about_link_1_url").click(".about_link_1_title", function () {
-        alert("marina");
-    });
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
     let landingSinopsis = document.getElementById("prev-sinopsis-landing");
     if (landingSinopsis) {
@@ -787,7 +782,7 @@ function eventsGrilla() {
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
                         getProgrammingLanding(currentDate, "claro-cinema");
-                        // getProgrammingLanding(currentDate, "canal-claro", "");
+                        programmingPencil()
                         break;
                     case "header-landing-cinema":
                         modalUrlClose()
@@ -1075,7 +1070,7 @@ function eventsGrilla() {
             getChapterInfo(chapterId, "thumbnail-header-claro");
         }
     );
-    //Pencil Canal
+    //Pencil Canal claro
     $(".modal-programming-landing").on(
         "click",
         ".programming-pencil-concert-channel",

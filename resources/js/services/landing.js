@@ -19,7 +19,7 @@ import { createSlickSlider, createCalendarDays } from "../vendor/slick.js";
 
 import { addImagesModalIcons } from "../services/generalSchedule.js";
 
-import { previewImage, modalUrl, modalUrlClose } from '../store/eventos/evn'
+import { previewImage, modalUrl, modalUrlClose, programmingPencil } from '../store/eventos/evn'
 import { setImgCarruselVertical } from '../store/methods'
 
 function getMonth(idMonth) {
@@ -2628,6 +2628,7 @@ function getProgrammingLanding(date, landing) {
                     }
 
                     $(".modal-programming-contanier").html(chapter);
+                    programmingPencil()
                 }
                 $(".modal-programming-landing").modal("show");
                 let calendarSlider2 = $(".calendar-slider2");

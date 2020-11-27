@@ -1,5 +1,7 @@
 import $ from "jquery";
 
+import { getChapterInfo } from "../../services/landing.js";
+
 function previewImage() {
     $('.previewImage').on('change', function (e) {
         let evn = e.target;
@@ -82,4 +84,12 @@ function modalUrlClose() {
     })
 }
 
-export { previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar }
+function programmingPencil() {
+    $(".programming-pencil-claro-cinema").on("click", function () {
+        let chapterId = $(this).attr("chapter_id");
+        $(".modal-programming-landing").modal("hide");
+        getChapterInfo(chapterId, "thumbnail-header-cinema");
+    })
+}
+
+export { previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar, programmingPencil }

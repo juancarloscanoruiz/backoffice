@@ -84866,9 +84866,6 @@ var landingView = new _views_landing__WEBPACK_IMPORTED_MODULE_3__["default"](); 
 
 function eventsGrilla() {
   var baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#about_link_1_url").click(".about_link_1_title", function () {
-    alert("marina");
-  });
   var landingSinopsis = document.getElementById("prev-sinopsis-landing");
 
   if (landingSinopsis) {
@@ -85353,8 +85350,8 @@ function eventsGrilla() {
 
             var _currentDate2 = "".concat(_year3, "-").concat(_month2, "-").concat(_day2);
 
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "claro-cinema"); // getProgrammingLanding(currentDate, "canal-claro", "");
-
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getProgrammingLanding"])(_currentDate2, "claro-cinema");
+            Object(_store_eventos_evn__WEBPACK_IMPORTED_MODULE_12__["programmingPencil"])();
             break;
 
           case "header-landing-cinema":
@@ -85570,7 +85567,7 @@ function eventsGrilla() {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
     Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getChapterInfo"])(chapterId, "thumbnail-header-claro");
-  }); //Pencil Canal
+  }); //Pencil Canal claro
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").on("click", ".programming-pencil-concert-channel", function () {
     var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
@@ -90639,6 +90636,7 @@ function getProgrammingLanding(date, landing) {
           }
 
           jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-contanier").html(chapter);
+          Object(_store_eventos_evn__WEBPACK_IMPORTED_MODULE_8__["programmingPencil"])();
         }
 
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-landing").modal("show");
@@ -92916,7 +92914,7 @@ function getBanner(res, id) {
 /*!*******************************************!*\
   !*** ./resources/js/store/eventos/evn.js ***!
   \*******************************************/
-/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar */
+/*! exports provided: previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar, programmingPencil */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92926,8 +92924,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClose", function() { return modalClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalUrlClose", function() { return modalUrlClose; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateCalendar", function() { return dateCalendar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "programmingPencil", function() { return programmingPencil; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_landing_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/landing.js */ "./resources/js/services/landing.js");
+
 
 
 function previewImage() {
@@ -93008,6 +93009,14 @@ function modalUrlClose() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#close-modal-url').on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#show-url').modal('hide');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.show-url').modal('hide');
+  });
+}
+
+function programmingPencil() {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-pencil-claro-cinema").on("click", function () {
+    var chapterId = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("chapter_id");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-programming-landing").modal("hide");
+    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_1__["getChapterInfo"])(chapterId, "thumbnail-header-cinema");
   });
 }
 
