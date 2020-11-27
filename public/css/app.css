@@ -3343,8 +3343,7 @@ input[type=radio]:checked + .a-btn-check:before {
 
 input[type=radio]:checked + .hombre-estilo {
   background: #03ad50;
-  color: #ffffff;
-  font-weight: bold;
+  color: #161515;
   border: none;
 }
 
@@ -3391,15 +3390,13 @@ option:checked + .roles {
 
 input[type=radio]:checked + .mujer-estilo {
   background: #03ad50;
-  color: #ffffff;
-  font-weight: bold;
+  color: #161515;
   border: none;
 }
 
 input[type=radio]:checked + .mujer-estilo1 {
   background: #03ad50;
-  color: #ffffff;
-  font-weight: bold;
+  color: #161515;
   border: none;
 }
 
