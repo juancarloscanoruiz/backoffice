@@ -44,7 +44,7 @@ function filterDates(startDate, lastDate, landing) {
         },
         success: function (result) {
             let json = JSON.parse(result);
-
+            console.log(json);
             let grills = json.data.grilla;
             //Géneros
             let genres = json.data.genres;
@@ -138,6 +138,13 @@ function filterDates(startDate, lastDate, landing) {
             grills.forEach(grill => {
                 let programs = grill.programs;
                 programs.forEach(program => {
+                    let programGenres = "";
+                    $.each(program.genre, function(index, value){
+                        programGenres += value + " ";
+                    });
+
+
+
                     /* Validamos si el programa está en algunas de las secciones del landing */
                     let inLanding = "";
                     switch (program.in_landing) {
@@ -157,14 +164,14 @@ function filterDates(startDate, lastDate, landing) {
                                         <input type="radio" name="dontlose" value="1" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                 </div>
                                 <div class="d-flex ml-2 pt-2 pb-2">
                                     <label class="checkradio d-flex ml-2">
                                         <input type="radio" name="dontlose" value="2" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                 </div>
                             </div>
                             `;
@@ -185,14 +192,14 @@ function filterDates(startDate, lastDate, landing) {
                                         <input type="radio" checked name="dontlose" value="1" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                 </div>
                                 <div class="d-flex ml-2 pt-2 pb-2">
                                     <label class="checkradio d-flex ml-2">
                                         <input type="radio" name="dontlose" value="2" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                 </div>
                             </div>
                             `;
@@ -213,14 +220,14 @@ function filterDates(startDate, lastDate, landing) {
                                             <input type="radio" name="dontlose" value="1" class="switch-table">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                     </div>
                                     <div class="d-flex ml-2 pt-2 pb-2">
                                         <label class="checkradio d-flex ml-2">
                                             <input type="radio" checked name="dontlose" value="2" class="switch-table">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                     </div>
                                 </div>
                                 `;
@@ -660,7 +667,7 @@ function filterDates(startDate, lastDate, landing) {
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="${program.chapter_id}" key="genre">
                             <div class="schedule-date">
                                 <div class="d-flex justify-content-center">
-                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="${programGenres}" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
                                         ${genreOption}
                                     </select>
                                 </div>
@@ -786,7 +793,7 @@ function addImagesModalBanner(id_slide,totales) {
 
             let total = JSON.parse(totales)+1;
 
-           
+
             let initial =JSON.parse(id_slide);
             $(".programming-slider-dots .slick-dots").append(
                 ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
@@ -818,7 +825,7 @@ function addImagesModalBanner(id_slide,totales) {
                     break;
                 }
                 console.log(counter);
-                
+
             }
             if(counter <= total){
                 slider =
@@ -839,7 +846,7 @@ function addImagesModalBanner(id_slide,totales) {
                     `
                 ;
                 counter++;
-              
+
             }
 
             let conf = {

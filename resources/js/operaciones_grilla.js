@@ -985,6 +985,12 @@ function eventsGrilla() {
 
     //previsualizar concert channel
     $("#prev-landing-concert").click(function () {
+        resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+
+       setTimeout(function () {
         //Landing concert channel
         resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
         $("#prev-mobile")
@@ -993,6 +999,9 @@ function eventsGrilla() {
         $("#prev-tablet")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
+
+            $("#loader1").remove();
+        }, 2000);
     });
     $("#edit-landing-concert").click(function () {
         resetIframe(
@@ -1000,6 +1009,11 @@ function eventsGrilla() {
             confLandingConcertChannel
         );
 
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+
+       setTimeout(function () {
         $("#prev-mobile")
             .removeClass("cursor-pointer")
             .addClass("pointer-none");
@@ -1104,13 +1118,19 @@ function eventsGrilla() {
             file = $("#link-promo-concert").val();
         }
 
-        let landing = "Concert Channel";
-        let data = new FormData();
-        let key = $(this).attr("key");
-        data.append("promo", file);
-        data.append("landing", landing);
-        data.append("key", key);
-        editPromoLanding(data);
+        if(file){
+            let landing = "Concert Channel";
+            let data = new FormData();
+            let key = $(this).attr("key");
+            data.append("promo", file);
+            data.append("landing", landing);
+            data.append("key", key);
+            editPromoLanding(data);
+        }else{
+            $(".modal-promos-concert").modal("hide");
+        }
+
+
     });
 
     //Concert Channel Header
@@ -4603,6 +4623,45 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+     //previsualizar claro canal
+     $("#prev-landing-claro").click(function () {
+         $("body").append(`<div class="loader-view-container" id="loader1">
+         <img src="./images/loader.gif" class="loader" alt="">
+         </div>`);
+        resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+        setTimeout(function () {
+            $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+            $("#loader1").remove();
+        }, 2000);
+        //Landing claro canal
+    });
+    $("#edit-landing-claro").click(function () {
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+        resetIframe(
+            $("#navbar-prev-canal-claro iframe"),
+            landingCanalClaro
+        );
+        setTimeout(function () {
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+        $("#loader1").remove();
+    }, 2000);
+    });
+
 
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
@@ -4747,6 +4806,15 @@ function eventsGrilla() {
                 $("#navbar-prev-canal-claro iframe"),
                 landingCanalClaro
             );
+        }
+    );
+
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".button-modal-claro-cinema",
+        function () {
+            $(".modal-edit-program-carrusel").modal("hide");
+            resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
         }
     );
     // HEADER EDIT CANAL CLARO

@@ -3113,6 +3113,7 @@ function getPromotionalsProgramsCarousel(
                     break;
                 case "Claro Cinema":
                     idLanding = 3;
+                    classButton = "button-modal-claro-cinema";
                     break;
 
                 default:
@@ -3868,7 +3869,11 @@ function getPromotionalsProgramsCarousel(
                     <section class="text-center mb-3 d-flex justify-content-center">
                         <button
                             class="d-flex ${classButton} mr-3  m-0 text-uppercase btn-grilla a-btn-basic-small btn-grilla a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
+<<<<<<< HEAD
+                            data-dismiss="modal" id="edit-program-modal-button">ACEPTAR</button>
+=======
                             data-dismiss="modal">ACEPTAR</button>
+>>>>>>> 3e63da83f5d1caba46e3ea5bd9bd0ecf5515b4e2
                     </section>
 
                 </div>
