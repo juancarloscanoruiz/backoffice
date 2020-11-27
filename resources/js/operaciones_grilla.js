@@ -985,21 +985,33 @@ function eventsGrilla() {
 
     //previsualizar concert channel
     $("#prev-landing-concert").click(function () {
-        //Landing concert channel
         resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+      
+       setTimeout(function () {
+        //Landing concert channel
         $("#prev-mobile")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
         $("#prev-tablet")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
+           
+            $("#loader1").remove();
+        }, 2000);
     });
     $("#edit-landing-concert").click(function () {
         resetIframe(
             $("#navbar-prev-concert-channel iframe"),
             confLandingConcertChannel
         );
-
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+      
+       setTimeout(function () {
         $("#prev-mobile")
             .removeClass("cursor-pointer")
             .addClass("pointer-none");
@@ -1009,6 +1021,7 @@ function eventsGrilla() {
             .addClass("pointer-none");
         $("#prev-tablet").css("opacity", "0.4");
         $("#prev-desktop").css("opacity", "1");
+    }, 2000);
     });
     $(".button-modal-concert-channel").click(function () {
         resetIframe(
@@ -4603,6 +4616,45 @@ function eventsGrilla() {
                 "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
         }
     };
+     //previsualizar claro canal
+     $("#prev-landing-claro").click(function () {
+         $("body").append(`<div class="loader-view-container" id="loader1">
+         <img src="./images/loader.gif" class="loader" alt="">
+         </div>`);
+        resetIframe($("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
+        setTimeout(function () {
+            $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+        $("#prev-tablet")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+            $("#loader1").remove();
+        }, 2000);
+        //Landing claro canal     
+    });
+    $("#edit-landing-claro").click(function () {
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+        resetIframe(
+            $("#navbar-prev-canal-claro iframe"),
+            landingCanalClaro
+        );
+        setTimeout(function () {
+        $("#prev-mobile")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-mobile").css("opacity", "0.4");
+        $("#prev-tablet")
+            .removeClass("cursor-pointer")
+            .addClass("pointer-none");
+        $("#prev-tablet").css("opacity", "0.4");
+        $("#prev-desktop").css("opacity", "1");
+        $("#loader1").remove();
+    }, 2000);
+    });
+
 
     // BTN MODAL URL ENCABEZADO
     $("#url-encabezado").click(function () {
@@ -5157,16 +5209,16 @@ function eventsGrilla() {
     };
 
     //previsualizar canal claro
-    // $("#prev-landing-concert").click(function () {
-    //     //Landing canal claro
-    //     resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
-    //     $("#prev-mobile")
-    //         .removeClass("pointer-none")
-    //         .addClass("cursor-pointer");
-    //     $("#prev-tablet")
-    //         .removeClass("pointer-none")
-    //         .addClass("cursor-pointer");
-    // });
+     $("#prev-landing-concert").click(function () {
+        //Landing canal claro
+        resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+     $("#prev-mobile")
+            .removeClass("pointer-none")
+            .addClass("cursor-pointer");
+         $("#prev-tablet")
+            .removeClass("pointer-none")
+             .addClass("cursor-pointer");
+     });
     $("#edit-landing-concert").click(function () {
         resetIframe($("#navbar-prev-home-concert iframe"), LandingHomeConcert);
 
