@@ -334,14 +334,8 @@
                 </div>
             </div>
             <!--iframe de canal claro-->
-            <div class="centro">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
+            <div class="centro">           
                             <div class="navbar-progra-content navbar-prev-canal-claro mb-5 mt-5" id="navbar-prev-canal-claro"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!--iframe de home-->
             <div class="centro ">
