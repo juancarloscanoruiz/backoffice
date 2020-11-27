@@ -85602,13 +85602,19 @@ function eventsGrilla() {
       file = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#link-promo-concert").val();
     }
 
-    var landing = "Concert Channel";
-    var data = new FormData();
-    var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
-    data.append("promo", file);
-    data.append("landing", landing);
-    data.append("key", key);
-    Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLanding"])(data);
+    if (file) {
+      console.log("Sí hay archivo");
+      var landing = "Concert Channel";
+      var data = new FormData();
+      var key = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr("key");
+      data.append("promo", file);
+      data.append("landing", landing);
+      data.append("key", key);
+      Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["editPromoLanding"])(data);
+    } else {
+      console.log("NO hay archivo");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-promos-concert").modal("hide");
+    }
   }); //Concert Channel Header
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-header-landing-concert").click(function () {
@@ -87547,7 +87553,7 @@ function eventsGrilla() {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-    }, 2000); //Landing claro canal     
+    }, 2000); //Landing claro canal
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-claro").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");

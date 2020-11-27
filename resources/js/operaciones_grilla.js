@@ -989,7 +989,7 @@ function eventsGrilla() {
         $("body").append(`<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
         </div>`);
-      
+
        setTimeout(function () {
         //Landing concert channel
         $("#prev-mobile")
@@ -998,7 +998,7 @@ function eventsGrilla() {
         $("#prev-tablet")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
-           
+
             $("#loader1").remove();
         }, 2000);
     });
@@ -1010,7 +1010,7 @@ function eventsGrilla() {
         $("body").append(`<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
         </div>`);
-      
+
        setTimeout(function () {
         $("#prev-mobile")
             .removeClass("cursor-pointer")
@@ -1117,13 +1117,19 @@ function eventsGrilla() {
             file = $("#link-promo-concert").val();
         }
 
-        let landing = "Concert Channel";
-        let data = new FormData();
-        let key = $(this).attr("key");
-        data.append("promo", file);
-        data.append("landing", landing);
-        data.append("key", key);
-        editPromoLanding(data);
+        if(file){
+            let landing = "Concert Channel";
+            let data = new FormData();
+            let key = $(this).attr("key");
+            data.append("promo", file);
+            data.append("landing", landing);
+            data.append("key", key);
+            editPromoLanding(data);
+        }else{
+            $(".modal-promos-concert").modal("hide");
+        }
+
+
     });
 
     //Concert Channel Header
@@ -4631,7 +4637,7 @@ function eventsGrilla() {
             .addClass("cursor-pointer");
             $("#loader1").remove();
         }, 2000);
-        //Landing claro canal     
+        //Landing claro canal
     });
     $("#edit-landing-claro").click(function () {
         $("body").append(`<div class="loader-view-container" id="loader1">
