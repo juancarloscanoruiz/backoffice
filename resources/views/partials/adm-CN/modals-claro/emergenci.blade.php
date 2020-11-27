@@ -32,11 +32,9 @@
                     <input class="inp-text-modal-3 pl-2 a-text-MBlack text-normal  hoy-en  text-uppercase" type="text" placeholder="VER PROGRAMACIÓN">
                 </div>
                 <div class="content">
-                    <div class="col-4 offset-8 show-url px-0 my-4">
-                        <img class="cursor-pointer float-left mr-2" src="./images/basic-icons/link.svg" alt="logo-link">
-                        <div class="d-flex">
-                            <input type="text" id="inp-text-modal-4" class="url-mvh a-text-bold-warm text-normal" placeholder=" Enlace o URL">
-                        </div>
+                    <div class="float-right mt-3">
+                        <img class="cursor-pointer" id="url-encabezado" src="./images/basic-icons/link.svg" style="width: 40px;">
+                        <input id="inp-text-modal-4" class="input-url a-text-bold-warm text-normal " placeholder="Enlace o URL" type="text">
                     </div>
                 </div>
                 <!-- BOTONES -->
@@ -44,6 +42,7 @@
                     <div class="d-flex justify-content-center mt-3">
                         <button id="btn-acepta-modal-header" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                         <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+
                     </div>
                 </div>
             </div>
@@ -51,90 +50,6 @@
 
     </div>
     <!-- MODAL HEADER - ENCABEZADO LANDING CANAL CLARO 1 -->
-
-    <!-- CARRUSEL PROGRAMACION -->
-    <div class="modal pr-0 modal-programming-landing" id="modal-edi-claro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <img src="./images/home/tv-1.svg" class="modal-programming-landing-logo">
-                    <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
-                    <!--Slider de calendario-->
-
-                    <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase date-program mb-4 mt-5 slider-calendar-current-date" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
-
-                    <section class="col-10 mx-auto">
-                        <div class="mb-5 calendar-slider2 day-style">
-                            <li class="programming-item programming-item-active py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-
-                            </li>
-                            <li class="programming-item py-2">
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-                            </li>
-                            <li class="programming-item py-2">
-
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-
-                            </li>
-                            <li class="programming-item py-2">
-
-                                <p class="mb-0">MIE</p>
-                                <p class="mb-0">01</p>
-
-                            </li>
-                        </div>
-                    </section>
-                    <div class="modal-programming-contanier">
-
-                    </div>
-                    <div class="content">
-                        <div class="d-flex justify-content-center mt-3">
-                            <button id="btn-acepta-modal-title" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack btn-acepta-modal-title">ACEPTAR</button>
-                            <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- SLAIDER -->
 
     <!-- MODAL TITULO - TEXTO-PROMO LANDING CANAL CLARO 1 -->
     <div id="modal-title" class="modal">
@@ -211,7 +126,7 @@
     <!-- MODAL PROMO - PROMO LANDING CANAL CLARO 1 -->
 
     <!-- MODAL LINK - ENCABEZADO LANDING CANAL CLARO 5 -->
-    <div id="modal-url" class="modal" style="z-index: 9990;">
+    <div id="modal-url" class="modal show-url" style="z-index: 9990;">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-link-claro modal-content">
                 <!-- TEXTO  -->
@@ -226,7 +141,7 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button id="btn-acepta-url" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+                        <a href="#delete-info-url" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                     </div>
                 </div>
             </div>
@@ -603,7 +518,7 @@
                         </section>
                         <!--Slider de calendario-->
                         <section class="col-8 mx-auto">
-                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase date-program mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
+                            <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
                             <div class="mb-5 calendar-slider">
                                 <li class="programming-item programming-item-active">
                                     <p class="mb-0">MIER</p>
@@ -1316,7 +1231,7 @@
                         <!--div botones-->
                         <div class="text-center  mb-4 d-flex justify-content-center pb-2">
                             <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus edit-landing-modal-button" id="edit-logos-button" data-dismiss="modal">ACEPTAR</button>
-                            <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+                            <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
 
                         </div>
                     </form>
@@ -1412,15 +1327,3 @@
     </div>
 </body>
 <!--Vinculo para url-->
-
-<style>
-    .url-mvh {
-        width: 100%;
-        height: 43px;
-        -o-object-fit: contain;
-        object-fit: contain;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-        background-color: white;
-        border: none;
-    }
-</style>

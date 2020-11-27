@@ -4,18 +4,14 @@
             <div class="modal-body ">
                 <h2 class="h2 text-center a-text-black-brown-two pt-3">SINOPSIS</h2>
                 <hr class="d-flex align-content-center separationhr col-11 mt-3 mb-0">
-                <div
-                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-title-sinopsis">
+                <div class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-title-sinopsis">
 
-                    <input class="a-text-MBlack h3 d-flex justify-content-center mt-3 mb-3 synopsis-modal-title"
-                        type="text" />
+                    <input class="a-text-MBlack h3 d-flex justify-content-center mt-3 mb-3 synopsis-modal-title" type="text" />
                 </div>
-                <div
-                    class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis">
+                <div class="container-image-synopsis p-3 justify-content-center d-flex align-content-center mt-4 align-items-center mx-auto container-edit-sinopsis">
                     <div class="container-edit-sinopsis h-100">
 
-                        <textarea id="synopsis" name=""
-                            class="edit-text-synopsis container-image-synopsis a-text-medium-white">
+                        <textarea id="synopsis" name="" class="edit-text-synopsis container-image-synopsis a-text-medium-white">
                 </textarea>
                     </div>
 
@@ -25,12 +21,8 @@
                     {{-- <button
                         class="d-flex m-0  mr-3  btn-landing a-btn-basic-small disabled-btn text-uppercase text-plus a-text-bold-teal edit-landing-modal-button"
                         id="upload-image-synopsis">ACEPTAR</button> --}}
-                    <button
-                        class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus"
-                        id="edit-synopsis-modal-button">ACEPTAR</button>
-                    <a href="#delete-sinopsis" role="button"
-                        class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
-                        data-toggle="modal">CANCELAR</a>
+                    <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="edit-synopsis-modal-button">ACEPTAR</button>
+                    <a href="#delete-sinopsis" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>
         </div>
@@ -40,8 +32,7 @@
 
 
 <!--modal para perder lo hecho en los landing de edit-->
-<div class=" modal  delete-sinopsis" data-backdrop-limit="1" id="delete-sinopsis" tabindex="-1" role="dialog"
-    data-modal-parent="#modalpromos">
+<div class=" modal  delete-sinopsis" data-backdrop-limit="1" id="delete-sinopsis" tabindex="-1" role="dialog" data-modal-parent="#modalpromos">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content  ">
             <div class="modal-body ">
@@ -51,12 +42,9 @@
             </div>
 
             <div class="text-center mb-5 mt-4 pt-3 pb-4">
-                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal"
-                    data-dismiss="modal" data-dismiss="modal" data-dismiss="modal"
-                    id="close_modals-sinopsis">ACEPTAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-border-tomato mr-3 a-text-bold-tomato text-normal close_modals-sinopsis" data-dismiss="modal" data-dismiss="modal" data-dismiss="modal" id="close_modals-sinopsis">ACEPTAR</button>
 
-                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal"
-                    data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
+                <button type="button" class="a-btn-basic-small a-btn-tomato  a-text-MBlack  text-normal" data-dismiss="modal" data-dismiss="modal" aria-hidden="true">CANCELAR</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
     <!-- MODAL LINK - ENCABEZADO LANDING CANAL CLARO 5 -->
-    <div id="url" class="modal" style="overflow: auto; z-index: 9999;">
+    <div id="url" class="modal" style="overflow: auto; z-index: 9990;">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-link-claro modal-content">
                 <!-- TEXTO  -->
@@ -13,7 +13,7 @@
                 <div class="content">
                     <div class="d-flex justify-content-center">
                         <button id="btn-url" class="btn-url m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
-                        <a href="#delete-info" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
+                        <a href="#delete-info-url" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                         <!-- <button data-dismiss="modal" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</button> -->
                     </div>
                 </div>

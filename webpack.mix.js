@@ -32,4 +32,3 @@ mix.js("resources/js/main.js", "public/js").sass(
 
 mix.js("resources/js/admin.js", "public/js");
 mix.js("resources/js/operaciones_grilla.js", "public/js");
-mix.js("resources/js/index.js", "public/js");

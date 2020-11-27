@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="text-center  mb-3 d-flex justify-content-center pb-2 mt-4">
-                    <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="btn-acepta-modal-header-cinema">ACEPTAR</button>
+                    <button class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small a-btn-basic-small text-uppercase a-text-MBlack text-plus" id="btn-acepta-modal-header-cinema" data-dismiss="modal">ACEPTAR</button>
                     <a href="#delete-info-claro" role="button" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>
                 </div>
             </div>

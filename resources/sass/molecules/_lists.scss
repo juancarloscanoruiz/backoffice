@@ -144,7 +144,7 @@ ul {
     height: 200px;
     position: absolute;
     overflow-y: scroll;
-    top: 40px;
+    top: 30px;
     left: 0;
     list-style: none;
     background-color: $white;
@@ -226,7 +226,7 @@ ul {
     height: 200px;
     overflow-y: scroll;
     position: absolute;
-    top: 40px;
+    top: 30px;
     left: 0;
     list-style: none;
     background-color: $white;
@@ -310,7 +310,7 @@ ul {
     height: 200px;
     overflow-y: scroll;
     position: absolute;
-    top: 40px;
+    top: 30px;
     left: 0;
     list-style: none;
     background-color: $white;
@@ -613,4 +613,8 @@ ul {
     opacity: 0.75;
     -webkit-transition: all 0.6s ease;
     transition: all 0.6s ease;
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: black !important;
+   
 }

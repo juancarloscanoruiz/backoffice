@@ -57,7 +57,7 @@ export default class ProgramView {
                     let dataStringified = JSON.stringify(data);
                     socketSynopsis.postMessage(dataStringified);
                 }
-                $("#device-size").load("imports #device-size-prev", function () {
+                $(".device-size").load("imports #device-size-prev", function () {
                     $(".a-prev-image").click(function () {
                         previewPage($(this));
                     });
@@ -89,7 +89,7 @@ export default class ProgramView {
                     that.editImageSynopsis(socketSynopsis);
                     that.editImagesBanner(socketSynopsis);
                 }
-                $("#device-size").load("imports #device-size-edit");
+                $(".device-size").load("imports #device-size-edit");
             })
         })
     }

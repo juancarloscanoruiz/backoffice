@@ -29,7 +29,7 @@
                     </section>
                     <!--Slider de calendario-->
                     <section class="col-8 mx-auto">
-                        <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
+                        <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-5 mt-6 slider-calendar-current-date" id="slider-calendar-current-date">SEPTIEMBRE 2020</h3>
                         <div class="mb-5 calendar-slider">
                             <li class="programming-item programming-item-active">
                                 <p class="mb-0">MIER</p>
@@ -340,8 +340,8 @@
                             <h3 class="h3 text-uppercase a-text-bold-brown-two mb-3">Sinopsis</h3>
                             <!--Textarea-->
                             <textarea key="synopsis" class="edit-synopsis edit-program-textarea edit-program-attribute-text a-text-semibold-warmgrey p-3" id="prog_sinopsis"></textarea>
-                            <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center" ><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
-                                <div class="clearfix"></div>
+                            <button class="a-btn-teal a-btn-basic-small text-normal a-text-MBlack float-right btn-actual d-flex align-items-center justify-content-center"><img src="./images/basic-icons/enter.svg" alt=""> ACTUALIZAR</button>
+                            <div class="clearfix"></div>
                         </section>
                         <section class="mb-3">
                             <div class="row">

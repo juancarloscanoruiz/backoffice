@@ -370,7 +370,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button type="button" class="btn-si text-si" id="modal-button" data-dismiss="modal">ACEPTAR</button>
+          <button type="button" class="btn-si text-si closeViewBO" id="modal-button" data-dismiss="modal">ACEPTAR</button>
         </div>
       </div>
     </div>

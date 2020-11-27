@@ -1,5 +1,5 @@
     <!-- MODAL LINK - ENCABEZADO LANDING CANAL CLARO 5 -->
-    <div id="modal-url" class="modal">
+    <div id="modal-url" class="modal" style="z-index: 9990;">
         <div class="modal-dialog-centered modal-dialog modal-lg">
             <div class="modal-link-claro modal-content">
                 <!-- TEXTO  -->

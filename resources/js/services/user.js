@@ -339,7 +339,7 @@ function getAllUsersBO() {
                 $("#Adm-users-BO").html(
                     `
         <div class="col-xl-10 position-btn-alta">
-          <button class="btn-alta text-public mb-4 d-flex align-items-center justify-content-center" id="btnAlta">Agregar nuevo usuario</button>
+          <button class="btn-alta text-public mb-4 d-flex align-items-center" id="btnAlta">Agregar nuevo usuario</button>
         </div>
         <div class="sombras2 trans10 mb-5">
           <div class="grid-users texto-general users-backoffice-table">
@@ -998,7 +998,7 @@ function getUserFrontToUpdate(id) {
                                         confirmPasswordResult = 0;
                                     }
 
-                                    let day = $(".SeleccionDiaLista").text();
+                                   /* let day = $(".SeleccionDiaLista").text();
                                     let month = $(".SeleccionMesLista").text();
                                     let year = $(".SeleccionAñoLista").text();
                                     let date = year + "-" + month + "-" + day;
@@ -1012,6 +1012,37 @@ function getUserFrontToUpdate(id) {
                                                 "La fecha debe estar completa"
                                             )
                                             .css("color", "red");
+                                        return false;
+                                    }*/
+                                   /* let pass1 = $(".input-password").val();
+                                    let pass2 = $(".input-password2").val();
+                                    if (pass1 === "") {
+                                      
+                                        $(".input-password2").after(`<span class=" invalid-email caracteres-min">Este campo es obligatorio *</span>`);
+                                    }
+                                    /*let rePassword = $(
+                                        "#edit-user-front-repassword"
+                                    ).val();*/
+
+                                   /* if (pass2 === "") {
+                                       // confirmPasswordResult = 0;
+                                        $("#edit-user-front-password").after(`<span class=" invalid-email caracteres-min">Este campo es obligatorio *</span>`);
+
+                                    }*/
+
+                                    let day = $(".SeleccionDiaLista").text();
+                                    let month = $(".SeleccionMesLista").text();
+                                    let year = $(".SeleccionAñoLista").text();
+                                    
+                                    let date = year + "-" + month + "-" + day;
+                                    if (
+                                        day == "Día" ||
+                                        month == "Mes" ||
+                                        year == "Año"
+                                    ) {
+                                        $(".cuadro-fecha").after(`<div class=" invalid-email caracteres-min">Este campo es obligatorio *</div>`).removeClass("mb-16");
+                                           $(".cuadro-date").css("margin-bottom", "-19px"); 
+                                            
                                         return false;
                                     }
 
@@ -1145,18 +1176,16 @@ function deleteUserBO(id) {
                 });
                 $(".users-backoffice-table").html("");
                 $(".users-backoffice-table").html(`
-               
-                <header>
-                <div class="text-title">Usuario</div>
-                </header>
-                <section class="section">
-                  <div class="text-title ">Rol</div>
-                </section>
-                <aside>
-                  <div class="text-title ">Acciones</div>
-                </aside>
-                ${userBO}
-              
+        <header>
+        <div class="text-title ">Usuario</div>
+        </header>
+        <section class="section">
+          <div class="text-title ">Rol</div>
+        </section>
+        <aside>
+          <div class="text-title ">Acciones</div>
+        </aside>
+        ${userBO}
         `);
                 $(".modal-delete-user").modal("hide");
                 showModalDeleteUserBO();

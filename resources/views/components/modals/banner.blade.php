@@ -1,7 +1,7 @@
-<div class="modal" id="show-banner" style="overflow: auto; z-index: 9990">
+<div class="modal" id="show-banner" style="overflow: auto; z-index: 1100">
     <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 1500px;">
-        <div class="modal-content pt-4 pb-5" style="border-radius: 0;">
-            <h2 class="h2 text-center a-text-black-brown-two">TTITULO DEL BANNER</h2>
+        <div class="modal-content py-4" style="border-radius: 0;">
+            <h2 class="h2 text-center a-text-black-brown-two titulo-banner">TTITULO DEL BANNER</h2>
             <hr class="hr col-11" />
             <div class="container px-5">
                 <div class="row">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content">
+            <div class="content mt-4">
                 <div class="d-flex justify-content-center">
                     <button id="btn-acepta-banner" class="m-0 mr-4 btn-grilla a-btn-basic-small text-plus a-text-MBlack">ACEPTAR</button>
                     <a href="#delete-info" class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel" data-toggle="modal">CANCELAR</a>

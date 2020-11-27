@@ -10,7 +10,6 @@ $.ajaxSetup({
 });
 
 function editAttributeProgram(chapter_id, key, keyValue) {
-
     let data = {
         chapter_id,
         key,
@@ -20,7 +19,7 @@ function editAttributeProgram(chapter_id, key, keyValue) {
         type: "POST",
         data: data,
         url: "program/editAttribute",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -36,16 +35,16 @@ function filterDates(startDate, lastDate, landing) {
         type: "POST",
         data: data,
         url: "general-program/filterDates",
-        beforeSend: function() {
+        beforeSend: function () {
             $(".grilla-body").prepend(
                 `<div class="loader-container pointer-none">
                     <img src="./images/loader.gif" class="loader-table"/>
                 </div>`
             );
         },
-        success: function(result) {
+        success: function (result) {
             let json = JSON.parse(result);
-
+            console.log(json);
             let grills = json.data.grilla;
             //Géneros
             let genres = json.data.genres;
@@ -139,6 +138,13 @@ function filterDates(startDate, lastDate, landing) {
             grills.forEach(grill => {
                 let programs = grill.programs;
                 programs.forEach(program => {
+                    let programGenres = "";
+                    $.each(program.genre, function(index, value){
+                        programGenres += value + " ";
+                    });
+
+
+
                     /* Validamos si el programa está en algunas de las secciones del landing */
                     let inLanding = "";
                     switch (program.in_landing) {
@@ -158,14 +164,14 @@ function filterDates(startDate, lastDate, landing) {
                                         <input type="radio" name="dontlose" value="1" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                 </div>
                                 <div class="d-flex ml-2 pt-2 pb-2">
                                     <label class="checkradio d-flex ml-2">
                                         <input type="radio" name="dontlose" value="2" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                 </div>
                             </div>
                             `;
@@ -186,14 +192,14 @@ function filterDates(startDate, lastDate, landing) {
                                         <input type="radio" checked name="dontlose" value="1" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                 </div>
                                 <div class="d-flex ml-2 pt-2 pb-2">
                                     <label class="checkradio d-flex ml-2">
                                         <input type="radio" name="dontlose" value="2" class="switch-table">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                    <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                 </div>
                             </div>
                             `;
@@ -214,14 +220,14 @@ function filterDates(startDate, lastDate, landing) {
                                             <input type="radio" name="dontlose" value="1" class="switch-table">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Tienes que verlo</span>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 1</span>
                                     </div>
                                     <div class="d-flex ml-2 pt-2 pb-2">
                                         <label class="checkradio d-flex ml-2">
                                             <input type="radio" checked name="dontlose" value="2" class="switch-table">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Contenido exclusivo</span>
+                                        <span class="cursor-pointer a-text-medium-warmgrey ml-2">Carrusel 2</span>
                                     </div>
                                 </div>
                                 `;
@@ -661,7 +667,7 @@ function filterDates(startDate, lastDate, landing) {
                         <div class="contenedor-columna selectable-column centro editable-column a-text-regular-brownishtwo" rel="program-genre" chapter_id="${program.chapter_id}" key="genre">
                             <div class="schedule-date">
                                 <div class="d-flex justify-content-center">
-                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="Select Option" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
+                                    <select class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick" title="${programGenres}" multiple data-live-search="true" data-live-search-placeholder="Buscar" data-header="Program List"  data-dropup-auto="false">
                                         ${genreOption}
                                     </select>
                                 </div>
@@ -711,7 +717,7 @@ function filterDates(startDate, lastDate, landing) {
             $(".grilla-body").html("");
             $(".grilla-body").html(newGrill);
             let options = {
-                load: function(el) {
+                load: function (el) {
                     el.classList.add("fade-grilla");
                 }
             };
@@ -733,7 +739,7 @@ function addImageToProgram(id_version, id_program, image) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -750,7 +756,7 @@ function deleteProgram(id_program, id_version) {
         type: "POST",
         data: data,
         url: "./adapters/generalSchedule.php",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
         }
     });
@@ -761,7 +767,7 @@ function addImagesModalIcons() {
         type: "POST",
         url: "landing/getSection/programation",
         cache: false,
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
             $("#icon_canal_claro_edit").attr("src", result.icon_canal_claro);
             $("#icon_claro_cinema_edit").attr("src", result.icon_claro_cinema);
@@ -775,35 +781,27 @@ function addImagesModalIcons() {
 /**
  * Se consulta a la API y se colocan las imagenes que se encuentren
  */
-function addImagesModalBanner(idpagination, totalslides) {
-    $("body").append(`
-    <div class="loader-view-container" id="loader1">
-        <img src="./images/loader.gif" class="loader" alt="">
-    </div>
-        `);
-        let initial = parseInt(idpagination);
-        let allslide = parseInt(totalslides);
-       let alls = allslide+1;
-
+function addImagesModalBanner(id_slide,totales) {
     $.ajax({
         type: "POST",
         cache: false,
         url: "landing/getSection/programation",
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
             let slider = "";
             let counter = 1;
 
+            let total = JSON.parse(totales)+1;
+
+
+            let initial =JSON.parse(id_slide);
             $(".programming-slider-dots .slick-dots").append(
                 ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
             );
 
-
             while (true) {
                 try {
-
                     if (result["image_slider_" + counter]) {
-
                         slider =
                             slider +
                             `
@@ -819,39 +817,37 @@ function addImagesModalBanner(idpagination, totalslides) {
                     </label>
                 </div>`;
 
-
-                counter++;
+                        counter++;
                     } else {
                         break;
                     }
                 } catch (error) {
                     break;
                 }
-                console.log(counter +"counter ini");
-            }
-            console.log(counter +"counter end");
+                console.log(counter);
 
-            if(counter <= alls){
+            }
+            if(counter <= total){
                 slider =
-                            slider +
+                slider +
                     `
-                 <div>
+                    <div class="slick-slide">
+                        <div>
                             <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
                             <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
                                 <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
                                     <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
-                                    <span class="a-text-bold-warm text-plus mt-3">1000px X 342px</span>
+                                    <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
                                     <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_${counter}">
                                 </label>
                             </div>
-                       </div>
+                        </div>
+                    </div>
                     `
                 ;
                 counter++;
-            }
-            console.log(counter +"counter");
-            console.log(alls +"allslides");
 
+            }
 
             let conf = {
                 slidesToShow: 1,
@@ -864,7 +860,7 @@ function addImagesModalBanner(idpagination, totalslides) {
                     '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-left-programming" />',
                 nextArrow:
                     '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" />',
-                customPaging: function(slider, i) {
+                customPaging: function (slider, i) {
                     var thumb = $(slider.$slides[i]).data();
                     return (
                         "<p class='mb-0 a-text-bold-teal slider-pagination-item mr-4 mb-3'>" +
@@ -873,7 +869,6 @@ function addImagesModalBanner(idpagination, totalslides) {
                     );
                 }
             };
-
 
             const programmingSlider = $(".programming-slider");
             /*  $(".programming-slider").slick("slickAdd", slider); //agregar la información al slider */
@@ -892,7 +887,7 @@ function addImagesModalBanner(idpagination, totalslides) {
                 );
             }
 
-            $(".add-programming-image").click(function() {
+            $(".add-programming-image").click(function () {
                 //Cada vez que se haga click, el contador incrementa
                 let slideIndex = $(".load-programming-carousel").length;
 
@@ -918,13 +913,13 @@ function addImagesModalBanner(idpagination, totalslides) {
                     ` <img src="./images/add-icon.svg" class="add-programming-image cursor-pointer">`
                 );
 
-                $(".thumbnail-image-program").click(function() {
+                $(".thumbnail-image-program").click(function () {
                     let id = this.attributes[1].value;
-                    $("#image_programming_" + id).change(function() {
+                    $("#image_programming_" + id).change(function () {
                         let data = this;
                         var fileSrt = new FileReader();
                         if (data.files[0]) {
-                            fileSrt.onload = function(e) {
+                            fileSrt.onload = function (e) {
                                 $(".img_image_programming_" + id).attr(
                                     "src",
                                     e.target.result
@@ -935,8 +930,6 @@ function addImagesModalBanner(idpagination, totalslides) {
                     });
                 });
             });
-            $("#loader1").remove();
-            $(".modal-programming-carousel").modal("show");
 
             // $('.load-programming-carousel').click(function () {
             //     alert($('.load-programming-carousel').attr('data-index'));

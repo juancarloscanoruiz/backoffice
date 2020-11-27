@@ -24,7 +24,7 @@
                                 </label>
                             </div>
                         </form>
-                        <div id="device-size"></div>
+                        <div id="device-size" class="device-size"></div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="ml-5 float-left ">

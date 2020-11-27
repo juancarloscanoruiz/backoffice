@@ -854,7 +854,8 @@ $data_for_new_entry = json_encode([
                                                 $genreProgram = $programs[$indexPrograms]->genre;
                                                 for ($i = 0; $i < count($genreProgram); $i++) { if
                                                     ($genreProgram[$i]=='' ) { $genre='Select Option' ; break; }
-                                                    $genre=$genre . $genreProgram[$i] . ' ' ; } ?>
+                                                    $genre=$genre . $genreProgram[$i] . ' ' ; }
+                                                    ?>
                                                     <select
                                                     class="selectpicker dropup a-text-regular-brownishtwo text-normal show-tick"
                                                     title="{{ $genre }}" multiple data-live-search="true"

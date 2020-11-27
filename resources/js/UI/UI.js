@@ -20,9 +20,13 @@ import {
     getProgrammingSynopsis,
     confLandingHome
 } from "../services/landing.js";
-
-
-import { mvh, programacion } from '../index'
+import {
+    createSlickSlider,
+    createCalendarDays
+} from "../vendor/slick.js";
+import {
+    calendarSlick
+} from "../config/slick.js";
 /**
  * Configuramos el header de futuras peticiones POST con token de laravel
  */
@@ -210,7 +214,6 @@ function createNavbarProgramacionGeneral() {
     let arrowLeft = $(".arrow-progra-left");
     let arrowRight = $(".arrow-progra-right");
     navbarPrograItems.click(function () {
-
         navbarPrograItems.removeClass("navbar-progra-active");
         $(this).addClass("navbar-progra-active");
         if ($(this).hasClass("navbar-canal-claro")) {
@@ -297,17 +300,9 @@ function createNavbarProgramacionGeneral() {
 }
 
 function changeContentProgramacionGeneral(nameSection) {
-
-    $('#iframe-canal-claro').html('');
-    // $('#navbar-prev-canal-claro').html('');
-    $('.monthSliderCalendar').html('');
-    $('.slick-calendario').html('');
-    $('.show-sinopsis-table').html('')
-
     $(".navbar-progra-content").hide();
     $("#" + nameSection).show();
     if (nameSection == "navbar-prev-sinopsis") {
-        console.log("Sinopsis dentro")
         try {
             let calendarsinopsis = $(".calendar-sinopsis-slider");
             calendarsinopsis.slick("unslick");
@@ -409,9 +404,6 @@ function showlanding() {
             let month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
             let year = date.getUTCFullYear();
             getProgrammingSynopsis("canal-claro", `${year}-${month}-${day}`);
-
-            mvh()
-            programacion('programacion-edi.php')
         }
     });
 }

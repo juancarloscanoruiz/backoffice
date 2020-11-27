@@ -1,13 +1,11 @@
-<div class="modal pr-0 modal-programming-landing" id="modaledi" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal pr-0 modal-programming-landing" id="modaledi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%">
         <div class="modal-content">
             <div class="modal-body">
                 <img src="{{ asset('/images/concert-black-icon.svg') }}" class="moda-programming-landing-logo">
                 <p class="a-text-bold-tomato h2 text-uppercase text-center">Programación</p>
                 <!--Slider de calendario-->
-                <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5"
-                    id="slider-calendar-current-date">Octubre 2020</h3>
+                <h3 class="h3 a-text-semibold-brownish-grey-three text-uppercase mb-4 mt-5 slider-calendar-current-date" id="slider-calendar-current-date">Octubre 2020</h3>
                 <section class="col-10 mx-auto">
                     <div class="mb-5 calendar-slider2">
                         <li class="programming-item programming-item-active py-2">
@@ -76,8 +74,7 @@
                 </section>
                 <div class="concert-programming-contanier">
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit"
-                            chapter_id="${program.chapter_id}">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit" chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                                 Lorem ipsum
@@ -86,8 +83,7 @@
                                 <div class="schedule-poster">
                                     <div class="poster">
                                         <div class="thumbnail-edit" _id="${program.chapter_id}">
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                class="w-100" alt="">
+                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -102,21 +98,15 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <button title="Agregar a mi lista"
-                                                class="button-none add-favorites programing-button" type="button"
-                                                _id="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44"
-                                                    viewBox="0 0 48 44">
-                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd"
-                                                        stroke="#7A7777" stroke-width="3"
-                                                        d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                            <button title="Agregar a mi lista" class="button-none add-favorites programing-button" type="button" _id="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44">
+                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd" stroke="#7A7777" stroke-width="3" d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
                                                 </svg>
                                             </button>
                                         </div>
                                     </div>
                                     <div>
-                                        <span class="schedule-description a-text-regular-warm-grey-five s1"
-                                            id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        <span class="schedule-description a-text-regular-warm-grey-five s1" id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Integer et nunc elit. Proin et nibh vitae massa molestie blandit eget at
                                             neque.</span>
                                     </div>
@@ -125,8 +115,7 @@
                         </div>
                     </div>
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit"
-                            chapter_id="${program.chapter_id}">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit" chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                                 Lorem ipsum
@@ -135,8 +124,7 @@
                                 <div class="schedule-poster">
                                     <div class="poster">
                                         <div class="thumbnail-edit" _id="${program.chapter_id}">
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                class="w-100" alt="">
+                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -151,21 +139,15 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <button title="Agregar a mi lista"
-                                                class="button-none add-favorites programing-button" type="button"
-                                                _id="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44"
-                                                    viewBox="0 0 48 44">
-                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd"
-                                                        stroke="#7A7777" stroke-width="3"
-                                                        d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                            <button title="Agregar a mi lista" class="button-none add-favorites programing-button" type="button" _id="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44">
+                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd" stroke="#7A7777" stroke-width="3" d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
                                                 </svg>
                                             </button>
                                         </div>
                                     </div>
                                     <div>
-                                        <span class="schedule-description a-text-regular-warm-grey-five s1"
-                                            id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        <span class="schedule-description a-text-regular-warm-grey-five s1" id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Integer et nunc elit. Proin et nibh vitae massa molestie blandit eget at
                                             neque.</span>
                                     </div>
@@ -174,8 +156,7 @@
                         </div>
                     </div>
                     <div class="p-3 border-t border-r border-l border-b position-relative mb-3">
-                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit"
-                            chapter_id="${program.chapter_id}">
+                        <img src="{{ asset('/images/pencil.svg') }}" alt="" class="pencil pencil-edit" chapter_id="${program.chapter_id}">
                         <div class="schedule-container col-12 p-5 mx-auto mt-0">
                             <p class="mb-3 h3 schedule-title a-text-plus a-text-black-brown-two">
                                 Lorem ipsum
@@ -184,8 +165,7 @@
                                 <div class="schedule-poster">
                                     <div class="poster">
                                         <div class="thumbnail-edit" _id="${program.chapter_id}">
-                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}"
-                                                class="w-100" alt="">
+                                            <img src="{{ asset('/images/synopsis/image-synopsis-horizontal.png') }}" class="w-100" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -200,21 +180,15 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <button title="Agregar a mi lista"
-                                                class="button-none add-favorites programing-button" type="button"
-                                                _id="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44"
-                                                    viewBox="0 0 48 44">
-                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd"
-                                                        stroke="#7A7777" stroke-width="3"
-                                                        d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
+                                            <button title="Agregar a mi lista" class="button-none add-favorites programing-button" type="button" _id="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44">
+                                                    <path class="heart-gray" fill="none" fill-rule=" evenodd" stroke="#7A7777" stroke-width="3" d="M33.709 2c-2.54 0-4.866.82-6.914 2.438-1.033.817-1.97 1.816-2.795 2.983-.825-1.166-1.762-2.166-2.795-2.983C19.157 2.821 16.83 2 14.29 2c-3.397 0-6.523 1.39-8.8 3.915C3.24 8.409 2 11.818 2 15.512c0 3.802 1.387 7.283 4.364 10.954 2.663 3.284 6.491 6.617 10.924 10.477 1.514 1.318 2.886 2.198 4.667 3.79C22.426 41.152 23.374 42 24 42c.626 0 1.574-.847 2.044-1.267 1.782-1.592 3.155-2.472 4.669-3.791 4.432-3.86 8.26-7.192 10.923-10.477C44.614 22.795 46 19.315 46 15.511c0-3.693-1.24-7.102-3.49-9.596C40.231 3.39 37.105 2 33.708 2z" />
                                                 </svg>
                                             </button>
                                         </div>
                                     </div>
                                     <div>
-                                        <span class="schedule-description a-text-regular-warm-grey-five s1"
-                                            id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        <span class="schedule-description a-text-regular-warm-grey-five s1" id="synopsis-edi"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Integer et nunc elit. Proin et nibh vitae massa molestie blandit eget at
                                             neque.</span>
                                     </div>

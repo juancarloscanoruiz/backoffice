@@ -7,9 +7,9 @@
         <div id="title" class="mt-3">
             <div class="float-left ml-5 mb-2 " style="margin-left: 7%;">
                 <div class="d-flex">
-                    <button class="btn-apro  a-text-MBlack mr-3  text-normal gril-claro" id="btn-grilla"><span>Aprobar
+                    <button class="btn-apro pointer-none a-text-MBlack mr-3  text-normal gril-claro" id="btn-grilla"><span>Aprobar
                             cambios</span></button>
-                    <button class="btn-recha  a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
+                    <button class="btn-recha pointer-none a-text-MBlack text-normal lan-claro" id="btn-landing"><span>Rechazar
                             cambios</span></button>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             </div>
 
             <div class=" mr-5 d-flex float-right ">
-                <button class="btn-zona zona">Zona horaria <img src="./images/gmt-icon.svg" class="Icon_paises1"
+                <button class="btn-zona pointer-none zona">Zona horaria <img src="./images/gmt-icon.svg" class="Icon_paises1"
                         style="width:32px" /></button>
             </div>
             <div class="clearfix"></div>
