@@ -4820,7 +4820,6 @@ function eventsGrilla() {
         });
         // SUB TITULO
         let valueSub = $(".inp-sub-title-modal").val();
-        // let keySub = "block_3_subtitle";
         let keySub = $(".inp-sub-title-modal").attr("key");
         editElementLandingClaro({
             value: valueSub,
@@ -5553,6 +5552,10 @@ function eventsGrilla() {
                 resetIframe($("#navbar-prev-concert-channel iframe"), confPrevConcert);
                 break;
         }
+    })
+
+    $('.close-all-modal').on('click', function () {
+        $('.modal-edit-icons').modal('hide')
     })
 }
 

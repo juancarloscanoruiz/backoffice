@@ -124,7 +124,7 @@ function createCalendarDays(container, calendarClass = "") {
                                 <li
                                 0
                             )}" class="${calendarClass} programming-item programming-item-active" date="${yearUTC}-${monthUTC}-${i}" section_id="">
-                                <div class="day">
+                                <div class="">
                                     <p class="day-text">${getDayName(currentMonth, i)}</p>
                                     <p class="day-number">${i}</p>
                                 </div>
@@ -165,7 +165,7 @@ function createCalendarDays(container, calendarClass = "") {
             if (i < 10) {
                 daysSlider += `
                             <li class="${calendarClass} programming-item" date="${yearUTC}-${dateUTC.getUTCMonth() + 2}-0${i}" section_id="">
-                                <div class="day">
+                                <div class="">
                                     <p class="day-text">${getDayName(currentMonth + 1, i)}</p>
                                     <p class="day-number">${i}</p>
                                 </div>

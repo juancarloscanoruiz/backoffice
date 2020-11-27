@@ -1841,6 +1841,14 @@ body {
   border: 1px solid #15b643;
 }
 
+.btn-apro span {
+  font-family: "Montserrat-Bold";
+}
+
+.btn-recha span {
+  font-family: "Montserrat-Bold";
+}
+
 .btn-recha {
   width: 181px;
   height: 46px;
@@ -3343,7 +3351,8 @@ input[type=radio]:checked + .a-btn-check:before {
 
 input[type=radio]:checked + .hombre-estilo {
   background: #03ad50;
-  color: #161515;
+  color: #ffffff;
+  font-family: "Montserrat-Bold";
   border: none;
 }
 
@@ -3390,13 +3399,15 @@ option:checked + .roles {
 
 input[type=radio]:checked + .mujer-estilo {
   background: #03ad50;
-  color: #161515;
+  color: #ffffff;
+  font-family: "Montserrat-Bold";
   border: none;
 }
 
 input[type=radio]:checked + .mujer-estilo1 {
   background: #03ad50;
-  color: #161515;
+  color: #ffffff;
+  font-family: "Montserrat-Bold";
   border: none;
 }
 
