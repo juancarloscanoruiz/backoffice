@@ -83,17 +83,12 @@ import {
 
 import { previewPage } from "./preview/prev.js";
 
-import { modalClose, modalUrlClose } from "./store/eventos/evn";
+import { modalClose, modalUrlClose, programmingPencil } from "./store/eventos/evn";
 
 import { getProgramacion } from './store/getters'
 
 function eventsGrilla() {
-    const baseURL =
-        "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
-
-    $("#about_link_1_url").click(".about_link_1_title", function () {
-        alert("marina");
-    });
+    const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
     let landingSinopsis = document.getElementById("prev-sinopsis-landing");
     if (landingSinopsis) {
@@ -787,7 +782,7 @@ function eventsGrilla() {
                         let year = date.getUTCFullYear();
                         let currentDate = `${year}-${month}-${day}`;
                         getProgrammingLanding(currentDate, "claro-cinema");
-                        // getProgrammingLanding(currentDate, "canal-claro", "");
+                        programmingPencil()
                         break;
                     case "header-landing-cinema":
                         modalUrlClose()
@@ -1016,7 +1011,7 @@ function eventsGrilla() {
         $("body").append(`<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
         </div>`);
-      
+
        setTimeout(function () {
         //Landing concert channel
         $("#prev-mobile")
@@ -1025,7 +1020,7 @@ function eventsGrilla() {
         $("#prev-tablet")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
-           
+
             $("#loader1").remove();
         }, 2000);
     });
@@ -1037,7 +1032,7 @@ function eventsGrilla() {
         $("body").append(`<div class="loader-view-container" id="loader1">
         <img src="./images/loader.gif" class="loader" alt="">
         </div>`);
-      
+
        setTimeout(function () {
         $("#prev-mobile")
             .removeClass("cursor-pointer")
@@ -1110,7 +1105,7 @@ function eventsGrilla() {
             getChapterInfo(chapterId, "thumbnail-header-claro");
         }
     );
-    //Pencil Canal
+    //Pencil Canal claro
     $(".modal-programming-landing").on(
         "click",
         ".programming-pencil-concert-channel",
@@ -1144,13 +1139,19 @@ function eventsGrilla() {
             file = $("#link-promo-concert").val();
         }
 
-        let landing = "Concert Channel";
-        let data = new FormData();
-        let key = $(this).attr("key");
-        data.append("promo", file);
-        data.append("landing", landing);
-        data.append("key", key);
-        editPromoLanding(data);
+        if(file){
+            let landing = "Concert Channel";
+            let data = new FormData();
+            let key = $(this).attr("key");
+            data.append("promo", file);
+            data.append("landing", landing);
+            data.append("key", key);
+            editPromoLanding(data);
+        }else{
+            $(".modal-promos-concert").modal("hide");
+        }
+
+
     });
 
     //Concert Channel Header
@@ -4664,7 +4665,7 @@ function eventsGrilla() {
             .addClass("cursor-pointer");
             $("#loader1").remove();
         }, 2000);
-        //Landing claro canal     
+        //Landing claro canal
     });
     $("#edit-landing-claro").click(function () {
         $("body").append(`<div class="loader-view-container" id="loader1">
@@ -4832,6 +4833,15 @@ function eventsGrilla() {
                 $("#navbar-prev-canal-claro iframe"),
                 landingCanalClaro
             );
+        }
+    );
+
+    $(".modal-edit-program-carrusel").on(
+        "click",
+        ".button-modal-claro-cinema",
+        function () {
+            $(".modal-edit-program-carrusel").modal("hide");
+            resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
         }
     );
     // HEADER EDIT CANAL CLARO

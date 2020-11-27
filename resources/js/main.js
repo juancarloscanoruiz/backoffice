@@ -804,134 +804,28 @@ $(document).ready(function () {
      * Obtener el archivo subido
      */
 
-    $("#inp_programing").on("change", function () {
-        /**
-         * JS hace dos cambios en el submit, por lo que se hacen dos llamados a esta funcion
-         * esto para no caursar poroblemas mayores se manda a null e value del form
-         * saldra un error de Jquery ignorar -> TypeError: "this.files[0] is undefined"
-         */
-        try {
-            var file = this.files[0];
-            var filename = this.files[0].name;
+    // $("#inp_programing").on("change", function () {
+    //
+    //     try {
+    //         var file = this.files[0];
+    //         var filename = this.files[0].name;
 
-            if (filename != null) {
-                var splName = filename.split(".");
-                var fileFormat = splName[splName.length - 1];
-                if (fileFormat != "xlsx" && fileFormat != "xls") {
-                    $(".load-file").modal("show");
-                } else {
-                    var data_for_api = $(this).attr("api");
-                    sendFilePHP(file, data_for_api);
-                    console.log(this.files[0].name);
-                }
-            }
-        } catch (error) {
-            console.log(error);
-        }
-        this.value = null; //aqui para evitar que se hagan registros dobles
-    });
-    /**
-     * Eviar archivo mediante ajax a un "controlador" php
-     */
-
-    /*     function sendFilePHP(file, data_for_api) {
-            //creamos un dato de formulario para pasarlo en el ajax
-            let data = new FormData();
-            data.append("file", file);
-            data.append("datos", data_for_api);
-    
-            //Realizamos el ajax
-            $.ajax({
-                type: "POST",
-                data: data,
-                processData: false, //esto es para poder pasar el archivo
-                contentType: false, //esto es para poder pasar el archivo
-                url: "general-program/captureExcel",
-                beforeSend: function () {
-                    $("body").prepend(
-                        `<div class="loader-view-container pointer-none">
-                            <img src="./images/loader.gif" class="loader-table"/>
-                        </div>`
-                    );
-                },
-                success: function (result) {
-                    var existe_programacion = JSON.parse(result);
-                    $(".loader-view-container").remove();
-                    if (existe_programacion.data == 1) {
-                        console.log("Preguntamos al usuario");
-                        $("#programas_procesados_por_el_excel").val(result);
-                        $(".modal-information").modal("show");
-                    } else {
-                        if (existe_programacion.data == -1) {
-                            console.log("es de un dia anterior");
-                            $(".modal-before").modal("show");
-                        } else {
-                            console.log("se agregó la programación");
-                        }
-                    }
-                }
-            }).fail(function (e) {
-                $(".loader-view-container").remove();
-                console.log(e);
-            });
-        }
-        $("#acccion-programacion-remplaza").click(function () {
-            console.log("Se remplaza la programacion");
-            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-            console.log(data);
-    
-            $.ajax({
-                type: "POST",
-                data: data,
-                url: "general-program/changePrograming",
-                beforeSend: function () {
-                    $(".modal-information .modal-content").prepend(
-                        `<div class="loader-container pointer-none">
-                            <img src="./images/loader.gif" class="loader-table"/>
-                        </div>`
-                    );
-                },
-                success: function (result) {
-                    $(".loader-container").remove();
-                    $(".modal-information").modal("hide");
-                    console.log(JSON.parse(result));
-                }
-            }).fail(function (e) {
-                console.log(e);
-            });
-        });
-    
-        $("#acccion-programacion-agrega").click(function () {
-            console.log("Se agrega la programacion");
-            let data = JSON.parse($("#programas_procesados_por_el_excel").val());
-            console.log(data);
-            $.ajax({
-                type: "POST",
-                data: data,
-                url: "general-program/addPrograming",
-                beforeSend: function () {
-                    $(".modal-information .modal-content").prepend(
-                        `<div class="loader-container pointer-none">
-                            <img src="./images/loader.gif" class="loader-table"/>
-                        </div>`
-                    );
-                },
-                success: function (result) {
-                    $(".loader-container").remove();
-                    $(".modal-information").modal("hide");
-                    console.log(JSON.parse(result));
-                }
-            }).fail(function (e) {
-                console.log(e);
-            });
-        });
-        $("#acccion-programacion-cancela").click(function () {
-            console.log("Se cancela la programacion");
-            $("#programas_procesados_por_el_excel").val(" ");
-            let programas = $("#programas_procesados_por_el_excel").val();
-            console.log(programas);
-            $(".modal-information").modal("hide");
-        }); */
+    //         if (filename != null) {
+    //             var splName = filename.split(".");
+    //             var fileFormat = splName[splName.length - 1];
+    //             if (fileFormat != "xlsx" && fileFormat != "xls") {
+    //                 $(".load-file").modal("show");
+    //             } else {
+    //                 var data_for_api = $(this).attr("api");
+    //                 sendFilePHP(file, data_for_api);
+    //                 console.log(this.files[0].name);
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     this.value = null; //aqui para evitar que se hagan registros dobles
+    // });
 
     $("#agregar").click(function () {
         agregar();

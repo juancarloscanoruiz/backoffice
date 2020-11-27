@@ -512,10 +512,10 @@ export default class LandingView {
                 </span>
             </div>
             <div class="clearfix"></div>`);
-        });
-        let homeHeaderButtons = $(".home-encabezado-buttons");
-        homeHeaderButtons.html("");
-        homeHeaderButtons.html(`
+
+            let homeHeaderButtons = $(".home-encabezado-buttons");
+            homeHeaderButtons.html("");
+            homeHeaderButtons.html(`
         <div class="text-center  mb-4 d-flex justify-content-center pb-2">
             <button
                 class="d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button"
@@ -525,6 +525,7 @@ export default class LandingView {
                 data-toggle="modal">CANCELAR</a>
         </div>
     `);
+        });
     }
 
     addImageToHomeBanner() {
