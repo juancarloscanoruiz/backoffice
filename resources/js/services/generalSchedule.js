@@ -784,7 +784,7 @@ function addImagesModalBanner(id_slide,totales) {
             let slider = "";
             let counter = 1;
 
-            let total = JSON.parse(totales)+1;
+            let total = JSON.parse(totales);
 
            
             let initial =JSON.parse(id_slide);

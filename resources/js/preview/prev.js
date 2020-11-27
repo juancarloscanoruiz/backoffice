@@ -7,7 +7,7 @@ function previewPage(icon) {
     let iframeConcertChannel= $("#navbar-prev-concert-channel iframe");
     let iframeProgramacion = $("#navbar-prev-programacion iframe");
     let iframeHome = $("#navbar-prev-home iframe");
-    let iframeHomeGrilla = $("#navbar_prev_home_landing iframe");
+    let iframeHomeGrilla = $("#navbar-prev-home-landing iframe");
     let iframeClaroCinema = $("#navbar-prev-claro-cinema iframe");
     let iframeFooterCinema = $("#claro-cinema-programing iframe");
     let iframeFooterConcert = $("#concert-channel-programing iframe");
@@ -29,7 +29,7 @@ function previewPage(icon) {
         );
         iframeHome.css("height", "4400px");
         iframeConcertChannel.css("height", "1700px");
-        iframeHomeGrilla.css("height", "4400px");
+        iframeHomeGrilla.css("height", "3300px");
         iframeProgramacion.css("height", "5000px");
         iframeCanalClaro.css("height", "2800px");
         iframeClaroCinema.css("height", "2600px");
@@ -50,7 +50,7 @@ function previewPage(icon) {
         );
         iframeHome.css("height", "5100px");
         iframeConcertChannel.css("height", "1500px");
-        iframeHomeGrilla.css("height", "5100px");
+        iframeHomeGrilla.css("height", "4500px");
         iframeProgramacion.css("height", "12000px");
         iframeCanalClaro.css("height", "2800px");
         iframeFooterCinema.css("height", "750px");
@@ -70,7 +70,8 @@ function previewPage(icon) {
            "box-shadow",
             "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px"
         );
-        iframeConcertChannel.css("height", "2180px");
+        iframeConcertChannel.css("height", "2600px");
+        iframeClaroCinema.css("height", "3300px");
         iframeHome.css("height", "4300px");
         iframeHomeGrilla.css("height", "4300px");
         iframeProgramacion.css("height", "2700px");

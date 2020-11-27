@@ -45,7 +45,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="centro">
-                <div class="navbar-progra-content my-5" id="navbar-prev-home-landing">
+                <div class="navbar-progra-content mb-5" id="navbar-prev-home-landing">
 
                 </div>
             </div>

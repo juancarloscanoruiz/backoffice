@@ -2193,7 +2193,7 @@ function getContentConcertChannelBlock4OTwo() {
     });
 }
 
-function getContentConcertChannel(type) {
+function getContentConcertChannel(type,id_slide,totales) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -2209,6 +2209,8 @@ function getContentConcertChannel(type) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
+                let total = JSON.parse(totales);          
+                let initial =JSON.parse(id_slide);
                 switch (type) {
                     case "slider-pagination":
                         let programmingSlider = $(
@@ -2247,6 +2249,27 @@ function getContentConcertChannel(type) {
                                 break;
                             }
                         }
+                        if(counter <= total){
+                            image =
+                            image +
+                                `
+                                <div class="slick-slide">
+                                    <div>
+                                        <div class="bor thumbnail-image-program position-relative h-100" id="${counter}">
+                                        <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming" tabindex="0">
+                                            <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel">
+                                                <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo">
+                                                <span class="a-text-bold-warm text-plus mt-3">1920px X 657px</span>
+                                                <img src="./images/synopsis/image-synopsis-carrusel.jpg" class="w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_${counter}">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                            ;
+                            counter++;
+                          
+                        }
 
                         $(".programming-slider-concert-channel").html(image);
                         $(".modal-programming-carousel-concert").modal("show");
@@ -2258,7 +2281,7 @@ function getContentConcertChannel(type) {
                                 appendDots: $(
                                     ".programming-slider-dots-concert-channel"
                                 ),
-                                initialSlide: 0,
+                                initialSlide: initial,
                                 infinite: false,
                                 customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
@@ -2276,7 +2299,7 @@ function getContentConcertChannel(type) {
                                 appendDots: $(
                                     ".programming-slider-dots-concert-channel"
                                 ),
-                                initialSlide: 0,
+                                initialSlide: initial,
                                 infinite: false,
                                 customPaging: function (slider, i) {
                                     var thumb = $(slider.$slides[i]).data();
@@ -2754,8 +2777,12 @@ function getModalsCanalClaro(type) {
         url: "landing/header",
         success: function (result) {
             let obj = JSON.parse(result);
+           // let total = JSON.parse(totales)+1;       
+            //let initial =JSON.parse(id_slide);
+
+        
             if (obj.code == 200) {
-                console.log(obj);
+             
                 switch (type) {
                     // GET HEADER
                     case "slider-pagination":
@@ -2789,7 +2816,7 @@ function getModalsCanalClaro(type) {
                                 break;
                             }
                         }
-
+                      
                         programmingSlider.html(image);
                         $(".modal-programming-carousel-claro").modal("show");
                         try {

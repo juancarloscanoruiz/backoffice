@@ -91090,18 +91090,27 @@ function eventsGrilla() {
   }; //previsualizar concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-cinema").click(function () {
-    //Landing concert channel
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");
+    setTimeout(function () {
+      //Landing concert channel
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000); //Landing concert channel
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-cinema").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe"), confLandingClaroCinema);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");
+    setTimeout(function () {
+      //Landing concert channel
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
+    }, 2000);
   });
   /* Concert channel */
 
@@ -91164,7 +91173,9 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannel"])("slider-pagination");
+            var id_slide = json.id_slide;
+            var totales = json.totales;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentConcertChannel"])("slider-pagination", id_slide, totales);
             break;
 
           case "pencil-header1":
@@ -93186,7 +93197,9 @@ function eventsGrilla() {
             break;
 
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])("slider-pagination");
+            var id_slide = json.id_slide;
+            var totales = json.totales;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
             break;
         }
       }
@@ -94095,7 +94108,7 @@ function previewPage(icon) {
   var iframeConcertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe");
   var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
   var iframeHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe");
-  var iframeHomeGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar_prev_home_landing iframe");
+  var iframeHomeGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-landing iframe");
   var iframeClaroCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-claro-cinema iframe");
   var iframeFooterCinema = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#claro-cinema-programing iframe");
   var iframeFooterConcert = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#concert-channel-programing iframe");
@@ -94113,7 +94126,7 @@ function previewPage(icon) {
     pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
     iframeHome.css("height", "4400px");
     iframeConcertChannel.css("height", "1700px");
-    iframeHomeGrilla.css("height", "4400px");
+    iframeHomeGrilla.css("height", "3300px");
     iframeProgramacion.css("height", "5000px");
     iframeCanalClaro.css("height", "2800px");
     iframeClaroCinema.css("height", "2600px");
@@ -94130,7 +94143,7 @@ function previewPage(icon) {
       pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
       iframeHome.css("height", "5100px");
       iframeConcertChannel.css("height", "1500px");
-      iframeHomeGrilla.css("height", "5100px");
+      iframeHomeGrilla.css("height", "4500px");
       iframeProgramacion.css("height", "12000px");
       iframeCanalClaro.css("height", "2800px");
       iframeFooterCinema.css("height", "750px");
@@ -94144,7 +94157,8 @@ function previewPage(icon) {
         prevTabletIcon.css("opacity", "0.4");
         prevDesktopIcon.css("opacity", "1");
         pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
-        iframeConcertChannel.css("height", "2180px");
+        iframeConcertChannel.css("height", "2600px");
+        iframeClaroCinema.css("height", "3300px");
         iframeHome.css("height", "4300px");
         iframeHomeGrilla.css("height", "4300px");
         iframeProgramacion.css("height", "2700px");
@@ -94442,7 +94456,7 @@ function addImagesModalBanner(id_slide, totales) {
       result = JSON.parse(result);
       var slider = "";
       var counter = 1;
-      var total = JSON.parse(totales) + 1;
+      var total = JSON.parse(totales);
       var initial = JSON.parse(id_slide);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".programming-slider-dots .slick-dots").append(" <img src=\"./images/add-icon.svg\" class=\"add-programming-image cursor-pointer\">");
 
@@ -96023,7 +96037,7 @@ function getContentConcertChannelBlock4OTwo() {
   });
 }
 
-function getContentConcertChannel(type) {
+function getContentConcertChannel(type, id_slide, totales) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
     type: "POST",
     cache: false,
@@ -96036,6 +96050,9 @@ function getContentConcertChannel(type) {
       console.log(data);
 
       if (data.code == 200) {
+        var total = JSON.parse(totales);
+        var initial = JSON.parse(id_slide);
+
         switch (type) {
           case "slider-pagination":
             var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel");
@@ -96055,6 +96072,11 @@ function getContentConcertChannel(type) {
               }
             }
 
+            if (counter <= total) {
+              image = image + "\n                                <div class=\"slick-slide\">\n                                    <div>\n                                        <div class=\"bor thumbnail-image-program position-relative h-100\" id=\"".concat(counter, "\">\n                                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_").concat(counter, "\" class=\"input-image-program d-none image_programming\" tabindex=\"0\">\n                                            <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center align-items-center flex-column load-programming-carousel\">\n                                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo\">\n                                                <span class=\"a-text-bold-warm text-plus mt-3\">1920px X 657px</span>\n                                                <img src=\"./images/synopsis/image-synopsis-carrusel.jpg\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program img_image_programming_").concat(counter, "\">\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                                ");
+              counter++;
+            }
+
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-concert-channel").html(image);
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-concert").modal("show");
 
@@ -96064,7 +96086,7 @@ function getContentConcertChannel(type) {
                 slidesToShow: 1,
                 dots: true,
                 appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-concert-channel"),
-                initialSlide: 0,
+                initialSlide: initial,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
                   var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
@@ -96076,7 +96098,7 @@ function getContentConcertChannel(type) {
                 slidesToShow: 1,
                 dots: true,
                 appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-concert-channel"),
-                initialSlide: 0,
+                initialSlide: initial,
                 infinite: false,
                 customPaging: function customPaging(slider, i) {
                   var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
@@ -96430,11 +96452,10 @@ function getModalsCanalClaro(type) {
     },
     url: "landing/header",
     success: function success(result) {
-      var obj = JSON.parse(result);
+      var obj = JSON.parse(result); // let total = JSON.parse(totales)+1;       
+      //let initial =JSON.parse(id_slide);
 
       if (obj.code == 200) {
-        console.log(obj);
-
         switch (type) {
           // GET HEADER
           case "slider-pagination":

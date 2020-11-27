@@ -858,30 +858,50 @@ function eventsGrilla() {
 
     //previsualizar concert channel
     $("#prev-landing-cinema").click(function () {
-        //Landing concert channel
         resetIframe($("#navbar-prev-claro-cinema iframe"), confPrevClaroCinema);
+       
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+      
+       setTimeout(function () {
+        //Landing concert channel
         $("#prev-mobile")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
         $("#prev-tablet")
             .removeClass("pointer-none")
             .addClass("cursor-pointer");
+           
+            $("#loader1").remove();
+        }, 2000);
+        //Landing concert channel
+      
     });
     $("#edit-landing-cinema").click(function () {
         resetIframe(
             $("#navbar-prev-claro-cinema iframe"),
             confLandingClaroCinema
         );
-
+        $("body").append(`<div class="loader-view-container" id="loader1">
+        <img src="./images/loader.gif" class="loader" alt="">
+        </div>`);
+      
+       setTimeout(function () {
+        //Landing concert channel
         $("#prev-mobile")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-mobile").css("opacity", "0.4");
-        $("#prev-tablet")
-            .removeClass("cursor-pointer")
-            .addClass("pointer-none");
-        $("#prev-tablet").css("opacity", "0.4");
-        $("#prev-desktop").css("opacity", "1");
+        .removeClass("cursor-pointer")
+        .addClass("pointer-none");
+    $("#prev-mobile").css("opacity", "0.4");
+    $("#prev-tablet")
+        .removeClass("cursor-pointer")
+        .addClass("pointer-none");
+    $("#prev-tablet").css("opacity", "0.4");
+    $("#prev-desktop").css("opacity", "1");
+    $("#loader1").remove();
+        }, 2000);
+
+       
     });
 
     /* Concert channel */
@@ -946,7 +966,9 @@ function eventsGrilla() {
                         );
                         break;
                     case "slider-pagination":
-                        getContentConcertChannel("slider-pagination");
+                        let id_slide = json.id_slide;
+                         let totales = json.totales;
+                        getContentConcertChannel("slider-pagination",id_slide,totales);
                         break;
                     case "pencil-header1":
                         $("body").append(loader);
@@ -4588,7 +4610,13 @@ function eventsGrilla() {
                         getModalsCanalClaro(json.type);
                         break;
                     case "slider-pagination":
-                        getModalsCanalClaro("slider-pagination");
+                      
+                            let id_slide = json.id_slide;
+                            let totales = json.totales;
+                          
+
+                        
+                        getModalsCanalClaro(json.type);
                         break;
                 }
             }

@@ -49,10 +49,10 @@
         </form>
 
     </div>
+    <div class="clearfix"></div>
+    <div class="centro ">
 
-    <div class="centro mt-5">
-
-        <div class="navbar-progra-content mt-5 mb-5 navbar-prev-programacion " id="navbar-prev-programacion">
+        <div class="navbar-progra-content mb-5 navbar-prev-programacion " id="navbar-prev-programacion">
         </div>
     </div>
 
