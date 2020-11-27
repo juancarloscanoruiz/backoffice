@@ -4538,6 +4538,7 @@ function editPromoLandingClaro(data) {
             $(".loader-view-container").remove();
         }
     });
+    $(".loader-view-container").remove();
 }
 
 function getProgrammingSynopsis(landing, date) {

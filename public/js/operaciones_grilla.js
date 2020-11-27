@@ -9122,9 +9122,9 @@ function fromByteArray (uint8) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
+  * Bootstrap v4.5.2 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
@@ -9150,53 +9150,22 @@ function fromByteArray (uint8) {
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
 
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
       }
-    }
 
-    return target;
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
   }
 
   function _inheritsLoose(subClass, superClass) {
@@ -9207,8 +9176,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): util.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
@@ -9388,7 +9357,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.0';
+  var VERSION = '4.5.2';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -9544,7 +9513,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.0';
+  var VERSION$1 = '4.5.2';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -9679,11 +9648,9 @@ function fromByteArray (uint8) {
         return;
       }
 
-      if (initialButton.tagName === 'LABEL' && inputBtn && inputBtn.type === 'checkbox') {
-        event.preventDefault(); // work around event sent to label and input
+      if (initialButton.tagName !== 'LABEL' || inputBtn && inputBtn.type !== 'checkbox') {
+        Button._jQueryInterface.call($(button), 'toggle');
       }
-
-      Button._jQueryInterface.call($(button), 'toggle');
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(SELECTOR_BUTTON)[0];
@@ -9739,7 +9706,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.0';
+  var VERSION$2 = '4.5.2';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -9926,7 +9893,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default), config);
+      config = _extends({}, Default, config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -10216,10 +10183,10 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-        var _config = _objectSpread2(_objectSpread2({}, Default), $(this).data());
+        var _config = _extends({}, Default, $(this).data());
 
         if (typeof config === 'object') {
-          _config = _objectSpread2(_objectSpread2({}, _config), config);
+          _config = _extends({}, _config, config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -10257,7 +10224,7 @@ function fromByteArray (uint8) {
         return;
       }
 
-      var config = _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+      var config = _extends({}, $(target).data(), $(this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -10326,7 +10293,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.0';
+  var VERSION$3 = '4.5.2';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -10541,7 +10508,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$1), config);
+      config = _extends({}, Default$1, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -10595,7 +10562,7 @@ function fromByteArray (uint8) {
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$1), $this.data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -10675,7 +10642,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.0';
+  var VERSION$4 = '4.5.2';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -10902,7 +10869,7 @@ function fromByteArray (uint8) {
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), $(this._element).data()), config);
+      config = _extends({}, this.constructor.Default, $(this._element).data(), config);
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -10947,7 +10914,7 @@ function fromByteArray (uint8) {
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
           return data;
         };
       } else {
@@ -10977,7 +10944,7 @@ function fromByteArray (uint8) {
         };
       }
 
-      return _objectSpread2(_objectSpread2({}, popperConfig), this._config.popperConfig);
+      return _extends({}, popperConfig, this._config.popperConfig);
     } // Static
     ;
 
@@ -11189,7 +11156,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.0';
+  var VERSION$5 = '4.5.2';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -11381,7 +11348,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$3), config);
+      config = _extends({}, Default$3, config);
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
@@ -11397,11 +11364,24 @@ function fromByteArray (uint8) {
           return;
         }
 
+        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+        if (!isModalOverflowing) {
+          this._element.style.overflowY = 'hidden';
+        }
+
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
+        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
+        $(this._element).off(Util.TRANSITION_END);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
+
+          if (!isModalOverflowing) {
+            $(_this3._element).one(Util.TRANSITION_END, function () {
+              _this3._element.style.overflowY = '';
+            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
+          }
         }).emulateTransitionEnd(modalTransitionDuration);
 
         this._element.focus();
@@ -11426,6 +11406,8 @@ function fromByteArray (uint8) {
       this._element.removeAttribute('aria-hidden');
 
       this._element.setAttribute('aria-modal', true);
+
+      this._element.setAttribute('role', 'dialog');
 
       if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
@@ -11513,6 +11495,8 @@ function fromByteArray (uint8) {
       this._element.setAttribute('aria-hidden', true);
 
       this._element.removeAttribute('aria-modal');
+
+      this._element.removeAttribute('role');
 
       this._isTransitioning = false;
 
@@ -11695,7 +11679,7 @@ function fromByteArray (uint8) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-        var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
@@ -11745,7 +11729,7 @@ function fromByteArray (uint8) {
       target = document.querySelector(selector);
     }
 
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2(_objectSpread2({}, $(target).data()), $(this).data());
+    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $(target).data(), $(this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -11782,8 +11766,8 @@ function fromByteArray (uint8) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.0): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Bootstrap (v4.5.2): tools/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
@@ -11908,7 +11892,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.0';
+  var VERSION$6 = '4.5.2';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -12296,7 +12280,7 @@ function fromByteArray (uint8) {
           return _this3._handlePopperPlacementChange(data);
         }
       };
-      return _objectSpread2(_objectSpread2({}, defaultBsConfig), this.config.popperConfig);
+      return _extends({}, defaultBsConfig, this.config.popperConfig);
     };
 
     _proto._getOffset = function _getOffset() {
@@ -12306,7 +12290,7 @@ function fromByteArray (uint8) {
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _objectSpread2(_objectSpread2({}, data.offsets), _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
           return data;
         };
       } else {
@@ -12361,7 +12345,7 @@ function fromByteArray (uint8) {
       $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
-        this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
+        this.config = _extends({}, this.config, {
           trigger: 'manual',
           selector: ''
         });
@@ -12461,7 +12445,7 @@ function fromByteArray (uint8) {
           delete dataAttributes[dataAttr];
         }
       });
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, this.constructor.Default), dataAttributes), typeof config === 'object' && config ? config : {});
+      config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -12620,21 +12604,21 @@ function fromByteArray (uint8) {
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.0';
+  var VERSION$7 = '4.5.2';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-  var Default$5 = _objectSpread2(_objectSpread2({}, Tooltip.Default), {}, {
+  var Default$5 = _extends({}, Tooltip.Default, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _objectSpread2(_objectSpread2({}, Tooltip.DefaultType), {}, {
+  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
     content: '(string|element|function)'
   });
 
@@ -12800,7 +12784,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.0';
+  var VERSION$8 = '4.5.2';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -12914,7 +12898,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -13092,7 +13076,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.0';
+  var VERSION$9 = '4.5.2';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -13318,7 +13302,7 @@ function fromByteArray (uint8) {
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.0';
+  var VERSION$a = '4.5.2';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -13371,6 +13355,8 @@ function fromByteArray (uint8) {
         return;
       }
 
+      this._clearTimeout();
+
       if (this._config.animation) {
         this._element.classList.add(CLASS_NAME_FADE$5);
       }
@@ -13419,8 +13405,7 @@ function fromByteArray (uint8) {
     };
 
     _proto.dispose = function dispose() {
-      clearTimeout(this._timeout);
-      this._timeout = null;
+      this._clearTimeout();
 
       if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
         this._element.classList.remove(CLASS_NAME_SHOW$7);
@@ -13434,7 +13419,7 @@ function fromByteArray (uint8) {
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$7), $(this._element).data()), typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
@@ -13464,6 +13449,11 @@ function fromByteArray (uint8) {
       } else {
         complete();
       }
+    };
+
+    _proto._clearTimeout = function _clearTimeout() {
+      clearTimeout(this._timeout);
+      this._timeout = null;
     } // Static
     ;
 
@@ -46792,7 +46782,7 @@ utils.intFromLE = intFromLE;
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Applications/MAMP/htdocs/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Applications/MAMP/htdocs/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/zaid/Documents/CTIN/backoffice\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/zaid/Documents/CTIN/backoffice\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -85539,25 +85529,18 @@ function eventsGrilla() {
   }; //previsualizar concert channel
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
+    //Landing concert channel
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confPrevConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");
-    setTimeout(function () {
-      //Landing concert channel
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-    }, 2000);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-    }, 2000);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".button-modal-concert-channel").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe"), confLandingConcertChannel);
@@ -87548,29 +87531,7 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0];
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
-  }; //previsualizar claro canal
-
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-claro").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n         <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n         </div>");
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), confPrevClaroCanal);
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-    }, 2000); //Landing claro canal     
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-claro").click(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append("<div class=\"loader-view-container\" id=\"loader1\">\n        <img src=\"./images/loader.gif\" class=\"loader\" alt=\"\">\n        </div>");
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe"), landingCanalClaro);
-    setTimeout(function () {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").css("opacity", "0.4");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("cursor-pointer").addClass("pointer-none");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").css("opacity", "0.4");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-desktop").css("opacity", "1");
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-    }, 2000);
-  }); // BTN MODAL URL ENCABEZADO
+  }; // BTN MODAL URL ENCABEZADO
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#url-encabezado").click(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#modal-url").modal("show");
@@ -88093,13 +88054,17 @@ function eventsGrilla() {
       this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
     }
   }; //previsualizar canal claro
+  // $("#prev-landing-concert").click(function () {
+  //     //Landing canal claro
+  //     resetIframe($("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
+  //     $("#prev-mobile")
+  //         .removeClass("pointer-none")
+  //         .addClass("cursor-pointer");
+  //     $("#prev-tablet")
+  //         .removeClass("pointer-none")
+  //         .addClass("cursor-pointer");
+  // });
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-landing-concert").click(function () {
-    //Landing canal claro
-    Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), confPrevHomeConcert);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("pointer-none").addClass("cursor-pointer");
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-tablet").removeClass("pointer-none").addClass("cursor-pointer");
-  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#edit-landing-concert").click(function () {
     Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#prev-mobile").removeClass("cursor-pointer").addClass("pointer-none");
@@ -88428,7 +88393,6 @@ var h;
 function previewPage(icon) {
   var pageContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()("iframe");
   var iframeCanalClaro = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-canal-claro iframe");
-  var iframeConcertChannel = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-concert-channel iframe");
   var iframeProgramacion = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-programacion iframe");
   var iframeHome = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home iframe");
   var iframeHomeGrilla = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar_prev_home_landing iframe");
@@ -88448,7 +88412,6 @@ function previewPage(icon) {
     pageContainer.css("width", "375px");
     pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
     iframeHome.css("height", "4400px");
-    iframeConcertChannel.css("height", "1700px");
     iframeHomeGrilla.css("height", "4400px");
     iframeProgramacion.css("height", "5000px");
     iframeCanalClaro.css("height", "2800px");
@@ -88465,7 +88428,6 @@ function previewPage(icon) {
       pageContainer.css("width", "1024px");
       pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
       iframeHome.css("height", "5100px");
-      iframeConcertChannel.css("height", "1500px");
       iframeHomeGrilla.css("height", "5100px");
       iframeProgramacion.css("height", "12000px");
       iframeCanalClaro.css("height", "2800px");
@@ -88474,13 +88436,12 @@ function previewPage(icon) {
       iframeFooterConcert.css("height", "950px");
       iframeFooterClaro.css("height", "950px");
     } //PC
-    else if (icon.is("#prev-desktop")) {
+    else {
         pageContainer.css("width", "1200px");
         prevMobileIcon.css("opacity", "0.4");
         prevTabletIcon.css("opacity", "0.4");
         prevDesktopIcon.css("opacity", "1");
         pageContainer.css("box-shadow", "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px");
-        iframeConcertChannel.css("height", "2180px");
         iframeHome.css("height", "4300px");
         iframeHomeGrilla.css("height", "4300px");
         iframeProgramacion.css("height", "2700px");
@@ -91671,6 +91632,7 @@ function editPromoLandingClaro(data) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
 }
 
 function getProgrammingSynopsis(landing, date) {
@@ -93765,10 +93727,10 @@ var LandingView = /*#__PURE__*/function () {
 
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".pc").html("\n            <!-- parte del home-->\n            <div class=\"d-flex col-12 mb-5 mx-auto\">\n              <div class=\"mr-5\">\n                <img src=\"./images/home/claro-logo.svg\" class=\"d-flex mb-2 ml-4\" />\n                <!--navbar-->\n                <div class=\"claro-navbar d-flex ml-3 mt-0 claro-navbar-black\">\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Canal Claro</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Concert Channel</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Claro Cinema</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a target=\"_blank\" href=\"\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Nuestra Visi\xF3n</p>\n                    </a>\n                  </div>\n                  <div>\n                    <a href=\"\" target=\"_blank\" class=\"navbar-link text-decoration-none\">\n                      <p class=\"navbar-item-black text-semibold\">Claro Sports</p>\n                    </a>\n                  </div>\n                  <!-- <div>\n                        <a href=\"programacion.php\" class=\"navbar-link text-decoration-none\">\n                            <p class=\"navbar-item\">Programaci\xF3n</p>\n                        </a>\n                        </div>-->\n                </div>\n                <!--<div class=\"login\">\n                            <a href=\"\" class=\"login-item\"><img class=\"login-country\" alt=\"\" src=\"./images/paises/ecuador.svg\"></a>\n                        </div>-->\n\n                <!--inputs-->\n                <input\n                  type=\"text\"\n                  name=\"\"\n                  id=\"\"\n                  class=\"input-title-home a-text-black-teal title-home text-uppercase pl-4 mt-6 title-home-enca border-none opa-holder ml-3 header-title-1 d-flex\"\n                  placeholder=\"TITULO\"\n                  value=\"".concat(title, "\"/>\n                <input\n                  type=\"text\"\n                  name=\"\"\n                  id=\"\"\n                  class=\"input-subtitle-home a-text-black-blacktwo title-home text-uppercase pl-4 subtitle-home-enca border-none opa-holder mt-2 ml-3 header-title-2 d-flex\"\n                  placeholder=\"SUBTITULO\"\n                  value=\"").concat(subtitle, "\"/>\n              </div>\n              <div class=\"d-flex justify-content-around\">\n                <input\n                  type=\"file\"\n                  name=\"\"\n                  id=\"video-promo-header-home\"\n                  class=\"d-none file-video\"\n                  accept=\"video/*\"/>\n                <label\n                  for=\"video-promo-header-home\"\n                  class=\"mb-0 cursor-pointer circle-video d-flex justify-content-center align-items-center flex-column load-modales video-header\">\n                    ").concat(file, "\n                </label>\n                <!--  <input type=\"file\" name=\"\" id=\"image-promo-header-home\" class=\"d-none\">\n                        <label for=\"image-promo-header-home\"\n                            class=\"mb-0 cursor-pointer  d-flex justify-content-center align-items-center h-100 mb-3 flex-column load-modales\">\n                            <img src=\"{{ asset('/images/synopsis/camara.svg') }}\" alt=\"add-photo\"\n                                class=\"add-photo promo-icon cursor-pointer\" style=\"width:95px\" />\n                            <span class=\"a-text-bold-warm text-plus p-2 pr-3 pl-3 mr-4 white-shadow\">A\xF1ade tu archivo\n                                jpg 472px X 295px </span>\n                        </label>-->\n              </div>\n            </div>\n\n            <div class=\"float-right mr-5 mb-3\">\n                <span class=\"a-text-bold-brown-two text-normal\">\n                    Nombre_Promoci\xF3n_ConcertChannel_20200709.mp4\n                </span>\n            </div>\n            <div class=\"clearfix\"></div>"));
+        var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
+        homeHeaderButtons.html("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons").html("\n        <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n        </div>\n    ");
       });
-      var homeHeaderButtons = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".home-encabezado-buttons");
-      homeHeaderButtons.html("");
-      homeHeaderButtons.html("\n        <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n        </div>\n    ");
     }
   }, {
     key: "addImageToHomeBanner",
@@ -93806,6 +93768,7 @@ var LandingView = /*#__PURE__*/function () {
       data.append("positions", imagesPositions);
       var response = landingController.uploadHomeBannerImages(data);
       response.then(function (data) {
+        console.log(data);
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("hide");
         Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_3__["resetIframe"])(container, options);
@@ -95049,7 +95012,7 @@ var ProgramView = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
+module.exports = __webpack_require__(/*! /Users/zaid/Documents/Proyectos/backoffice/resources/js/operaciones_grilla.js */"./resources/js/operaciones_grilla.js");
 
 
 /***/ }),

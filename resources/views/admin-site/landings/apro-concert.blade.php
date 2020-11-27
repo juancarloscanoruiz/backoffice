@@ -21,8 +21,8 @@
                             class="mujer-estilo d-flex align-items-center pl-4 pt-3">
                             <p class=" a-prev-title">EDITAR</p>
                         </label>
-                        <input type="radio" name="sexo" id="prev-landing-concert" />
-                        <label for="prev-landing-concert" class="hombre-estilo pl-2 pt-3">
+                        <input type="radio" name="sexo" id="admin-prev-concert" />
+                        <label for="admin-prev-concert" class="hombre-estilo pl-2 pt-3">
                             <p class=" a-prev-title ">PREVISUALIZAR</p>
                         </label>
                     </div>
@@ -56,7 +56,5 @@
         @include('partials.adm-CN.modals-concert.encabezado')
         @include('partials.adm-CN.modals-concert.carrusel')
         @include('partials.adm-CN.modals-concert.programming')
-
-   
     </body>
 @endsection
