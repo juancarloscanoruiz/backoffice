@@ -145,34 +145,34 @@ export default class LandingView {
                     <!--navbar-->
                     <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
                       <div>
-                        <a href="" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Canal Claro</p>
-                        </a>
+                        </span>
                       </div>
                       <div>
-                        <a href="" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Concert Channel</p>
-                        </a>
+                        </span>
                       </div>
                       <div>
-                        <a href="" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Claro Cinema</p>
-                        </a>
+                        </span>
                       </div>
                       <div>
-                        <a target="_blank" href="" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Nuestra Visión</p>
-                        </a>
+                        </span>
                       </div>
                       <div>
-                        <a href="" target="_blank" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                           <p class="navbar-item-black text-semibold">Claro Sports</p>
-                        </a>
+                        </span>
                       </div>
                       <!-- <div>
-                            <a href="programacion.php" class="navbar-link text-decoration-none">
+                            <span class="navbar-link text-decoration-none">
                                 <p class="navbar-item">Programación</p>
-                            </a>
+                            </span>
                             </div>-->
                     </div>
                     <!--<div class="login">
@@ -433,34 +433,34 @@ export default class LandingView {
                 <!--navbar-->
                 <div class="claro-navbar d-flex ml-3 mt-0 claro-navbar-black">
                   <div>
-                    <a href="" class="navbar-link text-decoration-none">
+                    <span class="navbar-link text-decoration-none">
                       <p class="navbar-item-black text-semibold">Canal Claro</p>
-                    </a>
+                    </span>
                   </div>
                   <div>
-                    <a href="" class="navbar-link text-decoration-none">
+                    <span class="navbar-link text-decoration-none">
                       <p class="navbar-item-black text-semibold">Concert Channel</p>
-                    </a>
+                    </span>
                   </div>
                   <div>
-                    <a href="" class="navbar-link text-decoration-none">
+                    <span class="navbar-link text-decoration-none">
                       <p class="navbar-item-black text-semibold">Claro Cinema</p>
-                    </a>
+                    </span>
                   </div>
                   <div>
-                    <a target="_blank" href="" class="navbar-link text-decoration-none">
+                    <span class="navbar-link text-decoration-none">
                       <p class="navbar-item-black text-semibold">Nuestra Visión</p>
-                    </a>
+                    </span>
                   </div>
                   <div>
-                    <a href="" target="_blank" class="navbar-link text-decoration-none">
+                    <span class="navbar-link text-decoration-none">
                       <p class="navbar-item-black text-semibold">Claro Sports</p>
-                    </a>
+                    </span>
                   </div>
                   <!-- <div>
-                        <a href="programacion.php" class="navbar-link text-decoration-none">
+                        <span class="navbar-link text-decoration-none">
                             <p class="navbar-item">Programación</p>
-                        </a>
+                        </span>
                         </div>-->
                 </div>
                 <!--<div class="login">
