@@ -89112,7 +89112,7 @@ function claroCinemaProgramacion() {
         switch (json.type) {
           case "slider-pagination":
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(LOADER);
-            Object(_store_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacion"])(1);
+            Object(_store_getters__WEBPACK_IMPORTED_MODULE_3__["getProgramacion"])(1, id_slide);
             break;
 
           case "menu-logos":
@@ -90897,7 +90897,8 @@ function eventsGrilla() {
 
         switch (json.type) {
           case "slider-pagination":
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getContentClaroCinema"])("slider-pagination");
+            var id_slide = json.id_slide;
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getBannerModalCinema"])(id_slide);
             break;
 
           case "current-programming-cinema":
@@ -91991,7 +91992,9 @@ function eventsGrilla() {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(loader);
             setTimeout(function () {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()("#loader1").remove();
-              Object(_store_getters__WEBPACK_IMPORTED_MODULE_13__["getProgramacion"])(1);
+              var id_slide = json.id_slide;
+              var totales = json.totales;
+              Object(_store_getters__WEBPACK_IMPORTED_MODULE_13__["getProgramacion"])(1, id_slide);
             }, 3000);
             break;
 
@@ -93090,7 +93093,7 @@ function eventsGrilla() {
           case "slider-pagination":
             var id_slide = json.id_slide;
             var totales = json.totales;
-            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getModalsCanalClaro"])(json.type);
+            Object(_services_landing_js__WEBPACK_IMPORTED_MODULE_6__["getBannerModalClaro"])(totales, id_slide);
             break;
         }
       }
@@ -94462,7 +94465,7 @@ function addImagesModalBanner(id_slide, totales) {
 /*!******************************************!*\
   !*** ./resources/js/services/landing.js ***!
   \******************************************/
-/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome, getContentHomeCinema, getContentHomeHeaderCinema */
+/*! exports provided: getProgrammingSynopsis, getChapterInfo, updateImagesOfProgrammingSlider, updateLogosOfLanding, updateImageProgramOfLanding, getProgramming, getContentConcertChannelHeader, getContentConcertChannelBlockHeader3, getContentConcertChannelBlock4One, getContentConcertChannelBlock4OTwo, editHeaderLanding, editHomeHeader, editElementLanding, editPromoLandingCinema, getConcertChannelPromo, editPromoLanding, getProgrammingLanding, getProgramsLanding, getPromotionalsProgramsCarousel, getModalsCanalClaro, getBannerModalClaro, editHeaderLandingClaro, editElementLandingClaro, getContentClaroCinema, getBannerModalCinema, editPromoLandingClaro, getContentConcertChannel, getSynopsis, editAttributeSynopsis, updateImagesSynopsis, confLandingHome, getContentHomeHeader, getCarruselHome, editHeaderHome, getContentHomeCinema, getContentHomeHeaderCinema */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94487,9 +94490,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProgramsLanding", function() { return getProgramsLanding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPromotionalsProgramsCarousel", function() { return getPromotionalsProgramsCarousel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getModalsCanalClaro", function() { return getModalsCanalClaro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerModalClaro", function() { return getBannerModalClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editHeaderLandingClaro", function() { return editHeaderLandingClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editElementLandingClaro", function() { return editElementLandingClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentClaroCinema", function() { return getContentClaroCinema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBannerModalCinema", function() { return getBannerModalCinema; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPromoLandingClaro", function() { return editPromoLandingClaro; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContentConcertChannel", function() { return getContentConcertChannel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSynopsis", function() { return getSynopsis; });
@@ -96343,6 +96348,96 @@ function getProgramsLanding(date) {
       jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
     }
   });
+}
+
+function getBannerModalClaro(totales, id_slide) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "GET",
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                    <img src=\"./images/loader.gif\" class=\"loader\"/>\n                </div>");
+    },
+    url: "landing/header",
+    success: function success(result) {
+      var obj = JSON.parse(result);
+      var total = JSON.parse(totales) + 1;
+      var initial = JSON.parse(id_slide);
+      var counter = 1;
+      var image = "";
+      var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-canal-claro");
+
+      while (true) {
+        if (obj.data["block_1_image_slider_".concat(counter)]) {
+          image += "\n                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                            <label for=\"image_programming_").concat(counter, "\"\n                                class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                    class=\"cursor-pointer add-photo \" />\n                                <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                    class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                            </label>\n                        </div>\n                        ");
+          counter++;
+        } else {
+          break;
+        }
+      }
+
+      programmingSlider.html(image);
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-claro").modal("show");
+
+      try {
+        programmingSlider.slick("unslick");
+        programmingSlider.not(".slick-initialized").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
+          initialSlide: initial,
+          infinite: false,
+          customPaging: function customPaging(slider, i) {
+            var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+            return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</br>" + "</p>";
+          }
+        });
+      } catch (error) {
+        programmingSlider.not(".slick-initialized").slick({
+          slidesToShow: 1,
+          dots: true,
+          appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
+          initialSlide: initial,
+          infinite: false,
+          customPaging: function customPaging(slider, i) {
+            var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+            return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+          }
+        });
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".banner-slider-button").click(function () {
+        /*
+            Arreglo para saber la posición de las imágenes que cargo el usuario
+            es decir, saber si subió la 1 y 3, o 2,3 etc.
+        */
+        var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
+
+        var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
+
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
+          if (this.files[0]) {
+            imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
+          }
+
+          imagesProgramming.push(this.files[0]);
+        });
+        var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
+
+        for (var index = 0; index < imagesProgramming.length; index++) {
+          var file = "file" + (index + 1).toString();
+          file = file.toString();
+          data.append(file, imagesProgramming[index]);
+        } //Posiciones de las imágenes
+
+
+        data.append("positions", imagesPositions); //Hora inicio y fin
+
+        data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
+        data.append("landing", "Canal Claro");
+        setImageSliderBanner(data);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+    }
+  });
 } // CLARO CANAL
 
 
@@ -96360,83 +96455,6 @@ function getModalsCanalClaro(type) {
       if (obj.code == 200) {
         switch (type) {
           // GET HEADER
-          case "slider-pagination":
-            var counter = 1;
-            var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-canal-claro");
-
-            while (true) {
-              if (obj.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                                <div class=\"bor thumbnail-image-program position-relative h-100\">\n                                    <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"").concat(counter, "\">\n                                    <label for=\"image_programming_").concat(counter, "\"\n                                        class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                        <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\"\n                                            class=\"cursor-pointer add-photo \" />\n                                        <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                        <img src=\"").concat(obj.data["block_1_image_slider_" + counter], "\"\n                                            class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                    </label>\n                                </div>\n                                ");
-                counter++;
-              } else {
-                break;
-              }
-            }
-
-            programmingSlider.html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-claro").modal("show");
-
-            try {
-              programmingSlider.slick("unslick");
-              programmingSlider.not(".slick-initialized").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</br>" + "</p>";
-                }
-              });
-            } catch (error) {
-              programmingSlider.not(".slick-initialized").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-canal-claro"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-            }
-
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".banner-slider-button").click(function () {
-              /*
-                  Arreglo para saber la posición de las imágenes que cargo el usuario
-                  es decir, saber si subió la 1 y 3, o 2,3 etc.
-              */
-              var imagesPositions = []; //Arreglo para guardar imágenes de los usuarios
-
-              var imagesProgramming = []; //Recorremos cada input para obtener las imágenes
-
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
-                if (this.files[0]) {
-                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
-                }
-
-                imagesProgramming.push(this.files[0]);
-              });
-              var data = new FormData(); //Hacemos un for para mandar file1, file2, etc. en el form data
-
-              for (var index = 0; index < imagesProgramming.length; index++) {
-                var file = "file" + (index + 1).toString();
-                file = file.toString();
-                data.append(file, imagesProgramming[index]);
-              } //Posiciones de las imágenes
-
-
-              data.append("positions", imagesPositions); //Hora inicio y fin
-
-              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
-              data.append("landing", "Canal Claro");
-              setImageSliderBanner(data);
-            });
-            break;
-
           case "claro-header":
             jquery__WEBPACK_IMPORTED_MODULE_1___default()("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".inp-text-modal-1").val(obj.data.block_2_title_1);
@@ -97048,6 +97066,98 @@ function reload(idCarousel, landing) {
       }
     }
   });
+}
+
+function getBannerModalCinema(id_slide) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default.a.ajax({
+    type: "POST",
+    cache: false,
+    beforeSend: function beforeSend() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").append("<div class=\"loader-view-container pointer-none\">\n                        <img src=\"./images/loader.gif\" class=\"loader\"/>\n                    </div>");
+    },
+    url: "landing/claroCinema",
+    success: function success(result) {
+      var data = JSON.parse(result);
+      var initial = JSON.parse(id_slide);
+
+      if (data.code == 200) {
+        var counter = 1;
+        var image = "";
+        var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-claro-cinema");
+
+        while (true) {
+          if (data.data["block_1_image_slider_".concat(counter)]) {
+            image += "\n                    <div class=\"bor thumbnail-image-program position-relative h-100\">\n                        <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                            <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                                <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                <img src=\"").concat(data.data["block_1_image_slider_" + counter], "\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                            </label>\n                    </div>\n                    ");
+            counter++;
+          } else {
+            break;
+          }
+        }
+
+        programmingSlider.html(image);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-cinema").modal("show");
+
+        try {
+          programmingSlider.slick("unslick");
+          programmingSlider.not(".slick-initialized").slick({
+            slidesToShow: 1,
+            dots: true,
+            appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
+            initialSlide: initial,
+            infinite: false,
+            customPaging: function customPaging(slider, i) {
+              var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+              return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+            }
+          });
+        } catch (error) {
+          console.log(error);
+          programmingSlider.not(".slick-initialized").slick({
+            slidesToShow: 1,
+            dots: true,
+            appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
+            initialSlide: initial,
+            infinite: false,
+            customPaging: function customPaging(slider, i) {
+              var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
+              return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
+            }
+          });
+        }
+
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
+          var imagesPositions = [];
+          var imagesProgramming = [];
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
+            if (this.files[0]) {
+              imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
+            }
+
+            imagesProgramming.push(this.files[0]);
+          });
+          var data = new FormData();
+
+          for (var index = 0; index < imagesProgramming.length; index++) {
+            var file = "file" + (index + 1).toString();
+            file = file.toString();
+            data.append(file, imagesProgramming[index]);
+          }
+
+          data.append("positions", imagesPositions);
+          data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
+          data.append("landing", "Claro Cinema");
+          setImageSliderBanner(data);
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#close_modals").click(function () {
+          console.log("cerreer");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modaledi").modal("hide");
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".loader-view-container").remove();
+      }
+    }
+  });
 } //Landing concert channel
 
 
@@ -97066,84 +97176,6 @@ function getContentClaroCinema(type) {
       if (data.code == 200) {
         switch (type) {
           // SLAIDER
-          case "slider-pagination":
-            var counter = 1;
-            var image = "";
-            var programmingSlider = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-claro-cinema");
-
-            while (true) {
-              if (data.data["block_1_image_slider_".concat(counter)]) {
-                image += "\n                        <div class=\"bor thumbnail-image-program position-relative h-100\">\n                            <input type=\"file\" name=\"image_programming[]\" id=\"image_programming_".concat(counter, "\" class=\"input-image-program d-none image_programming \" data-index=\"1\">\n                                <label for=\"image_programming_").concat(counter, "\" class=\"h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel\">\n                                    <img src=\"./images/synopsis/camara.svg\" alt=\"add-photo\" class=\" cursor-pointer add-photo \" />\n                                    <span class=\"a-text-bold-warm text-plus p-2 banner-text mt-3\">1920px X 657px</span>\n                                    <img src=\"").concat(data.data["block_1_image_slider_" + counter], "\" class=\"w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_").concat(counter, "\" />\n                                </label>\n                        </div>\n                        ");
-                counter++;
-              } else {
-                break;
-              }
-            }
-
-            programmingSlider.html(image);
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal-programming-carousel-cinema").modal("show");
-
-            try {
-              programmingSlider.slick("unslick");
-              programmingSlider.not(".slick-initialized").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-            } catch (error) {
-              console.log(error);
-              programmingSlider.not(".slick-initialized").slick({
-                slidesToShow: 1,
-                dots: true,
-                appendDots: jquery__WEBPACK_IMPORTED_MODULE_1___default()(".programming-slider-dots-cinema"),
-                initialSlide: 0,
-                infinite: false,
-                customPaging: function customPaging(slider, i) {
-                  var thumb = jquery__WEBPACK_IMPORTED_MODULE_1___default()(slider.$slides[i]).data();
-                  return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
-                }
-              });
-            }
-
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#image-programming-button-cinema").click(function () {
-              var imagesPositions = [];
-              var imagesProgramming = [];
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".image_programming").each(function () {
-                if (this.files[0]) {
-                  imagesPositions.push(jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).attr("data-index"));
-                }
-
-                imagesProgramming.push(this.files[0]);
-              });
-              var data = new FormData();
-
-              for (var index = 0; index < imagesProgramming.length; index++) {
-                var file = "file" + (index + 1).toString();
-                file = file.toString();
-                data.append(file, imagesProgramming[index]);
-              }
-
-              data.append("positions", imagesPositions);
-              data.append("date", jquery__WEBPACK_IMPORTED_MODULE_1___default()("#date-start-input").val());
-              data.append("landing", "Claro Cinema");
-              setImageSliderBanner(data);
-            });
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()("#close_modals").click(function () {
-              console.log("cerreer");
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#modaledi").modal("hide");
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()(".modal").modal("hide");
-            });
-            break;
-          // HEADER
-          // SLAIDER
-
           case "header-landing-cinema":
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".cinema-header-input-title1").val(data.data.block_2_title_1);
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".cinema-header-input-title2").val(data.data.block_2_title_2);
@@ -98500,7 +98532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function getBanner(res, id) {
+function getBanner(res, id, id_slide) {
   var slider = "";
   var counter = 1;
 
@@ -98524,7 +98556,7 @@ function getBanner(res, id) {
   var slick = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-banner');
   slick.html(slider);
   var dots = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-dots-banner');
-  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots);
+  Object(_slick_slick__WEBPACK_IMPORTED_MODULE_1__["slickShowArrow"])(slick, dots, id_slide);
   Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["previewImage"])();
   Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["modalClose"])();
   Object(_eventos_evn__WEBPACK_IMPORTED_MODULE_2__["dateCalendar"])();
@@ -98672,14 +98704,16 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajaxSetup({
 });
 
 
-function getProgramacion(type) {
+function getProgramacion(type, id_slide) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
     type: "POST",
     cache: false,
     url: "landing/getSection/programation",
     success: function success(res) {
       if (type == 1) {
-        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBanner"])(JSON.parse(res), 1);
+        // let total = JSON.parse(totales);
+        var initial = JSON.parse(id_slide);
+        Object(_actions__WEBPACK_IMPORTED_MODULE_1__["getBanner"])(JSON.parse(res), 1, initial);
       }
     }
   });
@@ -98830,7 +98864,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var index;
 
-function slickShowArrow(slick, dots) {
+function slickShowArrow(slick, dots, initial) {
   try {
     slick.slick("unslick");
     slick.slick({
@@ -98840,6 +98874,7 @@ function slickShowArrow(slick, dots) {
       nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
       fade: true,
       appendDots: dots,
+      initialSlide: initial,
       customPaging: function customPaging(slider, i) {
         index = i + 1;
         return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
@@ -98853,6 +98888,7 @@ function slickShowArrow(slick, dots) {
       nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
       fade: true,
       appendDots: dots,
+      initialSlide: initial,
       customPaging: function customPaging(slider, i) {
         index = i + 1;
         return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";

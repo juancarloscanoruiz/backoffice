@@ -19,7 +19,7 @@ function claroCinemaProgramacion() {
                 switch (json.type) {
                     case "slider-pagination":
                         $("body").append(LOADER);
-                        getProgramacion(1)
+                        getProgramacion(1, id_slide);
                         break;
                     case "menu-logos":
                         $("body").append(LOADER);

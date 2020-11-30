@@ -41,10 +41,12 @@ import {
     getProgramsLanding,
     getPromotionalsProgramsCarousel,
     getModalsCanalClaro,
+    getBannerModalClaro,
     editHeaderLandingClaro,
     editElementLandingClaro,
     editPromoLandingClaro,
     getContentClaroCinema,
+    getBannerModalCinema,
     getProgrammingSynopsis,
     getSynopsis,
     editAttributeSynopsis,
@@ -773,7 +775,10 @@ function eventsGrilla() {
                 console.log(json.type)
                 switch (json.type) {
                     case "slider-pagination":
-                        getContentClaroCinema("slider-pagination");
+
+                        let id_slide = json.id_slide;           
+                        getBannerModalCinema(id_slide);
+                  
                         break;
                     case "current-programming-cinema":
                         let date = new Date();
@@ -3287,9 +3292,11 @@ function eventsGrilla() {
 
                         setTimeout(function () {
                             $("#loader1").remove();
-                            getProgramacion(1)
+                            let id_slide = json.id_slide;
+                            let totales = json.totales;
+                            getProgramacion(1, id_slide);
                         }, 3000);
-
+                       
                         break;
                     case "synopsis":
                         document
@@ -4617,7 +4624,7 @@ function eventsGrilla() {
                           
 
                         
-                        getModalsCanalClaro(json.type);
+                            getBannerModalClaro(totales,id_slide);
                         break;
                 }
             }

@@ -3,7 +3,7 @@ import "slick-carousel";
 
 var index
 
-function slickShowArrow(slick, dots) {
+function slickShowArrow(slick, dots,initial) {
     try {
         slick.slick("unslick");
         slick.slick({
@@ -13,6 +13,7 @@ function slickShowArrow(slick, dots) {
             nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;" />',
             fade: true,
             appendDots: dots,
+            initialSlide: initial,
             customPaging: function (slider, i) {
                 index = (i + 1)
                 return (
@@ -30,6 +31,7 @@ function slickShowArrow(slick, dots) {
             nextArrow: '<img src="./images/synopsis/arrow.svg" class="cursor-pointer arrow-right-programming" style="width: 40px;"/>',
             fade: true,
             appendDots: dots,
+            initialSlide: initial,
             customPaging: function (slider, i) {
                 index = (i + 1)
                 return (

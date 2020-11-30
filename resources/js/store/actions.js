@@ -4,7 +4,7 @@ import { slickShowArrow } from './slick/slick'
 import { previewImage, modalClose, dateCalendar } from './eventos/evn'
 import { setBanner } from './methods'
 
-function getBanner(res, id) {
+function getBanner(res, id, id_slide) {
     let slider = "";
     let counter = 1;
 
@@ -38,7 +38,7 @@ function getBanner(res, id) {
     let slick = $('.slick-banner');
     slick.html(slider);
     let dots = $('.slick-dots-banner');
-    slickShowArrow(slick, dots)
+    slickShowArrow(slick, dots,id_slide)
     previewImage()
     modalClose()
     dateCalendar()
