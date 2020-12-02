@@ -257,6 +257,14 @@ export default class LandingView {
                             );
                         }
                     });
+                $(".input-title-home").val(title)
+                $(".input-subtitle-home").val(subtitle)
+
+                //Mostramos el modal
+                $(".modal-home-encabezado").modal("show");
+                //Eliminamos
+                $(".loader-view-container").remove();
+
                 this.renderHomeMobile(imagesMobile);
                 this.renderHomePC(
                     title,
@@ -522,13 +530,6 @@ export default class LandingView {
         </div>
     `);
         });
-
-        setTimeout(function () {
-            //Mostramos el modal
-            $(".modal-home-encabezado").modal("show");
-            //Eliminamos
-            $(".loader-view-container").remove();
-        }, 500);
     }
 
     addImageToHomeBanner() {

@@ -93755,6 +93755,12 @@ var LandingView = /*#__PURE__*/function () {
               return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
             }
           });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-title-home").val(title);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".input-subtitle-home").val(subtitle); //Mostramos el modal
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("show"); //Eliminamos
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
 
           _this2.renderHomeMobile(imagesMobile);
 
@@ -93844,12 +93850,6 @@ var LandingView = /*#__PURE__*/function () {
         homeHeaderButtons.html("");
         homeHeaderButtons.html("\n        <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n        </div>\n    ");
       });
-      setTimeout(function () {
-        //Mostramos el modal
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("show"); //Eliminamos
-
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
-      }, 500);
     }
   }, {
     key: "addImageToHomeBanner",
