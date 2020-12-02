@@ -85716,6 +85716,9 @@ function eventsGrilla() {
     if (landing == "concert-channel") {
       Object(_vendor_easyXDM_js__WEBPACK_IMPORTED_MODULE_9__["resetIframe"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#navbar-prev-home-concert iframe"), LandingHomeConcert);
     }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".header-title-1").val('');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("..header-title-2").val('');
   }); //Previsualizar el video que subió el usuario en el landing de home
 
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#video-promo-header-home").change(function () {
@@ -93751,11 +93754,7 @@ var LandingView = /*#__PURE__*/function () {
               var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
               return "<p class='a-text-bold-teal slider-pagination-item'>" + (i + 1) + "</p>";
             }
-          }); //Mostramos el modal
-
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("show"); //Eliminamos
-
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+          });
 
           _this2.renderHomeMobile(imagesMobile);
 
@@ -93845,6 +93844,12 @@ var LandingView = /*#__PURE__*/function () {
         homeHeaderButtons.html("");
         homeHeaderButtons.html("\n        <div class=\"text-center  mb-4 d-flex justify-content-center pb-2\">\n            <button\n                class=\"d-flex m-0  mr-3  btn-grilla a-btn-basic-small  text-uppercase a-text-MBlack text-plus edit-landing-modal-button\"\n                id=\"edit-home-encabezado\" data-dismiss=\"modal\">ACEPTAR</button>\n            <a href=\"#delete-info-encabezado-home\" role=\"button\"\n                class=\"d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel\"\n                data-toggle=\"modal\">CANCELAR</a>\n        </div>\n    ");
       });
+      setTimeout(function () {
+        //Mostramos el modal
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".modal-home-encabezado").modal("show"); //Eliminamos
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".loader-view-container").remove();
+      }, 500);
     }
   }, {
     key: "addImageToHomeBanner",

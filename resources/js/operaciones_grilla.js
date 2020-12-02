@@ -1276,6 +1276,8 @@ function eventsGrilla() {
                     LandingHomeConcert
                 );
             }
+            $(".header-title-1").val('')
+            $("..header-title-2").val('')
         }
     );
 
