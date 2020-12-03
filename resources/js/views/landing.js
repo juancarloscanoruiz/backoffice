@@ -93,6 +93,10 @@ export default class LandingView {
         let data = landingController.getContentHome();
         data.then(data => {
             if (data.code == 200) {
+
+                $(".input-title-home").val(title)
+                $(".input-subtitle-home").val(subtitle)
+
                 //Imágenes para móvil
                 let count = 1;
                 let imagesMobile = [];
@@ -235,6 +239,7 @@ export default class LandingView {
                             class="d-flex m-0 text-none text-uppercase btn-landing a-btn-basic-small text-plus a-text-bold-teal cancel"
                             data-toggle="modal">CANCELAR</a>
                     </div>`);
+
                 $(".programming-slider-home")
                     .not(".slick-initialized")
                     .slick({
@@ -257,14 +262,6 @@ export default class LandingView {
                             );
                         }
                     });
-                $(".input-title-home").val(title)
-                $(".input-subtitle-home").val(subtitle)
-
-                //Mostramos el modal
-                $(".modal-home-encabezado").modal("show");
-                //Eliminamos
-                $(".loader-view-container").remove();
-
                 this.renderHomeMobile(imagesMobile);
                 this.renderHomePC(
                     title,
@@ -530,6 +527,13 @@ export default class LandingView {
         </div>
     `);
         });
+
+        setTimeout(function () {
+            //Mostramos el modal
+            $(".modal-home-encabezado").modal("show");
+            //Eliminamos
+            $(".loader-view-container").remove();
+        }, 500);
     }
 
     addImageToHomeBanner() {
