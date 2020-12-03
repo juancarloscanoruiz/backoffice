@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { claroCinemaProgramacion } from '../index'
+import { claroCinemaProgramacion, canalClaroHome } from '../index'
 
 function setImgCarruselHome(data) {
     $.ajax({
@@ -13,9 +13,6 @@ function setImgCarruselHome(data) {
         success: function (res) {
             console.log(res)
             $(".loader-view-container").remove();
-            // $('#iframe-programacion').html('');
-            // programacion()
-            // $('#show-banner').modal('hide');
         }
     })
 }
@@ -38,4 +35,34 @@ function setBannerProgramacion(data) {
     })
 }
 
-export { setImgCarruselHome, setBannerProgramacion }
+function setBannerHome(data, landing) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: data,
+        processData: false,
+        contentType: false,
+        url: "landing/editHomeHeader",
+        success: function (res) {
+            console.log(JSON.parse(res));
+            switch (landing) {
+                case "canal-claro":
+                    $("#navbar-prev-home iframe").remove();
+                    canalClaroHome()
+                    $('.modal').modal('hide');
+                    $(".loader-view-container").remove();
+                    break;
+                case "admin":
+                    break;
+                case "claro-cinema":
+                    break;
+                case "concert-channel":
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+}
+
+export { setImgCarruselHome, setBannerProgramacion, setBannerHome }

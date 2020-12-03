@@ -2193,7 +2193,7 @@ function getContentConcertChannelBlock4OTwo() {
     });
 }
 
-function getContentConcertChannel(type,id_slide,totales) {
+function getContentConcertChannel(type, id_slide, totales) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -2209,8 +2209,8 @@ function getContentConcertChannel(type,id_slide,totales) {
             let data = JSON.parse(result);
             console.log(data);
             if (data.code == 200) {
-                let total = JSON.parse(totales);          
-                let initial =JSON.parse(id_slide);
+                let total = JSON.parse(totales);
+                let initial = JSON.parse(id_slide);
                 switch (type) {
                     case "slider-pagination":
                         let programmingSlider = $(
@@ -2249,9 +2249,9 @@ function getContentConcertChannel(type,id_slide,totales) {
                                 break;
                             }
                         }
-                        if(counter <= total){
+                        if (counter <= total) {
                             image =
-                            image +
+                                image +
                                 `
                                 <div class="slick-slide">
                                     <div>
@@ -2266,9 +2266,9 @@ function getContentConcertChannel(type,id_slide,totales) {
                                     </div>
                                 </div>
                                 `
-                            ;
+                                ;
                             counter++;
-                          
+
                         }
 
                         $(".programming-slider-concert-channel").html(image);
@@ -2468,21 +2468,9 @@ function editHomeHeader(data) {
         data: data,
         processData: false,
         contentType: false,
-        beforeSend: function () {
-            $("body").append(
-                `<div class="loader-view-container pointer-none">
-                    <img src="./images/loader.gif" class="loader"/>
-                </div>`
-            );
-        },
         url: "landing/editHomeHeader",
-        success: function (result) {
-            let json = JSON.parse(result);
-            console.log(json);
-            if (json.code == 200) {
-                $(".modal-home-encabezado").modal("hide");
-            }
-            $(".loader-view-container").remove();
+        success: function (res) {
+            console.log(JSON.parse(res));
         }
     });
 }
@@ -2763,7 +2751,7 @@ function getProgramsLanding(date, landing = "") {
         }
     });
 }
-function getBannerModalClaro(totales,id_slide){
+function getBannerModalClaro(totales, id_slide) {
     $.ajax({
         type: "GET",
         beforeSend: function () {
@@ -2776,18 +2764,18 @@ function getBannerModalClaro(totales,id_slide){
         url: "landing/header",
         success: function (result) {
             let obj = JSON.parse(result);
-         let total = JSON.parse(totales)+1;       
-        let initial =JSON.parse(id_slide);
-          
-                let counter = 1;
-                let image = "";
+            let total = JSON.parse(totales) + 1;
+            let initial = JSON.parse(id_slide);
 
-                let programmingSlider = $(
-                    ".programming-slider-canal-claro"
-                );
-                while (true) {
-                    if (obj.data[`block_1_image_slider_${counter}`]) {
-                        image += `
+            let counter = 1;
+            let image = "";
+
+            let programmingSlider = $(
+                ".programming-slider-canal-claro"
+            );
+            while (true) {
+                if (obj.data[`block_1_image_slider_${counter}`]) {
+                    image += `
                         <div class="bor thumbnail-image-program position-relative h-100">
                             <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="${counter}">
                             <label for="image_programming_${counter}"
@@ -2796,106 +2784,106 @@ function getBannerModalClaro(totales,id_slide){
                                     class="cursor-pointer add-photo " />
                                 <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
                                 <img src="${obj.data[
-                            "block_1_image_slider_" +
-                            counter
-                            ]
-                            }"
+                        "block_1_image_slider_" +
+                        counter
+                        ]
+                        }"
                                     class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                             </label>
                         </div>
                         `;
-                        counter++;
-                    } else {
-                        break;
-                    }
+                    counter++;
+                } else {
+                    break;
                 }
-              
-                programmingSlider.html(image);
-                $(".modal-programming-carousel-claro").modal("show");
-                try {
-                    programmingSlider.slick("unslick");
-                    programmingSlider.not(".slick-initialized").slick({
-                        slidesToShow: 1,
-                        dots: true,
-                        appendDots: $(
-                            ".programming-slider-dots-canal-claro"
-                        ),
-                        initialSlide: initial,
-                        infinite: false,
-                        customPaging: function (slider, i) {
-                            var thumb = $(slider.$slides[i]).data();
+            }
 
-                            return (
-                                "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                (i + 1) +
-                                "</br>" +
-                                "</p>"
-                            );
-                        }
-                    });
-                } catch (error) {
-                    programmingSlider.not(".slick-initialized").slick({
-                        slidesToShow: 1,
-                        dots: true,
-                        appendDots: $(
-                            ".programming-slider-dots-canal-claro"
-                        ),
-                        initialSlide: initial,
-                        infinite: false,
-                        customPaging: function (slider, i) {
-                            var thumb = $(slider.$slides[i]).data();
-                            return (
-                                "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                (i + 1) +
-                                "</p>"
-                            );
-                        }
-                    });
-                }
+            programmingSlider.html(image);
+            $(".modal-programming-carousel-claro").modal("show");
+            try {
+                programmingSlider.slick("unslick");
+                programmingSlider.not(".slick-initialized").slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(
+                        ".programming-slider-dots-canal-claro"
+                    ),
+                    initialSlide: initial,
+                    infinite: false,
+                    customPaging: function (slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
 
-                $(".banner-slider-button").click(function () {
-                    /*
-                        Arreglo para saber la posición de las imágenes que cargo el usuario
-                        es decir, saber si subió la 1 y 3, o 2,3 etc.
-                    */
-                    let imagesPositions = [];
-                    //Arreglo para guardar imágenes de los usuarios
-                    let imagesProgramming = [];
-                    //Recorremos cada input para obtener las imágenes
-                    $(".image_programming").each(function () {
-                        if (this.files[0]) {
-                            imagesPositions.push(
-                                $(this).attr("data-index")
-                            );
-                        }
-                        imagesProgramming.push(this.files[0]);
-                    });
-
-                    let data = new FormData();
-                    //Hacemos un for para mandar file1, file2, etc. en el form data
-                    for (
-                        let index = 0;
-                        index < imagesProgramming.length;
-                        index++
-                    ) {
-                        let file = "file" + (index + 1).toString();
-                        file = file.toString();
-                        data.append(file, imagesProgramming[index]);
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</br>" +
+                            "</p>"
+                        );
                     }
-                    //Posiciones de las imágenes
-                    data.append("positions", imagesPositions);
-                    //Hora inicio y fin
-                    data.append("date", $("#date-start-input").val());
-                    data.append("landing", "Canal Claro");
-                    setImageSliderBanner(data);
+                });
+            } catch (error) {
+                programmingSlider.not(".slick-initialized").slick({
+                    slidesToShow: 1,
+                    dots: true,
+                    appendDots: $(
+                        ".programming-slider-dots-canal-claro"
+                    ),
+                    initialSlide: initial,
+                    infinite: false,
+                    customPaging: function (slider, i) {
+                        var thumb = $(slider.$slides[i]).data();
+                        return (
+                            "<p class='a-text-bold-teal slider-pagination-item'>" +
+                            (i + 1) +
+                            "</p>"
+                        );
+                    }
+                });
+            }
+
+            $(".banner-slider-button").click(function () {
+                /*
+                    Arreglo para saber la posición de las imágenes que cargo el usuario
+                    es decir, saber si subió la 1 y 3, o 2,3 etc.
+                */
+                let imagesPositions = [];
+                //Arreglo para guardar imágenes de los usuarios
+                let imagesProgramming = [];
+                //Recorremos cada input para obtener las imágenes
+                $(".image_programming").each(function () {
+                    if (this.files[0]) {
+                        imagesPositions.push(
+                            $(this).attr("data-index")
+                        );
+                    }
+                    imagesProgramming.push(this.files[0]);
                 });
 
-                $(".loader-view-container").remove();
+                let data = new FormData();
+                //Hacemos un for para mandar file1, file2, etc. en el form data
+                for (
+                    let index = 0;
+                    index < imagesProgramming.length;
+                    index++
+                ) {
+                    let file = "file" + (index + 1).toString();
+                    file = file.toString();
+                    data.append(file, imagesProgramming[index]);
+                }
+                //Posiciones de las imágenes
+                data.append("positions", imagesPositions);
+                //Hora inicio y fin
+                data.append("date", $("#date-start-input").val());
+                data.append("landing", "Canal Claro");
+                setImageSliderBanner(data);
+            });
+
+            $(".loader-view-container").remove();
 
         }
-       
 
-        });
+
+    });
 }
 // CLARO CANAL
 function getModalsCanalClaro(type) {
@@ -2911,15 +2899,15 @@ function getModalsCanalClaro(type) {
         url: "landing/header",
         success: function (result) {
             let obj = JSON.parse(result);
-           // let total = JSON.parse(totales)+1;       
+            // let total = JSON.parse(totales)+1;       
             //let initial =JSON.parse(id_slide);
 
-        
+
             if (obj.code == 200) {
-             
+
                 switch (type) {
                     // GET HEADER
-                   
+
                     case "claro-header":
                         $("#img-header-claro").html('<img src="' + obj.data.block_2_icon_channel + '">');
                         $(".inp-text-modal-1").val(obj.data.block_2_title_1);
@@ -4302,7 +4290,7 @@ function reload(idCarousel, landing) {
         }
     });
 }
-function getBannerModalCinema(id_slide){
+function getBannerModalCinema(id_slide) {
     $.ajax({
         type: "POST",
         cache: false,
@@ -4316,111 +4304,111 @@ function getBannerModalCinema(id_slide){
         url: "landing/claroCinema",
         success: function (result) {
             let data = JSON.parse(result);
-                 
-            let initial =JSON.parse(id_slide);
+
+            let initial = JSON.parse(id_slide);
             if (data.code == 200) {
-             
-                    let counter = 1;
-                    let image = "";
-                    let programmingSlider = $(
-                        ".programming-slider-claro-cinema"
-                    );
-                    while (true) {
-                        if (data.data[`block_1_image_slider_${counter}`]) {
-                            image += `
+
+                let counter = 1;
+                let image = "";
+                let programmingSlider = $(
+                    ".programming-slider-claro-cinema"
+                );
+                while (true) {
+                    if (data.data[`block_1_image_slider_${counter}`]) {
+                        image += `
                     <div class="bor thumbnail-image-program position-relative h-100">
                         <input type="file" name="image_programming[]" id="image_programming_${counter}" class="input-image-program d-none image_programming " data-index="1">
                             <label for="image_programming_${counter}" class="h-100 mb-0 d-flex justify-content-center  align-items-center flex-column   load-programming-carousel">
                                 <img src="./images/synopsis/camara.svg" alt="add-photo" class=" cursor-pointer add-photo " />
                                 <span class="a-text-bold-warm text-plus p-2 banner-text mt-3">1920px X 657px</span>
                                 <img src="${data.data[
-                                "block_1_image_slider_" + counter
-                                ]
-                                }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
+                            "block_1_image_slider_" + counter
+                            ]
+                            }" class="w-100 h-100 cursor-pointer image-cover prev-image-program thumbnail-image-program img_image_programming_${counter}" />
                             </label>
                     </div>
                     `;
-                            counter++;
-                        } else {
-                            break;
-                        }
+                        counter++;
+                    } else {
+                        break;
                     }
-                    programmingSlider.html(image);
-                    $(".modal-programming-carousel-cinema").modal("show");
-                    try {
-                        programmingSlider.slick("unslick");
-                        programmingSlider.not(".slick-initialized").slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(
-                                ".programming-slider-dots-cinema"
-                            ),
-                            initialSlide: initial,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                var thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                    } catch (error) {
-                        console.log(error);
-                        programmingSlider.not(".slick-initialized").slick({
-                            slidesToShow: 1,
-                            dots: true,
-                            appendDots: $(
-                                ".programming-slider-dots-cinema"
-                            ),
-                            initialSlide: initial,
-                            infinite: false,
-                            customPaging: function (slider, i) {
-                                let thumb = $(slider.$slides[i]).data();
-                                return (
-                                    "<p class='a-text-bold-teal slider-pagination-item'>" +
-                                    (i + 1) +
-                                    "</p>"
-                                );
-                            }
-                        });
-                    }
-                    $("#image-programming-button-cinema").click(function () {
-                        let imagesPositions = [];
-                        let imagesProgramming = [];
-                        $(".image_programming").each(function () {
-                            if (this.files[0]) {
-                                imagesPositions.push(
-                                    $(this).attr("data-index")
-                                );
-                            }
-                            imagesProgramming.push(this.files[0]);
-                        });
-                        let data = new FormData();
-                        for (
-                            let index = 0;
-                            index < imagesProgramming.length;
-                            index++
-                        ) {
-                            let file = "file" + (index + 1).toString();
-                            file = file.toString();
-                            data.append(file, imagesProgramming[index]);
+                }
+                programmingSlider.html(image);
+                $(".modal-programming-carousel-cinema").modal("show");
+                try {
+                    programmingSlider.slick("unslick");
+                    programmingSlider.not(".slick-initialized").slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(
+                            ".programming-slider-dots-cinema"
+                        ),
+                        initialSlide: initial,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            var thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
                         }
-                        data.append("positions", imagesPositions);
-                        data.append("date", $("#date-start-input").val());
-                        data.append("landing", "Claro Cinema");
-                        setImageSliderBanner(data);
                     });
-                    $("#close_modals").click(function () {
-                        console.log("cerreer");
-                        $(".modal").modal("hide");
-                        $("#modaledi").modal("hide");
-                        $(".modal").modal("hide");
+                } catch (error) {
+                    console.log(error);
+                    programmingSlider.not(".slick-initialized").slick({
+                        slidesToShow: 1,
+                        dots: true,
+                        appendDots: $(
+                            ".programming-slider-dots-cinema"
+                        ),
+                        initialSlide: initial,
+                        infinite: false,
+                        customPaging: function (slider, i) {
+                            let thumb = $(slider.$slides[i]).data();
+                            return (
+                                "<p class='a-text-bold-teal slider-pagination-item'>" +
+                                (i + 1) +
+                                "</p>"
+                            );
+                        }
                     });
-                    $(".loader-view-container").remove();   
-            } 
-           
+                }
+                $("#image-programming-button-cinema").click(function () {
+                    let imagesPositions = [];
+                    let imagesProgramming = [];
+                    $(".image_programming").each(function () {
+                        if (this.files[0]) {
+                            imagesPositions.push(
+                                $(this).attr("data-index")
+                            );
+                        }
+                        imagesProgramming.push(this.files[0]);
+                    });
+                    let data = new FormData();
+                    for (
+                        let index = 0;
+                        index < imagesProgramming.length;
+                        index++
+                    ) {
+                        let file = "file" + (index + 1).toString();
+                        file = file.toString();
+                        data.append(file, imagesProgramming[index]);
+                    }
+                    data.append("positions", imagesPositions);
+                    data.append("date", $("#date-start-input").val());
+                    data.append("landing", "Claro Cinema");
+                    setImageSliderBanner(data);
+                });
+                $("#close_modals").click(function () {
+                    console.log("cerreer");
+                    $(".modal").modal("hide");
+                    $("#modaledi").modal("hide");
+                    $(".modal").modal("hide");
+                });
+                $(".loader-view-container").remove();
+            }
+
         }
     });
 }
@@ -4443,7 +4431,7 @@ function getContentClaroCinema(type) {
             if (data.code == 200) {
                 switch (type) {
                     // SLAIDER
-                  
+
 
                     case "header-landing-cinema":
                         $(".cinema-header-input-title1").val(

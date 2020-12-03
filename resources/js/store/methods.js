@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { setImgCarruselHome, setBannerProgramacion } from './setters'
+import { setImgCarruselHome, setBannerProgramacion, setBannerHome } from './setters'
 
 const LOADER = `<div class="loader-view-container" id="loader1"><img src="./images/loader.gif" class="loader" alt=""></div>`;
 var img = [], index = [];
@@ -41,4 +41,23 @@ function setBanner(id) {
     })
 }
 
-export { setImgCarruselVertical, setBanner }
+function setHomeBanner() {
+    console.log('llega 1 vez');
+    $(".modal-home-encabezado").on("click", "#edit-home-encabezado", function () {
+        $("body").append(LOADER);
+        let landing = $(".modal-home-encabezado").attr("landing");
+
+        let videoimage = document.getElementById("video-promo-header-home").files[0] || "";
+        let title = $(".modal-home-encabezado .header-title-1").val() || "";
+        let subtitle = $(".modal-home-encabezado .header-title-2").val() || "";
+
+        let data = new FormData();
+        data.append("video", videoimage);
+        data.append("title", title);
+        data.append("subtitle", subtitle);
+
+        setBannerHome(data, landing)
+    });
+}
+
+export { setImgCarruselVertical, setBanner, setHomeBanner }

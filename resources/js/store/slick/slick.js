@@ -3,7 +3,7 @@ import "slick-carousel";
 
 var index
 
-function slickShowArrow(slick, dots,initial) {
+function slickShowArrow(slick, dots, initial) {
     try {
         slick.slick("unslick");
         slick.slick({

@@ -5,7 +5,7 @@ $.ajaxSetup({
     }
 });
 
-import { getBanner } from './actions'
+import { getBanner, getHomeBanner } from './actions'
 
 function getProgramacion(type, id_slide) {
     $.ajax({
@@ -13,14 +13,23 @@ function getProgramacion(type, id_slide) {
         cache: false,
         url: "landing/getSection/programation",
         success: function (res) {
-            
             if (type == 1) {
-               // let total = JSON.parse(totales);
-                 let initial =JSON.parse(id_slide);
-                getBanner(JSON.parse(res), 1,initial);
+                let initial = JSON.parse(id_slide);
+                getBanner(JSON.parse(res), 1, initial);
             }
         }
     })
 }
 
-export { getProgramacion }
+function getHome() {
+    $.ajax({
+        type: "GET",
+        cache: false,
+        url: "landing/home",
+        success: function (res) {
+            getHomeBanner(JSON.parse(res))
+        }
+    })
+}
+
+export { getProgramacion, getHome }

@@ -94,8 +94,7 @@ export default class LandingView {
         data.then(data => {
             if (data.code == 200) {
 
-                $(".input-title-home").val(title)
-                $(".input-subtitle-home").val(subtitle)
+
 
                 //Imágenes para móvil
                 let count = 1;
